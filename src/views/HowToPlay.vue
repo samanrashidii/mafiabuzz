@@ -1,12 +1,11 @@
 <template>
-  <div class="home">
-    <app-navigation />
-  </div>
+    <div class="how-to-play">
+
+    </div>
 </template>
 
 <script>
-
 export default {
-  
-};
+
+}
 </script>
