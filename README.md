@@ -1,4 +1,3 @@
 # MafiaWars
 
-### Customize configuration
-See App on Web [MafiaWars](https://www.mafiawars.app).
+See this App on web [MafiaWars](https://www.mafiawars.app).

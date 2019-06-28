@@ -7,8 +7,196 @@
   	font-style: normal;
 }
 
+@font-face{
+	font-family:'Muli';
+	src: url('../fonts/Muli.woff') format('woff');
+	font-weight: normal;
+  	font-style: normal;
+}
+
+$font_normal: 'Muli';
+$font_mafia: 'Mafia';
+$font_size_5:16px;
+$font_size_5:16px;
+$font_size_6:17px;
+$font_size_7:18px;
+$font_size_8:19px;
+$font_size_9:20px;
+$color_1: #fefefe;
+$color_2: #2e2e2e;
+$color_3: #8e8e8e;
+$color_site_1: #323d3c;
+$color_site_2: #5cc1a3;
+$background_color_default: #2e2e2e;
+$background_color_main: #1e1e1e;
+$background_color_1: #4f4f4f;
+$background_color_2: #5a5a5a;
+$creator_color: #ea852f;
+$player_color: #4182e3;
+$hint_color: #ddbf30;
+$about_color: #11b684;
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	&::after {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+	&::before {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+}
+
+html,
+body{
+    min-height: 100%;
+    height: 100%;
+}
+
 body{
     max-width: 980px;
-    max-width: 400px;
+    font-family: $font_normal, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: $color_1;
     margin:auto;
+    background-color: $background_color_default;
+    user-select: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+}
+
+h1,h1,h3,h4,h5,h6,strong{font-weight: normal;}
+i{font-style: normal;}
+
+a{
+    color:inherit;
+	text-decoration: none;
+	outline: none;
+	transition: all .2s ease-in-out;
+	&:hover {
+		outline: none;
+	}
+	&:focus {
+		outline: none;
+	}
+	img {
+		outline: none;
+		border: none;
+	}
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto !important;
+	margin: auto;
+}
+
+ul,
+ol{list-style: none;}
+
+::-webkit-input-placeholder {
+	font-family: $font_normal;
+	font-size: 14px;
+	color: $color_3;
+}
+:-moz-placeholder {
+	font-family: $font_normal;
+	font-size: 14px;
+	color: $color_3;
+}
+::-moz-placeholder {
+	font-family: $font_normal;
+	font-size: 14px;
+	color: $color_3;
+}
+:-ms-input-placeholder {
+	font-family: $font_normal;
+	font-size: 14px;
+	color: $color_3;
+}
+
+input {
+	&:-webkit-autofill {
+		background-color: $background_color_2;
+		&:focus {
+			background-color: $background_color_2;
+		}
+		&:active {
+			background-color: $background_color_2;
+		}
+    }
+    display: block;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-family: $font_normal;
+	font-size: 16px;
+	color: $color_1;
+	outline: none;
+	border: none;
+	-webkit-appearance: none;
+	transition: all .2s ease-in-out;
+    padding: 0 15px;
+    background-color: $background_color_1;
+	border-radius: 4px;
+	&:not([type="submit"]) {
+		&:focus {
+			background-color: $background_color_2;
+		}
+	}
+}
+
+html,body{min-height: 100%;}
+
+#app{
+    position: relative;
+    min-height: 100%;
+    padding:10px;
+    background-color: $background_color_main;
+}
+
+.navigation{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    z-index: 99999;
+    nav{
+        display:flex;
+        flex-wrap: wrap;
+        width:100%;
+        height: 100%;
+        padding:5px;
+        a{
+            display:table;
+            width:50%;
+            height: 50%;
+            text-align: center;
+            font-family: $font_mafia;
+            font-size: 30px;
+            padding:10px;
+            box-shadow: inset 0 0 3px #1e1e1e;
+            border:5px solid $background_color_main;
+            &:nth-child(1){background-color: $creator_color;}
+            &:nth-child(2){background-color: $player_color;}
+            &:nth-child(3){background-color: $hint_color;}
+            &:nth-child(4){background-color: $about_color;}
+            span{
+                display:table-cell;
+                vertical-align: middle;
+                img{
+                    width:100px;
+                    margin-bottom:15px;
+                }
+            }
+        }
+    }
 }
