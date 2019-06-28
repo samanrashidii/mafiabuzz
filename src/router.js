@@ -1,8 +1,45 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import Meta from 'vue-meta';
+
+const Home = (resolve) => {
+  require.ensure(['./views/Home.vue'], () => {
+    resolve(require('./views/Home.vue'));
+  });
+};
+
+const NotFound = (resolve) => {
+  require.ensure(['./views/NotFound.vue'], () => {
+    resolve(require('./views/NotFound.vue'));
+  });
+};
+
+const About = (resolve) => {
+  require.ensure(['./views/About.vue'], () => {
+    resolve(require('./views/About.vue'));
+  });
+};
+
+const Creator = (resolve) => {
+  require.ensure(['./views/Creator.vue'], () => {
+    resolve(require('./views/Creator.vue'));
+  });
+};
+
+const Player = (resolve) => {
+  require.ensure(['./views/Player.vue'], () => {
+    resolve(require('./views/Player.vue'));
+  });
+};
+
+const HowToPlay = (resolve) => {
+  require.ensure(['./views/HowToPlay.vue'], () => {
+    resolve(require('./views/HowToPlay.vue'));
+  });
+};
 
 Vue.use(Router);
+Vue.use(Meta);
 
 export default new Router({
   mode: 'history',
@@ -14,12 +51,33 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/error-404',
+      name: 'not-found',
+      component: NotFound,
+    },
+    {
+      path: '*',
+      redirect: { name: 'not-found' },
+    },
+    {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: About,
+    },
+    {
+      path: '/how-to-play',
+      name: 'howtoplay',
+      component: HowToPlay,
+    },
+    {
+      path: '/creator',
+      name: 'creator',
+      component: Creator,
+    },
+    {
+      path: '/player',
+      name: 'player',
+      component: Player,
     },
   ],
 });
