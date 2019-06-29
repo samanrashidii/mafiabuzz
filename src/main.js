@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
+
 // Global Components
 
 import Navigation from '@/components/global/Navigation.vue';
@@ -12,7 +13,7 @@ Vue.component('app-navigation', Navigation);
 
 // Required External Files
 
-require('@/assets/css/style.scss');
+require('@/assets/styles/style.scss');
 
 // Vue Config
 
