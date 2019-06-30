@@ -23,8 +23,8 @@
                     <span class="step-number">3</span>
                     <label>Now you must choose between below roles for your game:</label>
                     <ul class="note">
-                        <li>Mafia have <span class="mafia-role">red color</span> and you can choose maximum of <i class="mafia-role">{{gameSettings.mafia}}</i> roles.</li>
-                        <li>Citizen have <strong class="citizen-role">blue color</strong> and you can choose maximum of <i class="citizen-role">{{gameSettings.citizens}}</i> roles.</li>
+                        <li>Mafia characters have <span class="mafia-role">red color</span> and you can choose <i class="mafia-role">{{gameSettings.mafia}}</i> of them.</li>
+                        <li>Citizen characters have <strong class="citizen-role">blue color</strong> and you can choose <i class="citizen-role">{{gameSettings.citizens}}</i> of them.</li>
                     </ul>
                 </div>
             </div>
@@ -97,18 +97,18 @@ export default {
 
 span.step-number{
     position: absolute;
-    top:-20px;
-    left:-4px;
+    top:-14px;
+    left:-8px;
     display: inline-block;
-    width:34px;
-    height: 20px;
-    line-height: 20px;
+    width:28px;
+    height: 28px;
+    line-height: 28px;
     font-size: $font_size_4;
     color: $color_2;
     text-align: center;
     margin-right: 4px;
     background-color:$creator_color;
-    border-radius: 1px;
+    border-radius: 50%;
 }
 
 .step-box label{

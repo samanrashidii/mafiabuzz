@@ -15,7 +15,7 @@
         {
             "mafia": true,
             "name": "Ruspy",
-            "icon": "godfather.png",
+            "icon": "ruspy.png",
             "alt": "Ruspy Icon"
         },
         {
@@ -27,19 +27,19 @@
         {
             "mafia": false,
             "name": "Police",
-            "icon": "citizen.png",
+            "icon": "police.png",
             "alt": "Police Icon"
         },
         {
             "mafia": false,
             "name": "Doctor",
-            "icon": "citizen.png",
+            "icon": "doctor.png",
             "alt": "Doctor Icon"
         },
         {
             "mafia": false,
             "name": "Cupid",
-            "icon": "citizen.png",
+            "icon": "cupid.png",
             "alt": "Cupid Icon"
         }
     ]
