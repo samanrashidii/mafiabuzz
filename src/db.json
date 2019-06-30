@@ -1,0 +1,40 @@
+{
+    "roles": [
+        {
+            "mafia": true,
+            "name": "Mafia",
+            "icon": "mafia.png",
+            "alt": "Mafia Icon"
+        },
+        {
+            "mafia": true,
+            "name": "Godfather",
+            "icon": "godfather.png",
+            "alt": "Godfather Icon"
+        },
+        {
+            "mafia": true,
+            "name": "Ruspy",
+            "icon": "godfather.png",
+            "alt": "Ruspy Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Citizen",
+            "icon": "citizen.png",
+            "alt": "Citizen Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Police",
+            "icon": "citizen.png",
+            "alt": "Police Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Doctor",
+            "icon": "citizen.png",
+            "alt": "Doctor Icon"
+        }
+    ]
+}
