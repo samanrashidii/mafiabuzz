@@ -2,7 +2,7 @@
     <div class="roles">
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
-                <input @change="checkRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :value="roleControl(role.name, role.mafia)" v-model="selectedRoles" :disabled="selectedMafia > selectedUnits.mafia" />
+                <input @change="checkRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :value="roleControl(role.name, role.mafia)" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
@@ -25,8 +25,6 @@ export default {
     data(){
         return {
             selectedRoles: [],
-            selectedMafia: 0,
-            selectedCitizen: 0
         }
     },
     computed:{
@@ -45,9 +43,7 @@ export default {
             }
         },
         checkRoles(){
-            this.selectedMafia = this.selectedRoles.filter(x => x.mafia == true).length;
-            this.selectedCitizen = this.selectedRoles.filter(x => x.mafia == false).length;
-            this.$emit('selectedRoles', this.selectedRoles)
+            this.$emit('selectedRoles', this.selectedRoles); 
         }
     }
 }

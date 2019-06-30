@@ -35,6 +35,12 @@
             "name": "Doctor",
             "icon": "citizen.png",
             "alt": "Doctor Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Cupid",
+            "icon": "citizen.png",
+            "alt": "Cupid Icon"
         }
     ]
 }
