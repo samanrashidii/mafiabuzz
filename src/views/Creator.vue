@@ -23,13 +23,13 @@
                     <span class="step-number">3</span>
                     <label>Now you must choose between below roles for your game:</label>
                     <ul class="note">
-                        <li>Mafia roles have <span class="mafia-role">red color</span> and you can choose maximum of <i class="mafia-role">{{gameSettings.mafia}}</i> Mafia roles.</li>
-                        <li>Citizen roles have <strong class="citizen-role">blue color</strong> and you can choose maximum of <i class="citizen-role">{{gameSettings.citizens}}</i> Citizen roles.</li>
+                        <li>Mafia have <span class="mafia-role">red color</span> and you can choose maximum of <i class="mafia-role">{{gameSettings.mafia}}</i> roles.</li>
+                        <li>Citizen have <strong class="citizen-role">blue color</strong> and you can choose maximum of <i class="citizen-role">{{gameSettings.citizens}}</i> roles.</li>
                     </ul>
                 </div>
             </div>
             <roles :selectedUnits="selectedUnits" @selectedRoles="gameSettings.roles = $event"></roles>
-            <button @click.prevent="startGame()" type="submit">Start Game</button>
+            <button @click.prevent="startGame()" type="submit" :disabled="isValid">Start Game</button>
         </form>
     </div>
 </template>
@@ -40,6 +40,10 @@ import Roles from '@/components/Roles.vue';
 export default {
     data(){
         return {
+            gameValdiation: {
+                selectedMafia: 0,
+                selectedCitizen: 0
+            },
             gameSettings: {
                 unit: 6,
                 mafia: 2,
@@ -58,6 +62,16 @@ export default {
             return {
                 mafia: this.gameSettings.mafia,
                 citizens: this.gameSettings.citizens
+            }
+        },
+        isValid(){
+            this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
+            this.gameValdiation.selectedCitizen = this.gameSettings.roles.filter(x => x.mafia == false).length;
+            if(this.gameValdiation.selectedMafia == this.gameSettings.mafia && this.gameValdiation.selectedCitizen == this.gameSettings.citizens){
+                console.log(':)');
+                return false;
+            } else{
+                return true;
             }
         }
     },
