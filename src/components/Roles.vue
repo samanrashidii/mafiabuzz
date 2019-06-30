@@ -75,6 +75,7 @@ export default {
     background-color: $background_color_citizen;
     border:3px solid $black_color;
     border-radius: 2px;
+    transition:all .3s ease-in-out;
     > div{
         display: table-cell;
         vertical-align: middle;
@@ -88,7 +89,5 @@ export default {
 .roles li.mafia label{background-color:$background_color_mafia;}
 
 .roles li input{display: none;}
-
-
 
 </style>
