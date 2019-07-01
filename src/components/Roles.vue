@@ -76,20 +76,27 @@ export default {
                 this.normalCitizen++;
             }
             this.selectedRoles.push(this.roleControl(role, mafia));
-            console.log(this.selectedRoles);
         },
         decrNumber(role, mafia){
-            if(this.normalCitizen > 1){
-                if(role == 'Citizen'){
-                    this.normalCitizen--;
+            let $roles = this.selectedRoles;
+            if(this.normalCitizen > 1 && role == 'Citizen'){
+                for(let el of $roles) {
+                    if(el.name == role){
+                        $roles.splice($roles.indexOf(el),1);
+                        break;
+                    }
                 }
+                this.normalCitizen--;
             }
-            if(this.normalMafia > 1){
-                if(role == 'Mafia'){
-                    this.normalMafia--;
+            if(this.normalMafia > 1 && role == 'Mafia'){
+                for(let el of $roles) {
+                    if(el.name == role){
+                        $roles.splice($roles.indexOf(el),1);
+                        break;
+                    }
                 }
+                this.normalMafia--;
             }
-            console.log(this.selectedRoles);
         }
     }
 }
