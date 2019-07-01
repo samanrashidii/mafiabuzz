@@ -1,5 +1,8 @@
 <template>
     <div class="roles">
+        <div class="info-box" v-if="info.show">
+            <p>{{info.content}}</p>
+        </div>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
                 <input @change="checkRoles(role.name)" type="checkbox" name="roles" :id="`role_${index+1}`" :value="roleControl(role.name, role.mafia)" v-model="selectedRoles" />
@@ -13,6 +16,7 @@
                     <span @click="decrNumber(role.name, role.mafia)">-</span>
                     <span @click="incrNumber(role.name, role.mafia)">+</span>
                 </div>
+                <a @click="showInfo(role.description)" class="info" href="javascript:void(0)"></a>
             </li>
         </ul>
     </div>
@@ -30,7 +34,11 @@ export default {
         return {
             selectedRoles: [],
             normalMafia: 0,
-            normalCitizen: 0
+            normalCitizen: 0,
+            info: {
+                show: false,
+                content: ""
+            }
         }
     },
     computed:{
@@ -51,14 +59,17 @@ export default {
         checkRoles(role){
             if(role == 'Mafia' && this.normalMafia == 0){
                 this.normalMafia = 1;
-            } else if(role == 'Mafia' && this.normalMafia == 1){
+            } else if(role == 'Mafia' && this.normalMafia >= 1){
                 this.normalMafia = 0;
+                this.selectedRoles = this.selectedRoles.filter(value => value.name != role);
             } else if(role == 'Citizen' && this.normalCitizen == 0){
                 this.normalCitizen = 1;
-            } else if(role == 'Citizen' && this.normalCitizen == 1){
+            } else if(role == 'Citizen' && this.normalCitizen >= 1){
                 this.normalCitizen = 0;
+                this.selectedRoles = this.selectedRoles.filter(value => value.name != role);
             }
-            this.$emit('selectedRoles', this.selectedRoles); 
+            this.$emit('selectedRoles', this.selectedRoles);
+            console.log(this.selectedRoles);
         },
         checkNumbers(role){
             if(this.normalMafia > 0 && role == 'Mafia'){
@@ -70,12 +81,20 @@ export default {
             }
         },
         incrNumber(role, mafia){
+            let $roles = this.selectedRoles;
             if(role == 'Mafia'){
-                this.normalMafia++;
+                if(this.normalMafia < 10){
+                    this.normalMafia++;
+                    $roles.push(this.roleControl(role, mafia));
+                }
+                
             } else if(role == 'Citizen'){
-                this.normalCitizen++;
+                if(this.normalCitizen < 20){
+                    this.normalCitizen++;
+                    $roles.push(this.roleControl(role, mafia));
+                }
             }
-            this.selectedRoles.push(this.roleControl(role, mafia));
+            console.log($roles);
         },
         decrNumber(role, mafia){
             let $roles = this.selectedRoles;
@@ -97,6 +116,12 @@ export default {
                 }
                 this.normalMafia--;
             }
+            console.log($roles);
+        },
+        showInfo(description){
+            console.log(description);
+            this.info.content = description;
+            this.info.show == false ? this.info.show = true : this.info.show = false;
         }
     }
 }
@@ -118,7 +143,7 @@ export default {
 .roles li label{
     display: table;
     width: 100%;
-    height: 140px;
+    height: 144px;
     font-family: $font_mafia;
     font-size: $font_size_big;
     color:$color_1;
@@ -136,17 +161,16 @@ export default {
             display: block;
             margin-top:5px;
             span{
-                font-size: $font_size_8;
-                color:$color_2;
-                margin-left: 5px;
+                display: block;
+                font-family: $font_normal;
+                font-size: $font_size_6;
+                color:$color_1;
                 transition:all .3s ease-in-out;
-                i{font-size: $font_size_big;}
+                i{font-size: $font_size_8;}
             }
         }
     }
 }
-
-.roles li input:checked + label strong span{color:$color_1;}
 
 .roles li.mafia label{background-color:$background_color_mafia;}
 
@@ -159,7 +183,7 @@ export default {
     display: block;
     width:30px;
     height: 30px;
-    line-height: 26px;
+    line-height: 24px;
     font-family: $font_normal;
     font-size: $font_size_9;
     color:$color_1;
@@ -167,17 +191,17 @@ export default {
     margin-top:-15px;
     cursor: pointer;
     background-color: $black_color;
+    border:1px solid $color_1;
     border-radius: 50%;
+    transition:all .2s ease-in-out;
     z-index: 99;
     &:active{
-        color:$red_color;
+        transform: scale(.6,.6);
+        border-color:$black_color;
     }
     &:last-child{
         left:auto;
         right:-12px;
-        &:active{
-            color:$green_color;
-        }
     }
     
 }
