@@ -19,6 +19,24 @@
             "alt": "Ruspy Icon"
         },
         {
+            "mafia": true,
+            "name": "Drunk",
+            "icon": "drunk.png",
+            "alt": "Drunk Icon"
+        },
+        {
+            "mafia": true,
+            "name": "Traitor",
+            "icon": "traitor.png",
+            "alt": "Traitor Icon"
+        },
+        {
+            "mafia": true,
+            "name": "Chef",
+            "icon": "chef.png",
+            "alt": "Chef Icon"
+        },
+        {
             "mafia": false,
             "name": "Citizen",
             "icon": "citizen.png",
@@ -41,6 +59,30 @@
             "name": "Cupid",
             "icon": "cupid.png",
             "alt": "Cupid Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Bomb",
+            "icon": "bomb.png",
+            "alt": "Bomb Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Grandma",
+            "icon": "grandma.png",
+            "alt": "Grandma Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Bulletproof",
+            "icon": "bulletproof.png",
+            "alt": "Bulletproof Icon"
+        },
+        {
+            "mafia": false,
+            "name": "Necromancer",
+            "icon": "necromancer.png",
+            "alt": "Necromancer Icon"
         }
     ]
 }

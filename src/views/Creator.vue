@@ -29,7 +29,7 @@
                 </div>
             </div>
             <roles :selectedUnits="selectedUnits" @selectedRoles="gameSettings.roles = $event"></roles>
-            <button @click.prevent="startGame()" type="submit" :disabled="isValid">Start Game</button>
+            <button class="start-bttn" @click.prevent="startGame()" type="submit" :disabled="isValid"><span>Start Game</span></button>
         </form>
     </div>
 </template>
