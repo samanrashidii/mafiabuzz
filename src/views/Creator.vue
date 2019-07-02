@@ -1,42 +1,44 @@
 <template>
     <div class="creator">
         <app-navigation />
-        <h2>Hi <span>God</span></h2>
-        <p>I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)</p>
+        <h2 v-html="Creator.title"></h2>
+        <p v-html="Creator.subtitle"></p>
         <form action="#" method="POST" accept-charset="utf-8" name="game_settings" class="game_settings">
             <div class="steps">
                 <div class="step-box">
                     <span class="step-number">1</span>
-                    <label for="quantity">Choose how many people do want to have in your universe:</label>
+                    <label for="quantity">{{Creator.step1}}</label>
                     <select name="quantity" id="quantity" v-model="gameSettings.unit">
-                        <option v-for="n in 25" :key="n">{{n+5}}</option>
+                        <option v-for="n in Creator.maxPlayers" :key="n">{{n + Creator.playerMargin}}</option>
                     </select>
                 </div>
                 <div class="step-box">
                     <span class="step-number">2</span>
-                    <label for="mafia_number">Please choose how many of these people will be mafia:</label>
+                    <label for="mafia_number">{{Creator.step2}}</label>
                     <select name="mafia_number" id="mafia_number" v-model.number="gameSettings.mafia">
                         <option v-for="n in calcMafia" :key="n">{{n+1}}</option>
                     </select>
                 </div>
                 <div class="step-box">
                     <span class="step-number">3</span>
-                    <label>Now you must choose between below roles for your game:</label>
+                    <label>{{Creator.step3}}</label>
                     <ul class="note">
                         <li>Mafia characters have <span class="mafia-role">red color</span> and you can choose <i class="mafia-role">{{gameSettings.mafia}}</i> of them.</li>
                         <li>Citizen characters have <strong class="citizen-role">blue color</strong> and you can choose <i class="citizen-role">{{gameSettings.citizens}}</i> of them.</li>
                     </ul>
                 </div>
             </div>
-            <roles :selectedUnits="selectedUnits" @selectedRoles="gameSettings.roles = $event"></roles>
-            <button class="start-bttn" @click.prevent="startGame()" type="submit" :disabled="isValid"><span>Start Game</span></button>
+            <roles @selectedRoles="gameSettings.roles = $event"></roles>
+            <button class="start-bttn" @click.prevent="startGame()" type="submit" :disabled="isValid"><span>{{Creator.start}}</span></button>
         </form>
+        <power-meter :power="calcPower"></power-meter>
     </div>
 </template>
 
 <script>
 import Roles from '@/components/Roles.vue';
-
+import PowerMeter from '@/components/PowerMeter.vue';
+import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
@@ -49,20 +51,30 @@ export default {
                 mafia: 2,
                 citizens: 4,
                 roles: [],
+                power: 0,
             }
         }
     },
     computed:{
+        ...mapGetters([
+            'Creator',
+        ]),
+        calcPower(){
+            let $power = this.gameSettings.power;
+            this.gameSettings.roles.forEach(element => {
+                $power += element.power;  
+            });
+            if($power >= 100){
+                $power = 100;
+            } else if($power <= -100){
+                $power = -100;
+            }
+            return $power;
+        },
         calcMafia(){
             let mafiaNumbers = Math.floor(this.gameSettings.unit / 3) -1;
             this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
             return mafiaNumbers;
-        },
-        selectedUnits(){
-            return {
-                mafia: this.gameSettings.mafia,
-                citizens: this.gameSettings.citizens
-            }
         },
         isValid(){
             this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
@@ -81,12 +93,15 @@ export default {
         }
     },
     components:{
-        roles : Roles
+        roles : Roles,
+        powerMeter : PowerMeter
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
+.creator{padding-bottom: 30px;}
 
 .step-box{
     position: relative;

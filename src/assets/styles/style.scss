@@ -365,3 +365,23 @@ a.info{
 
 .mafia-status strong.mafia-role{background-color: $background_color_mafia;}
 .mafia-status strong.citizen-role{background-color: $background_color_citizen;}
+
+.meter{
+    position: absolute;
+    top:-9px;
+    left:25%;
+    width:50%;
+    height: 100%;
+    z-index: 99;
+    transition:all .2s ease-in-out;
+    span{
+        position: absolute;
+        top:0;
+        left:50%;
+        display: block;
+        width:32px;
+        height: 32px;
+        margin-left: -16px;
+        background:url('../images/assets/meter.png') no-repeat center;
+    }
+}
