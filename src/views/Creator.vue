@@ -44,7 +44,9 @@
                     <app-button @click.native="overlay = false">Okay I got it :)</app-button>
                 </template>
                 <template v-else>
-                    
+                    <h2>Your game is about to start with below details</h2>
+                    <app-button @click.native="overlay = false">Change game settings</app-button>
+                    <app-button @click.native="startGame()" class="active">Start Game!</app-button>
                 </template>
             </overlay>
         </form>
@@ -125,7 +127,14 @@ export default {
             return require(`@/assets/images/icons/${pic}`);
         },
         startGame(){
-            console.log(this.gameSettings);
+            let finalRoles = [];
+            this.gameSettings.roles.forEach(element => {
+                finalRoles.push(element.name);
+            });
+            alert(`Players : ${this.gameSettings.unit}
+Mafia : ${this.gameSettings.mafia}
+Citizen : ${this.gameSettings.citizens}
+Roles : ${finalRoles.join(" , ")}`);
         }
     },
     components:{

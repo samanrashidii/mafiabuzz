@@ -24,6 +24,12 @@ a.bttn{
     &:hover{
         background-color: $green_color;
     }
+    &.active{
+        background-color: $creator_color;
+        &:hover{
+            background-color: $green_color;
+        }
+    }
 }
 
 </style>
