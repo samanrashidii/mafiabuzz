@@ -173,7 +173,11 @@ button{
 	transition:all .2s ease-in-out;
 }
 
+.left-aligned{text-align: left;}
 .center-aligned{text-align: center;}
+.right-aligned{text-align: right;}
+.has-top-margin{margin-top:30px;}
+.has-bottom-margin{margin-bottom:30px;}
 
 .has-clear-fix::after {
     content: '';
@@ -181,6 +185,24 @@ button{
     height: 0;
     clear: both;
     visibility: hidden;
+}
+
+.circle-bullet {
+	li {
+        font-size: $font_size_3;
+        line-height: 1.8;
+        text-align: left;
+        margin:10px 0;
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 5px;
+            height: 5px;
+			margin-right: 5px;
+			background-color: $background_color_1;
+			border-radius: 50%;
+		}
+	}
 }
 
 #app{
@@ -326,7 +348,7 @@ a.info{
     height: 95%;
     overflow-y: auto;
     padding:45px 15px 15px 15px;
-    background-color: rgba(0,0,0,.94);
+    background-color: $transparent_black;
     border-radius: 15px 15px 0 0 ;
     z-index: 999999999;
     transition: all .3s ease-in-out;

@@ -32,12 +32,24 @@
             <button class="start-bttn" @click.prevent="startGame()" type="submit" :disabled="isValid"><span>{{Creator.start}}</span></button>
         </form>
         <power-meter :power="calcPower"></power-meter>
+        <overlay>
+            <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
+            <ul class="circle-bullet">
+                <li>
+                    You have chosen <span class="mafia-role">{{gameSettings.mafia}}</span> Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
+                </li>
+                <li>
+                    You have chosen <span class="citizen-role">{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
+                </li>
+            </ul>
+        </overlay>
     </div>
 </template>
 
 <script>
 import Roles from '@/components/Roles.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
+import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
 export default {
     data(){
@@ -88,13 +100,17 @@ export default {
         }
     },
     methods:{
+        getImgUrl(pic) {
+            return require(`@/assets/images/icons/${pic}`);
+        },
         startGame(){
             console.log(this.gameSettings);
         }
     },
     components:{
         roles : Roles,
-        powerMeter : PowerMeter
+        powerMeter : PowerMeter,
+        overlay: Overlay,
     }
 }
 </script>
@@ -137,21 +153,22 @@ span.step-number{
     font-size: $font_size_3;
     color:$color_4;
     margin-bottom:12px;
-}
-
-.note li::before{
-    content:'*';
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 7px;
+    &::before{
+        content:'*';
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 7px;
+    }
 }
 
 .citizen-role{color:$blue_color}
 .mafia-role{color:$red_color}
 
-.note li i{
+i.mafia-role,
+i.citizen-role{
     display: inline-block;
-    padding:1px 6px 3px 6px;
+    line-height: 1.4;
+    padding:1px 6px;
     margin:0 4px;
     background-color:$background_color_2;
     border-radius:2px;
