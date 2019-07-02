@@ -1,7 +1,14 @@
 <template>
     <div class="roles">
-        <div class="info-box" v-if="info.show">
-            <p>{{info.content}}</p>
+        <div class="info-box" :class="{'active': info.show}">
+            <a href="javascript:void(0)" @click="info.show = false"></a>
+            <img :src="getImgUrl(info.icon)" alt="">
+            <h2>{{info.name}}</h2>
+            <div class="mafia-status">
+                <strong class="mafia-role" v-if="info.mafia">mafia</strong>
+                <strong class="citizen-role" v-else>citizen</strong>
+            </div>
+            <p>{{info.description}}</p>
         </div>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
@@ -16,7 +23,7 @@
                     <span @click="decrNumber(role.name, role.mafia)">-</span>
                     <span @click="incrNumber(role.name, role.mafia)">+</span>
                 </div>
-                <a @click="showInfo(role.description)" class="info" href="javascript:void(0)"></a>
+                <a @click="showInfo(role.name, role.icon ,role.description, role.mafia)" class="info" href="javascript:void(0)"></a>
             </li>
         </ul>
     </div>
@@ -37,7 +44,10 @@ export default {
             normalCitizen: 0,
             info: {
                 show: false,
-                content: ""
+                name: "Default",
+                description: "Default Description",
+                icon: "default.png",
+                mafia: false
             }
         }
     },
@@ -69,7 +79,6 @@ export default {
                 this.selectedRoles = this.selectedRoles.filter(value => value.name != role);
             }
             this.$emit('selectedRoles', this.selectedRoles);
-            console.log(this.selectedRoles);
         },
         checkNumbers(role){
             if(this.normalMafia > 0 && role == 'Mafia'){
@@ -94,7 +103,6 @@ export default {
                     $roles.push(this.roleControl(role, mafia));
                 }
             }
-            console.log($roles);
         },
         decrNumber(role, mafia){
             let $roles = this.selectedRoles;
@@ -116,11 +124,12 @@ export default {
                 }
                 this.normalMafia--;
             }
-            console.log($roles);
         },
-        showInfo(description){
-            console.log(description);
-            this.info.content = description;
+        showInfo(name, icon, description, mafia){
+            this.info.name = name;
+            this.info.icon = icon;
+            this.info.description = description;
+            this.info.mafia = mafia;
             this.info.show == false ? this.info.show = true : this.info.show = false;
         }
     }
@@ -205,5 +214,6 @@ export default {
     }
     
 }
+
 
 </style>

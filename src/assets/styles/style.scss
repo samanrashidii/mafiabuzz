@@ -173,6 +173,8 @@ button{
 	transition:all .2s ease-in-out;
 }
 
+.center-aligned{text-align: center;}
+
 .has-clear-fix::after {
     content: '';
     display: table;
@@ -315,3 +317,51 @@ a.info{
     transition:all .2s ease-in-out;
     transform:scale(0,0);
 }
+
+.info-box{
+    position:fixed;
+    bottom:-95%;
+    left: 1%;
+    width:98%;
+    height: 95%;
+    overflow-y: auto;
+    padding:45px 15px 15px 15px;
+    background-color: rgba(0,0,0,.94);
+    border-radius: 15px 15px 0 0 ;
+    z-index: 999999999;
+    transition: all .3s ease-in-out;
+}
+
+.info-box.active{
+    bottom:0;
+}
+
+.info-box img{margin-bottom: 5px;}
+.info-box h2{text-align: center;}
+.info-box p{font-size: $font_size_4;}
+
+.info-box a{
+    position: absolute;
+    top:0;
+    left:0;
+    display: block;
+    width:100%;
+    height: 36px;
+    background:url('../images/assets/arrow-bottom-light.png') no-repeat center #010101;
+    border-bottom:1px solid #1f1f1f;
+    border-radius: 15px 15px 0 0;
+    z-index: 10;
+}
+
+.mafia-status{text-align: center;}
+.mafia-status strong{
+    display: inline-block;
+    font-size: $font_size_3;
+    color:#ffffff;
+    padding: 3px 12px;
+    margin-top:4px;
+    border-radius: 3px;
+}
+
+.mafia-status strong.mafia-role{background-color: $background_color_mafia;}
+.mafia-status strong.citizen-role{background-color: $background_color_citizen;}
