@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay active">
+    <div class="overlay">
         <div class="inner-overlay">
             <div class="overlay-box">
                 <div class="inner-overlay-box">
@@ -28,7 +28,7 @@ export default {
 	visibility: hidden;
 	opacity: 0;
 	background: $transparent_black;
-	z-index: 9999999;
+	z-index: 999999;
     transition: all .2s ease-in-out;
     .inner-overlay {
         display: table;

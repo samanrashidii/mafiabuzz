@@ -187,19 +187,23 @@ button{
     visibility: hidden;
 }
 
-.circle-bullet {
+.error-bullet {
 	li {
         font-size: $font_size_3;
         line-height: 1.8;
+        color:$light_red_color;
         text-align: left;
+        padding:10px;
         margin:10px 0;
+        border:1px solid $light_red_color;
+        border-radius: 4px;
 		&::before {
 			content: '';
 			display: inline-block;
 			width: 5px;
             height: 5px;
 			margin-right: 5px;
-			background-color: $background_color_1;
+			background-color: $light_red_color;
 			border-radius: 50%;
 		}
 	}
@@ -324,6 +328,20 @@ button{
     background:url('../images/assets/play.png') no-repeat left center;
 }
 
+i.mafia-role,
+i.citizen-role{
+    display: inline-block;
+    line-height: 1.4;
+    padding:1px 6px;
+    margin:0 4px;
+    background-color:$background_color_2;
+    border-radius:2px;
+    box-shadow: inset 0 0 2px #7e7e7e;
+}
+
+.citizen-role{color:$blue_color}
+.mafia-role{color:$red_color}
+
 a.info{
     position: absolute;
     top:-8px;
@@ -390,7 +408,7 @@ a.info{
 
 .meter{
     position: absolute;
-    top:-9px;
+    top:-13.5px;
     left:25%;
     width:50%;
     height: 100%;
@@ -401,9 +419,10 @@ a.info{
         top:0;
         left:50%;
         display: block;
-        width:32px;
-        height: 32px;
-        margin-left: -16px;
-        background:url('../images/assets/meter.png') no-repeat center;
+        width:48px;
+        height: 48px;
+        margin-left: -24px;
+        background:url('../images/icons/meter.png') no-repeat center;
+        background-size: 48px;
     }
 }

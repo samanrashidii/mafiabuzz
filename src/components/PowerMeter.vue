@@ -26,16 +26,16 @@ export default {
     bottom:0;
     left:0;
     width: 100%;
-    height: 33px;
-    padding:10px 15px;
-    background-color: $background_color_main;
+    height: 50px;
+    padding:15px;
+    background-color: $background_color_side;
     z-index: 9999999;
     .has-clear-fix{
         position: relative;
         max-width: 950px;
         height: 100%;
-        line-height: 13px;
-        font-size: 10px;
+        line-height: 19px;
+        font-size: $font_size_2;
         text-align: center;
         margin:auto;
         .mafia-power{

@@ -29,20 +29,28 @@
                 </div>
             </div>
             <roles @selectedRoles="gameSettings.roles = $event"></roles>
-            <button class="start-bttn" @click.prevent="startGame()" type="submit" :disabled="isValid"><span>{{Creator.start}}</span></button>
+            <button class="start-bttn" @click.prevent="overlay = true" type="button"><span>{{Creator.start}}</span></button>
+            <overlay :class="{'active': overlay}">
+                <template v-if="isValid">
+                    <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
+                    <ul class="error-bullet">
+                        <li v-if="error.mafia">
+                            You have chosen {{gameSettings.mafia}} Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
+                        </li>
+                        <li v-if="error.citizens">
+                            You have chosen {{gameSettings.citizens}} Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
+                        </li>
+                    </ul>
+                    <app-button @click.native="overlay = false">Okay I got it :)</app-button>
+                </template>
+                <template v-else>
+                    <h2>Your game is about to start with below details</h2>
+                    <app-button @click.native="overlay = false">Change game settings</app-button>
+                    <app-button @click.native="startGame()" class="active">Start Game!</app-button>
+                </template>
+            </overlay>
         </form>
         <power-meter :power="calcPower"></power-meter>
-        <overlay>
-            <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
-            <ul class="circle-bullet">
-                <li>
-                    You have chosen <span class="mafia-role">{{gameSettings.mafia}}</span> Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
-                </li>
-                <li>
-                    You have chosen <span class="citizen-role">{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
-                </li>
-            </ul>
-        </overlay>
     </div>
 </template>
 
@@ -64,6 +72,11 @@ export default {
                 citizens: 4,
                 roles: [],
                 power: 0,
+            },
+            overlay: false,
+            error:{
+                mafia: false,
+                citizens: false
             }
         }
     },
@@ -76,10 +89,10 @@ export default {
             this.gameSettings.roles.forEach(element => {
                 $power += element.power;  
             });
-            if($power >= 100){
-                $power = 100;
-            } else if($power <= -100){
-                $power = -100;
+            if($power >= 95){
+                $power = 95;
+            } else if($power <= -95){
+                $power = -95;
             }
             return $power;
         },
@@ -91,6 +104,16 @@ export default {
         isValid(){
             this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
             this.gameValdiation.selectedCitizen = this.gameSettings.roles.filter(x => x.mafia == false).length;
+            if(this.gameValdiation.selectedMafia != this.gameSettings.mafia){
+                this.error.mafia = true
+            } else{
+                this.error.mafia = false
+            }
+            if(this.gameValdiation.selectedCitizen != this.gameSettings.citizens){
+                this.error.citizens = true
+            } else{
+                this.error.citizens = false
+            }
             if(this.gameValdiation.selectedMafia == this.gameSettings.mafia && this.gameValdiation.selectedCitizen == this.gameSettings.citizens){
                 console.log(':)');
                 return false;
@@ -104,7 +127,14 @@ export default {
             return require(`@/assets/images/icons/${pic}`);
         },
         startGame(){
-            console.log(this.gameSettings);
+            let finalRoles = [];
+            this.gameSettings.roles.forEach(element => {
+                finalRoles.push(element.name);
+            });
+            alert(`Players : ${this.gameSettings.unit}
+Mafia : ${this.gameSettings.mafia}
+Citizen : ${this.gameSettings.citizens}
+Roles : ${finalRoles.join(" , ")}`);
         }
     },
     components:{
@@ -117,7 +147,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.creator{padding-bottom: 30px;}
+.creator{padding-bottom: 60px;}
 
 .step-box{
     position: relative;
