@@ -1,10 +1,23 @@
 {
+    "pages": {
+        "creator": {
+            "title": "Hi <span>God</span>",
+            "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
+            "step1": "Choose how many people do want to have in your universe:",
+            "step2": "Please choose how many of these people will be mafia:",
+            "step3": "Now you must choose between below roles for your game:",
+            "maxPlayers": 25,
+            "playerMargin": 5,
+            "start": "Start Game"
+        }
+    },
     "roles": [
         {
             "mafia": true,
             "name": "Mafia",
             "icon": "mafia.png",
             "alt": "Mafia Icon",
+            "power": -10,
             "free": true,
             "description": "Allied with the Innocents, the Detective can detect whether a player is a mafioso. They will typically wake up, and point at one person; the Narrator will silently indicate to the Detective whether that player is Mafia or Innocent. In some versions of the game, the Detective's investigation result is announced publicly by the Narrator, for example the Detective found a Mafioso!. More commonly, no announcement is made. As with other roles, which player is the detective is not generally known, leaving anyone the option of pretending to be the Detective."
         },
@@ -13,6 +26,7 @@
             "name": "Godfather",
             "icon": "godfather.png",
             "alt": "Godfather Icon",
+            "power": -20,
             "free": true,
             "description": "the Godfather role defends others at night. Typically, they will awaken at night after the Mafia have gone back to sleep and point at one person to protect; that person will survive any night-time attack.[Note 10] They are typically allowed to protect themselves, and are commonly barred from protecting the same target on successive nights.[33] A Guardian Angel can only protect others. The Nurse gains the Doctor's abilities if the Doctor dies.[Note 11] The Jailer protects innocents just like the doctor, but also simultaneously blocks their night action."
         },
@@ -21,6 +35,7 @@
             "name": "Ruspy",
             "icon": "ruspy.png",
             "alt": "Ruspy Icon",
+            "power": -15,
             "free": true,
             "description": "Aside from Mafia, Werewolves, and Serial Killers (solitary guilty parties), the Innocents may have some roles with the ability to kill at night. The Vigilante is an innocent who kills every night, in their own night-time phase,[Note 13] in some variations, having a limited bullet supply for the entire game."
         },
@@ -29,6 +44,7 @@
             "name": "Drunk",
             "icon": "drunk.png",
             "alt": "Drunk Icon",
+            "power": -8,
             "free": true,
             "description": "These roles can stop or alter the night actions of others; for instance, they may prevent a protection or investigation from occurring, or they may change the target[37]. The Role-blocker can block the Vigilante for a night, while the Thief, Prostitute or Hypnotizer might be able to disable the powers of any selected target."
         },
@@ -37,6 +53,7 @@
             "name": "Traitor",
             "icon": "traitor.png",
             "alt": "Traitor Icon",
+            "power": -14,
             "free": true,
             "description": "The Traitor is not a mafioso (in that he does not awake at night and is not revealed as a mafioso by Detective type roles), but works to protect them and hamper the town during the day cycle, and wins only with a Mafia victory.[35] Conversely, the Undercover Cop is a mole within the Mafia group who acts with the Mafia but wins with the innocents. The stool pigeon may be the only optional role in play"
         },
@@ -45,6 +62,7 @@
             "name": "Chef",
             "icon": "chef.png",
             "alt": "Chef Icon",
+            "power": -18,
             "free": true,
             "description": "The baker is on the side of the innocents. During the night, the baker gives one player a loaf of bread, potentially revealing their identity. If the baker dies, the innocents have just three nights to dispose of the mafia, or the innocents starve, and the mafia win."
         },
@@ -53,6 +71,7 @@
             "name": "Yakuza",
             "icon": "yakuza.png",
             "alt": "Yakuza Icon",
+            "power": -22,
             "free": true,
             "description": "The Yakuza is a regular mafia player with an extra power: they may sacrifice themselves from the second night (during the night) and choose an innocent to join the mafia."
         },
@@ -61,6 +80,7 @@
             "name": "Citizen",
             "icon": "citizen.png",
             "alt": "Citizen Icon",
+            "power": 5,
             "free": true,
             "description": "The Dentist may select any other player at night, and prevent them speaking during the following day.[33] The Silencer is a mafioso with the identical power, except that they may not silence the same player on successive days. The silenced individual wakes in the morning and is immediately instructed not to talk until the end of the day"
         },
@@ -69,6 +89,7 @@
             "name": "Police",
             "icon": "police.png",
             "alt": "Police Icon",
+            "power": 12,
             "free": true,
             "description": "The dark background roles are standard (mafia or innocent) except for revealing a deceptive alignment when killed. The M.E. gathers information from the killings that can help the innocents, while the Priest learns about the alignment of the dead in the same way that the Detective learns about the living."
         },
@@ -77,6 +98,7 @@
             "name": "Doctor",
             "icon": "doctor.png",
             "alt": "Doctor Icon",
+            "power": 10,
             "free": true,
             "description": "Revivers and Master Revivers are able to resurrect dead players, Master Revivers can bring the revived into their association"
         },
@@ -85,6 +107,7 @@
             "name": "Cupid",
             "icon": "cupid.png",
             "alt": "Cupid Icon",
+            "power": 7,
             "free": true,
             "description": "This role is taken in addition to the assigned role, and it endows the player with additional, overt, powers (particularly during the daytime). Empowerment can be random, but is usually made by vote. For instance, the Mayor or Sheriff can be elected each morning, and gain two lynching votes"
         },
@@ -93,6 +116,7 @@
             "name": "Bomb",
             "icon": "bomb.png",
             "alt": "Bomb Icon",
+            "power": 7,
             "free": true,
             "description": "When the thief is used in Werewolves, an additional townsfolk card is added before dealing, and the Thief may choose on the first night to steal the role of another player or to take the unused role card. The player whose role was stolen gets the unused role card and the Thief card is discarded."
         },
@@ -101,6 +125,7 @@
             "name": "Grandma",
             "icon": "grandma.png",
             "alt": "Grandma Icon",
+            "power": 10,
             "free": true,
             "description": "the Innocents may have some roles with the ability to kill at night. The Vigilante is an innocent who kills every night, in their own night-time phase,[Note 13] in some variations, having a limited bullet supply for the entire game. Some variations introduce a time limit of two nights before the player in the Killing Role can exercise their right to kill again or the trait that if they kill an innocent they either lose the ability to kill or die from guilt the next night."
         },
@@ -109,6 +134,7 @@
             "name": "Bulletproof",
             "icon": "bulletproof.png",
             "alt": "Bulletproof Icon",
+            "power": 9,
             "free": true,
             "description": "The Bulletproof innocent is invulnerable at night,[Note 20] though usually with limits; for example, the Elder will survive the first night attack, but not the second. The Oracle has an investigative role similar to a Seer but also has the power to talk when inactive (talking in a sleep phase is usually a rule infraction)."
         },
@@ -117,6 +143,7 @@
             "name": "Necromancer",
             "icon": "necromancer.png",
             "alt": "Necromancer Icon",
+            "power": 15,
             "free": true,
             "description": "Instead of having to investigate, some innocent roles give complete information on the entire mafia: The witness is told who the mafia are during the first night, while the mafia are not told the witness's identity (differing from the stool pigeon in not being a part of the mafia)."
         },
@@ -125,6 +152,7 @@
             "name": "Hacker",
             "icon": "hacker.png",
             "alt": "Hacker Icon",
+            "power": 14,
             "free": true,
             "description": "This may be a secondary role, taken in addition to the assigned role. However, it has the opposite effect, giving the bearer a handicap, like speaking only gibberish in the case of the Village Drunk, etc. Alternatively, it may be a standard role with a particular constraint, such as the teenage werewolf, who must say the word werewolf at least once each day."
         }

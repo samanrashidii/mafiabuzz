@@ -10,6 +10,7 @@ export default new Vuex.Store({
   },
   getters: {
     Roles: state => state.db.roles,
+    Creator: state => state.db.pages.creator,
   },
   mutations: {
 
