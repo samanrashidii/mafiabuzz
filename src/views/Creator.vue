@@ -172,8 +172,6 @@ export default {
 
 <style lang="scss" scoped>
 
-$meter_height:80px;
-
 .creator,
 .overlay{padding-bottom: $meter_height;}
 
