@@ -12,7 +12,7 @@
         </div>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
-                <input @change="checkRoles(role.name)" type="checkbox" name="roles" :id="`role_${index+1}`" :value="roleControl(role.name, role.mafia, role.power)" v-model="selectedRoles" />
+                <input @change="checkRoles(role.name)" type="checkbox" name="roles" :id="`role_${index+1}`" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
@@ -20,8 +20,8 @@
                     </div>
                 </label>
                 <div class="number-control" v-if="checkNumbers(role.name)">
-                    <span @click="decrNumber(role.name, role.mafia, role.power)">-</span>
-                    <span @click="incrNumber(role.name, role.mafia, role.power)">+</span>
+                    <span @click="decrNumber(role)">-</span>
+                    <span @click="incrNumber(role)">+</span>
                 </div>
                 <a @click="showInfo(role.name, role.icon ,role.description, role.mafia)" class="info" href="javascript:void(0)"></a>
             </li>
@@ -55,13 +55,6 @@ export default {
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
         },
-        roleControl(name,role,power){
-            return {
-                name : name,
-                mafia : role,
-                power : power
-            }
-        },
         checkRoles(role){
             if(role == 'Mafia' && this.normalMafia == 0){
                 this.normalMafia = 1;
@@ -85,35 +78,35 @@ export default {
                 return false;
             }
         },
-        incrNumber(role, mafia, power){
+        incrNumber(role){
             let $roles = this.selectedRoles;
-            if(role == 'Mafia'){
+            if(role.name == 'Mafia'){
                 if(this.normalMafia < 10){
                     this.normalMafia++;
-                    $roles.push(this.roleControl(role, mafia, power));
+                    $roles.push(role);
                 }
                 
-            } else if(role == 'Citizen'){
+            } else if(role.name == 'Citizen'){
                 if(this.normalCitizen < 20){
                     this.normalCitizen++;
-                    $roles.push(this.roleControl(role, mafia, power));
+                    $roles.push(role);
                 }
             }
         },
-        decrNumber(role, mafia, power){
+        decrNumber(role){
             let $roles = this.selectedRoles;
-            if(this.normalCitizen > 1 && role == 'Citizen'){
+            if(this.normalCitizen > 1 && role.name == 'Citizen'){
                 for(let el of $roles) {
-                    if(el.name == role){
+                    if(el.name == role.name){
                         $roles.splice($roles.indexOf(el),1);
                         break;
                     }
                 }
                 this.normalCitizen--;
             }
-            if(this.normalMafia > 1 && role == 'Mafia'){
+            if(this.normalMafia > 1 && role.name == 'Mafia'){
                 for(let el of $roles) {
-                    if(el.name == role){
+                    if(el.name == role.name){
                         $roles.splice($roles.indexOf(el),1);
                         break;
                     }
