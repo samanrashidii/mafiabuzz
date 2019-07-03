@@ -35,10 +35,10 @@
                     <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
                     <ul class="error-bullet">
                         <li v-if="error.mafia">
-                            You have chosen {{gameSettings.mafia}} Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
+                            You have chosen <span>{{gameSettings.mafia}}</span> Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
                         </li>
-                        <li v-if="error.citizens">
-                            You have chosen {{gameSettings.citizens}} Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
+                        <li class="blue" v-if="error.citizens">
+                            You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                         </li>
                     </ul>
                     <app-button @click.native="overlay = false">Okay I got it :)</app-button>
@@ -50,7 +50,7 @@
                 </template>
             </overlay>
         </form>
-        <power-meter :power="calcPower"></power-meter>
+        <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)"></power-meter>
     </div>
 </template>
 
@@ -126,6 +126,9 @@ export default {
         getImgUrl(pic) {
             return require(`@/assets/images/icons/${pic}`);
         },
+        calcDifference(main,side){
+            return main - side
+        },
         startGame(){
             let finalRoles = [];
             this.gameSettings.roles.forEach(element => {
@@ -147,7 +150,10 @@ Roles : ${finalRoles.join(" , ")}`);
 
 <style lang="scss" scoped>
 
-.creator{padding-bottom: 60px;}
+$meter_height:80px;
+
+.creator,
+.overlay{padding-bottom: $meter_height;}
 
 .step-box{
     position: relative;

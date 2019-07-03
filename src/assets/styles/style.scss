@@ -197,6 +197,10 @@ button{
         margin:10px 0;
         border:1px solid $light_red_color;
         border-radius: 4px;
+        &.blue{
+            color:$light_blue_color;
+            border-color:$light_blue_color;
+        }
 		&::before {
 			content: '';
 			display: inline-block;
@@ -205,7 +209,14 @@ button{
 			margin-right: 5px;
 			background-color: $light_red_color;
 			border-radius: 50%;
-		}
+        }
+        &.blue::before{
+            background-color: $light_blue_color;
+        }
+        span{
+            color:$color_1;
+            margin:0 2px;
+        }
 	}
 }
 
