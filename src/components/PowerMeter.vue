@@ -82,6 +82,7 @@ export default {
             text-align: center;
         }
     }
+    &.active .has-clear-fix{margin-top:-8px;}
 }
 
 

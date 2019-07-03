@@ -44,9 +44,10 @@ body{
     margin:auto;
     background-color: $background_color_default;
     user-select: none;
+    -webkit-overflow-scrolling:touch;
 	-webkit-user-select: none;
 	-webkit-tap-highlight-color: transparent;
-	-webkit-touch-callout: none;
+    -webkit-touch-callout: none;
 }
 
 h1,h2,h3,h4,h5,h6,strong{font-weight: normal;}
