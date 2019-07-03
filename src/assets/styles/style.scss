@@ -178,6 +178,8 @@ button{
 .right-aligned{text-align: right;}
 .has-top-margin{margin-top:30px;}
 .has-bottom-margin{margin-bottom:30px;}
+.has-small-top-margin{margin-top:20px;}
+.has-small-bottom-margin{margin-bottom: 20px;}
 
 .has-clear-fix::after {
     content: '';
@@ -191,15 +193,13 @@ button{
 	li {
         font-size: $font_size_3;
         line-height: 1.8;
-        color:$light_red_color;
         text-align: left;
         padding:10px;
         margin:10px 0;
-        border:1px solid $light_red_color;
-        border-radius: 4px;
+        background-color: $background_color_mafia;
+        border-radius: 2px;
         &.blue{
-            color:$light_blue_color;
-            border-color:$light_blue_color;
+            background-color: $background_color_citizen;
         }
 		&::before {
 			content: '';
@@ -207,14 +207,11 @@ button{
 			width: 5px;
             height: 5px;
 			margin-right: 5px;
-			background-color: $light_red_color;
+			background-color: $color_1;
 			border-radius: 50%;
         }
-        &.blue::before{
-            background-color: $light_blue_color;
-        }
         span{
-            color:$color_1;
+            color:$color_2;
             margin:0 2px;
         }
 	}
@@ -436,4 +433,46 @@ a.info{
         background:url('../images/icons/meter.png') no-repeat center;
         background-size: 48px;
     }
+}
+
+.table{
+    padding:5px;
+    margin-top:12px;
+    border-radius: 3px;
+    table{
+        width:100%;
+        tr{
+            &:not(:first-child){
+                border-top:5px solid $background_color_mafia;
+            }
+            td{
+                font-weight: normal;
+                color:$color_2;
+                padding:6px;
+                background-color: #ffffff;
+                &:first-child{
+                    text-align: left;
+                    border-radius: 2px 0 0 2px;
+                }
+                &:last-child{
+                    border-radius: 0 2px 2px 0;
+                }
+                img{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width:32px;
+                    margin-right: 5px;
+                }
+            } 
+        }
+        
+    }
+    &.mafia-table{background-color: $background_color_mafia;}
+    &.citizen-table{background-color: $background_color_citizen;}
+}
+
+.character-power{
+    display: inline-block;
+    padding:3px 0 3px 25px;
+    background:url('../images/icons/power.png') no-repeat left center;
 }

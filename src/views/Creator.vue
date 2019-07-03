@@ -29,7 +29,7 @@
                 </div>
             </div>
             <roles @selectedRoles="gameSettings.roles = $event"></roles>
-            <button class="start-bttn" @click.prevent="overlay = true" type="button"><span>{{Creator.start}}</span></button>
+            <button class="start-bttn" @click.prevent="checkGame()" type="button"><span>{{Creator.start}}</span></button>
             <overlay :class="{'active': overlay}">
                 <template v-if="isValid">
                     <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
@@ -41,11 +41,28 @@
                             You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                         </li>
                     </ul>
-                    <app-button @click.native="overlay = false">Okay I got it :)</app-button>
+                    <app-button @click.native="overlay = false">Okay I Got it :)</app-button>
                 </template>
                 <template v-else>
-                    <h2>Your game is about to start with below details</h2>
-                    <app-button @click.native="overlay = false">Change game settings</app-button>
+                    <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
+                    <h3 class="has-small-bottom-margin">Your game will start with below characters</h3>
+                    <div class="table mafia-table">
+                        <table>
+                            <tr v-for="(fM, index) in finalMafias" :key="index">
+                                <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
+                                <td><span class="character-power">{{Math.abs(fM.power)}}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="table citizen-table">
+                        <table>
+                            <tr v-for="(fC, index) in finalCitizens" :key="index">
+                                <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
+                                <td><span class="character-power">{{Math.abs(fC.power)}}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <app-button @click.native="overlay = false">Change Game Settings</app-button>
                     <app-button @click.native="startGame()" class="active">Start Game!</app-button>
                 </template>
             </overlay>
@@ -77,13 +94,21 @@ export default {
             error:{
                 mafia: false,
                 citizens: false
-            }
+            },
+            fMafias: [],
+            fCitizens: [],
         }
     },
     computed:{
         ...mapGetters([
             'Creator',
         ]),
+        finalMafias(){
+            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
+        },
+        finalCitizens(){
+            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
+        },
         calcPower(){
             let $power = this.gameSettings.power;
             this.gameSettings.roles.forEach(element => {
@@ -115,7 +140,6 @@ export default {
                 this.error.citizens = false
             }
             if(this.gameValdiation.selectedMafia == this.gameSettings.mafia && this.gameValdiation.selectedCitizen == this.gameSettings.citizens){
-                console.log(':)');
                 return false;
             } else{
                 return true;
@@ -124,20 +148,18 @@ export default {
     },
     methods:{
         getImgUrl(pic) {
-            return require(`@/assets/images/icons/${pic}`);
+            return require(`@/assets/images/roles/${pic}`);
         },
         calcDifference(main,side){
             return main - side
         },
+        checkGame(){
+            this.overlay = true;
+            this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
+            this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
+        },
         startGame(){
-            let finalRoles = [];
-            this.gameSettings.roles.forEach(element => {
-                finalRoles.push(element.name);
-            });
-            alert(`Players : ${this.gameSettings.unit}
-Mafia : ${this.gameSettings.mafia}
-Citizen : ${this.gameSettings.citizens}
-Roles : ${finalRoles.join(" , ")}`);
+            alert('Yaaay!!! Game Stareted!');
         }
     },
     components:{

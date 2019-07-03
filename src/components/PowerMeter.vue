@@ -3,12 +3,12 @@
         <div class="has-clear-fix">
             <div class="mafia-power">
                 <strong v-if="mafia > 0">{{mafia}} characters left</strong>
-                <strong v-else-if="mafia < 0">{{-(mafia)}} characters overplus</strong>
+                <strong v-else-if="mafia < 0">{{Math.abs(mafia)}} characters overplus</strong>
                 <span>Mafia Power</span>
             </div>
             <div class="citizen-power">
                 <strong v-if="citizen > 0">{{citizen}} characters left</strong>
-                <strong v-else-if="citizen < 0">{{-(citizen)}} characters overplus</strong>
+                <strong v-else-if="citizen < 0">{{Math.abs(citizen)}} characters overplus</strong>
                 <span>Citizen Power</span>
             </div>
             <div class="meter" :style="{ transform: `translateX(${power}%)`}"><span></span></div>
