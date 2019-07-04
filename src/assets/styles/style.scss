@@ -134,7 +134,7 @@ input {
     outline: none;
     background-color: $background_color_1;
 	border: none;
-	border-radius: 1px;
+	border-radius: 2px;
 	&:not([type="submit"]) {
 		&:focus {
 			background-color: $background_color_2;
@@ -156,7 +156,7 @@ select {
     outline: none;
     background: url('../images/assets/arrow-bottom-dark.png') no-repeat 95% center $background_color_1;
     border:none;
-	border-radius: 1px;
+	border-radius: 2px;
 	-webkit-appearance: none;
 }
 
@@ -175,7 +175,7 @@ button{
     user-select: none;
     background-color: $background_color_3;
     border:none;
-	border-radius: 1px;
+	border-radius: 2px;
 	transition:all .2s ease-in-out;
 }
 
