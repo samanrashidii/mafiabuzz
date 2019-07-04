@@ -32,7 +32,7 @@ export default {
   methods:{
     assignRoles(){
         let gameRoles = this.SelectedRoles;
-        for (let i = gameRoles.length - 1; i >= 0; i--) {
+        for (let i = this.players.length - 1; i >= 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [this.players[i], this.players[j]] = [this.players[j], this.players[i]];
             gameRoles[i].player = this.players[i];
