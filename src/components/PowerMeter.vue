@@ -45,7 +45,8 @@ export default {
     height: 62px;
     padding:30px 15px 12px 15px;
     background-color: $background_color_side;
-    z-index: 9999999;
+    z-index: 99999;
+    transition:all .2s ease-in-out;
     .has-clear-fix{
         position: relative;
         max-width: 950px;
@@ -54,6 +55,7 @@ export default {
         font-size: $font_size_2;
         text-align: center;
         margin:auto;
+        transition:all .2s ease-in-out;
         .mafia-power{
             position: relative;
             float: left;
@@ -82,7 +84,13 @@ export default {
             text-align: center;
         }
     }
-    &.active .has-clear-fix{margin-top:-8px;}
+    &.active .has-clear-fix{
+        transform:translateY(-8px)
+    }
+    &.hidden{
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 

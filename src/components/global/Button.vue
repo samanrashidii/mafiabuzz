@@ -16,7 +16,7 @@ a.bttn{
     display:block;
     color:$color_1;
     text-align: center;
-    padding:14px;
+    padding:10px;
     margin-top:15px;
     background-color:$background_color_3;
     border-radius: 2px;
