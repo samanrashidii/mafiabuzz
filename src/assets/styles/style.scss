@@ -63,7 +63,7 @@ a{
     color:inherit;
 	text-decoration: none;
 	outline: none;
-	transition: all .2s ease-in-out;
+	transition: all .2s;
 	&:hover {
 		outline: none;
 	}
@@ -74,6 +74,10 @@ a{
 		outline: none;
 		border: none;
 	}
+}
+a:active{
+    opacity: .6;
+    transform:scale(.8,.8);
 }
 
 img {
@@ -331,8 +335,14 @@ button{
 
 .start-bttn span{
     display: inline-block;
-    padding: 5px 5px 5px 40px;
+    padding: 7px 5px 3px 35px;
     background:url('../images/assets/play.png') no-repeat left center;
+}
+
+.settings-bttn span{
+    display: inline-block;
+    padding: 5px 5px 5px 30px;
+    background:url('../images/assets/settings.png') no-repeat left center;
 }
 
 i.mafia-role,
@@ -450,6 +460,7 @@ a.info{
                 padding:6px;
                 background-color: #ffffff;
                 &:first-child{
+                    width:72%;
                     text-align: left;
                     border-radius: 2px 0 0 2px;
                 }

@@ -43,7 +43,7 @@
                             You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                         </li>
                     </ul>
-                    <app-button @click.native="overlay = false">Okay I Got it :)</app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Game Settings</span></app-button>
                 </template>
                 <template v-else>
                     <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
@@ -64,12 +64,12 @@
                             </tr>
                         </table>
                     </div>
-                    <app-button @click.native="overlay = false">Change Game Settings</app-button>
-                    <app-button @click.native="startGame()" class="active">Start Game!</app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Game Settings</span></app-button>
+                    <app-button @click.native="startGame()" class="active start-bttn"><span>Start Game!</span></app-button>
                 </template>
             </overlay>
         </form>
-        <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)" :class="{'active':!isValid}"></power-meter>
+        <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)" :class="{'active': !isValid}"></power-meter>
     </div>
 </template>
 
@@ -183,8 +183,7 @@ export default {
 
 .title h2 span{color:$creator_color;}
 
-.creator,
-.overlay{padding-bottom: $meter_height;}
+.creator{padding-bottom: $meter_height;}
 
 .step-box{
     position: relative;
