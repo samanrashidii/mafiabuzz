@@ -14,3 +14,8 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+
+.title h2 span{color:$about_color;}
+
+</style>

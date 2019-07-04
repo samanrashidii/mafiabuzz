@@ -181,6 +181,8 @@ export default {
 
 <style lang="scss" scoped>
 
+.title h2 span{color:$creator_color;}
+
 .creator,
 .overlay{padding-bottom: $meter_height;}
 
