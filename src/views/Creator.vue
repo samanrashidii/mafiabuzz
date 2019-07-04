@@ -76,6 +76,7 @@ import Roles from '@/components/Roles.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
 import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 export default {
     data(){
         return {
@@ -102,6 +103,7 @@ export default {
     computed:{
         ...mapGetters([
             'Creator',
+            'SelectedRoles'
         ]),
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
@@ -147,6 +149,9 @@ export default {
         }
     },
     methods:{
+        ...mapActions([
+            'getRoles',
+        ]),
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
         },
@@ -159,7 +164,8 @@ export default {
             this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
         },
         startGame(){
-            alert('Yaaay!!! Game Stareted!');
+            this.getRoles(this.gameSettings.roles);
+            console.log(this.SelectedRoles);
         }
     },
     components:{
