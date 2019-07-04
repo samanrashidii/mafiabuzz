@@ -55,6 +55,7 @@ i{font-style: normal;}
 
 p{
     line-height: 1.6;
+    font-size: $font_size_5;
     padding-top:15px;
 }
 
@@ -118,8 +119,8 @@ input {
     }
     display: block;
 	width: 100%;
-	height: 40px;
-	line-height: 40px;
+	height: 36px;
+	line-height: 36px;
 	font-family: $font_normal;
 	font-size: 16px;
 	color: $color_2;
@@ -140,8 +141,8 @@ input {
 select {
 	display: block;
 	width: 100%;
-	height: 40px;
-	line-height: 40px;
+	height: 36px;
+	line-height: 36px;
 	font-family: $font_normal;
 	font-size: 16px;
 	color: $color_2;
@@ -230,6 +231,11 @@ button{
         width:100%;
         height: 100%;
         z-index: 99999;
+        &.single-device nav a{
+            &:nth-child(1){width:100%;}
+            &:nth-child(2){background-color: $hint_color;}
+            &:nth-child(3){background-color: $about_color;}
+        }  
         nav{
             display:flex;
             flex-wrap: wrap;
@@ -265,10 +271,11 @@ button{
         opacity: .6;
         transform:scale(.85,.85);
     }
-    > div:not(.menu){
+    > div:not(.menu):not(.home){
         padding-top:90px;
         .navigation{
             height: 78px;
+            &.single-device nav a{width:33.3333333%;}
             nav{
                 padding:1px;
                 a{
@@ -304,7 +311,7 @@ button{
 .navigation a.router-link-active::after{display: none;}
 .navigation a.router-link-active img{transform:rotate(360deg);}
 
-.creator h2 span{color:$creator_color;}
+.title h2 span{color:$creator_color;}
 
 .roles li input + label::after{
     content:'';

@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <div class="navigation" :class="{'single-device': checkGameMode()}">
     <nav>
       <router-link :to="{name: 'creator'}">
         <span>
@@ -7,7 +7,7 @@
           <strong>Creator</strong>
         </span>
       </router-link>
-      <router-link :to="{name: 'player'}">
+      <router-link :to="{name: 'player'}" v-if="!checkGameMode()">
         <span>
           <img src="@/assets/images/player.png" alt="Player Icon" />
           <strong>Player</strong>
@@ -31,6 +31,15 @@
 
 <script>
 export default {
-  
+  methods:{
+    checkGameMode(){
+      if(this.$route.params.id == 'single-device'){
+        return true;
+      } else{
+        return false;
+      }
+    }
+  }
 };
 </script>
+

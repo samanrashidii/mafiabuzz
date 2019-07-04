@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="home-wrapper">
+    <div class="navigation">
       <nav>
         <router-link :to="{name: 'menu', params: {id : 'single-device'}}">
           <span>
@@ -32,50 +32,23 @@ export default {
 
 <style lang="scss" scoped>
 
-.home-wrapper{
-  position: absolute;
-  top:0;
-  left:0;
+#app .navigation nav a{
   width:100%;
-  height: 100%;
-  z-index: 99999;
-  nav{
-    display:flex;
-    flex-wrap: wrap;
-    width:100%;
-    height: 100%;
-    padding:5px;
-    a{
-      display:table;
-      width:100%;
-      height: 50%;
-      text-align: center;
-      font-family: $font_mafia;
-      font-size: 30px;
-      padding:10px;
-      border:5px solid $background_color_main;
-      box-shadow: inset 0 0 2px #1e1e1e;
-      &:nth-child(1){
-        color:$color_site_1;
-        background-color: $color_site_2;
-      }
-      &:nth-child(2){
-        color:$color_site_4;
-        background-color: $color_site_1;
-      }
-      span{
-        display:table-cell;
-        vertical-align: middle;
-        img{
-          margin-bottom:15px;
-        }
-      }
-    }
+  &:nth-child(1){
+    color:$color_site_1;
+    background-color: $color_site_2;
   }
-}
-div.menu .navigation a:hover{
-  opacity: .6;
-  transform:scale(.85,.85);
+  &:nth-child(2){
+    color:$color_site_4;
+    background-color: $color_site_1;
+  }
+  &:hover{
+    opacity: .6;
+    transform:scale(.9,.9);
+  }
+  img{
+    width:auto;
+  }
 }
 
 </style>
