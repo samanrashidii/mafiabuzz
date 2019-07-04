@@ -223,85 +223,82 @@ button{
     min-height: 100%;
     padding:15px;
     background-color: $background_color_main;
-}
-
-.navigation{
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height: 100%;
-    z-index: 99999;
-    nav{
-        display:flex;
-        flex-wrap: wrap;
+    .navigation{
+        position: absolute;
+        top:0;
+        left:0;
         width:100%;
         height: 100%;
-        padding:5px;
-        a{
-            display:table;
-            width:50%;
-            height: 50%;
-            text-align: center;
-            font-family: $font_mafia;
-            font-size: 30px;
-            padding:10px;
-            border:5px solid $background_color_main;
-            box-shadow: inset 0 0 2px #1e1e1e;
-            &:nth-child(1){background-color: $creator_color;}
-            &:nth-child(2){background-color: $player_color;}
-            &:nth-child(3){background-color: $hint_color;}
-            &:nth-child(4){background-color: $about_color;}
-            span{
-                display:table-cell;
-                vertical-align: middle;
-                img{
-                    width:100px;
-                    margin-bottom:15px;
+        z-index: 99999;
+        nav{
+            display:flex;
+            flex-wrap: wrap;
+            width:100%;
+            height: 100%;
+            padding:5px;
+            a{
+                display:table;
+                width:50%;
+                height: 50%;
+                text-align: center;
+                font-family: $font_mafia;
+                font-size: 30px;
+                padding:10px;
+                border:5px solid $background_color_main;
+                box-shadow: inset 0 0 2px #1e1e1e;
+                &:nth-child(1){background-color: $creator_color;}
+                &:nth-child(2){background-color: $player_color;}
+                &:nth-child(3){background-color: $hint_color;}
+                &:nth-child(4){background-color: $about_color;}
+                span{
+                    display:table-cell;
+                    vertical-align: middle;
+                    img{
+                        width:100px;
+                        margin-bottom:15px;
+                    }
                 }
             }
         }
     }
-}
-
-#app div.home .navigation a:hover{
-    opacity: .6;
-    transform:scale(.85,.85);
-}
-
-#app > div:not(.home){padding-top:90px;}
-
-#app > div:not(.home) .navigation{
-    height: 78px;
-    nav{
-        padding:1px;
-        a{
-            position: relative;
-            width:25%;
-            padding:4px;
-            font-size: 18px;
-            border-width: 1px;
-            box-shadow: inset 0 0 1px #1e1e1e;
-            span{
-                img{
-                    width:40px;
-                    margin-bottom:5px;
-                    transition:all .2s ease-in-out;
+    div.menu .navigation a:hover{
+        opacity: .6;
+        transform:scale(.85,.85);
+    }
+    > div:not(.menu){
+        padding-top:90px;
+        .navigation{
+            height: 78px;
+            nav{
+                padding:1px;
+                a{
+                    position: relative;
+                    width:25%;
+                    padding:4px;
+                    font-size: 18px;
+                    border-width: 1px;
+                    box-shadow: inset 0 0 1px #1e1e1e;
+                    span{
+                        img{
+                            width:40px;
+                            margin-bottom:5px;
+                            transition:all .2s ease-in-out;
+                        }
+                    }
+                    &::after{
+                        content:'';
+                        position: absolute;
+                        top:0;
+                        left:0;
+                        width:100%;
+                        height: 100%;
+                        background:rgba(0,0,0,.44);
+                        z-index: 10;
+                    }
                 }
             }
         }
     }
-}
-
-#app > div:not(.home) .navigation a::after{
-    content:'';
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height: 100%;
-    background:rgba(0,0,0,.44);
-    z-index: 10;
 }
 
 .navigation a.router-link-active::after{display: none;}

@@ -8,6 +8,12 @@ const Home = (resolve) => {
   });
 };
 
+const Menu = (resolve) => {
+  require.ensure(['./views/Menu.vue'], () => {
+    resolve(require('./views/Menu.vue'));
+  });
+};
+
 const NotFound = (resolve) => {
   require.ensure(['./views/NotFound.vue'], () => {
     resolve(require('./views/NotFound.vue'));
@@ -51,6 +57,31 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/:id',
+      name: 'menu',
+      component: Menu,
+    },
+    {
+      path: '/:id/creator',
+      name: 'creator',
+      component: Creator,
+    },
+    {
+      path: '/:id/about',
+      name: 'about',
+      component: About,
+    },
+    {
+      path: '/:id/how-to-play',
+      name: 'howtoplay',
+      component: HowToPlay,
+    },
+    {
+      path: '/:id/player',
+      name: 'player',
+      component: Player,
+    },
+    {
       path: '/error-404',
       name: 'not-found',
       component: NotFound,
@@ -58,26 +89,6 @@ export default new Router({
     {
       path: '*',
       redirect: { name: 'not-found' },
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
-    },
-    {
-      path: '/how-to-play',
-      name: 'howtoplay',
-      component: HowToPlay,
-    },
-    {
-      path: '/creator',
-      name: 'creator',
-      component: Creator,
-    },
-    {
-      path: '/player',
-      name: 'player',
-      component: Player,
     },
   ],
 });
