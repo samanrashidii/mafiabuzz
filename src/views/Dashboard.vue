@@ -2,7 +2,7 @@
     <div class="about">
         <app-navigation />
         <div class="title">
-            <h2>Dash<span>board</span></h2>
+            <h2><strong>Game</strong> Dash<span>board</span></h2>
             <p>Now let's handle the game ;)</p>
             <div class="step-box">
                 <span class="step-number">1</span>
@@ -35,5 +35,6 @@ export default {
 <style lang="scss" scoped>
 
 .title h2 span{color:$creator_color;}
+.title h2 strong{color:$hint_color;}
 
 </style>
