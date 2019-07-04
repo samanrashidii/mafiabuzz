@@ -32,6 +32,12 @@ const Creator = (resolve) => {
   });
 };
 
+const Dashboard = (resolve) => {
+  require.ensure(['./views/Dashboard.vue'], () => {
+    resolve(require('./views/Dashboard.vue'));
+  });
+};
+
 const Player = (resolve) => {
   require.ensure(['./views/Player.vue'], () => {
     resolve(require('./views/Player.vue'));
@@ -65,6 +71,11 @@ export default new Router({
       path: '/:id/creator',
       name: 'creator',
       component: Creator,
+    },
+    {
+      path: '/:id/creator/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
     },
     {
       path: '/:id/about',

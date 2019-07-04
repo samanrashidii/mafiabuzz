@@ -105,7 +105,6 @@ export default {
     computed:{
         ...mapGetters([
             'Creator',
-            'SelectedRoles'
         ]),
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
@@ -167,7 +166,6 @@ export default {
         },
         startGame(){
             this.getRoles(this.gameSettings.roles);
-            console.log(this.SelectedRoles);
             alert('Yaaaay!!! Game Started!');
         }
     },
@@ -184,36 +182,6 @@ export default {
 .title h2 span{color:$creator_color;}
 
 .creator{padding-bottom: $meter_height;}
-
-.step-box{
-    position: relative;
-    padding:20px 15px;
-    margin-top:40px;
-    box-shadow: 0 0 10px $black_color;
-}
-
-span.step-number{
-    position: absolute;
-    top:-14px;
-    left:-8px;
-    display: inline-block;
-    width:28px;
-    height: 28px;
-    line-height: 28px;
-    font-size: $font_size_4;
-    color: $color_2;
-    text-align: center;
-    margin-right: 4px;
-    background-color:$creator_color;
-    border-radius: 50%;
-}
-
-.step-box label{
-    display:inline-block;
-    font-size: $font_size_4;
-    color:$color_site_3;
-    margin-bottom:20px;
-}
 
 .note li{
     font-size: $font_size_3;
