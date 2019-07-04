@@ -307,8 +307,6 @@ button{
 .navigation a.router-link-active::after{display: none;}
 .navigation a.router-link-active img{transform:rotate(360deg);}
 
-.title h2 span{color:$creator_color;}
-
 .roles li input + label::after{
     content:'';
     position: absolute;
