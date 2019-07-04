@@ -1,8 +1,10 @@
 <template>
     <div class="creator">
         <app-navigation />
-        <h2 v-html="Creator.title"></h2>
-        <p v-html="Creator.subtitle"></p>
+        <div class="title">
+            <h2 v-html="Creator.title"></h2>
+            <p v-html="Creator.subtitle"></p>
+        </div>
         <form action="#" method="POST" accept-charset="utf-8" name="game_settings" class="game_settings">
             <div class="steps">
                 <div class="step-box">
@@ -166,6 +168,7 @@ export default {
         startGame(){
             this.getRoles(this.gameSettings.roles);
             console.log(this.SelectedRoles);
+            alert('Yaaaay!!! Game Started!');
         }
     },
     components:{
