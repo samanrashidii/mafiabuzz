@@ -10,7 +10,7 @@
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" class="has-xsmall-bottom-margin" :key="index" :placeholder="`Player ${index+1}`" v-model="players[index]" />
                 </template>
-                <app-button>Assign Roles</app-button>
+                <app-button @click.native.once="assignRoles()">Assign Roles</app-button>
             </div>
         </div>
     </div>
@@ -28,6 +28,17 @@ export default {
     ...mapGetters([
         'SelectedRoles'
     ]),
+  },
+  methods:{
+    assignRoles(){
+        let gameRoles = this.SelectedRoles;
+        for (let i = gameRoles.length - 1; i >= 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.players[i], this.players[j]] = [this.players[j], this.players[i]];
+            gameRoles[i].player = this.players[i];
+        }
+        console.log(gameRoles);
+    }
   }
 }
 </script>
