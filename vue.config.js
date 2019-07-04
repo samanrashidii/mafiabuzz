@@ -5,5 +5,6 @@ module.exports = {
         data: `@import "@/assets/styles/_variables.scss";`
       }
     }
-  }
+  },
+  // publicPath: '/mafiawars/',
 };
