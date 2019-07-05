@@ -166,7 +166,7 @@ export default {
         },
         startGame(){
             this.getRoles(this.gameSettings.roles);
-            alert('Yaaaay!!! Game Started!');
+            this.$router.push({name: 'dashboard'})
         }
     },
     components:{
