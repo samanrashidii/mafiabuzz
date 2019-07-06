@@ -27,7 +27,7 @@
             </div>
             <div class="step-box display" v-if="step == 2">
                 <div class="inner-display">
-                    <p>Please pass mobile phone to</p>
+                    <p>Please pass mobile to</p>
                         <transition-group name="fade" mode="out-in" tag="div">
                         <div v-for="(role, index) in gameRoles" :key="index">
                             <div v-if="(index+1) == personNumb">
@@ -84,7 +84,6 @@ export default {
       return {
           players : [],
           step: 1,
-          gameRoles : [],
           showrole : false,
           personNumb : 1,
           showPlayers : false,
@@ -96,6 +95,9 @@ export default {
     ...mapGetters([
         'SelectedRoles'
     ]),
+    gameRoles(){
+        return [...this.SelectedRoles];
+    },
     overlay(){
         if(this.SelectedRoles.length == 0){
             return true;
@@ -110,15 +112,16 @@ export default {
   },
   methods:{
     assignRoles(){
-        this.gameRoles = this.SelectedRoles;
-        for (let i = this.players.length - 1; i >= 0; i--) {
+        let tg = this.gameRoles;
+        let tp = this.players;
+        for (let i = tp.length - 1; i >= 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [this.players[i], this.players[j]] = [this.players[j], this.players[i]];
-            this.gameRoles[i].player = this.players[i];
+            [tp[i], tp[j]] = [tp[j], tp[i]];
+            tg[i].player = tp[i];
         }
-        for (let i = this.gameRoles.length - 1; i >= 0; i--) {
+        for (let i = tg.length - 1; i >= 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [this.gameRoles[i], this.gameRoles[j]] = [this.gameRoles[j], this.gameRoles[i]];
+            [tg[i], tg[j]] = [tg[j], tg[i]];
         }
         this.step = 2;
     },

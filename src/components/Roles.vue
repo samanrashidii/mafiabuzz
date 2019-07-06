@@ -79,19 +79,19 @@ export default {
             }
         },
         incrNumber(role){
-            let $roles = this.selectedRoles;
+            let targetRole;
             if(role.name == 'Mafia'){
                 if(this.normalMafia < 10){
                     this.normalMafia++;
-                    $roles.push(role);
+                    targetRole = {...role};
                 }
-                
             } else if(role.name == 'Citizen'){
                 if(this.normalCitizen < 20){
                     this.normalCitizen++;
-                    $roles.push(role);
+                    targetRole = {...role};
                 }
             }
+            this.selectedRoles.push(targetRole);
         },
         decrNumber(role){
             let $roles = this.selectedRoles;
