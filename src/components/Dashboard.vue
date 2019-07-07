@@ -1,8 +1,15 @@
 <template>
     <div class="dashboard">
-        <div class="title">
-            <h2><strong>Game</strong> Dash<span>board</span></h2>
-            <p>Now let's handle the game ;)</p>
+        <div class="dashboard-header">
+            <div class="title">
+                <h2><strong>Game</strong> Dash<span>board</span></h2>
+            </div>
+            <div class="dashboard-bttn">
+                <a href="javascript:void(0)" @click="setGame(false)">Change Role Settings</a>
+            </div>
+            <div class="dashboard-bttn">
+                <router-link :to="{name : 'home'}">Change Game Mode</router-link>
+            </div>
         </div>
         <overlay :class="{'active': overlay}">
             <template>
@@ -78,6 +85,7 @@
 <script>
 import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 export default {
   data(){
       return {
@@ -97,7 +105,8 @@ export default {
   },
   computed:{
     ...mapGetters([
-        'SelectedRoles'
+        'SelectedRoles',
+        'gameStatus',
     ]),
     gameRoles(){
         return [...this.SelectedRoles];
@@ -115,6 +124,9 @@ export default {
     }
   },
   methods:{
+    ...mapActions([
+        'setGame',
+    ]),
     assignRoles(){
         let tg = this.gameRoles;
         let tp = this.players;
@@ -166,7 +178,11 @@ export default {
   opacity: 0;
 }
 
-.title h2 span{color:$creator_color;}
-.title h2 strong{color:$hint_color;}
+.dashboard-heade .title{
+    position: relative;
+    padding:10px;
+    box-shadow: 0 0 10px $black_color;
+    h2 strong{color:$hint_color;}
+}
 
 </style>
