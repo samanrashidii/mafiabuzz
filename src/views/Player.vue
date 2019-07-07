@@ -16,6 +16,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.title h2 span{color:$player_color;}
+
 
 </style>

@@ -1,6 +1,5 @@
 <template>
-    <div class="about">
-        <app-navigation />
+    <div class="dashboard">
         <div class="title center-aligned">
             <h2><strong>Game</strong> Dash<span>board</span></h2>
             <p>Now let's handle the game ;)</p>
@@ -10,7 +9,7 @@
                 <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
                 <ul class="error-bullet">
                     <li>
-                        You haven't selected any role, Please go back to "Creator" page and start a new game</i>
+                        You haven't selected any role, Please go back to "Creator" page and start a new game
                     </li>
                 </ul>
                 <app-button @click.native="goToPage({name: 'creator'})" class="settings-bttn"><span>Create new game</span></app-button>

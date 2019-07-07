@@ -75,6 +75,7 @@ a{
 		border: none;
 	}
 }
+
 a:active{
     opacity: .6;
     transform:scale(.8,.8);
@@ -272,10 +273,13 @@ button{
                 }
             }
         }
-    }
-    > div:not(.menu):not(.home){
-        padding-top:90px;
-        .navigation{
+        &.external a{
+            &:active{
+                opacity: .1;
+                transform:scale(1,1);
+            }
+        }
+        &.internal{
             height: 78px;
             &.single-device nav a{width:33.3333333%;}
             nav{
@@ -307,6 +311,9 @@ button{
                 }
             }
         }
+    }
+    > div:not(.navigation){
+        padding-top:85px;
     }
 }
 
@@ -567,3 +574,12 @@ span.step-number{
     padding:3px 0 3px 25px;
     background:url('../images/icons/power.png') no-repeat left center;
 }
+
+.title h2 span{
+    font-family: Arial;
+    font-size: 27px;
+}
+.creator .title h2 span{color:$creator_color;}
+.about .title h2 span{color:$about_color;}
+.player .title h2 span{color:$player_color;}
+.how-to-play .title h2 span{color:$hint_color;}

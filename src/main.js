@@ -12,10 +12,8 @@ import './registerServiceWorker';
 
 // Global Components
 
-import Navigation from '@/components/global/Navigation.vue';
 import Button from '@/components/global/Button.vue';
 
-Vue.component('app-navigation', Navigation);
 Vue.component('app-button', Button);
 
 // Required External Files
