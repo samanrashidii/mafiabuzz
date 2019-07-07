@@ -39,7 +39,7 @@ body{
 body{
     max-width: 980px;
     font-family: $font_normal, Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: $font_size_5;
     color: $color_1;
     margin:auto;
     background-color: $background_color_default;
@@ -438,7 +438,10 @@ a.info{
             display: block;
             font-family: $font_mafia;
             font-size: 60px;
-            color:$player_color;
+            color:$hint_color;
+            transition:all .4s ease-in-out;
+            &.mafia-color{color:$background_color_mafia;}
+            &.citizen-color{color:$background_color_citizen;}
         }
         a.bttn{
             max-width: 200px;
@@ -544,6 +547,7 @@ span.step-number{
             }
             td{
                 font-weight: normal;
+                font-size: $font_size_4;
                 color:$color_2;
                 padding:6px;
                 background-color: #ffffff;
@@ -575,11 +579,21 @@ span.step-number{
     background:url('../images/icons/power.png') no-repeat left center;
 }
 
-.title h2 span{
-    font-family: Arial;
-    font-size: 27px;
+.title{
+    text-align: center;
+    h2 span{
+        font-family: Arial;
+        font-size: 27px;
+    }
 }
 .creator .title h2 span{color:$creator_color;}
 .about .title h2 span{color:$about_color;}
 .player .title h2 span{color:$player_color;}
 .how-to-play .title h2 span{color:$hint_color;}
+
+.different-colors i{
+    font-size: 18px;
+    &:nth-child(1){color:$green_color;}
+    &:nth-child(2){color:$red_color;}
+    &:nth-child(3){color:$hint_color;}
+}

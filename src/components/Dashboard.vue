@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <div class="title center-aligned">
+        <div class="title">
             <h2><strong>Game</strong> Dash<span>board</span></h2>
             <p>Now let's handle the game ;)</p>
         </div>
@@ -20,7 +20,7 @@
                 <span class="step-number">1</span>
                 <label for="quantity">Please write the name of each person:</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
-                    <input type="text" class="has-xsmall-bottom-margin" :key="index" :placeholder="`Player ${index+1}`" v-model="players[index]" />
+                    <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
                 <app-button @click.native.once="assignRoles()">Assign Roles</app-button>
             </div>
@@ -30,7 +30,7 @@
                         <transition-group name="fade" mode="out-in" tag="div">
                         <div v-for="(role, index) in gameRoles" :key="index">
                             <div v-if="(index+1) == personNumb">
-                                <strong>{{role.player}}</strong>
+                                <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{role.player}}</strong>
                                 <transition name="fade" mode="out-in">
                                     <app-button @click.native="showrole = true" v-if="!showrole">Show me my role !</app-button>
                                     <div class="role-info-wrapper" v-if="showrole">
@@ -49,7 +49,7 @@
             <div class="step-box" v-if="step == 3">
                 <div class="center-aligned">
                     <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
-                    <h3>Okay... Let the game begin!</h3>
+                    <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> Let the game begin!</h3>
                     <app-button @click.native="showPlay()" v-if="!showPlayers">I'm God! it's fine to show me player's role</app-button>
                     <div class="players-role has-top-margin" v-else>
                         <div class="table mafia-table">
@@ -89,6 +89,11 @@ export default {
           fMafias: [],
           fCitizens: []
       }
+  },
+  created(){
+    this.SelectedRoles.forEach((element,index) => {
+        this.players.push(`Player ${index+1}`);
+    })
   },
   computed:{
     ...mapGetters([
