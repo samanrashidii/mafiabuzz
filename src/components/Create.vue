@@ -45,7 +45,6 @@
                     <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Game Settings</span></app-button>
                 </template>
                 <template v-else>
-                    <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
                     <h3 class="has-small-bottom-margin">Your game will start with below characters</h3>
                     <div class="table mafia-table">
                         <table>
