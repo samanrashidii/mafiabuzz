@@ -42,7 +42,7 @@
                             You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                         </li>
                     </ul>
-                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Game Settings</span></app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Role Settings</span></app-button>
                 </template>
                 <template v-else>
                     <h3 class="has-small-bottom-margin">Your game will start with below characters</h3>
@@ -62,7 +62,7 @@
                             </tr>
                         </table>
                     </div>
-                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Game Settings</span></app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Role Settings</span></app-button>
                     <app-button @click.native="startGame()" class="active start-bttn"><span>Start Game!</span></app-button>
                 </template>
             </overlay>
@@ -103,6 +103,7 @@ export default {
     computed:{
         ...mapGetters([
             'Creator',
+            'Numbers',
         ]),
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
@@ -147,10 +148,17 @@ export default {
             }
         }
     },
+    created(){
+        if(this.Numbers !== null){
+            this.gameSettings.unit = this.Numbers.unit;
+            this.gameSettings.mafia = this.Numbers.mafia;
+        }
+    },
     methods:{
         ...mapActions([
             'getRoles',
             'setGame',
+            'setNumbers',
         ]),
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
@@ -164,7 +172,12 @@ export default {
             this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
         },
         startGame(){
+            let numb = {
+                unit : this.gameSettings.unit,
+                mafia : this.gameSettings.mafia
+            }
             this.getRoles(this.gameSettings.roles);
+            this.setNumbers(numb);
             this.setGame(true);
         }
     },

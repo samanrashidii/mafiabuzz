@@ -76,6 +76,26 @@ a{
 	}
 }
 
+a.bttn{
+    display:block;
+    color:$color_1;
+    text-align: center;
+    padding:11px;
+    margin-top:15px;
+    background-color:$background_color_3;
+    border-radius: 2px;
+    transition:all .2s ease-in-out;
+    &:hover{
+        background-color: $green_color;
+    }
+    &.active{
+        background-color: $creator_color;
+        &:hover{
+            background-color: $green_color;
+        }
+    }
+}
+
 a:active{
     opacity: .6;
     transform:scale(.8,.8);
@@ -183,12 +203,12 @@ button{
 .left-aligned{text-align: left;}
 .center-aligned{text-align: center;}
 .right-aligned{text-align: right;}
-.has-top-margin{margin-top:30px;}
-.has-bottom-margin{margin-bottom:30px;}
-.has-small-top-margin{margin-top:20px;}
-.has-small-bottom-margin{margin-bottom: 20px;}
-.has-xsmall-top-margin{margin-top:10px;}
-.has-xsmall-bottom-margin{margin-bottom: 10px;}
+.has-top-margin{margin-top:30px !important;}
+.has-bottom-margin{margin-bottom:30px !important;}
+.has-small-top-margin{margin-top:20px !important;}
+.has-small-bottom-margin{margin-bottom: 20px !important;}
+.has-xsmall-top-margin{margin-top:10px !important;}
+.has-xsmall-bottom-margin{margin-bottom: 10px !important;}
 
 .has-clear-fix::after {
     content: '';

@@ -9,12 +9,14 @@ export default new Vuex.Store({
     db: dB,
     roles: [],
     gameCreated: false,
+    numbers: null,
   },
   getters: {
     Roles: state => state.db.roles,
     Creator: state => state.db.pages.creator,
     SelectedRoles: state => state.roles,
     gameStatus: state => state.gameCreated,
+    Numbers: state => state.numbers,
   },
   mutations: {
     GET_ROLES: (state, items) => {
@@ -22,7 +24,10 @@ export default new Vuex.Store({
     },
     SET_GAME: (state, status) => {
       Vue.set(state, 'gameCreated', status);
-    }
+    },
+    SET_NUMBERS: (state, numb) => {
+      Vue.set(state, 'numbers', numb);
+    },
   },
   actions: {
     getRoles: (context, items) => {
@@ -30,6 +35,9 @@ export default new Vuex.Store({
     },
     setGame: (context, status) => {
       context.commit('SET_GAME', status);
-    }
+    },
+    setNumbers: (context, numb) => {
+      context.commit('SET_NUMBERS', numb);
+    },
   },
 });

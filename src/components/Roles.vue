@@ -12,7 +12,7 @@
         </div>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
-                <input @change="checkRoles(role.name)" type="checkbox" name="roles" :id="`role_${index+1}`" :value="role" v-model="selectedRoles" />
+                <input @change="checkRoles(role.name), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
@@ -49,7 +49,25 @@ export default {
     computed:{
         ...mapGetters([
             'Roles',
-        ])
+            'SelectedRoles'
+        ]),
+    },
+    created(){
+        if(this.SelectedRoles.length > 0){
+            this.selectedRoles = this.SelectedRoles;
+            let normalMafia = 0;
+            let normalCitizen = 0;
+            this.selectedRoles.forEach(element => {
+                if(element.name == 'Mafia'){
+                    normalMafia++
+                } else if(element.name == 'Citizen'){
+                    normalCitizen++
+                }
+            });
+            this.normalMafia = normalMafia;
+            this.normalCitizen = normalCitizen;
+            this.emitRoles();
+        }
     },
     methods:{
         getImgUrl(pic) {
@@ -67,6 +85,8 @@ export default {
                 this.normalCitizen = 0;
                 this.selectedRoles = this.selectedRoles.filter(value => value.name != role);
             }
+        },
+        emitRoles(){
             this.$emit('selectedRoles', this.selectedRoles);
         },
         checkNumbers(role){
