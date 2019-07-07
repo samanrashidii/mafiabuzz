@@ -136,6 +136,13 @@ export default {
     &:nth-child(2n+1){
         margin-left:0;
     }
+    @media #{$breakpoint_tablet} {
+        width:31%;
+        margin:3.5% 0 0 3.5% !important;
+        &:nth-child(3n+1){
+            margin-left:0 !important;
+        }
+    }
 }
 
 .roles li label{

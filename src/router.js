@@ -8,6 +8,12 @@ const Home = (resolve) => {
   });
 };
 
+const Navigation = (resolve) => {
+  require.ensure(['./views/Navigation.vue'], () => {
+    resolve(require('./views/Navigation.vue'));
+  });
+};
+
 const Menu = (resolve) => {
   require.ensure(['./views/Menu.vue'], () => {
     resolve(require('./views/Menu.vue'));
@@ -29,12 +35,6 @@ const About = (resolve) => {
 const Creator = (resolve) => {
   require.ensure(['./views/Creator.vue'], () => {
     resolve(require('./views/Creator.vue'));
-  });
-};
-
-const Dashboard = (resolve) => {
-  require.ensure(['./views/Dashboard.vue'], () => {
-    resolve(require('./views/Dashboard.vue'));
   });
 };
 
@@ -65,32 +65,40 @@ export default new Router({
     {
       path: '/:id',
       name: 'menu',
-      component: Menu,
+      components: {
+        default: Menu,
+        'external-nav': Navigation,
+      },
     },
     {
-      path: '/:id/creator',
-      name: 'creator',
-      component: Creator,
-    },
-    {
-      path: '/:id/creator/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-    },
-    {
-      path: '/:id/about',
-      name: 'about',
-      component: About,
-    },
-    {
-      path: '/:id/how-to-play',
-      name: 'howtoplay',
-      component: HowToPlay,
-    },
-    {
-      path: '/:id/player',
-      name: 'player',
-      component: Player,
+      path: '/:id/',
+      name: 'inner-menu',
+      components: {
+        default: Menu,
+        'internal-nav': Navigation,
+      },
+      children: [
+        {
+          path: 'creator',
+          name: 'creator',
+          component: Creator,
+        },
+        {
+          path: 'player',
+          name: 'player',
+          component: Player,
+        },
+        {
+          path: 'about',
+          name: 'about',
+          component: About,
+        },
+        {
+          path: 'how-to-play',
+          name: 'howtoplay',
+          component: HowToPlay,
+        },
+      ],
     },
     {
       path: '/error-404',
