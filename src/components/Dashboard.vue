@@ -37,44 +37,13 @@
                     </div>
                 </div>
             </div>
-            <div class="step-box display" v-if="StepCounter == 3" key="step3">
-                <div class="center-aligned">
-                    <transition name="fade" mode="out-in">
-                        <div v-if="!showPlayers" key="beforeShow">
-                            <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
-                            <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
-                            <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
-                        </div>
-                        <div v-else key="afterShow">
-                            <div class="players-role">
-                                <div class="table mafia-table">
-                                    <table>
-                                        <tr v-for="(fM, index) in finalMafias" :key="index">
-                                            <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
-                                            <td><span class="character-player">{{fM.player}}</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="table citizen-table">
-                                    <table>
-                                        <tr v-for="(fC, index) in finalCitizens" :key="index">
-                                            <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
-                                            <td><span class="character-player">{{fC.player}}</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <app-button>Night Time!</app-button>
-                        </div>
-                    </transition>
-                </div>
-            </div>
+            <god :finalPlayers="gameRoles" v-if="StepCounter == 3" key="step3"/>
         </transition>
     </div>
 </template>
 
 <script>
-import Overlay from '@/components/Overlay.vue';
+import God from '@/components/God.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -83,16 +52,12 @@ export default {
           players : [],
           showrole : false,
           personNumb : 1,
-          showPlayers : false,
-          fMafias: [],
-          fCitizens: []
       }
   },
   created(){
     this.SelectedRoles.forEach((element,index) => {
         this.players.push(`Player ${index+1}`);
     })
-    this.showPlay();
   },
   computed:{
     ...mapGetters([
@@ -104,12 +69,6 @@ export default {
     gameRoles(){
         return [...this.SelectedRoles];
     },
-    finalMafias(){
-        return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
-    },
-    finalCitizens(){
-        return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
-    }
   },
   methods:{
     ...mapActions([
@@ -143,12 +102,10 @@ export default {
         } else{
             this.personNumb++;
         }
-    },
-    showPlay(){
-        this.showPlayers = true;
-        this.fMafias = this.gameRoles.filter(x => x.mafia == true);
-        this.fCitizens = this.gameRoles.filter(x => x.mafia == false);
     }
+  },
+  components:{
+      god : God,
   }
 }
 </script>

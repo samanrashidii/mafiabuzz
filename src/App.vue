@@ -13,4 +13,5 @@
 // Change Step in store to 1
 // Added fucntion call at Created in Dashboard
 // Remove Role Samples in store
+// Add Dead and Action objects to main Database
 </script>
