@@ -50,7 +50,10 @@
                     <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Role Settings</span></app-button>
                 </template>
                 <template v-else>
-                    <h3 class="note-box">Your game will start with below characters</h3>
+                    <div class="note-box">
+                        <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/info.png`)" alt="Info Icon" />
+                        <h3>Your game will start with below characters</h3>
+                    </div>
                     <div class="table mafia-table">
                         <table>
                             <tr v-for="(fM, index) in finalMafias" :key="index">
