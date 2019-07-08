@@ -92,6 +92,7 @@ export default {
     this.SelectedRoles.forEach((element,index) => {
         this.players.push(`Player ${index+1}`);
     })
+    this.showPlay();
   },
   computed:{
     ...mapGetters([
