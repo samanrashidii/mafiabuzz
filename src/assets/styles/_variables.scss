@@ -19,6 +19,7 @@ $color_site_1: #323d3c;
 $color_site_2: #5cc1a3; 
 $color_site_3: #68d897;
 $color_site_4: #cbd4d8;
+$color_site_5: #4d7170;
 $transparent_black: rgba(0,0,0,.94);
 $background_color_default: #2e2e2e;
 $background_color_main: #1e1e1e;
@@ -42,6 +43,7 @@ $green_color:#68cb53;
 $mafia_placeholder:#680b00;
 $citizen_placeholder:#064770;
 
+$breakpoint_mobile: "only screen and (min-width: 480px)";
 $breakpoint_tablet: "only screen and (min-width: 640px)";
 $brekapoint_laptop: "only screen and (min-width: 980px)";
 

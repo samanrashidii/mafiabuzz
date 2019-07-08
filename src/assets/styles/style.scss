@@ -450,6 +450,7 @@ a.info{
     display: table;
     width:100%;
     height: 400px;
+    margin-top:20px;
     .inner-display{
         display: table-cell;
         vertical-align: middle;
@@ -616,4 +617,40 @@ span.step-number{
     &:nth-child(1){color:$green_color;}
     &:nth-child(2){color:$red_color;}
     &:nth-child(3){color:$hint_color;}
+}
+
+.dashboard-header .title{
+    position: relative;
+    padding:20px 10px;
+    box-shadow: 0 0 10px $black_color;
+    h2 strong{color:$hint_color;}
+}
+
+.dashboard-bttn{
+    position: relative;
+    display: block;
+    float: left;
+    width:48%;
+    text-align: left;
+    padding:12px 10px 12px 65px;
+    margin:10px 0 0 4%;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-image:url('../images/icons/game-settings.png');
+    background-color: $background_color_3;
+    box-shadow: inset 0 0 2px $black_color;
+    border-radius: 2px;
+    &:nth-child(2n+1){margin-left: 0;}
+    &.active{
+        background-image:url('../images/icons/game-mode.png');
+        background-color: $color_site_5;
+    }
+    @media #{$breakpoint_mobile}{
+        min-height: 80px;
+        padding-top: 32px;
+    }
+    @media #{$breakpoint_tablet}{
+        padding:32px 30px 12px 85px;
+        background-position-x: 25px;
+    }
 }

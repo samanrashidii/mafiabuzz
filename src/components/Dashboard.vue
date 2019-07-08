@@ -4,11 +4,9 @@
             <div class="title">
                 <h2><strong>Game</strong> Dash<span>board</span></h2>
             </div>
-            <div class="dashboard-bttn">
-                <a href="javascript:void(0)" @click="setGame(false)">Change Role Settings</a>
-            </div>
-            <div class="dashboard-bttn">
-                <router-link :to="{name : 'home'}">Change Game Mode</router-link>
+            <div class="has-clear-fix" v-if="step == 1">
+                <a class="dashboard-bttn" href="javascript:void(0)" @click="setGame(false)">Change Role Settings</a>
+                <router-link class="dashboard-bttn active" :to="{name : 'home'}">Change Game Mode</router-link>
             </div>
         </div>
         <overlay :class="{'active': overlay}">
@@ -176,13 +174,6 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-.dashboard-heade .title{
-    position: relative;
-    padding:10px;
-    box-shadow: 0 0 10px $black_color;
-    h2 strong{color:$hint_color;}
 }
 
 </style>
