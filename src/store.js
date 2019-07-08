@@ -10,6 +10,7 @@ export default new Vuex.Store({
     roles: [],
     gameCreated: false,
     numbers: null,
+    stepCounter: 1,
   },
   getters: {
     Roles: state => state.db.roles,
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     SelectedRoles: state => state.roles,
     gameStatus: state => state.gameCreated,
     Numbers: state => state.numbers,
+    StepCounter: state => state.stepCounter,
   },
   mutations: {
     GET_ROLES: (state, items) => {
@@ -28,6 +30,9 @@ export default new Vuex.Store({
     SET_NUMBERS: (state, numb) => {
       Vue.set(state, 'numbers', numb);
     },
+    SET_STEP: (state, step) => {
+      Vue.set(state, 'stepCounter', step);
+    },
   },
   actions: {
     getRoles: (context, items) => {
@@ -38,6 +43,9 @@ export default new Vuex.Store({
     },
     setNumbers: (context, numb) => {
       context.commit('SET_NUMBERS', numb);
+    },
+    setStep: (context, step) => {
+      context.commit('SET_STEP', step);
     },
   },
 });
