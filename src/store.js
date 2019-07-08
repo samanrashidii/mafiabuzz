@@ -15,6 +15,7 @@ const asd = [{
   "player": 'Saman',
   "dead": false,
   "action": "CheckIdentity",
+  "actionStatus": false,
   "description": "The baker is on the side of the innocents. During the night, the baker gives one player a loaf of bread, potentially revealing their identity. If the baker dies, the innocents have just three nights to dispose of the mafia, or the innocents starve, and the mafia win."
 },
 {
@@ -28,6 +29,7 @@ const asd = [{
   "player": 'Samira',
   "dead": false,
   "action": "Kill",
+  "actionStatus": false,
   "description": "The Yakuza is a regular mafia player with an extra power: they may sacrifice themselves from the second night (during the night) and choose an innocent to join the mafia."
 },
 {
@@ -41,6 +43,7 @@ const asd = [{
   "player": 'Shahryar',
   "dead": false,
   "action": null,
+  "actionStatus": false,
   "description": "The Dentist may select any other player at night, and prevent them speaking during the following day.[33] The Silencer is a mafioso with the identical power, except that they may not silence the same player on successive days. The silenced individual wakes in the morning and is immediately instructed not to talk until the end of the day"
 },
 {
@@ -54,6 +57,7 @@ const asd = [{
   "player": 'Erfan',
   "dead": false,
   "action": "CheckIdentity",
+  "actionStatus": false,
   "description": "The dark background roles are standard (mafia or innocent) except for revealing a deceptive alignment when killed. The M.E. gathers information from the killings that can help the innocents, while the Priest learns about the alignment of the dead in the same way that the Detective learns about the living."
 },
 {
@@ -67,6 +71,7 @@ const asd = [{
   "player": 'Amin',
   "dead": false,
   "action": "Heal",
+  "actionStatus": false,
   "description": "Revivers and Master Revivers are able to resurrect dead players, Master Revivers can bring the revived into their association"
 },
 {
@@ -80,6 +85,7 @@ const asd = [{
   "player": 'Mehdi',
   "dead": false,
   "action": "Link",
+  "actionStatus": false,
   "description": "This role is taken in addition to the assigned role, and it endows the player with additional, overt, powers (particularly during the daytime). Empowerment can be random, but is usually made by vote. For instance, the Mayor or Sheriff can be elected each morning, and gain two lynching votes"
 }];
 

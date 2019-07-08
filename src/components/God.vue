@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="step-box only-box">
+        <div class="step-box only-box" v-if="dashboard.god">
             <ul class="dashboard-hint">
                 <li>
                     <span class="killer">Kill character and disable it's action.</span>
@@ -22,7 +22,7 @@
                     <div v-if="dashboard.god" key="beforeShow">
                         <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
                         <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
-                        <app-button @click.native="showPlay(); updateDashboard();">I'm God! it's fine to show me game details</app-button>
+                        <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
                     </div>
                     <div v-else key="afterShow">
                         <div class="players-role">
@@ -33,9 +33,8 @@
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
                                         <td>
-                                            <span class="no-action" v-if="actionStatus(fM.action) == 'noAction'"></span>
-                                            <span class="pending-action" @click="actionStatus(fM.action, 'done')" v-else-if="actionStatus(fM.action) == 'pending'"></span>
-                                            <span class="done-action" v-else-if="actionStatus(fM.action) == 'done'"></span>
+                                            <span class="no-action" v-if="!actionStatus(fM.action)"></span>
+                                            <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -47,9 +46,8 @@
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
                                         <td>
-                                            <span class="no-action" v-if="actionStatus(fC.action) == 'noAction'"></span>
-                                            <span class="pending-action" @click="actionStatus(fC.action, 'done')" v-else-if="actionStatus(fC.action) == 'pending'"></span>
-                                            <span class="done-action" v-else-if="actionStatus(fC.action) == 'done'"></span>
+                                            <span class="no-action" v-if="!actionStatus(fC.action)"></span>
+                                            <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -113,18 +111,20 @@ export default {
         updateDashboard(){
             this.controlDashboard(this.dashboard);
         },
-        actionStatus(action, condition){
+        actionStatus(action){
             if(action !== null){
-                if(condition == 'done'){
-                    console.log('done');
-                    return 'done'
-                } else{
-                    console.log('pending');
-                    return 'pending' 
-                }
+                return true
             } else{
-                console.log('no action');
-                return 'noAction'
+                return false
+            }
+        },
+        fireAction(player){
+            if(player.actionStatus == false){
+                this.finalPlayers.forEach(element => {
+                    if(element.name == player.name){
+                        element.actionStatus = true;
+                    }
+                });
             }
         },
         deadOrAlive(player){
