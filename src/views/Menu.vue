@@ -9,17 +9,16 @@
 <script>
 
 export default {
-  methods:{
-    checkURL(){
-      if(this.$route.params.id !== 'single-device'){
-        this.$router.push({name:'not-found'});
-      } else if(this.$route.params.id !== 'multi-device'){
-        this.$router.push({name:'not-found'});
-      }
-    }
-  },
   created(){
-    // this.checkURL();
+    if(this.$route.params.id == 'single-device'){
+      return true;
+    } else if(this.$route.params.id == 'multi-device'){
+      return true;
+    } else if(this.$route.params.id == 'error-404'){
+      this.$router.push({name:'home'});
+    } else{
+      this.$router.push({name:'not-found'});
+    }
   }
 };
 </script>
