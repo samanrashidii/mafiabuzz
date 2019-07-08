@@ -1,8 +1,13 @@
 <template>
     <div class="create">
-        <div class="title">
-            <h2 v-html="Creator.title"></h2>
-            <p v-html="Creator.subtitle"></p>
+        <div class="dashboard-header">
+            <div>
+                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>Change Game Mode</span></router-link>
+            </div>
+            <div class="title">
+                <h2 v-html="Creator.title"></h2>
+                <p v-html="Creator.subtitle"></p>
+            </div>
         </div>
         <form action="#" method="POST" accept-charset="utf-8" name="game_settings" class="game_settings">
             <div class="steps">
@@ -45,7 +50,7 @@
                     <app-button @click.native="overlay = false" class="settings-bttn"><span>Change Role Settings</span></app-button>
                 </template>
                 <template v-else>
-                    <h3 class="has-small-bottom-margin">Your game will start with below characters</h3>
+                    <h3 class="note-box">Your game will start with below characters</h3>
                     <div class="table mafia-table">
                         <table>
                             <tr v-for="(fM, index) in finalMafias" :key="index">

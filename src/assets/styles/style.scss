@@ -80,7 +80,7 @@ a.bttn{
     display:block;
     color:$color_1;
     text-align: center;
-    padding:11px;
+    padding:12px;
     margin-top:15px;
     background-color:$background_color_3;
     border-radius: 2px;
@@ -185,7 +185,7 @@ button{
 	position: relative;
     display: block;
     width:100%;
-    height: 50px;
+    height: 52px;
     font-size: $font_size_7;
 	color:$color_1;
 	text-align: center;
@@ -372,6 +372,12 @@ button{
     display: inline-block;
     padding: 5px 5px 5px 30px;
     background:url('../images/assets/settings.png') no-repeat left center;
+}
+
+.assign-bttn span{
+    display: inline-block;
+    padding: 5px 5px 5px 30px;
+    background:url('../images/assets/assign.png') no-repeat left center;
 }
 
 i.mafia-role,
@@ -590,7 +596,10 @@ span.step-number{
         }
         
     }
-    &.mafia-table{background-color: $background_color_mafia;}
+    &.mafia-table{
+        background-color: $background_color_mafia;
+        margin-top:0;
+    }
     &.citizen-table{background-color: $background_color_citizen;}
 }
 
@@ -598,6 +607,27 @@ span.step-number{
     display: inline-block;
     padding:3px 0 3px 25px;
     background:url('../images/icons/power.png') no-repeat left center;
+}
+
+.note-box{
+    position: relative;
+    color:$color_site_1;
+    padding:15px;
+    margin-bottom:20px;
+    background-color: $background_color_2;
+    border-radius: 5px;
+    &::after{
+        content:'';
+        position: absolute;
+        bottom:-4px;
+        left:50%;
+        width:10px;
+        height:10px;
+        margin-left: -5px;
+        background-color:inherit;
+        border-radius: 2px;
+        transform:rotate(45deg);
+    }
 }
 
 .title{
@@ -612,11 +642,14 @@ span.step-number{
 .player .title h2 span{color:$player_color;}
 .how-to-play .title h2 span{color:$hint_color;}
 
-.different-colors i{
-    font-size: 18px;
-    &:nth-child(1){color:$green_color;}
-    &:nth-child(2){color:$red_color;}
-    &:nth-child(3){color:$hint_color;}
+.different-colors{
+    margin:-12px 0 52px 0;
+    i{
+        font-size: 18px;
+        &:nth-child(1){color:$green_color;}
+        &:nth-child(2){color:$red_color;}
+        &:nth-child(3){color:$hint_color;}
+    }
 }
 
 .dashboard-header .title{
@@ -626,31 +659,52 @@ span.step-number{
     h2 strong{color:$hint_color;}
 }
 
-.dashboard-bttn{
+.site-bttn{
     position: relative;
     display: block;
-    float: left;
-    width:48%;
-    text-align: left;
-    padding:12px 10px 12px 65px;
-    margin:10px 0 0 4%;
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    background-image:url('../images/icons/game-settings.png');
-    background-color: $background_color_3;
-    box-shadow: inset 0 0 2px $black_color;
+    text-align: center;
+    margin-bottom:20px;
+    box-shadow: 0 0 7px $background_color_middle;
+    background-color: $color_site_5;
     border-radius: 2px;
-    &:nth-child(2n+1){margin-left: 0;}
-    &.active{
+    span{
+        display: inline-block;
+        padding:27px 10px 27px 80px;
+        background-repeat: no-repeat;
+        background-position: 25px center;
         background-image:url('../images/icons/game-mode.png');
-        background-color: $color_site_5;
     }
-    @media #{$breakpoint_mobile}{
-        min-height: 80px;
-        padding-top: 32px;
+}
+
+// Main Transitions
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+.slide-enter-active{
+    animation: slide-in 200ms ease-out forwards;
+}
+.slide-leave-active{
+    animation: slide-out 200ms ease-out;
+}
+@keyframes slide-in {
+    from{
+        opacity: 0;
     }
-    @media #{$breakpoint_tablet}{
-        padding:32px 30px 12px 85px;
-        background-position-x: 25px;
+    to{
+        opacity: 1;
+    }
+}
+@keyframes slide-out {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
     }
 }
