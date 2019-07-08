@@ -13,6 +13,8 @@ const asd = [{
   "power": -18,
   "free": true,
   "player": 'Saman',
+  "dead": false,
+  "action": "CheckIdentity",
   "description": "The baker is on the side of the innocents. During the night, the baker gives one player a loaf of bread, potentially revealing their identity. If the baker dies, the innocents have just three nights to dispose of the mafia, or the innocents starve, and the mafia win."
 },
 {
@@ -24,6 +26,8 @@ const asd = [{
   "priority": 26,
   "free": true,
   "player": 'Samira',
+  "dead": false,
+  "action": "Kill",
   "description": "The Yakuza is a regular mafia player with an extra power: they may sacrifice themselves from the second night (during the night) and choose an innocent to join the mafia."
 },
 {
@@ -35,6 +39,8 @@ const asd = [{
   "priority": 101,
   "free": true,
   "player": 'Shahryar',
+  "dead": false,
+  "action": null,
   "description": "The Dentist may select any other player at night, and prevent them speaking during the following day.[33] The Silencer is a mafioso with the identical power, except that they may not silence the same player on successive days. The silenced individual wakes in the morning and is immediately instructed not to talk until the end of the day"
 },
 {
@@ -46,6 +52,8 @@ const asd = [{
   "priority": 41,
   "free": true,
   "player": 'Erfan',
+  "dead": false,
+  "action": "CheckIdentity",
   "description": "The dark background roles are standard (mafia or innocent) except for revealing a deceptive alignment when killed. The M.E. gathers information from the killings that can help the innocents, while the Priest learns about the alignment of the dead in the same way that the Detective learns about the living."
 },
 {
@@ -57,6 +65,8 @@ const asd = [{
   "priority": 46,
   "free": true,
   "player": 'Amin',
+  "dead": false,
+  "action": "Heal",
   "description": "Revivers and Master Revivers are able to resurrect dead players, Master Revivers can bring the revived into their association"
 },
 {
@@ -68,6 +78,8 @@ const asd = [{
   "priority": 56,
   "free": true,
   "player": 'Mehdi',
+  "dead": false,
+  "action": "Link",
   "description": "This role is taken in addition to the assigned role, and it endows the player with additional, overt, powers (particularly during the daytime). Empowerment can be random, but is usually made by vote. For instance, the Mayor or Sheriff can be elected each morning, and gain two lynching votes"
 }];
 
@@ -78,6 +90,10 @@ export default new Vuex.Store({
     gameCreated: false,
     numbers: null,
     stepCounter: 3,
+    dashboard: {
+      god: false,
+      day: true,
+    },
   },
   getters: {
     Roles: state => state.db.roles,
@@ -86,6 +102,7 @@ export default new Vuex.Store({
     gameStatus: state => state.gameCreated,
     Numbers: state => state.numbers,
     StepCounter: state => state.stepCounter,
+    Dashboard: state => state.dashboard,
   },
   mutations: {
     GET_ROLES: (state, items) => {
@@ -100,6 +117,9 @@ export default new Vuex.Store({
     SET_STEP: (state, step) => {
       Vue.set(state, 'stepCounter', step);
     },
+    CONTROL_DASHBOARD: (state, dashinfo) => {
+      Vue.set(state, 'dashboard', dashinfo);
+    },
   },
   actions: {
     getRoles: (context, items) => {
@@ -113,6 +133,9 @@ export default new Vuex.Store({
     },
     setStep: (context, step) => {
       context.commit('SET_STEP', step);
+    },
+    controlDashboard: (context, dashinfo) => {
+      context.commit('CONTROL_DASHBOARD', dashinfo);
     },
   },
 });
