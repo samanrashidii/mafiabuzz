@@ -1,9 +1,12 @@
 <template>
     <div>
-        <div class="step-box only-box" v-if="dashboard.god">
+        <div class="step-box only-box" v-if="!dashboard.god">
             <ul class="dashboard-hint">
                 <li>
                     <span class="killer">Kill character and disable it's action.</span>
+                </li>
+                <li>
+                    <span class="angel">Bring back character to life.</span>
                 </li>
                 <li>
                     <span class="no-action">Character doesn't have an action.</span>
@@ -32,7 +35,7 @@
                                         <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
-                                        <td>
+                                        <td v-if="dashboard.day == false">
                                             <span class="no-action" v-if="!actionStatus(fM.action)"></span>
                                             <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
@@ -45,7 +48,7 @@
                                         <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
-                                        <td>
+                                        <td v-if="dashboard.day == false">
                                             <span class="no-action" v-if="!actionStatus(fC.action)"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
@@ -53,7 +56,10 @@
                                 </table>
                             </div>
                         </div>
-                        <app-button>Night Time!</app-button>
+                        <app-button @click.native="changePhase(dashboard.day)">
+                            <span v-if="dashboard.day">Night Time!</span>
+                            <span v-else>Day Time!</span>
+                        </app-button>
                     </div>
                 </transition>
             </div>
@@ -141,6 +147,13 @@ export default {
                     }
                 });
             }
+        },
+        changePhase(phase){
+            if(phase == false){
+                this.dashboard.day = true;
+            } else{
+                this.dashboard.day = false;
+            }
         }
     }
 }
@@ -150,22 +163,6 @@ export default {
 
     .table table tr{
         position: relative;
-        &.dead td{
-            position: relative;
-            &::after{
-                content:'';
-                position: absolute;
-                top:0;
-                left:0;
-                width:100%;
-                height: 100%;
-                background-color: rgba(0,0,0,.85);
-                z-index: 11;
-            }
-            a.angel{
-                background-color: $dark_green_color;
-            }
-        }
         td{
             position: relative;
             font-size: $font_size_3;
@@ -209,6 +206,20 @@ export default {
                     background-position: center;
                     z-index: 10;
                 }
+            }
+            &::after{
+                content:'';
+                position: absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height: 100%;
+                visibility: hidden;
+                opacity: 0;
+                background-repeat: no-repeat;
+                background-position: center;
+                z-index: 11;
+                transition:all .2s ease-in-out;
             }
         }
     }
