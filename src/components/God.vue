@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </div>
-        <div class="step-box display godashbord" :class="{'day': dashboard.day, 'night': !dashboard.day}">
+        <div class="step-box display godashboard" :class="{'day': dashboard.day, 'night': !dashboard.day}">
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
                     <div v-if="dashboard.god" key="beforeShow">
@@ -28,6 +28,21 @@
                         <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
                     </div>
                     <div v-else key="afterShow">
+                        <overlay :class="{'active': overlay}">
+                            <div class="action-box">
+                                <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                                <h2 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name}}</h2>
+                                <span class="arrow"></span>
+                                <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                                <span class="arrow"></span>
+                                <label for="action_target">Please select the person who takes action:</label>
+                                <select name="action_target" id="action_target" v-model="log.person">
+                                    <option v-for="(person, index) in checkGroup" :key="index">{{person.player}}</option>
+                                </select>
+                                <app-button class="danger" @click.native="overlay = false">Cancel</app-button>
+                                <app-button>Action ...!!!</app-button>
+                            </div>
+                        </overlay>
                         <div class="players-role">
                             <div class="table mafia-table">
                                 <table>
@@ -56,10 +71,12 @@
                                 </table>
                             </div>
                         </div>
-                        <app-button @click.native="changePhase(dashboard.day)">
-                            <span v-if="dashboard.day">Night Time!</span>
-                            <span v-else>Day Time!</span>
-                        </app-button>
+                        <div class="button-holder">
+                            <app-button @click.native="changePhase(dashboard.day)">
+                                <span v-if="dashboard.day">Night Time!</span>
+                                <span v-else>Day Time!</span>
+                            </app-button>
+                        </div>
                     </div>
                 </transition>
             </div>
@@ -68,6 +85,7 @@
 </template>
 
 <script>
+import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -80,6 +98,21 @@ export default {
         return {
             fMafias: [],
             fCitizens: [],
+            overlay: false,
+            info: {
+                name: "Default",
+                action: "Default Action",
+                icon: "default.png",
+                actionIcon: "default.png",
+                mafia: false
+            },
+            log: {
+                round : 1,
+                action: null,
+                attacker: null,
+                person: null
+            },
+            historyLog: [],
         }
     },
     created(){
@@ -101,6 +134,13 @@ export default {
         },
         dashboard(){
             return this.Dashboard;
+        },
+        checkGroup(){
+            if(this.info.mafia == true){
+                return this.finalCitizens;
+            } else{
+                return this.finalMafias;
+            }
         }
     },
     methods:{
@@ -110,6 +150,9 @@ export default {
         ]),
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
+        },
+        getActionImgUrl(pic) {
+            return require(`@/assets/images/actions/${pic}`);
         },
         showPlay(){
             this.dashboard.god = true;
@@ -126,12 +169,20 @@ export default {
         },
         fireAction(player){
             if(player.actionStatus == false){
-                this.finalPlayers.forEach(element => {
-                    if(element.name == player.name){
-                        element.actionStatus = true;
-                    }
-                });
+                this.info.name = player.name;
+                this.info.icon = player.icon;
+                this.info.action = player.action;
+                this.info.actionIcon = player.actionIcon;
+                this.info.mafia = player.mafia;
+                this.overlay = true;
             }
+        },
+        closeAction(action){
+            this.finalPlayers.forEach(element => {
+                if(element.name == action.player){
+                    element.actionStatus = true;
+                }
+            });
         },
         deadOrAlive(player){
             if(player.dead == false){
@@ -155,6 +206,9 @@ export default {
                 this.dashboard.day = false;
             }
         }
+    },
+    components: {
+        overlay: Overlay,
     }
 }
 </script>
