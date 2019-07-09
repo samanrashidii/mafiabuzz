@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
         <div class="step-box only-box" v-if="!dashboard.god">
             <ul class="dashboard-hint">
                 <li>
@@ -9,7 +9,7 @@
                     <span class="angel">Bring back character to life.</span>
                 </li>
                 <li>
-                    <span class="no-action">Character doesn't have an action.</span>
+                    <span class="no-action">Character does not have an action.</span>
                 </li>
                 <li>
                     <span class="pending-action">Character's action is not fired.</span>
@@ -19,7 +19,7 @@
                 </li>
             </ul>
         </div>
-        <div class="step-box display">
+        <div class="step-box display godashbord" :class="{'day': dashboard.day, 'night': !dashboard.day}">
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
                     <div v-if="dashboard.god" key="beforeShow">
@@ -105,8 +105,8 @@ export default {
     },
     methods:{
         ...mapActions([
-            'setRoles',
-            'controlDashboard',
+            'setRoles', //
+            'controlDashboard', //
         ]),
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
@@ -115,7 +115,7 @@ export default {
             this.dashboard.god = true;
         },
         updateDashboard(){
-            this.controlDashboard(this.dashboard);
+            this.controlDashboard(this.dashboard); //
         },
         actionStatus(action){
             if(action !== null){
@@ -161,6 +161,11 @@ export default {
 
 <style lang="scss" scoped>
 
+    .step-box.display{
+        padding:90px 15px 15px 15px;
+        border-radius: 3px;
+    }
+
     .table table tr{
         position: relative;
         td{
@@ -171,7 +176,10 @@ export default {
                 width:22px;
                 margin-right: 3px;
             }
-            &:nth-child(1){width:40%;}
+            &:nth-child(1){
+                width:40%;
+                text-align:left;
+            }
             &:nth-child(2){
                 width:30%;
                 background-color: $background_color_5;
