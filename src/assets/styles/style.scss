@@ -702,6 +702,19 @@ span.step-number{
 .done-action{background-image: url('../images/icons/action-done.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
 
+.dead td{
+    position: relative;
+    &::after{
+        opacity: 1 !important;
+        visibility: visible !important;
+        background-color: rgba(0,0,0,.85);
+    }
+    &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
+    a.angel{
+        background-color: $dark_green_color;
+    }
+}
+
 // Main Transitions
 
 .fade-enter-active,
