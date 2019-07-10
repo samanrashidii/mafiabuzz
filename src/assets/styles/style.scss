@@ -94,6 +94,12 @@ a.bttn{
             background-color: $green_color;
         }
     }
+    &.danger{
+        background-color: $red_color;
+        &:hover{
+            background-color: $green_color;
+        }
+    }
 }
 
 a:active{
@@ -695,6 +701,20 @@ span.step-number{
 .pending-action{background-image: url('../images/icons/pending-action.png');}
 .done-action{background-image: url('../images/icons/action-done.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
+.yellow-color{color:$hint_color;}
+
+.arrow{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width:100px;
+    height: 100px;
+    margin: 0 10px;
+    background: url('../images/assets/down-arrow.png') no-repeat center;
+    img{
+        margin:28px 0 0 13px;
+    }
+}
 
 .dead td{
     position: relative;
@@ -709,7 +729,7 @@ span.step-number{
     }
 }
 
-.step-box.godashbord{
+.step-box.godashboard{
     overflow: hidden;
     margin-bottom:40px;
     transition:all .3s ease-in-out;
@@ -732,7 +752,7 @@ span.step-number{
             top:10px;
             background-image: url('../images/sun.png');
         }
-        a.bttn{
+        .button-holder a.bttn{
             margin-top:30px;
             background: url('../images/moon.png') no-repeat 10px -5px $night !important;
             border:1px solid $background_color_default;
@@ -740,19 +760,60 @@ span.step-number{
         }
     }
     &.night{
-        background:url('../images/night.jpg') no-repeat right bottom;
+        background:url('../images/night.jpg') no-repeat right center;
         background-size: cover;
         &::before{
             top:10px;
             background-image: url('../images/moon.png');
         }
-        a.bttn{
+        .button-holder a.bttn{
             margin-top:30px;
             background: url('../images/sun.png') no-repeat 10px -5px $day !important;
             border:1px solid $hint_color;
             box-shadow: 0 0 4px $hint_color;
         }
     }
+}
+
+.confirm-action{
+    a{
+        float: left;
+        display: block;
+        width:49%;
+        font-size: $font_size_2;
+        color:$color_1;
+        text-align: center;
+        padding:15px 5px;
+        margin:30px 0 0 2%;
+        border-radius: 2px;
+        &:nth-child(2n+1){margin-left: 0;}
+        &.cancel{background-color: $red_color;}
+        &.confirm{background-color: $green_color;}
+    }
+}
+
+.action-image{
+    animation: scaling 2.4s ease-in-out alternate infinite;
+}
+
+@keyframes scaling {
+    0%{transform:scale(1,1)}
+    50%{transform:scale(.7,.7)}
+    100%{transform:scale(1,1)}
+}
+
+.round-tracker{
+    position: absolute;
+    top:12px;
+    left:12px;
+    width:40px;
+    height:40px;
+    line-height:36px;
+    font-size: 26px;
+    color:$color_site_4;
+    text-align: center;
+    border-radius: 50%;
+    border:2px solid $color_site_4;
 }
 
 // Main Transitions

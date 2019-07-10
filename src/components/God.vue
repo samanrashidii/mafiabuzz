@@ -19,7 +19,10 @@
                 </li>
             </ul>
         </div>
-        <div class="step-box display godashbord" :class="{'day': dashboard.day, 'night': !dashboard.day}">
+        <div class="step-box display godashboard" :class="{'day': dashboard.day, 'night': !dashboard.day}">
+            <transition name="fade">
+                <strong class="round-tracker" v-if="!dashboard.day">{{this.log.round}}</strong>
+            </transition>
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
                     <div v-if="dashboard.god" key="beforeShow">
@@ -28,6 +31,29 @@
                         <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
                     </div>
                     <div v-else key="afterShow">
+                        <overlay :class="{'active': overlay}">
+                            <div class="action-box">
+                                <div class="player-box-holder">
+                                    <div class="player-box">
+                                        <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h3>
+                                    </div>
+                                    <div class="arrow">
+                                        <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                                    </div>
+                                    <div class="player-box">
+                                        <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h3>
+                                    </div>
+                                </div>
+                                <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
+                                <select @change="findTarget(log.person)" name="action_target" id="action_target" v-model="log.person">
+                                    <option v-for="(person, index) in checkGroup(info.player)" :key="index">{{person.player}}</option>
+                                </select>
+                                <app-button class="danger" @click.native="cancelAction()">Cancel</app-button>
+                                <app-button>Action ...!!!</app-button>
+                            </div>
+                        </overlay>
                         <div class="players-role">
                             <div class="table mafia-table">
                                 <table>
@@ -56,10 +82,18 @@
                                 </table>
                             </div>
                         </div>
-                        <app-button @click.native="changePhase(dashboard.day)">
-                            <span v-if="dashboard.day">Night Time!</span>
-                            <span v-else>Day Time!</span>
-                        </app-button>
+                        <div class="button-holder">
+                            <transition name="fade" mode="out-in">
+                                <app-button @click.native="confirmAction = true" v-if="!confirmAction">
+                                    <span v-if="dashboard.day">Night Time!</span>
+                                    <span v-else>Day Time!</span>
+                                </app-button>
+                                <div class="confirm-action has-clear-fix" key="confirm" v-else>
+                                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">No, Stay here!</a>
+                                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">Let's go next phase</a>
+                                </div>
+                            </transition>
+                        </div>
                     </div>
                 </transition>
             </div>
@@ -68,6 +102,7 @@
 </template>
 
 <script>
+import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -80,6 +115,25 @@ export default {
         return {
             fMafias: [],
             fCitizens: [],
+            overlay: false,
+            confirmAction: false,
+            info: {
+                player: "Loading",
+                action: "Loading Action",
+                icon: "loader.gif",
+                actionIcon: "loader.gif",
+                mafia: false,
+                target: 'Person?',
+                targetMafia: null,
+                targetIcon: 'default.png',
+            },
+            log: {
+                round : 0,
+                action: null,
+                attacker: null,
+                person: null
+            },
+            historyLog: [],
         }
     },
     created(){
@@ -101,7 +155,7 @@ export default {
         },
         dashboard(){
             return this.Dashboard;
-        }
+        },
     },
     methods:{
         ...mapActions([
@@ -110,6 +164,9 @@ export default {
         ]),
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
+        },
+        getActionImgUrl(pic) {
+            return require(`@/assets/images/actions/${pic}`);
         },
         showPlay(){
             this.dashboard.god = true;
@@ -126,12 +183,41 @@ export default {
         },
         fireAction(player){
             if(player.actionStatus == false){
-                this.finalPlayers.forEach(element => {
-                    if(element.name == player.name){
-                        element.actionStatus = true;
-                    }
-                });
+                this.info.player = player.player;
+                this.info.icon = player.icon;
+                this.info.action = player.action;
+                this.info.actionIcon = player.actionIcon;
+                this.info.mafia = player.mafia;
+                this.overlay = true;
             }
+        },
+        checkGroup(player){
+            return this.finalPlayers.filter(x => x.player != player);
+        },
+        findTarget(target){
+            this.finalPlayers.forEach(element => {
+                if(element.player == target){
+                    this.info.targetMafia = element.mafia;
+                    this.info.targetIcon = element.icon;
+                }
+            });
+            this.info.target = target;
+        },
+        cancelAction(){
+            this.overlay = false;
+            setTimeout(() => {
+                this.info.target = 'Player?';
+                this.info.targetMafia = null;
+                this.info.targetIcon = 'default.png';
+                this.log.person = "";
+            }, 500);
+        },
+        closeAction(action){
+            this.finalPlayers.forEach(element => {
+                if(element.name == action.player){
+                    element.actionStatus = true;
+                }
+            });
         },
         deadOrAlive(player){
             if(player.dead == false){
@@ -149,12 +235,17 @@ export default {
             }
         },
         changePhase(phase){
+            this.confirmAction = false;
             if(phase == false){
                 this.dashboard.day = true;
             } else{
+                this.log.round++;
                 this.dashboard.day = false;
             }
         }
+    },
+    components: {
+        overlay: Overlay,
     }
 }
 </script>
@@ -230,6 +321,11 @@ export default {
                 transition:all .2s ease-in-out;
             }
         }
+    }
+
+    .player-box{
+        display:inline-block;
+        vertical-align: middle;
     }
 
 </style>
