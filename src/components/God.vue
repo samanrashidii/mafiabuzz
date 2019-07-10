@@ -30,16 +30,22 @@
                     <div v-else key="afterShow">
                         <overlay :class="{'active': overlay}">
                             <div class="action-box">
-                                <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
-                                <h2 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name}}</h2>
-                                <span class="arrow"></span>
-                                <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
-                                <span class="arrow"></span>
-                                <label for="action_target">Please select the person who takes action:</label>
-                                <select name="action_target" id="action_target" v-model="log.person">
-                                    <option v-for="(person, index) in checkGroup" :key="index">{{person.player}}</option>
+                                <div class="player-box">
+                                    <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                                    <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h3>
+                                </div>
+                                <div class="arrow">
+                                    <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                                </div>
+                                <div class="player-box">
+                                    <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                                    <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h3>
+                                </div>
+                                <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
+                                <select @change="findTarget(log.person)" name="action_target" id="action_target" v-model="log.person">
+                                    <option v-for="(person, index) in checkGroup(info.player)" :key="index">{{person.player}}</option>
                                 </select>
-                                <app-button class="danger" @click.native="overlay = false">Cancel</app-button>
+                                <app-button class="danger" @click.native="cancelAction()">Cancel</app-button>
                                 <app-button>Action ...!!!</app-button>
                             </div>
                         </overlay>
@@ -100,11 +106,14 @@ export default {
             fCitizens: [],
             overlay: false,
             info: {
-                name: "Default",
-                action: "Default Action",
-                icon: "default.png",
-                actionIcon: "default.png",
-                mafia: false
+                player: "Loading",
+                action: "Loading Action",
+                icon: "loader.gif",
+                actionIcon: "loader.gif",
+                mafia: false,
+                target: 'Person?',
+                targetMafia: null,
+                targetIcon: 'default.png',
             },
             log: {
                 round : 1,
@@ -135,13 +144,6 @@ export default {
         dashboard(){
             return this.Dashboard;
         },
-        checkGroup(){
-            if(this.info.mafia == true){
-                return this.finalCitizens;
-            } else{
-                return this.finalMafias;
-            }
-        }
     },
     methods:{
         ...mapActions([
@@ -169,13 +171,34 @@ export default {
         },
         fireAction(player){
             if(player.actionStatus == false){
-                this.info.name = player.name;
+                this.info.player = player.player;
                 this.info.icon = player.icon;
                 this.info.action = player.action;
                 this.info.actionIcon = player.actionIcon;
                 this.info.mafia = player.mafia;
                 this.overlay = true;
             }
+        },
+        checkGroup(player){
+            return this.finalPlayers.filter(x => x.player != player);
+        },
+        findTarget(target){
+            this.finalPlayers.forEach(element => {
+                if(element.player == target){
+                    this.info.targetMafia = element.mafia;
+                    this.info.targetIcon = element.icon;
+                }
+            });
+            this.info.target = target;
+        },
+        cancelAction(){
+            this.overlay = false;
+            setTimeout(() => {
+                this.info.target = 'Player?';
+                this.info.targetMafia = null;
+                this.info.targetIcon = 'default.png';
+                this.log.person = "";
+            }, 500);
         },
         closeAction(action){
             this.finalPlayers.forEach(element => {
@@ -284,6 +307,11 @@ export default {
                 transition:all .2s ease-in-out;
             }
         }
+    }
+
+    .player-box{
+        display:inline-block;
+        vertical-align: middle;
     }
 
 </style>

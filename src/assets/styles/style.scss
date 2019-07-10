@@ -701,13 +701,19 @@ span.step-number{
 .pending-action{background-image: url('../images/icons/pending-action.png');}
 .done-action{background-image: url('../images/icons/action-done.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
+.yellow-color{color:$hint_color;}
 
-span.arrow{
-    display: block;
-    width:38px;
-    height: 38px;
-    margin:20px auto;
+.arrow{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width:100px;
+    height: 100px;
+    margin: 0 10px;
     background: url('../images/assets/down-arrow.png') no-repeat center;
+    img{
+        margin:28px 0 0 13px;
+    }
 }
 
 .dead td{

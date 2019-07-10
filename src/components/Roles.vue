@@ -39,9 +39,9 @@ export default {
             normalCitizen: 0,
             info: {
                 show: false,
-                name: "Default",
-                description: "Default Description",
-                icon: "default.png",
+                name: "Loading",
+                description: "...",
+                icon: "loader.gif",
                 mafia: false
             }
         }
