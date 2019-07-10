@@ -760,7 +760,7 @@ span.step-number{
         }
     }
     &.night{
-        background:url('../images/night.jpg') no-repeat right bottom;
+        background:url('../images/night.jpg') no-repeat right center;
         background-size: cover;
         &::before{
             top:10px;
@@ -775,6 +775,23 @@ span.step-number{
     }
 }
 
+.confirm-action{
+    a{
+        float: left;
+        display: block;
+        width:49%;
+        font-size: $font_size_2;
+        color:$color_1;
+        text-align: center;
+        padding:15px 5px;
+        margin:30px 0 0 2%;
+        border-radius: 2px;
+        &:nth-child(2n+1){margin-left: 0;}
+        &.cancel{background-color: $red_color;}
+        &.confirm{background-color: $green_color;}
+    }
+}
+
 .action-image{
     animation: scaling 2.4s ease-in-out alternate infinite;
 }
@@ -783,6 +800,20 @@ span.step-number{
     0%{transform:scale(1,1)}
     50%{transform:scale(.7,.7)}
     100%{transform:scale(1,1)}
+}
+
+.round-tracker{
+    position: absolute;
+    top:12px;
+    left:12px;
+    width:40px;
+    height:40px;
+    line-height:36px;
+    font-size: 26px;
+    color:$color_site_4;
+    text-align: center;
+    border-radius: 50%;
+    border:2px solid $color_site_4;
 }
 
 // Main Transitions

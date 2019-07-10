@@ -20,6 +20,9 @@
             </ul>
         </div>
         <div class="step-box display godashboard" :class="{'day': dashboard.day, 'night': !dashboard.day}">
+            <transition name="fade">
+                <strong class="round-tracker" v-if="!dashboard.day">{{this.log.round}}</strong>
+            </transition>
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
                     <div v-if="dashboard.god" key="beforeShow">
@@ -30,16 +33,18 @@
                     <div v-else key="afterShow">
                         <overlay :class="{'active': overlay}">
                             <div class="action-box">
-                                <div class="player-box">
-                                    <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
-                                    <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h3>
-                                </div>
-                                <div class="arrow">
-                                    <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
-                                </div>
-                                <div class="player-box">
-                                    <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
-                                    <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h3>
+                                <div class="player-box-holder">
+                                    <div class="player-box">
+                                        <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h3>
+                                    </div>
+                                    <div class="arrow">
+                                        <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                                    </div>
+                                    <div class="player-box">
+                                        <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h3>
+                                    </div>
                                 </div>
                                 <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
                                 <select @change="findTarget(log.person)" name="action_target" id="action_target" v-model="log.person">
@@ -78,10 +83,16 @@
                             </div>
                         </div>
                         <div class="button-holder">
-                            <app-button @click.native="changePhase(dashboard.day)">
-                                <span v-if="dashboard.day">Night Time!</span>
-                                <span v-else>Day Time!</span>
-                            </app-button>
+                            <transition name="fade" mode="out-in">
+                                <app-button @click.native="confirmAction = true" v-if="!confirmAction">
+                                    <span v-if="dashboard.day">Night Time!</span>
+                                    <span v-else>Day Time!</span>
+                                </app-button>
+                                <div class="confirm-action has-clear-fix" key="confirm" v-else>
+                                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">No, Stay here!</a>
+                                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">Let's go next phase</a>
+                                </div>
+                            </transition>
                         </div>
                     </div>
                 </transition>
@@ -105,6 +116,7 @@ export default {
             fMafias: [],
             fCitizens: [],
             overlay: false,
+            confirmAction: false,
             info: {
                 player: "Loading",
                 action: "Loading Action",
@@ -116,7 +128,7 @@ export default {
                 targetIcon: 'default.png',
             },
             log: {
-                round : 1,
+                round : 0,
                 action: null,
                 attacker: null,
                 person: null
@@ -223,9 +235,11 @@ export default {
             }
         },
         changePhase(phase){
+            this.confirmAction = false;
             if(phase == false){
                 this.dashboard.day = true;
             } else{
+                this.log.round++;
                 this.dashboard.day = false;
             }
         }
