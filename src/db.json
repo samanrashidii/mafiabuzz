@@ -13,70 +13,119 @@
     },
     "roles": [
         {
-            "mafia": true,
+            "id": 1,
             "name": "Mafia",
             "icon": "mafia.png",
-            "alt": "Mafia Icon",
+            "mafia": true,
+            "action": {
+                "passive": null,
+                "action": "Kill",
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
             "power": -10,
-            "priority": 11,
             "free": true,
-            "player": null,
-            "description": "Allied with the Innocents, the Detective can detect whether a player is a mafioso. They will typically wake up, and point at one person; the Narrator will silently indicate to the Detective whether that player is Mafia or Innocent. In some versions of the game, the Detective's investigation result is announced publicly by the Narrator, for example the Detective found a Mafioso!. More commonly, no announcement is made. As with other roles, which player is the detective is not generally known, leaving anyone the option of pretending to be the Detective."
+            "alt": "Mafia Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
         },
         {
-            "mafia": true,
+            "id": 2,
             "name": "Godfather",
             "icon": "godfather.png",
-            "alt": "Godfather Icon",
+            "mafia": true,
+            "action": {
+                "passive": "Invisible",
+                "action": "Kill",
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "the Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed",
             "power": -20,
-            "priority": 6,
             "free": true,
-            "player": null,
-            "description": "the Godfather role defends others at night. Typically, they will awaken at night after the Mafia have gone back to sleep and point at one person to protect; that person will survive any night-time attack.[Note 10] They are typically allowed to protect themselves, and are commonly barred from protecting the same target on successive nights.[33] A Guardian Angel can only protect others. The Nurse gains the Doctor's abilities if the Doctor dies.[Note 11] The Jailer protects innocents just like the doctor, but also simultaneously blocks their night action."
+            "alt": "Godfather Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
         },
         {
-            "mafia": true,
+            "id": 3,
             "name": "Ruspy",
             "icon": "ruspy.png",
-            "alt": "Ruspy Icon",
+            "mafia": true,
+            "action": {
+                "passive": "Invisible",
+                "action": "Silence",
+                "secondaryAction": "Kill",
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "Ruspy is a mafioso who can silence one person (Cannot silence the same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
             "power": -15,
-            "priority": 16,
             "free": true,
-            "player": null,
-            "description": "Aside from Mafia, Werewolves, and Serial Killers (solitary guilty parties), the Innocents may have some roles with the ability to kill at night. The Vigilante is an innocent who kills every night, in their own night-time phase,[Note 13] in some variations, having a limited bullet supply for the entire game."
+            "alt": "Ruspy Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
         },
         {
-            "mafia": true,
+            "id": 4,
             "name": "Drunk",
             "icon": "drunk.png",
-            "alt": "Drunk Icon",
+            "mafia": true,
+            "action": {
+                "passive": "Forgot",
+                "action": null,
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "Drunk is a mafioso who drinks too much and can't remember his teammates but his teammates will know him by raising hand",
             "power": -8,
-            "priority": 31,
             "free": true,
-            "player": null,
-            "description": "These roles can stop or alter the night actions of others; for instance, they may prevent a protection or investigation from occurring, or they may change the target[37]. The Role-blocker can block the Vigilante for a night, while the Thief, Prostitute or Hypnotizer might be able to disable the powers of any selected target."
+            "alt": "Drunk Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
         },
         {
-            "mafia": true,
+            "id": 5,
             "name": "Traitor",
             "icon": "traitor.png",
-            "alt": "Traitor Icon",
-            "power": -14,
-            "priority": 36,
-            "free": true,
-            "player": null,
-            "description": "The Traitor is not a mafioso (in that he does not awake at night and is not revealed as a mafioso by Detective type roles), but works to protect them and hamper the town during the day cycle, and wins only with a Mafia victory.[35] Conversely, the Undercover Cop is a mole within the Mafia group who acts with the Mafia but wins with the innocents. The stool pigeon may be the only optional role in play"
-        },
-        {
             "mafia": true,
+            "action": {
+                "passive": "Betray",
+                "action": null,
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "The Traitor is a mafioso who lives between citizens, He Doesn't wake up at night and will not revealed as a mafioso by 'Detective', but works to protect mafia and make them win",
+            "power": -14,
+            "free": true,
+            "alt": "Traitor Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
+            },
+        {
+            "id": 6,
             "name": "Chef",
             "icon": "chef.png",
-            "alt": "Chef Icon",
-            "priority": 21,
+            "mafia": true,
+            "action": {
+                "passive": null,
+                "action": "CheckIdentity",
+                "default": "Nothing"
+            },
+            "actionIcon": "chef.png",
+            "description": "Chef is a mafioso who can poison one person at night and make him reveal his role to chef",
             "power": -18,
             "free": true,
-            "player": null,
-            "description": "The baker is on the side of the innocents. During the night, the baker gives one player a loaf of bread, potentially revealing their identity. If the baker dies, the innocents have just three nights to dispose of the mafia, or the innocents starve, and the mafia win."
+            "alt": "Chef Icon",
+            "actionStatus": false,
+            "dead": false,
+            "player": null
         },
         {
             "mafia": true,
