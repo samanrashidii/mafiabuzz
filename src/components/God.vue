@@ -100,6 +100,7 @@
                 </li>
             </ul>
         </div>
+        <app-button v-if="dashboard.god" @click.native="finishGame()">Game Finished...!!!</app-button>
     </div>
 </template>
 
@@ -258,6 +259,12 @@ export default {
                     }
                 });
             }
+        },
+        finishGame(){
+            let confirmFinish = confirm("Are you sure about it?");
+            if(confirmFinish){
+                this.$router.go();
+            }
         }
     },
     components: {
@@ -285,6 +292,7 @@ export default {
             }
             &:nth-child(1){
                 width:40%;
+                font-size: $font_size_1;
                 text-align:left;
             }
             &:nth-child(2){
