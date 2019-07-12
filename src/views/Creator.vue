@@ -1,7 +1,7 @@
 <template>
     <div class="creator">
         <transition name="slide" mode="out-in" tag="div">
-            <create-game v-if="gameStatus" />
+            <create-game v-if="!gameStatus" />
             <game-dashboard v-else />
         </transition>
     </div>

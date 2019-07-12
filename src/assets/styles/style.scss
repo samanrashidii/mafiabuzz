@@ -700,8 +700,10 @@ span.step-number{
 .no-action{background-image: url('../images/icons/no-action.png');}
 .pending-action{background-image: url('../images/icons/pending-action.png');}
 .done-action{background-image: url('../images/icons/action-done.png');}
+.passive{background-image: url('../images/icons/passive.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
 .yellow-color{color:$hint_color;}
+.game-icon{margin-top:-50px;}
 
 .arrow{
     position: relative;
@@ -731,7 +733,6 @@ span.step-number{
 
 .step-box.godashboard{
     overflow: hidden;
-    margin-bottom:40px;
     transition:all .3s ease-in-out;
     &::after,
     &::before{
@@ -745,6 +746,7 @@ span.step-number{
         background-position: center;
         transition:all .5s ease-in-out;
     }
+    &:not(.day):not(.night){margin-bottom:40px;}
     &.day{
         background:url('../images/day.jpg') no-repeat left bottom;
         background-size: cover;

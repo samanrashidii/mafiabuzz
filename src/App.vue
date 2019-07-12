@@ -7,11 +7,3 @@
     </transition-group>
   </div>
 </template>
-
-<script>
-// ! before gameStatus in Creator
-// Change Step in store to 1
-// Added fucntion call at Created in Dashboard
-// Remove Role Samples in store
-// Add Dead and Action and Action Status and Action Icon objects to main Database
-</script>
