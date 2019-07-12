@@ -1,32 +1,13 @@
 <template>
     <div >
-        <div class="step-box only-box" v-if="!dashboard.god">
-            <ul class="dashboard-hint">
-                <li>
-                    <span class="killer">Kill character and disable it's action.</span>
-                </li>
-                <li>
-                    <span class="angel">Bring back character to life.</span>
-                </li>
-                <li>
-                    <span class="no-action">Character does not have an action.</span>
-                </li>
-                <li>
-                    <span class="pending-action">Character's action is not fired.</span>
-                </li>
-                <li>
-                    <span class="done-action">Character's action is done.</span>
-                </li>
-            </ul>
-        </div>
-        <div class="step-box display godashboard" :class="{'day': dashboard.day, 'night': !dashboard.day}">
+        <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
                 <strong class="round-tracker" v-if="!dashboard.day">{{this.log.round}}</strong>
             </transition>
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
-                    <div v-if="dashboard.god" key="beforeShow">
-                        <img :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
+                    <div v-if="!dashboard.god" key="beforeShow">
+                        <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
                         <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
                         <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
                     </div>
@@ -47,11 +28,11 @@
                                     </div>
                                 </div>
                                 <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
-                                <select @change="findTarget(log.person)" name="action_target" id="action_target" v-model="log.person">
+                                <select @change="findTarget(log.target)" name="action_target" id="action_target" v-model="log.target">
                                     <option v-for="(person, index) in checkGroup(info.player)" :key="index">{{person.player}}</option>
                                 </select>
                                 <app-button class="danger" @click.native="cancelAction()">Cancel</app-button>
-                                <app-button>Action ...!!!</app-button>
+                                <app-button @click.native="executeAction()">Action ...!!!</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -63,7 +44,8 @@
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="no-action" v-if="!actionStatus(fM.action)"></span>
-                                            <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false, 'done-action': fM.actionStatus == true}" v-else></span>
+                                            <span class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
+                                            <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -76,6 +58,7 @@
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="no-action" v-if="!actionStatus(fC.action)"></span>
+                                            <span class="passive" v-if="fC.action.passive != null && fM.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
@@ -98,6 +81,26 @@
                 </transition>
             </div>
         </div>
+        <div class="step-box only-box" v-if="dashboard.god">
+            <ul class="dashboard-hint">
+                <li>
+                    <span class="killer">Kill character and disable it's action.</span>
+                </li>
+                <li>
+                    <span class="angel">Bring back character to life.</span>
+                </li>
+                <li>
+                    <span class="no-action">Character does not have an action.</span>
+                </li>
+                <li>
+                    <span class="pending-action">Character's action is not fired.</span>
+                </li>
+                <li>
+                    <span class="done-action">Character's action is done.</span>
+                </li>
+            </ul>
+        </div>
+        <app-button v-if="dashboard.god" @click.native="finishGame()">Game Finished...!!!</app-button>
     </div>
 </template>
 
@@ -120,6 +123,7 @@ export default {
             info: {
                 player: "Loading",
                 action: "Loading Action",
+                passive: "Passive",
                 icon: "loader.gif",
                 actionIcon: "loader.gif",
                 mafia: false,
@@ -130,8 +134,9 @@ export default {
             log: {
                 round : 0,
                 action: null,
+                passive: null,
                 attacker: null,
-                person: null
+                target: null
             },
             historyLog: [],
         }
@@ -149,9 +154,6 @@ export default {
         },
         finalCitizens(){
             return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
-        },
-        gameRoles(){
-            return [...this.SelectedRoles];
         },
         dashboard(){
             return this.Dashboard;
@@ -176,16 +178,19 @@ export default {
         },
         actionStatus(action){
             if(action !== null){
-                return true
+                return true;
+            } else if (action == true){
+                return false;
             } else{
-                return false
+                return true;
             }
         },
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.player = player.player;
                 this.info.icon = player.icon;
-                this.info.action = player.action;
+                this.info.action = player.action.action;
+                this.info.passive = player.action.passive;
                 this.info.actionIcon = player.actionIcon;
                 this.info.mafia = player.mafia;
                 this.overlay = true;
@@ -209,26 +214,19 @@ export default {
                 this.info.target = 'Player?';
                 this.info.targetMafia = null;
                 this.info.targetIcon = 'default.png';
-                this.log.person = "";
+                this.log.target = null;
             }, 500);
-        },
-        closeAction(action){
-            this.finalPlayers.forEach(element => {
-                if(element.name == action.player){
-                    element.actionStatus = true;
-                }
-            });
         },
         deadOrAlive(player){
             if(player.dead == false){
                 this.finalPlayers.forEach(element => {
-                    if(element.name == player.name){
+                    if(element.player == player.player){
                         element.dead = true;
                     }
                 });
             } else{
                 this.finalPlayers.forEach(element => {
-                    if(element.name == player.name){
+                    if(element.player == player.player){
                         element.dead = false;
                     }
                 });
@@ -241,6 +239,31 @@ export default {
             } else{
                 this.log.round++;
                 this.dashboard.day = false;
+            }
+        },
+        executeAction(){
+            if(this.log.target != null){
+                this.log.attacker = this.info.player;
+                this.log.action = this.info.action;
+                this.log.passive = this.info.passive;
+                ;
+                alert(`
+                    Attacker : ${this.log.attacker}
+                    Action : ${this.log.action}
+                    Target : ${this.log.target}
+                `);
+                this.cancelAction();
+                this.finalPlayers.forEach(element => {
+                    if(element.player == this.log.attacker){
+                        element.actionStatus = true;
+                    }
+                });
+            }
+        },
+        finishGame(){
+            let confirmFinish = confirm("Are you sure about it?");
+            if(confirmFinish){
+                this.$router.go();
             }
         }
     },
@@ -269,6 +292,7 @@ export default {
             }
             &:nth-child(1){
                 width:40%;
+                font-size: $font_size_1;
                 text-align:left;
             }
             &:nth-child(2){

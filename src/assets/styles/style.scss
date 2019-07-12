@@ -368,22 +368,34 @@ button{
 .roles li input + label img{transition:all .3s ease-in-out;}
 .roles li input:checked + label img{transform:rotate(360deg);}
 
-.start-bttn span{
-    display: inline-block;
-    padding: 5px 5px 5px 35px;
-    background:url('../images/assets/play.png') no-repeat left center;
+.start-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 35px;
+        background:url('../images/assets/play.png') no-repeat left center;
+    }
 }
 
-.settings-bttn span{
-    display: inline-block;
-    padding: 5px 5px 5px 30px;
-    background:url('../images/assets/settings.png') no-repeat left center;
+.settings-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('../images/assets/settings.png') no-repeat left center;
+    }
 }
 
-.assign-bttn span{
-    display: inline-block;
-    padding: 5px 5px 5px 30px;
-    background:url('../images/assets/assign.png') no-repeat left center;
+.assign-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('../images/assets/assign.png') no-repeat left center;
+    }
 }
 
 i.mafia-role,
@@ -456,6 +468,12 @@ a.info{
     padding:20px 15px;
     margin-top:40px;
     box-shadow: 0 0 10px $black_color;
+    label{
+        display:inline-block;
+        font-size: $font_size_4;
+        color:$color_site_3;
+        margin-bottom:20px;
+    }
     &.only-box{margin-top:20px;}
     &.display{
         display: table;
@@ -463,6 +481,7 @@ a.info{
         height: 400px;
         margin-top:20px;
         .inner-display{
+            > div > div{height: 286px;}
             display: table-cell;
             vertical-align: middle;
             text-align: center;
@@ -509,6 +528,51 @@ a.info{
             }
         }
     }
+    &.godashboard{
+        overflow: hidden;
+        transition:all .3s ease-in-out;
+        &::after,
+        &::before{
+            content:'';
+            position: absolute;
+            top:-100px;
+            left:40%;
+            width:64px;
+            height: 64px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition:all .5s ease-in-out;
+        }
+        &:not(.day):not(.night){margin-bottom:40px;}
+        &.day{
+            background:url('../images/day.jpg') no-repeat left bottom;
+            background-size: cover;
+            &::after{
+                top:10px;
+                background-image: url('../images/sun.png');
+            }
+            .button-holder a.bttn{
+                margin-top:25px;
+                background: url('../images/moon.png') no-repeat 10px -5px $night !important;
+                border:1px solid $background_color_default;
+                box-shadow: 0 0 4px $color_5;
+            }
+        }
+        &.night{
+            background:url('../images/night.jpg') no-repeat right center;
+            background-size: cover;
+            &::before{
+                top:10px;
+                background-image: url('../images/moon.png');
+            }
+            .button-holder a.bttn{
+                margin-top:25px;
+                background: url('../images/sun.png') no-repeat 10px -5px $day !important;
+                border:1px solid $hint_color;
+                box-shadow: 0 0 4px $hint_color;
+            }
+        }
+    }
 }
 
 span.step-number{
@@ -525,13 +589,6 @@ span.step-number{
     margin-right: 4px;
     background-color:$creator_color;
     border-radius: 50%;
-}
-
-.step-box label{
-    display:inline-block;
-    font-size: $font_size_4;
-    color:$color_site_3;
-    margin-bottom:20px;
 }
 
 .mafia-status{text-align: center;}
@@ -700,8 +757,10 @@ span.step-number{
 .no-action{background-image: url('../images/icons/no-action.png');}
 .pending-action{background-image: url('../images/icons/pending-action.png');}
 .done-action{background-image: url('../images/icons/action-done.png');}
+.passive{background-image: url('../images/icons/passive.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
 .yellow-color{color:$hint_color;}
+.game-icon{margin-top:-50px;}
 
 .arrow{
     position: relative;
@@ -729,52 +788,6 @@ span.step-number{
     }
 }
 
-.step-box.godashboard{
-    overflow: hidden;
-    margin-bottom:40px;
-    transition:all .3s ease-in-out;
-    &::after,
-    &::before{
-        content:'';
-        position: absolute;
-        top:-100px;
-        left:40%;
-        width:64px;
-        height: 64px;
-        background-repeat: no-repeat;
-        background-position: center;
-        transition:all .5s ease-in-out;
-    }
-    &.day{
-        background:url('../images/day.jpg') no-repeat left bottom;
-        background-size: cover;
-        &::after{
-            top:10px;
-            background-image: url('../images/sun.png');
-        }
-        .button-holder a.bttn{
-            margin-top:30px;
-            background: url('../images/moon.png') no-repeat 10px -5px $night !important;
-            border:1px solid $background_color_default;
-            box-shadow: 0 0 4px $color_5;
-        }
-    }
-    &.night{
-        background:url('../images/night.jpg') no-repeat right center;
-        background-size: cover;
-        &::before{
-            top:10px;
-            background-image: url('../images/moon.png');
-        }
-        .button-holder a.bttn{
-            margin-top:30px;
-            background: url('../images/sun.png') no-repeat 10px -5px $day !important;
-            border:1px solid $hint_color;
-            box-shadow: 0 0 4px $hint_color;
-        }
-    }
-}
-
 .confirm-action{
     a{
         float: left;
@@ -784,8 +797,9 @@ span.step-number{
         color:$color_1;
         text-align: center;
         padding:15px 5px;
-        margin:30px 0 0 2%;
+        margin:25px 0 0 2%;
         border-radius: 2px;
+        box-shadow: 0 0 3px $background_color_default;
         &:nth-child(2n+1){margin-left: 0;}
         &.cancel{background-color: $red_color;}
         &.confirm{background-color: $green_color;}
