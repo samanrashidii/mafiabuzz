@@ -58,7 +58,7 @@
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="no-action" v-if="!actionStatus(fC.action)"></span>
-                                            <span class="passive" v-if="fC.action.passive != null && fM.action.action == null"></span>
+                                            <span class="passive" v-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
