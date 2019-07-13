@@ -24,7 +24,7 @@
                         <div v-if="(index+1) == personNumb">
                             <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{role.player}}</strong>
                             <transition name="fade" mode="out-in">
-                                <app-button @click.native="showrole = true" v-if="!showrole" key="showButton">Show me my role !</app-button>
+                                <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">Show me my role !</app-button>
                                 <div class="role-info-wrapper" v-else>
                                     <div class="role-info" :class="{'citizen': role.mafia == false}">
                                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />

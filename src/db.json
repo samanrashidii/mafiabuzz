@@ -18,7 +18,7 @@
             "icon": "mafia.png",
             "mafia": true,
             "action": {
-                "passive": null,
+                "passive": "MafiaCover",
                 "action": "Kill",
                 "default": "Nothing"
             },
@@ -56,7 +56,7 @@
             "icon": "ruspy.png",
             "mafia": true,
             "action": {
-                "passive": "Invisible",
+                "passive": null,
                 "action": "Silence",
                 "secondaryAction": "Kill",
                 "default": "Nothing"
@@ -134,7 +134,7 @@
             "mafia": true,
             "action": {
                 "passive": null,
-                "action": "Replace",
+                "action": "SuicideReplace",
                 "default": "Nothing"
             },
             "actionIcon": "chef.png",
@@ -152,7 +152,7 @@
             "icon": "citizen.png",
             "mafia": false,
             "action": {
-                "passive": "Citizen Number",
+                "passive": "CitizenCover",
                 "action": null,
                 "default": "Nothing"
             },
@@ -209,8 +209,8 @@
             "icon": "cupid.png",
             "mafia": false,
             "action": {
-                "passive": "Binding",
-                "action": null,
+                "passive": null,
+                "action": "Bind",
                 "default": "Nothing"
             },
             "actionIcon": "chef.png",
@@ -247,7 +247,7 @@
             "icon": "grandma.png",
             "mafia": false,
             "action": {
-                "passive": "Immortal",
+                "passive": "ReturnDamage",
                 "action": null,
                 "default": "Nothing"
             },
@@ -285,7 +285,7 @@
             "icon": "necromancer.png",
             "mafia": false,
             "action": {
-                "passive": null,
+                "passive": "KillMinionsOnDead",
                 "action": "Revive",
                 "default": "Nothing"
             },
@@ -305,7 +305,7 @@
             "mafia": false,
             "action": {
                 "passive": null,
-                "action": "Disable Action",
+                "action": "DisableActionOrPassive",
                 "default": "Nothing"
             },
             "actionIcon": "chef.png",

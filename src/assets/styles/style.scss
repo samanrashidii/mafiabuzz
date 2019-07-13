@@ -100,6 +100,12 @@ a.bttn{
             background-color: $green_color;
         }
     }
+    &.yellow{
+        background-color: $day;
+        &:hover{
+            background-color: $hint_color;
+        }
+    }
 }
 
 a:active{
@@ -550,31 +556,31 @@ a.info{
             background:url('../images/day.jpg') no-repeat left bottom;
             background-size: cover;
             &::after{
-                top:10px;
+                top:25px;
                 background-image: url('../images/sun.png');
-            }
-            .button-holder a.bttn{
-                margin-top:25px;
-                background: url('../images/moon.png') no-repeat 10px -5px $night !important;
-                border:1px solid $background_color_default;
-                box-shadow: 0 0 4px $color_5;
             }
         }
         &.night{
             background:url('../images/night.jpg') no-repeat right center;
             background-size: cover;
             &::before{
-                top:10px;
+                top:25px;
                 background-image: url('../images/moon.png');
-            }
-            .button-holder a.bttn{
-                margin-top:25px;
-                background: url('../images/sun.png') no-repeat 10px -5px $day !important;
-                border:1px solid $hint_color;
-                box-shadow: 0 0 4px $hint_color;
             }
         }
     }
+}
+
+a.bttn.day{
+    background: url('../images/moon.png') no-repeat 10px -5px $night !important;
+    border:1px solid $background_color_default;
+    box-shadow: 0 0 4px $color_4;
+}
+
+a.bttn.night{
+    background: url('../images/sun.png') no-repeat 10px -5px $day !important;
+    border:1px solid $hint_color;
+    box-shadow: 0 0 4px $hint_color;
 }
 
 span.step-number{
@@ -790,6 +796,8 @@ span.step-number{
     }
 }
 
+.button-holder{padding-top:5px;}
+
 .confirm-action{
     a{
         float: left;
@@ -799,7 +807,7 @@ span.step-number{
         color:$color_1;
         text-align: center;
         padding:15px 5px;
-        margin:25px 0 0 2%;
+        margin:15px 0 0 2%;
         border-radius: 2px;
         box-shadow: 0 0 3px $background_color_default;
         &:nth-child(2n+1){margin-left: 0;}
@@ -820,16 +828,16 @@ span.step-number{
 
 .round-tracker{
     position: absolute;
-    top:12px;
-    left:12px;
+    top:16px;
+    left:14px;
     width:40px;
     height:40px;
-    line-height:36px;
+    line-height:40px;
     font-size: 26px;
     color:$color_site_4;
     text-align: center;
     border-radius: 50%;
-    border:2px solid $color_site_4;
+    box-shadow: 0 0 8px $background_color_1;
 }
 
 // Main Transitions

@@ -1,5 +1,17 @@
 <template>
-    <div >
+    <div>
+        <div class="button-holder" v-if="dashboard.god">
+            <transition name="fade" mode="out-in">
+                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="confirmAction = true" v-if="!confirmAction">
+                    <span v-if="dashboard.day">Night Time!</span>
+                    <span v-else>Day Time!</span>
+                </app-button>
+                <div class="confirm-action has-clear-fix" key="confirm" v-else>
+                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">No, Stay Here!</a>
+                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">Go Next Phase</a>
+                </div>
+            </transition>
+        </div>
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
                 <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
@@ -9,7 +21,7 @@
                     <div v-if="!dashboard.god" key="beforeShow">
                         <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
                         <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
-                        <app-button @click.native="showPlay()">I'm God! it's fine to show me game details</app-button>
+                        <app-button class="active" @click.native="showPlay()">I'm God! Show me game details</app-button>
                     </div>
                     <div v-else key="afterShow">
                         <overlay :class="{'active': overlay}">
@@ -50,7 +62,6 @@
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
-                                            <span class="no-action" v-if="!actionStatus(fM.action)"></span>
                                             <span class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
                                             <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
@@ -69,26 +80,13 @@
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
-                                            <span class="no-action" v-if="!actionStatus(fC.action)"></span>
                                             <span class="passive" v-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-                            
-                        </div>
-                        <div class="button-holder">
-                            <transition name="fade" mode="out-in">
-                                <app-button @click.native="confirmAction = true" v-if="!confirmAction">
-                                    <span v-if="dashboard.day">Night Time!</span>
-                                    <span v-else>Day Time!</span>
-                                </app-button>
-                                <div class="confirm-action has-clear-fix" key="confirm" v-else>
-                                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">No, Stay here!</a>
-                                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">Let's go next phase</a>
-                                </div>
-                            </transition>
+
                         </div>
                     </div>
                 </transition>
@@ -103,17 +101,17 @@
                     <span class="angel">Bring back character to life.</span>
                 </li>
                 <li>
-                    <span class="no-action">Character does not have an action.</span>
+                    <span class="passive">Character has passive only.</span>
                 </li>
                 <li>
-                    <span class="pending-action">Character's action is not fired.</span>
+                    <span class="pending-action">Character has action but not used.</span>
                 </li>
                 <li>
-                    <span class="done-action">Character's action is done.</span>
+                    <span class="done-action">Character's action has been used.</span>
                 </li>
             </ul>
         </div>
-        <app-button v-if="dashboard.god" @click.native="finishGame()">Game Finished...!!!</app-button>
+        <app-button class="has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">Game Finished...!!!</app-button>
     </div>
 </template>
 
@@ -200,15 +198,6 @@ export default {
             this.info.mafia = role.mafia;
             this.info.show == false ? this.info.show = true : this.info.show = false;
         },
-        actionStatus(action){
-            if(action !== null){
-                return true;
-            } else if (action == true){
-                return false;
-            } else{
-                return true;
-            }
-        },
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.player = player.player;
@@ -263,6 +252,9 @@ export default {
             } else{
                 this.dashboard.round++;
                 this.log.round = this.dashboard.round;
+                this.finalPlayers.forEach(element => {
+                    element.actionStatus = false;
+                });
                 this.dashboard.day = false;
             }
         },
@@ -271,7 +263,6 @@ export default {
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
                 this.log.passive = this.info.passive;
-                ;
                 alert(`
                     Attacker : ${this.log.attacker}
                     Action : ${this.log.action}
@@ -302,7 +293,7 @@ export default {
 <style lang="scss" scoped>
 
     .step-box.display{
-        padding:90px 15px 15px 15px;
+        padding:110px 15px 15px 15px;
         border-radius: 3px;
     }
 
@@ -312,6 +303,7 @@ export default {
             position: relative;
             font-size: $font_size_3;
             text-align: center;
+            padding:6px 4px;
             img{
                 width:22px;
                 margin-right: 3px;
