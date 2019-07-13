@@ -14,6 +14,7 @@ export default new Vuex.Store({
     dashboard: {
       god: false,
       day: true,
+      round: 0,
     },
   },
   getters: {

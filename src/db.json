@@ -42,7 +42,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "chef.png",
-            "description": "the Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed",
+            "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed",
             "power": -20,
             "free": true,
             "alt": "Godfather Icon",
