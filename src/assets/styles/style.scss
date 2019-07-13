@@ -349,23 +349,21 @@ button{
 .roles li input + label::after{
     content:'';
     position: absolute;
-    top:-8px;
-    left:-4px;
-    width:30px;
-    height: 30px;
+    top:-3px;
+    left:-3px;
+    width:28px;
+    height: 28px;
     opacity: 0;
-    background:url('../images/assets/checked.png') no-repeat center;
-    background-size: 30px;
+    background:url('../images/assets/checked.png') no-repeat center $background_color_2;
+    background-size: 24px;
+    border-radius: 50%;
     transition:all .2s ease-in-out;
     transform:scale(0,0);
 }
-.roles li input:checked + label::after{
+.roles li input:checked + label::after,
+.roles li input:checked ~ a.info{
     opacity: 1;
     transform:scale(1,1);
-}
-.roles li input:checked ~ a.info{
-    opacity: 0;
-    transform:scale(.5,.5);
 }
 .roles li input:checked + label{color:$black_color;}
 .roles li input + label img{transition:all .3s ease-in-out;}
@@ -417,15 +415,17 @@ i.citizen-role{
 
 a.info{
     position: absolute;
-    top:-6px;
+    top:-3px;
     right:-3px;
     display: block;
     width:28px;
     height: 28px;
-    background:url('../images/assets/info.png') no-repeat center #ffffff;
+    opacity: 0;
+    background:url('../images/assets/info.png') no-repeat center $background_color_2;
     background-size: 24px;
     border-radius: 50%;
     z-index: 99;
+    transform:scale(0.5,0.5);
     transition:all .2s ease-in-out;
 }
 

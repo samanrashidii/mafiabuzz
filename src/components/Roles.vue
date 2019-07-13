@@ -198,20 +198,18 @@ export default {
 
 .number-control span{
     position:absolute;
-    top:50%;
-    left:-12px;
+    bottom:-3px;
+    left:-3px;
     display: block;
-    width:30px;
-    height: 30px;
+    width:28px;
+    height: 28px;
     line-height: 24px;
     font-family: $font_normal;
-    font-size: $font_size_9;
-    color:$color_1;
+    font-size: 24px;
+    color:$black_color;
     text-align: center;
-    margin-top:-15px;
     cursor: pointer;
-    background-color: $black_color;
-    border:1px solid $color_1;
+    background-color: $color_1;
     border-radius: 50%;
     transition:all .2s ease-in-out;
     z-index: 99;
@@ -221,7 +219,7 @@ export default {
     }
     &:last-child{
         left:auto;
-        right:-12px;
+        right:-3px;
     }
     
 }
