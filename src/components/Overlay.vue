@@ -52,6 +52,16 @@ export default {
         visibility: visible;
 	    opacity: 1;
     }
+    &.dialog{
+        top:18%;
+        left:5%;
+        width: 90%;
+        min-height: 410px;
+        height: 64%;
+        overflow-y: hidden;
+        border-radius: 6px;
+        background:rgba(0, 0, 0, 0.96);
+    }
 }
 
 </style>

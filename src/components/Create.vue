@@ -36,7 +36,7 @@
             </div>
             <roles @selectedRoles="gameSettings.roles = $event"></roles>
             <app-button @click.native="checkGame()" class="active start-bttn"><span>{{Creator.start}}</span></app-button>
-            <overlay :class="{'active': overlay}">
+            <overlay :class="{'active': overlay,'dialog': isValid}">
                 <template v-if="isValid">
                     <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
                     <ul class="error-bullet">

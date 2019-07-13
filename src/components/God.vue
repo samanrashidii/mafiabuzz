@@ -17,26 +17,26 @@
                 <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
             </transition>
             <div class="center-aligned">
-                <transition name="fade" mode="out-in">
+                <transition-group name="fade" mode="out-in">
                     <div v-if="!dashboard.god" key="beforeShow">
                         <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
                         <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
                         <app-button class="active" @click.native="showPlay()">I'm God! Show me game details</app-button>
                     </div>
                     <div v-else key="afterShow">
-                        <overlay :class="{'active': overlay}">
+                        <overlay :class="{'active': overlay, 'dialog':true}">
                             <div class="action-box">
                                 <div class="player-box-holder">
                                     <div class="player-box">
                                         <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
-                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h3>
+                                        <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                                     </div>
                                     <div class="arrow">
                                         <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
                                     </div>
                                     <div class="player-box">
                                         <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
-                                        <h3 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h3>
+                                        <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                                     </div>
                                 </div>
                                 <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
@@ -89,7 +89,7 @@
 
                         </div>
                     </div>
-                </transition>
+                </transition-group>
             </div>
         </div>
         <div class="step-box only-box" v-if="dashboard.god">
