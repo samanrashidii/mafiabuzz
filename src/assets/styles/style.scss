@@ -359,10 +359,13 @@ button{
     transition:all .2s ease-in-out;
     transform:scale(0,0);
 }
-.roles li input:checked + label::after,
-.roles li input:checked ~ a.info{
+.roles li input:checked + label::after{
     opacity: 1;
     transform:scale(1,1);
+}
+.roles li input:checked ~ a.info{
+    opacity: 0;
+    transform:scale(.5,.5);
 }
 .roles li input:checked + label{color:$black_color;}
 .roles li input + label img{transition:all .3s ease-in-out;}
@@ -414,18 +417,16 @@ i.citizen-role{
 
 a.info{
     position: absolute;
-    top:-8px;
-    right:-4px;
+    top:-6px;
+    right:-3px;
     display: block;
-    width:30px;
-    height: 30px;
-    opacity: 0;
+    width:28px;
+    height: 28px;
     background:url('../images/assets/info.png') no-repeat center #ffffff;
-    background-size: 30px;
+    background-size: 24px;
     border-radius: 50%;
     z-index: 99;
     transition:all .2s ease-in-out;
-    transform:scale(0,0);
 }
 
 .info-box{
@@ -531,6 +532,7 @@ a.info{
     &.godashboard{
         overflow: hidden;
         transition:all .3s ease-in-out;
+        background-position: left bottom;
         &::after,
         &::before{
             content:'';

@@ -1,15 +1,6 @@
 <template>
     <div class="roles">
-        <div class="info-box" :class="{'active': info.show}">
-            <a href="javascript:void(0)" @click="info.show = false"></a>
-            <img :src="getImgUrl(info.icon)" alt="">
-            <h2>{{info.name}}</h2>
-            <div class="mafia-status">
-                <strong class="mafia-role" v-if="info.mafia">mafia</strong>
-                <strong class="citizen-role" v-else>citizen</strong>
-            </div>
-            <p>{{info.description}}</p>
-        </div>
+        <info-box :info="info"></info-box>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
                 <input @change="checkRoles(role.name), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :value="role" v-model="selectedRoles" />
@@ -23,7 +14,7 @@
                     <span @click="decrNumber(role)">-</span>
                     <span @click="incrNumber(role)">+</span>
                 </div>
-                <a @click="showInfo(role.name, role.icon ,role.description, role.mafia)" class="info" href="javascript:void(0)"></a>
+                <a @click="showInfo(role)" class="info" href="javascript:void(0)"></a>
             </li>
         </ul>
     </div>
@@ -31,6 +22,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
+import InfoBox from '@/components/InfoBox.vue';
 export default {
     data(){
         return {
@@ -134,13 +126,16 @@ export default {
                 this.normalMafia--;
             }
         },
-        showInfo(name, icon, description, mafia){
-            this.info.name = name;
-            this.info.icon = icon;
-            this.info.description = description;
-            this.info.mafia = mafia;
+        showInfo(role){
+            this.info.name = role.name;
+            this.info.icon = role.icon;
+            this.info.description = role.description;
+            this.info.mafia = role.mafia;
             this.info.show == false ? this.info.show = true : this.info.show = false;
         }
+    },
+    components: {
+        infoBox: InfoBox,
     }
 }
 </script>

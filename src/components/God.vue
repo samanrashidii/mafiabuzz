@@ -2,7 +2,7 @@
     <div >
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
-                <strong class="round-tracker" v-if="!dashboard.day">{{this.log.round}}</strong>
+                <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
             </transition>
             <div class="center-aligned">
                 <transition name="fade" mode="out-in">
@@ -36,10 +36,17 @@
                             </div>
                         </overlay>
                         <div class="players-role">
+
+                            <info-box :info="info"></info-box>
+
                             <div class="table mafia-table">
                                 <table>
                                     <tr v-for="(fM, index) in finalMafias" :key="index" :class="{'dead': fM.dead == true}">
-                                        <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
+                                        <td>
+                                            <a @click="showInfo(fM)" href="javascript:void(0)">
+                                                <img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}
+                                            </a>
+                                        </td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
@@ -50,10 +57,15 @@
                                     </tr>
                                 </table>
                             </div>
+                            
                             <div class="table citizen-table">
                                 <table>
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.dead == true}">
-                                        <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
+                                        <td>
+                                            <a @click="showInfo(fC)" href="javascript:void(0)">
+                                                <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
+                                            </a>
+                                        </td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
@@ -64,6 +76,7 @@
                                     </tr>
                                 </table>
                             </div>
+                            
                         </div>
                         <div class="button-holder">
                             <transition name="fade" mode="out-in">
@@ -106,6 +119,7 @@
 
 <script>
 import Overlay from '@/components/Overlay.vue';
+import InfoBox from '@/components/InfoBox.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -121,10 +135,13 @@ export default {
             overlay: false,
             confirmAction: false,
             info: {
+                show: false,
                 player: "Loading",
                 action: "Loading Action",
                 passive: "Passive",
+                name: "Default",
                 icon: "loader.gif",
+                description: "...",
                 actionIcon: "loader.gif",
                 mafia: false,
                 target: 'Person?',
@@ -132,7 +149,7 @@ export default {
                 targetIcon: 'default.png',
             },
             log: {
-                round : 0,
+                round: null,
                 action: null,
                 passive: null,
                 attacker: null,
@@ -175,6 +192,13 @@ export default {
         },
         updateDashboard(){
             this.controlDashboard(this.dashboard); //
+        },
+        showInfo(role){
+            this.info.name = role.name;
+            this.info.icon = role.icon;
+            this.info.description = role.description;
+            this.info.mafia = role.mafia;
+            this.info.show == false ? this.info.show = true : this.info.show = false;
         },
         actionStatus(action){
             if(action !== null){
@@ -237,7 +261,8 @@ export default {
             if(phase == false){
                 this.dashboard.day = true;
             } else{
-                this.log.round++;
+                this.dashboard.round++;
+                this.log.round = this.dashboard.round;
                 this.dashboard.day = false;
             }
         },
@@ -269,6 +294,7 @@ export default {
     },
     components: {
         overlay: Overlay,
+        infoBox: InfoBox,
     }
 }
 </script>
