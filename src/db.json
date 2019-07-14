@@ -304,7 +304,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "necromancer.png",
-            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person his minion (The ressurected person doesn't have power anymore but can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his minions will die instantly.",
+            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person his minion (The resurrected person doesn't have power anymore but can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his minions will die instantly.",
             "power": 18,
             "free": true,
             "alt": "Necromancer Icon",
@@ -323,7 +323,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "hacker.png",
-            "description": "Hacker is an inteligent Citizen who wakes up first at night and hack one person. Hacked person cannot use his action or passive during that night",
+            "description": "Hacker is an intelligent Citizen who wakes up first at night and hack one person. Hacked person cannot use his action or passive during that night",
             "power": 17,
             "free": true,
             "alt": "Hacker Icon",
