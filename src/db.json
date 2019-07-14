@@ -1,4 +1,30 @@
 {
+    "navigation": [
+        {
+            "name": "Creator",
+            "url": "creator",
+            "image": "creator.png",
+            "alt": "Creator Icon"
+        },
+        {
+            "name": "Player",
+            "url": "player",
+            "image": "player.png",
+            "alt": "Player Icon"
+        },
+        {
+            "name": "How to play?",
+            "url": "howtoplay",
+            "image": "howtoplay.png",
+            "alt": "How to play? Icon"
+        },
+        {
+            "name": "About us",
+            "url": "about",
+            "image": "logo.png",
+            "alt": "Mafia Wars Logo"
+        }
+    ],
     "pages": {
         "creator": {
             "gameModeButton": "Change Game Mode",
@@ -23,7 +49,49 @@
             "gameModeButton": "Change Game Mode",
             "title": "Hey <span>Player</span>",
             "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        "about": {
+            "title": "About <span>Us</span>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        "howToPlay": {
+            "title": "How to <span>Play</span>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
+    },
+    "god": {
+        "nightText": "Night Time!",
+        "dayText": "Day Time!",
+        "confirmText": "Go Next Phase",
+        "cancelText": "No, Stay Here!",
+        "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
+        "godButton": "I'm God! Show me game details",
+        "actionHintText": "Please select the person who takes action:",
+        "cancelButton": "Cancel",
+        "confirmButton": "Action ...!!!",
+        "dashboardHint": [
+            {
+                "name": "killer",
+                "hint": "Kill character and disable it's action."
+            },
+            {
+                "name": "angel",
+                "hint": "Bring back character to life."
+            },
+            {
+                "name": "passive",
+                "hint": "Character has passive only."
+            },
+            {
+                "name": "pending-action",
+                "hint": "Character has action but not used."
+            },
+            {
+                "name": "done-action",
+                "hint": "Character's action has been used."
+            }
+        ],
+        "finishGame": "Game Finished...!!!"
     },
     "roles": [
         {

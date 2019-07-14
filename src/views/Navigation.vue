@@ -30,7 +30,13 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
+  computed:{
+    ...mapGetters([
+        'Navigation',
+    ]),
+  },
   methods:{
     checkGameMode(){
       if(this.$route.params.id == 'single-device'){
@@ -38,6 +44,9 @@ export default {
       } else{
         return false;
       }
+    },
+    getImgUrl(pic) {
+      return require(`@/assets/images/${pic}`);
     }
   }
 };
