@@ -20,6 +20,7 @@ export default new Vuex.Store({
   getters: {
     Roles: state => state.db.roles,
     Creator: state => state.db.pages.creator,
+    Player: state => state.db.pages.player,
     SelectedRoles: state => state.roles,
     gameStatus: state => state.gameCreated,
     Numbers: state => state.numbers,

@@ -1,6 +1,7 @@
 {
     "pages": {
         "creator": {
+            "gameModeButton": "Change Game Mode",
             "title": "Hi <span>God</span>",
             "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
             "step1": "Choose how many people do want to have in your universe:",
@@ -8,7 +9,20 @@
             "step3": "Now you must choose between below roles for your game:",
             "maxPlayers": 25,
             "playerMargin": 5,
-            "start": "Start Game"
+            "start": "Start Game!",
+            "changeSettings": "Change Role Settings",
+            "assign": "Assign Roles",
+            "checkBeforeStart": "Your game will start with below characters",
+            "dashboardTitle": "<strong>Game</strong> Dash<span>board</span>",
+            "chooseNameHint": "Please write the name of each person:",
+            "passMobile": "Please pass mobile to",
+            "beforeShowButton": "Show me my role !",
+            "afterShowButton": "Ok got it"
+        },
+        "player": {
+            "gameModeButton": "Change Game Mode",
+            "title": "Hey <span>Player</span>",
+            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         }
     },
     "roles": [
@@ -42,7 +56,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "godfather.png",
-            "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed",
+            "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed by 'Detective'",
             "power": -20,
             "free": true,
             "alt": "Godfather Icon",
@@ -157,7 +171,7 @@
                 "default": "Nothing"
             },
             "actionIcon": null,
-            "description": "The Dentist may select any other player at night, and prevent them speaking during the following day.[33] The Silencer is a mafioso with the identical power, except that they may not silence the same player on successive days. The silenced individual wakes in the morning and is immediately instructed not to talk until the end of the day",
+            "description": "Regular Citizen wihout any power and just want to make peace in city",
             "power": 5,
             "free": true,
             "alt": "Citizen Icon",
@@ -176,8 +190,8 @@
                 "default": "Nothing"
             },
             "actionIcon": "police.png",
-            "description": "The dark background roles are standard (mafia or innocent) except for revealing a deceptive alignment when killed. The M.E. gathers information from the killings that can help the innocents, while the Priest learns about the alignment of the dead in the same way that the Detective learns about the living.",
-            "power": 12,
+            "description": "The Detective is with Citizen and can detect whether a player is a mafioso or not. He will typically wake up, and point at one person; The god will silently indicate to the Detective whether that player is Mafia or Citizen.",
+            "power": 16,
             "free": true,
             "alt": "Police Icon",
             "actionStatus": false,
@@ -195,7 +209,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "doctor.png",
-            "description": "Revivers and Master Revivers are able to resurrect dead players, Master Revivers can bring the revived into their association",
+            "description": "The Doctor is with Citizen and defends others, He can save one perseon or himself during night",
             "power": 10,
             "free": true,
             "alt": "Doctor Icon",
@@ -214,7 +228,7 @@
                 "default": "Nothing"
             },
             "actionIcon": "cupid.png",
-            "description": "This role is taken in addition to the assigned role, and it endows the player with additional, overt, powers (particularly during the daytime). Empowerment can be random, but is usually made by vote. For instance, the Mayor or Sheriff can be elected each morning, and gain two lynching votes",
+            "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well.",
             "power": 7,
             "free": true,
             "alt": "Cupid Icon",
@@ -233,7 +247,7 @@
                 "default": "Nothing"
             },
             "actionIcon": null,
-            "description": "When the thief is used in Werewolves, an additional townsfolk card is added before dealing, and the Thief may choose on the first night to steal the role of another player or to take the unused role card. The player whose role was stolen gets the unused role card and the Thief card is discarded.",
+            "description": "The Bomb is with citizen and when he gets killed during day or night, He will detonate himself and kill his sibling players.",
             "power": 7,
             "free": true,
             "alt": "Bomb Icon",
@@ -252,7 +266,7 @@
                 "default": "Nothing"
             },
             "actionIcon": null,
-            "description": "the Innocents may have some roles with the ability to kill at night. The Vigilante is an innocent who kills every night, in their own night-time phase,[Note 13] in some variations, having a limited bullet supply for the entire game. Some variations introduce a time limit of two nights before the player in the Killing Role can exercise their right to kill again or the trait that if they kill an innocent they either lose the ability to kill or die from guilt the next night.",
+            "description": "Grandma is a Citizen and she is so  sensitive, If someone touch her at night will get killed instantly",
             "power": 10,
             "free": true,
             "alt": "Grandma Icon",
@@ -271,7 +285,7 @@
                 "default": "Nothing"
             },
             "actionIcon": null,
-            "description": "The Bulletproof innocent is invulnerable at night,[Note 20] though usually with limits; for example, the Elder will survive the first night attack, but not the second. The Oracle has an investigative role similar to a Seer but also has the power to talk when inactive (talking in a sleep phase is usually a rule infraction).",
+            "description": "The Bulletproof is with Citizen and has a shield that can save him for one death at night.",
             "power": 9,
             "free": true,
             "alt": "Bulletproof Icon",
@@ -290,8 +304,8 @@
                 "default": "Nothing"
             },
             "actionIcon": "necromancer.png",
-            "description": "Instead of having to investigate, some innocent roles give complete information on the entire mafia: The witness is told who the mafia are during the first night, while the mafia are not told the witness's identity (differing from the stool pigeon in not being a part of the mafia).",
-            "power": 15,
+            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person his minion (The ressurected person doesn't have power anymore but can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his minions will die instantly.",
+            "power": 18,
             "free": true,
             "alt": "Necromancer Icon",
             "actionStatus": false,
@@ -309,8 +323,8 @@
                 "default": "Nothing"
             },
             "actionIcon": "hacker.png",
-            "description": "This may be a secondary role, taken in addition to the assigned role. However, it has the opposite effect, giving the bearer a handicap, like speaking only gibberish in the case of the Village Drunk, etc. Alternatively, it may be a standard role with a particular constraint, such as the teenage werewolf, who must say the word werewolf at least once each day.",
-            "power": 14,
+            "description": "Hacker is an inteligent Citizen who wakes up first at night and hack one person. Hacked person cannot use his action or passive during that night",
+            "power": 17,
             "free": true,
             "alt": "Hacker Icon",
             "actionStatus": false,

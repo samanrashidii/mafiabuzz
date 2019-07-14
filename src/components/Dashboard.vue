@@ -2,35 +2,35 @@
     <div class="dashboard">
         <div class="dashboard-header">
             <div class="title">
-                <h2><strong>Game</strong> Dash<span>board</span></h2>
+                <h2 v-html="Creator.dashboardTitle"></h2>
             </div>
             <div class="has-clear-fix" v-if="StepCounter == 1">
-                <app-button @click.native="setGame(false)" class="settings-bttn"><span>Change Role Settings</span></app-button>
+                <app-button @click.native="setGame(false)" class="settings-bttn"><span>{{Creator.changeSettings}}</span></app-button>
             </div>
         </div>
         <transition name="fade" mode="out-in">
             <div class="step-box" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
-                <label for="quantity">Please write the name of each person:</label>
+                <label for="quantity">{{Creator.chooseNameHint}}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
-                <app-button @click.native.once="assignRoles()" class="active assign-bttn"><span>Assign Roles</span></app-button>
+                <app-button @click.native.once="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
             </div>
             <div class="step-box display" v-if="StepCounter == 2" key="step2">
                 <div class="inner-display">
-                    <p>Please pass mobile to</p>
+                    <p>{{Creator.passMobile}}</p>
                     <div v-for="(role, index) in gameRoles" :key="index">
                         <div v-if="(index+1) == personNumb">
                             <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{role.player}}</strong>
                             <transition name="fade" mode="out-in">
-                                <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">Show me my role !</app-button>
+                                <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">{{Creator.beforeShowButton}}</app-button>
                                 <div class="role-info-wrapper" v-else>
                                     <div class="role-info" :class="{'citizen': role.mafia == false}">
                                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
                                         <h4>{{role.name}}</h4>
                                     </div>
-                                    <app-button @click.native.once="nextPerson()">Ok got it</app-button>
+                                    <app-button @click.native.once="nextPerson()">{{Creator.afterShowButton}}</app-button>
                                 </div> 
                             </transition>
                         </div>
@@ -61,6 +61,7 @@ export default {
   },
   computed:{
     ...mapGetters([
+        'Creator',
         'SelectedRoles',
         'gameStatus',
         'Numbers',

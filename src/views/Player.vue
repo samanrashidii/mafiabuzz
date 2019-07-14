@@ -1,16 +1,41 @@
 <template>
     <div class="player">
-        <app-navigation />
-        <div class="title">
-            <h2>Hey <span>Player</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="dashboard-header">
+            <div>
+                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Creator.gameModeButton}}</span></router-link>
+            </div>
+            <div class="title">
+                <template v-if="checkGameMode()">
+                    <h2 v-html="Player.title"></h2>
+                    <p v-html="Player.subtitle"></p>
+                </template>
+                <!-- Under Construction -->
+                <template v-else>
+                    <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
+                    <h2>We are <span>Sorry</span></h2>
+                    <p>This mode is under construction ...!!!</p>
+                </template>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
-    
+    computed:{
+        ...mapGetters([
+            'Creator',
+            'Player',
+        ]),
+    },
+    methods:{
+        checkGameMode(){
+            if(this.$route.params.id == 'single-device'){
+                return true;
+            }
+        },
+    }
 }
 </script>
 
