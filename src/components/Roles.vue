@@ -33,7 +33,7 @@ export default {
                 show: false,
                 name: "Loading",
                 description: "...",
-                icon: "loader.gif",
+                icon: "loader.svg",
                 mafia: false
             }
         }
