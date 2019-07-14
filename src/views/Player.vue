@@ -2,7 +2,7 @@
     <div class="player">
         <div class="dashboard-header">
             <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Creator.gameModeButton}}</span></router-link>
+                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Player.gameModeButton}}</span></router-link>
             </div>
             <div class="title">
                 <template v-if="checkGameMode()">
@@ -25,7 +25,6 @@ import {mapGetters} from 'vuex';
 export default {
     computed:{
         ...mapGetters([
-            'Creator',
             'Player',
         ]),
     },

@@ -3,12 +3,12 @@
         <div class="button-holder" v-if="dashboard.god">
             <transition name="fade" mode="out-in">
                 <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="confirmAction = true" v-if="!confirmAction">
-                    <span v-if="dashboard.day">Night Time!</span>
-                    <span v-else>Day Time!</span>
+                    <span v-if="dashboard.day">{{God.nightText}}</span>
+                    <span v-else>{{God.dayText}}</span>
                 </app-button>
                 <div class="confirm-action has-clear-fix" key="confirm" v-else>
-                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">No, Stay Here!</a>
-                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">Go Next Phase</a>
+                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">{{God.cancelText}}</a>
+                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">{{God.confirmText}}</a>
                 </div>
             </transition>
         </div>
@@ -20,8 +20,8 @@
                 <transition-group name="fade" mode="out-in">
                     <div v-if="!dashboard.god" key="beforeShow">
                         <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
-                        <h3 class="different-colors">Okay<i>.</i><i>.</i><i>.</i> your game started!</h3>
-                        <app-button class="active" @click.native="showPlay()">I'm God! Show me game details</app-button>
+                        <h3 class="different-colors" v-html="God.gameStartText"></h3>
+                        <app-button class="active" @click.native="showPlay()">{{God.godButton}}</app-button>
                     </div>
                     <div v-else key="afterShow">
                         <overlay :class="{'active': overlay, 'dialog':true}">
@@ -39,12 +39,12 @@
                                         <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                                     </div>
                                 </div>
-                                <label class="has-top-margin" for="action_target">Please select the person who takes action:</label>
+                                <label class="has-top-margin" for="action_target">{{God.actionHintText}}</label>
                                 <select @change="findTarget(log.target)" name="action_target" id="action_target" v-model="log.target">
                                     <option v-for="(person, index) in checkGroup(info.player)" :key="index">{{person.player}}</option>
                                 </select>
-                                <app-button class="danger" @click.native="cancelAction()">Cancel</app-button>
-                                <app-button @click.native="executeAction()">Action ...!!!</app-button>
+                                <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
+                                <app-button @click.native="executeAction()">{{God.confirmButton}}</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -94,24 +94,12 @@
         </div>
         <div class="step-box only-box" v-if="dashboard.god">
             <ul class="dashboard-hint">
-                <li>
-                    <span class="killer">Kill character and disable it's action.</span>
-                </li>
-                <li>
-                    <span class="angel">Bring back character to life.</span>
-                </li>
-                <li>
-                    <span class="passive">Character has passive only.</span>
-                </li>
-                <li>
-                    <span class="pending-action">Character has action but not used.</span>
-                </li>
-                <li>
-                    <span class="done-action">Character's action has been used.</span>
+                <li v-for="(hint, index) in God.dashboardHint" :key="index">
+                    <span :class="hint.name">{{hint.hint}}</span>
                 </li>
             </ul>
         </div>
-        <app-button class="has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">Game Finished...!!!</app-button>
+        <app-button class="has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">{{God.finishGame}}</app-button>
     </div>
 </template>
 
@@ -163,6 +151,7 @@ export default {
     computed:{
         ...mapGetters([
             'Dashboard',
+            'God',
         ]),
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
