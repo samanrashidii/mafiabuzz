@@ -91,7 +91,8 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>{{index+1}}</td>
-                                        <td>{{log.attacker}} {{log.action}}ed {{log.target}}</td>
+                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
                                     </tr>
                                 </table>
                             </div>
@@ -147,7 +148,10 @@ export default {
                 action: null,
                 passive: null,
                 attacker: null,
-                target: null
+                target: null,
+                actionIcon: "loader.svg",
+                mafia: false,
+                targetMafia: false
             },
             historyLog: [],
         }
@@ -265,6 +269,9 @@ export default {
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
                 this.log.passive = this.info.passive;
+                this.log.actionIcon = this.info.actionIcon;
+                this.log.mafia = this.info.mafia;
+                this.log.targetMafia = this.info.targetMafia;
                 
                 this.historyLog.push({...this.log});
                 this.roleAction({...this.log});
@@ -388,15 +395,22 @@ export default {
                 color:$color_2;
                 padding:6px;
                 background-color: $background_color_2;
+                img{width:28px;}
                 &:first-child{
                     width:10%;
                     border-radius: 2px 0 0 2px;
                 }
-                &:last-child{
+                &:nth-child(2){
                     text-align: left;
+                    font-size: $font_size_2;
+                }
+                &:last-child{
+                    text-align: center;
+                    padding:5px 2px;
+                    background-color: $background_color_main;
                     border-radius: 0 2px 2px 0;
                 }
-            } 
+            }
         }
     }
 
@@ -404,5 +418,7 @@ export default {
         display:inline-block;
         vertical-align: middle;
     }
+
+    .action-color{color:$day}
 
 </style>
