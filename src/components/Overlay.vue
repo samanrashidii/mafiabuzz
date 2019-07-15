@@ -54,8 +54,8 @@ export default {
     }
     &.dialog{
         top:18%;
-        left:2%;
-        width: 96%;
+        left:1%;
+        width: 98%;
         min-height: 410px;
         height: 64%;
         overflow-y: hidden;

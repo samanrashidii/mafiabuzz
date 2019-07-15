@@ -656,7 +656,7 @@ span.step-number{
                 font-size: $font_size_4;
                 color:$color_2;
                 padding:6px;
-                background-color: #ffffff;
+                background-color: $background_color_2;
                 &:first-child{
                     width:72%;
                     text-align: left;
@@ -803,7 +803,20 @@ span.step-number{
     }
     &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
     a.angel{
-        background-color: $dark_green_color;
+        background-color: $dark_green_color !important;
+    }
+}
+
+.healed td{
+    position: relative;
+    &::after{
+        opacity: 1 !important;
+        visibility: visible !important;
+        background-color: rgba(46,166,63,.85);
+    }
+    &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
+    a.angel{
+        background-color: $dark_green_color !important;
     }
 }
 
