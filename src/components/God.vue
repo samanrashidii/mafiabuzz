@@ -99,7 +99,7 @@
                 </li>
             </ul>
         </div>
-        <app-button class="has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">{{God.finishGame}}</app-button>
+        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">{{God.finishGame}}</app-button>
     </div>
 </template>
 

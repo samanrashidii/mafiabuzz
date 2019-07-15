@@ -59,7 +59,7 @@
                                 You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                             </li>
                         </ul>
-                        <app-button @click.native="overlay = false" class="settings-bttn"><span>{{Creator.changeSettings}}</span></app-button>
+                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
                     </template>
                     <template v-else>
                         <div class="note-box">
@@ -82,8 +82,8 @@
                                 </tr>
                             </table>
                         </div>
-                        <app-button @click.native="overlay = false" class="settings-bttn"><span>{{Creator.changeSettings}}</span></app-button>
-                        <app-button @click.native="startGame()" class="active start-bttn"><span>{{Creator.start}}</span></app-button>
+                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
+                        <app-button @click.native="startGame()" class="start-bttn green "><span>{{Creator.start}}</span></app-button>
                     </template>
                 </overlay>
                 

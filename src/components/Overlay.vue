@@ -54,13 +54,13 @@ export default {
     }
     &.dialog{
         top:18%;
-        left:4%;
-        width: 92%;
+        left:2%;
+        width: 96%;
         min-height: 410px;
         height: 64%;
         overflow-y: hidden;
         border-radius: 6px;
-        background:rgba(0, 0, 0, 0.96);
+        background:rgba(0, 0, 0, 0.97);
     }
 }
 
