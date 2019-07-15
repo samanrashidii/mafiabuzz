@@ -53,7 +53,7 @@
 
                             <div class="table mafia-table">
                                 <table>
-                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="{'dead': fM.dead == true}">
+                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="actionClasses(fM)">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}
@@ -71,7 +71,7 @@
                             
                             <div class="table citizen-table">
                                 <table>
-                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.dead == true}">
+                                    <tr v-for="(fC, index) in finalCitizens" :key="index"  :class="actionClasses(fC)">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
@@ -83,6 +83,15 @@
                                             <span class="passive" v-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="log-table" v-if="historyLog.length > 0">
+                                <table>
+                                    <tr v-for="(log, index) in historyLog" :key="index">
+                                        <td>{{index+1}}</td>
+                                        <td>{{log.attacker}} {{log.action}}ed {{log.target}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -135,7 +144,6 @@ export default {
                 targetIcon: 'default.png',
             },
             log: {
-                round: null,
                 action: null,
                 passive: null,
                 attacker: null,
@@ -168,6 +176,12 @@ export default {
             'setRoles', //
             'controlDashboard', //
         ]),
+        actionClasses(player){
+            return {
+                'dead': player.dead == true,
+                'killed': player.healed == true
+            }
+        },
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
         },
@@ -240,7 +254,6 @@ export default {
                 this.dashboard.day = true;
             } else{
                 this.dashboard.round++;
-                this.log.round = this.dashboard.round;
                 this.finalPlayers.forEach(element => {
                     element.actionStatus = false;
                 });
@@ -252,18 +265,26 @@ export default {
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
                 this.log.passive = this.info.passive;
-                alert(`
-                    Attacker : ${this.log.attacker}
-                    Action : ${this.log.action}
-                    Target : ${this.log.target}
-                `);
+                
+                this.historyLog.push({...this.log});
+                this.roleAction({...this.log});
                 this.cancelAction();
+
                 this.finalPlayers.forEach(element => {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
                     }
                 });
             }
+        },
+        roleAction(log){
+            // if(log.action == 'Kill'){
+            //     this.finalPlayers.forEach(element => {
+            //         if(element.player == log.target){
+            //             element.dead = true;
+            //         }
+            //     });
+            // }
         },
         finishGame(){
             let confirmFinish = confirm("Are you sure about it?");
@@ -351,6 +372,31 @@ export default {
                 z-index: 11;
                 transition:all .2s ease-in-out;
             }
+        }
+    }
+
+    .log-table{
+        padding:5px;
+        margin-top:12px;
+        border-radius: 3px;
+        background-color: $color_5;
+        table{
+            width: 100%;
+            td{
+                font-weight: normal;
+                font-size: $font_size_3;
+                color:$color_2;
+                padding:6px;
+                background-color: $background_color_2;
+                &:first-child{
+                    width:10%;
+                    border-radius: 2px 0 0 2px;
+                }
+                &:last-child{
+                    text-align: left;
+                    border-radius: 0 2px 2px 0;
+                }
+            } 
         }
     }
 
