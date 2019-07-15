@@ -5,13 +5,13 @@
                 <h2 v-html="Creator.dashboardTitle"></h2>
             </div>
             <div class="has-clear-fix" v-if="StepCounter == 1">
-                <app-button @click.native="setGame(false)" class="settings-bttn"><span>{{Creator.changeSettings}}</span></app-button>
+                <app-button @click.native="setGame(false)" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
             </div>
         </div>
         <transition name="fade" mode="out-in">
             <div class="step-box" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
-                <label for="quantity">{{Creator.chooseNameHint}}}</label>
+                <label for="quantity">{{Creator.chooseNameHint}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
@@ -30,7 +30,7 @@
                                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
                                         <h4>{{role.name}}</h4>
                                     </div>
-                                    <app-button @click.native.once="nextPerson()">{{Creator.afterShowButton}}</app-button>
+                                    <app-button class="green" @click.native.once="nextPerson()">{{Creator.afterShowButton}}</app-button>
                                 </div> 
                             </transition>
                         </div>
