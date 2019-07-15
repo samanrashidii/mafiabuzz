@@ -197,7 +197,7 @@
             "mafia": true,
             "action": {
                 "passive": null,
-                "action": "CheckIdentity",
+                "action": "Check Role",
                 "default": "Nothing"
             },
             "actionIcon": "chef.png",
@@ -216,7 +216,7 @@
             "mafia": true,
             "action": {
                 "passive": null,
-                "action": "SuicideReplace",
+                "action": "Suicide Replace",
                 "default": "Nothing"
             },
             "actionIcon": "yakuza.png",
@@ -254,7 +254,7 @@
             "mafia": false,
             "action": {
                 "passive": null,
-                "action": "CheckIdentity",
+                "action": "Check Identity",
                 "default": "Nothing"
             },
             "actionIcon": "police.png",
@@ -293,7 +293,8 @@
             "action": {
                 "passive": null,
                 "action": "Bind",
-                "default": "Nothing"
+                "default": "Nothing",
+                "oneTimeAction": true
             },
             "actionIcon": "cupid.png",
             "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well.",
@@ -350,7 +351,8 @@
             "action": {
                 "passive": "Shield",
                 "action": null,
-                "default": "Nothing"
+                "default": "Nothing",
+                "oneTimePassive": true
             },
             "actionIcon": null,
             "description": "The Bulletproof is with Citizen and has a shield that can save him for one death at night.",
@@ -368,7 +370,7 @@
             "mafia": false,
             "action": {
                 "passive": "KillMinionsOnDead",
-                "action": "Revive",
+                "action": "Resurrect",
                 "default": "Nothing"
             },
             "actionIcon": "necromancer.png",
@@ -387,7 +389,7 @@
             "mafia": false,
             "action": {
                 "passive": null,
-                "action": "DisableActionOrPassive",
+                "action": "Hack",
                 "default": "Nothing"
             },
             "actionIcon": "hacker.png",
