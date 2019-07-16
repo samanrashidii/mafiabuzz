@@ -58,6 +58,9 @@ export default new Vuex.Store({
     CONTROL_DASHBOARD: (state, dashinfo) => {
       Vue.set(state, 'dashboard', dashinfo);
     },
+    UPDATE_LOG: (state, log) => {
+      Vue.set(state.historyLog, 'dashboard', log);
+    },
   },
   actions: {
     getRoles: (context, items) => {
@@ -74,6 +77,9 @@ export default new Vuex.Store({
     },
     controlDashboard: (context, dashinfo) => {
       context.commit('CONTROL_DASHBOARD', dashinfo);
+    },
+    updateLog: (context, log) => {
+      context.commit('UPDATE_LOG', log);
     },
   },
 });

@@ -41,7 +41,7 @@
                                 </div>
                                 <label class="has-top-margin" for="action_target">{{God.actionHintText}}</label>
                                 <select @change="findTarget(log.target)" name="action_target" id="action_target" v-model="log.target">
-                                    <option v-for="(person, index) in checkGroup(info.player)" :key="index">{{person.player}}</option>
+                                    <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                                 </select>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
                                 <app-button @click.native="executeAction()">{{God.confirmButton}}</app-button>
@@ -99,11 +99,12 @@
                                     </table>
                                 </div>
 
-                                <div class="log-table" v-else-if="historyLog.length > 0 && dashboard.day" key="dayLog">
+                                <div class="log-table" v-else-if="historyLog.length > 0 && dashboard.day" key="dayLog" :class="{'result': historyLog.length > 0 && dashboard.day}">
+                                    <span class="table-title">What Happened Last Night</span>
                                     <table>
                                         <tr v-for="(log, index) in historyLog" :key="index">
-                                            <td>&bull;</td>
-                                            <td></td>
+                                            <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
+                                            <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -130,7 +131,6 @@
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import {mapGetters} from 'vuex';
-import {mapActions} from 'vuex';
 export default {
     props:{
         finalPlayers: {
@@ -144,6 +144,7 @@ export default {
             overlay: false,
             confirmAction: false,
             info: {
+                id: null,
                 show: false,
                 player: "Loading",
                 action: "Loading Action",
@@ -171,8 +172,13 @@ export default {
         log(){
             return this.Dashboard.log;
         },
-        historyLog(){
-            return this.Dashboard.historyLog;
+        historyLog: {
+            get: function(){
+                return this.Dashboard.historyLog;
+            },
+            set: function(newValue){
+                this.Dashboard.historyLog = newValue;
+            }
         },
         totalHistory(){
             return this.Dashboard.totalHistory;
@@ -188,10 +194,6 @@ export default {
         },
     },
     methods:{
-        ...mapActions([
-            'setRoles', //
-            'controlDashboard', //
-        ]),
         actionClasses(player){
             return {
                 'dead': player.status.dead == true,
@@ -219,6 +221,7 @@ export default {
         },
         fireAction(player){
             if(player.actionStatus == false){
+                this.info.id = player.id;
                 this.info.player = player.player;
                 this.info.icon = player.icon;
                 this.info.action = player.action.action;
@@ -229,7 +232,11 @@ export default {
             }
         },
         checkGroup(player){
-            return this.finalPlayers.filter(x => x.player != player);
+            if(player.id == 15){
+               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
+            } else{
+               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
+            }
         },
         findTarget(target){
             this.finalPlayers.forEach(element => {
@@ -270,6 +277,9 @@ export default {
                 this.dashboard.day = true;
                 this.totalHistory.push(this.historyLog);
             } else{
+                if(this.dashboard.round >= 1){
+                    this.historyLog = [];
+                }
                 this.dashboard.round++;
                 this.finalPlayers.forEach(element => {
                     element.actionStatus = false;
@@ -386,6 +396,7 @@ export default {
     }
 
     .log-table{
+        position: relative;
         padding:5px;
         margin-top:12px;
         border-radius: 3px;
@@ -412,6 +423,28 @@ export default {
                     text-align: left;
                     border-radius: 0 2px 2px 0;
                 }
+            }
+        }
+        &.result{
+            margin-top:50px;
+            background-color: $background_color_main;
+            td{
+                color:$color_2;
+                background-color: $color_1;
+                &:first-child{width:18%;}
+            }
+            .table-title{
+                position: absolute;
+                top:-34px;
+                left:50%;
+                width:200px;
+                height: 34px;
+                line-height: 34px;
+                font-size: $font_size_3;
+                text-align: center;
+                margin-left: -100px;
+                background-color: $background_color_main;
+                border-radius: 4px 4px 0 0;
             }
         }
     }
