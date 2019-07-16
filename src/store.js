@@ -15,6 +15,16 @@ export default new Vuex.Store({
       god: false,
       day: true,
       round: 0,
+      log: {
+        action: null,
+        passive: null,
+        attacker: null,
+        target: null,
+        actionIcon: "loader.svg",
+        mafia: false,
+        targetMafia: false
+      },
+      historyLog: [],
     },
   },
   getters: {

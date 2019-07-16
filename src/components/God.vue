@@ -91,8 +91,8 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>{{index+1}}</td>
-                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
                                         <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
+                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -144,16 +144,6 @@ export default {
                 targetMafia: null,
                 targetIcon: 'default.png',
             },
-            log: {
-                action: null,
-                passive: null,
-                attacker: null,
-                target: null,
-                actionIcon: "loader.svg",
-                mafia: false,
-                targetMafia: false
-            },
-            historyLog: [],
         }
     },
     created(){
@@ -165,6 +155,12 @@ export default {
             'Dashboard',
             'God',
         ]),
+        log(){
+            return this.Dashboard.log;
+        },
+        historyLog(){
+            return this.Dashboard.historyLog;
+        },
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
         },
@@ -398,16 +394,17 @@ export default {
                 img{width:28px;}
                 &:first-child{
                     width:10%;
+                    color:$color_1;
                     border-radius: 2px 0 0 2px;
+                    background-color: $background_color_main;
                 }
                 &:nth-child(2){
-                    text-align: left;
                     font-size: $font_size_2;
+                    background-color: $background_color_main;
                 }
                 &:last-child{
-                    text-align: center;
-                    padding:5px 2px;
-                    background-color: $background_color_main;
+                    font-size: $font_size_2;
+                    text-align: left;
                     border-radius: 0 2px 2px 0;
                 }
             }
