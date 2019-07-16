@@ -25,6 +25,7 @@ export default new Vuex.Store({
         targetMafia: false
       },
       historyLog: [],
+      totalHistory: [],
     },
   },
   getters: {

@@ -106,7 +106,10 @@ a.bttn{
             background-color: $hint_color;
         }
     }
-    &.purple{background-color: $purple_color}
+    &.purple{
+        background-color: $purple_color;
+        box-shadow: 0 0 8px $black_color;
+    }
     &.green{
         background-color: $green_color;
         &:hover{
