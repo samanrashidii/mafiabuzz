@@ -101,7 +101,8 @@
             "mafia": true,
             "action": {
                 "passive": "Mafia Cover",
-                "action": "Kill"
+                "action": null,
+                "secondaryAction": "Kill"
             },
             "actionIcon": "mafia.png",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
