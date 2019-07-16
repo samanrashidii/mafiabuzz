@@ -22,22 +22,30 @@
                 <div class="steps">
                     <div class="step-box">
                         <span class="step-number">1</span>
-                        <label for="quantity">{{Creator.step1}}</label>
+                        <label for="quantity" v-html="Creator.step1"></label>
                         <select name="quantity" id="quantity" v-model="gameSettings.unit">
                             <option v-for="n in Creator.maxPlayers" :key="n">{{n + Creator.playerMargin}}</option>
                         </select>
                     </div>
                     <div class="step-box">
                         <span class="step-number">2</span>
-                        <label for="mafia_number">{{Creator.step2}}</label>
+                        <label for="mafia_number" v-html="Creator.step2"></label>
                         <select name="mafia_number" id="mafia_number" v-model.number="gameSettings.mafia">
                             <option v-for="n in calcMafia" :key="n">{{n+1}}</option>
                         </select>
                     </div>
                     <div class="step-box">
                         <span class="step-number">3</span>
-                        <label>{{Creator.step3}}</label>
+                        <label for="day_time" v-html="Creator.step3"></label>
+                        <select name="day_time" id="mafia_number" v-model.number="gameSettings.time">
+                            <option v-for="n in Creator.totalTime" :key="n">{{n+4}}</option>
+                        </select>
+                    </div>
+                    <div class="step-box">
+                        <span class="step-number">4</span>
+                        <label v-html="Creator.step4"></label>
                         <ul class="note">
+                            <li>Day phase will take <span class="day-color">{{gameSettings.time}}</span> minutes long.</li>
                             <li>Mafia characters have <span class="mafia-role">red color</span> and you can choose <i class="mafia-role">{{gameSettings.mafia}}</i> of them.</li>
                             <li>Citizen characters have <strong class="citizen-role">blue color</strong> and you can choose <i class="citizen-role">{{gameSettings.citizens}}</i> of them.</li>
                         </ul>
@@ -112,6 +120,7 @@ export default {
                 citizens: 4,
                 roles: [],
                 power: 0,
+                time: 5,
             },
             overlay: false,
             error:{
@@ -201,7 +210,8 @@ export default {
         startGame(){
             let numb = {
                 unit : this.gameSettings.unit,
-                mafia : this.gameSettings.mafia
+                mafia : this.gameSettings.mafia,
+                time : this.gameSettings.time,
             }
             this.getRoles(this.gameSettings.roles);
             this.setNumbers(numb);

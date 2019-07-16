@@ -429,6 +429,9 @@ i.citizen-role{
 
 .citizen-role{color:$blue_color}
 .mafia-role{color:$red_color}
+.day-color{color:$day;}
+.creator-color{color:$creator_color;}
+.white-color{color:$color_1;}
 
 a.info{
     position: absolute;
@@ -866,6 +869,23 @@ span.step-number{
     border-radius: 50%;
     box-shadow: 0 0 8px $background_color_1;
     transform:translateX(28px);
+}
+
+.time-tracker{
+    position: absolute;
+    top:2px;
+    left:2px;
+    font-size: $font_size_4;
+    color:$color_1;
+    text-align: center;
+    padding:5px 10px 5px 25px;
+    background:url('../images/icons/countdown.png') no-repeat 5px center;
+    background-color: $background_color_main;
+    border-radius: 2px;
+    strong{
+        font-size: $font_size_9;
+        color:$green_color;
+    }
 }
 
 // Main Transitions

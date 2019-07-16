@@ -16,6 +16,9 @@
             <transition name="fade">
                 <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
             </transition>
+            <transition name="fade">
+                <strong class="time-tracker" v-if="dashboard.day && dashboard.god"><strong>{{dayTime}}</strong> mins left</strong>
+            </transition>
             <div class="center-aligned">
                 <transition-group name="fade" mode="out-in">
                     <div v-if="!dashboard.god" key="beforeShow">
@@ -168,6 +171,7 @@ export default {
         ...mapGetters([
             'Dashboard',
             'God',
+            'Numbers',
         ]),
         log(){
             return this.Dashboard.log;
@@ -192,6 +196,9 @@ export default {
         dashboard(){
             return this.Dashboard;
         },
+        dayTime(){
+            return this.Numbers.time;
+        }
     },
     methods:{
         actionClasses(player){
