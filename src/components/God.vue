@@ -60,7 +60,7 @@
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
-                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.dead == false, 'angel': fM.dead == true}"></a></td>
+                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
                                             <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
@@ -78,7 +78,7 @@
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
-                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.dead == false, 'angel':fC.dead == true}"></a></td>
+                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="passive" v-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
@@ -87,15 +87,28 @@
                                 </table>
                             </div>
 
-                            <div class="log-table" v-if="historyLog.length > 0">
-                                <table>
-                                    <tr v-for="(log, index) in historyLog" :key="index">
-                                        <td>{{index+1}}</td>
-                                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <transition name="fade" mode="out-in">
+
+                                <div class="log-table" v-if="historyLog.length > 0 && !dashboard.day" key="nightLog">
+                                    <table>
+                                        <tr v-for="(log, index) in historyLog" :key="index">
+                                            <td>{{index+1}}</td>
+                                            <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
+                                            <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="log-table" v-else-if="historyLog.length > 0 && dashboard.day" key="dayLog">
+                                    <table>
+                                        <tr v-for="(log, index) in historyLog" :key="index">
+                                            <td>&bull;</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            
+                            </transition>
 
                         </div>
                     </div>
@@ -161,6 +174,9 @@ export default {
         historyLog(){
             return this.Dashboard.historyLog;
         },
+        totalHistory(){
+            return this.Dashboard.totalHistory;
+        },
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
         },
@@ -178,7 +194,7 @@ export default {
         ]),
         actionClasses(player){
             return {
-                'dead': player.dead == true,
+                'dead': player.status.dead == true,
                 'killed': player.healed == true
             }
         },
@@ -234,16 +250,16 @@ export default {
             }, 500);
         },
         deadOrAlive(player){
-            if(player.dead == false){
+            if(player.status.dead == false){
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
-                        element.dead = true;
+                        element.status.dead = true;
                     }
                 });
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
-                        element.dead = false;
+                        element.status.dead = false;
                     }
                 });
             }
@@ -252,6 +268,7 @@ export default {
             this.confirmAction = false;
             if(phase == false){
                 this.dashboard.day = true;
+                this.totalHistory.push(this.historyLog);
             } else{
                 this.dashboard.round++;
                 this.finalPlayers.forEach(element => {
@@ -270,7 +287,6 @@ export default {
                 this.log.targetMafia = this.info.targetMafia;
                 
                 this.historyLog.push({...this.log});
-                this.roleAction({...this.log});
                 this.cancelAction();
 
                 this.finalPlayers.forEach(element => {
@@ -279,15 +295,6 @@ export default {
                     }
                 });
             }
-        },
-        roleAction(log){
-            // if(log.action == 'Kill'){
-            //     this.finalPlayers.forEach(element => {
-            //         if(element.player == log.target){
-            //             element.dead = true;
-            //         }
-            //     });
-            // }
         },
         finishGame(){
             let confirmFinish = confirm("Are you sure about it?");
@@ -382,25 +389,23 @@ export default {
         padding:5px;
         margin-top:12px;
         border-radius: 3px;
-        background-color: $color_5;
+        background-color: $color_1;
         table{
             width: 100%;
             td{
                 font-weight: normal;
                 font-size: $font_size_3;
-                color:$color_2;
+                color:$color_1;
                 padding:6px;
-                background-color: $background_color_2;
+                background-color: $background_color_main;
                 img{width:28px;}
                 &:first-child{
                     width:10%;
                     color:$color_1;
                     border-radius: 2px 0 0 2px;
-                    background-color: $background_color_main;
                 }
                 &:nth-child(2){
                     font-size: $font_size_2;
-                    background-color: $background_color_main;
                 }
                 &:last-child{
                     font-size: $font_size_2;

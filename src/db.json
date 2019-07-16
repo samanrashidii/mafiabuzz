@@ -76,7 +76,7 @@
             },
             {
                 "name": "angel",
-                "hint": "Bring back character to life."
+                "hint": "Bring back character to life when resurrected."
             },
             {
                 "name": "passive",
@@ -100,9 +100,8 @@
             "icon": "mafia.png",
             "mafia": true,
             "action": {
-                "passive": "MafiaCover",
-                "action": "Kill",
-                "default": "Nothing"
+                "passive": "Mafia Cover",
+                "action": "Kill"
             },
             "actionIcon": "mafia.png",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
@@ -110,8 +109,26 @@
             "free": true,
             "alt": "Mafia Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": true,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 2,
@@ -121,7 +138,7 @@
             "action": {
                 "passive": "Invisible",
                 "action": "Kill",
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": "godfather.png",
             "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed by 'Detective'",
@@ -129,8 +146,26 @@
             "free": true,
             "alt": "Godfather Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": true,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 3,
@@ -140,8 +175,7 @@
             "action": {
                 "passive": null,
                 "action": "Silence",
-                "secondaryAction": "Kill",
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": "ruspy.png",
             "description": "Ruspy is a mafioso who can silence one person (Cannot silence the same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
@@ -149,8 +183,26 @@
             "free": true,
             "alt": "Ruspy Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 4,
@@ -160,7 +212,7 @@
             "action": {
                 "passive": "Forgot",
                 "action": null,
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": null,
             "description": "Drunk is a mafioso who drinks too much and can't remember his teammates but his teammates will know him by raising hand",
@@ -168,8 +220,26 @@
             "free": true,
             "alt": "Drunk Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": true,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 5,
@@ -179,7 +249,7 @@
             "action": {
                 "passive": "Betray",
                 "action": null,
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": null,
             "description": "The Traitor is a mafioso who lives between citizens, He Doesn't wake up at night and will not revealed as a mafioso by 'Detective', but works to protect mafia and make them win",
@@ -187,9 +257,27 @@
             "free": true,
             "alt": "Traitor Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
-            },
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": true,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
+        },
         {
             "id": 6,
             "name": "Chef",
@@ -198,7 +286,7 @@
             "action": {
                 "passive": null,
                 "action": "Check Role",
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": "chef.png",
             "description": "Chef is a mafioso who can poison one person at night and make him reveal his role to chef",
@@ -206,8 +294,26 @@
             "free": true,
             "alt": "Chef Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 7,
@@ -217,7 +323,7 @@
             "action": {
                 "passive": null,
                 "action": "Suicide Replace",
-                "default": "Nothing"
+                "secondaryAction": "Kill"
             },
             "actionIcon": "yakuza.png",
             "description": "The Yakuza is a mafioso with the power of sacrifice himself from the second night and choose an innocent to give up his role and join the mafioso with 'Mafia' role",
@@ -225,8 +331,26 @@
             "free": true,
             "alt": "Yakuza Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 8,
@@ -234,9 +358,8 @@
             "icon": "citizen.png",
             "mafia": false,
             "action": {
-                "passive": "CitizenCover",
-                "action": null,
-                "default": "Nothing"
+                "passive": "Citizen Cover",
+                "action": null
             },
             "actionIcon": null,
             "description": "Regular Citizen wihout any power and just want to make peace in city",
@@ -244,8 +367,26 @@
             "free": true,
             "alt": "Citizen Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": true,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 9,
@@ -254,8 +395,7 @@
             "mafia": false,
             "action": {
                 "passive": null,
-                "action": "Check Identity",
-                "default": "Nothing"
+                "action": "Check Identity"
             },
             "actionIcon": "police.png",
             "description": "The Detective is with Citizen and can detect whether a player is a mafioso or not. He will typically wake up, and point at one person; The god will silently indicate to the Detective whether that player is Mafia or Citizen.",
@@ -263,8 +403,26 @@
             "free": true,
             "alt": "Police Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 10,
@@ -273,8 +431,7 @@
             "mafia": false,
             "action": {
                 "passive": null,
-                "action": "Heal",
-                "default": "Nothing"
+                "action": "Heal"
             },
             "actionIcon": "doctor.png",
             "description": "The Doctor is with Citizen and defends others, He can save one perseon or himself during night",
@@ -282,8 +439,26 @@
             "free": true,
             "alt": "Doctor Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 11,
@@ -293,8 +468,7 @@
             "action": {
                 "passive": null,
                 "action": "Bind",
-                "default": "Nothing",
-                "oneTimeAction": true
+                "oneTime": true
             },
             "actionIcon": "cupid.png",
             "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well.",
@@ -302,8 +476,26 @@
             "free": true,
             "alt": "Cupid Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 12,
@@ -312,8 +504,7 @@
             "mafia": false,
             "action": {
                 "passive": "Detonate",
-                "action": null,
-                "default": "Nothing"
+                "action": null
             },
             "actionIcon": null,
             "description": "The Bomb is with citizen and when he gets killed during day or night, He will detonate himself and kill his sibling players.",
@@ -321,8 +512,26 @@
             "free": true,
             "alt": "Bomb Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 13,
@@ -330,9 +539,8 @@
             "icon": "grandma.png",
             "mafia": false,
             "action": {
-                "passive": "ReturnDamage",
-                "action": null,
-                "default": "Nothing"
+                "passive": "Return Damage",
+                "action": null
             },
             "actionIcon": null,
             "description": "Grandma is a Citizen and she is so  sensitive, If someone touch her at night will get killed instantly",
@@ -340,8 +548,26 @@
             "free": true,
             "alt": "Grandma Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 14,
@@ -351,8 +577,7 @@
             "action": {
                 "passive": "Shield",
                 "action": null,
-                "default": "Nothing",
-                "oneTimePassive": true
+                "oneTime": true
             },
             "actionIcon": null,
             "description": "The Bulletproof is with Citizen and has a shield that can save him for one death at night.",
@@ -369,9 +594,8 @@
             "icon": "necromancer.png",
             "mafia": false,
             "action": {
-                "passive": "KillMinionsOnDead",
-                "action": "Resurrect",
-                "default": "Nothing"
+                "passive": "Kill Minions OnDead",
+                "action": "Resurrect"
             },
             "actionIcon": "necromancer.png",
             "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person one of his minion (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his minions will die instantly.",
@@ -379,8 +603,26 @@
             "free": true,
             "alt": "Necromancer Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 16,
@@ -398,8 +640,26 @@
             "free": true,
             "alt": "Hacker Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": false,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         }
     ]
 }
