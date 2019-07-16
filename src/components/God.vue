@@ -144,16 +144,6 @@ export default {
                 targetMafia: null,
                 targetIcon: 'default.png',
             },
-            log: {
-                action: null,
-                passive: null,
-                attacker: null,
-                target: null,
-                actionIcon: "loader.svg",
-                mafia: false,
-                targetMafia: false
-            },
-            historyLog: [],
         }
     },
     created(){
@@ -165,6 +155,12 @@ export default {
             'Dashboard',
             'God',
         ]),
+        log(){
+            return this.Dashboard.log;
+        },
+        historyLog(){
+            return this.Dashboard.historyLog;
+        },
         finalMafias(){
             return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
         },
