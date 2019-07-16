@@ -90,35 +90,34 @@
                                 </table>
                             </div>
 
-                            <transition name="fade" mode="out-in">
-
-                                <div class="log-table" v-if="historyLog.length > 0 && !dashboard.day" key="nightLog">
-                                    <table>
-                                        <tr v-for="(log, index) in historyLog" :key="index">
-                                            <td>{{index+1}}</td>
-                                            <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                            <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-                                <div class="log-table" v-else-if="historyLog.length > 0 && dashboard.day" key="dayLog" :class="{'result': historyLog.length > 0 && dashboard.day}">
-                                    <span class="table-title">What Happened Last Night</span>
-                                    <table>
-                                        <tr v-for="(log, index) in historyLog" :key="index">
-                                            <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                            <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            
-                            </transition>
+                            <div class="log-table" v-if="historyLog.length > 0 && dashboard.day" :class="{'result': historyLog.length > 0 && dashboard.day}">
+                                <span class="table-title">What Happened Last Night</span>
+                                <table>
+                                    <tr v-for="(log, index) in historyLog" :key="index">
+                                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
+                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
                 </transition-group>
             </div>
         </div>
+
+        <div class="step-box only-box same-padding" v-if="historyLog.length > 0 && !dashboard.day">
+            <div class="log-table">
+                <table>
+                    <tr v-for="(log, index) in historyLog" :key="index">
+                        <td>{{index+1}}</td>
+                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
+                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         <div class="step-box only-box" v-if="dashboard.god">
             <ul class="dashboard-hint">
                 <li v-for="(hint, index) in God.dashboardHint" :key="index">
@@ -404,8 +403,7 @@ export default {
 
     .log-table{
         position: relative;
-        padding:5px;
-        margin-top:12px;
+        padding:1px;
         border-radius: 3px;
         background-color: $color_1;
         table{
@@ -418,9 +416,11 @@ export default {
                 background-color: $background_color_main;
                 img{width:28px;}
                 &:first-child{
-                    width:10%;
-                    color:$color_1;
+                    width:9%;
+                    color:$color_2;
+                    text-align: center;
                     border-radius: 2px 0 0 2px;
+                    background-color: $background_color_5;
                 }
                 &:nth-child(2){
                     font-size: $font_size_2;
