@@ -496,6 +496,7 @@ a.info{
         margin-bottom:20px;
     }
     &.only-box{margin-top:20px;}
+    &.same-padding{padding:15px;}
     &.display{
         display: table;
         width:100%;
@@ -548,6 +549,7 @@ a.info{
                 }
             }
         }
+        &.autoheight{height: auto;}
     }
     &.godashboard{
         overflow: hidden;
