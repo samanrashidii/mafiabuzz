@@ -877,16 +877,18 @@ span.step-number{
     position: absolute;
     top:2px;
     left:2px;
-    font-size: $font_size_4;
+    display: inline-block;
+    font-size: $font_size_8;
     color:$color_1;
     text-align: center;
-    padding:5px 10px 5px 25px;
+    padding:5px 10px 5px 27px;
     background:url('../images/icons/countdown.png') no-repeat 5px center;
     background-color: $background_color_main;
     border-radius: 2px;
     strong{
-        font-size: $font_size_9;
-        color:$green_color;
+        &.finished{
+            color:$red_color;
+        }
     }
 }
 
