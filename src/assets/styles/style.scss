@@ -497,6 +497,7 @@ a.info{
     }
     &.only-box{margin-top:20px;}
     &.same-padding{padding:15px;}
+    &.has-top-padding{padding-top:64px;}
     &.display{
         display: table;
         width:100%;
@@ -888,6 +889,39 @@ span.step-number{
     strong{
         &.finished{
             color:$red_color;
+        }
+    }
+}
+
+.predefined{
+    position: absolute;
+    top:10px;
+    right:10px;
+    display:inline-block;
+    font-size:$font_size_3;
+    color:$color_2;
+    padding:8px 10px 8px 32px;
+    background-color:$background_color_1;
+    border-radius: 2px;
+    transition:all .2s ease-in-out;
+    &::after{
+        content:'';
+        position: absolute;
+        top:7px;
+        left:7px;
+        width:19px;
+        height:19px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border:1px solid $color_2;
+        border-radius: 2px;
+        transition:all .2s ease-in-out;
+    }
+    &.active{
+        color:$color_1;
+        background-color: $color_5;
+        &::after{
+            background:url('../images/assets/tick.png') no-repeat center $green_color;
         }
     }
 }

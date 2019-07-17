@@ -232,7 +232,7 @@ export default {
 
 .note li{
     font-size: $font_size_3;
-    color:$color_4;
+    color:$color_6;
     margin-bottom:12px;
     &::before{
         content:'*';
