@@ -9,8 +9,11 @@
             </div>
         </div>
         <transition name="fade" mode="out-in">
-            <div class="step-box" v-if="StepCounter == 1" key="step1">
+            <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
+                <a class="predefined" href="javascript:void(0)" :class="{'active': showPredefined}" @click="handlePredefine()">
+                    <span>Fill names as defualt</span>
+                </a>
                 <label for="quantity">{{Creator.chooseNameHint}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
@@ -52,12 +55,8 @@ export default {
           players : [],
           showrole : false,
           personNumb : 1,
+          showPredefined: false,
       }
-  },
-  created(){
-    this.SelectedRoles.forEach((element,index) => {
-        this.players.push(`Player ${index+1}`);
-    })
   },
   computed:{
     ...mapGetters([
@@ -76,6 +75,17 @@ export default {
         'setGame',
         'setStep',
     ]),
+    handlePredefine(){
+        if(this.showPredefined == false){
+            this.SelectedRoles.forEach((element,index) => {
+                this.players.push(`Player ${index+1}`);
+            });
+            this.showPredefined = true;
+        } else{
+            this.players = [];
+            this.showPredefined = false;
+        }
+    },
     assignRoles(){
         let tg = this.gameRoles;
         let tp = this.players;
