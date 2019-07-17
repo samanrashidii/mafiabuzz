@@ -876,16 +876,17 @@ span.step-number{
 
 .time-tracker{
     position: absolute;
-    top:2px;
-    left:2px;
+    top:5px;
+    left:5px;
     display: inline-block;
-    font-size: $font_size_8;
+    width:56px;
+    height:56px;
+    font-size: $font_size_4;
     color:$color_1;
     text-align: center;
-    padding:5px 10px 5px 27px;
-    background:url('../images/icons/countdown.png') no-repeat 5px center;
-    background-color: $background_color_main;
-    border-radius: 2px;
+    padding:25px 2px 2px 2px;
+    background:url('../images/icons/countdown.png') no-repeat center 7px $transparent_black_2;
+    border-radius: 50%;
     strong{
         &.finished{
             color:$red_color;
@@ -899,9 +900,9 @@ span.step-number{
     right:10px;
     display:inline-block;
     font-size:$font_size_3;
-    color:$color_2;
+    color:$color_1;
     padding:8px 10px 8px 32px;
-    background-color:$background_color_1;
+    border:1px solid $color_1;
     border-radius: 2px;
     transition:all .2s ease-in-out;
     &::after{
@@ -913,13 +914,13 @@ span.step-number{
         height:19px;
         background-repeat: no-repeat;
         background-position: center;
-        border:1px solid $color_2;
+        border:1px solid $color_1;
         border-radius: 2px;
         transition:all .2s ease-in-out;
     }
     &.active{
-        color:$color_1;
-        background-color: $color_5;
+        background-color: $background_color_default;
+        border-color:$color_5;
         &::after{
             background:url('../images/assets/tick.png') no-repeat center $green_color;
         }

@@ -18,7 +18,7 @@
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
-                <app-button @click.native.once="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
+                <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
             </div>
             <div class="step-box display autoheight" v-if="StepCounter == 2" key="step2">
                 <div class="inner-display">
@@ -56,6 +56,7 @@ export default {
           showrole : false,
           personNumb : 1,
           showPredefined: false,
+          ready: false,
       }
   },
   computed:{
@@ -75,11 +76,14 @@ export default {
         'setGame',
         'setStep',
     ]),
+    preDefined(){
+        this.SelectedRoles.forEach((element,index) => {
+            this.players.push(`Player ${index+1}`);
+        });
+    },
     handlePredefine(){
         if(this.showPredefined == false){
-            this.SelectedRoles.forEach((element,index) => {
-                this.players.push(`Player ${index+1}`);
-            });
+            this.preDefined();
             this.showPredefined = true;
         } else{
             this.players = [];
@@ -87,18 +91,33 @@ export default {
         }
     },
     assignRoles(){
-        let tg = this.gameRoles;
-        let tp = this.players;
-        for (let i = tp.length - 1; i >= 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tp[i], tp[j]] = [tp[j], tp[i]];
-            tg[i].player = tp[i];
+        let gR = this.gameRoles;
+        let pL = this.players;
+        if(pL.length == gR.length){
+            for (let i = 0; i < pL.length; i++) {
+                if(pL[i].length < 1){
+                    this.ready = false;
+                    break;
+                } else{
+                    this.ready = true;
+                }
+            }   
         }
-        for (let i = tg.length - 1; i >= 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tg[i], tg[j]] = [tg[j], tg[i]];
+        
+        if(this.ready){
+          let tg = this.gameRoles;
+            let tp = this.players;
+            for (let i = tp.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [tp[i], tp[j]] = [tp[j], tp[i]];
+                tg[i].player = tp[i];
+            }
+            for (let i = tg.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [tg[i], tg[j]] = [tg[j], tg[i]];
+            }
+            this.setStep(2);  
         }
-        this.setStep(2);
     },
     getImgUrl(pic) {
         return require(`@/assets/images/roles/${pic}`);
