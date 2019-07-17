@@ -429,6 +429,7 @@ i.citizen-role{
 
 .citizen-role{color:$blue_color}
 .mafia-role{color:$red_color}
+.binded{color:$pink_color !important;}
 .day-color{color:$day;}
 .creator-color{color:$creator_color;}
 .white-color{color:$color_1;}
@@ -928,6 +929,18 @@ span.step-number{
             background:url('../images/assets/tick.png') no-repeat center $green_color;
         }
     }
+}
+
+table tr.love-bind td:first-child::before{
+    content:'';
+    position:absolute;
+    top:50%;
+    right:-13px;
+    width:24px;
+    height:24px;
+    margin-top:-12px;
+    background:url('../images/icons/linked.png') no-repeat center;
+    z-index:10;
 }
 
 // Main Transitions

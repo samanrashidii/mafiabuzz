@@ -20,9 +20,10 @@ export default new Vuex.Store({
         passive: null,
         attacker: null,
         target: null,
+        target2: null,
         actionIcon: "loader.svg",
         mafia: false,
-        targetMafia: false
+        targetMafia: false,
       },
       historyLog: [],
       totalHistory: [],
