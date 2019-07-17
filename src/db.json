@@ -91,6 +91,10 @@
             {
                 "name": "done-action",
                 "hint": "Character's action has been used."
+            },
+            {
+                "name": "disabled",
+                "hint": "Character has no action or passive."
             }
         ],
         "finishGame": "Game Finished...!!!"
@@ -102,7 +106,7 @@
             "icon": "mafia.png",
             "mafia": true,
             "action": {
-                "passive": "Mafia Cover",
+                "passive": "Backup Killer",
                 "action": null,
                 "secondaryAction": "Kill"
             },
@@ -361,7 +365,7 @@
             "icon": "citizen.png",
             "mafia": false,
             "action": {
-                "passive": "Citizen Cover",
+                "passive": null,
                 "action": null
             },
             "actionIcon": null,
