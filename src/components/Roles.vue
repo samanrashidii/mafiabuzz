@@ -95,13 +95,13 @@ export default {
             if(role.id == 1){
                 if(this.normalMafia < 10){
                     this.normalMafia++;
-                    targetRole = {...role};
+                    targetRole = JSON.parse(JSON.stringify(role));
                     this.selectedRoles.push(targetRole);
                 }
             } else if(role.id == 8){
                 if(this.normalCitizen < 20){
                     this.normalCitizen++;
-                    targetRole = {...role};
+                    targetRole = JSON.parse(JSON.stringify(role));
                     this.selectedRoles.push(targetRole);
                 }
             }
