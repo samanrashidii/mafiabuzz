@@ -264,6 +264,10 @@ export default {
             else if(player.id == 7){
                return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
             }
+            // Doctor Target
+            else if(player.id == 10){
+               return this.finalPlayers.filter(x => x.status.dead == false);
+            }
             // Default Target
             else{
                return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
