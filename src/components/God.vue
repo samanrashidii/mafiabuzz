@@ -47,7 +47,7 @@
                                     <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                                 </select>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
-                                <app-button @click.native="executeAction()">{{God.confirmButton}}</app-button>
+                                <app-button @click.native="executeAction(info.id)">{{God.confirmButton}}</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -75,7 +75,7 @@
                             <div class="table citizen-table">
                                 <table>
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.status.dead == true}">
-                                        <td>
+                                        <td :class="{'ninja': fC.status.stolen}">
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
                                             </a>
@@ -296,7 +296,7 @@ export default {
                 this.dashboard.day = false;
             }
         },
-        executeAction(){
+        executeAction(attacker){
             if(this.log.target != null){
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
@@ -311,6 +311,15 @@ export default {
                 this.finalPlayers.forEach(element => {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
+                    }
+                    if(element.player == this.log.target){
+                        if(attacker == 7){
+                            element.status.stolen = true;
+                            element.icon = 'ninja.png';
+                            element.action.action = null;
+                            element.action.passive = null;
+                            element.action.secondaryAction = null;
+                        }
                     }
                 });
             }
