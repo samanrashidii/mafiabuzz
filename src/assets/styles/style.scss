@@ -808,7 +808,9 @@ span.step-number{
     &::after{
         opacity: 1 !important;
         visibility: visible !important;
-        background-color: rgba(0,0,0,.85);
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-color: rgba(0,0,0,.85) !important;
     }
     &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
     a.angel{

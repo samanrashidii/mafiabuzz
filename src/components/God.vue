@@ -74,8 +74,8 @@
                             
                             <div class="table citizen-table">
                                 <table>
-                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.status.dead == true}">
-                                        <td :class="{'ninja': fC.status.stolen}">
+                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.status.dead == true, 'ninja': fC.status.stolen}">
+                                        <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
                                             </a>
@@ -411,6 +411,11 @@ export default {
                 z-index: 11;
                 transition:all .2s ease-in-out;
             }
+        }
+        &.ninja td::after{
+            visibility: visible;
+            opacity: 1;
+            background-color:rgb(194,73,73, .4);
         }
     }
 
