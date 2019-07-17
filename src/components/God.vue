@@ -268,14 +268,12 @@ export default {
             if(player.status.dead == false){
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
-                        console.log(element.player);
                         element.status.dead = true;
                     }
                 });
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
-                        console.log(element.player);
                         element.status.dead = false;
                     }
                 });
