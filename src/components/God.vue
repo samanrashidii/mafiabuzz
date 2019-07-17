@@ -271,7 +271,6 @@ export default {
                         element.status.dead = true;
                     }
                 });
-                console.log(this.finalPlayers);
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
