@@ -83,7 +83,8 @@
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
-                                            <span class="passive" v-if="fC.action.passive != null && fC.action.action == null"></span>
+                                            <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
+                                            <span class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
@@ -240,8 +241,13 @@ export default {
             }
         },
         checkGroup(player){
+            // Necromancer
             if(player.id == 15){
                return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
+            // Yakuza
+            } else if(player.id == 7){
+               return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
+            // Default
             } else{
                return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
             }
@@ -311,8 +317,13 @@ export default {
                 this.finalPlayers.forEach(element => {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
+                        // Yakuza
+                        if(attacker == 7){
+                            element.status.dead = true;
+                        }
                     }
                     if(element.player == this.log.target){
+                        // Yakuza
                         if(attacker == 7){
                             element.status.stolen = true;
                             element.icon = 'ninja.png';
@@ -412,10 +423,17 @@ export default {
                 transition:all .2s ease-in-out;
             }
         }
-        &.ninja td::after{
-            visibility: visible;
-            opacity: 1;
-            background-color:rgb(194,73,73, .4);
+        &.ninja{
+            td{
+                &::after{
+                    visibility: visible;
+                    opacity: 1;
+                    background-color:rgb(194,73,73, .4);
+                }
+                &:last-child::after{
+                    background-color: transparent;
+                }
+            }
         }
     }
 
