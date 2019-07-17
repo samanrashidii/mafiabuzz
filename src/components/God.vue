@@ -17,7 +17,7 @@
                 <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
             </transition>
             <transition name="fade">
-                <strong class="time-tracker" v-if="dashboard.day && dashboard.god"><strong>{{dayTime}}</strong> mins left</strong>
+                <countdown :dayTime="dayTime" v-if="dashboard.day && dashboard.god"></countdown>
             </transition>
             <div class="center-aligned">
                 <transition-group name="fade" mode="out-in">
@@ -56,7 +56,7 @@
 
                             <div class="table mafia-table">
                                 <table>
-                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="actionClasses(fM)">
+                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="{'dead': fM.status.dead == true}">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}
@@ -74,7 +74,7 @@
                             
                             <div class="table citizen-table">
                                 <table>
-                                    <tr v-for="(fC, index) in finalCitizens" :key="index"  :class="actionClasses(fC)">
+                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.status.dead == true}">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
@@ -132,6 +132,7 @@
 <script>
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
+import Countdown from '@/components/Countdown.vue';
 import {mapGetters} from 'vuex';
 export default {
     props:{
@@ -144,6 +145,7 @@ export default {
             fMafias: [],
             fCitizens: [],
             overlay: false,
+            defaultTime: 0,
             confirmAction: false,
             info: {
                 id: null,
@@ -165,6 +167,7 @@ export default {
     created(){
         this.fMafias = this.finalPlayers.filter(x => x.mafia == true);
         this.fCitizens = this.finalPlayers.filter(x => x.mafia == false);
+        this.defaultTime = this.Numbers.time;
     },
     computed:{
         ...mapGetters([
@@ -195,17 +198,16 @@ export default {
         dashboard(){
             return this.Dashboard;
         },
-        dayTime(){
-            return this.Numbers.time;
+        dayTime: {
+            get: function(){
+                return this.Numbers.time * 60;
+            },
+            set: function(newValue){
+                this.Numbers.time = newValue;
+            }
         }
     },
     methods:{
-        actionClasses(player){
-            return {
-                'dead': player.status.dead == true,
-                'killed': player.healed == true
-            }
-        },
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
         },
@@ -266,12 +268,14 @@ export default {
             if(player.status.dead == false){
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
+                        console.log(element.player);
                         element.status.dead = true;
                     }
                 });
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
+                        console.log(element.player);
                         element.status.dead = false;
                     }
                 });
@@ -283,6 +287,7 @@ export default {
                 this.dashboard.day = true;
                 this.totalHistory.push(this.historyLog);
             } else{
+                this.dayTime = this.defaultTime;
                 if(this.dashboard.round >= 1){
                     this.historyLog = [];
                 }
@@ -322,6 +327,7 @@ export default {
     components: {
         overlay: Overlay,
         infoBox: InfoBox,
+        countdown: Countdown,
     }
 }
 </script>

@@ -33,7 +33,7 @@
             "step1": "Choose how many people do want to have in your <span class='creator-color'>World</span>:",
             "step2": "Please choose how many of these people will be <span class='mafia-role'>Mafia</span>:",
             "step3": "Please select how long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span>:",
-            "step4": "Now you must choose between below roles for your game:",
+            "step4": "Game Settings:",
             "maxPlayers": 25,
             "totalTime": 26,
             "playerMargin": 5,
@@ -588,8 +588,26 @@
             "free": true,
             "alt": "Bulletproof Icon",
             "actionStatus": false,
-            "dead": false,
-            "player": null
+            "player": null,
+            "status": {
+                "normal": false,
+                "dead": false,
+                "invisible": false,
+                "silenced": false,
+                "forgot": false,
+                "trait": false,
+                "roleChecked": false,
+                "stolen": false,
+                "identityChecked": false,
+                "healed": false,
+                "linked": false,
+                "detonated": false,
+                "damageReturned": false,
+                "shield": true,
+                "revived": false,
+                "hacked": false,
+                "minion": false
+            }
         },
         {
             "id": 15,
