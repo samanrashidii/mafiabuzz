@@ -69,6 +69,7 @@
         "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
         "godButton": "I'm God! Show me game details",
         "actionHintText": "Please select the person who takes action:",
+        "actionHintText2": "Please select the person you want to bind:",
         "cancelButton": "Cancel",
         "confirmButton": "Action ...!!!",
         "dashboardHint": [

@@ -42,10 +42,16 @@
                                         <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                                     </div>
                                 </div>
-                                <label class="has-top-margin" for="action_target">{{God.actionHintText}}</label>
+                                <label class="has-small-top-margin" for="action_target">{{God.actionHintText}}</label>
                                 <select @change="findTarget(log.target)" name="action_target" id="action_target" v-model="log.target">
                                     <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                                 </select>
+                                <template v-if="info.id == 11 && log.target != null">
+                                    <label class="has-small-top-margin" for="action_target_2">{{God.actionHintText2}}</label>
+                                    <select name="action_target_2" id="action_target_2" v-model="log.target2">
+                                        <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
+                                    </select>
+                                </template>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
                                 <app-button @click.native="executeAction(info.id)">{{God.confirmButton}}</app-button>
                             </div>
@@ -56,7 +62,7 @@
 
                             <div class="table mafia-table">
                                 <table>
-                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="{'dead': fM.status.dead == true}">
+                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}
@@ -74,7 +80,7 @@
                             
                             <div class="table citizen-table">
                                 <table>
-                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="{'dead': fC.status.dead == true, 'ninja': fC.status.stolen}">
+                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
                                                 <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
@@ -96,7 +102,7 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.target2 != null}">{{log.target}}</span><i v-if="log.target2 != null"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
                                     </tr>
                                 </table>
                             </div>
@@ -113,7 +119,7 @@
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
                         <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span></td>
+                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.target2 != null}">{{log.target}}</span><i v-if="log.target2 != null"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
                     </tr>
                 </table>
             </div>
@@ -209,58 +215,6 @@ export default {
         }
     },
     methods:{
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
-        getActionImgUrl(pic) {
-            return require(`@/assets/images/actions/${pic}`);
-        },
-        showPlay(){
-            this.dashboard.god = true;
-        },
-        updateDashboard(){
-            this.controlDashboard(this.dashboard); //
-        },
-        showInfo(role){
-            this.info.name = role.name;
-            this.info.icon = role.icon;
-            this.info.description = role.description;
-            this.info.mafia = role.mafia;
-            this.info.show == false ? this.info.show = true : this.info.show = false;
-        },
-        fireAction(player){
-            if(player.actionStatus == false){
-                this.info.id = player.id;
-                this.info.player = player.player;
-                this.info.icon = player.icon;
-                this.info.action = player.action.action;
-                this.info.passive = player.action.passive;
-                this.info.actionIcon = player.actionIcon;
-                this.info.mafia = player.mafia;
-                this.overlay = true;
-            }
-        },
-        checkGroup(player){
-            // Necromancer
-            if(player.id == 15){
-               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
-            // Yakuza
-            } else if(player.id == 7){
-               return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
-            // Default
-            } else{
-               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
-            }
-        },
-        findTarget(target){
-            this.finalPlayers.forEach(element => {
-                if(element.player == target){
-                    this.info.targetMafia = element.mafia;
-                    this.info.targetIcon = element.icon;
-                }
-            });
-            this.info.target = target;
-        },
         cancelAction(){
             this.overlay = false;
             setTimeout(() => {
@@ -269,21 +223,6 @@ export default {
                 this.info.targetIcon = 'default.png';
                 this.log.target = null;
             }, 500);
-        },
-        deadOrAlive(player){
-            if(player.status.dead == false){
-                this.finalPlayers.forEach(element => {
-                    if(element.player == player.player){
-                        element.status.dead = true;
-                    }
-                });
-            } else{
-                this.finalPlayers.forEach(element => {
-                    if(element.player == player.player){
-                        element.status.dead = false;
-                    }
-                });
-            }
         },
         changePhase(phase){
             this.confirmAction = false;
@@ -297,9 +236,70 @@ export default {
                 }
                 this.dashboard.round++;
                 this.finalPlayers.forEach(element => {
-                    element.actionStatus = false;
+                    // Cupid Attacker
+                    if(element.id == 11){
+                        if(!element.action.oneTime){
+                            element.actionStatus = true;
+                        }
+                    } else{
+                        element.actionStatus = false;
+                    }
                 });
                 this.dashboard.day = false;
+            }
+        },
+        characterClasses(char){
+            return {
+                'dead': char.status.dead == true, 
+                'ninja': char.status.stolen == true,
+                'love-bind': char.status.linked == true
+            }
+        },
+        checkGroup(player){
+            // Necromancer Target
+            if(player.id == 15){
+               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
+            } 
+            // Yakuza Target
+            else if(player.id == 7){
+               return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
+            }
+            // Default Target
+            else{
+               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
+            }
+        },
+        checkSecondGroup(player){
+            // Cupid Target
+            if(player.id == 11){
+               return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
+            } 
+        },
+        deadOrAlive(player){
+            
+            if(player.status.dead == false){
+                // Cupid Targets
+                if(player.status.linked){
+                    this.finalPlayers.forEach(element => {
+                        if(element.status.linked){
+                            element.status.dead = true;
+                        } 
+                    });
+                } 
+                // Default Target
+                else{
+                    this.finalPlayers.forEach(element => {
+                        if(element.player == player.player){
+                            element.status.dead = true;
+                        }
+                    });
+                }
+            } else{
+                this.finalPlayers.forEach(element => {
+                    if(element.player == player.player){
+                        element.status.dead = false;
+                    }
+                });
             }
         },
         executeAction(attacker){
@@ -317,13 +317,17 @@ export default {
                 this.finalPlayers.forEach(element => {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
-                        // Yakuza
+                        // Yakuza Attacker
                         if(attacker == 7){
                             element.status.dead = true;
                         }
+                        // Cupid Attacker
+                        if(attacker == 11){
+                            element.action.oneTime = false;
+                        }
                     }
                     if(element.player == this.log.target){
-                        // Yakuza
+                        // Yakuza Target
                         if(attacker == 7){
                             element.status.stolen = true;
                             element.icon = 'ninja.png';
@@ -332,14 +336,63 @@ export default {
                             element.action.secondaryAction = null;
                         }
                     }
+                    // Cupid Targets
+                    if(attacker == 11){
+                        if(element.player == this.log.target){
+                            element.status.linked = true;
+                        }
+                        if(element.player == this.log.target2){
+                            element.status.linked = true;
+                        }
+                    }
                 });
             }
+        },
+        findTarget(target){
+            this.finalPlayers.forEach(element => {
+                if(element.player == target){
+                    this.info.targetMafia = element.mafia;
+                    this.info.targetIcon = element.icon;
+                }
+            });
+            this.info.target = target;
         },
         finishGame(){
             let confirmFinish = confirm("Are you sure about it?");
             if(confirmFinish){
                 this.$router.go();
             }
+        },
+        fireAction(player){
+            if(player.actionStatus == false){
+                this.info.id = player.id;
+                this.info.player = player.player;
+                this.info.icon = player.icon;
+                this.info.action = player.action.action;
+                this.info.passive = player.action.passive;
+                this.info.actionIcon = player.actionIcon;
+                this.info.mafia = player.mafia;
+                this.overlay = true;
+            }
+        },
+        getActionImgUrl(pic) {
+            return require(`@/assets/images/actions/${pic}`);
+        },
+        getImgUrl(pic) {
+            return require(`@/assets/images/roles/${pic}`);
+        },
+        showInfo(role){
+            this.info.name = role.name;
+            this.info.icon = role.icon;
+            this.info.description = role.description;
+            this.info.mafia = role.mafia;
+            this.info.show == false ? this.info.show = true : this.info.show = false;
+        },
+        showPlay(){
+            this.dashboard.god = true;
+        },
+        updateDashboard(){
+            this.controlDashboard(this.dashboard); //
         }
     },
     components: {
