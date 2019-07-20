@@ -2,14 +2,10 @@
     <div>
         <div class="button-holder" v-if="dashboard.god">
             <transition name="fade" mode="out-in">
-                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="confirmAction = true" v-if="!confirmAction">
+                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="changePhase(dashboard.day)">
                     <span v-if="dashboard.day">{{God.nightText}}</span>
                     <span v-else>{{God.dayText}}</span>
                 </app-button>
-                <div class="confirm-action has-clear-fix" key="confirm" v-else>
-                    <a class="cancel" href="javascript:void(0)" @click="confirmAction = false">{{God.cancelText}}</a>
-                    <a class="confirm" href="javascript:void(0)" @click="changePhase(dashboard.day)">{{God.confirmText}}</a>
-                </div>
             </transition>
         </div>
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
@@ -102,7 +98,7 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.target2 != null}">{{log.target}}</span><i v-if="log.target2 != null"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
+                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
                                     </tr>
                                 </table>
                             </div>
@@ -119,7 +115,7 @@
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
                         <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.target2 != null}">{{log.target}}</span><i v-if="log.target2 != null"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
+                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
                     </tr>
                 </table>
             </div>
@@ -364,7 +360,10 @@ export default {
         finishGame(){
             let confirmFinish = confirm("Are you sure about it?");
             if(confirmFinish){
-                this.$router.go();
+                this.$router.push({name:'home'});
+                setTimeout(() => {
+                    this.$router.go();
+                }, 250);
             }
         },
         fireAction(player){
@@ -505,6 +504,7 @@ export default {
                 font-weight: normal;
                 font-size: $font_size_3;
                 color:$color_1;
+                word-break: break-all;
                 padding:6px;
                 background-color: $background_color_main;
                 img{width:28px;}

@@ -54,7 +54,7 @@
         },
         "about": {
             "title": "About <span>Us</span>",
-            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            "subtitle": "MafiaWars is a party game created by <strong class='mafia-role'>Saman Rashidi</strong> <strong class='citizen-role'>Shahryar Osouli</strong> <strong class='binded'>Samira Salimian</strong>"
         },
         "howToPlay": {
             "title": "How to <span>Play</span>",
@@ -69,7 +69,7 @@
         "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
         "godButton": "I'm God! Show me game details",
         "actionHintText": "Please select the person who takes action:",
-        "actionHintText2": "Please select the person you want to bind:",
+        "actionHintText2": "Please select the second person:",
         "cancelButton": "Cancel",
         "confirmButton": "Action ...!!!",
         "dashboardHint": [
