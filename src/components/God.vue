@@ -128,7 +128,8 @@
                 </li>
             </ul>
         </div>
-        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="finishGame()">{{God.finishGame}}</app-button>
+        <app-button class="danger has-xsmall-bottom-margin" v-if="dashboard.god" @click.native="rgwRoles()">{{God.rgwRoles}}</app-button>
+        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="resetGame()">{{God.resetGame}}</app-button>
     </div>
 </template>
 
@@ -137,6 +138,7 @@ import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import Countdown from '@/components/Countdown.vue';
 import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 export default {
     props:{
         finalPlayers: {
@@ -198,8 +200,13 @@ export default {
         finalCitizens(){
             return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
         },
-        dashboard(){
-            return this.Dashboard;
+        dashboard:{
+            get: function(){
+                return this.Dashboard;
+            },
+            set: function(newValue){
+                this.Dashboard = newValue;
+            }
         },
         dayTime: {
             get: function(){
@@ -211,6 +218,10 @@ export default {
         }
     },
     methods:{
+        ...mapActions([
+            'setStep',
+            'controlDashboard'
+        ]),
         cancelAction(){
             this.overlay = false;
             setTimeout(() => {
@@ -357,15 +368,6 @@ export default {
             });
             this.info.target = target;
         },
-        finishGame(){
-            let confirmFinish = confirm("Are you sure about it?");
-            if(confirmFinish){
-                this.$router.push({name:'home'});
-                setTimeout(() => {
-                    this.$router.go();
-                }, 250);
-            }
-        },
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.id = player.id;
@@ -383,6 +385,41 @@ export default {
         },
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
+        },
+        resetGame(){
+            let confirmFinish = confirm("are you sure? Your selected roles and players will reset");
+            if(confirmFinish){
+                this.$router.push({name:'home'});
+                setTimeout(() => {
+                    this.$router.go();
+                }, 250);
+            }
+        },
+        rgwRoles(){
+            let confirmFinish = confirm("Do you want to reset with same roles?");
+            if(confirmFinish){
+                let $dashboard = {
+                    god: false,
+                    day: true,
+                    round: 0,
+                    log: {
+                        action: null,
+                        passive: null,
+                        attacker: null,
+                        target: null,
+                        target2: null,
+                        actionIcon: "loader.svg",
+                        mafia: false,
+                        targetMafia: false,
+                    },
+                    historyLog: [],
+                    totalHistory: [],
+                }
+                this.$emit('ready', false);
+                this.$emit('personNumb', 1);
+                this.controlDashboard($dashboard);
+                this.setStep(1);
+            }
         },
         showInfo(role){
             this.info.name = role.name;

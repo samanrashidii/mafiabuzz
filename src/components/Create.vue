@@ -120,6 +120,8 @@ export default {
                 citizens: 4,
                 roles: [],
                 power: 0,
+                mafiaPower: 0,
+                citizenPower: 0,
                 time: 5,
             },
             overlay: false,
@@ -143,14 +145,25 @@ export default {
             return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
         },
         calcPower(){
-            let $power = this.gameSettings.power;
+            let $power = {
+                average: this.gameSettings.power,
+                mafia: this.gameSettings.mafiaPower,
+                citizen: this.gameSettings.citizenPower,
+            }
+            let $mafiaPower = this.gameSettings.mafiaPower;
+            let $citizenPower = this.gameSettings.citizenPower;
             this.gameSettings.roles.forEach(element => {
-                $power += element.power;  
+                $power.average += element.power;
+                if(element.mafia){
+                    $power.mafia += -(element.power);
+                } else{
+                    $power.citizen += element.power;
+                }
             });
-            if($power >= 95){
-                $power = 95;
-            } else if($power <= -95){
-                $power = -95;
+            if($power.average >= 95){
+                $power.average = 95;
+            } else if($power.average <= -95){
+                $power.average = -95;
             }
             return $power;
         },

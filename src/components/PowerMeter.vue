@@ -4,14 +4,14 @@
             <div class="mafia-power">
                 <strong v-if="mafia > 0">{{mafia}} characters left</strong>
                 <strong v-else-if="mafia < 0">{{Math.abs(mafia)}} characters overplus</strong>
-                <span>Mafia Power</span>
+                <span>Mafia Power : <b>{{power.mafia}}</b></span>
             </div>
             <div class="citizen-power">
                 <strong v-if="citizen > 0">{{citizen}} characters left</strong>
                 <strong v-else-if="citizen < 0">{{Math.abs(citizen)}} characters overplus</strong>
-                <span>Citizen Power</span>
+                <span>Citizen Power : <b>{{power.citizen}}</b></span>
             </div>
-            <div class="meter" :style="{ transform: `translateX(${power}%)`}"><span></span></div>
+            <div class="meter" :style="{ transform: `translateX(${power.average}%)`}"><span></span></div>
         </div>
     </div>
 </template>
@@ -20,8 +20,7 @@
 export default {
     props:{
         power:{
-            type: Number,
-            default: 0
+            type: Object,
         },
         mafia:{
             type: Number,
@@ -30,7 +29,7 @@ export default {
         citizen:{
             type: Number,
             default: 0
-        }
+        },
     }
 }
 </script>
@@ -45,6 +44,8 @@ export default {
     height: 62px;
     padding:30px 15px 12px 15px;
     background-color: $background_color_side;
+    box-shadow:0 0 4px $background_color_main;
+    border-radius: 5px 5px 0 0;
     z-index: 99999;
     transition:all .2s ease-in-out;
     .has-clear-fix{
@@ -82,6 +83,13 @@ export default {
             left:0;
             width:100%;
             text-align: center;
+        }
+        span{
+            font-size: $font_size_0;
+            b{
+                font-size: $font_size_2;
+                color:$black_color;
+            }
         }
     }
     &.active .has-clear-fix{

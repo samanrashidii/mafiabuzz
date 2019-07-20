@@ -55,7 +55,7 @@ i{font-style: normal;}
 
 p{
     line-height: 1.6;
-    font-size: $font_size_5;
+    font-size: $font_size_4;
     padding-top:15px;
 }
 
@@ -386,6 +386,7 @@ button{
 }
 .roles li input:checked + label::after,
 .roles li input:checked ~ a.info{
+    visibility: visible;
     opacity: 1;
     transform:scale(1,1);
 }
@@ -440,6 +441,9 @@ i.citizen-role{
 .day-color{color:$day;}
 .creator-color{color:$creator_color;}
 .white-color{color:$color_1;}
+.Saman{background:url('../images/roles/mafia.png') no-repeat center 10px;}
+.Shahriar{background:url('../images/roles/police.png') no-repeat center 10px;}
+.Samira{background:url('../images/roles/grandma.png') no-repeat center 10px;}
 
 a.info{
     position: absolute;
@@ -448,6 +452,7 @@ a.info{
     display: block;
     width:28px;
     height: 28px;
+    visibility: hidden;
     opacity: 0;
     background:url('../images/assets/info.png') no-repeat center $background_color_2;
     background-size: 24px;
@@ -730,11 +735,11 @@ span.step-number{
         font-size: 27px;
     }
     p{
-        strong{
+        a{
             display:block;
             font-family: $font_mafia;
             font-size: 44px;
-            padding:8px;
+            padding:70px 8px 8px 8px;
             margin-top:15px;
             background-color: $background_color_1;
             border-radius: 3px;

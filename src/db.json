@@ -54,7 +54,7 @@
         },
         "about": {
             "title": "About <span>Us</span>",
-            "subtitle": "MafiaWars is a party game created by <strong class='mafia-role'>Saman Rashidi</strong> <strong class='citizen-role'>Shahryar Osouli</strong> <strong class='binded'>Samira Salimian</strong>"
+            "subtitle": "MafiaWars is a party game created by <a href='http://www.samanrashidi.com' target='_blank' class='mafia-role Saman'>Saman Rashidi</a> <a href='https://www.linkedin.com/in/shahriyar-osuli-a9a77654/' target='_blank' class='citizen-role Shahriar'>Shahriar Osouli</a> <a href='http://www.samirasalimian.com' target='_blank' class='binded Samira'>Samira Salimian</strong>"
         },
         "howToPlay": {
             "title": "How to <span>Play</span>",
@@ -98,7 +98,8 @@
                 "hint": "Character has no action or passive."
             }
         ],
-        "finishGame": "Game Finished...!!!"
+        "rgwRoles": "Restart game with same roles",
+        "resetGame": "Start a new game"
     },
     "roles": [
         {

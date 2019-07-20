@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <god :finalPlayers="gameRoles" v-if="StepCounter == 3" key="step3"/>
+            <god :finalPlayers="gameRoles" @personNumb="personNumb = $event" @ready="ready = $event" v-if="StepCounter == 3" key="step3"/>
         </transition>
     </div>
 </template>
@@ -107,19 +107,25 @@ export default {
             }   
         }
         if(this.ready){
-          let tg = this.gameRoles;
+            let tg = this.gameRoles;
             let tp = this.players;
-            for (let i = tp.length - 1; i >= 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [tp[i], tp[j]] = [tp[j], tp[i]];
-                tg[i].player = tp[i];
-            }
+            this.randomFunc(tg);
             for (let i = tg.length - 1; i >= 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [tg[i], tg[j]] = [tg[j], tg[i]];
+                tg[i].player = tp[i];
             }
             this.setStep(2);  
         }
+    },
+    randomFunc(tg){
+        tg.forEach(element => {
+            for (let i = tg.length - 1; i >= 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [tg[i], tg[j]] = [tg[j], tg[i]];
+                [tg[j], tg[i]] = [tg[i], tg[j]];
+                [tg[i], tg[j]] = [tg[j], tg[i]];
+            }
+        });
+        return tg;
     },
     getImgUrl(pic) {
         return require(`@/assets/images/roles/${pic}`);
