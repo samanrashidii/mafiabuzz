@@ -272,6 +272,7 @@ button{
 #app{
     position: relative;
     min-height: 100%;
+    overflow: hidden;
     padding:15px;
     background-color: $background_color_main;
     .navigation{
@@ -281,6 +282,15 @@ button{
         width:100%;
         height: 100%;
         z-index: 99999;
+        transition:all .2s ease-in-out;
+        a.router-link-active{
+            &::after{
+                display: none;
+            }
+            img{
+                transform:rotate(360deg);
+            }
+        }
         &.single-device nav a{
             &:nth-child(1){width:100%;}
             &:nth-child(2){background-color: $hint_color;}
@@ -323,21 +333,21 @@ button{
             }
         }
         &.internal{
-            height: 78px;
+            height: 50px;
             &.single-device nav a{width:33.3333333%;}
             nav{
                 padding:1px;
                 a{
                     position: relative;
                     width:25%;
-                    padding:4px;
-                    font-size: 18px;
+                    padding:2.5px 2px 1.5px 2px;
+                    font-size: $font_size_6;
                     border-width: 1px;
                     box-shadow: inset 0 0 1px #1e1e1e;
                     span{
                         img{
-                            width:40px;
-                            margin-bottom:5px;
+                            width: 24px;
+                            margin-bottom:2px;
                             transition:all .2s ease-in-out;
                         }
                     }
@@ -356,12 +366,9 @@ button{
         }
     }
     > div:not(.navigation){
-        padding-top:85px;
+        padding-top:50px;
     }
 }
-
-.navigation a.router-link-active::after{display: none;}
-.navigation a.router-link-active img{transform:rotate(360deg);}
 
 .roles li input + label::after{
     content:'';
@@ -456,33 +463,29 @@ a.info{
     left: 1%;
     width:98%;
     height: 95%;
-    overflow-y: auto;
     padding:45px 15px 15px 15px;
     background-color: $transparent_black;
     border-radius: 15px 15px 0 0 ;
     z-index: 999999999;
     transition: all .3s ease-in-out;
-}
-
-.info-box.active{
-    bottom:0;
-}
-
-.info-box img{margin-bottom: 5px;}
-.info-box h2{text-align: center;}
-.info-box p{font-size: $font_size_4;}
-
-.info-box a{
-    position: absolute;
-    top:0;
-    left:0;
-    display: block;
-    width:100%;
-    height: 36px;
-    background:url('../images/assets/arrow-bottom-light.png') no-repeat center #010101;
-    border-bottom:1px solid #1f1f1f;
-    border-radius: 15px 15px 0 0;
-    z-index: 10;
+    &.active{
+        bottom:0;
+    }
+    img{margin-bottom: 5px;}
+    h2{text-align: center;}
+    p{font-size: $font_size_4;}
+    a{
+        position: absolute;
+        top:0;
+        left:0;
+        display: block;
+        width:100%;
+        height: 36px;
+        background:url('../images/assets/arrow-bottom-light.png') no-repeat center #010101;
+        border-bottom:1px solid #1f1f1f;
+        border-radius: 15px 15px 0 0;
+        z-index: 10;
+    }
 }
 
 .step-box{
@@ -505,7 +508,7 @@ a.info{
         height: 400px;
         margin-top:20px;
         .inner-display{
-            > div > div{height: 286px;}
+            > div > div{min-height: 286px;}
             display: table-cell;
             vertical-align: middle;
             text-align: center;
@@ -514,6 +517,7 @@ a.info{
                 font-family: $font_mafia;
                 font-size: 60px;
                 color:$hint_color;
+                word-break: break-word;
                 transition:all .4s ease-in-out;
                 &.mafia-color{color:$background_color_mafia;}
                 &.citizen-color{color:$background_color_citizen;}
@@ -725,6 +729,18 @@ span.step-number{
         font-family: Arial;
         font-size: 27px;
     }
+    p{
+        strong{
+            display:block;
+            font-family: $font_mafia;
+            font-size: 44px;
+            padding:8px;
+            margin-top:15px;
+            background-color: $background_color_1;
+            border-radius: 3px;
+            box-shadow: inset 0 0 4px #7a7a7a;
+        }
+    }
 }
 .creator .title h2 span{color:$creator_color;}
 .about .title h2 span{color:$about_color;}
@@ -743,7 +759,7 @@ span.step-number{
 
 .dashboard-header .title{
     position: relative;
-    padding:20px 10px;
+    padding:20px 10px 10px 10px;
     box-shadow: 0 0 10px $black_color;
     h2 strong{color:$hint_color;}
 }

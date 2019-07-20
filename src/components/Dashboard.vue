@@ -4,8 +4,8 @@
             <div class="title">
                 <h2 v-html="Creator.dashboardTitle"></h2>
             </div>
-            <div class="has-clear-fix" v-if="StepCounter == 1">
-                <app-button @click.native="setGame(false)" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
+            <div class="has-clear-fix" v-if="StepCounter != 3">
+                <app-button @click.native="resetGame()" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
             </div>
         </div>
         <transition name="fade" mode="out-in">
@@ -16,7 +16,7 @@
                 </a>
                 <label for="quantity">{{Creator.chooseNameHint}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
-                    <input type="text" @focus="$event.target.select()" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
+                    <input type="text" @keyup.enter="$event.target.nextElementSibling.focus();" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
                 <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
             </div>
@@ -70,6 +70,9 @@ export default {
     gameRoles(){
         return [...this.SelectedRoles];
     },
+    saveGameRoles(){
+        return [...this.SelectedRoles];
+    }
   },
   methods:{
     ...mapActions([
@@ -103,7 +106,6 @@ export default {
                 }
             }   
         }
-        
         if(this.ready){
           let tg = this.gameRoles;
             let tp = this.players;
@@ -132,6 +134,11 @@ export default {
         } else{
             this.personNumb++;
         }
+    },
+    resetGame(){
+        this.gameRoles = this.saveGameRoles;
+        this.setGame(false);
+        this.setStep(1);
     }
   },
   components:{
