@@ -110,10 +110,12 @@ import {mapActions} from 'vuex';
 export default {
     data(){
         return {
-            gameValdiation: {
-                selectedMafia: 0,
-                selectedCitizen: 0
+            error:{
+                mafia: false,
+                citizens: false
             },
+            fMafias: [],
+            fCitizens: [],
             gameSettings: {
                 unit: 6,
                 mafia: 2,
@@ -124,13 +126,11 @@ export default {
                 citizenPower: 0,
                 time: 5,
             },
-            overlay: false,
-            error:{
-                mafia: false,
-                citizens: false
+            gameValdiation: {
+                selectedMafia: 0,
+                selectedCitizen: 0
             },
-            fMafias: [],
-            fCitizens: [],
+            overlay: false,
         }
     },
     computed:{
@@ -138,11 +138,10 @@ export default {
             'Creator',
             'Numbers',
         ]),
-        finalMafias(){
-            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
-        },
-        finalCitizens(){
-            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
+        calcMafia(){
+            let mafiaNumbers = Math.floor(this.gameSettings.unit / 3) -1;
+            this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
+            return mafiaNumbers;
         },
         calcPower(){
             let $power = {
@@ -167,10 +166,11 @@ export default {
             }
             return $power;
         },
-        calcMafia(){
-            let mafiaNumbers = Math.floor(this.gameSettings.unit / 3) -1;
-            this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
-            return mafiaNumbers;
+        finalMafias(){
+            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
+        },
+        finalCitizens(){
+            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
         },
         isValid(){
             this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
@@ -198,20 +198,16 @@ export default {
             this.gameSettings.mafia = this.Numbers.mafia;
         }
     },
+    mounted(){
+        console.log(this.gameSettings.roles);
+    },
     methods:{
         ...mapActions([
             'getRoles',
             'setGame',
             'setNumbers',
+            'setSavedRoles'
         ]),
-        checkGameMode(){
-            if(this.$route.params.id == 'single-device'){
-                return true;
-            }
-        },
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
         calcDifference(main,side){
             return main - side
         },
@@ -220,13 +216,23 @@ export default {
             this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
             this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
         },
+        checkGameMode(){
+            if(this.$route.params.id == 'single-device'){
+                return true;
+            }
+        },
+        getImgUrl(pic) {
+            return require(`@/assets/images/roles/${pic}`);
+        },
         startGame(){
             let numb = {
                 unit : this.gameSettings.unit,
                 mafia : this.gameSettings.mafia,
                 time : this.gameSettings.time,
             }
+            let $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
             this.getRoles(this.gameSettings.roles);
+            this.setSavedRoles($savedRoles);
             this.setNumbers(numb);
             this.setGame(true);
         }

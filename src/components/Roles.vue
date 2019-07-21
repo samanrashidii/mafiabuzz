@@ -3,7 +3,7 @@
         <info-box :info="info"></info-box>
         <ul class="has-clear-fix">
             <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
-                <input @change="checkRoles(role.id), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :value="role" v-model="selectedRoles" />
+                <input @change="checkRoles(role.id), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
@@ -26,7 +26,6 @@ import InfoBox from '@/components/InfoBox.vue';
 export default {
     data(){
         return {
-            selectedRoles: [],
             normalMafia: 0,
             normalCitizen: 0,
             info: {
@@ -35,7 +34,8 @@ export default {
                 description: "...",
                 icon: "loader.svg",
                 mafia: false
-            }
+            },
+            selectedRoles: [],
         }
     },
     computed:{
@@ -45,41 +45,25 @@ export default {
         ]),
     },
     created(){
-        if(this.SelectedRoles.length > 0){
-            this.selectedRoles = this.SelectedRoles;
-            let normalMafia = 0;
-            let normalCitizen = 0;
-            this.selectedRoles.forEach(element => {
-                if(element.id == 1){
-                    normalMafia++
-                } else if(element.id == 8){
-                    normalCitizen++
-                }
-            });
-            this.normalMafia = normalMafia;
-            this.normalCitizen = normalCitizen;
-            this.emitRoles();
-        }
+        this.cacheRoles();
     },
     methods:{
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
-        checkRoles(role){
-            if(role == 1 && this.normalMafia == 0){
-                this.normalMafia = 1;
-            } else if(role == 1 && this.normalMafia >= 1){
-                this.normalMafia = 0;
-                this.selectedRoles = this.selectedRoles.filter(value => value.id != role);
-            } else if(role == 8 && this.normalCitizen == 0){
-                this.normalCitizen = 1;
-            } else if(role == 8 && this.normalCitizen >= 1){
-                this.normalCitizen = 0;
-                this.selectedRoles = this.selectedRoles.filter(value => value.id != role);
+        cacheRoles(){
+            if(this.SelectedRoles.length > 0){
+                this.selectedRoles = this.SelectedRoles;
+                let normalMafia = 0;
+                let normalCitizen = 0;
+                this.selectedRoles.forEach(element => {
+                    if(element.id == 1){
+                        normalMafia++
+                    } else if(element.id == 8){
+                        normalCitizen++
+                    }
+                });
+                this.normalMafia = normalMafia;
+                this.normalCitizen = normalCitizen;
+                this.emitRoles();
             }
-        },
-        emitRoles(){
-            this.$emit('selectedRoles', this.selectedRoles);
         },
         checkNumbers(role){
             if(this.normalMafia > 0 && role == 1){
@@ -90,20 +74,22 @@ export default {
                 return false;
             }
         },
-        incrNumber(role){
-            let targetRole;
-            if(role.id == 1){
-                if(this.normalMafia < 10){
-                    this.normalMafia++;
-                    targetRole = JSON.parse(JSON.stringify(role));
-                    this.selectedRoles.push(targetRole);
+        checkRoles(id){
+            this.Roles.forEach(element => {
+                if(element.id == id){
+                    element.selected == false ? element.selected = true : element.selected = false;
                 }
-            } else if(role.id == 8){
-                if(this.normalCitizen < 20){
-                    this.normalCitizen++;
-                    targetRole = JSON.parse(JSON.stringify(role));
-                    this.selectedRoles.push(targetRole);
-                }
+            });
+            if(id == 1 && this.normalMafia == 0){
+                this.normalMafia = 1;
+            } else if(id == 1 && this.normalMafia >= 1){
+                this.normalMafia = 0;
+                this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
+            } else if(id == 8 && this.normalCitizen == 0){
+                this.normalCitizen = 1;
+            } else if(id == 8 && this.normalCitizen >= 1){
+                this.normalCitizen = 0;
+                this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
             }
         },
         decrNumber(role){
@@ -125,6 +111,28 @@ export default {
                     }
                 }
                 this.normalMafia--;
+            }
+        },
+        emitRoles(){
+            this.$emit('selectedRoles', this.selectedRoles);
+        },
+        getImgUrl(pic) {
+            return require(`@/assets/images/roles/${pic}`);
+        },
+        incrNumber(role){
+            let targetRole;
+            if(role.id == 1){
+                if(this.normalMafia < 10){
+                    this.normalMafia++;
+                    targetRole = JSON.parse(JSON.stringify(role));
+                    this.selectedRoles.push(targetRole);
+                }
+            } else if(role.id == 8){
+                if(this.normalCitizen < 20){
+                    this.normalCitizen++;
+                    targetRole = JSON.parse(JSON.stringify(role));
+                    this.selectedRoles.push(targetRole);
+                }
             }
         },
         showInfo(role){

@@ -2,10 +2,13 @@
     <div class="dashboard">
         <div class="dashboard-header">
             <div class="title">
-                <h2 v-html="Creator.dashboardTitle"></h2>
+                <h2 class="has-xsmall-bottom-margin" v-html="Creator.dashboardTitle"></h2>
             </div>
-            <div class="has-clear-fix" v-if="StepCounter != 3">
+            <div v-if="StepCounter != 3 && !GameReset">
                 <app-button @click.native="resetGame()" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
+            </div>
+            <div v-else-if="StepCounter != 3 && GameReset">
+                <app-button @click.native="restartGame()" class="danger"><span>{{Creator.restartGame}}</span></app-button>
             </div>
         </div>
         <transition name="fade" mode="out-in">
@@ -52,47 +55,31 @@ import {mapActions} from 'vuex';
 export default {
   data(){
       return {
-          players : [],
-          showrole : false,
-          personNumb : 1,
-          showPredefined: false,
-          ready: false,
-      }
-  },
+            personNumb : 1,
+            players : [],
+            ready: false,
+            showPredefined: false,
+            showrole : false,
+        }
+   },
   computed:{
     ...mapGetters([
         'Creator',
         'SelectedRoles',
         'gameStatus',
         'Numbers',
-        'StepCounter'
+        'StepCounter',
+        'GameReset'
     ]),
     gameRoles(){
-        return [...this.SelectedRoles];
+        return this.SelectedRoles;
     },
-    saveGameRoles(){
-        return [...this.SelectedRoles];
-    }
   },
   methods:{
     ...mapActions([
         'setGame',
         'setStep',
     ]),
-    preDefined(){
-        this.SelectedRoles.forEach((element,index) => {
-            this.players.push(`Player ${index+1}`);
-        });
-    },
-    handlePredefine(){
-        if(this.showPredefined == false){
-            this.preDefined();
-            this.showPredefined = true;
-        } else{
-            this.players = [];
-            this.showPredefined = false;
-        }
-    },
     assignRoles(){
         let gR = this.gameRoles;
         let pL = this.players;
@@ -116,6 +103,34 @@ export default {
             this.setStep(2);  
         }
     },
+    getImgUrl(pic) {
+        return require(`@/assets/images/roles/${pic}`);
+    },
+    goToPage(obj){
+        this.$router.push(obj);
+    },
+    handlePredefine(){
+        if(this.showPredefined == false){
+            this.preDefined();
+            this.showPredefined = true;
+        } else{
+            this.players = [];
+            this.showPredefined = false;
+        }
+    },
+    nextPerson(){
+        this.showrole = false;
+        if(this.personNumb == this.gameRoles.length){
+            this.setStep(3);
+        } else{
+            this.personNumb++;
+        }
+    },
+    preDefined(){
+        this.SelectedRoles.forEach((element,index) => {
+            this.players.push(`Player ${index+1}`);
+        });
+    },
     randomFunc(tg){
         tg.forEach(element => {
             for (let i = tg.length - 1; i >= 0; i--) {
@@ -127,24 +142,18 @@ export default {
         });
         return tg;
     },
-    getImgUrl(pic) {
-        return require(`@/assets/images/roles/${pic}`);
-    },
-    goToPage(obj){
-        this.$router.push(obj);
-    },
-    nextPerson(){
-        this.showrole = false;
-        if(this.personNumb == this.gameRoles.length){
-            this.setStep(3);
-        } else{
-            this.personNumb++;
-        }
-    },
     resetGame(){
-        this.gameRoles = this.saveGameRoles;
         this.setGame(false);
         this.setStep(1);
+    },
+    restartGame(){
+        let confirmFinish = confirm("are you sure? Your selected roles and players will reset");
+        if(confirmFinish){
+            this.$router.push({name:'home'});
+            setTimeout(() => {
+                this.$router.go();
+            }, 250);
+        }
     }
   },
   components:{

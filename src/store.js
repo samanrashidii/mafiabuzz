@@ -8,6 +8,8 @@ export default new Vuex.Store({
   state: {
     db: dB,
     roles: [],
+    savedRoles: [],
+    gameReset: false,
     gameCreated: false,
     numbers: null,
     stepCounter: 1,
@@ -38,6 +40,8 @@ export default new Vuex.Store({
     HowToPlay: state => state.db.pages.howToPlay,
     God: state => state.db.god,
     SelectedRoles: state => state.roles,
+    SavedRoles: state => state.savedRoles,
+    GameReset: state => state.gameReset,
     gameStatus: state => state.gameCreated,
     Numbers: state => state.numbers,
     StepCounter: state => state.stepCounter,
@@ -46,6 +50,9 @@ export default new Vuex.Store({
   mutations: {
     GET_ROLES: (state, items) => {
       Vue.set(state, 'roles', [...items]);
+    },
+    SET_SAVED_ROLES: (state, roles) => {
+      Vue.set(state, 'savedRoles', [...roles]);
     },
     SET_GAME: (state, status) => {
       Vue.set(state, 'gameCreated', status);
@@ -62,10 +69,16 @@ export default new Vuex.Store({
     UPDATE_LOG: (state, log) => {
       Vue.set(state.historyLog, 'dashboard', log);
     },
+    GAME_RESET: (state, stat) => {
+      Vue.set(state, 'gameReset', stat);
+    },
   },
   actions: {
     getRoles: (context, items) => {
       context.commit('GET_ROLES', items);
+    },
+    setSavedRoles: (context, roles) => {
+      context.commit('SET_SAVED_ROLES', roles);
     },
     setGame: (context, status) => {
       context.commit('SET_GAME', status);
@@ -81,6 +94,9 @@ export default new Vuex.Store({
     },
     updateLog: (context, log) => {
       context.commit('UPDATE_LOG', log);
+    },
+    setGameReset: (context, stat) => {
+      context.commit('GAME_RESET', stat);
     },
   },
 });

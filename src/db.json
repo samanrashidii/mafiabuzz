@@ -39,6 +39,7 @@
             "playerMargin": 5,
             "start": "Start Game!",
             "changeSettings": "Change Role Settings",
+            "restartGame": "Restart game and change roles",
             "assign": "Assign Roles",
             "checkBeforeStart": "Your game will start with below characters",
             "dashboardTitle": "<strong>Game</strong> Dash<span>board</span>",
@@ -119,6 +120,7 @@
             "alt": "Mafia Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": true,
                 "dead": false,
@@ -156,6 +158,7 @@
             "alt": "Godfather Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -193,6 +196,7 @@
             "alt": "Ruspy Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -230,6 +234,7 @@
             "alt": "Drunk Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -267,6 +272,7 @@
             "alt": "Traitor Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -304,6 +310,7 @@
             "alt": "Chef Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -341,6 +348,7 @@
             "alt": "Yakuza Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -377,6 +385,7 @@
             "alt": "Citizen Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": true,
                 "dead": false,
@@ -413,6 +422,7 @@
             "alt": "Police Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -449,6 +459,7 @@
             "alt": "Doctor Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -486,6 +497,7 @@
             "alt": "Cupid Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -522,6 +534,7 @@
             "alt": "Bomb Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -558,6 +571,7 @@
             "alt": "Grandma Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -595,6 +609,7 @@
             "alt": "Bulletproof Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -631,6 +646,7 @@
             "alt": "Necromancer Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
@@ -668,6 +684,7 @@
             "alt": "Hacker Icon",
             "actionStatus": false,
             "player": null,
+            "selected": false,
             "status": {
                 "normal": false,
                 "dead": false,
