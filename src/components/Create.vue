@@ -198,9 +198,6 @@ export default {
             this.gameSettings.mafia = this.Numbers.mafia;
         }
     },
-    mounted(){
-        console.log(this.gameSettings.roles);
-    },
     methods:{
         ...mapActions([
             'getRoles',
