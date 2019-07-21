@@ -13,24 +13,15 @@ export default {
     },
     data(){
         return {
+            endTime: '0',
             timeLeft: '',
             timeFinished: false,
-            endTime: '0',
         };
     },
     created(){
         this.setTime(this.dayTime);
     },
     methods: {
-        setTime(seconds) {
-            this.timer(seconds);
-        },
-        timer(seconds) {
-            const now = Date.now();
-            const end = now + seconds * 1000;
-            this.displayTimeLeft(seconds);
-            this.countdown(end);
-        },
         countdown(end) {
             intervalTimer = setInterval(() => {
                 const secondsLeft = Math.round((end - Date.now()) / 1000);
@@ -49,6 +40,15 @@ export default {
             const minutes = Math.floor((secondsLeft % 3600) / 60);
             const seconds = secondsLeft % 60;
             this.timeLeft = `${zeroPadded(minutes)}:${zeroPadded(seconds)}`;
+        },
+        setTime(seconds) {
+            this.timer(seconds);
+        },
+        timer(seconds) {
+            const now = Date.now();
+            const end = now + seconds * 1000;
+            this.displayTimeLeft(seconds);
+            this.countdown(end);
         },
     }
 }

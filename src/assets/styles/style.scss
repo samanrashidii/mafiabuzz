@@ -384,15 +384,15 @@ button{
     transition:all .2s ease-in-out;
     transform:scale(0,0);
 }
-.roles li input:checked + label::after,
-.roles li input:checked ~ a.info{
+.roles li input.active + label::after,
+.roles li input.active ~ a.info{
     visibility: visible;
     opacity: 1;
     transform:scale(1,1);
 }
-.roles li input:checked + label{color:$black_color;}
+.roles li input.active + label{color:$black_color;}
 .roles li input + label img{transition:all .3s ease-in-out;}
-.roles li input:checked + label img{transform:rotate(360deg);}
+.roles li input.active + label img{transform:rotate(360deg);}
 
 .start-bttn{
     height:46px;

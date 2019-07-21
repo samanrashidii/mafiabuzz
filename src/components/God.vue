@@ -128,7 +128,7 @@
                 </li>
             </ul>
         </div>
-        <app-button class="danger has-xsmall-bottom-margin" v-if="dashboard.god" @click.native="rgwRoles()">{{God.rgwRoles}}</app-button>
+        <app-button class="active has-xsmall-bottom-margin" v-if="dashboard.god" @click.native="rgwRoles()">{{God.rgwRoles}}</app-button>
         <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="resetGame()">{{God.resetGame}}</app-button>
     </div>
 </template>
@@ -179,27 +179,9 @@ export default {
             'Dashboard',
             'God',
             'Numbers',
+            'SavedRoles',
+            'SelectedRoles'
         ]),
-        log(){
-            return this.Dashboard.log;
-        },
-        historyLog: {
-            get: function(){
-                return this.Dashboard.historyLog;
-            },
-            set: function(newValue){
-                this.Dashboard.historyLog = newValue;
-            }
-        },
-        totalHistory(){
-            return this.Dashboard.totalHistory;
-        },
-        finalMafias(){
-            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
-        },
-        finalCitizens(){
-            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
-        },
         dashboard:{
             get: function(){
                 return this.Dashboard;
@@ -215,12 +197,57 @@ export default {
             set: function(newValue){
                 this.Numbers.time = newValue;
             }
-        }
+        },
+        defaultDashboard(){
+            return {
+                    god: false,
+                    day: true,
+                    round: 0,
+                    log: {
+                        action: null,
+                        passive: null,
+                        attacker: null,
+                        target: null,
+                        target2: null,
+                        actionIcon: "loader.svg",
+                        mafia: false,
+                        targetMafia: false,
+                    },
+                    historyLog: [],
+                    totalHistory: [],
+                }
+        },
+        finalMafias(){
+            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
+        },
+        finalCitizens(){
+            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
+        },
+        historyLog: {
+            get: function(){
+                return this.Dashboard.historyLog;
+            },
+            set: function(newValue){
+                this.Dashboard.historyLog = newValue;
+            }
+        },
+        log(){
+            return this.Dashboard.log;
+        },
+        savedRoles(){
+            let $savedRoles = JSON.parse(JSON.stringify(this.SavedRoles));
+            return $savedRoles;
+        },
+        totalHistory(){
+            return this.Dashboard.totalHistory;
+        },
     },
     methods:{
         ...mapActions([
             'setStep',
-            'controlDashboard'
+            'controlDashboard',
+            'getRoles',
+            'setGameReset'
         ]),
         cancelAction(){
             this.overlay = false;
@@ -398,26 +425,11 @@ export default {
         rgwRoles(){
             let confirmFinish = confirm("Do you want to reset with same roles?");
             if(confirmFinish){
-                let $dashboard = {
-                    god: false,
-                    day: true,
-                    round: 0,
-                    log: {
-                        action: null,
-                        passive: null,
-                        attacker: null,
-                        target: null,
-                        target2: null,
-                        actionIcon: "loader.svg",
-                        mafia: false,
-                        targetMafia: false,
-                    },
-                    historyLog: [],
-                    totalHistory: [],
-                }
+                this.getRoles(this.savedRoles);
+                this.setGameReset(true);
                 this.$emit('ready', false);
                 this.$emit('personNumb', 1);
-                this.controlDashboard($dashboard);
+                this.controlDashboard(this.defaultDashboard);
                 this.setStep(1);
             }
         },
@@ -430,9 +442,6 @@ export default {
         },
         showPlay(){
             this.dashboard.god = true;
-        },
-        updateDashboard(){
-            this.controlDashboard(this.dashboard); //
         }
     },
     components: {
