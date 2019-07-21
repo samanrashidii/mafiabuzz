@@ -14,8 +14,11 @@
         <transition name="fade" mode="out-in">
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
-                <a class="predefined" href="javascript:void(0)" :class="{'active': showPredefined}" @click="handlePredefine()">
-                    <span>Fill names as defualt</span>
+                <a class="predefined type-2" href="javascript:void(0)" v-if="checkLocalStorage" :class="{'active': showSavedNames}" @click="handleSavedNames()">
+                    <span>Last Names</span>
+                </a>
+                <a class="predefined" href="javascript:void(0)" v-else :class="{'active': showPredefined}" @click="handlePredefine()">
+                    <span>Default Names</span>
                 </a>
                 <label for="quantity">{{Creator.chooseNameHint}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
@@ -59,6 +62,7 @@ export default {
             players : [],
             ready: false,
             showPredefined: false,
+            showSavedNames: false,
             showrole : false,
         }
    },
@@ -71,6 +75,13 @@ export default {
         'StepCounter',
         'GameReset'
     ]),
+    checkLocalStorage(){
+        if(localStorage.savedPlayers && localStorage.savedPlayers.length > 0){
+            return true;
+        } else{
+            return false;
+        }
+    },
     gameRoles(){
         return this.SelectedRoles;
     },
@@ -102,6 +113,7 @@ export default {
             }
             this.setStep(2);  
         }
+        localStorage.savedPlayers = pL;
     },
     getImgUrl(pic) {
         return require(`@/assets/images/roles/${pic}`);
@@ -113,9 +125,23 @@ export default {
         if(this.showPredefined == false){
             this.preDefined();
             this.showPredefined = true;
+            this.showSavedNames = false;
         } else{
             this.players = [];
             this.showPredefined = false;
+            this.showSavedNames = true;
+        }
+    },
+    handleSavedNames(){
+        if(this.showSavedNames == false){
+            let $savedPlayers = localStorage.savedPlayers.split(",");
+            this.players = $savedPlayers;
+            this.showPredefined = false;
+            this.showSavedNames = true;
+        } else{
+            this.players = [];
+            this.showPredefined = true;
+            this.showSavedNames = false;
         }
     },
     nextPerson(){

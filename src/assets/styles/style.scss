@@ -835,6 +835,7 @@ span.step-number{
         background-position: center !important;
         background-color: rgba(0,0,0,.85) !important;
     }
+    &:nth-child(1)::after{display: none;}
     &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
     a.angel{
         background-color: $dark_green_color !important;
@@ -921,10 +922,11 @@ span.step-number{
 
 .predefined{
     position: absolute;
-    top:10px;
+    top:16px;
     right:10px;
+    width:130px;
     display:inline-block;
-    font-size:$font_size_3;
+    font-size:$font_size_2;
     color:$color_1;
     padding:8px 10px 8px 32px;
     border:1px solid $color_1;
