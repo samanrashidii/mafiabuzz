@@ -857,14 +857,13 @@ span.step-number{
 
 .healed td{
     position: relative;
-    &::after{
+    &:nth-child(2)::after{
         opacity: 1 !important;
         visibility: visible !important;
-        background-color: rgba(46,166,63,.85);
-    }
-    &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
-    a.angel{
-        background-color: $dark_green_color !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-image: url('../images/icons/heal.png');
+        background-color: rgba(26,66,0,.85) !important;
     }
 }
 

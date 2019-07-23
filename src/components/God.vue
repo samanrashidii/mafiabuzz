@@ -49,7 +49,7 @@
                                     </select>
                                 </template>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
-                                <app-button @click.native="executeAction(info.id, info.targetID, info.linked)">{{God.confirmButton}}</app-button>
+                                <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -180,6 +180,7 @@ export default {
                 show: false,
                 player: "Loading",
                 linked: false,
+                healed: false,
                 action: "Loading Action",
                 passive: "Passive",
                 name: "Default",
@@ -285,6 +286,7 @@ export default {
                 this.info.targetMafia = null;
                 this.info.targetIcon = 'default.png';
                 this.info.linked = false;
+                this.info.healed = false;
                 this.log.target = null;
             }, 500);
         },
@@ -323,7 +325,8 @@ export default {
                 'dead': char.status.dead == true, 
                 'ninja': char.status.stolen == true,
                 'love-bind': char.status.linked == true,
-                'silenced': char.status.silenced == true
+                'silenced': char.status.silenced == true,
+                'healed': char.status.healed == true,
             }
         },
         checkGroup(player){
@@ -351,8 +354,8 @@ export default {
             } 
         },
         deadOrAlive(player){
-            
-            if(player.status.dead == false){
+            // Check Alive People and People Don't Have Heal Buff = Kill them with filters
+            if(player.status.dead == false && !player.status.healed){
                 // Cupid Targets
                 if(player.status.linked){
                     this.finalPlayers.forEach(element => {
@@ -378,6 +381,7 @@ export default {
                         }
                     });
                 }
+            // Check Dead People = Revive them with filters
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
@@ -391,7 +395,12 @@ export default {
                 });
             }
         },
-        executeAction(attacker, defender, linked){
+        executeAction(targetInfo){
+            let attacker = targetInfo.id;
+            let defender = targetInfo.targetID;
+            let linked = targetInfo.linked;
+            let healed = targetInfo.healed;
+            
             if(this.log.target != null){
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
@@ -435,8 +444,8 @@ export default {
                             element.status.linked = true;
                         }
                     }
-                    // Godfather Targets -- Kill
-                    if(attacker == 2){
+                    // Godfather Targets -- Kill if not Healed
+                    if(attacker == 2 && !healed){
                         if(element.player == this.log.target){
                             element.status.dead = true;
                         }
@@ -459,6 +468,12 @@ export default {
                             element.status.silenced = true;
                         }
                     }
+                    // Doctor Targets
+                    if(attacker == 10){
+                        if(element.player == this.log.target){
+                            element.status.healed = true;
+                        }
+                    }
                 });
             }
         },
@@ -469,6 +484,7 @@ export default {
                     this.info.targetIcon = element.icon;
                     this.info.targetID = element.id;
                     this.info.linked = element.status.linked;
+                    this.info.healed = element.status.healed;
                 }
             });
             this.info.target = target;
