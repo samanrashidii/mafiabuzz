@@ -49,7 +49,7 @@
                                     </select>
                                 </template>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
-                                <app-button @click.native="executeAction(info.id, info.targetID)">{{God.confirmButton}}</app-button>
+                                <app-button @click.native="executeAction(info.id, info.targetID, info.linked)">{{God.confirmButton}}</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -179,6 +179,7 @@ export default {
                 id: 0,
                 show: false,
                 player: "Loading",
+                linked: false,
                 action: "Loading Action",
                 passive: "Passive",
                 name: "Default",
@@ -283,6 +284,7 @@ export default {
                 this.info.targetID = 0;
                 this.info.targetMafia = null;
                 this.info.targetIcon = 'default.png';
+                this.info.linked = false;
                 this.log.target = null;
             }, 500);
         },
@@ -320,7 +322,8 @@ export default {
             return {
                 'dead': char.status.dead == true, 
                 'ninja': char.status.stolen == true,
-                'love-bind': char.status.linked == true
+                'love-bind': char.status.linked == true,
+                'silenced': char.status.silenced == true
             }
         },
         checkGroup(player){
@@ -355,7 +358,7 @@ export default {
                     this.finalPlayers.forEach(element => {
                         if(element.status.linked){
                             element.status.dead = true;
-                        } 
+                        }
                     });
                 }
                 // Bomb Targets
@@ -363,18 +366,7 @@ export default {
                     this.finalPlayers.forEach(element => {
                         if(element.player == player.player){
                             element.status.dead = true;
-                            if(!element.status.detonated && element.action.oneTime){
-                                element.status.detonated = true;
-                                this.log.target = element.player;
-                                this.log.passiveLog = true;
-                                this.log.passive = element.action.passive;
-                                this.log.passiveIcon = element.icon;
-                                element.status.detonated = true;
-                                element.actionStatus = true;
-                                element.action.oneTime = false;
-                                this.historyLog.push({...this.log});
-                                this.log.passiveLog = false;
-                            }
+                            this.passiveCalc(element);
                         }
                     });
                 }
@@ -389,12 +381,17 @@ export default {
             } else{
                 this.finalPlayers.forEach(element => {
                     if(element.player == player.player){
+                        // Revive Cupid Targets
+                        if(element.status.linked && element.status.dead){
+                            element.status.linked = false;
+                        }
+                        // Revive
                         element.status.dead = false;
                     }
                 });
             }
         },
-        executeAction(attacker, defender){
+        executeAction(attacker, defender, linked){
             if(this.log.target != null){
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
@@ -445,19 +442,10 @@ export default {
                         }
                         // Bomb Targets | Passive
                         if(element.id == defender){
-                            if(!element.status.detonated && element.action.oneTime){
-                                this.log.passiveLog = true;
-                                this.log.passive = element.action.passive;
-                                this.log.passiveIcon = element.icon;
-                                element.status.detonated = true;
-                                element.actionStatus = true;
-                                element.action.oneTime = false;
-                                this.historyLog.push({...this.log});
-                                this.log.passiveLog = false;
-                            }
+                            this.passiveCalc(element);
                         }
                         // Cupid Targets | Status
-                        if(element.status.linked){
+                        if(linked){
                             this.finalPlayers.forEach(element => {
                                 if(element.status.linked){
                                     element.status.dead = true;
@@ -480,6 +468,7 @@ export default {
                     this.info.targetMafia = element.mafia;
                     this.info.targetIcon = element.icon;
                     this.info.targetID = element.id;
+                    this.info.linked = element.status.linked;
                 }
             });
             this.info.target = target;
@@ -501,6 +490,20 @@ export default {
         },
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
+        },
+        passiveCalc(element){
+            if(!element.status.detonated && element.action.oneTime){
+                element.status.detonated = true;
+                this.log.target = element.player;
+                this.log.passiveLog = true;
+                this.log.passive = element.action.passive;
+                this.log.passiveIcon = element.icon;
+                element.status.detonated = true;
+                element.actionStatus = true;
+                element.action.oneTime = false;
+                this.historyLog.push({...this.log});
+                this.log.passiveLog = false;
+            }
         },
         resetGame(){
             let confirmFinish = confirm("are you sure? Your selected roles and players will reset");

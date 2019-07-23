@@ -843,6 +843,18 @@ span.step-number{
     }
 }
 
+.silenced td{
+    position: relative;
+    &:nth-child(2)::after{
+        opacity: 1 !important;
+        visibility: visible !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-image: url('../images/icons/silence.png');
+        background-color: rgba(5,31,58,.85) !important;
+    }
+}
+
 .healed td{
     position: relative;
     &::after{
