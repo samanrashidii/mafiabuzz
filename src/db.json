@@ -525,7 +525,8 @@
             "mafia": false,
             "action": {
                 "passive": "Detonate",
-                "action": null
+                "action": null,
+                "oneTime": true
             },
             "actionIcon": null,
             "description": "The Bomb is with citizen and when he gets killed during day or night, He will detonate himself and kill his sibling players.",

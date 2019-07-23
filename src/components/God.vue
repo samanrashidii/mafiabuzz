@@ -67,6 +67,8 @@
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
+                                            <span class="disabled" v-if="fM.action.passive == null && fM.action.action == null"></span>
+                                            <span class="done-action" v-else-if="fM.action.action == null && fM.action.passive != null && fM.actionStatus == true"></span>
                                             <span class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
                                             <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
@@ -86,6 +88,7 @@
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
+                                            <span class="done-action" v-else-if="fC.action.action == null && fC.action.passive != null && fC.actionStatus == true"></span>
                                             <span class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
@@ -97,7 +100,6 @@
                                 <span class="table-title">What Happened Last Night</span>
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
-                                        <td>{{index+1}}</td>
                                         <td>
                                             <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
                                             <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
@@ -303,7 +305,7 @@ export default {
                     element.status.healed = false;
                     element.status.hacked = false;
                     // Cupid Attacker
-                    if(element.id == 11){
+                    if(element.id == 11 || element.id == 12){
                         if(!element.action.oneTime){
                             element.actionStatus = true;
                         }
@@ -361,14 +363,15 @@ export default {
                     this.finalPlayers.forEach(element => {
                         if(element.player == player.player){
                             element.status.dead = true;
-                            if(!element.status.detonated){
+                            if(!element.status.detonated && element.action.oneTime){
                                 element.status.detonated = true;
                                 this.log.target = element.player;
                                 this.log.passiveLog = true;
                                 this.log.passive = element.action.passive;
                                 this.log.passiveIcon = element.icon;
                                 element.status.detonated = true;
-                                element.action.passive = null;
+                                element.actionStatus = true;
+                                element.action.oneTime = false;
                                 this.historyLog.push({...this.log});
                                 this.log.passiveLog = false;
                             }
@@ -435,22 +438,31 @@ export default {
                             element.status.linked = true;
                         }
                     }
-                    // Godfather Targets
+                    // Godfather Targets -- Kill
                     if(attacker == 2){
                         if(element.player == this.log.target){
                             element.status.dead = true;
                         }
                         // Bomb Targets | Passive
                         if(element.id == defender){
-                            if(!element.status.detonated){
+                            if(!element.status.detonated && element.action.oneTime){
                                 this.log.passiveLog = true;
                                 this.log.passive = element.action.passive;
                                 this.log.passiveIcon = element.icon;
                                 element.status.detonated = true;
-                                element.action.passive = null;
+                                element.actionStatus = true;
+                                element.action.oneTime = false;
                                 this.historyLog.push({...this.log});
                                 this.log.passiveLog = false;
                             }
+                        }
+                        // Cupid Targets | Status
+                        if(element.status.linked){
+                            this.finalPlayers.forEach(element => {
+                                if(element.status.linked){
+                                    element.status.dead = true;
+                                } 
+                            });
                         }
                     }
                     // Ruspy Targets
