@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                                 <label class="has-small-top-margin" for="action_target">{{God.actionHintText}}</label>
-                                <select @change="findTarget(log.target)" name="action_target" id="action_target" v-model="log.target">
+                                <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
                                     <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                                 </select>
                                 <template v-if="info.id == 11 && log.target != null">
@@ -49,7 +49,7 @@
                                     </select>
                                 </template>
                                 <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
-                                <app-button @click.native="executeAction(info.id)">{{God.confirmButton}}</app-button>
+                                <app-button @click.native="executeAction(info.id, info.targetID)">{{God.confirmButton}}</app-button>
                             </div>
                         </overlay>
                         <div class="players-role">
@@ -97,8 +97,19 @@
                                 <span class="table-title">What Happened Last Night</span>
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
-                                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
+                                        <td>{{index+1}}</td>
+                                        <td>
+                                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                                        </td>
+                                        <td>
+                                            <template v-if="!log.passiveLog">
+                                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " <span class="action-color">{{log.action}}</span> " on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                                            </template>
+                                            <template v-else>
+                                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : <br />" <span :class="{'site-color':true}">{{log.passive}}</span> "
+                                            </template>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -114,8 +125,18 @@
                 <table>
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
-                        <td><img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" /></td>
-                        <td><span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used <span class="action-color">{{log.action}}</span> on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i></td>
+                        <td>
+                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        </td>
+                        <td>
+                            <template v-if="!log.passiveLog">
+                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " <span class="action-color">{{log.action}}</span> " on <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span><i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                            </template>
+                            <template v-else>
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : <br />" <span :class="{'site-color':true}">{{log.passive}}</span> "
+                            </template>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -153,7 +174,7 @@ export default {
             defaultTime: 0,
             confirmAction: false,
             info: {
-                id: null,
+                id: 0,
                 show: false,
                 player: "Loading",
                 action: "Loading Action",
@@ -164,6 +185,7 @@ export default {
                 actionIcon: "loader.svg",
                 mafia: false,
                 target: 'Person?',
+                targetID: 0,
                 targetMafia: null,
                 targetIcon: 'default.png',
             },
@@ -204,10 +226,13 @@ export default {
                     day: true,
                     round: 0,
                     log: {
+                        passiveLog: false,
                         action: null,
                         passive: null,
+                        passiveIcon: "loader.svg",
                         attacker: null,
                         target: null,
+                        targetID: 0,
                         target2: null,
                         actionIcon: "loader.svg",
                         mafia: false,
@@ -218,10 +243,10 @@ export default {
                 }
         },
         finalMafias(){
-            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
+            return this.fMafias;
         },
         finalCitizens(){
-            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
+            return this.fCitizens;
         },
         historyLog: {
             get: function(){
@@ -253,6 +278,7 @@ export default {
             this.overlay = false;
             setTimeout(() => {
                 this.info.target = 'Player?';
+                this.info.targetID = 0;
                 this.info.targetMafia = null;
                 this.info.targetIcon = 'default.png';
                 this.log.target = null;
@@ -270,6 +296,12 @@ export default {
                 }
                 this.dashboard.round++;
                 this.finalPlayers.forEach(element => {
+                    // Reset One Night Actions
+                    element.status.silenced = false;
+                    element.status.roleChecked = false;
+                    element.status.identityChecked = false;
+                    element.status.healed = false;
+                    element.status.hacked = false;
                     // Cupid Attacker
                     if(element.id == 11){
                         if(!element.action.oneTime){
@@ -323,7 +355,26 @@ export default {
                             element.status.dead = true;
                         } 
                     });
-                } 
+                }
+                // Bomb Targets
+                if(player.id == 12){
+                    this.finalPlayers.forEach(element => {
+                        if(element.player == player.player){
+                            element.status.dead = true;
+                            if(!element.status.detonated){
+                                element.status.detonated = true;
+                                this.log.target = element.player;
+                                this.log.passiveLog = true;
+                                this.log.passive = element.action.passive;
+                                this.log.passiveIcon = element.icon;
+                                element.status.detonated = true;
+                                element.action.passive = null;
+                                this.historyLog.push({...this.log});
+                                this.log.passiveLog = false;
+                            }
+                        }
+                    });
+                }
                 // Default Target
                 else{
                     this.finalPlayers.forEach(element => {
@@ -340,7 +391,7 @@ export default {
                 });
             }
         },
-        executeAction(attacker){
+        executeAction(attacker, defender){
             if(this.log.target != null){
                 this.log.attacker = this.info.player;
                 this.log.action = this.info.action;
@@ -348,11 +399,12 @@ export default {
                 this.log.actionIcon = this.info.actionIcon;
                 this.log.mafia = this.info.mafia;
                 this.log.targetMafia = this.info.targetMafia;
+                this.log.targetID = this.info.targetID;
                 
                 this.historyLog.push({...this.log});
                 this.cancelAction();
 
-                this.finalPlayers.forEach(element => {
+                this.finalPlayers.forEach((element, index) => {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
                         // Yakuza Attacker
@@ -383,6 +435,30 @@ export default {
                             element.status.linked = true;
                         }
                     }
+                    // Godfather Targets
+                    if(attacker == 2){
+                        if(element.player == this.log.target){
+                            element.status.dead = true;
+                        }
+                        // Bomb Targets | Passive
+                        if(element.id == defender){
+                            if(!element.status.detonated){
+                                this.log.passiveLog = true;
+                                this.log.passive = element.action.passive;
+                                this.log.passiveIcon = element.icon;
+                                element.status.detonated = true;
+                                element.action.passive = null;
+                                this.historyLog.push({...this.log});
+                                this.log.passiveLog = false;
+                            }
+                        }
+                    }
+                    // Ruspy Targets
+                    if(attacker == 3){
+                        if(element.player == this.log.target){
+                            element.status.silenced = true;
+                        }
+                    }
                 });
             }
         },
@@ -391,6 +467,7 @@ export default {
                 if(element.player == target){
                     this.info.targetMafia = element.mafia;
                     this.info.targetIcon = element.icon;
+                    this.info.targetID = element.id;
                 }
             });
             this.info.target = target;
@@ -550,7 +627,7 @@ export default {
                 font-weight: normal;
                 font-size: $font_size_3;
                 color:$color_1;
-                word-break: break-all;
+                word-break: break-word;
                 padding:6px;
                 background-color: $background_color_main;
                 img{width:28px;}
