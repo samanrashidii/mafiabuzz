@@ -86,6 +86,7 @@
                                         <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
+                                            <span class="done-action" v-else-if="fC.action.action == null && fC.action.passive != null && fC.actionStatus == true"></span>
                                             <span class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
                                             <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
@@ -97,7 +98,6 @@
                                 <span class="table-title">What Happened Last Night</span>
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
-                                        <td>{{index+1}}</td>
                                         <td>
                                             <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
                                             <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
@@ -361,14 +361,15 @@ export default {
                     this.finalPlayers.forEach(element => {
                         if(element.player == player.player){
                             element.status.dead = true;
-                            if(!element.status.detonated){
+                            if(!element.status.detonated && element.action.oneTime){
                                 element.status.detonated = true;
                                 this.log.target = element.player;
                                 this.log.passiveLog = true;
                                 this.log.passive = element.action.passive;
                                 this.log.passiveIcon = element.icon;
                                 element.status.detonated = true;
-                                element.action.passive = null;
+                                element.actionStatus = true;
+                                element.action.oneTime = false;
                                 this.historyLog.push({...this.log});
                                 this.log.passiveLog = false;
                             }
@@ -442,12 +443,13 @@ export default {
                         }
                         // Bomb Targets | Passive
                         if(element.id == defender){
-                            if(!element.status.detonated){
+                            if(!element.status.detonated && element.action.oneTime){
                                 this.log.passiveLog = true;
                                 this.log.passive = element.action.passive;
                                 this.log.passiveIcon = element.icon;
                                 element.status.detonated = true;
-                                element.action.passive = null;
+                                element.actionStatus = true;
+                                element.action.oneTime = false;
                                 this.historyLog.push({...this.log});
                                 this.log.passiveLog = false;
                             }
