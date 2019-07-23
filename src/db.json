@@ -63,8 +63,8 @@
         }
     },
     "god": {
-        "nightText": "Night Time!",
-        "dayText": "Day Time!",
+        "nightText": "Change to Night",
+        "dayText": "Change to Day",
         "confirmText": "Go Next Phase",
         "cancelText": "No, Stay Here!",
         "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
