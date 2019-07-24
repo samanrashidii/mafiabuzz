@@ -339,6 +339,7 @@
             "action": {
                 "passive": null,
                 "action": "Suicide Replace",
+                "oneTime": true,
                 "secondaryAction": "Kill"
             },
             "actionIcon": "yakuza.png",
