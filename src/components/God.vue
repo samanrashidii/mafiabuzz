@@ -309,7 +309,7 @@ export default {
                     element.status.healed = false;
                     element.status.hacked = false;
                     // Cupid Attacker
-                    if(element.id == 11 || element.id == 12){
+                    if(element.id == 11 || element.id == 12 || element.id == 7){
                         if(!element.action.oneTime){
                             element.actionStatus = true;
                         }
@@ -417,8 +417,9 @@ export default {
                     if(element.player == this.log.attacker){
                         element.actionStatus = true;
                         // Yakuza Attacker
-                        if(attacker == 7){
+                        if(attacker == 7 && !element.status.healed){
                             element.status.dead = true;
+                            element.action.oneTime = false;
                         }
                         // Cupid Attacker
                         if(attacker == 11){
