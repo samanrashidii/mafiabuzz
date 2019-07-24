@@ -867,6 +867,22 @@ span.step-number{
     }
 }
 
+.invisible td{
+    position: relative;
+    &:nth-child(1)::before{
+        content:'';
+        position: absolute;
+        top:6px;
+        right:4px;
+        width:22px;
+        height: 22px;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-image: url('../images/icons/invisible.png');
+        z-index: 10;
+    }
+}
+
 .button-holder{padding-top:5px;}
 
 .confirm-action{
