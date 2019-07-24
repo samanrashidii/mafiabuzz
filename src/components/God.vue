@@ -457,7 +457,7 @@ export default {
                         // Cupid Targets | Status
                         if(linked){
                             this.finalPlayers.forEach(element => {
-                                if(element.status.linked){
+                                if(element.status.linked && !element.status.healed){
                                     element.status.dead = true;
                                 } 
                             });
