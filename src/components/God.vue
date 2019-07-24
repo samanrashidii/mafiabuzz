@@ -109,7 +109,7 @@
                                                 <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used "
                                                 <span class="action-color">{{log.action}}</span> " on 
                                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                                <i v-if="log.targetID == 2"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
+                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
                                                 <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
                                             </template>
                                             <template v-else>
@@ -142,7 +142,7 @@
                                 <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " 
                                 <span class="action-color">{{log.action}}</span> " on 
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                <i v-if="log.targetID == 2"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
                                 <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
                             </template>
                             <template v-else>
@@ -458,8 +458,8 @@ export default {
                             element.status.linked = true;
                         }
                     }
-                    // Godfather Targets -- Kill if not Healed
-                    if(attacker == 2 && !healed){
+                    // Godfather and Mafia Targets -- Kill if not Healed
+                    if(attacker == 2 && !healed || attacker == 1 && !healed){
                         if(element.player == this.log.target){
                             element.status.dead = true;
                         }
