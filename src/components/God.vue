@@ -110,7 +110,8 @@
                                                 <span class="action-color">{{log.action}}</span> " on 
                                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                                 <!-- Godfather Check Result -->
-                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
+                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'citizen-role':log.targetMafia}">{{log.targetMafia}}</span></i>
                                                 <!-- Chef Check Result -->
                                                 <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
                                                 <!-- Cupid Link Result -->
@@ -147,7 +148,8 @@
                                 <span class="action-color">{{log.action}}</span> " on 
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                 <!-- Godfather Check Result -->
-                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span></i>
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
                                 <!-- Chef Check Result -->
                                 <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
                                 <!-- Cupid Link Result -->
@@ -210,6 +212,7 @@ export default {
                 mafia: false,
                 target: 'Person?',
                 targetRole: 'Default',
+                targetPassive: null,
                 targetID: 0,
                 targetMafia: null,
                 targetIcon: 'default.png',
@@ -259,6 +262,7 @@ export default {
                         attacker: null,
                         target: null,
                         targetRole: null,
+                        targetPassive: null,
                         targetID: 0,
                         target2: null,
                         actionIcon: "loader.svg",
@@ -313,6 +317,7 @@ export default {
                 this.info.healed = false;
                 this.log.target = null;
                 this.log.targetRole = null;
+                this.log.targetPassive = null;
             }, 500);
         },
         changePhase(phase){
@@ -436,6 +441,7 @@ export default {
                 this.log.mafia = this.info.mafia;
                 this.log.targetRole = this.info.targetRole;
                 this.log.targetMafia = this.info.targetMafia;
+                this.log.targetPassive = this.info.targetPassive;
                 this.log.targetID = this.info.targetID;
                 
                 this.historyLog.push({...this.log});
@@ -510,6 +516,7 @@ export default {
             this.finalPlayers.forEach(element => {
                 if(element.player == target){
                     this.info.targetRole = element.name;
+                    this.info.targetPassive = element.action.passive;
                     this.info.targetMafia = element.mafia;
                     this.info.targetIcon = element.icon;
                     this.info.targetID = element.id;
@@ -700,6 +707,7 @@ export default {
                     background-color: $background_color_5;
                 }
                 &:nth-child(2){
+                    width:14%;
                     font-size: $font_size_2;
                 }
                 &:last-child{
@@ -716,6 +724,7 @@ export default {
                 color:$color_2;
                 background-color: $color_1;
                 &:first-child{width:18%;}
+                &:nth-child(2){width:82%;}
             }
             .table-title{
                 position: absolute;

@@ -24,6 +24,7 @@ export default new Vuex.Store({
         attacker: null,
         target: null,
         targetRole: null,
+        targetPassive: null,
         targetID: 0,
         target2: null,
         actionIcon: "loader.svg",
