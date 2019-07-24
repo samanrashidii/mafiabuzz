@@ -109,9 +109,8 @@
             "icon": "mafia.png",
             "mafia": true,
             "action": {
-                "passive": "Backup Killer",
-                "action": null,
-                "secondaryAction": "Kill"
+                "passive": null,
+                "action": "Kill"
             },
             "actionIcon": "mafia.png",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
