@@ -562,7 +562,7 @@
             "icon": "grandma.png",
             "mafia": false,
             "action": {
-                "passive": "Return Damage",
+                "passive": "Do not touch me!",
                 "action": null
             },
             "actionIcon": null,

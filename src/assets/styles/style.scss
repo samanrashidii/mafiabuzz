@@ -847,20 +847,20 @@ table tr{
         &:nth-child(2)::after{
             opacity: 1 !important;
             visibility: visible !important;
-            background-repeat: no-repeat !important;
-            background-position: center !important;
+            background-repeat: no-repeat;
+            background-position: center;
             background-image: url('../images/icons/silence.png');
-            background-color: rgba(5,31,58,.85) !important;
+            background-color: rgba(5,31,58,.85);
         }
     }
     &.healed td{
         &:nth-child(2)::after{
             opacity: 1 !important;
             visibility: visible !important;
-            background-repeat: no-repeat !important;
-            background-position: center !important;
+            background-repeat: no-repeat;
+            background-position: center;
             background-image: url('../images/icons/heal.png');
-            background-color: rgba(26,66,0,.85) !important;
+            background-color: rgba(26,66,0,.85);
         }
     }
     &.invisible td{
@@ -871,8 +871,8 @@ table tr{
             right:4px;
             width:22px;
             height: 22px;
-            background-repeat: no-repeat !important;
-            background-position: center !important;
+            background-repeat: no-repeat;
+            background-position: center;
             background-image: url('../images/icons/invisible.png');
             z-index: 10;
         }
