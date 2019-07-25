@@ -360,6 +360,7 @@ export default {
                 'healed': char.status.healed == true,
                 'shield': char.status.shield == true,
                 'invisible': char.status.invisible == true,
+                'hacked': char.status.hacked == true,
             }
         },
         checkGroup(player){
@@ -481,6 +482,30 @@ export default {
                         if(element.player == this.log.target2){
                             element.status.linked = true;
                         }
+                    }
+                    // Police
+                    if(attacker == 9){
+                        this.finalPlayers.forEach(element => {
+                            if(element.id == defender){
+                                element.status.identityChecked = true;
+                            }
+                        });
+                    }
+                    // Chef
+                    if(attacker == 6){
+                        this.finalPlayers.forEach(element => {
+                            if(element.id == defender){
+                                element.status.roleChecked = true;
+                            }
+                        });
+                    }
+                    // Hacker
+                    if(attacker == 16){
+                        this.finalPlayers.forEach(element => {
+                            if(element.id == defender){
+                                element.status.hacked = true;
+                            }
+                        });
                     }
                     // Grandma Attacker
                     if(defender == 13){
@@ -701,32 +726,6 @@ export default {
                     background-repeat: no-repeat;
                     background-position: center;
                     z-index: 10;
-                }
-            }
-            &::after{
-                content:'';
-                position: absolute;
-                top:0;
-                left:0;
-                width:100%;
-                height: 100%;
-                visibility: hidden;
-                opacity: 0;
-                background-repeat: no-repeat;
-                background-position: center;
-                z-index: 11;
-                transition:all .2s ease-in-out;
-            }
-        }
-        &.ninja{
-            td{
-                &::after{
-                    visibility: visible;
-                    opacity: 1;
-                    background-color:rgb(194,73,73, .4);
-                }
-                &:last-child::after{
-                    background-color: transparent;
                 }
             }
         }
