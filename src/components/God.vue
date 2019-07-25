@@ -487,7 +487,7 @@ export default {
                         if(element.player == this.log.target){
                             // Bulletproof Check
                             if(shield){
-                                element.status.shield = false;
+                                this.passiveCalc(element);
                             } else{
                                 element.status.dead = true;
                             }
@@ -554,13 +554,26 @@ export default {
             return require(`@/assets/images/roles/${pic}`);
         },
         passiveCalc(element){
-            if(!element.status.detonated && element.action.oneTime){
+            // Bomb Activate Passive
+            if(element.id == 12 && !element.status.detonated && element.action.oneTime){
                 element.status.detonated = true;
                 this.log.target = element.player;
                 this.log.passiveLog = true;
                 this.log.passive = element.action.passive;
                 this.log.passiveIcon = element.icon;
                 element.status.detonated = true;
+                element.actionStatus = true;
+                element.action.oneTime = false;
+                this.historyLog.push({...this.log});
+                this.log.passiveLog = false;
+            // Bulletproof Activate Passive
+            } else if(element.id == 14 && element.status.shield && element.action.oneTime){
+                element.status.shield = false;
+                this.log.target = element.player;
+                this.log.passiveLog = true;
+                this.log.passive = element.action.passive;
+                this.log.passiveIcon = element.icon;
+                element.status.shield = false;
                 element.actionStatus = true;
                 element.action.oneTime = false;
                 this.historyLog.push({...this.log});
