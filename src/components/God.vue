@@ -204,6 +204,8 @@ export default {
                 linked: false,
                 healed: false,
                 shield: false,
+                hacked: false,
+                damageReturned: false,
                 action: "Loading Action",
                 passive: "Passive",
                 name: "Default",
@@ -314,8 +316,6 @@ export default {
                 this.info.targetID = 0;
                 this.info.targetMafia = null;
                 this.info.targetIcon = 'default.png';
-                this.info.linked = false;
-                this.info.healed = false;
                 this.log.target = null;
                 this.log.targetRole = null;
                 this.log.targetPassive = null;
@@ -435,6 +435,8 @@ export default {
             let linked = targetInfo.linked;
             let healed = targetInfo.healed;
             let shield = targetInfo.shield;
+            let hacked = targetInfo.hacked;
+            let damageReturned = targetInfo.damageReturned;
             
             if(this.log.target != null){
                 this.log.id = this.info.id;
@@ -465,17 +467,18 @@ export default {
                         }
                     }
                     if(element.player == this.log.target){
-                        // Yakuza Target
-                        if(attacker == 7){
+                        // Yakuza Target ; Check if damageReturned ; Check if Hacked
+                        if(attacker == 7 && damageReturned || attacker == 7 && hacked){
                             element.status.stolen = true;
+                            element.status.damageReturned = false;
                             element.icon = 'ninja.png';
                             element.action.action = null;
                             element.action.passive = null;
                             element.action.secondaryAction = null;
                         }
                     }
-                    // Cupid Targets ; Check if not Grandma
-                    if(attacker == 11 && defender != 13){
+                    // Cupid Targets ; Check if damageReturned ; Check if Hacked
+                    if(attacker == 11 && damageReturned || attacker == 11 && hacked){
                         if(element.player == this.log.target){
                             element.status.linked = true;
                         }
@@ -484,42 +487,26 @@ export default {
                         }
                     }
                     // Police
-                    if(attacker == 9){
-                        this.finalPlayers.forEach(element => {
-                            if(element.id == defender){
-                                element.status.identityChecked = true;
-                            }
-                        });
+                    if(attacker == 9 && element.id == defender){
+                        element.status.identityChecked = true;
                     }
                     // Chef
-                    if(attacker == 6){
-                        this.finalPlayers.forEach(element => {
-                            if(element.id == defender){
-                                element.status.roleChecked = true;
-                            }
-                        });
+                    if(attacker == 6 && element.id == defender){
+                        element.status.roleChecked = true;
                     }
-                    // Hacker
-                    if(attacker == 16){
-                        this.finalPlayers.forEach(element => {
-                            if(element.id == defender){
-                                element.status.hacked = true;
-                            }
-                        });
+                    // Hacker Target
+                    if(attacker == 16 && element.id == defender){
+                        element.status.hacked = true;
                     }
                     // Grandma Attacker
-                    if(defender == 13){
-                        this.finalPlayers.forEach(element => {
-                            if(element.id == attacker){
-                                element.status.dead = true;
-                            }
-                        });
+                    if(defender == 13 && element.id == attacker && !hacked){
+                        element.status.dead = true;
                         this.passiveCalc(element);
                     }
                     // Godfather and Mafia Targets -- Kill if not Healed
                     if(attacker == 2 && !healed || attacker == 1 && !healed){
-                        // Check if not Grandma
-                        if(defender != 13){
+                        // Check if damageReturned ; Check if Hacked
+                        if(damageReturned || hacked){
                             if(element.player == this.log.target){
                                 // Bulletproof Check
                                 if(shield){
@@ -533,24 +520,20 @@ export default {
                                 this.passiveCalc(element);
                             }
                             // Cupid Targets | Status
-                            if(linked){
-                                this.finalPlayers.forEach(element => {
-                                    if(element.status.linked && !element.status.healed){
-                                        element.status.dead = true;
-                                    } 
-                                });
+                            if(linked && element.status.linked && !element.status.healed){
+                                element.status.dead = true;
                             }
                         }
                         
                     }
-                    // Ruspy Targets ; Check if not Grandma
-                    if(attacker == 3 && defender != 13){
+                    // Ruspy Targets ; Check if damageReturned ; Check if Hacked
+                    if(attacker == 3 && damageReturned || attacker == 3 && hacked){
                         if(element.player == this.log.target){
                             element.status.silenced = true;
                         }
                     }
-                    // Doctor Targets ; Check if not Grandma
-                    if(attacker == 10 && defender != 13){
+                    // Doctor Targets ; Check if damageReturned ; Check if Hacked
+                    if(attacker == 10 && damageReturned || attacker == 10 && hacked){
                         if(element.player == this.log.target){
                             element.status.healed = true;
                         }
@@ -569,6 +552,8 @@ export default {
                     this.info.linked = element.status.linked;
                     this.info.healed = element.status.healed;
                     this.info.shield = element.status.shield;
+                    this.info.hacked = element.status.hacked;
+                    this.info.damageReturned = element.status.damageReturned;
                 }
             });
             this.info.target = target;
