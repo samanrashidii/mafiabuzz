@@ -203,6 +203,7 @@ export default {
                 player: "Loading",
                 linked: false,
                 healed: false,
+                shield: false,
                 action: "Loading Action",
                 passive: "Passive",
                 name: "Default",
@@ -357,6 +358,7 @@ export default {
                 'love-bind': char.status.linked == true,
                 'silenced': char.status.silenced == true,
                 'healed': char.status.healed == true,
+                'shield': char.status.shield == true,
                 'invisible': char.status.invisible == true,
             }
         },
@@ -431,6 +433,7 @@ export default {
             let defender = targetInfo.targetID;
             let linked = targetInfo.linked;
             let healed = targetInfo.healed;
+            let shield = targetInfo.shield;
             
             if(this.log.target != null){
                 this.log.id = this.info.id;
@@ -482,7 +485,12 @@ export default {
                     // Godfather and Mafia Targets -- Kill if not Healed
                     if(attacker == 2 && !healed || attacker == 1 && !healed){
                         if(element.player == this.log.target){
-                            element.status.dead = true;
+                            // Bulletproof Check
+                            if(shield){
+                                element.status.shield = false;
+                            } else{
+                                element.status.dead = true;
+                            }
                         }
                         // Bomb Targets | Passive
                         if(element.id == defender){
@@ -522,6 +530,7 @@ export default {
                     this.info.targetID = element.id;
                     this.info.linked = element.status.linked;
                     this.info.healed = element.status.healed;
+                    this.info.shield = element.status.shield;
                 }
             });
             this.info.target = target;
