@@ -147,7 +147,7 @@
                                 <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " 
                                 <span class="action-color">{{log.action}}</span> " on 
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                <!-- Godfather Check Result -->
+                                <!-- Police Check Result (Normal and Invisible) -->
                                 <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
                                 <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
                                 <!-- Chef Check Result -->
@@ -473,8 +473,8 @@ export default {
                             element.action.secondaryAction = null;
                         }
                     }
-                    // Cupid Targets
-                    if(attacker == 11){
+                    // Cupid Targets ; Check if not Grandma
+                    if(attacker == 11 && defender != 13){
                         if(element.player == this.log.target){
                             element.status.linked = true;
                         }
@@ -482,37 +482,50 @@ export default {
                             element.status.linked = true;
                         }
                     }
-                    // Godfather and Mafia Targets -- Kill if not Healed
-                    if(attacker == 2 && !healed || attacker == 1 && !healed){
-                        if(element.player == this.log.target){
-                            // Bulletproof Check
-                            if(shield){
-                                this.passiveCalc(element);
-                            } else{
+                    // Grandma Attacker
+                    if(defender == 13){
+                        this.finalPlayers.forEach(element => {
+                            if(element.id == attacker){
                                 element.status.dead = true;
                             }
-                        }
-                        // Bomb Targets | Passive
-                        if(element.id == defender){
-                            this.passiveCalc(element);
-                        }
-                        // Cupid Targets | Status
-                        if(linked){
-                            this.finalPlayers.forEach(element => {
-                                if(element.status.linked && !element.status.healed){
-                                    element.status.dead = true;
-                                } 
-                            });
-                        }
+                        });
+                        this.passiveCalc(element);
                     }
-                    // Ruspy Targets
-                    if(attacker == 3){
+                    // Godfather and Mafia Targets -- Kill if not Healed
+                    if(attacker == 2 && !healed || attacker == 1 && !healed){
+                        // Check if not Grandma
+                        if(defender != 13){
+                            if(element.player == this.log.target){
+                                // Bulletproof Check
+                                if(shield){
+                                    this.passiveCalc(element);
+                                } else{
+                                    element.status.dead = true;
+                                }
+                            }
+                            // Bomb Targets | Passive
+                            if(element.id == defender){
+                                this.passiveCalc(element);
+                            }
+                            // Cupid Targets | Status
+                            if(linked){
+                                this.finalPlayers.forEach(element => {
+                                    if(element.status.linked && !element.status.healed){
+                                        element.status.dead = true;
+                                    } 
+                                });
+                            }
+                        }
+                        
+                    }
+                    // Ruspy Targets ; Check if not Grandma
+                    if(attacker == 3 && defender != 13){
                         if(element.player == this.log.target){
                             element.status.silenced = true;
                         }
                     }
-                    // Doctor Targets
-                    if(attacker == 10){
+                    // Doctor Targets ; Check if not Grandma
+                    if(attacker == 10 && defender != 13){
                         if(element.player == this.log.target){
                             element.status.healed = true;
                         }
@@ -566,9 +579,22 @@ export default {
                 element.action.oneTime = false;
                 this.historyLog.push({...this.log});
                 this.log.passiveLog = false;
+            } 
             // Bulletproof Activate Passive
-            } else if(element.id == 14 && element.status.shield && element.action.oneTime){
+            else if(element.id == 14 && element.status.shield && element.action.oneTime){
                 element.status.shield = false;
+                this.log.target = element.player;
+                this.log.passiveLog = true;
+                this.log.passive = element.action.passive;
+                this.log.passiveIcon = element.icon;
+                element.status.shield = false;
+                element.actionStatus = true;
+                element.action.oneTime = false;
+                this.historyLog.push({...this.log});
+                this.log.passiveLog = false;
+            }
+            // Grandma Activate Passive
+            else if(element.id == 13){
                 this.log.target = element.player;
                 this.log.passiveLog = true;
                 this.log.passive = element.action.passive;

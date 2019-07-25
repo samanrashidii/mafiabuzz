@@ -39,8 +39,8 @@ export default {
 .power-meter{
     position: fixed;
     bottom:0;
-    left:0;
-    width: 100%;
+    left:1%;
+    width: 98%;
     height: 62px;
     padding:30px 15px 12px 15px;
     background-color: $background_color_side;
