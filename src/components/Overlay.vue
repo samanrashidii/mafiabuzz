@@ -53,11 +53,10 @@ export default {
 	    opacity: 1;
     }
     &.dialog{
-        top:16%;
+        top:1%;
         left:1%;
         width: 98%;
-        min-height: 460px;
-        height: 68%;
+        height: 98%;
         overflow-y: hidden;
         border-radius: 6px;
         background:rgba(0, 0, 0, 0.97);

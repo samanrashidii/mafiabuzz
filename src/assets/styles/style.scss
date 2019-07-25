@@ -827,59 +827,69 @@ span.step-number{
     }
 }
 
-.dead td{
-    position: relative;
-    &::after{
-        opacity: 1 !important;
-        visibility: visible !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-color: rgba(0,0,0,.85) !important;
+table tr{
+    td{position: relative;}
+    &.dead td{
+        &::after{
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-color: rgba(0,0,0,.85) !important;
+        }
+        &:nth-child(1)::after{display: none;}
+        &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
+        a.angel{
+            background-color: $dark_green_color !important;
+        }
     }
-    &:nth-child(1)::after{display: none;}
-    &:nth-child(2)::after{background-image: url('../images/icons/dead.png') !important;}
-    a.angel{
-        background-color: $dark_green_color !important;
+    &.silenced td{
+        &:nth-child(2)::after{
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-image: url('../images/icons/silence.png');
+            background-color: rgba(5,31,58,.85) !important;
+        }
     }
-}
-
-.silenced td{
-    position: relative;
-    &:nth-child(2)::after{
-        opacity: 1 !important;
-        visibility: visible !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-image: url('../images/icons/silence.png');
-        background-color: rgba(5,31,58,.85) !important;
+    &.healed td{
+        &:nth-child(2)::after{
+            opacity: 1 !important;
+            visibility: visible !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-image: url('../images/icons/heal.png');
+            background-color: rgba(26,66,0,.85) !important;
+        }
     }
-}
-
-.healed td{
-    position: relative;
-    &:nth-child(2)::after{
-        opacity: 1 !important;
-        visibility: visible !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-image: url('../images/icons/heal.png');
-        background-color: rgba(26,66,0,.85) !important;
+    &.invisible td{
+        &:nth-child(1)::before{
+            content:'';
+            position: absolute;
+            top:6px;
+            right:4px;
+            width:22px;
+            height: 22px;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-image: url('../images/icons/invisible.png');
+            z-index: 10;
+        }
     }
-}
-
-.invisible td{
-    position: relative;
-    &:nth-child(1)::before{
-        content:'';
-        position: absolute;
-        top:6px;
-        right:4px;
-        width:22px;
-        height: 22px;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-image: url('../images/icons/invisible.png');
-        z-index: 10;
+    &.shield td{
+        &:nth-child(1)::before{
+            content:'';
+            position: absolute;
+            top:6px;
+            right:4px;
+            width:22px;
+            height: 22px;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+            background-image: url('../images/icons/shield.png');
+            z-index: 10;
+        }
     }
 }
 
