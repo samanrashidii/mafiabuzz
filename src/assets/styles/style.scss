@@ -858,6 +858,18 @@ table tr{
             z-index: 10;
         }
     }
+    &.love-bind td{
+        &:nth-child(1)::before{
+            top:50%;
+            right:-13px;
+            width:24px;
+            height:24px;
+            margin-top:-12px;
+            opacity: 1;
+            visibility: visible;
+            background-image: url('../images/icons/linked.png') !important;
+        }
+    }
     &.dead td{
         &::after{
             opacity: 1 !important;
@@ -1016,18 +1028,6 @@ table tr{
             background:url('../images/assets/tick.png') no-repeat center $green_color;
         }
     }
-}
-
-table tr.love-bind td:first-child::before{
-    content:'';
-    position:absolute;
-    top:50%;
-    right:-13px;
-    width:24px;
-    height:24px;
-    margin-top:-12px;
-    background:url('../images/icons/linked.png') no-repeat center;
-    z-index:10;
 }
 
 // Main Transitions
