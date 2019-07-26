@@ -477,13 +477,16 @@ export default {
                             element.action.secondaryAction = null;
                         }
                     }
-                    // Cupid Targets ; Check if damageReturned ; Check if Hacked
-                    if(attacker == 11 && damageReturned || attacker == 11 && hacked){
+                    // Cupid Targets
+                    if(attacker == 11){
+                        console.log(this.log.target+this.log.target2);
                         if(element.player == this.log.target){
                             element.status.linked = true;
+                            console.log(element.status.linked);
                         }
                         if(element.player == this.log.target2){
                             element.status.linked = true;
+                            console.log(element.status.linked);
                         }
                     }
                     // Police
@@ -499,7 +502,7 @@ export default {
                         element.status.hacked = true;
                     }
                     // Grandma Attacker
-                    if(defender == 13 && element.id == attacker && !hacked){
+                    if(defender == 13 && element.id == attacker && !hacked && attacker != 11){
                         element.status.dead = true;
                         this.passiveCalc(element);
                     }
@@ -527,13 +530,13 @@ export default {
                         
                     }
                     // Ruspy Targets ; Check if damageReturned ; Check if Hacked
-                    if(attacker == 3 && damageReturned || attacker == 3 && hacked){
+                    if(attacker == 3 && !damageReturned || attacker == 3 && !hacked){
                         if(element.player == this.log.target){
                             element.status.silenced = true;
                         }
                     }
                     // Doctor Targets ; Check if damageReturned ; Check if Hacked
-                    if(attacker == 10 && damageReturned || attacker == 10 && hacked){
+                    if(attacker == 10 && !damageReturned || attacker == 10 && !hacked){
                         if(element.player == this.log.target){
                             element.status.healed = true;
                         }
