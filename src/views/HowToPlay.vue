@@ -28,11 +28,39 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+    data(){
+        return {
+            pageId : this.$route.params.id
+        }
+    },
     computed:{
         ...mapGetters([
             'HowToPlay',
             'Roles',
         ]),
+    },
+    metaInfo() {
+        return {
+            title : `Mafioso * How To Play`,
+            meta: [
+                {
+                name : 'description',
+                content : `We explained everything you need to know to play Mafioso Party Game`
+                },
+                {
+                name : 'og:title',
+                content : `Mafioso * How To Play`
+                },
+                {
+                name : 'og:description',
+                content : `We explained everything you need to know to play Mafioso Party Game`
+                },
+                {
+                name : 'og:url',
+                content : `http://www.mafiosoapp.com/${this.pageId}/how-to-play`
+                }
+            ]
+        }
     },
     methods:{
         // Get Role Image
@@ -43,6 +71,11 @@ export default {
         getHTPImgUrl(pic) {
             return require(`@/assets/images/howtoplay/${pic}`);
         },
+    },
+    watch:{
+        $route(to, from){
+            this.pageId = to.params.id;
+        }
     }
 }
 </script>

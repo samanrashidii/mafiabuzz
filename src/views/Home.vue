@@ -20,8 +20,28 @@
 </template>
 
 <script>
-
 export default {
+  metaInfo: {
+    title : `Mafioso * Home`,
+    meta: [
+      {
+        name : 'description',
+        content : `Mafioso is a web application to setup and manage "Mafia Party Game" easily.`
+      },
+      {
+        name : 'og:title',
+        content : `Mafioso * Home`
+      },
+      {
+        name : 'og:description',
+        content : `Mafioso is a web application to setup and manage "Mafia Party Game" easily`
+      },
+      {
+        name : 'og:url',
+        content : `http://www.mafiosoapp.com`
+      }
+    ]
+  },
   methods:{
     getImgUrl(pic) {
       return require(`@/assets/images/${pic}`);
