@@ -531,6 +531,7 @@ a.info{
     position: relative;
     padding:20px 15px;
     margin-top:40px;
+    border-radius: 5px;
     box-shadow: 0 0 10px $black_color;
     h3{
         font-family: $font_mafia;
@@ -589,7 +590,7 @@ a.info{
                 margin-top:10px;
                 background-color: $background_color_4;
                 border:1px solid $background_color_mafia;
-                border-radius: 4px;
+                border-radius: 10px;
                 &::after{
                     content:'';
                     position: absolute;
@@ -599,7 +600,7 @@ a.info{
                     width:calc(100% - 10px);
                     height:calc(100% - 10px);
                     border:1px solid $background_color_mafia;
-                    border-radius: 4px;
+                    border-radius: 7px;
                 }
                 &.citizen{
                     border:1px solid $background_color_citizen;
@@ -808,7 +809,8 @@ span.step-number{
 }
 
 .different-colors{
-    margin:10px 0 40px 0;
+    color:$color_1 !important;
+    margin:10px 0 20px 0;
     i{
         font-size: 18px;
         &:nth-child(1){color:$green_color;}
@@ -820,6 +822,7 @@ span.step-number{
 .dashboard-header .title{
     position: relative;
     padding:20px 10px 10px 10px;
+    border-radius: 5px;
     box-shadow: 0 0 10px $black_color;
     h2 strong{color:$hint_color;}
 }
