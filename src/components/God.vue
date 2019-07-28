@@ -540,17 +540,13 @@ export default {
                     // Ruspy Targets ; Check not damageReturned
                     if(attacker == 3 && !damageReturned){
                         if(element.player == this.log.target){
-                            if(!element.status.hacked){
-                                element.status.silenced = true;
-                            }
+                            element.status.silenced = true;
                         }
                     }
                     // Doctor Targets ; Check not damageReturned
                     if(attacker == 10 && !damageReturned){
                         if(element.player == this.log.target){
-                            if(!element.status.hacked){
-                                element.status.healed = true;
-                            }
+                            element.status.healed = true;
                         }
                     }
                 });
