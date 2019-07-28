@@ -4,6 +4,10 @@
             <div>
                 <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Creator.gameModeButton}}</span></router-link>
             </div>
+            <div class="welcome">
+                <img :src="require(`@/assets/images/${Creator.welcome.image}`)" alt="Mafioso Logo">
+                <h3 v-html="Creator.welcome.text">{</h3>
+            </div>
             <div class="title">
                 <template v-if="checkGameMode()">
                     <h2 v-html="Creator.title"></h2>

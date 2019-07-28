@@ -16,18 +16,22 @@
             "name": "How to play?",
             "url": "howtoplay",
             "image": "howtoplay.png",
-            "alt": "How to play? Icon"
+            "alt": "HowToPlay Icon"
         },
         {
             "name": "About us",
             "url": "about",
             "image": "logo.png",
-            "alt": "Mafia Wars Logo"
+            "alt": "Mafioso Logo"
         }
     ],
     "pages": {
         "creator": {
             "gameModeButton": "Change Game Mode",
+            "welcome": {
+                "image": "logo.png",
+                "text": "welcome to <strong class='site-color'>Mafioso</strong> app"
+            },
             "title": "Hi <span>God</span>",
             "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
             "step1": "Choose how many people do want to have in your <span class='creator-color'>World</span>:",
@@ -76,7 +80,7 @@
                     "title": "Idea / UX / UI Advisor"
                 }
             ],
-            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us your <span class='citizen-role'>Feedback</span>? Please email us at :",
+            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>? Please email us at :",
             "contactEmail": "info@mafiosoapp.com"
         },
         "howToPlay": {

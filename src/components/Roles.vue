@@ -181,7 +181,7 @@ export default {
     cursor: pointer;
     background-color: $background_color_citizen;
     border:3px solid $black_color;
-    border-radius: 5px;
+    border-radius: 7px;
     transition:all .3s ease-in-out;
     > div{
         display: table-cell;

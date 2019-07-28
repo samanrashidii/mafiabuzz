@@ -86,7 +86,7 @@ a.bttn{
     padding:12px;
     margin-top:15px;
     background-color:$background_color_3;
-    border-radius: 2px;
+    border-radius: 24px;
     transition:all .2s ease-in-out;
     &:hover{
         background-color: $green_color;
@@ -169,8 +169,8 @@ input {
     }
     display: block;
 	width: 100%;
-	height: 36px;
-	line-height: 36px;
+	height: 34px;
+	line-height: 34px;
 	font-family: $font_normal;
 	font-size: 16px;
 	color: $color_2;
@@ -180,7 +180,7 @@ input {
     outline: none;
     background-color: $background_color_1;
 	border: none;
-	border-radius: 2px;
+	border-radius: 30px;
 	&:not([type="submit"]) {
 		&:focus {
 			background-color: $background_color_2;
@@ -191,8 +191,8 @@ input {
 select {
 	display: block;
 	width: 100%;
-	height: 36px;
-	line-height: 36px;
+	height: 34px;
+	line-height: 34px;
 	font-family: $font_normal;
 	font-size: 16px;
 	color: $color_2;
@@ -202,7 +202,7 @@ select {
     outline: none;
     background: url('../images/assets/arrow-bottom-dark.png') no-repeat 95% center $background_color_1;
     border:none;
-	border-radius: 2px;
+	border-radius: 30px;
 	-webkit-appearance: none;
 }
 
@@ -371,6 +371,26 @@ button{
     > div:not(.navigation){
         padding-top:50px;
     }
+}
+
+.welcome{
+    text-align: center;
+    padding:30px 10px;
+    margin:5px 0 15px 0;
+    background-image:url('../images/logo-small-fade.png');
+    background-color: $background_color_4 !important;
+    border-radius: 15px;
+    box-shadow: inset 0 0 15px $black_color;
+    animation:fading 2.4s ease-in-out alternate infinite;
+    img{
+        width:100px;
+    }
+    strong{font-size: 24px;}
+}
+
+@keyframes fading {
+    0%{background-image:url('../images/logo-small-fade.png');}
+    100%{background-image:url('../images/logo-small.png');}
 }
 
 .roles li input + label::after{
@@ -773,7 +793,7 @@ span.step-number{
         padding:70px 8px 20px 8px;
         margin-top:15px;
         background-color: $background_color_1;
-        border-radius: 3px;
+        border-radius: 10px;
         box-shadow: inset 0 0 4px #7a7a7a;
         strong{
             display: block;
@@ -807,15 +827,15 @@ span.step-number{
     position: relative;
     display: block;
     text-align: center;
-    margin-bottom:20px;
+    margin-bottom:15px;
     box-shadow: 0 0 7px $background_color_middle;
     background-color: $color_site_5;
-    border-radius: 2px;
+    border-radius: 40px;
     span{
         display: inline-block;
-        padding:27px 10px 27px 80px;
+        padding:22px 10px 22px 75px;
         background-repeat: no-repeat;
-        background-position: 25px center;
+        background-position: 17px center;
         background-image:url('../images/icons/game-mode.png');
     }
 }
