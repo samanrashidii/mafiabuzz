@@ -57,6 +57,9 @@ p{
     line-height: 1.6;
     font-size: $font_size_4;
     padding-top:15px;
+    strong{
+        color: $color_site_2;
+    }
 }
 
 a{
@@ -247,7 +250,7 @@ button{
         text-align: left;
         padding:10px;
         margin:10px 0;
-        border:1px solid $light_red_color;
+        border:1px dashed $light_red_color;
         border-radius: 2px;
         &.blue{
             border-color: $light_blue_color;
@@ -439,6 +442,7 @@ i.citizen-role{
 .mafia-role{color:$red_color}
 .binded{color:$pink_color !important;}
 .day-color{color:$day;}
+.night-color{color:$night_color;}
 .creator-color{color:$creator_color;}
 .white-color{color:$color_1;}
 .site-color{color:$color_site_2;}
@@ -492,6 +496,14 @@ a.info{
         border-radius: 15px 15px 0 0;
         z-index: 10;
     }
+    &.static{
+        position: static;
+        width:100%;
+        height: auto;
+        padding:15px;
+        margin:15px auto;
+        border-radius: 15px;
+    }
 }
 
 .step-box{
@@ -499,6 +511,19 @@ a.info{
     padding:20px 15px;
     margin-top:40px;
     box-shadow: 0 0 10px $black_color;
+    h3{
+        font-family: $font_mafia;
+        font-size: 34px;
+        color:$color_site_2;
+        text-align: center;
+        padding: 15px 0;
+        strong{
+            color: $htp_color;
+        }
+        span{
+            color: $hint_color;
+        }
+    }
     label{
         display:inline-block;
         font-size: $font_size_4;
