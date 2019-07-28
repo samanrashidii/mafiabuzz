@@ -55,11 +55,33 @@
         },
         "about": {
             "title": "About <span>Us</span>",
-            "subtitle": "Do not tell anyone About Us :p <a href='http://www.samanrashidi.com' target='_blank' class='mafia-role Saman'>Saman Rashidi</a> <a href='https://www.linkedin.com/in/shahriyar-osuli-a9a77654/' target='_blank' class='citizen-role Shahriar'>Shahriar Osouli</a> <a href='http://www.samirasalimian.com' target='_blank' class='binded Samira'>Samira Salimian</strong>"
+            "subtitle": "Don't tell anyone <span class='site-color'>About Us</span> :p",
+            "creators": [
+                {
+                    "name": "Saman Rashidi",
+                    "url": "http://www.samanrashidi.com",
+                    "classes": ["mafia-role", "Saman"],
+                    "title": "Front-end Developer"
+                },
+                {
+                    "name": "Shahriar Osouli",
+                    "url": "https://www.linkedin.com/in/shahriyar-osuli-a9a77654/",
+                    "classes": ["citizen-role", "Shahriyar"],
+                    "title": "Game Designer"
+                },
+                {
+                    "name": "Samira Salimian",
+                    "url": "http://www.samirasalimian.com'",
+                    "classes": ["binded", "Samira"],
+                    "title": "Idea / UX / UI Advisor"
+                }
+            ],
+            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us your <span class='citizen-role'>Feedback</span>? Please email us at :",
+            "contactEmail": "info@mafiosoapp.com"
         },
         "howToPlay": {
             "title": "How to <span>Play</span>",
-            "subtitle": "Just read and everything is clear :)",
+            "subtitle": "Just read and everything is so clear :)",
             "steps": [
                 {
                     "icon": "1.png",
