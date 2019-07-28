@@ -23,10 +23,38 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+    data(){
+        return {
+            pageId : this.$route.params.id
+        }
+    },
     computed:{
         ...mapGetters([
             'Player',
         ]),
+    },
+    metaInfo() {
+        return {
+            title : `Mafioso * Player`,
+            meta: [
+                {
+                name : 'description',
+                content : `As player you can join Creator's game by entering it's unique code and play game as a party`
+                },
+                {
+                name : 'og:title',
+                content : `Mafioso * Player`
+                },
+                {
+                name : 'og:description',
+                content : `As player you can join Creator's game by entering it's unique code and play game as a party`
+                },
+                {
+                name : 'og:url',
+                content : `http://www.mafiosoapp.com/${this.pageId}/player`
+                }
+            ]
+        }
     },
     methods:{
         checkGameMode(){
@@ -34,6 +62,11 @@ export default {
                 return true;
             }
         },
+    },
+    watch:{
+        $route(to, from){
+            this.pageId = to.params.id;
+        }
     }
 }
 </script>

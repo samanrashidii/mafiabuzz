@@ -28,10 +28,43 @@
 <script>
 import {mapGetters} from 'vuex';
 export default {
+    data(){
+        return {
+            pageId : this.$route.params.id
+        }
+    },
     computed:{
         ...mapGetters([
             'About',
         ]),
+    },
+    metaInfo() {
+        return {
+            title : `Mafioso * Abous us`,
+            meta: [
+                {
+                name : 'description',
+                content : `We are some random gamers who wants to help other gamers to play and enjoy party games`
+                },
+                {
+                name : 'og:title',
+                content : `Mafioso * Abous us`
+                },
+                {
+                name : 'og:description',
+                content : `We are some random gamers who wants to help other gamers to play and enjoy party games`
+                },
+                {
+                name : 'og:url',
+                content : `http://www.mafiosoapp.com/${this.pageId}/about`
+                }
+            ]
+        }
+    },
+    watch:{
+        $route(to, from){
+            this.pageId = to.params.id;
+        }
     }
 }
 </script>

@@ -8,7 +8,29 @@
 
 <script>
 export default {
-    
+    metaInfo() {
+        return {
+            title : `Mafioso * Page Not Found - Error 404`,
+            meta: [
+                {
+                name : 'description',
+                content : `Page requested was not found - Error 404`
+                },
+                {
+                name : 'og:title',
+                content : `Mafioso * Page Not Found - Error 404`
+                },
+                {
+                name : 'og:description',
+                content : `Page requested was not found - Error 404`
+                },
+                {
+                name : 'og:url',
+                content : `http://www.mafiosoapp.com/error-404`
+                }
+            ]
+        }
+    }
 }
 </script>
 
