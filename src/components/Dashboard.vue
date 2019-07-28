@@ -27,6 +27,7 @@
                 <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
             </div>
             <div class="step-box display autoheight" v-if="StepCounter == 2" key="step2">
+                <span class="step-number">2</span>
                 <div class="inner-display">
                     <p>{{Creator.passMobile}}</p>
                     <div v-for="(role, index) in gameRoles" :key="index">
