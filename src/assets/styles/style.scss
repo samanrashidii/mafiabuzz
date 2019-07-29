@@ -531,7 +531,7 @@ a.info{
     position: relative;
     padding:20px 15px;
     margin-top:40px;
-    border-radius: 5px;
+    border-radius: 7px;
     box-shadow: 0 0 10px $black_color;
     h3{
         font-family: $font_mafia;
@@ -711,7 +711,7 @@ span.step-number{
 .table{
     padding:5px;
     margin-top:12px;
-    border-radius: 3px;
+    border-radius: 4px;
     table{
         width:100%;
         tr{
@@ -780,7 +780,7 @@ span.step-number{
     text-align: center;
     h2 span{
         font-family: Arial;
-        font-size: 27px;
+        font-size: 25px;
     }
 }
 .creator .title h2 span{color:$creator_color;}
@@ -822,7 +822,7 @@ span.step-number{
 .dashboard-header .title{
     position: relative;
     padding:20px 10px 10px 10px;
-    border-radius: 5px;
+    border-radius: 7px;
     box-shadow: 0 0 10px $black_color;
     h2 strong{color:$hint_color;}
 }
@@ -1061,21 +1061,21 @@ table tr{
     display:inline-block;
     font-size:$font_size_2;
     color:$color_1;
-    padding:8px 10px 8px 32px;
+    padding:8px 10px 8px 35px;
     border:1px solid $color_1;
-    border-radius: 2px;
+    border-radius: 30px;
     transition:all .2s ease-in-out;
     &::after{
         content:'';
         position: absolute;
-        top:7px;
+        top:6px;
         left:7px;
         width:19px;
         height:19px;
         background-repeat: no-repeat;
         background-position: center;
         border:1px solid $color_1;
-        border-radius: 2px;
+        border-radius: 50%;
         transition:all .2s ease-in-out;
     }
     &.active{
