@@ -10,7 +10,7 @@
         </div>
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length > dashboard.currentAction">
-            <transition name="fade" mode="out-in">
+            <transition-group name="fade" mode="out-in">
                 <div class="action-box" v-for="(action, index) in sortByPriority" :key="index">
                     <template v-if="index == dashboard.currentAction">
                         {{fireAction(action)}}
@@ -40,7 +40,7 @@
                         <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
                     </template>
                 </div>
-            </transition>
+            </transition-group>
         </div>
 
         <div class="step-box only-box same-padding" v-if="historyLog.length > 0 && !dashboard.day">
@@ -91,35 +91,6 @@
                         <app-button class="active" @click.native="showPlay()">{{God.godButton}}</app-button>
                     </div>
                     <div v-else key="afterShow">
-                        <overlay :class="{'active': overlay, 'dialog':true}">
-                            <div class="action-box">
-                                <div class="player-box-holder">
-                                    <div class="player-box">
-                                        <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
-                                        <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
-                                    </div>
-                                    <div class="arrow">
-                                        <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
-                                    </div>
-                                    <div class="player-box">
-                                        <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
-                                        <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
-                                    </div>
-                                </div>
-                                <label class="has-small-top-margin" for="action_target">{{God.actionHintText}}</label>
-                                <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
-                                    <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
-                                </select>
-                                <template v-if="info.id == 11 && log.target != null">
-                                    <label class="has-small-top-margin" for="action_target_2">{{God.actionHintText2}}</label>
-                                    <select name="action_target_2" id="action_target_2" v-model="log.target2">
-                                        <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
-                                    </select>
-                                </template>
-                                <app-button class="danger" @click.native="cancelAction()">{{God.cancelButton}}</app-button>
-                                <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
-                            </div>
-                        </overlay>
                         <div class="players-role">
 
                             <info-box :info="info"></info-box>
@@ -201,16 +172,16 @@
             </div>
         </div>
 
-        <overlay :class="{'active': alert,'dialog': true}">
+        <overlay :class="{'active': overlay,'dialog': true}">
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
                 <p>{{God.resetText}}</p>
-                <app-button @click.native="alert = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
+                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
                 <app-button @click.native="rgwRoles()" class="green "><span>{{God.restartButton}}</span></app-button>
             </template>
             <template v-else>
                 <p>{{God.resetTotalText}}</p>
-                <app-button @click.native="alert = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
+                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
                 <app-button @click.native="resetGame()" class="green "><span>{{God.restartButton}}</span></app-button>
             </template>
         </overlay>
@@ -222,8 +193,8 @@
                 </li>
             </ul>
         </div>
-        <app-button class="active has-xsmall-bottom-margin" @click.native="alert = true,  totRestart = false" v-if="dashboard.god">{{God.rgwRoles}}</app-button>
-        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="alert = true, totRestart = true">{{God.resetGame}}</app-button>
+        <app-button class="active has-xsmall-bottom-margin" @click.native="overlay = true,  totRestart = false" v-if="dashboard.god">{{God.rgwRoles}}</app-button>
+        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="overlay = true, totRestart = true">{{God.resetGame}}</app-button>
     </div>
 </template>
 
@@ -244,7 +215,6 @@ export default {
             fMafias: [],
             fCitizens: [],
             overlay: false,
-            alert: false,
             totRestart: false,
             defaultTime: 0,
             confirmAction: false,
@@ -373,7 +343,6 @@ export default {
                 }
                 this.dashboard.round++;
                 this.dashboard.currentAction = 0;
-                this.setActionsByPriority();
 
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
@@ -391,6 +360,8 @@ export default {
                         element.actionStatus = false;
                     }
                 });
+
+                this.setActionsByPriority();
                 this.dashboard.day = false;
             }
         },
@@ -642,6 +613,7 @@ export default {
             this.log.target = null;
             this.log.targetRole = null;
             this.log.targetPassive = null;
+            this.setActionsByPriority();
         },
         // Calculate Passive and Log to History Log
         passiveCalc(element){
@@ -700,9 +672,10 @@ export default {
             this.controlDashboard(this.defaultDashboard);
             this.setStep(1);
         },
+        // Set Actions by Priority
         setActionsByPriority(){
-            this.sortByPriority = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus);
-            this.sortByPriority = this.sortByPriority.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+            let filteredActions= this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead && !x.status.hacked);
+            this.sortByPriority = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
         },
         // Show Information of roles
         showInfo(role){
