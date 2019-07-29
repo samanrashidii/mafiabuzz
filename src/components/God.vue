@@ -166,6 +166,20 @@
             </div>
         </div>
 
+        <overlay :class="{'active': alert,'dialog': true}">
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <template v-if="!totRestart">
+                <p>{{God.resetText}}</p>
+                <app-button @click.native="alert = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
+                <app-button @click.native="rgwRoles()" class="green "><span>{{God.restartButton}}</span></app-button>
+            </template>
+            <template v-else>
+                <p>{{God.resetTotalText}}</p>
+                <app-button @click.native="alert = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
+                <app-button @click.native="resetGame()" class="green "><span>{{God.restartButton}}</span></app-button>
+            </template>
+        </overlay>
+
         <div class="step-box only-box" v-if="dashboard.god">
             <ul class="dashboard-hint">
                 <li v-for="(hint, index) in God.dashboardHint" :key="index">
@@ -173,8 +187,8 @@
                 </li>
             </ul>
         </div>
-        <app-button class="active has-xsmall-bottom-margin" v-if="dashboard.god" @click.native="rgwRoles()">{{God.rgwRoles}}</app-button>
-        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="resetGame()">{{God.resetGame}}</app-button>
+        <app-button class="active has-xsmall-bottom-margin" @click.native="alert = true,  totRestart = false" v-if="dashboard.god">{{God.rgwRoles}}</app-button>
+        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="alert = true, totRestart = true">{{God.resetGame}}</app-button>
     </div>
 </template>
 
@@ -195,6 +209,8 @@ export default {
             fMafias: [],
             fCitizens: [],
             overlay: false,
+            alert: false,
+            totRestart: false,
             defaultTime: 0,
             confirmAction: false,
             info: {
@@ -631,7 +647,7 @@ export default {
         },
         // Reset Game From Start
         resetGame(){
-            let confirmFinish = confirm("are you sure? Your selected roles and players will reset");
+            let confirmFinish = confirm("");
             if(confirmFinish){
                 this.$router.push({name:'home'});
                 setTimeout(() => {
@@ -641,15 +657,12 @@ export default {
         },
         // Reset Game with Same Roles and Names
         rgwRoles(){
-            let confirmFinish = confirm("Do you want to reset with same roles?");
-            if(confirmFinish){
-                this.getRoles(this.savedRoles);
-                this.setGameReset(true);
-                this.$emit('ready', false);
-                this.$emit('personNumb', 1);
-                this.controlDashboard(this.defaultDashboard);
-                this.setStep(1);
-            }
+            this.getRoles(this.savedRoles);
+            this.setGameReset(true);
+            this.$emit('ready', false);
+            this.$emit('personNumb', 1);
+            this.controlDashboard(this.defaultDashboard);
+            this.setStep(1);
         },
         // Show Information of roles
         showInfo(role){
@@ -674,10 +687,7 @@ export default {
 
 <style lang="scss" scoped>
 
-    .step-box.display{
-        padding:110px 15px 15px 15px;
-        border-radius: 3px;
-    }
+    .step-box.display{padding:110px 15px 15px 15px;}
 
     .table table tr{
         position: relative;

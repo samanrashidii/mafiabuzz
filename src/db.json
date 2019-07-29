@@ -46,7 +46,7 @@
             "restartGame": "Restart game and change roles",
             "assign": "Assign Roles",
             "checkBeforeStart": "Your game will start with below characters",
-            "dashboardTitle": "<strong>Game</strong> Dash<span>board</span>",
+            "dashboardTitle": "<span>God</span> Dashboard",
             "chooseNameHint": "Please write the name of each person:",
             "passMobile": "Please pass mobile to",
             "beforeShowButton": "Show me my role !",
@@ -116,7 +116,10 @@
         "actionHintText": "Please select the person who takes action:",
         "actionHintText2": "Please select the second person:",
         "cancelButton": "Cancel",
-        "confirmButton": "Action ...!!!",
+        "confirmButton": "Action..!",
+        "restartButton": "Restart Game",
+        "resetText": "Do you want to reset game with same roles?",
+        "resetTotalText": "Are you sure? Your selected roles and players will reset",
         "dashboardHint": [
             {
                 "name": "killer",
