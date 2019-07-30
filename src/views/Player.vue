@@ -35,7 +35,7 @@ export default {
     },
     metaInfo() {
         return {
-            title : `Mafioso * Player`,
+            title : `MafiaBuzz * Player`,
             meta: [
                 {
                 name : 'description',
@@ -43,7 +43,7 @@ export default {
                 },
                 {
                 name : 'og:title',
-                content : `Mafioso * Player`
+                content : `MafiaBuzz * Player`
                 },
                 {
                 name : 'og:description',
@@ -51,7 +51,7 @@ export default {
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiosoapp.com/${this.pageId}/player`
+                content : `http://www.mafiabuzz.com/${this.pageId}/player`
                 }
             ]
         }

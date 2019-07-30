@@ -1,6 +1,6 @@
 {
-  "name": "mafiawars",
-  "short_name": "mafiawars",
+  "name": "MafiaBuzz",
+  "short_name": "mafiabuzz",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

@@ -28,7 +28,7 @@ export default {
     },
     metaInfo() {
         return {
-            title : `Mafioso * Creator`,
+            title : `MafiaBuzz * Creator`,
             meta: [
                 {
                 name : 'description',
@@ -36,7 +36,7 @@ export default {
                 },
                 {
                 name : 'og:title',
-                content : `Mafioso * Creator`
+                content : `MafiaBuzz * Creator`
                 },
                 {
                 name : 'og:description',
@@ -44,7 +44,7 @@ export default {
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiosoapp.com/${this.pageId}/creator`
+                content : `http://www.mafiabuzz.com/${this.pageId}/creator`
                 }
             ]
         }

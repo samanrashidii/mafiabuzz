@@ -1,4 +1,8 @@
 {
+    "common": {
+        "homeButton": "Navigate to Home",
+        "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!"
+    },
     "navigation": [
         {
             "name": "Creator",
@@ -22,15 +26,19 @@
             "name": "About us",
             "url": "about",
             "image": "logo.png",
-            "alt": "Mafioso Logo"
+            "alt": "MafiaBuzz Logo"
         }
     ],
     "pages": {
+        "home": {
+            "button1": "One Device",
+            "button2": "Multiple Devices"
+        },
         "creator": {
             "gameModeButton": "Change Game Mode",
             "welcome": {
                 "image": "logo.png",
-                "text": "welcome to <strong class='site-color'>Mafioso</strong> app"
+                "text": "welcome to <strong>MafiaBuzz</strong> app"
             },
             "title": "Hi <span>God</span>",
             "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
@@ -81,7 +89,7 @@
                 }
             ],
             "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>? Please email us at :",
-            "contactEmail": "info@mafiosoapp.com"
+            "contactEmail": "info@mafiabuzz.com"
         },
         "howToPlay": {
             "title": "How to <span>Play</span>",
