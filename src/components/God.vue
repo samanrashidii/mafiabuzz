@@ -9,10 +9,10 @@
             </transition>
         </div>
         
-        <div class="priority-box" v-if="!dashboard.day && sortByPriority.length > 0">
+        <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
             <transition-group name="fade" mode="out-in">
                 <div class="action-box" v-for="(action, index) in sortByPriority" :key="index">
-                    <template v-if="index == dashboard.currentAction">
+                    <template v-if="checkReadyActions(action, index)">
                         {{fireAction(action)}}
                         <div class="player-box-holder has-xsmall-bottom-margin">
                             <div class="player-box">
@@ -241,7 +241,7 @@ export default {
                 targetMafia: null,
                 targetIcon: 'default.png',
             },
-            sortByPriority:[],
+            sortByPriority:[]
         }
     },
     created(){
@@ -404,6 +404,16 @@ export default {
                return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
             } 
         },
+        checkReadyActions(action, index){
+            if(index == this.dashboard.currentAction){
+                if(action.status.hacked){
+                    this.dashboard.currentAction++;
+                }
+                return true;
+            } else{
+                return false;
+            }
+        },
         // Kill or Heal Character Manually
         deadOrAlive(player){
             // Check Alive People and People Don't Have Heal Buff = Kill them with filters
@@ -526,7 +536,7 @@ export default {
                     // Godfather and Mafia Targets -- Kill if not Healed
                     if(attacker == 2 && !healed || attacker == 1 && !healed){
                         // Check not damageReturned
-                        if(!damageReturned){
+                        if(!damageReturned || damageReturned && hacked){
                             if(element.player == this.log.target){
                                 // Bulletproof; Check Has shield ; Check if not Hacked
                                 if(shield && !hacked){
@@ -549,13 +559,13 @@ export default {
                         
                     }
                     // Ruspy Targets ; Check not damageReturned
-                    if(attacker == 3 && !damageReturned){
+                    if(attacker == 3 && !damageReturned || attacker == 3 && damageReturned && hacked){
                         if(element.player == this.log.target){
                             element.status.silenced = true;
                         }
                     }
                     // Doctor Targets ; Check not damageReturned
-                    if(attacker == 10 && !damageReturned){
+                    if(attacker == 10 && !damageReturned || attacker == 10 && damageReturned && hacked){
                         if(element.player == this.log.target){
                             element.status.healed = true;
                         }
@@ -613,7 +623,7 @@ export default {
             this.log.target = null;
             this.log.targetRole = null;
             this.log.targetPassive = null;
-            this.setActionsByPriority();
+            console.log(this.sortByPriority);
         },
         // Calculate Passive and Log to History Log
         passiveCalc(element){
@@ -674,8 +684,10 @@ export default {
         },
         // Set Actions by Priority
         setActionsByPriority(){
-            let filteredActions= this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead && !x.status.hacked);
+            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead);
             this.sortByPriority = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+            console.log(filteredActions);
+            console.log(this.sortByPriority);
         },
         // Show Information of roles
         showInfo(role){
@@ -821,6 +833,7 @@ export default {
     .player-box{
         display:inline-block;
         vertical-align: middle;
+        img{width:35px;}
     }
 
     .action-color{color:$day}
