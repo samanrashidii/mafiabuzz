@@ -376,7 +376,7 @@ button{
 .welcome{
     color: $color_site_1;
     text-align: center;
-    padding:30px 10px;
+    padding:25px 10px;
     margin:25px 0;
     background-image:url('../images/logo-small-fade.png');
     background-color: $color_site_2 !important;
@@ -843,7 +843,7 @@ span.step-number{
     margin:10px 0 15px 0;
     box-shadow: 0 0 7px $background_color_middle;
     background-color: $color_site_5;
-    border-radius: 40px;
+    border-radius: 7px;
     span{
         display: inline-block;
         padding:22px 10px 22px 75px;
@@ -884,12 +884,13 @@ span.step-number{
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    width:100px;
-    height: 100px;
-    margin: 0 10px;
+    width:60px;
+    height: 60px;
+    margin:0 30px;
     background: url('../images/assets/down-arrow.png') no-repeat center;
     img{
-        margin:28px 0 0 13px;
+        width:26px;
+        margin:17px 0 0 9px;
     }
 }
 
@@ -1098,28 +1099,15 @@ table tr{
 
 .priority-box{
     text-align: center;
-    padding:15px;
+    padding:25px 20px;
     margin-top:20px;
-    background-color: $background_color_4;
+    background-color: $background_color_main;
     border-radius: 10px;
-    box-shadow: inset 0 0 15px $black_color;
-    .player-box{
-        img{width:35px;}
-    }
+    box-shadow: inset 0 0 18px $black_color;
     label{
         display:inline-block;
         font-size: $font_size_3;
         margin:10px 0;
-    }
-    .arrow{
-        width:60px;
-        height: 60px;
-        margin:0 30px;
-        background-size: 60px;
-        img{
-            width:26px;
-            margin:17px 0 0 9px;
-        }
     }
     a.bttn{
         padding:8px 12px;
