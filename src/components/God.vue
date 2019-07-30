@@ -10,71 +10,45 @@
         </div>
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
-            <transition-group name="fade" mode="out-in">
-                <div class="action-box" v-for="(action, index) in sortByPriority" :key="index">
-                    <template v-if="checkReadyActions(action, index)">
-                        {{fireAction(action)}}
-                        <div class="player-box-holder has-xsmall-bottom-margin">
-                            <div class="player-box">
-                                <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
-                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
-                            </div>
-                            <div class="arrow">
-                                <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
-                            </div>
-                            <div class="player-box">
-                                <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
-                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
-                            </div>
+            <template v-for="(action, index) in sortByPriority">
+                <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
+                    {{fireAction(action)}}
+                    <div class="player-box-holder has-xsmall-bottom-margin">
+                        <div class="player-box">
+                            <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                         </div>
-                        <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
-                            <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
+                        <div class="arrow">
+                            <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                        </div>
+                        <div class="player-box">
+                            <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
+                        </div>
+                    </div>
+                    <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
+                        <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
+                    </select>
+                    <template v-if="info.id == 11 && log.target != null">
+                        <label for="action_target_2">{{God.actionHintText2}}</label>
+                        <select name="action_target_2" id="action_target_2" v-model="log.target2">
+                            <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
                         </select>
-                        <template v-if="info.id == 11 && log.target != null">
-                            <label for="action_target_2">{{God.actionHintText2}}</label>
-                            <select name="action_target_2" id="action_target_2" v-model="log.target2">
-                                <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
-                            </select>
-                        </template>
-                        <app-button class="danger" @click.native="skipAction()">{{God.skipButton}}</app-button>
-                        <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
                     </template>
                 </div>
-            </transition-group>
+            </template>
+            <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
+            <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
         </div>
 
-        <div class="step-box only-box same-padding" v-if="historyLog.length > 0 && !dashboard.day">
-            <div class="log-table">
-                <table>
-                    <tr v-for="(log, index) in historyLog" :key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
-                        </td>
-                        <td>
-                            <template v-if="!log.passiveLog">
-                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " 
-                                <span class="action-color">{{log.action}}</span> " on 
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                <!-- Police Check Result (Normal and Invisible) -->
-                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
-                                <!-- Chef Check Result -->
-                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                                <!-- Cupid Link Result -->
-                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                            </template>
-                            <template v-else>
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
-                                <br />
-                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                            </template>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <overlay :class="{'active': alertBox,'dialog': true}">
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <template>
+                <p>{{God.skipText}}</p>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
+                <app-button @click.native="skipAction()" class="green "><span>{{God.skipButton2}}</span></app-button>
+            </template>
+        </overlay>
 
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
@@ -172,6 +146,39 @@
             </div>
         </div>
 
+        <div class="step-box only-box same-padding" v-if="historyLog.length > 0 && !dashboard.day">
+            <div class="log-table">
+                <table>
+                    <tr v-for="(log, index) in historyLog" :key="index">
+                        <td>{{index+1}}</td>
+                        <td>
+                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        </td>
+                        <td>
+                            <template v-if="!log.passiveLog">
+                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " 
+                                <span class="action-color">{{log.action}}</span> " on 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                                <!-- Police Check Result (Normal and Invisible) -->
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                                <!-- Chef Check Result -->
+                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                                <!-- Cupid Link Result -->
+                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                            </template>
+                            <template v-else>
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                                <br />
+                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                            </template>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         <overlay :class="{'active': overlay,'dialog': true}">
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
@@ -215,6 +222,7 @@ export default {
             fMafias: [],
             fCitizens: [],
             overlay: false,
+            alertBox: false,
             totRestart: false,
             defaultTime: 0,
             confirmAction: false,
@@ -467,111 +475,113 @@ export default {
             let hacked = targetInfo.hacked;
             let damageReturned = targetInfo.damageReturned;
             
-            if(this.log.target != null){
-                this.log.id = this.info.id;
-                this.log.attacker = this.info.player;
-                this.log.action = this.info.action;
-                this.log.passive = this.info.passive;
-                this.log.actionIcon = this.info.actionIcon;
-                this.log.mafia = this.info.mafia;
-                this.log.targetRole = this.info.targetRole;
-                this.log.targetMafia = this.info.targetMafia;
-                this.log.targetPassive = this.info.targetPassive;
-                this.log.targetID = this.info.targetID;
-                
-                this.historyLog.push({...this.log});
+            if(this.log.target != null ){
+                if(!(attacker == 11 && this.log.target2 == null)){
+                    this.log.id = this.info.id;
+                    this.log.attacker = this.info.player;
+                    this.log.action = this.info.action;
+                    this.log.passive = this.info.passive;
+                    this.log.actionIcon = this.info.actionIcon;
+                    this.log.mafia = this.info.mafia;
+                    this.log.targetRole = this.info.targetRole;
+                    this.log.targetMafia = this.info.targetMafia;
+                    this.log.targetPassive = this.info.targetPassive;
+                    this.log.targetID = this.info.targetID;
+                    
+                    this.historyLog.push({...this.log});
 
-                this.finalPlayers.forEach((element, index) => {
-                    if(element.player == this.log.attacker){
-                        element.actionStatus = true;
-                        // Yakuza Attacker
-                        if(attacker == 7 && !element.status.healed){
-                            element.status.dead = true;
-                            element.action.oneTime = false;
-                        }
-                        // Cupid Attacker
-                        if(attacker == 11){
-                            element.action.oneTime = false;
-                        }
-                        // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                        if(attacker != 11 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
-                            element.status.dead = true;
-                        }
-                    }
-                    // Yakuza Target ; Check if damageReturned ; Check if Hacked
-                    if(attacker == 7 && element.player == this.log.target && !damageReturned || attacker == 7 && element.player == this.log.target && damageReturned && hacked){
-                        element.status.stolen = true;
-                        element.status.damageReturned = false;
-                        element.name = 'Yakuza';
-                        element.icon = 'ninja.png';
-                        element.action.action = null;
-                        element.action.passive = null;
-                        element.action.secondaryAction = null;
-                    }
-                    // Cupid Targets
-                    if(attacker == 11){
-                        if(element.player == this.log.target){
-                            element.status.linked = true;
-                        }
-                        if(element.player == this.log.target2){
-                            element.status.linked = true;
-                        }
-                    }
-                    // Police
-                    if(attacker == 9 && element.id == defender){
-                        element.status.identityChecked = true;
-                    }
-                    // Chef
-                    if(attacker == 6 && element.id == defender){
-                        element.status.roleChecked = true;
-                    }
-                    // Hacker Target
-                    if(attacker == 16 && element.id == defender){
-                        element.status.hacked = true;
-                    }
-                    // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                    if(defender == 13 && element.id == defender){
-                        this.passiveCalc(element);
-                    }
-                    // Godfather and Mafia Targets -- Kill if not Healed
-                    if(attacker == 2 && !healed || attacker == 1 && !healed){
-                        // Check not damageReturned
-                        if(!damageReturned || damageReturned && hacked){
-                            if(element.player == this.log.target){
-                                // Bulletproof; Check Has shield ; Check if not Hacked
-                                if(shield && !hacked){
-                                    this.passiveCalc(element);
-                                } else{
-                                    element.status.dead = true;
-                                    element.status.shield = false;
-                                    element.actionStatus = true;
-                                }
+                    this.finalPlayers.forEach((element, index) => {
+                        if(element.player == this.log.attacker){
+                            element.actionStatus = true;
+                            // Yakuza Attacker
+                            if(attacker == 7 && !element.status.healed){
+                                element.status.dead = true;
+                                element.action.oneTime = false;
                             }
-                            // Bomb Targets | Passive
-                            if(element.id == defender){
-                                this.passiveCalc(element);
+                            // Cupid Attacker
+                            if(attacker == 11){
+                                element.action.oneTime = false;
                             }
-                            // Cupid Targets | Status
-                            if(linked && element.status.linked && !element.status.healed){
+                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker ; 
+                            if(attacker != 11 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
                                 element.status.dead = true;
                             }
                         }
-                        
-                    }
-                    // Ruspy Targets ; Check not damageReturned
-                    if(attacker == 3 && !damageReturned || attacker == 3 && damageReturned && hacked){
-                        if(element.player == this.log.target){
-                            element.status.silenced = true;
+                        // Yakuza Target ; Check if damageReturned ; Check if Hacked
+                        if(attacker == 7 && element.player == this.log.target && !damageReturned || attacker == 7 && element.player == this.log.target && damageReturned && hacked){
+                            element.status.stolen = true;
+                            element.status.damageReturned = false;
+                            element.name = 'Yakuza';
+                            element.icon = 'ninja.png';
+                            element.action.action = null;
+                            element.action.passive = null;
+                            element.action.secondaryAction = null;
                         }
-                    }
-                    // Doctor Targets ; Check not damageReturned
-                    if(attacker == 10 && !damageReturned || attacker == 10 && damageReturned && hacked){
-                        if(element.player == this.log.target){
-                            element.status.healed = true;
+                        // Cupid Targets
+                        if(attacker == 11){
+                            if(element.player == this.log.target){
+                                element.status.linked = true;
+                            }
+                            if(element.player == this.log.target2){
+                                element.status.linked = true;
+                            }
                         }
-                    }
-                });
-                this.nextAction();
+                        // Police
+                        if(attacker == 9 && element.id == defender){
+                            element.status.identityChecked = true;
+                        }
+                        // Chef
+                        if(attacker == 6 && element.id == defender){
+                            element.status.roleChecked = true;
+                        }
+                        // Hacker Target
+                        if(attacker == 16 && element.id == defender){
+                            element.status.hacked = true;
+                        }
+                        // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
+                        if(defender == 13 && element.id == defender){
+                            this.passiveCalc(element);
+                        }
+                        // Godfather and Mafia Targets -- Kill if not Healed
+                        if(attacker == 2 && !healed || attacker == 1 && !healed){
+                            // Check not damageReturned
+                            if(!damageReturned || damageReturned && hacked){
+                                if(element.player == this.log.target){
+                                    // Bulletproof; Check Has shield ; Check if not Hacked
+                                    if(shield && !hacked){
+                                        this.passiveCalc(element);
+                                    } else{
+                                        element.status.dead = true;
+                                        element.status.shield = false;
+                                        element.actionStatus = true;
+                                    }
+                                }
+                                // Bomb Targets | Passive
+                                if(element.id == defender){
+                                    this.passiveCalc(element);
+                                }
+                                // Cupid Targets | Status
+                                if(linked && element.status.linked && !element.status.healed){
+                                    element.status.dead = true;
+                                }
+                            }
+                            
+                        }
+                        // Ruspy Targets ; Check not damageReturned
+                        if(attacker == 3 && !damageReturned || attacker == 3 && damageReturned && hacked){
+                            if(element.player == this.log.target){
+                                element.status.silenced = true;
+                            }
+                        }
+                        // Doctor Targets ; Check not damageReturned
+                        if(attacker == 10 && !damageReturned || attacker == 10 && damageReturned && hacked){
+                            if(element.player == this.log.target){
+                                element.status.healed = true;
+                            }
+                        }
+                    });
+                    this.nextAction();
+                }
             }
         },
         // Get Action Target Info
@@ -623,7 +633,6 @@ export default {
             this.log.target = null;
             this.log.targetRole = null;
             this.log.targetPassive = null;
-            console.log(this.sortByPriority);
         },
         // Calculate Passive and Log to History Log
         passiveCalc(element){
@@ -686,8 +695,6 @@ export default {
         setActionsByPriority(){
             let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead);
             this.sortByPriority = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
-            console.log(filteredActions);
-            console.log(this.sortByPriority);
         },
         // Show Information of roles
         showInfo(role){
@@ -704,6 +711,7 @@ export default {
         // Skip Action
         skipAction(){
             this.nextAction();
+            this.alertBox = false;
         }
     },
     components: {

@@ -591,15 +591,15 @@ a.info{
             .role-info{
                 position: relative;
                 display: inline-block;
-                min-width: 150px;
+                min-width: 162px;
                 font-family: $font_mafia;
                 font-size: 30px;
                 color:$color_site_4;
-                padding:25px;
-                margin-top:10px;
+                padding:30px 25px;
+                margin:10px 0 7px 0;
                 background-color: $background_color_4;
-                border:1px solid $background_color_mafia;
-                border-radius: 10px;
+                border:2px solid $background_color_mafia;
+                border-radius: 50%;
                 &::after{
                     content:'';
                     position: absolute;
@@ -608,12 +608,12 @@ a.info{
                     display: block;
                     width:calc(100% - 10px);
                     height:calc(100% - 10px);
-                    border:1px solid $background_color_mafia;
-                    border-radius: 7px;
+                    border:2px solid $background_color_mafia;
+                    border-radius: 50%;
                 }
                 &.citizen{
-                    border:1px solid $background_color_citizen;
-                    &::after{border:1px solid $background_color_citizen;}
+                    border:2px solid $background_color_citizen;
+                    &::after{border:2px solid $background_color_citizen;}
                 }
             }
         }
@@ -935,6 +935,7 @@ table tr{
             opacity: 1;
             visibility: visible;
             background-image: url('../images/icons/linked.png') !important;
+            z-index: 99;
         }
     }
     &.dead td{
@@ -973,6 +974,12 @@ table tr{
             visibility: visible !important;
             background-image: url('../images/icons/heal.png');
             background-color: rgba(26,66,0,.85);
+        }
+    }
+    &.silenced.healed td{
+        &:nth-child(2)::after{
+            background-image: url('../images/icons/silence_heal.png') !important;
+            background-color: rgba(3,120,98,.85) !important;
         }
     }
     &.invisible td{
