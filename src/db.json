@@ -126,9 +126,11 @@
         "cancelButton": "Cancel",
         "confirmButton": "Action..!",
         "skipButton": "Skip",
+        "skipButton2": "Yes, Skip it!",
         "restartButton": "Restart Game",
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
+        "skipText": "Do you want to skip this action for tonight?",
         "dashboardHint": [
             {
                 "name": "killer",
