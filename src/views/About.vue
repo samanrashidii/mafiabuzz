@@ -40,7 +40,7 @@ export default {
     },
     metaInfo() {
         return {
-            title : `Mafioso * Abous us`,
+            title : `MafiaBuzz * Abous us`,
             meta: [
                 {
                 name : 'description',
@@ -48,7 +48,7 @@ export default {
                 },
                 {
                 name : 'og:title',
-                content : `Mafioso * Abous us`
+                content : `MafiaBuzz * Abous us`
                 },
                 {
                 name : 'og:description',
@@ -56,7 +56,7 @@ export default {
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiosoapp.com/${this.pageId}/about`
+                content : `http://www.mafiabuzz.com/${this.pageId}/about`
                 }
             ]
         }

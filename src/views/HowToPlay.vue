@@ -41,23 +41,23 @@ export default {
     },
     metaInfo() {
         return {
-            title : `Mafioso * How To Play`,
+            title : `MafiaBuzz * How To Play`,
             meta: [
                 {
                 name : 'description',
-                content : `We explained everything you need to know to play Mafioso Party Game`
+                content : `We explained everything you need to know to play MafiaBuzz Party Game`
                 },
                 {
                 name : 'og:title',
-                content : `Mafioso * How To Play`
+                content : `MafiaBuzz * How To Play`
                 },
                 {
                 name : 'og:description',
-                content : `We explained everything you need to know to play Mafioso Party Game`
+                content : `We explained everything you need to know to play MafiaBuzz Party Game`
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiosoapp.com/${this.pageId}/how-to-play`
+                content : `http://www.mafiabuzz.com/${this.pageId}/how-to-play`
                 }
             ]
         }

@@ -9,7 +9,7 @@
             </transition>
         </div>
         
-        <div class="priority-box" v-if="!dashboard.day && sortByPriority.length > dashboard.currentAction">
+        <div class="priority-box" v-if="!dashboard.day && sortByPriority.length > 0">
             <transition-group name="fade" mode="out-in">
                 <div class="action-box" v-for="(action, index) in sortByPriority" :key="index">
                     <template v-if="index == dashboard.currentAction">
@@ -698,7 +698,7 @@ export default {
         overlay: Overlay,
         infoBox: InfoBox,
         countdown: Countdown,
-    }
+    },
 }
 </script>
 

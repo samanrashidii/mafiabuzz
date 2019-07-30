@@ -5,13 +5,13 @@
         <router-link :to="{name: 'menu', params: {id : 'single-device'}}">
           <span>
             <img :src="getImgUrl('single-device.png')" alt="Single Device Icon" />
-            <strong>One Device</strong>
+            <strong>{{Home.button1}}</strong>
           </span>
         </router-link>
         <router-link :to="{name: 'menu', params: {id : 'multi-device'}}">
           <span>
             <img :src="getImgUrl('multi-device.png')" alt="Multi Device Icon" />
-            <strong>Multiple Devices</strong>
+            <strong>{{Home.button2}}</strong>
           </span>
         </router-link>
       </nav>
@@ -20,25 +20,31 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
+  computed:{
+      ...mapGetters([
+        'Home',
+      ]),
+  },
   metaInfo: {
-    title : `Mafioso * Home`,
+    title : `MafiaBuzz * Home`,
     meta: [
       {
         name : 'description',
-        content : `Mafioso is a web application to setup and manage "Mafia Party Game" easily.`
+        content : `MafiaBuzz is a web application to setup and manage "Mafia Party Game" easily.`
       },
       {
         name : 'og:title',
-        content : `Mafioso * Home`
+        content : `MafiaBuzz * Home`
       },
       {
         name : 'og:description',
-        content : `Mafioso is a web application to setup and manage "Mafia Party Game" easily`
+        content : `MafiaBuzz is a web application to setup and manage "Mafia Party Game" easily`
       },
       {
         name : 'og:url',
-        content : `http://www.mafiosoapp.com`
+        content : `http://www.mafiabuzz.com`
       }
     ]
   },

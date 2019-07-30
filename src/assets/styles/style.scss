@@ -374,18 +374,26 @@ button{
 }
 
 .welcome{
+    color: $color_site_1;
     text-align: center;
     padding:30px 10px;
     margin:5px 0 15px 0;
     background-image:url('../images/logo-small-fade.png');
-    background-color: $background_color_4 !important;
+    background-color: $color_site_2 !important;
     border-radius: 15px;
-    box-shadow: inset 0 0 15px $black_color;
+    box-shadow: inset 0 0 10px $black_color;
     animation:fading 2.4s ease-in-out alternate infinite;
     img{
         width:100px;
+        margin-bottom:10px;
     }
-    strong{font-size: 24px;}
+    strong{
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $font_mafia;
+        font-size: 44px;
+        color: $black_color;
+    }
 }
 
 @keyframes fading {

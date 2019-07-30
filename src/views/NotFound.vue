@@ -1,16 +1,22 @@
 <template>
     <div class="not-found center-aligned">
         <img :src="require(`@/assets/images/error-404.png`)" alt="404 Page Icon" />
-        <h2 class="has-top-margin">I think <strong class="mafia-role">Mafia</strong> has destoryed this page <span class="citizen-role">404</span> times !!!</h2>
-        <router-link class="bttn has-top-margin" :to="{name: 'home'}">Navigate to Home</router-link>
+        <h2 class="has-top-margin" v-html="Common.page404"></h2>
+        <router-link class="bttn has-top-margin" :to="{name: 'home'}">{{Common.homeButton}}</router-link>
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
+    computed:{
+        ...mapGetters([
+            'Common',
+        ]),
+    },
     metaInfo() {
         return {
-            title : `Mafioso * Page Not Found - Error 404`,
+            title : `MafiaBuzz * Page Not Found - Error 404`,
             meta: [
                 {
                 name : 'description',
@@ -18,7 +24,7 @@ export default {
                 },
                 {
                 name : 'og:title',
-                content : `Mafioso * Page Not Found - Error 404`
+                content : `MafiaBuzz * Page Not Found - Error 404`
                 },
                 {
                 name : 'og:description',
@@ -26,7 +32,7 @@ export default {
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiosoapp.com/error-404`
+                content : `http://www.mafiabuzz.com/error-404`
                 }
             ]
         }

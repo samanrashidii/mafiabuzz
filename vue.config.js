@@ -6,5 +6,5 @@ module.exports = {
       }
     }
   },
-  // publicPath: '/mafiawars/',
+  // publicPath: '/mafiabuzz/',
 };
