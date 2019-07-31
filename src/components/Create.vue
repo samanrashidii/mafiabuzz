@@ -65,10 +65,10 @@
                         <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
                         <ul class="error-bullet">
                             <li v-if="error.mafia">
-                                You have chosen <span>{{gameSettings.mafia}}</span> Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
+                                You have chosen <span>{{gameSettings.mafia}}</span> character of <strong class="mafia-role">Mafia</strong> but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
                             </li>
                             <li class="blue" v-if="error.citizens">
-                                You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
+                                You have chosen <span>{{gameSettings.citizens}}</span> character of <strong class="citizen-role">Citizen</strong> but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
                             </li>
                         </ul>
                         <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
