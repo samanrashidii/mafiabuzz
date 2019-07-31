@@ -23,7 +23,7 @@
             "alt": "HowToPlay Icon"
         },
         {
-            "name": "About us",
+            "name": "About",
             "url": "about",
             "image": "logo.png",
             "alt": "MafiaBuzz Logo"
@@ -51,7 +51,12 @@
             "playerMargin": 5,
             "start": "Start Game!",
             "changeSettings": "Change Role Settings",
+            "cancelButton": "Cancel",
+            "changeSettingsText": "Are you sure about changing roles?",
+            "confirmButton": "Yes I want to change roles",
             "restartGame": "Restart game and change roles",
+            "restartButton": "Restart Game",
+            "resetTotalText": "Are you sure? Your selected roles and players will reset",
             "assign": "Assign Roles",
             "checkBeforeStart": "Your game will start with below characters",
             "dashboardTitle": "<span>God</span> Dashboard",
@@ -66,8 +71,8 @@
             "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         "about": {
-            "title": "About <span>Us</span>",
-            "subtitle": "Don't tell anyone <span class='site-color'>About Us</span> :p",
+            "title": "<span>About</span>",
+            "subtitle": "Don't tell anyone <span class='site-color'>about</span> us :p",
             "creators": [
                 {
                     "name": "Saman Rashidi",
@@ -98,17 +103,17 @@
                 {
                     "icon": "1.png",
                     "titl1": "What is this Game?",
-                    "desc1": "<strong>MafioSo</strong> is a party game with modelling a conflict between two groups: an informed minority (<span class='mafia-role'> Tho Mafia </span>), and an uninformed majority (<span class='citizen-role'> The Citizens </span>). At the start of the game, each player is secretly assigned a role affiliated with one of these teams. The game has two alternating phases: <span class='night-color'>Night</span>, during which the mafia may covertly 'murder' an innocent, and <span class='day-color'>Day</span>, in which surviving players debate the identities of the mafia and vote to eliminate a suspect. The game continues until all of the mafia have been eliminated or until the mafia outnumber the innocents."
+                    "desc1": "<strong>MafiaBuzz</strong> is a party game with modelling a conflict between two groups: an informed minority (<span class='mafia-role'> Tho Mafia </span>), and an uninformed majority (<span class='citizen-role'> The Citizens </span>). At the start of the game, each player is secretly assigned a role affiliated with one of these teams. The game has two alternating phases: <span class='night-color'>Night</span>, during which the mafia may covertly 'murder' an innocent, and <span class='day-color'>Day</span>, in which surviving players debate the identities of the mafia and vote to eliminate a suspect. The game continues until all of the mafia have been eliminated or until the mafia outnumber the innocents."
                 },
                 {
                     "icon": "2.png",
                     "titl1": "<strong>Explaining Gameplay</strong>",
-                    "desc1": "In its simplest form, <strong>MafioSo</strong> is played by two teams: <span class='mafia-role'> Tho Mafia </span> and <span class='citizen-role'> The Citizens </span>. Live games require a moderator ( <span class='creator-color'>God</span> ) who does not participate as a player, and identities are assigned by application. At the start of the game, every mafioso is given the identities of their teammates, whereas citizens only receive the number of mafioso in the game, and do not know which players are mafia and which are citizens. <br /> There are two phases: <span class='night-color'>Night</span> and <span class='day-color'>Day</span>. At <span class='night-color'>Night</span>, certain players secretly perform special actions; during <span class='day-color'>Day</span>, players discuss and vote to kill one player, or eliminate, one player. These phases alternate with each other until all mafioso have been eliminated or until the mafia outnumbers the citizens. <br /> Some players may be given roles with special abilities (Chosen by <span class='creator-color'>Game Creator</span>) <br /><br /> <span class='night-color'>Night:</span> All players close their eyes. The moderator then instructs all members of <span class='mafia-role'>The Mafia</span> to open their eyes and acknowledge their accomplices. They will pick a victim by silently gesturing to indicate their target and to show unanimity then close their eyes again. A similar process occurs for other roles with nightly actions. <br /><br /> <span class='day-color'>Day:</span> The moderator instructs players to open their eyes and announces what happened the previous night. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafioso and prompt others to vote to kill them. If over half of the players do so, the accused person is eliminated and <span class='night-color'>Night</span> begins. Otherwise, thos phase continues until a killing occurs. Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, <span class='day-color'>Days</span> tend to be longer than <span class='night-color'>Nights</span>."
+                    "desc1": "<strong>MafiaBuzz</strong> is played by two teams: <span class='mafia-role'> Tho Mafia </span> and <span class='citizen-role'> The Citizens </span>. Live games require a moderator ( <span class='creator-color'>God</span> ) who does not participate as a player, and identities are assigned by application. At the start of the game, every mafioso is given the identities of their teammates, whereas citizens only receive the number of mafioso in the game, and do not know which players are mafia and which are citizens. <br /> There are two phases: <span class='night-color'>Night</span> and <span class='day-color'>Day</span>. At <span class='night-color'>Night</span>, certain players secretly perform special actions; during <span class='day-color'>Day</span>, players discuss and vote to kill one player, or eliminate, one player. These phases alternate with each other until all mafioso have been eliminated or until the mafia outnumbers the citizens. <br /> Some players may be given roles with special abilities (Chosen by <span class='creator-color'>Game Creator</span>) <br /><br /> <span class='night-color'>Night:</span> All players close their eyes. The moderator then instructs all members of <span class='mafia-role'>The Mafia</span> to open their eyes and acknowledge their accomplices. They will pick a victim by silently gesturing to indicate their target and to show unanimity then close their eyes again. A similar process occurs for other roles with nightly actions. <br /><br /> <span class='day-color'>Day:</span> The moderator instructs players to open their eyes and announces what happened the previous night. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafioso and prompt others to vote to kill them. If over half of the players do so, the accused person is eliminated and <span class='night-color'>Night</span> begins. Otherwise, thos phase continues until a killing occurs. Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, <span class='day-color'>Days</span> tend to be longer than <span class='night-color'>Nights</span>."
                 },
                 {
                     "icon": "3.png",
                     "titl1": "<span>Know more about Roles</span>",
-                    "desc1": "Different roles are making this game much funnier and more enjoyable. In below we are explaining about each role seperately:",
+                    "desc1": "Different roles are making <strong>MafiaBuzz</strong> much funnier and more enjoyable. In below we are explaining about each role seperately:",
                     "roles": true
                 }
             ]
