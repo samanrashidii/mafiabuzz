@@ -53,7 +53,7 @@
             "changeSettings": "Change Role Settings",
             "cancelButton": "Cancel",
             "changeSettingsText": "Are you sure about changing roles?",
-            "confirmButton": "Yes I want to change roles",
+            "confirmButton": "Yes I want to",
             "restartGame": "Restart game and change roles",
             "restartButton": "Restart Game",
             "resetTotalText": "Are you sure? Your selected roles and players will reset",
@@ -120,6 +120,11 @@
         }
     },
     "god": {
+        "name": "God",
+        "killIcon": "reaper.png",
+        "killAction": "Killed",
+        "reviveIcon": "angel.png",
+        "reviveAction": "Revived",
         "nightText": "Change to Night",
         "dayText": "Change to Day",
         "confirmText": "Go Next Phase",

@@ -119,8 +119,8 @@
                                         </td>
                                         <td>
                                             <template v-if="!log.passiveLog">
-                                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used "
-                                                <span class="action-color">{{log.action}}</span> " on 
+                                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                                                " <span class="action-color">{{log.action}}</span> " on 
                                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                                 <!-- Godfather Check Result -->
                                                 <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
@@ -156,9 +156,9 @@
                             <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
                         </td>
                         <td>
-                            <template v-if="!log.passiveLog">
-                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used " 
-                                <span class="action-color">{{log.action}}</span> " on 
+                            <template v-if="!log.passiveLog && !log.godLog">
+                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                                " <span class="action-color">{{log.action}}</span> " on 
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                 <!-- Police Check Result (Normal and Invisible) -->
                                 <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
@@ -167,6 +167,11 @@
                                 <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
                                 <!-- Cupid Link Result -->
                                 <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                            </template>
+                            <template v-else-if="log.godLog">
+                                <span class="creator-color">{{log.attacker}}</span> has 
+                                " <span class="action-color">{{log.action}}</span> " 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                             </template>
                             <template v-else>
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
@@ -291,6 +296,7 @@ export default {
                     passiveLog: false,
                     action: null,
                     passive: null,
+                    godLog: false,
                     passiveIcon: "loader.svg",
                     attacker: null,
                     target: null,
@@ -424,45 +430,60 @@ export default {
         },
         // Kill or Heal Character Manually
         deadOrAlive(player){
+            this.log.attacker = this.God.name;
+            this.log.target = player.player;
+            this.log.targetMafia = player.mafia;
+            this.log.godLog = true;
             // Check Alive People and People Don't Have Heal Buff = Kill them with filters
-            if(player.status.dead == false && !player.status.healed){
-                // Cupid Targets
-                if(player.status.linked){
-                    this.finalPlayers.forEach(element => {
-                        if(element.status.linked){
-                            element.status.dead = true;
-                        }
-                    });
-                }
-                // Bomb Targets
-                if(player.id == 12){
-                    this.finalPlayers.forEach(element => {
-                        if(element.player == player.player){
-                            element.status.dead = true;
-                            this.passiveCalc(element);
-                        }
-                    });
-                }
-                // Default Target
-                else{
-                    this.finalPlayers.forEach(element => {
-                        if(element.player == player.player){
-                            element.status.dead = true;
-                        }
-                    });
-                }
-            // Check Dead People = Revive them with filters
-            } else{
-                this.finalPlayers.forEach(element => {
-                    if(element.player == player.player){
-                        // Revive Cupid Targets
-                        if(element.status.linked && element.status.dead){
-                            element.status.linked = false;
-                        }
-                        // Revive
-                        element.status.dead = false;
+            if(!player.status.healed){
+                if(player.status.dead == false){
+                    // Log God when kills
+                    this.log.action = this.God.killAction;
+                    this.log.actionIcon = this.God.killIcon;
+                    // Cupid Targets
+                    if(player.status.linked){
+                        this.finalPlayers.forEach(element => {
+                            if(element.status.linked){
+                                element.status.dead = true;
+                            }
+                        });
                     }
-                });
+                    // Bomb Targets
+                    if(player.id == 12){
+                        this.finalPlayers.forEach(element => {
+                            if(element.player == player.player){
+                                element.status.dead = true;
+                                this.passiveCalc(element);
+                            }
+                        });
+                    }
+                    // Default Target
+                    else{
+                        this.finalPlayers.forEach(element => {
+                            if(element.player == player.player){
+                                element.status.dead = true;
+                            }
+                        });
+                    }
+                // Check Dead People = Revive them with filters
+                } else{
+                    // Log God when revive
+                    this.log.action = this.God.reviveAction;
+                    this.log.actionIcon = this.God.reviveIcon;
+                    
+                    this.finalPlayers.forEach(element => {
+                        if(element.player == player.player){
+                            // Revive Cupid Targets
+                            if(element.status.linked && element.status.dead){
+                                element.status.linked = false;
+                            }
+                            // Revive
+                            element.status.dead = false;
+                        }
+                    });
+                }         
+                this.historyLog.push({...this.log});
+                this.log.godLog = false;
             }
         },
         // Do Action
@@ -796,6 +817,7 @@ export default {
                     width:9%;
                     color:$color_2;
                     text-align: center;
+                    padding:0;
                     border-radius: 2px 0 0 2px;
                     background-color: $background_color_5;
                 }
