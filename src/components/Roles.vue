@@ -7,7 +7,7 @@
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
-                        <strong>{{role.name}} <span v-if="checkNumbers(role.id)">x <i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
+                        <strong>{{role.name}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
                     </div>
                 </label>
                 <div class="number-control" v-if="checkNumbers(role.id)">
@@ -190,10 +190,12 @@ export default {
             display: block;
             margin-top:5px;
             span{
-                display: block;
+                display: inline-block;
+                vertical-align: middle;
                 font-family: $font_normal;
                 font-size: $font_size_6;
                 color:$color_1;
+                margin-left: 5px;
                 transition:all .3s ease-in-out;
                 i{font-size: $font_size_8;}
             }

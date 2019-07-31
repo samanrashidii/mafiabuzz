@@ -40,7 +40,7 @@
                 "image": "logo.png",
                 "text": "welcome to <strong>MafiaBuzz</strong> app"
             },
-            "title": "Hi <span>God</span>",
+            "title": "Dear <span>God</span>",
             "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
             "step1": "Choose how many people do want to have in your <span class='creator-color'>World</span>:",
             "step2": "Please choose how many of these people will be <span class='mafia-role'>Mafia</span>:",

@@ -402,6 +402,21 @@ button{
     100%{background-image:url('../images/logo-small.png');}
 }
 
+.roles li input + label::before{
+    content:'';
+    position: absolute;
+    top:4%;
+    left:4%;
+    width:92%;
+    height: 92%;
+    opacity: 0;
+    visibility: hidden;
+    border:3px solid $black_color;;
+    border-radius: 5px;
+    transition:all .2s ease-in-out;
+    transform:scale(.85,.85);
+}
+
 .roles li input + label::after{
     content:'';
     position: absolute;
@@ -410,12 +425,14 @@ button{
     width:28px;
     height: 28px;
     opacity: 0;
+    visibility: hidden;
     background:url('../images/assets/checked.png') no-repeat center $background_color_2;
     background-size: 24px;
     border-radius: 50%;
     transition:all .2s ease-in-out;
     transform:scale(0,0);
 }
+.roles li input.active + label::before,
 .roles li input.active + label::after,
 .roles li input.active ~ a.info{
     visibility: visible;
