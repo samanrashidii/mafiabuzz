@@ -111,7 +111,7 @@ a.bttn{
     }
     &.purple{
         background-color: $purple_color;
-        box-shadow: 0 0 8px $black_color;
+        box-shadow: 0 0 4px $black_color;
     }
     &.green{
         background-color: $green_color;
@@ -414,7 +414,7 @@ button{
     border:3px solid $black_color;;
     border-radius: 5px;
     transition:all .2s ease-in-out;
-    transform:scale(.85,.85);
+    transform:scale(2,2);
 }
 
 .roles li input + label::after{
@@ -439,6 +439,8 @@ button{
     opacity: 1;
     transform:scale(1,1);
 }
+.roles li input.active + label::after,
+.roles li input.active ~ a.info{transition-delay: 150ms;}
 .roles li input.active + label{color:$black_color;}
 .roles li input + label img{transition:all .3s ease-in-out;}
 .roles li input.active + label img{transform:rotate(360deg);}
@@ -744,11 +746,16 @@ span.step-number{
             &:not(:first-child){
                 border-top:5px solid $background_color_mafia;
             }
+            th{
+                font-weight: normal;
+                font-size: $font_size_2;
+                padding:0 5px 5px 5px;
+            }
             td{
                 font-weight: normal;
                 font-size: $font_size_4;
                 color:$color_2;
-                padding:6px;
+                padding:5px;
                 background-color: $background_color_2;
                 &:first-child{
                     width:72%;
@@ -761,8 +768,8 @@ span.step-number{
                 img{
                     display: inline-block;
                     vertical-align: middle;
-                    width:32px;
-                    margin-right: 5px;
+                    width:24px;
+                    margin-right: 4px;
                 }
             } 
         }
@@ -776,9 +783,24 @@ span.step-number{
 }
 
 .character-power{
-    display: inline-block;
-    padding:3px 0 3px 25px;
-    background:url('../images/icons/power.png') no-repeat left center;
+    height: 8px;
+    overflow: hidden;
+    background-color: $color_7;
+    border-radius: 10px;
+    span{
+        display: block;
+        float: left;
+        height: 100%;
+        border-radius: 0 10px 10px 0;
+        &.mafia{
+            background: rgb(194,73,73);
+            background: linear-gradient(90deg, rgba(194,73,73,1) 0%, rgba(255,216,40,1) 100%);
+        }
+        &.citizen{
+            background: rgb(83,154,203);
+            background: linear-gradient(90deg, rgba(83,154,203,1) 0%, rgba(173,83,203,1) 100%);
+        }
+    }
 }
 
 .note-box{

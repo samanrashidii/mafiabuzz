@@ -80,17 +80,25 @@
                         </div>
                         <div class="table mafia-table">
                             <table>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Power</th>
+                                </tr>
                                 <tr v-for="(fM, index) in finalMafias" :key="index">
                                     <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
-                                    <td><span class="character-power">{{Math.abs(fM.power)}}</span></td>
+                                    <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"></span></div></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="table citizen-table">
                             <table>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Power</th>
+                                </tr>
                                 <tr v-for="(fC, index) in finalCitizens" :key="index">
                                     <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
-                                    <td><span class="character-power">{{Math.abs(fC.power)}}</span></td>
+                                    <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"></span></div></td>
                                 </tr>
                             </table>
                         </div>

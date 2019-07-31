@@ -82,8 +82,8 @@
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fM.action.passive == null && fM.action.action == null"></span>
                                             <span class="done-action" v-else-if="fM.action.action == null && fM.action.passive != null && fM.actionStatus == true"></span>
-                                            <span class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
-                                            <span @click="fireAction(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
+                                            <span @click="showInfo(fM)" class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
+                                            <span @click="showInfo(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -102,8 +102,8 @@
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
                                             <span class="done-action" v-else-if="fC.action.action == null && fC.action.passive != null && fC.actionStatus == true"></span>
-                                            <span class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
-                                            <span @click="fireAction(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
+                                            <span @click="showInfo(fC)" class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
+                                            <span @click="showInfo(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -674,13 +674,10 @@ export default {
         },
         // Reset Game From Start
         resetGame(){
-            let confirmFinish = confirm("");
-            if(confirmFinish){
-                this.$router.push({name:'home'});
-                setTimeout(() => {
-                    this.$router.go();
-                }, 250);
-            }
+            this.$router.push({name:'home'});
+            setTimeout(() => {
+                this.$router.go();
+            }, 150);
         },
         // Reset Game with Same Roles and Names
         rgwRoles(){

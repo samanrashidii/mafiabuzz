@@ -5,12 +5,27 @@
                 <h2 class="has-xsmall-bottom-margin" v-html="Creator.dashboardTitle"></h2>
             </div>
             <div v-if="StepCounter != 3 && !GameReset">
-                <app-button @click.native="resetGame()" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
+                <app-button @click.native="alertBox = true, totRestart = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
             </div>
             <div v-else-if="StepCounter != 3 && GameReset">
-                <app-button @click.native="restartGame()" class="danger"><span>{{Creator.restartGame}}</span></app-button>
+                <app-button @click.native="alertBox = true, totRestart = true" class="danger"><span>{{Creator.restartGame}}</span></app-button>
             </div>
         </div>
+        
+        <overlay :class="{'active': alertBox,'dialog': true}">
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <template v-if="!totRestart">
+                <p>{{Creator.changeSettingsText}}</p>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
+                <app-button @click.native="resetGame()" class="green "><span>{{Creator.confirmButton}}</span></app-button>
+            </template>
+            <template v-else>
+                <p>{{Creator.resetTotalText}}</p>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
+                <app-button @click.native="restartGame()" class="green "><span>{{Creator.restartButton}}</span></app-button>
+            </template>
+        </overlay>
+
         <transition name="fade" mode="out-in">
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
@@ -54,6 +69,7 @@
 
 <script>
 import God from '@/components/God.vue';
+import Overlay from '@/components/Overlay.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -65,6 +81,8 @@ export default {
             showPredefined: false,
             showSavedNames: false,
             showrole : false,
+            alertBox: false,
+            totRestart: false,
         }
    },
   computed:{
@@ -174,17 +192,15 @@ export default {
         this.setStep(1);
     },
     restartGame(){
-        let confirmFinish = confirm("are you sure? Your selected roles and players will reset");
-        if(confirmFinish){
-            this.$router.push({name:'home'});
-            setTimeout(() => {
-                this.$router.go();
-            }, 250);
-        }
+        this.$router.push({name:'home'});
+        setTimeout(() => {
+            this.$router.go();
+        }, 150);
     }
   },
   components:{
       god : God,
+      overlay: Overlay,
   }
 }
 </script>
