@@ -20,7 +20,7 @@
                     {{fireAction(action)}}
                     <div class="player-box-holder has-xsmall-bottom-margin">
                         <div class="player-box">
-                            <img :src="getImgUrl(info.icon)" alt="Character Icon"  />
+                            <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
                             <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                         </div>
                         <div class="arrow">
@@ -283,6 +283,7 @@ export default {
                 passive: "Passive",
                 name: "Default",
                 icon: "loader.svg",
+                icon2: "loader.svg",
                 description: "...",
                 actionIcon: "loader.svg",
                 mafia: false,
@@ -388,15 +389,6 @@ export default {
             this.confirmAction = false;
             if(phase == false){
                 this.dashboard.day = true;
-                this.totalHistory.push(this.historyLog);
-            } else{
-                this.dayTime = this.defaultTime;
-                if(this.dashboard.round >= 1){
-                    this.historyLog = [];
-                }
-                this.dashboard.round++;
-                this.dashboard.currentAction = 0;
-
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
                     element.status.silenced = false;
@@ -413,7 +405,14 @@ export default {
                         element.actionStatus = false;
                     }
                 });
-
+                this.totalHistory.push(this.historyLog);
+            } else{
+                this.dayTime = this.defaultTime;
+                if(this.dashboard.round >= 1){
+                    this.historyLog = [];
+                }
+                this.dashboard.round++;
+                this.dashboard.currentAction = 0;
                 this.setActionsByPriority();
                 this.dashboard.day = false;
             }
@@ -667,7 +666,7 @@ export default {
             if(player.actionStatus == false){
                 this.info.id = player.id;
                 this.info.player = player.player;
-                this.info.icon = player.icon;
+                this.info.icon2 = player.icon;
                 this.info.action = player.action.action;
                 this.info.passive = player.action.passive;
                 this.info.actionIcon = player.actionIcon;
