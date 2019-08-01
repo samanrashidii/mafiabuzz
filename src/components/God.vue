@@ -1,5 +1,8 @@
 <template>
     <div>
+
+        <!-- Dashboard Buttons -->
+
         <div class="button-holder" v-if="dashboard.god">
             <transition name="fade" mode="out-in">
                 <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="changePhase(dashboard.day)">
@@ -8,6 +11,8 @@
                 </app-button>
             </transition>
         </div>
+
+        <!-- Night Priority Action Box -->
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
             <template v-for="(action, index) in sortByPriority">
@@ -41,6 +46,8 @@
             <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
         </div>
 
+        <!-- Alert Box -->
+
         <overlay :class="{'active': alertBox,'dialog': true}">
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template>
@@ -49,6 +56,8 @@
                 <app-button @click.native="skipAction()" class="green "><span>{{God.skipButton2}}</span></app-button>
             </template>
         </overlay>
+
+        <!-- Day & Night Dashboard -->
 
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
@@ -69,8 +78,17 @@
 
                             <info-box :info="info"></info-box>
 
+                            <!-- Mafia Table in Dashboard -->
+
                             <div class="table mafia-table">
                                 <table>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>Player</th>
+                                        <th v-if="dashboard.day == true">Vote Counter</th>
+                                        <th v-if="dashboard.day == false">Status</th>
+                                        <th v-if="dashboard.day == false">Action</th>
+                                    </tr>
                                     <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
@@ -78,7 +96,8 @@
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
-                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
+                                        <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+10" /></td>
+                                        <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fM.action.passive == null && fM.action.action == null"></span>
                                             <span class="done-action" v-else-if="fM.action.action == null && fM.action.passive != null && fM.actionStatus == true"></span>
@@ -88,9 +107,18 @@
                                     </tr>
                                 </table>
                             </div>
+
+                            <!-- Citizen Table in Dashboard -->
                             
                             <div class="table citizen-table">
                                 <table>
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>Player</th>
+                                        <th v-if="dashboard.day == true">Vote Counter</th>
+                                        <th v-if="dashboard.day == false">Status</th>
+                                        <th v-if="dashboard.day == false">Action</th>
+                                    </tr>
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
@@ -98,7 +126,8 @@
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
-                                        <td><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
+                                        <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+20" /></td>
+                                        <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
                                             <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
                                             <span class="done-action" v-else-if="fC.action.action == null && fC.action.passive != null && fC.actionStatus == true"></span>
@@ -108,6 +137,8 @@
                                     </tr>
                                 </table>
                             </div>
+
+                            <!-- Log Actions in Last Night -->
 
                             <div class="log-table" v-if="historyLog.length > 0 && dashboard.day" :class="{'result': historyLog.length > 0 && dashboard.day}">
                                 <span class="table-title">What Happened Last Night</span>
@@ -145,6 +176,8 @@
                 </transition-group>
             </div>
         </div>
+
+        <!-- Log Actions During Night -->
 
         <div class="step-box only-box same-padding" v-if="historyLog.length > 0 && !dashboard.day">
             <div class="log-table">
@@ -184,6 +217,21 @@
             </div>
         </div>
 
+        <!-- Dashboard Game Hint -->
+
+        <div class="step-box only-box" v-if="dashboard.god">
+            <ul class="dashboard-hint">
+                <li v-for="(hint, index) in God.dashboardHint" :key="index">
+                    <span :class="hint.name">{{hint.hint}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Restart or Reset Game -->
+
+        <app-button class="active has-xsmall-bottom-margin" @click.native="overlay = true,  totRestart = false" v-if="dashboard.god">{{God.rgwRoles}}</app-button>
+        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="overlay = true, totRestart = true">{{God.resetGame}}</app-button>
+
         <overlay :class="{'active': overlay,'dialog': true}">
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
@@ -197,16 +245,7 @@
                 <app-button @click.native="resetGame()" class="green "><span>{{God.restartButton}}</span></app-button>
             </template>
         </overlay>
-
-        <div class="step-box only-box" v-if="dashboard.god">
-            <ul class="dashboard-hint">
-                <li v-for="(hint, index) in God.dashboardHint" :key="index">
-                    <span :class="hint.name">{{hint.hint}}</span>
-                </li>
-            </ul>
-        </div>
-        <app-button class="active has-xsmall-bottom-margin" @click.native="overlay = true,  totRestart = false" v-if="dashboard.god">{{God.rgwRoles}}</app-button>
-        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="overlay = true, totRestart = true">{{God.resetGame}}</app-button>
+        
     </div>
 </template>
 

@@ -138,24 +138,29 @@ ol{list-style: none;}
 
 ::-webkit-input-placeholder {
 	font-family: $font_normal;
-	font-size: 14px;
-	color: $color_4;
+	font-size: $font_size_6;
+	color: $color_5;
 }
 :-moz-placeholder {
 	font-family: $font_normal;
-	font-size: 14px;
-	color: $color_4;
+	font-size: $font_size_6;
+	color: $color_5;
 }
 ::-moz-placeholder {
 	font-family: $font_normal;
-	font-size: 14px;
-	color: $color_4;
+	font-size: $font_size_6;
+	color: $color_5;
 }
 :-ms-input-placeholder {
 	font-family: $font_normal;
-	font-size: 14px;
-	color: $color_4;
+	font-size: $font_size_6;
+	color: $color_5;
 }
+
+input:focus::-webkit-input-placeholder{color:$color_1;}
+input:focus:-moz-placeholder{color:$color_1;}
+input:focus::-moz-placeholder{color:$color_1;}
+input:focus:-ms-input-placeholder{color:$color_1;}
 
 input {
 	&:-webkit-autofill {
@@ -589,7 +594,7 @@ a.info{
         height: 400px;
         margin-top:20px;
         .inner-display{
-            > div > div{min-height: 286px;}
+            > div > div{min-height: 305px;}
             display: table-cell;
             vertical-align: middle;
             text-align: center;
@@ -749,7 +754,7 @@ span.step-number{
             th{
                 font-weight: normal;
                 font-size: $font_size_2;
-                padding:0 5px 5px 5px;
+                padding:0 2px 5px 2px;
             }
             td{
                 font-weight: normal;
@@ -765,13 +770,23 @@ span.step-number{
                 &:last-child{
                     border-radius: 0 2px 2px 0;
                 }
+                &.vote-counter{width:25% !important;}
                 img{
                     display: inline-block;
                     vertical-align: middle;
                     width:24px;
                     margin-right: 4px;
                 }
-            } 
+                input{
+                    max-width: 30px;
+                    height: 22px;
+                    line-height: 22px;
+                    text-align: center;
+                    padding: 0 2px;
+                    margin: auto;
+                    border-radius: 2px;
+                }
+            }
         }
         
     }
