@@ -718,7 +718,7 @@
                 "action": "Resurrect"
             },
             "actionIcon": "necromancer.png",
-            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person one of his minion (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his minions will die instantly.",
+            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person one of his skeletons (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his skeletons will die instantly.",
             "power": 40,
             "free": true,
             "alt": "Necromancer Icon",

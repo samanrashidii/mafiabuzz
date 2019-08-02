@@ -428,6 +428,7 @@ export default {
                 'shield': char.status.shield == true && !char.status.hacked, // Active if not hacked
                 'invisible': char.status.invisible == true && !char.status.hacked, // Active if not hacked
                 'hacked': char.status.hacked == true,
+                'skeleton': char.status.revived == true
             }
         },
         // Select Options for Action
@@ -492,6 +493,26 @@ export default {
                             if(element.player == player.player){
                                 element.status.dead = true;
                                 this.passiveCalc(element);
+                            }
+                        });
+                    }
+                    // Bulletproof Targets
+                    if(player.id == 14){
+                        this.finalPlayers.forEach(element => {
+                            if(element.player == player.player){
+                                element.status.dead = true;
+                                element.status.shield = false;
+                            }
+                        });
+                    }
+                    // Necromancer Targets
+                    if(player.id == 15){
+                        this.finalPlayers.forEach(element => {
+                            if(element.player == player.player){
+                                element.status.dead = true;
+                            }
+                            if(element.status.revived){
+                                element.status.dead = true;
                             }
                         });
                     }
@@ -561,8 +582,8 @@ export default {
                             if(attacker == 11){
                                 element.action.oneTime = false;
                             }
-                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                            if(attacker != 11 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
+                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Necromancer ; 
+                            if(attacker != 11 && attacker != 15 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
                                 element.status.dead = true;
                             }
                         }
@@ -584,6 +605,21 @@ export default {
                             if(element.player == this.log.target2){
                                 element.status.linked = true;
                             }
+                        }
+                        // Necromancer
+                        if(attacker == 15 && element.id == defender){
+                            // Revive Cupid Targets
+                            if(element.status.linked && element.status.dead){
+                                element.status.linked = false;
+                            }
+                            // Revive
+                            element.name = 'Skeleton';
+                            element.icon = 'skeleton.png';
+                            element.action.action = null;
+                            element.action.passive = null;
+                            element.action.secondaryAction = null;
+                            element.status.dead = false;
+                            element.status.revived = true;
                         }
                         // Police
                         if(attacker == 9 && element.id == defender){
@@ -709,7 +745,7 @@ export default {
                 this.log.passiveLog = false;
             } 
             // Grandma Activate Passive ; Check Not Hacked
-            else if(element.id == 13 && !element.status.hacked){
+            else if(element.id == 13 && !element.status.hacked && !element.status.revived){
                 this.log.target = element.player;
                 this.log.passiveLog = true;
                 this.log.passive = element.action.passive;
@@ -855,7 +891,7 @@ export default {
                     width:9%;
                     color:$color_2;
                     text-align: center;
-                    padding:0;
+                    padding:4px 0;
                     border-radius: 2px 0 0 2px;
                     background-color: $background_color_5;
                 }
