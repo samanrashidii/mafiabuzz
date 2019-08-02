@@ -1014,6 +1014,16 @@ table tr{
             background-color: transparent;
         }
     }
+    &.skeleton td{
+        &::after{
+            visibility: visible;
+            opacity: 1;
+            background-color:rgba(22, 22,22, 0.24);
+        }
+        &:last-child::after{
+            background-color: transparent;
+        }
+    }
     &.silenced td{
         &:nth-child(2)::after{
             opacity: 1 !important;
