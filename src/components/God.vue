@@ -15,10 +15,44 @@
         <!-- Night Priority Action Box -->
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
+
+            <!-- Actions Progress Bar -->
             <div class="progress-bar">
                 <span :style="{width: progress+'%'}"></span>
-                <i><strong>{{dashboard.currentAction}}</strong> \ {{sortByPriority.length}}</i>
+                <i><strong>{{dashboard.currentAction}}</strong> / {{sortByPriority.length}}</i>
             </div>
+
+            <!-- Log Actions During Night -->
+            <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
+                <div class="log-action">
+                    <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                    <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                    <template v-if="!log.passiveLog && !log.godLog">
+                        <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                        " <span class="action-color">{{log.action}}</span> " on 
+                        <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                        <!-- Police Check Result (Normal and Invisible) -->
+                        <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                        <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                        <!-- Chef Check Result -->
+                        <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                        <!-- Cupid Link Result -->
+                        <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                    </template>
+                    <template v-else-if="log.godLog">
+                        <span class="creator-color">{{log.attacker}}</span> has 
+                        " <span class="action-color">{{log.action}}</span> " 
+                        <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                    </template>
+                    <template v-else>
+                        <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                        <br />
+                        " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                    </template>
+                </div>
+            </overlay>
+
+            <!-- Handle Actions -->
             <template v-for="(action, index) in sortByPriority">
                 <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
                     {{fireAction(action)}}
@@ -47,6 +81,8 @@
                     </template>
                 </div>
             </template>
+
+            <!-- Action Buttons -->
             <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
             <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
         </div>
@@ -66,36 +102,7 @@
             <app-button @click.native="logShow = true" class="awesome"><span>{{God.nightLogButton}} <i>{{historyLog.length}}</i></span></app-button>
         </div>
 
-        <!-- Log Actions During Night -->
-
-        <overlay :class="{'active': logAction,'log': true}">
-            <div class="log-action">
-                <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
-                <template v-if="!log.passiveLog && !log.godLog">
-                    <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
-                    " <span class="action-color">{{log.action}}</span> " on 
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                    <!-- Police Check Result (Normal and Invisible) -->
-                    <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                    <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
-                    <!-- Chef Check Result -->
-                    <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                    <!-- Cupid Link Result -->
-                    <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                </template>
-                <template v-else-if="log.godLog">
-                    <span class="creator-color">{{log.attacker}}</span> has 
-                    " <span class="action-color">{{log.action}}</span> " 
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                </template>
-                <template v-else>
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
-                    <br />
-                    " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                </template>
-            </div>
-        </overlay>
+        <!-- Night Log -->
 
         <overlay :class="{'active': logShow}">
             <div class="log-table" v-if="historyLog.length > 0">
@@ -112,7 +119,7 @@
                                 " <span class="action-color">{{log.action}}</span> " on 
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                 <!-- Police Check Result (Normal and Invisible) -->
-                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
                                 <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
                                 <!-- Chef Check Result -->
                                 <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
@@ -235,8 +242,8 @@
                                                 <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
                                                 " <span class="action-color">{{log.action}}</span> " on 
                                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                                <!-- Godfather Check Result -->
-                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                                <!-- Police Check Result (Normal and Invisible) -->
+                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
                                                 <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'citizen-role':log.targetMafia}">{{log.targetMafia}}</span></i>
                                                 <!-- Chef Check Result -->
                                                 <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
@@ -311,6 +318,7 @@ export default {
             alertBox: false,
             logShow: false,
             logAction: false,
+            logActionDone: false,
             totRestart: false,
             defaultTime: 0,
             confirmAction: false,
@@ -438,10 +446,8 @@ export default {
                 this.dashboard.day = true;
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
-                    element.status.silenced = false;
                     element.status.roleChecked = false;
                     element.status.identityChecked = false;
-                    element.status.healed = false;
                     element.status.hacked = false;
                     // One Time Actions of Yakuza - Bomb - Cupid - Bulletproof
                     if(element.id == 7 || element.id == 11 || element.id == 12 || element.id == 14){
@@ -455,6 +461,11 @@ export default {
                 this.totalHistory.push(this.historyLog);
             } else{
                 this.dayTime = this.defaultTime;
+                this.finalPlayers.forEach(element => {
+                    // Reset One Night Actions
+                    element.status.silenced = false;
+                    element.status.healed = false;
+                });
                 if(this.dashboard.round >= 1){
                     this.historyLog = [];
                 }
@@ -615,7 +626,9 @@ export default {
                     this.log.targetPassive = this.info.targetPassive;
                     this.log.targetID = this.info.targetID;
                     
-                    this.historyLog.push({...this.log});
+                    setTimeout(() => {
+                        this.historyLog.push({...this.log});  
+                    }, 3450);
 
                     this.finalPlayers.forEach((element, index) => {
                         if(element.player == this.log.attacker){
@@ -722,7 +735,7 @@ export default {
                             }
                         }
                     });
-                    this.nextAction();
+                    this.nextAction(3000,500);
                 }
             }
         },
@@ -766,25 +779,30 @@ export default {
             return require(`@/assets/images/roles/${pic}`);
         },
         // Next Action
-        nextAction(){
+        nextAction(time1, time2){
             this.logAction = true;
             setTimeout(() => {
                 this.logAction = false;
-            }, 3000);
-            this.dashboard.currentAction++;
-            this.info.target = 'Player?';
-            this.info.targetRole = 'Default';
-            this.info.targetID = 0;
-            this.info.targetMafia = null;
-            this.info.targetIcon = 'default.png';
-            this.log.target = null;
-            this.log.targetRole = null;
-            this.log.targetPassive = null;
+                this.logActionDone = true;
+                setTimeout(() => {
+                    this.dashboard.currentAction++;
+                    this.logActionDone = false;
+                    this.info.target = 'Player?';
+                    this.info.targetRole = 'Default';
+                    this.info.targetID = 0;
+                    this.info.targetMafia = null;
+                    this.info.targetIcon = 'default.png';
+                    this.log.target = null;
+                    this.log.targetRole = null;
+                    this.log.targetPassive = null;
+                }, time2);
+            }, time1);
         },
         // Calculate Passive and Log to History Log
         passiveCalc(element){
             // Bomb Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
-            if(element.id == 12 && !element.status.detonated && element.action.oneTime && !element.status.hacked){
+            setTimeout(() => {
+               if(element.id == 12 && !element.status.detonated && element.action.oneTime && !element.status.hacked){
                 element.status.detonated = true;
                 this.log.target = element.player;
                 this.log.passiveLog = true;
@@ -817,7 +835,8 @@ export default {
                 element.action.oneTime = false;
                 this.historyLog.push({...this.log});
                 this.log.passiveLog = false;
-            }
+            } 
+            }, 3500);
         },
         // Reset Game From Start
         resetGame(){
@@ -854,8 +873,8 @@ export default {
         },
         // Skip Action
         skipAction(){
-            this.nextAction();
             this.alertBox = false;
+            this.nextAction(0,0);
         }
     },
     components: {
@@ -864,6 +883,7 @@ export default {
         countdown: Countdown,
     },
 }
+
 </script>
 
 <style lang="scss" scoped>

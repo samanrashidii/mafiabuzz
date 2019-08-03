@@ -349,7 +349,7 @@
             "status": {
                 "normal": false,
                 "dead": false,
-                "invisible": false,
+                "invisible": true,
                 "silenced": false,
                 "forgot": false,
                 "trait": true,
