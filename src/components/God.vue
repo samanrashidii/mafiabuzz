@@ -15,13 +15,18 @@
         <!-- Night Priority Action Box -->
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
+            <div class="progress-bar">
+                <span :style="{width: progress+'%'}"></span>
+                <i><strong>{{dashboard.currentAction}}</strong> \ {{sortByPriority.length}}</i>
+            </div>
             <template v-for="(action, index) in sortByPriority">
                 <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
                     {{fireAction(action)}}
+                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> who is the target for <strong>{{info.action}}</strong> ?</p>
                     <div class="player-box-holder has-xsmall-bottom-margin">
                         <div class="player-box">
                             <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
-                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
+                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name}}</h4>
                         </div>
                         <div class="arrow">
                             <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
@@ -287,7 +292,7 @@ export default {
                 description: "...",
                 actionIcon: "loader.svg",
                 mafia: false,
-                target: 'Person?',
+                target: 'Person ?',
                 targetRole: 'Default',
                 targetPassive: null,
                 targetID: 0,
@@ -368,6 +373,9 @@ export default {
         },
         log(){
             return this.Dashboard.log;
+        },
+        progress(){
+            return (this.dashboard.currentAction / this.sortByPriority.length) * 100
         },
         savedRoles(){
             let $savedRoles = JSON.parse(JSON.stringify(this.SavedRoles));
@@ -701,6 +709,7 @@ export default {
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.id = player.id;
+                this.info.name = player.name;
                 this.info.player = player.player;
                 this.info.icon2 = player.icon;
                 this.info.action = player.action.action;

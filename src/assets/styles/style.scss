@@ -1169,8 +1169,9 @@ table tr{
 }
 
 .priority-box{
+    position: relative;
     text-align: center;
-    padding:25px 20px;
+    padding:50px 20px 25px 20px;
     margin-top:20px;
     background-color: $background_color_main;
     border-radius: 10px;
@@ -1183,6 +1184,42 @@ table tr{
     a.bttn{
         padding:8px 12px;
         margin-top:10px;
+    }
+    .progress-bar{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: 22px;
+        line-height: 20px;
+        overflow: hidden;
+        font-size: $font_size_1;
+        background-color: $background_color_default;
+        border-radius: 20px;
+        span{
+            display: block;
+            height: 100%;
+            background: rgb(18,162,53);
+            background: linear-gradient(90deg, rgba(18,162,53,1) 0%, rgba(75,194,104,1) 100%);
+            transition:all .5s ease-in-out;
+        }
+        i{
+            position: absolute;
+            top:0;
+            left:50%;
+            width:50px;
+            margin-left: -25px;
+            strong{
+                font-size: $font_size_6;
+            }
+        }
+    }
+}
+
+.action-box{
+    p{
+        padding:0 0 15px 0;
+        strong{color:$hint_color;}
     }
 }
 
