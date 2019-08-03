@@ -843,7 +843,7 @@ export default {
             this.$router.push({name:'home'});
             setTimeout(() => {
                 this.$router.go();
-            }, 150);
+            }, 444);
         },
         // Reset Game with Same Roles and Names
         rgwRoles(){
