@@ -122,6 +122,7 @@ a.bttn{
     &.awesome{
         background: rgb(27,71,157);
         background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+        border-radius: 5px;
     }
 }
 
@@ -782,7 +783,7 @@ span.step-number{
                     margin-right: 4px;
                 }
                 input{
-                    max-width: 30px;
+                    max-width: 28px;
                     height: 22px;
                     line-height: 22px;
                     text-align: center;
@@ -1197,6 +1198,7 @@ table tr{
         height: 22px;
         line-height: 20px;
         overflow: hidden;
+        font-family: $font_reset_default;
         font-size: $font_size_1;
         background-color: $background_color_default;
         border-radius: 20px;
@@ -1214,6 +1216,7 @@ table tr{
             width:50px;
             margin-left: -25px;
             strong{
+                font-family: $font_normal;
                 font-size: $font_size_6;
             }
         }
@@ -1222,13 +1225,14 @@ table tr{
 
 .action-box{
     p{
+        font-size: $font_size_3;
         padding:0 0 15px 0;
         strong{color:$hint_color;}
     }
 }
 
 .log-bttn{
-    margin-top:20px;
+    margin-top:19px;
     i{
         display: inline-block;
         vertical-align: middle;

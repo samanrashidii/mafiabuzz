@@ -62,17 +62,34 @@ export default {
         background:rgba(0, 0, 0, 0.97);
     }
     &.log{
+        position: absolute;
         top: 50%;
         left: 50%;
         width: 240px;
         height: 240px;
-        margin: -120px 0 0 -120px;
+        margin: -114px 0 0 -120px;
         overflow-y: hidden;
+        border:4px solid $black_color;
         border-radius: 50%;
-        background: rgba(0, 0, 0, 0.95);
-        transform:scale(0,0);
+        background: rgba(16, 16, 16, 0.97);
+        transform: scale(0, 0);
+        transition:all .4s;
+        &::after{
+            content:'';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: calc(100% - 6px);
+            height: calc(100% - 6px);
+            border:4px solid $black_color;
+            border-radius: 50%;
+        }
         &.active{
             transform:scale(1,1);
+        }
+        &.done{
+            top:110%;
+            transform:scale(.3,.3);
         }
     }
 }
