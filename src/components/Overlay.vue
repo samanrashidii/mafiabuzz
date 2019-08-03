@@ -61,6 +61,20 @@ export default {
         border-radius: 6px;
         background:rgba(0, 0, 0, 0.97);
     }
+    &.log{
+        top: 50%;
+        left: 50%;
+        width: 240px;
+        height: 240px;
+        margin: -120px 0 0 -120px;
+        overflow-y: hidden;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.95);
+        transform:scale(0,0);
+        &.active{
+            transform:scale(1,1);
+        }
+    }
 }
 
 </style>
