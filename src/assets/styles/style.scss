@@ -119,6 +119,10 @@ a.bttn{
             background-color: $dark_green_color;
         }
     }
+    &.awesome{
+        background: rgb(27,71,157);
+        background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+    }
 }
 
 a:active{
@@ -1222,6 +1226,25 @@ table tr{
         strong{color:$hint_color;}
     }
 }
+
+.log-bttn{
+    margin-top:20px;
+    i{
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #323d3c;
+        text-align: center;
+        margin-left: 4px;
+        background-color: #ffffff;
+        border-radius: 50%;
+    }
+}
+
+.log-action img{margin-bottom: 20px;}
 
 // Main Transitions
 
