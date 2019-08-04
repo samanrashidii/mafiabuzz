@@ -71,12 +71,13 @@
                         </div>
                     </div>
                     <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
-                        <option :value="null" disabled>choose player ...</option>
+                        <option :value="null" disabled>{{God.selectPlaceholder}}</option>
                         <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                     </select>
                     <template v-if="info.id == 11 && log.target != null">
                         <label for="action_target_2">{{God.actionHintText2}}</label>
                         <select name="action_target_2" id="action_target_2" v-model="log.target2">
+                            <option :value="null" disabled>{{God.selectPlaceholder}}</option>
                             <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
                         </select>
                     </template>
