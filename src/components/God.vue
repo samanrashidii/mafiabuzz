@@ -85,8 +85,8 @@
             </template>
 
             <!-- Action Buttons -->
-            <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
             <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
+            <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
         </div>
 
         <!-- Alert Box -->
@@ -375,6 +375,7 @@ export default {
             totRestart: false,
             defaultTime: 0,
             killer: false,
+            multipleMafia: false,
             confirmAction: false,
             info: {
                 id: 0,
@@ -595,10 +596,11 @@ export default {
                 }
                 if(element.id == 1 && mafiaNumbers.length > 1){
                     element.action.action = null;
+                    this.multipleMafia = true;
                 }
             });
             for (let i = 0; i < this.SelectedRoles.length; i++) {
-                if(this.SelectedRoles[i].id == 1){
+                if(this.SelectedRoles[i].id == 1 && this.multipleMafia){
                     this.SelectedRoles[i].action.action = 'Kill';
                     break;
                 }

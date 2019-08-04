@@ -151,8 +151,7 @@ export default {
             'Numbers',
         ]),
         calcMafia(){
-            let mafiaNumbers = Math.floor(this.gameSettings.unit / 3) -1;
-            this.gameSettings.mafia = mafiaNumbers+1;
+            let mafiaNumbers = Math.floor(this.gameSettings.unit / 2) -1;
             this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
             return mafiaNumbers;
         },
