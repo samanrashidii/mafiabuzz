@@ -41,7 +41,7 @@
                 "text": "welcome to <strong>MafiaBuzz</strong> app"
             },
             "title": "Dear <span>God</span>",
-            "subtitle": "I know you are God but do you know how to start the game?<br /> okay if you don't, I'll tell you how :)",
+            "subtitle": "We know you are God but do you know how to start the game?<br /> okay if you don't, We'll tell you how :)",
             "step1": "Choose how many people do want to have in your <span class='creator-color'>World</span> :",
             "step2": "Please choose how many of these people will be <span class='mafia-role'>Mafia</span> :",
             "step3": "Please select how long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span> :",
@@ -61,7 +61,7 @@
             "checkBeforeStart": "Your game will start with below characters",
             "dashboardTitle": "<span>God</span> Dashboard",
             "chooseNameHint": "Please write the name of each person:",
-            "passMobile": "Please pass mobile to",
+            "passMobile": "Please pass device to next person:",
             "beforeShowButton": "Show me my role !",
             "afterShowButton": "Ok got it"
         },
@@ -185,7 +185,7 @@
             },
             {
                 "name": "hacked-icon",
-                "hint": "Player has been hacked and can't use action or passive this night"
+                "hint": "Player is hacked and can't use action or passive this night"
             },
             {
                 "name": "dead-icon",
