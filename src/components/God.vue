@@ -152,42 +152,44 @@
         <!-- Log History -->
 
         <overlay :class="{'active': logHistory, 'log-history': true}">
-            <div class="log-table" v-for="(totLog, index) in totalHistory" :key="index">
-                <span class="counter">Night {{index+1}}</span>
-                <table>
-                    <tr v-for="(log, index) in totLog" :key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
-                        </td>
-                        <td>
-                            <template v-if="!log.passiveLog && !log.godLog">
-                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
-                                " <span class="action-color">{{log.action}}</span> " on 
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                <!-- Police Check Result (Normal and Invisible) -->
-                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
-                                <!-- Chef Check Result -->
-                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                                <!-- Cupid Link Result -->
-                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                            </template>
-                            <template v-else-if="log.godLog">
-                                <span class="creator-color">{{log.attacker}}</span> has 
-                                " <span class="action-color">{{log.action}}</span> " 
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                            </template>
-                            <template v-else>
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
-                                <br />
-                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                            </template>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <template v-for="(totLog, index) in totalHistory">
+                <div class="log-table" :key="index" v-if="totLog.length > 0">
+                    <span class="counter">Night {{index+1}}</span>
+                    <table>
+                        <tr v-for="(log, index) in totLog" :key="index">
+                            <td>{{index+1}}</td>
+                            <td>
+                                <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                                <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                            </td>
+                            <td>
+                                <template v-if="!log.passiveLog && !log.godLog">
+                                    <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                                    " <span class="action-color">{{log.action}}</span> " on 
+                                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                                    <!-- Police Check Result (Normal and Invisible) -->
+                                    <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                    <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                                    <!-- Chef Check Result -->
+                                    <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                                    <!-- Cupid Link Result -->
+                                    <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                                </template>
+                                <template v-else-if="log.godLog">
+                                    <span class="creator-color">{{log.attacker}}</span> has 
+                                    " <span class="action-color">{{log.action}}</span> " 
+                                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                                </template>
+                                <template v-else>
+                                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                                    <br />
+                                    " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                                </template>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+             </template>
             <div v-if="totalHistory == 0">
                 <h2>{{God.noLog}}</h2>
             </div>
@@ -395,7 +397,6 @@ export default {
                 targetMafia: null,
                 targetIcon: 'default.png',
             },
-            sortByPriority:[]
         }
     },
     created(){
@@ -409,7 +410,8 @@ export default {
             'God',
             'Numbers',
             'SavedRoles',
-            'SelectedRoles'
+            'SelectedRoles',
+            'Actions'
         ]),
         dashboard:{
             get: function(){
@@ -477,6 +479,9 @@ export default {
             let $savedRoles = JSON.parse(JSON.stringify(this.SavedRoles));
             return $savedRoles;
         },
+        sortByPriority(){
+            return this.Actions;
+        },
         totalHistory(){
             return this.Dashboard.totalHistory;
         },
@@ -486,7 +491,8 @@ export default {
             'setStep',
             'controlDashboard',
             'getRoles',
-            'setGameReset'
+            'setGameReset',
+            'setActions',
         ]),
         // Change Day and Night
         changePhase(phase){
@@ -906,7 +912,8 @@ export default {
         // Set Actions by Priority
         setActionsByPriority(){
             let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead);
-            this.sortByPriority = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+            let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
+            this.setActions(sorted);
         },
         // Show Information of roles
         showInfo(role){

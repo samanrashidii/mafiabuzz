@@ -35,6 +35,7 @@ export default new Vuex.Store({
       },
       historyLog: [],
       totalHistory: [],
+      actionBox: [],
     },
   },
   getters: {
@@ -54,6 +55,7 @@ export default new Vuex.Store({
     Numbers: state => state.numbers,
     StepCounter: state => state.stepCounter,
     Dashboard: state => state.dashboard,
+    Actions: state => state.actionBox,
   },
   mutations: {
     GET_ROLES: (state, items) => {
@@ -77,6 +79,9 @@ export default new Vuex.Store({
     GAME_RESET: (state, stat) => {
       Vue.set(state, 'gameReset', stat);
     },
+    SET_ACTIONS: (state, action) => {
+      Vue.set(state, 'actionBox', action);
+    },
   },
   actions: {
     getRoles: (context, items) => {
@@ -99,6 +104,9 @@ export default new Vuex.Store({
     },
     setGameReset: (context, stat) => {
       context.commit('GAME_RESET', stat);
+    },
+    setActions: (context, action) => {
+      context.commit('SET_ACTIONS', action);
     },
   },
 });
