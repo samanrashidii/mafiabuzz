@@ -829,14 +829,32 @@ span.step-number{
 
 .character-power{
     height: 8px;
-    overflow: hidden;
     background-color: $color_7;
     border-radius: 10px;
     span{
+        position: relative;
         display: block;
         float: left;
         height: 100%;
-        border-radius: 0 10px 10px 0;
+        border-radius: 10px;
+        i{
+            position: absolute;
+            top:-7px;
+            right:-6px;
+            width:22px;
+            height: 22px;
+            line-height: 22px;
+            font-family: $font_reset_default;
+            font-size: $font_size_1;
+            color:$black_color;
+            text-align: center;
+            background-color: $background_color_2;
+            border-radius: 50%;
+        }
+        &.mafia i{
+            color: $color_1;
+            background-color: $background_color_middle;
+        }
         &.mafia{
             background: rgb(194,73,73);
             background: linear-gradient(90deg, rgba(194,73,73,1) 0%, rgba(255,216,40,1) 100%);
@@ -847,6 +865,8 @@ span.step-number{
         }
     }
 }
+
+.table .character-power span.citizen i{border:1px solid $color_7;}
 
 .note-box{
     position: relative;
