@@ -374,6 +374,7 @@ export default {
             logActionDone: false,
             totRestart: false,
             defaultTime: 0,
+            killer: false,
             confirmAction: false,
             info: {
                 id: 0,
@@ -526,6 +527,7 @@ export default {
                 if(this.dashboard.round >= 1){
                     this.historyLog = [];
                 }
+                this.chooseKiller();
                 this.dashboard.round++;
                 this.dashboard.currentAction = 0;
                 this.setActionsByPriority();
@@ -580,6 +582,26 @@ export default {
                 return true;
             } else{
                 return false;
+            }
+        },
+        chooseKiller(){
+            let mafiaNumbers = this.SelectedRoles.filter(item => item.id == 1);
+            this.SelectedRoles.forEach(element => {
+                if(element.id == 2){
+                    this.killer = true;
+                }
+                if(element.id == 1 && this.killer){
+                    element.action.action = null;
+                }
+                if(element.id == 1 && mafiaNumbers.length > 1){
+                    element.action.action = null;
+                }
+            });
+            for (let i = 0; i < this.SelectedRoles.length; i++) {
+                if(this.SelectedRoles[i].id == 1){
+                    this.SelectedRoles[i].action.action = 'Kill';
+                    break;
+                }
             }
         },
         // Kill or Heal Character Manually
