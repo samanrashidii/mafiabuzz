@@ -10,6 +10,7 @@
                         <strong>{{role.name}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
                     </div>
                 </label>
+                <div class="character-power" :class="{'mafia-pw': role.mafia}"><span :class="{'mafia': role.mafia, 'citizen': !role.mafia}" :style="{width: `${Math.abs(role.power)*2}%`}"><i>{{Math.abs(role.power)}}</i></span></div>
                 <div class="number-control" v-if="checkNumbers(role.id)">
                     <span @click="decrNumber(role)">-</span>
                     <span @click="incrNumber(role)">+</span>
@@ -151,88 +152,122 @@ export default {
 
 <style lang="scss" scoped>
 
-.roles{margin-top:15px;}
-.roles li{
-    position: relative;
-    float: left;
-    width:48%;
-    margin:4% 0 0 4%;
-    &:nth-child(2n+1){
-        margin-left:0;
-    }
-    @media #{$breakpoint_tablet} {
-        width:31%;
-        margin:3.5% 0 0 3.5% !important;
-        &:nth-child(3n+1){
-            margin-left:0 !important;
+.roles{
+    margin-top:15px;
+    li{
+        position: relative;
+        float: left;
+        width:48%;
+        margin:4% 0 0 4%;
+        &:nth-child(2n+1){
+            margin-left:0;
         }
-    }
-}
-
-.roles li label{
-    display: table;
-    width: 100%;
-    height: 144px;
-    font-family: $font_mafia;
-    font-size: $font_size_big;
-    color:$color_1;
-    text-align: center;
-    padding:5px 7px;
-    cursor: pointer;
-    background-color: $background_color_citizen;
-    border:3px solid $black_color;
-    border-radius: 7px;
-    transition:all .3s ease-in-out;
-    > div{
-        display: table-cell;
-        vertical-align: middle;
-        strong{
-            display: block;
-            margin-top:5px;
-            span{
-                display: inline-block;
+        input{display: none;}
+        label{
+            display: table;
+            width: 100%;
+            height: 158px;
+            font-family: $font_mafia;
+            font-size: $font_size_big;
+            color:$color_1;
+            text-align: center;
+            padding:5px 7px;
+            cursor: pointer;
+            background-color: $background_color_citizen;
+            border:3px solid $black_color;
+            border-radius: 7px;
+            transition:all .3s ease-in-out;
+            > div{
+                display: table-cell;
                 vertical-align: middle;
-                font-family: $font_normal;
-                font-size: $font_size_6;
-                color:$color_1;
-                margin-left: 5px;
-                transition:all .3s ease-in-out;
-                i{font-size: $font_size_8;}
+                strong{
+                    display: block;
+                    margin-top:5px;
+                    span{
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-family: $font_normal;
+                        font-size: $font_size_6;
+                        color:$color_1;
+                        margin-left: 5px;
+                        transition:all .3s ease-in-out;
+                        i{font-size: $font_size_8;}
+                    }
+                }
+            }
+        }
+        &.mafia label{background-color:$background_color_mafia;}
+        .number-control span{
+            position:absolute;
+            bottom:-3px;
+            left:-3px;
+            display: block;
+            width:28px;
+            height: 28px;
+            line-height: 24px;
+            font-family: $font_normal;
+            font-size: 24px;
+            color:$black_color;
+            text-align: center;
+            cursor: pointer;
+            background-color: $color_1;
+            border-radius: 50%;
+            transition:all .2s ease-in-out;
+            z-index: 99;
+            &:active{
+                transform: scale(.6,.6);
+                border-color:$black_color;
+            }
+            &:last-child{
+                left:auto;
+                right:-3px;
+            }
+        }
+        .character-power{
+            position: absolute;
+            left: 10px;
+            bottom: 12px;
+            width: calc(100% - 20px);
+            overflow: visible;
+            transition:all .2s ease-in-out;
+            background-color: $background_color_2;
+            &.mafia-pw{
+                background-color: $background_color_middle;
+                span i{
+                    color: $color_1;
+                    background-color: $background_color_middle;
+                }
+            }
+            span{
+                position: relative;
+                i{
+                    position: absolute;
+                    top:-7px;
+                    right:-6px;
+                    width:22px;
+                    height: 22px;
+                    line-height: 22px;
+                    font-family: $font_reset_default;
+                    font-size: $font_size_1;
+                    color:$black_color;
+                    text-align: center;
+                    background-color: $background_color_2;
+                    border-radius: 50%;
+                }
+            }
+        }
+        input.active ~ .character-power{
+            visibility: hidden;
+            opacity: 0;
+        }
+        @media #{$breakpoint_tablet} {
+            width:31%;
+            margin:3.5% 0 0 3.5% !important;
+            &:nth-child(3n+1){
+                margin-left:0 !important;
             }
         }
     }
-}
-
-.roles li.mafia label{background-color:$background_color_mafia;}
-
-.roles li input{display: none;}
-
-.number-control span{
-    position:absolute;
-    bottom:-3px;
-    left:-3px;
-    display: block;
-    width:28px;
-    height: 28px;
-    line-height: 24px;
-    font-family: $font_normal;
-    font-size: 24px;
-    color:$black_color;
-    text-align: center;
-    cursor: pointer;
-    background-color: $color_1;
-    border-radius: 50%;
-    transition:all .2s ease-in-out;
-    z-index: 99;
-    &:active{
-        transform: scale(.6,.6);
-        border-color:$black_color;
-    }
-    &:last-child{
-        left:auto;
-        right:-3px;
-    }
-    
 }
 
 </style>
