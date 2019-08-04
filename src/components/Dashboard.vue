@@ -16,13 +16,13 @@
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
                 <p>{{Creator.changeSettingsText}}</p>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
                 <app-button @click.native="resetGame()" class="green "><span>{{Creator.confirmButton}}</span></app-button>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
             </template>
             <template v-else>
                 <p>{{Creator.resetTotalText}}</p>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
                 <app-button @click.native="restartGame()" class="green "><span>{{Creator.restartButton}}</span></app-button>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
             </template>
         </overlay>
 
