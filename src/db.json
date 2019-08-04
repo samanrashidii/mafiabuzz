@@ -149,11 +149,11 @@
         "dashboardHint": [
             {
                 "name": "killer",
-                "hint": "Kill Player and disable it's action."
+                "hint": "Kill Player by God's power"
             },
             {
                 "name": "angel",
-                "hint": "Bring back Player to life when resurrected."
+                "hint": "Bring back Player to life by God's power"
             },
             {
                 "name": "passive",

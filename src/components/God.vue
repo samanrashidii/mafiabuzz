@@ -60,7 +60,7 @@
                     <div class="player-box-holder has-xsmall-bottom-margin">
                         <div class="player-box">
                             <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
-                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name}}</h4>
+                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name2}}</h4>
                         </div>
                         <div class="arrow">
                             <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
@@ -386,7 +386,7 @@ export default {
                 damageReturned: false,
                 action: "Loading Action",
                 passive: "Passive",
-                name: "Default",
+                name2: "Default",
                 icon: "loader.svg",
                 icon2: "loader.svg",
                 description: "...",
@@ -708,8 +708,11 @@ export default {
                         if(attacker == 7 && element.player == this.log.target && !damageReturned || attacker == 7 && element.player == this.log.target && damageReturned && hacked){
                             element.status.stolen = true;
                             element.status.damageReturned = false;
-                            element.name = 'Yakuza';
+                            element.status.shield = false;
+                            element.name = 'Mini Yakuza';
                             element.icon = 'ninja.png';
+                            element.description = `Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself`;
+                            element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
                             element.action.secondaryAction = null;
@@ -732,9 +735,12 @@ export default {
                             // Revive
                             element.name = 'Skeleton';
                             element.icon = 'skeleton.png';
+                            element.description = `Skeleton is Necromancer's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive`;
+                            element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
                             element.action.secondaryAction = null;
+                            element.status.invisible = false;
                             element.status.dead = false;
                             element.status.revived = true;
                         }
@@ -818,7 +824,7 @@ export default {
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.id = player.id;
-                this.info.name = player.name;
+                this.info.name2 = player.name;
                 this.info.player = player.player;
                 this.info.icon2 = player.icon;
                 this.info.action = player.action.action;
