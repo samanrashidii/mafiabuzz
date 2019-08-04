@@ -124,6 +124,11 @@ a.bttn{
         background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
         border-radius: 7px;
     }
+    &.awesome2{
+        background: rgb(219,65,65);
+background: radial-gradient(circle, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);
+        border-radius: 7px;
+    }
 }
 
 a:active{
@@ -482,6 +487,16 @@ button{
         display: inline-block;
         padding: 5px 5px 5px 30px;
         background:url('../images/assets/assign.png') no-repeat left center;
+    }
+}
+
+.swap-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 28px;
+        background:url('../images/assets/swap.png') no-repeat left center;
     }
 }
 
@@ -1233,6 +1248,7 @@ table tr{
 
 .log-bttn{
     margin-top:19px;
+    margin-bottom:-10px;
     i{
         display: inline-block;
         vertical-align: middle;
@@ -1249,6 +1265,29 @@ table tr{
 }
 
 .log-action img{margin-bottom: 20px;}
+
+.log-history{
+    padding-top:40px;
+    .log-table{
+        margin-bottom: 60px;
+        &:last-of-type{margin-bottom:30px;}
+        span.counter{
+            position: absolute;
+            top:-34px;
+            left:50%;
+            display: block;
+            width:80px;
+            font-size: $font_size_3;
+            color:$color_1;
+            padding:6px 0;
+            margin-left: -40px;
+            background: rgb(27,71,157);
+            background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+            border-radius: 4px;
+            z-index: 10;
+        }
+    }
+}
 
 // Main Transitions
 

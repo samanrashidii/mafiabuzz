@@ -5,7 +5,7 @@
 
         <div class="button-holder" v-if="dashboard.god">
             <transition name="fade" mode="out-in">
-                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day}" @click.native="changePhase(dashboard.day)">
+                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}" @click.native="changePhase(dashboard.day)">
                     <span v-if="dashboard.day">{{God.nightText}}</span>
                     <span v-else>{{God.dayText}}</span>
                 </app-button>
@@ -93,13 +93,16 @@
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template>
                 <p>{{God.skipText}}</p>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
                 <app-button @click.native="skipAction()" class="green"><span>{{God.skipButton2}}</span></app-button>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
             </template>
         </overlay>
 
         <div class="log-bttn" v-if="!dashboard.day">
             <app-button @click.native="logShow = true" class="awesome"><span>{{God.nightLogButton}} <i>{{historyLog.length}}</i></span></app-button>
+        </div>
+        <div class="log-bttn" v-else-if="dashboard.god && dashboard.day">
+            <app-button @click.native="logHistory = true" class="awesome2"><span>{{God.historyLogButton}} <i>{{totalHistory.length}}</i></span></app-button>
         </div>
 
         <!-- Night Log -->
@@ -144,6 +147,51 @@
                 <h2>{{God.noLog}}</h2>
             </div>
             <app-button @click.native="logShow = false" class="active has-small-top-margin"><span>{{God.logCloseButton}}</span></app-button>
+        </overlay>
+
+        <!-- Log History -->
+
+        <overlay :class="{'active': logHistory, 'log-history': true}">
+            <div class="log-table" v-for="(totLog, index) in totalHistory" :key="index">
+                <span class="counter">Night {{index+1}}</span>
+                <table>
+                    <tr v-for="(log, index) in totLog" :key="index">
+                        <td>{{index+1}}</td>
+                        <td>
+                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        </td>
+                        <td>
+                            <template v-if="!log.passiveLog && !log.godLog">
+                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                                " <span class="action-color">{{log.action}}</span> " on 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                                <!-- Police Check Result (Normal and Invisible) -->
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                                <!-- Chef Check Result -->
+                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                                <!-- Cupid Link Result -->
+                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                            </template>
+                            <template v-else-if="log.godLog">
+                                <span class="creator-color">{{log.attacker}}</span> has 
+                                " <span class="action-color">{{log.action}}</span> " 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                            </template>
+                            <template v-else>
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                                <br />
+                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                            </template>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div v-if="totalHistory == 0">
+                <h2>{{God.noLog}}</h2>
+            </div>
+            <app-button @click.native="logHistory = false" class="active has-small-top-margin"><span>{{God.logCloseButton}}</span></app-button>
         </overlay>
 
         <!-- Day & Night Dashboard -->
@@ -285,13 +333,13 @@
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
                 <p>{{God.resetText}}</p>
-                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
                 <app-button @click.native="rgwRoles()" class="green "><span>{{God.restartButton}}</span></app-button>
+                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
             </template>
             <template v-else>
                 <p>{{God.resetTotalText}}</p>
-                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
                 <app-button @click.native="resetGame()" class="green "><span>{{God.restartButton}}</span></app-button>
+                <app-button @click.native="overlay = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
             </template>
         </overlay>
         
@@ -318,6 +366,7 @@ export default {
             alertBox: false,
             logShow: false,
             logAction: false,
+            logHistory: false,
             logActionDone: false,
             totRestart: false,
             defaultTime: 0,

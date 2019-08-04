@@ -138,6 +138,7 @@
         "skipButton": "Skip",
         "skipButton2": "Yes, Skip it!",
         "nightLogButton": "Show Night Log",
+        "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",
         "logCloseButton": "Okay got it!",
         "restartButton": "Restart Game",

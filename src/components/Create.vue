@@ -102,8 +102,8 @@
                                 </tr>
                             </table>
                         </div>
-                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
                         <app-button @click.native="startGame()" class="start-bttn green "><span>{{Creator.start}}</span></app-button>
+                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
                     </template>
                 </overlay>
                 

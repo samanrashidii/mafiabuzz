@@ -74,9 +74,6 @@ export default new Vuex.Store({
     CONTROL_DASHBOARD: (state, dashinfo) => {
       Vue.set(state, 'dashboard', dashinfo);
     },
-    UPDATE_LOG: (state, log) => {
-      Vue.set(state.historyLog, 'dashboard', log);
-    },
     GAME_RESET: (state, stat) => {
       Vue.set(state, 'gameReset', stat);
     },
@@ -99,9 +96,6 @@ export default new Vuex.Store({
     },
     controlDashboard: (context, dashinfo) => {
       context.commit('CONTROL_DASHBOARD', dashinfo);
-    },
-    updateLog: (context, log) => {
-      context.commit('UPDATE_LOG', log);
     },
     setGameReset: (context, stat) => {
       context.commit('GAME_RESET', stat);
