@@ -86,7 +86,7 @@
                                 </tr>
                                 <tr v-for="(fM, index) in finalMafias" :key="index">
                                     <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
-                                    <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"></span></div></td>
+                                    <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"><i>{{Math.abs(fM.power)}}</i></span></div></td>
                                 </tr>
                             </table>
                         </div>
@@ -98,7 +98,7 @@
                                 </tr>
                                 <tr v-for="(fC, index) in finalCitizens" :key="index">
                                     <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
-                                    <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"></span></div></td>
+                                    <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"><i>{{Math.abs(fC.power)}}</i></span></div></td>
                                 </tr>
                             </table>
                         </div>

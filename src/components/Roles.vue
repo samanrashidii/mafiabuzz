@@ -228,32 +228,10 @@ export default {
             left: 10px;
             bottom: 12px;
             width: calc(100% - 20px);
-            overflow: visible;
             transition:all .2s ease-in-out;
             background-color: $background_color_2;
             &.mafia-pw{
                 background-color: $background_color_middle;
-                span i{
-                    color: $color_1;
-                    background-color: $background_color_middle;
-                }
-            }
-            span{
-                position: relative;
-                i{
-                    position: absolute;
-                    top:-7px;
-                    right:-6px;
-                    width:22px;
-                    height: 22px;
-                    line-height: 22px;
-                    font-family: $font_reset_default;
-                    font-size: $font_size_1;
-                    color:$black_color;
-                    text-align: center;
-                    background-color: $background_color_2;
-                    border-radius: 50%;
-                }
             }
         }
         input.active ~ .character-power{
