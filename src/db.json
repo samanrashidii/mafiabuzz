@@ -131,6 +131,7 @@
         "cancelText": "No, Stay Here!",
         "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
         "godButton": "I'm God! Show me game details",
+        "selectPlaceholder": "choose player ...",
         "actionHintText": "Please select the person who takes action:",
         "actionHintText2": "Please select the second person:",
         "cancelButton": "Cancel",
@@ -148,27 +149,55 @@
         "dashboardHint": [
             {
                 "name": "killer",
-                "hint": "Kill character and disable it's action."
+                "hint": "Kill Player and disable it's action."
             },
             {
                 "name": "angel",
-                "hint": "Bring back character to life when resurrected."
+                "hint": "Bring back Player to life when resurrected."
             },
             {
                 "name": "passive",
-                "hint": "Character has passive only."
+                "hint": "Player has passive only."
             },
             {
                 "name": "pending-action",
-                "hint": "Character has action but not used."
+                "hint": "Player has action but not used."
             },
             {
                 "name": "done-action",
-                "hint": "Character's action has been used."
+                "hint": "Player's action has been used."
             },
             {
                 "name": "disabled",
-                "hint": "Character has no action or passive."
+                "hint": "Player has no action or passive."
+            },
+            {
+                "name": "healed-icon",
+                "hint": "Player has been healed and couldn't get kill this night"
+            },
+            {
+                "name": "linked-icon",
+                "hint": "Player has been linked to another player and when one of them dies, the other dies aswell"
+            },
+            {
+                "name": "silenced-icon",
+                "hint": "Player has been silenced and can't talk during next day"
+            },
+            {
+                "name": "hacked-icon",
+                "hint": "Player has been hacked and can't use action or passive this night"
+            },
+            {
+                "name": "dead-icon",
+                "hint": "Player is dead!"
+            },
+            {
+                "name": "invisible-icon",
+                "hint": "Player is invisible and cannot be detected by Detective"
+            },
+            {
+                "name": "shield-icon",
+                "hint": "Player has shield that prevents one death at night"
             }
         ],
         "rgwRoles": "Restart game with same roles",

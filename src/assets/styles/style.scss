@@ -948,6 +948,14 @@ span.step-number{
 .passive{background-image: url('../images/icons/passive.png');}
 .disabled{background-image: url('../images/icons/disabled.png');}
 .angel{background-image: url('../images/icons/angel.png') !important;}
+.healed-icon{background-image: url('../images/icons/heal.png');}
+.linked-icon{background-image: url('../images/icons/linked.png');}
+.silenced-icon{background-image: url('../images/icons/silence.png');}
+.hacked-icon{background-image: url('../images/icons/hacked.png');}
+.dead-icon{background-image: url('../images/icons/dead.png');}
+.invisible-icon{background-image: url('../images/icons/invisible.png');}
+.shield-icon{background-image: url('../images/icons/shield.png');}
+
 .yellow-color{color:$hint_color;}
 .game-icon{
     min-height: 161px;
