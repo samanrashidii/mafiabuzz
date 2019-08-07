@@ -54,7 +54,7 @@
 
             <!-- Handle Actions -->
             <template v-for="(action, index) in sortByPriority">
-                <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
+                <div class="action-box" v-if="checkReadyActions(action, index)" :class="{'target-hacked': targetHacked}" :key="index">
                     {{fireAction(action)}}
                     <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> who is the target for <strong>{{info.action}}</strong> ?</p>
                     <div class="player-box-holder has-xsmall-bottom-margin">
@@ -373,6 +373,7 @@ export default {
             logHistory: false,
             logActionDone: false,
             totRestart: false,
+            targetHacked: false,
             defaultTime: 0,
             killer: false,
             multipleMafia: false,
@@ -575,10 +576,15 @@ export default {
                return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
             } 
         },
-        checkReadyActions(action, index){
+        checkReadyActions(attacker, index){
             if(index == this.dashboard.currentAction){
-                if(action.status.hacked){
+                if(this.checkGroup(attacker).length <= 0){
                     this.dashboard.currentAction++;
+                }
+                if(attacker.status.hacked){
+                    this.targetHacked = true;
+                } else{
+                    this.targetHacked = false;
                 }
                 return true;
             } else{
@@ -844,7 +850,7 @@ export default {
             });
             this.info.target = target;
         },
-        // Open Action Dialog Box
+        // Add Action stats for current target
         fireAction(player){
             if(player.actionStatus == false){
                 this.info.id = player.id;

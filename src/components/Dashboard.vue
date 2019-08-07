@@ -26,7 +26,7 @@
             </template>
         </overlay>
 
-        <transition name="fade" mode="out-in">
+        <transition name="slide" mode="out-in">
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
                 <a class="predefined type-2" href="javascript:void(0)" v-if="checkLocalStorage" :class="{'active': showSavedNames}" @click="handleSavedNames()">

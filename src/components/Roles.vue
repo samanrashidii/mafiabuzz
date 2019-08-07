@@ -11,10 +11,12 @@
                     </div>
                 </label>
                 <div class="character-power" :class="{'mafia-pw': role.mafia}"><span :class="{'mafia': role.mafia, 'citizen': !role.mafia}" :style="{width: `${Math.abs(role.power)*2}%`}"><i>{{Math.abs(role.power)}}</i></span></div>
-                <div class="number-control" v-if="checkNumbers(role.id)">
-                    <span @click="decrNumber(role)">-</span>
-                    <span @click="incrNumber(role)">+</span>
-                </div>
+                <transition name="scale">
+                    <div class="number-control" v-if="checkNumbers(role.id)">
+                        <span @click="decrNumber(role)">-</span>
+                        <span @click="incrNumber(role)">+</span>
+                    </div>
+                </transition>
                 <a @click="showInfo(role)" class="info" href="javascript:void(0)"></a>
             </li>
         </ul>
@@ -231,7 +233,6 @@ export default {
             cursor: pointer;
             background-color: $color_1;
             border-radius: 50%;
-            transition:all .2s ease-in-out;
             z-index: 99;
             &:active{
                 transform: scale(.6,.6);
