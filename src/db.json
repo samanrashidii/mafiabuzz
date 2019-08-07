@@ -138,6 +138,7 @@
         "confirmButton": "Action..!",
         "skipButton": "Skip",
         "skipButton2": "Yes, Skip it!",
+        "skipHacked": "Skip this action",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",

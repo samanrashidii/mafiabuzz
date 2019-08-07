@@ -287,6 +287,18 @@ button{
 	}
 }
 
+.table-display{
+    display:table;
+    width:100%;
+    height: 100%;
+}
+
+.table-cell-display{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
 #app{
     position: relative;
     min-height: 100%;
@@ -519,6 +531,7 @@ i.citizen-role{
 .creator-color{color:$creator_color;}
 .white-color{color:$color_1;}
 .site-color{color:$color_site_2;}
+.hack-color{color:$purple_color;}
 .Saman{background:url('../images/roles/mafia.png') no-repeat center 10px;}
 .Shahriyar{background:url('../images/roles/police.png') no-repeat center 10px;}
 .Samira{background:url('../images/roles/grandma.png') no-repeat center 10px;}
@@ -1277,10 +1290,26 @@ table tr{
 }
 
 .action-box{
+    position: relative;
     p{
         font-size: $font_size_3;
         padding:0 0 15px 0;
         strong{color:$hint_color;}
+    }
+    .hacked-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: $black_color;
+        height: 100%;
+        padding: 5px 20px;
+        background: url('../images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+        background-size: cover;
+        z-index: 10;
+        border-radius: 14px;
+        img{width:44px;}
+        a.bttn{margin-top:0;}
     }
 }
 
