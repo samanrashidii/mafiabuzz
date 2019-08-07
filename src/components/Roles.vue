@@ -105,7 +105,7 @@ export default {
                     }
                 } else{
                     this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.selectedRoles.forEach(element => {
+                    this.Roles.forEach(element => {
                         if(element.id == role.id){
                             element.selected = false;
                         }
@@ -122,16 +122,16 @@ export default {
                         }
                     }
                 } else {
-                    this.normalCitizen = 0;
                     this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.selectedRoles.forEach(element => {
+                    this.Roles.forEach(element => {
                         if(element.id == role.id){
                             element.selected = false;
                         }
                     });
                 }
                 this.normalCitizen--;
-            }  
+            }
+            this.emitRoles();
         },
         emitRoles(){
             this.$emit('selectedRoles', this.selectedRoles);
