@@ -54,13 +54,24 @@
 
             <!-- Handle Actions -->
             <template v-for="(action, index) in sortByPriority">
-                <div class="action-box" v-if="checkReadyActions(action, index)" :class="{'target-hacked': targetHacked}" :key="index">
+                <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
                     {{fireAction(action)}}
-                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> who is the target for <strong>{{info.action}}</strong> ?</p>
+                    <transition name="fade">
+                        <div class="hacked-overlay" v-if="targetHacked">
+                            <div class="table-display">
+                                <div class="table-cell-display">
+                                    <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
+                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! just wake him up but he is unable to perform an action</p>
+                                    <app-button class="purple" @click.native="skipAction()">{{God.skipHacked}}</app-button>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to open his eyes and tell you who is the target for <strong>{{info.action}}</strong> ?</p>
                     <div class="player-box-holder has-xsmall-bottom-margin">
                         <div class="player-box">
                             <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
-                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.name2}}</h4>
+                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                         </div>
                         <div class="arrow">
                             <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
