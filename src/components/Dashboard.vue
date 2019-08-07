@@ -113,7 +113,10 @@ export default {
     assignRoles(){
         let gR = this.gameRoles;
         let pL = this.players;
-        if(pL.length == gR.length){
+        let checkPlayersInput = pL.filter(function(item, index){
+            return pL.indexOf(item) >= index;
+        });
+        if(pL.length == gR.length && checkPlayersInput.length == pL.length){
             for (let i = 0; i < pL.length; i++) {
                 if(pL[i].length < 1){
                     this.ready = false;
@@ -123,6 +126,7 @@ export default {
                 }
             }   
         }
+
         if(this.ready){
             let tg = this.gameRoles;
             let tp = this.players;
@@ -155,6 +159,9 @@ export default {
         if(this.showSavedNames == false){
             let $savedPlayers = localStorage.savedPlayers.split(",");
             this.players = $savedPlayers;
+            if(this.SelectedRoles.length < this.players.length){
+                this.players.length = this.SelectedRoles.length;
+            }
             this.showPredefined = false;
             this.showSavedNames = true;
         } else{
