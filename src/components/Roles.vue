@@ -95,24 +95,43 @@ export default {
         },
         decrNumber(role){
             let $roles = this.selectedRoles;
-            if(this.normalCitizen > 1 && role.id == 8){
-                for(let el of $roles) {
-                    if(el.id == role.id){
-                        $roles.splice($roles.indexOf(el),1);
-                        break;
+            if(role.id == 1){
+                if(this.normalMafia > 1){
+                    for(let el of $roles) {
+                        if(el.id == role.id){
+                            $roles.splice($roles.indexOf(el),1);
+                            break;
+                        }
                     }
-                }
-                this.normalCitizen--;
-            }
-            if(this.normalMafia > 1 && role.id == 1){
-                for(let el of $roles) {
-                    if(el.id == role.id){
-                        $roles.splice($roles.indexOf(el),1);
-                        break;
-                    }
+                } else{
+                    this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+                    this.Roles.forEach(element => {
+                        if(element.id == role.id){
+                            element.selected = false;
+                        }
+                    });
                 }
                 this.normalMafia--;
             }
+            if(role.id == 8){
+                if(this.normalCitizen > 1){
+                    for(let el of $roles) {
+                        if(el.id == role.id){
+                            $roles.splice($roles.indexOf(el),1);
+                            break;
+                        }
+                    }
+                } else {
+                    this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+                    this.Roles.forEach(element => {
+                        if(element.id == role.id){
+                            element.selected = false;
+                        }
+                    });
+                }
+                this.normalCitizen--;
+            }
+            this.emitRoles();
         },
         emitRoles(){
             this.$emit('selectedRoles', this.selectedRoles);
@@ -199,12 +218,12 @@ export default {
         &.mafia label{background-color:$background_color_mafia;}
         .number-control span{
             position:absolute;
-            bottom:-3px;
-            left:-3px;
+            bottom:-5px;
+            left:-5px;
             display: block;
-            width:28px;
-            height: 28px;
-            line-height: 24px;
+            width:30px;
+            height: 30px;
+            line-height: 26px;
             font-family: $font_normal;
             font-size: 24px;
             color:$black_color;
@@ -220,7 +239,7 @@ export default {
             }
             &:last-child{
                 left:auto;
-                right:-3px;
+                right:-5px;
             }
         }
         .character-power{
