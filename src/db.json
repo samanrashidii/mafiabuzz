@@ -160,6 +160,8 @@
         "skipButton3": "Skip this action",
         "hackedIcon": "hacked.png",
         "deadIcon": "grave.png",
+        "voteIcon": "vote.png",
+        "lastPhaseText": "Please select who died last day with people's vote :",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",

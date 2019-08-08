@@ -16,6 +16,24 @@
         
         <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
 
+            <!-- Last Phase Action -->
+            <transition name="fade">
+                <div class="last-phase-action" v-if="lastPhaseAction">
+                    <div class="table-display">
+                        <div class="table-cell-display">
+                            <img :src="getImgUrl(God.voteIcon)" alt="Dead Icon" />
+                            <p>{{God.lastPhaseText}}</p>
+                            <select name="action_target" v-model="log.target">
+                                <option :value="null" disabled>{{God.selectPlaceholder}}</option>
+                                <option v-for="(person, index) in checkGroup('none')" :key="index">{{person.player}}</option>
+                            </select>
+                            <app-button @click.native="killByVote(log.target)">{{God.confirmButton}}</app-button>
+                            <app-button class="danger" @click.native="lastPhaseAction = false">{{God.skipButton}}</app-button>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+
             <!-- Actions Progress Bar -->
             <div class="progress-bar">
                 <span :style="{width: progress+'%'}"></span>
@@ -60,7 +78,7 @@
                         <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
                             <div class="table-display">
                                 <div class="table-cell-display">
-                                    <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon"  />
+                                    <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon" />
                                     <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! Just wake him up but he is unable to perform an action</p>
                                     <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                 </div>
@@ -69,7 +87,7 @@
                         <div class="action-overlay dead-overlay" v-if="targetDead" key="deadTarget">
                             <div class="table-display">
                                 <div class="table-cell-display">
-                                    <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon"  />
+                                    <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
                                     <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
                                     <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                 </div>
@@ -90,13 +108,13 @@
                             <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                         </div>
                     </div>
-                    <select @change="findTarget(log.target, log.targetID)" name="action_target" id="action_target" v-model="log.target">
+                    <select @change="findTarget(log.target, log.targetID)" name="action_target" v-model="log.target">
                         <option :value="null" disabled>{{God.selectPlaceholder}}</option>
                         <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                     </select>
                     <template v-if="info.id == 11 && log.target != null">
                         <label for="action_target_2">{{God.actionHintText2}}</label>
-                        <select name="action_target_2" id="action_target_2" v-model="log.target2">
+                        <select name="action_target_2" v-model="log.target2">
                             <option :value="null" disabled>{{God.selectPlaceholder}}</option>
                             <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
                         </select>
@@ -395,6 +413,7 @@ export default {
             logHistory: false,
             logActionDone: false,
             totRestart: false,
+            lastPhaseAction: true,
             targetHacked: false,
             targetDead: false,
             defaultTime: 0,
@@ -545,6 +564,7 @@ export default {
                 this.totalHistory.push(this.historyLog);
             } else{
                 this.dayTime = this.defaultTime;
+                this.lastPhaseAction = true;
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
                     element.status.silenced = false;
@@ -899,6 +919,15 @@ export default {
         // Get Role Image
         getImgUrl(pic) {
             return require(`@/assets/images/roles/${pic}`);
+        },
+        // Kill Last Phase Target
+        killByVote(target){
+            this.SelectedRoles.forEach(element => {
+                if(target == element.player){
+                    element.status.dead = true;
+                    this.lastPhaseAction = false;
+                }
+            });
         },
         // Next Action
         nextAction(time1, time2){
