@@ -9,6 +9,7 @@
         "Role": "Role",
         "Power": "Power",
         "Vote": "Vote Counter",
+        "Player": "Player",
         "Status": "Status",
         "Action": "Action",
         "Night": "Night",
