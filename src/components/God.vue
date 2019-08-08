@@ -488,6 +488,7 @@ export default {
             'SavedRoles',
             'SelectedRoles',
             'Actions',
+            'ReplacingRole'
         ]),
         dashboard:{
             get: function(){
@@ -619,7 +620,7 @@ export default {
                 }
             } else{
                 this.dayTime = this.defaultTime;
-                this.lastPhaseAction = true;
+                this.dashboard.lastPhaseAction = true;
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
                     element.status.silenced = false;
@@ -1072,7 +1073,7 @@ export default {
         },
         // Set Actions by Priority
         setActionsByPriority(){
-            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus);
+            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.revived);
             let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
             this.setActions(sorted);
         },
