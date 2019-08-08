@@ -2,14 +2,14 @@
     <div class="power-meter">
         <div class="has-clear-fix">
             <div class="mafia-power">
-                <strong v-if="mafia > 0">{{mafia}} characters left</strong>
-                <strong v-else-if="mafia < 0">{{Math.abs(mafia)}} characters overplus</strong>
-                <span>Mafia Power : <b>{{power.mafia}}</b></span>
+                <strong v-if="mafia > 0"><i class="hint-color">{{mafia}} </i> <span class='mafia-role'>{{Common.Mafia}}</span> {{PowerMeter.minus}}</strong>
+                <strong v-else-if="mafia < 0"><i class="hint-color">{{Math.abs(mafia)}} </i> <span class='mafia-role'>{{Common.Mafia}}</span> {{PowerMeter.plus}}</strong>
+                <span>{{PowerMeter.mafia}}: <b>{{power.mafia}}</b></span>
             </div>
             <div class="citizen-power">
-                <strong v-if="citizen > 0">{{citizen}} characters left</strong>
-                <strong v-else-if="citizen < 0">{{Math.abs(citizen)}} characters overplus</strong>
-                <span>Citizen Power : <b>{{power.citizen}}</b></span>
+                <strong v-if="citizen > 0"><i class="hint-color">{{citizen}} </i> <span class='citizen-role'>{{Common.Citizen}}</span> {{PowerMeter.minus}}</strong>
+                <strong v-else-if="citizen < 0"><i class="hint-color">{{Math.abs(citizen)}} </i> <span class='citizen-role'>{{Common.Citizen}}</span> {{PowerMeter.plus}}</strong>
+                <span>{{PowerMeter.citizen}} : <b>{{power.citizen}}</b></span>
             </div>
             <div class="meter" :style="{ transform: `translateX(${power.average}%)`}"><span></span></div>
         </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
     props:{
         power:{
@@ -30,6 +31,12 @@ export default {
             type: Number,
             default: 0
         },
+    },
+    computed:{
+        ...mapGetters([
+            'PowerMeter',
+            'Common'
+        ]),
     }
 }
 </script>
@@ -65,7 +72,6 @@ export default {
             color:$mafia_placeholder;
             background-color: $background_color_mafia;
             border-radius: 25px 0 0 25px;
-            strong{color:$background_color_mafia;}
         }
         .citizen-power{
             position: relative;
@@ -75,14 +81,15 @@ export default {
             color:$citizen_placeholder;
             background-color: $background_color_citizen;
             border-radius: 0 25px 25px 0;
-            strong{color:$background_color_citizen;}
         }
         strong{
             position: absolute;
             top:-26px;
             left:0;
             width:100%;
+            color:$color_1;
             text-align: center;
+            span{font-size: $font_size_2;}
         }
         span{
             font-size: $font_size_0;

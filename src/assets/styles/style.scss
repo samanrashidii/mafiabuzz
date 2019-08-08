@@ -285,7 +285,6 @@ button{
 			border-radius: 50%;
         }
         span{
-            color:$green_color;
             margin:0 2px;
         }
 	}
@@ -516,21 +515,11 @@ button{
     }
 }
 
-i.mafia-role,
-i.citizen-role{
-    display: inline-block;
-    line-height: 1.4;
-    padding:1px 6px;
-    margin:0 4px;
-    background-color:$background_color_2;
-    border-radius:2px;
-    box-shadow: inset 0 0 2px #7e7e7e;
-}
-
 .citizen-role{color:$blue_color}
 .mafia-role{color:$red_color}
 .binded{color:$pink_color !important;}
 .day-color{color:$day;}
+.hint-color{color:$hint_color;}
 .night-color{color:$night_color;}
 .creator-color{color:$creator_color;}
 .white-color{color:$color_1;}

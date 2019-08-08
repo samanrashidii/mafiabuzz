@@ -45,15 +45,6 @@
                             <option v-for="n in Creator.totalTime" :key="n">{{n+4}}</option>
                         </select>
                     </div>
-                    <div class="step-box">
-                        <span class="step-number">4</span>
-                        <label v-html="Creator.step4"></label>
-                        <ul class="note">
-                            <li>Day phase will take <span class="day-color">{{gameSettings.time}}</span> minutes long.</li>
-                            <li>Mafia characters have <span class="mafia-role">red color</span> and you can choose <i class="mafia-role">{{gameSettings.mafia}}</i> of them.</li>
-                            <li>Citizen characters have <strong class="citizen-role">blue color</strong> and you can choose <i class="citizen-role">{{gameSettings.citizens}}</i> of them.</li>
-                        </ul>
-                    </div>
                 </div>
                 
                 <roles @selectedRoles="gameSettings.roles = $event"></roles>
@@ -65,10 +56,10 @@
                         <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
                         <ul class="error-bullet">
                             <li v-if="error.mafia">
-                                You have chosen <span>{{gameSettings.mafia}}</span> character of <strong class="mafia-role">Mafia</strong> but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
+                                {{Creator.errorText1}} <span class="hint-color">{{gameSettings.mafia}} </span> <strong class="mafia-role">{{Common.Mafia}}</strong> {{Creator.errorText2}}
                             </li>
                             <li class="blue" v-if="error.citizens">
-                                You have chosen <span>{{gameSettings.citizens}}</span> character of <strong class="citizen-role">Citizen</strong> but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
+                                {{Creator.errorText1}} <span class="hint-color">{{gameSettings.citizens}} </span> <strong class="citizen-role">{{Common.Citizen}}</strong> {{Creator.errorText2}}
                             </li>
                         </ul>
                         <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
@@ -269,20 +260,6 @@ export default {
         vertical-align: middle;
         margin-right: 7px;
     }
-}
-
-.citizen-role{color:$blue_color}
-.mafia-role{color:$red_color}
-
-i.mafia-role,
-i.citizen-role{
-    display: inline-block;
-    line-height: 1.4;
-    padding:1px 6px;
-    margin:0 4px;
-    background-color:$background_color_2;
-    border-radius:2px;
-    box-shadow: inset 0 0 2px #7e7e7e;
 }
 
 button{background-color:$creator_color;}
