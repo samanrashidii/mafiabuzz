@@ -16,8 +16,8 @@
                 <!-- Under Construction -->
                 <template v-else>
                     <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2>We are <span>Sorry</span></h2>
-                    <p>This mode is under construction ...!!!</p>
+                    <h2 v-html="Common.UnderConstructionTitle"></h2>
+                    <p v-html="Common.UnderConstructionText"></p>
                 </template>
             </div>
         </div>
@@ -81,8 +81,8 @@
                         <div class="table mafia-table">
                             <table>
                                 <tr>
-                                    <th>Role</th>
-                                    <th>Power</th>
+                                    <th>{{Common.Role}}</th>
+                                    <th>{{Common.Power}}</th>
                                 </tr>
                                 <tr v-for="(fM, index) in finalMafias" :key="index">
                                     <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
@@ -93,8 +93,8 @@
                         <div class="table citizen-table">
                             <table>
                                 <tr>
-                                    <th>Role</th>
-                                    <th>Power</th>
+                                    <th>{{Common.Role}}</th>
+                                    <th>{{Common.Power}}</th>
                                 </tr>
                                 <tr v-for="(fC, index) in finalCitizens" :key="index">
                                     <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
@@ -149,6 +149,7 @@ export default {
         ...mapGetters([
             'Creator',
             'Numbers',
+            'Common'
         ]),
         calcMafia(){
             let mafiaNumbers = Math.floor(this.gameSettings.unit / 2) -1;

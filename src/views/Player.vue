@@ -12,8 +12,8 @@
                 <!-- Under Construction -->
                 <template v-else>
                     <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2>We are <span>Sorry</span></h2>
-                    <p>This mode is under construction ...!!!</p>
+                    <h2 v-html="Common.UnderConstructionTitle"></h2>
+                    <p v-html="Common.UnderConstructionText"></p>
                 </template>
             </div>
         </div>
@@ -31,6 +31,7 @@ export default {
     computed:{
         ...mapGetters([
             'Player',
+            'Common'
         ]),
     },
     metaInfo() {

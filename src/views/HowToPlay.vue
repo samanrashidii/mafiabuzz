@@ -15,8 +15,8 @@
                     <img :src="getImgUrl(info.icon)" alt="" />
                     <h2>{{info.name}}</h2>
                     <div class="mafia-status">
-                        <strong class="mafia-role" v-if="info.mafia">mafia</strong>
-                        <strong class="citizen-role" v-else>citizen</strong>
+                        <strong class="mafia-role" v-if="info.mafia">{{Common.Mafia}}</strong>
+                        <strong class="citizen-role" v-else>{{Common.Citizen}}</strong>
                     </div>
                     <p>{{info.description}}</p>
                 </div>
@@ -37,6 +37,7 @@ export default {
         ...mapGetters([
             'HowToPlay',
             'Roles',
+            'Common'
         ]),
     },
     metaInfo() {

@@ -113,6 +113,10 @@ a.bttn{
         background-color: $purple_color;
         box-shadow: 0 0 4px $black_color;
     }
+    &.black{
+        background-color: $background_color_main;
+        box-shadow: 0 0 3px $black_color;
+    }
     &.green{
         background-color: $green_color;
         &:hover{
@@ -947,7 +951,7 @@ span.step-number{
 
 .dashboard-header .title{
     position: relative;
-    padding:20px 10px 10px 10px;
+    padding:20px 10px;
     border-radius: 7px;
     box-shadow: 0 0 10px $black_color;
     h2 strong{color:$hint_color;}
@@ -1293,10 +1297,10 @@ table tr{
     position: relative;
     p{
         font-size: $font_size_3;
-        padding:0 0 15px 0;
+        padding:0 0 25px 0;
         strong{color:$hint_color;}
     }
-    .hacked-overlay{
+    .action-overlay{
         position: absolute;
         top: 0;
         left: 0;
@@ -1304,18 +1308,26 @@ table tr{
         color: $black_color;
         height: 100%;
         padding: 5px 20px;
-        background: url('../images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
         background-size: cover;
         z-index: 10;
         border-radius: 14px;
-        img{width:44px;}
+        p{padding-bottom: 10px;}
+        img{
+            width:44px;
+            margin-bottom: 10px;
+        }
         a.bttn{margin-top:0;}
+        &.hacked-overlay{
+            background: url('../images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+        }
+        &.dead-overlay{
+            background: rgb(244, 244, 244);
+        }
     }
 }
 
 .log-bttn{
-    margin-top:28px;
-    margin-bottom:-10px;
+    margin-top:20px;
     i{
         display: inline-block;
         vertical-align: middle;
