@@ -88,7 +88,6 @@ export default {
             transform:scale(1,1);
         }
         &.done{
-            top:110%;
             transform:scale(.3,.3);
         }
     }

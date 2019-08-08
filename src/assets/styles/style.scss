@@ -1380,6 +1380,14 @@ table tr{
     p{padding-bottom: 10px;}
 }
 
+.night-over{
+    text-align: center;
+    padding: 80px 20px 20px 20px;
+    margin-top: 20px;
+    background:url('../images/icons/info.png') no-repeat center 20px $background_color_side;
+    border-radius: 7px;
+}
+
 // Main Transitions
 
 .fade-enter-active,
