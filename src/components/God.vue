@@ -13,131 +13,137 @@
         </div>
 
         <!-- Night Priority Action Box -->
-        
-        <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
 
-            
-            <transition name="fade">
-                <div class="before-action-box" v-if="lastPhaseAction && dashboard.round > 1 || mafiaParty && dashboard.round == 1">
-                    <div class="table-display">
-                        <div class="table-cell-display">
-                            <!-- Last Phase Action -->
-                            <template v-if="lastPhaseAction && dashboard.round > 1">
-                                <img :src="getImgUrl(God.voteIcon)" alt="Dead Icon" />
-                                <p>{{God.lastPhaseText}}</p>
-                                <select name="action_target" v-model="log.target">
-                                    <option :value="null" disabled>{{God.selectPlaceholder}}</option>
-                                    <option v-for="(person, index) in checkGroup('none')" :key="index">{{person.player}}</option>
-                                </select>
-                                <app-button @click.native="killByVote(log.target)">{{God.confirmButton}}</app-button>
-                                <app-button class="danger" @click.native="lastPhaseAction = false">{{God.skipButton}}</app-button>
-                            </template>
-                            <!-- Last Phase Action -->
-                            <template v-else-if="mafiaParty && dashboard.round == 1">
-                                <img :src="getImgUrl(God.mafiaPartyIcon)" alt="Mafia Party Icon" />
-                                <p class="site-color">{{God.mafiaPartyText}}</p>
-                                <ul class="error-bullet type-2">
-                                    <li v-for="(mp, index) in God.mafiaPartyException" :key="index" v-html="mp"></li>
-                                </ul>
-                                <app-button class="has-small-top-margin" @click.native="mafiaParty = false">{{God.mafiaPartyButton}}</app-button>
-                            </template>
+        <transition name="fade">
+            <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
+
+                <!-- Before Action Box -->
+                <transition name="fade">
+                    <div class="before-action-box" v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round == 1">
+                        <div class="table-display">
+                            <div class="table-cell-display">
+                                <!-- Last Phase Action -->
+                                <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
+                                    <img :src="getImgUrl(God.voteIcon)" alt="Dead Icon" />
+                                    <p>{{God.lastPhaseText}}</p>
+                                    <select name="action_target" v-model="log.target">
+                                        <option :value="null" disabled>{{God.selectPlaceholder}}</option>
+                                        <option v-for="(person, index) in checkGroup('none')" :key="index">{{person.player}}</option>
+                                    </select>
+                                    <app-button @click.native="killByVote(log.target)">{{God.confirmButton}}</app-button>
+                                    <app-button class="danger" @click.native="dashboard.lastPhaseAction = false">{{God.skipButton}}</app-button>
+                                </template>
+                                <!-- Last Phase Action -->
+                                <template v-else-if="dashboard.mafiaParty && dashboard.round == 1">
+                                    <img :src="getImgUrl(God.mafiaPartyIcon)" alt="Mafia Party Icon" />
+                                    <p class="site-color">{{God.mafiaPartyText}}</p>
+                                    <ul class="error-bullet type-2">
+                                        <li v-for="(mp, index) in God.mafiaPartyException" :key="index" v-html="mp"></li>
+                                    </ul>
+                                    <app-button class="has-small-top-margin" @click.native="dashboard.mafiaParty = false">{{God.mafiaPartyButton}}</app-button>
+                                </template>
+                            </div>
                         </div>
                     </div>
+                </transition>
+
+                <!-- Actions Progress Bar -->
+                <div class="progress-bar">
+                    <span :style="{width: progress+'%'}"></span>
+                    <i><strong>{{dashboard.currentAction}}</strong> / {{sortByPriority.length}}</i>
                 </div>
-            </transition>
 
-            <!-- Actions Progress Bar -->
-            <div class="progress-bar">
-                <span :style="{width: progress+'%'}"></span>
-                <i><strong>{{dashboard.currentAction}}</strong> / {{sortByPriority.length}}</i>
-            </div>
+                <!-- Handle Actions -->
+                <template v-for="(action, index) in sortByPriority">
+                    <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
+                        {{fireAction(action)}}
 
-            <!-- Handle Actions -->
-            <template v-for="(action, index) in sortByPriority">
-                <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
-                    {{fireAction(action)}}
-                    <transition name="fade">
-                        <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
-                            <div class="table-display">
-                                <div class="table-cell-display">
-                                    <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon" />
-                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! Just wake him up but he is unable to perform an action</p>
-                                    <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                        <transition name="fade">
+                            <!-- Hacked Target Action -->
+                            <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
+                                <div class="table-display">
+                                    <div class="table-cell-display">
+                                        <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon" />
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! Just wake him up but he is unable to perform an action</p>
+                                        <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="action-overlay dead-overlay" v-if="targetDead" key="deadTarget">
-                            <div class="table-display">
-                                <div class="table-cell-display">
-                                    <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
-                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
-                                    <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                            <!-- Dead Target Action -->
+                            <div class="action-overlay dead-overlay" v-if="targetDead" key="deadTarget">
+                                <div class="table-display">
+                                    <div class="table-cell-display">
+                                        <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
+                                        <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                                    </div>
                                 </div>
                             </div>
+                        </transition>
+
+                        <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to wake up and tell you the target for <strong>{{info.action}}</strong> ?</p>
+                        <div class="player-box-holder has-small-bottom-margin">
+                            <div class="player-box">
+                                <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
+                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
+                            </div>
+                            <div class="arrow">
+                                <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                            </div>
+                            <div class="player-box">
+                                <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
+                            </div>
                         </div>
-                    </transition>
-                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to wake up and tell you the target for <strong>{{info.action}}</strong> ?</p>
-                    <div class="player-box-holder has-small-bottom-margin">
-                        <div class="player-box">
-                            <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
-                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
-                        </div>
-                        <div class="arrow">
-                            <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
-                        </div>
-                        <div class="player-box">
-                            <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
-                            <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
-                        </div>
-                    </div>
-                    <select @change="findTarget(log.target, log.targetID)" name="action_target" v-model="log.target">
-                        <option :value="null" disabled>{{God.selectPlaceholder}}</option>
-                        <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
-                    </select>
-                    <template v-if="info.id == 11 && log.target != null">
-                        <label for="action_target_2">{{God.actionHintText2}}</label>
-                        <select name="action_target_2" v-model="log.target2">
+                        <select @change="findTarget(log.target, log.targetID)" name="action_target" v-model="log.target">
                             <option :value="null" disabled>{{God.selectPlaceholder}}</option>
-                            <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
+                            <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                         </select>
-                    </template>
-                </div>
-            </template>
+                        <template v-if="info.id == 11 && log.target != null">
+                            <label for="action_target_2">{{God.actionHintText2}}</label>
+                            <select name="action_target_2" v-model="log.target2">
+                                <option :value="null" disabled>{{God.selectPlaceholder}}</option>
+                                <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
+                            </select>
+                        </template>
+                    </div>
+                </template>
 
-            <!-- Action Buttons -->
-            <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
-            <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
-        </div>
+                <!-- Action Buttons -->
+                <app-button @click.native="executeAction(info)">{{God.confirmButton}}</app-button>
+                <app-button class="danger" @click.native="alertBox = true">{{God.skipButton}}</app-button>
 
-        <!-- Log Actions During Night -->
-        <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
-            <div class="log-action">
-                <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
-                <template v-if="!log.passiveLog && !log.godLog">
-                    <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
-                    " <span class="action-color">{{log.action}}</span> " on 
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                    <!-- Police Check Result (Normal and Invisible) -->
-                    <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                    <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
-                    <!-- Chef Check Result -->
-                    <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                    <!-- Cupid Link Result -->
-                    <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                </template>
-                <template v-else-if="log.godLog">
-                    <span class="creator-color">{{log.attacker}}</span> has 
-                    " <span class="action-color">{{log.action}}</span> " 
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                </template>
-                <template v-else>
-                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
-                    <br />
-                    " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                </template>
+                <!-- Log Actions During Night -->
+                <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
+                    <div class="log-action">
+                        <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                        <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        <template v-if="!log.passiveLog && !log.godLog">
+                            <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                            " <span class="action-color">{{log.action}}</span> " on 
+                            <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                            <!-- Police Check Result (Normal and Invisible) -->
+                            <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                            <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                            <!-- Chef Check Result -->
+                            <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                            <!-- Cupid Link Result -->
+                            <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                        </template>
+                        <template v-else-if="log.godLog">
+                            <span class="creator-color">{{log.attacker}}</span> has 
+                            " <span class="action-color">{{log.action}}</span> " 
+                            <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                        </template>
+                        <template v-else>
+                            <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                            <br />
+                            " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                        </template>
+                    </div>
+                </overlay>
             </div>
-        </overlay>
+        </transition>
 
         <!-- Alert Box -->
 
@@ -425,8 +431,6 @@ export default {
             logHistory: false,
             logActionDone: false,
             totRestart: false,
-            lastPhaseAction: true,
-            mafiaParty: true,
             targetHacked: false,
             targetDead: false,
             defaultTime: 0,
@@ -938,7 +942,7 @@ export default {
             this.SelectedRoles.forEach(element => {
                 if(target == element.player){
                     element.status.dead = true;
-                    this.lastPhaseAction = false;
+                    this.dashboard.lastPhaseAction = false;
                 }
             });
         },

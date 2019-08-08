@@ -17,6 +17,8 @@ export default new Vuex.Store({
       god: false,
       day: true,
       round: 0,
+      lastPhaseAction: true,
+      mafiaParty: true,
       currentAction: 0,
       log: {
         id: 0,
