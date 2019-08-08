@@ -38,6 +38,7 @@ export default new Vuex.Store({
       historyLog: [],
       totalHistory: [],
       actionBox: [],
+      lastNightLog: []
     },
   },
   getters: {

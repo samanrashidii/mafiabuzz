@@ -247,6 +247,16 @@
             <app-button @click.native="logHistory = false" class="active has-small-top-margin"><span>{{God.logCloseButton}}</span></app-button>
         </overlay>
 
+        <!-- Last Night Log -->
+
+        <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
+            <h2>Tell people what happened last night</h2>
+            <ul>
+                <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
+            </ul>
+            <app-button @click.native="lastNightBox = false" class="active"><span>{{God.logCloseButton}}</span></app-button>
+        </overlay>
+
         <!-- Day & Night Dashboard -->
 
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
@@ -430,6 +440,7 @@ export default {
             logAction: false,
             logHistory: false,
             logActionDone: false,
+            lastNightBox: false,
             totRestart: false,
             targetHacked: false,
             targetDead: false,
@@ -476,7 +487,7 @@ export default {
             'Common',
             'SavedRoles',
             'SelectedRoles',
-            'Actions'
+            'Actions',
         ]),
         dashboard:{
             get: function(){
@@ -516,8 +527,6 @@ export default {
                     mafia: false,
                     targetMafia: false,
                 },
-                historyLog: [],
-                totalHistory: [],
             }
         },
         finalMafias(){
@@ -532,6 +541,14 @@ export default {
             },
             set: function(newValue){
                 this.Dashboard.historyLog = newValue;
+            }
+        },
+        lastNight: {
+            get: function(){
+                return this.Dashboard.lastNightLog;
+            },
+            set: function(newValue){
+                this.Dashboard.lastNightLog = newValue;
             }
         },
         log(){
@@ -579,6 +596,27 @@ export default {
                     }
                 });
                 this.totalHistory.push(this.historyLog);
+                let getTarget = this.finalPlayers.forEach(element => {
+                    this.historyLog.forEach(item => {
+                        if(element.player == item.target && element.status.recentlyDead == true || element.player == item.target2 && element.status.recentlyDead == true){
+                            let logNote = `<span class='hint-color'>${element.player}</span> has been killed !!!`;
+                            element.status.recentlyDead = false;
+                            this.lastNight.push(logNote);
+                        }
+                        if(element.player == item.target && element.status.recentlySilenced == true){
+                            let logNote = `<span class='site-color'>${element.player}</span> has been silenced !!!`;
+                            element.status.recentlySilenced = false;
+                            this.lastNight.push(logNote);
+                        }
+                        // if(element.player == item.target && element.status.dead == true && !element.status.healed && element.status.detonated){
+                        //     let deadNote = `${element.player} has got killed last night and detonated!!! The ${element.player}'s siblings will die as well`;
+                        //     this.lastNight.push(deadNote);
+                        // }
+                    });
+                });
+                if(this.lastNight.length > 0){
+                    this.lastNightBox = true;
+                }
             } else{
                 this.dayTime = this.defaultTime;
                 this.lastPhaseAction = true;
@@ -589,6 +627,7 @@ export default {
                 });
                 if(this.dashboard.round >= 1){
                     this.historyLog = [];
+                    this.lastNight = [];
                 }
                 this.chooseKiller();
                 this.dashboard.round++;
@@ -695,6 +734,7 @@ export default {
                         this.finalPlayers.forEach(element => {
                             if(element.status.linked){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                             }
                         });
                     }
@@ -703,6 +743,7 @@ export default {
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                                 this.passiveCalc(element);
                             }
                         });
@@ -713,6 +754,7 @@ export default {
                             if(element.player == player.player){
                                 element.status.dead = true;
                                 element.status.shield = false;
+                                element.status.recentlyDead = true;
                             }
                         });
                     }
@@ -721,9 +763,11 @@ export default {
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                             }
                             if(element.status.revived){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                             }
                         });
                     }
@@ -732,6 +776,7 @@ export default {
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                             }
                         });
                     }
@@ -866,6 +911,7 @@ export default {
                                         this.passiveCalc(element);
                                     } else{
                                         element.status.dead = true;
+                                        element.status.recentlyDead = true;
                                         element.status.shield = false;
                                         element.actionStatus = true;
                                     }
@@ -877,6 +923,7 @@ export default {
                                 // Cupid Targets | Status
                                 if(linked && element.status.linked && !element.status.healed){
                                     element.status.dead = true;
+                                    element.status.recentlyDead = true;
                                 }
                             }
                             
@@ -885,6 +932,7 @@ export default {
                         if(attacker == 3 && !damageReturned || attacker == 3 && damageReturned && hacked){
                             if(element.player == this.log.target){
                                 element.status.silenced = true;
+                                element.status.recentlySilenced = true;
                             }
                         }
                         // Doctor Targets ; Check not damageReturned
