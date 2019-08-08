@@ -62,6 +62,8 @@
             "playerMargin": 5,
             "start": "Start Game!",
             "changeSettings": "Change Role Settings",
+            "errorText1": "You have to select",
+            "errorText2": "roles !",
             "cancelButton": "Cancel",
             "changeSettingsText": "Are you sure about changing roles?",
             "confirmButton": "Yes I want to",
@@ -129,6 +131,12 @@
                 }
             ]
         }
+    },
+    "powerMeter": {
+        "mafia": "Mafia Power",
+        "citizen": "Citizen Power",
+        "minus": "roles left",
+        "plus": "roles overplus"
     },
     "god": {
         "name": "God",

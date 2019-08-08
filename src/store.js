@@ -48,6 +48,7 @@ export default new Vuex.Store({
     Player: state => state.db.pages.player,
     About: state => state.db.pages.about,
     HowToPlay: state => state.db.pages.howToPlay,
+    PowerMeter: state => state.db.powerMeter,
     God: state => state.db.god,
     SelectedRoles: state => state.roles,
     SavedRoles: state => state.savedRoles,
