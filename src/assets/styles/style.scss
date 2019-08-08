@@ -264,8 +264,8 @@ button{
 
 .error-bullet {
 	li {
-        font-size: $font_size_3;
         line-height: 1.8;
+        font-size: $font_size_3;
         text-align: left;
         padding:10px;
         margin:10px 0;
@@ -277,7 +277,8 @@ button{
         }
 		&::before {
 			content: '';
-			display: inline-block;
+            display: inline-block;
+            vertical-align: middle;
 			width: 5px;
             height: 5px;
 			margin-right: 5px;
@@ -287,7 +288,16 @@ button{
         span{
             margin:0 2px;
         }
-	}
+    }
+    &.type-2 li{
+        line-height: 1.4;
+        font-size: $font_size_2;
+        border:none;
+        border-radius: 0;
+        padding:0;
+        margin:8px 0;
+        span{color:$background_color_mafia;}
+    }
 }
 
 .table-display{
@@ -1357,7 +1367,7 @@ table tr{
     }
 }
 
-.last-phase-action{
+.before-action-box{
     position: absolute;
     top: 10px;
     left: 10px;
