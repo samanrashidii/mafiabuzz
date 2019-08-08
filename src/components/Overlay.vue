@@ -63,17 +63,24 @@ export default {
     }
     &.log{
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 240px;
-        height: 240px;
-        margin: -114px 0 0 -120px;
+        top: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
         overflow-y: hidden;
         border:4px solid $black_color;
         border-radius: 50%;
-        background: rgba(16, 16, 16, 0.97);
+        background: rgba(4, 4, 4, 0.99);
         transform: scale(0, 0);
         transition:all .4s;
+        .overlay-box{
+            font-size: $font_size_6;
+            img{
+                padding:10px;
+                border:2px solid $background_color_1;
+                border-radius: 50%;
+            }
+        }
         &::after{
             content:'';
             position: absolute;
