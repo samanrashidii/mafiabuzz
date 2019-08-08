@@ -91,6 +91,27 @@ export default {
             transform:scale(.3,.3);
         }
     }
+    &.last-night{
+        h2{
+            font-family: $font_mafia;
+            font-size: 44px;
+            color: $color_site_2;
+            margin-bottom: 40px;
+        }
+        ul{
+            li{
+                font-size: $font_size_10;
+                color: $color_1;
+                padding: 10px;
+                margin-bottom: 10px;
+                border:2px solid $color_1;
+                border-radius: 4px;
+            }
+        }
+        a.bttn{
+            margin-top:30px;
+        }
+    }
 }
 
 </style>
