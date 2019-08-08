@@ -1,7 +1,18 @@
 {
     "common": {
         "homeButton": "Navigate to Home",
-        "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!"
+        "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!",
+        "UnderConstructionTitle": "We are <span>Sorry</span>",
+        "UnderConstructionText": "This mode is under construction ...!!!",
+        "Mafia": "mafia",
+        "Citizen": "citizen",
+        "Role": "Role",
+        "Power": "Power",
+        "Vote": "Vote Counter",
+        "Status": "Status",
+        "Action": "Action",
+        "Night": "Night",
+        "Day": "Day"
     },
     "navigation": [
         {
@@ -41,10 +52,10 @@
                 "text": "welcome to <strong>MafiaBuzz</strong> app"
             },
             "title": "Dear <span>God</span>",
-            "subtitle": "We know you are God but do you know how to start the game?<br /> okay if you don't, We'll tell you how :)",
-            "step1": "Choose how many people do want to have in your <span class='creator-color'>World</span> :",
-            "step2": "Please choose how many of these people will be <span class='mafia-role'>Mafia</span> :",
-            "step3": "Please select how long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span> :",
+            "subtitle": "Please choose below options to create your game:",
+            "step1": "How many people do want to have in your <span class='creator-color'>World</span> :",
+            "step2": "How many of these people will be <span class='mafia-role'>Mafia</span> :",
+            "step3": "How long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span> :",
             "step4": "Game Settings:",
             "maxPlayers": 25,
             "totalTime": 26,
@@ -138,7 +149,9 @@
         "confirmButton": "Action..!",
         "skipButton": "Skip",
         "skipButton2": "Yes, Skip it!",
-        "skipHacked": "Skip this action",
+        "skipButton3": "Skip this action",
+        "hackedIcon": "hacked.png",
+        "deadIcon": "grave.png",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",
@@ -818,5 +831,17 @@
                 "minion": false
             }
         }
-    ]
+    ],
+    "replacingRoles": {
+        "miniYakuza": {
+            "name": "Mini Yakuza",
+            "icon": "ninja.png",
+            "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself"
+        },
+        "skeleton": {
+            "name": "Skeleton",
+            "icon": "skeleton.png",
+            "description": "Skeleton is Necromancer's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
+        }
+    }
 }

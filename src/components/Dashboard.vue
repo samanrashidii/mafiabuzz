@@ -134,7 +134,7 @@ export default {
             for (let i = tg.length - 1; i >= 0; i--) {
                 tg[i].player = tp[i];
             }
-            this.setStep(2);  
+            this.setStep(2);
         }
         localStorage.savedPlayers = pL;
     },

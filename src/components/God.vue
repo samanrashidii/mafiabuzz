@@ -57,18 +57,27 @@
                 <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
                     {{fireAction(action)}}
                     <transition name="fade">
-                        <div class="hacked-overlay" v-if="targetHacked">
+                        <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
                             <div class="table-display">
                                 <div class="table-cell-display">
-                                    <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
-                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! just wake him up but he is unable to perform an action</p>
-                                    <app-button class="purple" @click.native="skipAction()">{{God.skipHacked}}</app-button>
+                                    <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon"  />
+                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! Just wake him up but he is unable to perform an action</p>
+                                    <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-overlay dead-overlay" v-if="targetDead" key="deadTarget">
+                            <div class="table-display">
+                                <div class="table-cell-display">
+                                    <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon"  />
+                                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
+                                    <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                 </div>
                             </div>
                         </div>
                     </transition>
-                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to open his eyes and tell you who is the target for <strong>{{info.action}}</strong> ?</p>
-                    <div class="player-box-holder has-xsmall-bottom-margin">
+                    <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to wake up and tell you who is the target for <strong>{{info.action}}</strong> ?</p>
+                    <div class="player-box-holder has-small-bottom-margin">
                         <div class="player-box">
                             <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
                             <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
@@ -110,13 +119,6 @@
                 <app-button @click.native="alertBox = false" class="danger"><span>{{God.cancelButton}}</span></app-button>
             </template>
         </overlay>
-
-        <div class="log-bttn" v-if="!dashboard.day">
-            <app-button @click.native="logShow = true" class="awesome"><span>{{God.nightLogButton}} <i>{{historyLog.length}}</i></span></app-button>
-        </div>
-        <div class="log-bttn" v-else-if="dashboard.god && dashboard.day">
-            <app-button @click.native="logHistory = true" class="awesome2"><span>{{God.historyLogButton}} <i>{{totalHistory.length}}</i></span></app-button>
-        </div>
 
         <!-- Night Log -->
 
@@ -167,7 +169,7 @@
         <overlay :class="{'active': logHistory, 'log-history': true}">
             <template v-for="(totLog, index) in totalHistory">
                 <div class="log-table" :key="index" v-if="totLog.length > 0">
-                    <span class="counter">Night {{index+1}}</span>
+                    <span class="counter">{{Common.Night}} {{index+1}}</span>
                     <table>
                         <tr v-for="(log, index) in totLog" :key="index">
                             <td>{{index+1}}</td>
@@ -235,11 +237,11 @@
                             <div class="table mafia-table">
                                 <table>
                                     <tr>
-                                        <th>Role</th>
-                                        <th>Player</th>
-                                        <th v-if="dashboard.day == true">Vote Counter</th>
-                                        <th v-if="dashboard.day == false">Status</th>
-                                        <th v-if="dashboard.day == false">Action</th>
+                                        <th>{{Common.Role}}</th>
+                                        <th>{{Common.Player}}</th>
+                                        <th v-if="dashboard.day == true">{{Common.Vote}}</th>
+                                        <th v-if="dashboard.day == false">{{Common.Status}}</th>
+                                        <th v-if="dashboard.day == false">{{Common.Action}}</th>
                                     </tr>
                                     <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
                                         <td>
@@ -265,11 +267,11 @@
                             <div class="table citizen-table">
                                 <table>
                                     <tr>
-                                        <th>Role</th>
-                                        <th>Player</th>
-                                        <th v-if="dashboard.day == true">Vote Counter</th>
-                                        <th v-if="dashboard.day == false">Status</th>
-                                        <th v-if="dashboard.day == false">Action</th>
+                                        <th>{{Common.Role}}</th>
+                                        <th>{{Common.Player}}</th>
+                                        <th v-if="dashboard.day == true">{{Common.Vote}}</th>
+                                        <th v-if="dashboard.day == false">{{Common.Status}}</th>
+                                        <th v-if="dashboard.day == false">{{Common.Action}}</th>
                                     </tr>
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
                                         <td>
@@ -329,6 +331,15 @@
             </div>
         </div>
 
+        <!-- Log Buttons -->
+
+        <div class="log-bttn" v-if="!dashboard.day">
+            <app-button @click.native="logShow = true" class="awesome"><span>{{God.nightLogButton}} <i>{{historyLog.length}}</i></span></app-button>
+        </div>
+        <div class="log-bttn" v-else-if="dashboard.god && dashboard.day">
+            <app-button @click.native="logHistory = true" class="awesome2"><span>{{God.historyLogButton}} <i>{{totalHistory.length}}</i></span></app-button>
+        </div>
+
         <!-- Dashboard Game Hint -->
 
         <div class="step-box only-box" v-if="dashboard.god">
@@ -385,6 +396,7 @@ export default {
             logActionDone: false,
             totRestart: false,
             targetHacked: false,
+            targetDead: false,
             defaultTime: 0,
             killer: false,
             multipleMafia: false,
@@ -425,6 +437,7 @@ export default {
             'Dashboard',
             'God',
             'Numbers',
+            'Common',
             'SavedRoles',
             'SelectedRoles',
             'Actions'
@@ -597,6 +610,11 @@ export default {
                 } else{
                     this.targetHacked = false;
                 }
+                if(attacker.status.dead){
+                    this.targetDead = true;
+                } else{
+                    this.targetDead = false;
+                }
                 return true;
             } else{
                 return false;
@@ -750,9 +768,9 @@ export default {
                             element.status.stolen = true;
                             element.status.damageReturned = false;
                             element.status.shield = false;
-                            element.name = 'Mini Yakuza';
-                            element.icon = 'ninja.png';
-                            element.description = `Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself`;
+                            element.name = this.ReplacingRole.miniYakuza.name;
+                            element.icon = this.ReplacingRole.miniYakuza.icon;
+                            element.description = this.ReplacingRole.miniYakuza.description;
                             element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
@@ -774,9 +792,9 @@ export default {
                                 element.status.linked = false;
                             }
                             // Revive
-                            element.name = 'Skeleton';
-                            element.icon = 'skeleton.png';
-                            element.description = `Skeleton is Necromancer's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive`;
+                            element.name = this.ReplacingRole.skeleton.name;
+                            element.icon = this.ReplacingRole.skeleton.icon;
+                            element.description = this.ReplacingRole.skeleton.description;
                             element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
@@ -960,7 +978,7 @@ export default {
         },
         // Set Actions by Priority
         setActionsByPriority(){
-            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.dead);
+            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus);
             let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
             this.setActions(sorted);
         },
