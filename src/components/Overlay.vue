@@ -63,10 +63,11 @@ export default {
     }
     &.log{
         position: absolute;
-        top: 10px;
-        left: 10px;
-        width: calc(100% - 20px);
-        height: calc(100% - 20px);
+        top: 50%;
+        left: 50%;
+        width: 320px;
+        height: 320px;
+        margin: -160px 0 0 -160px;
         overflow-y: hidden;
         border:4px solid $black_color;
         border-radius: 50%;
