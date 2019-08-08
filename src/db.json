@@ -162,6 +162,13 @@
         "deadIcon": "grave.png",
         "voteIcon": "vote.png",
         "lastPhaseText": "Please select who died last day with people's vote :",
+        "mafiaPartyIcon": "mafiaparty.png",
+        "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
+        "mafiaPartyException": [
+            "If <span>Drunk</span> is in game, tell him to not open his eyes and just rise one hand to let others who is he.",
+            "If <span>Traitor</span> is in game, tell him to not open his eyes at all."
+        ],
+        "mafiaPartyButton": "Click when they saw each other",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",
