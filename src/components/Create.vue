@@ -38,13 +38,6 @@
                             <option v-for="n in calcMafia" :key="n">{{n+1}}</option>
                         </select>
                     </div>
-                    <div class="step-box">
-                        <span class="step-number">3</span>
-                        <label for="day_time" v-html="Creator.step3"></label>
-                        <select name="day_time" id="mafia_number" v-model.number="gameSettings.time">
-                            <option v-for="n in Creator.totalTime" :key="n">{{n+4}}</option>
-                        </select>
-                    </div>
                 </div>
                 
                 <roles @selectedRoles="gameSettings.roles = $event"></roles>
@@ -127,7 +120,6 @@ export default {
                 power: 0,
                 mafiaPower: 0,
                 citizenPower: 0,
-                time: 5,
             },
             gameValdiation: {
                 selectedMafia: 0,
@@ -229,7 +221,6 @@ export default {
             let numb = {
                 unit : this.gameSettings.unit,
                 mafia : this.gameSettings.mafia,
-                time : this.gameSettings.time,
             }
             let $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
             this.getRoles(this.gameSettings.roles);

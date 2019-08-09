@@ -58,7 +58,7 @@
                     <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
                         {{fireAction(action)}}
 
-                        <transition name="fade">
+                        <transition name="fade" mode="out-in">
                             <!-- Hacked Target Action -->
                             <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
                                 <div class="table-display">
@@ -70,11 +70,22 @@
                                 </div>
                             </div>
                             <!-- Dead Target Action -->
-                            <div class="action-overlay dead-overlay" v-if="targetDead" key="deadTarget">
+                            <div class="action-overlay dead-overlay" v-else-if="targetDead" key="deadTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
+                                        <img class="overlap" :src="getImgUrl(info.icon2)" alt="Character Icon" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
+                                        <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Revived Target Action -->
+                            <div class="action-overlay dead-overlay" v-else-if="targetRevived" key="revivedTarget">
+                                <div class="table-display">
+                                    <div class="table-cell-display">
+                                        <img :src="getImgUrl(info.icon2)" alt="Skeleton Icon" />
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> is <span class="dead-color">Revived</span>...!!! But doesn't have his role anymore.</p>
                                         <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -250,6 +261,7 @@
         <!-- Last Night Log -->
 
         <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
+            <img :src="getImgUrl(God.peopleIcon)" alt="People Icon">
             <h2>Tell people what happened last night</h2>
             <ul>
                 <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
@@ -262,9 +274,6 @@
         <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
             <transition name="fade">
                 <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
-            </transition>
-            <transition name="fade">
-                <countdown :dayTime="dayTime" v-if="dashboard.day && dashboard.god"></countdown>
             </transition>
             <div class="center-aligned">
                 <transition-group name="fade" mode="out-in">
@@ -421,7 +430,6 @@
 <script>
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
-import Countdown from '@/components/Countdown.vue';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -444,7 +452,7 @@ export default {
             totRestart: false,
             targetHacked: false,
             targetDead: false,
-            defaultTime: 0,
+            targetRevived: false,
             killer: false,
             multipleMafia: false,
             confirmAction: false,
@@ -477,7 +485,6 @@ export default {
     created(){
         this.fMafias = this.finalPlayers.filter(x => x.mafia == true);
         this.fCitizens = this.finalPlayers.filter(x => x.mafia == false);
-        this.defaultTime = this.Numbers.time;
     },
     computed:{
         ...mapGetters([
@@ -496,14 +503,6 @@ export default {
             },
             set: function(newValue){
                 this.Dashboard = newValue;
-            }
-        },
-        dayTime: {
-            get: function(){
-                return this.Numbers.time * 60;
-            },
-            set: function(newValue){
-                this.Numbers.time = newValue;
             }
         },
         defaultDashboard(){
@@ -587,6 +586,8 @@ export default {
                     element.status.roleChecked = false;
                     element.status.identityChecked = false;
                     element.status.hacked = false;
+                    element.status.silenced = false;
+                    element.status.healed = false;
                     // One Time Actions of Yakuza - Bomb - Cupid - Bulletproof
                     if(element.id == 7 || element.id == 11 || element.id == 12 || element.id == 14){
                         if(!element.action.oneTime){
@@ -599,33 +600,28 @@ export default {
                 this.totalHistory.push(this.historyLog);
                 let getTarget = this.finalPlayers.forEach(element => {
                     this.historyLog.forEach(item => {
-                        if(element.player == item.target && element.status.recentlyDead == true || element.player == item.target2 && element.status.recentlyDead == true){
-                            let logNote = `<span class='hint-color'>${element.player}</span> has been killed !!!`;
+                        if(element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived){
+                            let logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.God.logDeadText}</span>`;
                             element.status.recentlyDead = false;
                             this.lastNight.push(logNote);
                         }
-                        if(element.player == item.target && element.status.recentlySilenced == true){
-                            let logNote = `<span class='site-color'>${element.player}</span> has been silenced !!!`;
+                        if(element.player == item.target && element.status.recentlyRevived && !element.status.recentlyDead){
+                            let logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${this.God.logRevivedText}</span>`;
+                            element.status.recentlyRevived = false;
+                            this.lastNight.push(logNote);
+                        }
+                        if(element.player == item.target && element.status.recentlySilenced){
+                            let logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${this.God.logSilencedText}</span>`;
                             element.status.recentlySilenced = false;
                             this.lastNight.push(logNote);
                         }
-                        // if(element.player == item.target && element.status.dead == true && !element.status.healed && element.status.detonated){
-                        //     let deadNote = `${element.player} has got killed last night and detonated!!! The ${element.player}'s siblings will die as well`;
-                        //     this.lastNight.push(deadNote);
-                        // }
                     });
                 });
                 if(this.lastNight.length > 0){
                     this.lastNightBox = true;
                 }
             } else{
-                this.dayTime = this.defaultTime;
                 this.dashboard.lastPhaseAction = true;
-                this.finalPlayers.forEach(element => {
-                    // Reset One Night Actions
-                    element.status.silenced = false;
-                    element.status.healed = false;
-                });
                 if(this.dashboard.round >= 1){
                     this.historyLog = [];
                     this.lastNight = [];
@@ -661,8 +657,8 @@ export default {
             else if(player.id == 7){
                return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
             }
-            // Doctor & Ruspy Target
-            else if(player.id == 10 || player.id == 3){
+            // Doctor & Ruspy & Cupid Target
+            else if(player.id == 10 || player.id == 3 || player.id == 11){
                return this.finalPlayers.filter(x => x.status.dead == false);
             }
             // Default Target
@@ -691,6 +687,11 @@ export default {
                     this.targetDead = true;
                 } else{
                     this.targetDead = false;
+                }
+                if(attacker.status.revived){
+                    this.targetRevived = true;
+                } else{
+                    this.targetRevived = false;
                 }
                 return true;
             } else{
@@ -799,8 +800,11 @@ export default {
                     });
                 }         
                 this.historyLog.push({...this.log});
-                this.log.godLog = false;
             }
+            this.log.attacker = null;
+            this.log.target = null;
+            this.log.targetMafia = null;
+            this.log.godLog = false;
         },
         // Do Action
         executeAction(targetInfo){
@@ -885,6 +889,7 @@ export default {
                             element.status.invisible = false;
                             element.status.dead = false;
                             element.status.revived = true;
+                            element.status.recentlyRevived = true;
                         }
                         // Police
                         if(attacker == 9 && element.id == defender){
@@ -1073,7 +1078,7 @@ export default {
         },
         // Set Actions by Priority
         setActionsByPriority(){
-            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus && !x.status.revived);
+            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus);
             let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
             this.setActions(sorted);
         },
@@ -1098,7 +1103,6 @@ export default {
     components: {
         overlay: Overlay,
         infoBox: InfoBox,
-        countdown: Countdown,
     },
 }
 
