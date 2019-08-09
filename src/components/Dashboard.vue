@@ -30,10 +30,10 @@
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <span class="step-number">1</span>
                 <a class="predefined type-2" href="javascript:void(0)" v-if="checkLocalStorage" :class="{'active': showSavedNames}" @click="handleSavedNames()">
-                    <span>Last Names</span>
+                    <span>{{Creator.lastNames}}</span>
                 </a>
                 <a class="predefined" href="javascript:void(0)" v-else :class="{'active': showPredefined}" @click="handlePredefine()">
-                    <span>Default Names</span>
+                    <span>{{Creator.defaultNames}}</span>
                 </a>
                 <label for="quantity">{{Creator.chooseNameHint}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">

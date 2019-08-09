@@ -70,6 +70,8 @@
             "restartGame": "Restart game and change roles",
             "restartButton": "Restart Game",
             "resetTotalText": "Are you sure? Your selected roles and players will reset",
+            "defaultNames": "Default Names",
+            "lastNames": "Last Names",
             "assign": "Assign Roles",
             "checkBeforeStart": "Your game will start with below characters",
             "dashboardTitle": "<span>God</span> Dashboard",
@@ -181,6 +183,13 @@
         "logDeadText": "has been killed !!!",
         "logSilencedText": "has been silenced !!!",
         "logRevivedText": "has been silenced !!!",
+        "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action",
+        "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You can just call role to balance the game for remaining players",
+        "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
+        "actionQuestion1": "Ask",
+        "actionQuestion2": "to wake up and tell you the target for",
+        "lastNightTitle": "Tell people what happened last night",
+        "whatHappened": "What Happened Last Night",
         "dashboardHint": [
             {
                 "name": "killer",

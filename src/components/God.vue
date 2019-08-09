@@ -64,7 +64,7 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="hack-color">Hacked</span>...!!! Just wake him up but he is unable to perform an action</p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> <strong v-html="God.hackedPerson"></strong></p>
                                         <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
                                         <img class="overlap" :src="getImgUrl(info.icon2)" alt="Character Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> is <span class="dead-color">Dead</span>...!!! You can just call role to balance the game for remaining players</p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> <strong v-html="God.deadPerson"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -85,14 +85,14 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(info.icon2)" alt="Skeleton Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> is <span class="dead-color">Revived</span>...!!! But doesn't have his role anymore.</p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> <strong v-html="God.revivedPerson"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
                             </div>
                         </transition>
 
-                        <p>Ask <span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> to wake up and tell you the target for <strong>{{info.action}}</strong> ?</p>
+                        <p>{{God.actionQuestion1}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{info.name2}} </span> {{God.actionQuestion2}} <strong>{{info.action}}</strong> ?</p>
                         <div class="player-box-holder has-small-bottom-margin">
                             <div class="player-box">
                                 <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
@@ -134,7 +134,7 @@
                             " <span class="action-color">{{log.action}}</span> " on 
                             <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                             <!-- Police Check Result (Normal and Invisible) -->
-                            <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                            <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">{{Common.Citizen}}</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
                             <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
                             <!-- Chef Check Result -->
                             <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
@@ -147,7 +147,7 @@
                             <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                         </template>
                         <template v-else>
-                            <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                            <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span> passive activated : 
                             <br />
                             " <span :class="{'site-color':true}">{{log.passive}}</span> "
                         </template>
@@ -197,7 +197,7 @@
                                 <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                             </template>
                             <template v-else>
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span> passive activated : 
                                 <br />
                                 " <span :class="{'site-color':true}">{{log.passive}}</span> "
                             </template>
@@ -243,7 +243,7 @@
                                     <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
                                 </template>
                                 <template v-else>
-                                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
+                                    <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span> passive activated : 
                                     <br />
                                     " <span :class="{'site-color':true}">{{log.passive}}</span> "
                                 </template>
@@ -262,7 +262,7 @@
 
         <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
             <img :src="getImgUrl(God.peopleIcon)" alt="People Icon">
-            <h2>Tell people what happened last night</h2>
+            <h2>{{God.lastNightTitle}}</h2>
             <ul>
                 <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
             </ul>
@@ -350,7 +350,7 @@
                             <!-- Log Actions in Last Night -->
 
                             <div class="log-table" v-if="historyLog.length > 0 && dashboard.day" :class="{'result': historyLog.length > 0 && dashboard.day}">
-                                <span class="table-title">What Happened Last Night</span>
+                                <span class="table-title">{{God.whatHappened}}</span>
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>
