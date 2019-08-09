@@ -59,7 +59,6 @@
             "step3": "How long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span> :",
             "step4": "Game Settings:",
             "maxPlayers": 25,
-            "totalTime": 26,
             "playerMargin": 5,
             "start": "Start Game!",
             "changeSettings": "Change Role Settings",
@@ -162,6 +161,7 @@
         "hackedIcon": "hacked.png",
         "deadIcon": "grave.png",
         "voteIcon": "vote.png",
+        "peopleIcon": "people.png",
         "lastPhaseText": "Please select who died last day with people's vote :",
         "mafiaPartyIcon": "mafiaparty.png",
         "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
@@ -178,6 +178,9 @@
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
+        "logDeadText": "has been killed !!!",
+        "logSilencedText": "has been silenced !!!",
+        "logRevivedText": "has been silenced !!!",
         "dashboardHint": [
             {
                 "name": "killer",

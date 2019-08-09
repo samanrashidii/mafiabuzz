@@ -102,18 +102,15 @@ export default {
     &.last-night{
         h2{
             font-family: $font_mafia;
-            font-size: 44px;
+            font-size: 38px;
             color: $color_site_2;
-            margin-bottom: 40px;
+            margin-top: 15px;
+            margin-bottom: 22px;
         }
         ul{
             li{
-                font-size: $font_size_10;
-                color: $color_1;
-                padding: 10px;
                 margin-bottom: 10px;
-                border:2px solid $color_1;
-                border-radius: 4px;
+                
             }
         }
         a.bttn{
