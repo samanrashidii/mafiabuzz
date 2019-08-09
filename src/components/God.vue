@@ -649,7 +649,7 @@ export default {
         },
         // Select Options for Action
         checkGroup(player){
-            // Necromancer Target
+            // Night King Target
             if(player.id == 15){
                return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
             } 
@@ -760,7 +760,7 @@ export default {
                             }
                         });
                     }
-                    // Necromancer Targets
+                    // Night King Targets
                     if(player.id == 15){
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
@@ -845,7 +845,7 @@ export default {
                             if(attacker == 11){
                                 element.action.oneTime = false;
                             }
-                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Necromancer ; 
+                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ; 
                             if(attacker != 11 && attacker != 15 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
                                 element.status.dead = true;
                             }
@@ -872,7 +872,7 @@ export default {
                                 element.status.linked = true;
                             }
                         }
-                        // Necromancer
+                        // Night King
                         if(attacker == 15 && element.id == defender){
                             // Revive Cupid Targets
                             if(element.status.linked && element.status.dead){

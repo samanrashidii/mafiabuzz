@@ -778,18 +778,18 @@
         {
             "id": 15,
             "priority": 60,
-            "name": "Necromancer",
-            "icon": "necromancer.png",
+            "name": "Night King",
+            "icon": "nightking.png",
             "mafia": false,
             "action": {
                 "passive": "Kill Minions OnDead",
                 "action": "Resurrect"
             },
-            "actionIcon": "necromancer.png",
-            "description": "Necromancer is the witch of Citizens, He can ressurect one person each night and make that person one of his skeletons (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Necromancer dies, all of his skeletons will die instantly.",
+            "actionIcon": "nightking.png",
+            "description": "Night King is the witch of Citizens, He can ressurect one person each night and make that person one of his skeletons (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
             "power": 40,
             "free": true,
-            "alt": "Necromancer Icon",
+            "alt": "Night King Icon",
             "actionStatus": false,
             "player": null,
             "selected": false,
@@ -862,7 +862,7 @@
         "skeleton": {
             "name": "Skeleton",
             "icon": "skeleton.png",
-            "description": "Skeleton is Necromancer's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
+            "description": "Skeleton is Night King's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
         }
     }
 }
