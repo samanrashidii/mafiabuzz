@@ -71,7 +71,7 @@ export default {
         overflow-y: hidden;
         border:4px solid $black_color;
         border-radius: 50%;
-        background: rgba(4, 4, 4, 0.99);
+        background: rgba(7, 7, 7, 0.99);
         transform: scale(0, 0);
         transition:all .4s;
         .overlay-box{

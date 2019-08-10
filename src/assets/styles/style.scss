@@ -295,7 +295,7 @@ button{
         border:none;
         border-radius: 0;
         padding:0;
-        margin:8px 0;
+        margin:5px 0;
         span{color:$background_color_mafia;}
     }
 }
@@ -629,7 +629,6 @@ a.info{
     label{
         display:inline-block;
         font-size: $font_size_4;
-        color:$color_site_3;
         margin-bottom:20px;
     }
     &.only-box{margin-top:20px;}
@@ -1294,7 +1293,10 @@ table tr{
         background-size: cover;
         z-index: 10;
         border-radius: 14px;
-        p{padding-bottom: 10px;}
+        p{
+            padding-bottom: 10px;
+            strong{color:inherit;}
+        }
         img{
             width:44px;
             margin-bottom: 10px;
@@ -1346,7 +1348,7 @@ table tr{
             top:-34px;
             left:50%;
             display: block;
-            width:80px;
+            width:100px;
             font-size: $font_size_3;
             color:$color_1;
             padding:6px 0;
@@ -1369,7 +1371,10 @@ table tr{
     background-color: $black_color;
     border-radius: 10px;
     z-index: 100;
-    p{padding-bottom: 10px;}
+    p{
+        padding-top:10px;
+        padding-bottom: 10px;
+    }
 }
 
 .night-over{
