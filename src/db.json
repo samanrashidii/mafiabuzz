@@ -258,7 +258,9 @@
             "action": {
                 "passive": null,
                 "action": "Kill",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": true,
                 "killPriority": 10,
@@ -310,7 +312,9 @@
             "action": {
                 "passive": "Invisible",
                 "action": "Kill",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": true,
                 "killPriority": 1,
@@ -362,7 +366,9 @@
             "action": {
                 "passive": null,
                 "action": "Silence",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": 20,
@@ -413,7 +419,9 @@
             "action": {
                 "passive": "Forgot",
                 "action": null,
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": true,
                 "killer": false,
                 "killPriority": 60,
@@ -464,7 +472,9 @@
             "action": {
                 "passive": "Betray",
                 "action": null,
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": true,
                 "killer": false,
                 "killPriority": 70,
@@ -516,7 +526,9 @@
             "action": {
                 "passive": null,
                 "action": "Check Role",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": 50,
@@ -568,7 +580,9 @@
             "action": {
                 "passive": null,
                 "action": "Suicide Replace",
-                "oneTime": true,
+                "oneTime": true
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": 40,
@@ -619,7 +633,9 @@
             "action": {
                 "passive": null,
                 "action": null,
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": true,
                 "killer": false,
                 "killPriority": null,
@@ -671,7 +687,9 @@
             "action": {
                 "passive": null,
                 "action": "Check Identity",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -723,7 +741,9 @@
             "action": {
                 "passive": null,
                 "action": "Heal",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -775,7 +795,9 @@
             "action": {
                 "passive": null,
                 "action": "Bind",
-                "oneTime": true,
+                "oneTime": true
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -826,7 +848,9 @@
             "action": {
                 "passive": "Detonate",
                 "action": null,
-                "oneTime": true,
+                "oneTime": true
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -877,7 +901,9 @@
             "action": {
                 "passive": "Do not touch me!",
                 "action": null,
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -928,7 +954,9 @@
             "action": {
                 "passive": "Shield",
                 "action": null,
-                "oneTime": true,
+                "oneTime": true
+            },
+            "ability": {
                 "normal": true,
                 "killer": false,
                 "killPriority": null,
@@ -980,7 +1008,9 @@
             "action": {
                 "passive": "Kill Minions OnDead",
                 "action": "Resurrect",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
@@ -1032,7 +1062,9 @@
             "action": {
                 "passive": null,
                 "action": "Hack",
-                "oneTime": false,
+                "oneTime": false
+            },
+            "ability": {
                 "normal": false,
                 "killer": false,
                 "killPriority": null,
