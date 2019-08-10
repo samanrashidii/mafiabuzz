@@ -110,7 +110,7 @@
                             <option :value="null" disabled>{{God.selectPlaceholder}}</option>
                             <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
                         </select>
-                        <template v-if="info.id == 11 && log.target != null">
+                        <template v-if="info.ability.binder && log.target != null">
                             <label for="action_target_2">{{God.actionHintText2}}</label>
                             <select name="action_target_2" v-model="log.target2">
                                 <option :value="null" disabled>{{God.selectPlaceholder}}</option>
@@ -287,23 +287,7 @@
                                             <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
                                         </td>
                                         <td>
-                                            <template v-if="!log.passiveLog">
-                                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
-                                                " <span class="action-color">{{log.action}}</span> " on 
-                                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                                <!-- Police Check Result (Normal and Invisible) -->
-                                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'citizen-role':log.targetMafia}">{{log.targetMafia}}</span></i>
-                                                <!-- Chef Check Result -->
-                                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                                                <!-- Cupid Link Result -->
-                                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                                            </template>
-                                            <template v-else>
-                                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span>'s passive activated : 
-                                                <br />
-                                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                                            </template>
+                                            <log-events :log="log"></log-events>
                                         </td>
                                     </tr>
                                 </table>
@@ -389,10 +373,6 @@ export default {
                 show: false,
                 player: "Loading",
                 status: null,
-                linked: false,
-                healed: false,
-                shield: false,
-                hacked: false,
                 damageReturned: false,
                 action: "Loading Action",
                 passive: "Passive",
@@ -640,13 +620,13 @@ export default {
         chooseKiller(){
             let mafiaNumbers = this.SelectedRoles.filter(item => item.id == 1);
             this.SelectedRoles.forEach(element => {
-                if(element.id == 2){
+                if(element.ability.killer && !element.status.mafia){
                     this.killer = true;
                 }
-                if(element.id == 1 && this.killer){
+                if(element.status.mafia && this.killer){
                     element.action.action = null;
                 }
-                if(element.id == 1 && mafiaNumbers.length > 1){
+                if(element.status.mafia && mafiaNumbers.length > 1){
                     element.action.action = null;
                     this.multipleMafia = true;
                 }
@@ -751,10 +731,10 @@ export default {
             let attacker = targetInfo.ability;
             let defender = targetInfo.ability;
             let defenderID = targetInfo.targetID;
-            let linked = targetInfo.linked;
-            let healed = targetInfo.healed;
-            let shield = targetInfo.shield;
-            let hacked = targetInfo.hacked;
+            let linked = targetInfo.status.linked;
+            let healed = targetInfo.status.healed;
+            let shield = targetInfo.status.shield;
+            let hacked = targetInfo.status.hacked;
             let damageReturned = targetInfo.damageReturned;
             
             if(this.log.target != null ){
@@ -905,10 +885,7 @@ export default {
                     this.info.targetMafia = element.mafia;
                     this.info.targetIcon = element.icon;
                     this.info.targetID = element.id;
-                    this.info.linked = element.status.linked;
-                    this.info.healed = element.status.healed;
-                    this.info.shield = element.status.shield;
-                    this.info.hacked = element.status.hacked;
+                    this.info.status = element.status;
                     this.info.damageReturned = element.status.damageReturned;
                 }
             });
