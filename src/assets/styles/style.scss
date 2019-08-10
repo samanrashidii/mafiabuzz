@@ -126,12 +126,12 @@ a.bttn{
     &.awesome{
         background: rgb(27,71,157);
         background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
-        border-radius: 7px;
+        border-radius: 30px;
     }
     &.awesome2{
         background: rgb(219,65,65);
         background: radial-gradient(circle, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);
-        border-radius: 7px;
+        border-radius: 30px;
     }
 }
 
@@ -536,6 +536,7 @@ button{
 .site-color{color:$color_site_2;}
 .hack-color{color:$purple_color;}
 .revive-color{color:$medium_green_color;}
+.action-color{color:$day}
 .Saman{background:url('../images/roles/mafia.png') no-repeat center 10px;}
 .Shahriyar{background:url('../images/roles/police.png') no-repeat center 10px;}
 .Samira{background:url('../images/roles/grandma.png') no-repeat center 10px;}
