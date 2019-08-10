@@ -388,6 +388,7 @@ export default {
                 id: 0,
                 show: false,
                 player: "Loading",
+                status: null,
                 linked: false,
                 healed: false,
                 shield: false,
@@ -395,6 +396,7 @@ export default {
                 damageReturned: false,
                 action: "Loading Action",
                 passive: "Passive",
+                ability: null,
                 name2: "Default",
                 icon: "loader.svg",
                 icon2: "loader.svg",
@@ -403,6 +405,7 @@ export default {
                 mafia: false,
                 target: 'Person ?',
                 targetRole: 'Default',
+                targetStatus: null,
                 targetPassive: null,
                 targetID: 0,
                 targetMafia: null,
@@ -443,6 +446,7 @@ export default {
                     passiveLog: false,
                     action: null,
                     passive: null,
+                    ability: null,
                     godLog: false,
                     passiveIcon: "loader.svg",
                     attacker: null,
@@ -521,8 +525,8 @@ export default {
                     element.status.hacked = false;
                     element.status.silenced = false;
                     element.status.healed = false;
-                    // One Time Actions of Yakuza - Bomb - Cupid - Bulletproof
-                    if(element.id == 7 || element.id == 11 || element.id == 12 || element.id == 14){
+                    // One Time Actions of Yakuza - Cupid - Bomb - Bulletproof
+                    if(element.ability.playerSwaper || element.ability.binder || element.ability.detonator || element.ability.hasShield){
                         if(!element.action.oneTime){
                             element.actionStatus = true;
                         }
@@ -585,15 +589,15 @@ export default {
         // Select Options for Action
         checkGroup(player){
             // Night King Target
-            if(player.id == 15){
+            if(player.ability.reviver){
                return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
             } 
             // Yakuza Target
-            else if(player.id == 7){
+            else if(player.ability.playerSwapper){
                return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
             }
             // Doctor & Ruspy & Cupid Target
-            else if(player.id == 10 || player.id == 3 || player.id == 11){
+            else if(player.ability.healer || player.ability.silencer || player.ability.binder){
                return this.finalPlayers.filter(x => x.status.dead == false);
             }
             // Default Target
@@ -604,7 +608,7 @@ export default {
         // Second Select Options for Action
         checkSecondGroup(player){
             // Cupid Target
-            if(player.id == 11){
+            if(player.ability.binder){
                return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
             } 
         },
@@ -676,7 +680,7 @@ export default {
                         });
                     }
                     // Bomb Targets
-                    if(player.id == 12){
+                    if(player.ability.detonator){
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
@@ -686,7 +690,7 @@ export default {
                         });
                     }
                     // Bulletproof Targets
-                    if(player.id == 14){
+                    if(player.ability.hasShield){
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
@@ -696,7 +700,7 @@ export default {
                         });
                     }
                     // Night King Targets
-                    if(player.id == 15){
+                    if(player.ability.reviver){
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
                                 element.status.dead = true;
@@ -744,8 +748,9 @@ export default {
         },
         // Do Action
         executeAction(targetInfo){
-            let attacker = targetInfo.id;
-            let defender = targetInfo.targetID;
+            let attacker = targetInfo.ability;
+            let defender = targetInfo.ability;
+            let defenderID = targetInfo.targetID;
             let linked = targetInfo.linked;
             let healed = targetInfo.healed;
             let shield = targetInfo.shield;
@@ -753,11 +758,13 @@ export default {
             let damageReturned = targetInfo.damageReturned;
             
             if(this.log.target != null ){
-                if(!(attacker == 11 && this.log.target2 == null)){
+                // Check not being cupid and second selectmenu is turned off
+                if(!(attacker.binder && this.log.target2 == null)){
                     this.log.id = this.info.id;
                     this.log.attacker = this.info.player;
                     this.log.action = this.info.action;
                     this.log.passive = this.info.passive;
+                    this.log.ability = this.info.ability;
                     this.log.actionIcon = this.info.actionIcon;
                     this.log.mafia = this.info.mafia;
                     this.log.targetRole = this.info.targetRole;
@@ -773,23 +780,24 @@ export default {
                         if(element.player == this.log.attacker){
                             element.actionStatus = true;
                             // Yakuza Attacker
-                            if(attacker == 7 && !element.status.healed){
+                            if(attacker.playerSwapper && !element.status.healed){
                                 element.status.dead = true;
                                 element.status.recentlyDead = true;
                                 element.action.oneTime = false;
                             }
                             // Cupid Attacker
-                            if(attacker == 11){
+                            if(attacker.binder){
                                 element.action.oneTime = false;
                             }
                             // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ; 
-                            if(attacker != 11 && attacker != 15 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
+                            // element.id == attacker
+                            if(defender.returner && !hacked && !attacker.binder && !attacker.reviver && attacker.hacker){
                                 element.status.dead = true;
                                 element.status.recentlyDead = true;
                             }
                         }
                         // Yakuza Target ; Check if damageReturned ; Check if Hacked
-                        if(attacker == 7 && element.player == this.log.target && !damageReturned || attacker == 7 && element.player == this.log.target && damageReturned && hacked){
+                        if(element.player == this.log.target && attacker.playerSwapper && !damageReturned || element.player == this.log.target && attacker.playerSwapper && damageReturned && hacked){
                             element.status.playerSwapped = true;
                             element.status.damageReturned = false;
                             element.status.shield = false;
@@ -799,10 +807,9 @@ export default {
                             element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
-                            element.action.secondaryAction = null;
                         }
                         // Cupid Targets
-                        if(attacker == 11){
+                        if(attacker.binder){
                             if(element.player == this.log.target){
                                 element.status.linked = true;
                             }
@@ -811,7 +818,7 @@ export default {
                             }
                         }
                         // Night King
-                        if(attacker == 15 && element.id == defender){
+                        if(attacker.reviver && element.id == defenderID){
                             // Revive Cupid Targets
                             if(element.status.linked && element.status.dead){
                                 element.status.linked = false;
@@ -823,30 +830,29 @@ export default {
                             element.actionStatus = false;
                             element.action.action = null;
                             element.action.passive = null;
-                            element.action.secondaryAction = null;
                             element.status.invisible = false;
                             element.status.dead = false;
                             element.status.revived = true;
                             element.status.recentlyRevived = true;
                         }
                         // Police
-                        if(attacker == 9 && element.id == defender){
+                        if(attacker.playerChecker && element.id == defenderID){
                             element.status.identityChecked = true;
                         }
                         // Chef
-                        if(attacker == 6 && element.id == defender){
+                        if(attacker.roleChecker && element.id == defenderID){
                             element.status.roleChecked = true;
                         }
                         // Hacker Target
-                        if(attacker == 16 && element.id == defender){
+                        if(attacker.hacker && element.id == defenderID){
                             element.status.hacked = true;
                         }
                         // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                        if(defender == 13 && element.id == defender){
+                        if(defender.returner && element.id == defenderID){
                             this.passiveCalc(element);
                         }
                         // Godfather and Mafia Targets -- Kill if not Healed
-                        if(attacker == 2 && !healed || attacker == 1 && !healed){
+                        if(attacker.killer && !healed){
                             // Check not damageReturned
                             if(!damageReturned || damageReturned && hacked){
                                 if(element.player == this.log.target){
@@ -861,7 +867,7 @@ export default {
                                     }
                                 }
                                 // Bomb Targets | Passive
-                                if(element.id == defender){
+                                if(element.id == defenderID){
                                     this.passiveCalc(element);
                                 }
                                 // Cupid Targets | Status
@@ -873,14 +879,14 @@ export default {
                             
                         }
                         // Ruspy Targets ; Check not damageReturned
-                        if(attacker == 3 && !damageReturned || attacker == 3 && damageReturned && hacked){
+                        if(attacker.silencer && !damageReturned || attacker.silencer && damageReturned && hacked){
                             if(element.player == this.log.target){
                                 element.status.silenced = true;
                                 element.status.recentlySilenced = true;
                             }
                         }
                         // Doctor Targets ; Check not damageReturned
-                        if(attacker == 10 && !damageReturned || attacker == 10 && damageReturned && hacked){
+                        if(attacker.healer && !damageReturned || attacker.healer && damageReturned && hacked){
                             if(element.player == this.log.target){
                                 element.status.healed = true;
                             }
@@ -917,6 +923,7 @@ export default {
                 this.info.icon2 = player.icon;
                 this.info.action = player.action.action;
                 this.info.passive = player.action.passive;
+                this.info.ability = player.ability;
                 this.info.actionIcon = player.actionIcon;
                 this.info.mafia = player.mafia;
             }
@@ -962,7 +969,7 @@ export default {
         passiveCalc(element){
             // Bomb Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
             setTimeout(() => {
-               if(element.id == 12 && !element.status.detonated && element.action.oneTime && !element.status.hacked){
+               if(element.ability.detonator && !element.status.detonated && element.action.oneTime && !element.status.hacked){
                 element.status.detonated = true;
                 this.log.target = element.player;
                 this.log.passiveLog = true;
@@ -975,7 +982,7 @@ export default {
                 this.log.passiveLog = false;
             } 
             // Grandma Activate Passive ; Check Not Hacked
-            else if(element.id == 13 && !element.status.hacked && !element.status.revived){
+            else if(element.ability.returner && !element.status.hacked && !element.status.revived){
                 this.log.target = element.player;
                 this.log.passiveLog = true;
                 this.log.passive = element.action.passive;
@@ -984,7 +991,7 @@ export default {
                 this.log.passiveLog = false;
             }
             // Bulletproof Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
-            else if(element.id == 14 && element.status.shield && element.action.oneTime && !element.status.hacked){
+            else if(element.ability.hasShield && element.status.shield && element.action.oneTime && !element.status.hacked){
                 element.status.shield = false;
                 this.log.target = element.player;
                 this.log.passiveLog = true;
