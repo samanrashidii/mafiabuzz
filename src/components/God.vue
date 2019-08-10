@@ -64,7 +64,7 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(God.hackedIcon)" alt="Hacked Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> <strong v-html="God.hackedPerson"></strong></p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}} </span> <strong v-html="God.hackedPerson"></strong></p>
                                         <app-button class="purple" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(God.deadIcon)" alt="Dead Icon" />
                                         <img class="overlap" :src="getImgUrl(info.icon2)" alt="Character Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}}</span> <strong v-html="God.deadPerson"></strong></p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}} </span> <strong v-html="God.deadPerson"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl(info.icon2)" alt="Skeleton Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}}</span> <strong v-html="God.revivedPerson"></strong></p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}} </span> <strong v-html="God.revivedPerson"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{God.skipButton3}}</app-button>
                                     </div>
                                 </div>
@@ -167,50 +167,6 @@
             </template>
         </overlay>
 
-        <!-- Night Log -->
-
-        <overlay :class="{'active': logShow}">
-            <div class="log-table" v-if="historyLog.length > 0">
-                <table>
-                    <tr v-for="(log, index) in historyLog" :key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
-                        </td>
-                        <td>
-                            <template v-if="!log.passiveLog && !log.godLog">
-                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
-                                " <span class="action-color">{{log.action}}</span> " on 
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                                <!-- Police Check Result (Normal and Invisible) -->
-                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
-                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
-                                <!-- Chef Check Result -->
-                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
-                                <!-- Cupid Link Result -->
-                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
-                            </template>
-                            <template v-else-if="log.godLog">
-                                <span class="creator-color">{{log.attacker}}</span> has 
-                                " <span class="action-color">{{log.action}}</span> " 
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
-                            </template>
-                            <template v-else>
-                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span> passive activated : 
-                                <br />
-                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
-                            </template>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div v-else>
-                <h2>{{God.noLog}}</h2>
-            </div>
-            <app-button @click.native="logShow = false" class="active has-small-top-margin"><span>{{God.logCloseButton}}</span></app-button>
-        </overlay>
-
         <!-- Log History -->
 
         <overlay :class="{'active': logHistory, 'log-history': true}">
@@ -252,7 +208,43 @@
                     </table>
                 </div>
              </template>
-            <div v-if="totalHistory == 0">
+             <div class="log-table" v-if="historyLog.length > 0">
+                <span class="counter">{{God.thisNight}}</span>
+                <table>
+                    <tr v-for="(log, index) in historyLog" :key="index">
+                        <td>{{index+1}}</td>
+                        <td>
+                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        </td>
+                        <td>
+                            <template v-if="!log.passiveLog && !log.godLog">
+                                <span :class="{'mafia-role': log.mafia, 'citizen-role': !log.mafia}">{{log.attacker}}</span> used
+                                " <span class="action-color">{{log.action}}</span> " on 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                                <!-- Police Check Result (Normal and Invisible) -->
+                                <i v-if="log.targetID == 2 && log.action == 'Check Identity' || log.targetID == 5 && log.action == 'Check Identity'"> but result is <span :class="{'citizen-role':log.targetMafia}">Citizen</span> because of " <span :class="{'site-color':true}">{{log.targetPassive}}</span> "</i>
+                                <i v-else-if="log.targetID != 2 && log.action == 'Check Identity'"> and result is <span :class="{'mafia-role':log.targetMafia, 'citizen-role':!log.targetMafia}"><span>{{log.targetMafia ? 'Mafia' : 'Citizen'}}</span></span></i>
+                                <!-- Chef Check Result -->
+                                <i v-if="log.id == 6 && log.action == 'Check Role'"> and result is " <span :class="{'site-color':true}">{{log.targetRole}}</span> "</i>
+                                <!-- Cupid Link Result -->
+                                <i v-if="log.action == 'Bind'"> and <span :class="{'binded': log.target2 != null}">{{log.target2}}</span></i>
+                            </template>
+                            <template v-else-if="log.godLog">
+                                <span class="creator-color">{{log.attacker}}</span> has 
+                                " <span class="action-color">{{log.action}}</span> " 
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia, 'binded': log.action == 'Bind'}">{{log.target}}</span>
+                            </template>
+                            <template v-else>
+                                <span :class="{'mafia-role': log.targetMafia, 'citizen-role': !log.targetMafia}">{{log.target}}</span> passive activated : 
+                                <br />
+                                " <span :class="{'site-color':true}">{{log.passive}}</span> "
+                            </template>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div v-if="totalHistory.length == 0 && historyLog.length == 0">
                 <h2>{{God.noLog}}</h2>
             </div>
             <app-button @click.native="logHistory = false" class="active has-small-top-margin"><span>{{God.logCloseButton}}</span></app-button>
@@ -388,12 +380,11 @@
 
         <!-- Log Buttons -->
 
-        <div class="log-bttn" v-if="!dashboard.day">
-            <app-button @click.native="logShow = true" class="awesome"><span>{{God.nightLogButton}} <i>{{historyLog.length}}</i></span></app-button>
-        </div>
-        <div class="log-bttn" v-else-if="dashboard.god && dashboard.day">
-            <app-button @click.native="logHistory = true" class="awesome2"><span>{{God.historyLogButton}} <i>{{totalHistory.length}}</i></span></app-button>
-        </div>
+        <transition name="fade">
+            <div class="log-bttn" v-if="dashboard.god">
+                <app-button @click.native="logHistory = true" class="awesome2"><span>{{God.historyLogButton}} <i>{{totalHistory.length}}</i></span></app-button>
+            </div>
+        </transition>
 
         <!-- Dashboard Game Hint -->
 
@@ -444,7 +435,6 @@ export default {
             fCitizens: [],
             overlay: false,
             alertBox: false,
-            logShow: false,
             logAction: false,
             logHistory: false,
             logActionDone: false,
@@ -579,7 +569,7 @@ export default {
         // Change Day and Night
         changePhase(phase){
             this.confirmAction = false;
-            if(phase == false){
+            if(!phase){
                 this.dashboard.day = true;
                 this.finalPlayers.forEach(element => {
                     // Reset One Night Actions
@@ -600,7 +590,9 @@ export default {
                 this.totalHistory.push(this.historyLog);
                 let getTarget = this.finalPlayers.forEach(element => {
                     this.historyLog.forEach(item => {
-                        if(element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived){
+                        if(element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived
+                        || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived
+                        || element.player == item.attacker && element.status.recentlyDead && !element.status.recentlyRevived){
                             let logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.God.logDeadText}</span>`;
                             element.status.recentlyDead = false;
                             this.lastNight.push(logNote);
@@ -620,10 +612,10 @@ export default {
                 if(this.lastNight.length > 0){
                     this.lastNightBox = true;
                 }
+                this.historyLog = [];
             } else{
                 this.dashboard.lastPhaseAction = true;
                 if(this.dashboard.round >= 1){
-                    this.historyLog = [];
                     this.lastNight = [];
                 }
                 this.chooseKiller();
@@ -637,7 +629,7 @@ export default {
         characterClasses(char){
             return {
                 'dead': char.status.dead == true, 
-                'ninja': char.status.stolen == true,
+                'ninja': char.status.playerSwapped == true,
                 'love-bind': char.status.linked == true,
                 'silenced': char.status.silenced == true,
                 'healed': char.status.healed == true,
@@ -796,6 +788,7 @@ export default {
                             }
                             // Revive
                             element.status.dead = false;
+                            element.status.recentlyRevived = true;
                         }
                     });
                 }         
@@ -839,6 +832,7 @@ export default {
                             // Yakuza Attacker
                             if(attacker == 7 && !element.status.healed){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                                 element.action.oneTime = false;
                             }
                             // Cupid Attacker
@@ -848,11 +842,12 @@ export default {
                             // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ; 
                             if(attacker != 11 && attacker != 15 && attacker != 16 && defender == 13 && element.id == attacker && !hacked){
                                 element.status.dead = true;
+                                element.status.recentlyDead = true;
                             }
                         }
                         // Yakuza Target ; Check if damageReturned ; Check if Hacked
                         if(attacker == 7 && element.player == this.log.target && !damageReturned || attacker == 7 && element.player == this.log.target && damageReturned && hacked){
-                            element.status.stolen = true;
+                            element.status.playerSwapped = true;
                             element.status.damageReturned = false;
                             element.status.shield = false;
                             element.name = this.ReplacingRole.miniYakuza.name;

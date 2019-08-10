@@ -61,7 +61,7 @@
             "maxPlayers": 25,
             "playerMargin": 5,
             "start": "Start Game!",
-            "changeSettings": "Change Role Settings",
+            "changeSettings": "Back to Role Settings",
             "errorText1": "You have to select",
             "errorText2": "roles !",
             "cancelButton": "Cancel",
@@ -168,10 +168,10 @@
         "mafiaPartyIcon": "mafiaparty.png",
         "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
         "mafiaPartyException": [
-            "If <span>Drunk</span> is in game, tell him to not open his eyes and just rise one hand to let others who is he.",
-            "If <span>Traitor</span> is in game, tell him to not open his eyes at all."
+            "<span>Drunk</span> should not wake up and just rise one hand to let others know him.",
+            "<span>Traitor</span> should not wake up at all."
         ],
-        "mafiaPartyButton": "Click when they saw each other",
+        "mafiaPartyButton": "Click when it's over",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",
@@ -180,9 +180,10 @@
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
+        "thisNight": "Current Night",
         "logDeadText": "has been killed !!!",
         "logSilencedText": "has been silenced !!!",
-        "logRevivedText": "has been silenced !!!",
+        "logRevivedText": "has been revived !!!",
         "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action",
         "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You can just call role to balance the game for remaining players",
         "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
@@ -256,7 +257,20 @@
             "mafia": true,
             "action": {
                 "passive": null,
-                "action": "Kill"
+                "action": "Kill",
+                "normal": true,
+                "killer": false,
+                "killPriority": 2,
+                "healer": false,
+                "silencer": false,
+                "binder": false,
+                "roleChecker": false,
+                "playerSwaper": false,
+                "playerChecker": false,
+                "detonator": false,
+                "returner": false,
+                "reviver": false,
+                "hacker": false
             },
             "actionIcon": "mafia.png",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
@@ -267,14 +281,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": true,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -283,7 +294,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -306,14 +320,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": true,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -322,7 +333,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -345,14 +359,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -361,7 +372,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -383,14 +397,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": true,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -399,7 +410,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -421,14 +435,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": true,
                 "silenced": false,
-                "forgot": false,
-                "trait": true,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -437,7 +448,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -460,14 +474,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -476,7 +487,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -500,14 +514,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -516,7 +527,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -537,14 +551,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": true,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -553,7 +564,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -575,14 +589,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -591,7 +602,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -613,14 +627,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -629,7 +640,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -652,14 +666,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -668,7 +679,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -690,14 +704,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -706,7 +717,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -727,14 +741,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -743,7 +754,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -765,14 +779,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -781,7 +792,10 @@
                 "shield": true,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -803,14 +817,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -819,7 +830,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         },
         {
@@ -842,14 +856,11 @@
             "player": null,
             "selected": false,
             "status": {
-                "normal": false,
                 "dead": false,
                 "invisible": false,
                 "silenced": false,
-                "forgot": false,
-                "trait": false,
                 "roleChecked": false,
-                "stolen": false,
+                "playerSwapped": false,
                 "identityChecked": false,
                 "healed": false,
                 "linked": false,
@@ -858,7 +869,10 @@
                 "shield": false,
                 "revived": false,
                 "hacked": false,
-                "minion": false
+                "minion": false,
+                "recentlyDead": false,
+                "recentlySilenced": false,
+                "recentlyRevived": false
             }
         }
     ],
