@@ -3,6 +3,7 @@ import Vue2TouchEvents from 'vue2-touch-events'
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import i18n from './i18n';
 
 import './registerServiceWorker';
 
@@ -34,6 +35,7 @@ router.beforeEach((to, from, next) => {
 // Create Vue
 
 new Vue({
+  i18n,
   router,
   store,
   render: h => h(App),

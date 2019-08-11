@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import dB from './db.json';
+import key from './locales/en.json'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    db: dB,
+    db: key,
     roles: [],
     savedRoles: [],
     gameReset: false,
