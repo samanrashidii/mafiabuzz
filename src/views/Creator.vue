@@ -28,23 +28,23 @@ export default {
     },
     metaInfo() {
         return {
-            title : `MafiaBuzz * Creator`,
+            title : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
             meta: [
                 {
                 name : 'description',
-                content : `You can setup your game and choose roles as Creator to start a Game`
+                content : `${this.$t('meta.creator.description')}`
                 },
                 {
                 name : 'og:title',
-                content : `MafiaBuzz * Creator`
+                content : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`
                 },
                 {
                 name : 'og:description',
-                content : `You can setup your game and choose roles as Creator to start a Game`
+                content : `${this.$t('meta.creator.description')}`
                 },
                 {
                 name : 'og:url',
-                content : `http://www.mafiabuzz.com/${this.pageId}/creator`
+                content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.creator.url')}`
                 }
             ]
         }
