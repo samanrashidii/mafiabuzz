@@ -28,7 +28,7 @@
                                     <p>{{God.lastPhaseText}}</p>
                                     <select name="action_target" v-model="log.target">
                                         <option :value="null" disabled>{{God.selectPlaceholder}}</option>
-                                        <option v-for="(person, index) in checkGroup('none')" :key="index">{{person.player}}</option>
+                                        <option v-for="(person, index) in checkGroup('lastDay')" :key="index">{{person.player}}</option>
                                     </select>
                                     <app-button @click.native="killByVote(log.target)">{{God.confirmButton}}</app-button>
                                     <app-button class="danger" @click.native="dashboard.lastPhaseAction = false">{{God.skipButton}}</app-button>
@@ -287,7 +287,7 @@
                                             <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
                                         </td>
                                         <td>
-                                            <log-events :log="log"></log-events>
+                                            <log-events v-if="readyToLog" :log="log"></log-events>
                                         </td>
                                     </tr>
                                 </table>
@@ -360,6 +360,7 @@ export default {
             logAction: false,
             logHistory: false,
             logActionDone: false,
+            readyToLog: false,
             lastNightBox: false,
             totRestart: false,
             targetHacked: false,
@@ -372,11 +373,11 @@ export default {
                 id: 0,
                 show: false,
                 player: "Loading",
-                status: null,
                 damageReturned: false,
                 action: "Loading Action",
                 passive: "Passive",
-                ability: null,
+                ability: {},
+                status: {},
                 name2: "Default",
                 icon: "loader.svg",
                 icon2: "loader.svg",
@@ -427,6 +428,7 @@ export default {
                     action: null,
                     passive: null,
                     ability: null,
+                    status: null,
                     godLog: false,
                     passiveIcon: "loader.svg",
                     attacker: null,
@@ -568,22 +570,26 @@ export default {
         },
         // Select Options for Action
         checkGroup(player){
-            // Night King Target
-            if(player.ability.reviver){
-               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
-            } 
-            // Yakuza Target
-            else if(player.ability.playerSwapper){
-               return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
-            }
-            // Doctor & Ruspy & Cupid Target
-            else if(player.ability.healer || player.ability.silencer || player.ability.binder){
-               return this.finalPlayers.filter(x => x.status.dead == false);
-            }
-            // Default Target
-            else{
-               return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
-            }
+                // Last Day Vote
+                if(player == 'lastDay'){
+                    return this.finalPlayers.filter(x => x.status.dead == false);
+                }
+                // Night King Target
+                else if(player.ability.reviver){
+                    return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
+                } 
+                // Yakuza Target
+                else if(player.ability.playerSwapper){
+                    return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
+                }
+                // Doctor & Ruspy & Cupid Target
+                else if(player.ability.healer || player.ability.silencer || player.ability.binder){
+                    return this.finalPlayers.filter(x => x.status.dead == false);
+                }
+                // Default Target
+                else{
+                    return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
+                }
         },
         // Second Select Options for Action
         checkSecondGroup(player){
@@ -745,6 +751,7 @@ export default {
                     this.log.action = this.info.action;
                     this.log.passive = this.info.passive;
                     this.log.ability = this.info.ability;
+                    this.log.status = this.info.status;
                     this.log.actionIcon = this.info.actionIcon;
                     this.log.mafia = this.info.mafia;
                     this.log.targetRole = this.info.targetRole;
@@ -901,8 +908,10 @@ export default {
                 this.info.action = player.action.action;
                 this.info.passive = player.action.passive;
                 this.info.ability = player.ability;
+                this.info.status = player.status;
                 this.info.actionIcon = player.actionIcon;
                 this.info.mafia = player.mafia;
+                this.readyToLog = true;
             }
         },
         // Get Action Image

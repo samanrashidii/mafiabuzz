@@ -25,6 +25,8 @@ export default new Vuex.Store({
         action: null,
         passive: null,
         attacker: null,
+        ability: {},
+        status: {},
         target: null,
         targetRole: null,
         targetPassive: null,
