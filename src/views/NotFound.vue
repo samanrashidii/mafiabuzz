@@ -1,38 +1,37 @@
 <template>
     <div class="not-found center-aligned">
         <img :src="require(`@/assets/images/error-404.png`)" alt="404 Page Icon" />
-        <h2 class="has-top-margin" v-html="Common.page404"></h2>
-        <router-link class="bttn has-top-margin" :to="{name: 'home'}">{{Common.homeButton}}</router-link>
+        <h2 class="has-top-margin" v-html="$t('common.page404')"></h2>
+        <router-link class="bttn has-top-margin" :to="{name: 'home'}">{{$t('common.homeButton')}}</router-link>
     </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex';
 export default {
-    computed:{
-        ...mapGetters([
-            'Common',
-        ]),
-    },
     metaInfo() {
         return {
-            title : `MafiaBuzz * Page Not Found - Error 404`,
+            title : `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
             meta: [
                 {
-                name : 'description',
-                content : `Page requested was not found - Error 404`
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.notfound.description')}`
                 },
                 {
-                name : 'og:title',
-                content : `MafiaBuzz * Page Not Found - Error 404`
+                    vmid: 'ogtitle',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`
                 },
                 {
-                name : 'og:description',
-                content : `Page requested was not found - Error 404`
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.notfound.description')}`
                 },
                 {
-                name : 'og:url',
-                content : `http://www.mafiabuzz.com/error-404`
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`
                 }
             ]
         }

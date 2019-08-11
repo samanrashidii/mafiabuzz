@@ -2,60 +2,58 @@
     <div class="dashboard">
         <div class="dashboard-header">
             <div class="title">
-                <h2 class="has-xsmall-bottom-margin" v-html="Creator.dashboardTitle"></h2>
+                <h2 class="has-xsmall-bottom-margin" v-html="$t('pages.creator.dashboardTitle')"></h2>
             </div>
             <div v-if="StepCounter != 3 && !GameReset">
-                <app-button @click.native="alertBox = true, totRestart = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
+                <app-button @click.native="alertBox = true, totRestart = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
             </div>
             <div v-else-if="StepCounter != 3 && GameReset">
-                <app-button @click.native="alertBox = true, totRestart = true" class="danger"><span>{{Creator.restartGame}}</span></app-button>
+                <app-button @click.native="alertBox = true, totRestart = true" class="danger"><span>{{$t('pages.creator.restartGame')}}</span></app-button>
             </div>
         </div>
         
         <overlay :class="{'active': alertBox,'dialog': true}">
             <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
             <template v-if="!totRestart">
-                <p>{{Creator.changeSettingsText}}</p>
-                <app-button @click.native="resetGame()" class="green "><span>{{Creator.confirmButton}}</span></app-button>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
+                <p>{{$t('pages.creator.changeSettingsText')}}</p>
+                <app-button @click.native="resetGame()" class="green "><span>{{$t('pages.creator.confirmButton')}}</span></app-button>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{$t('pages.creator.cancelButton')}}</span></app-button>
             </template>
             <template v-else>
-                <p>{{Creator.resetTotalText}}</p>
-                <app-button @click.native="restartGame()" class="green "><span>{{Creator.restartButton}}</span></app-button>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{Creator.cancelButton}}</span></app-button>
+                <p>{{$t('pages.creator.resetTotalText')}}</p>
+                <app-button @click.native="restartGame()" class="green "><span>{{$t('pages.creator.restartButton')}}</span></app-button>
+                <app-button @click.native="alertBox = false" class="danger"><span>{{$t('pages.creator.cancelButton')}}</span></app-button>
             </template>
         </overlay>
 
         <transition name="slide" mode="out-in">
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
-                <span class="step-number">1</span>
                 <a class="predefined type-2" href="javascript:void(0)" v-if="checkLocalStorage" :class="{'active': showSavedNames}" @click="handleSavedNames()">
-                    <span>{{Creator.lastNames}}</span>
+                    <span>{{$t('pages.creator.lastNames')}}</span>
                 </a>
                 <a class="predefined" href="javascript:void(0)" v-else :class="{'active': showPredefined}" @click="handlePredefine()">
-                    <span>{{Creator.defaultNames}}</span>
+                    <span>{{$t('pages.creator.defaultNames')}}</span>
                 </a>
-                <label for="quantity">{{Creator.chooseNameHint}}</label>
+                <label for="quantity">{{$t('pages.creator.chooseNameHint')}}</label>
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @keyup.enter="$event.target.nextElementSibling.focus();" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
-                <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{Creator.assign}}</span></app-button>
+                <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{$t('pages.creator.assign')}}</span></app-button>
             </div>
             <div class="step-box display autoheight" v-if="StepCounter == 2" key="step2">
-                <span class="step-number">2</span>
                 <div class="inner-display">
-                    <p>{{Creator.passMobile}}</p>
+                    <p>{{$t('pages.creator.passMobile')}}</p>
                     <div v-for="(role, index) in gameRoles" :key="index">
                         <div v-if="(index+1) == personNumb">
                             <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{role.player}}</strong>
                             <transition name="fade" mode="out-in">
-                                <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">{{Creator.beforeShowButton}}</app-button>
+                                <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">{{$t('pages.creator.beforeShowButton')}}</app-button>
                                 <div class="role-info-wrapper" v-else>
                                     <div class="role-info" :class="{'citizen': role.mafia == false}">
                                         <img :src="getImgUrl(role.icon)" :alt="role.alt" />
                                         <h4>{{role.name}}</h4>
                                     </div>
-                                    <app-button class="green" @click.native.once="nextPerson()">{{Creator.afterShowButton}}</app-button>
+                                    <app-button class="green" @click.native.once="nextPerson()">{{$t('pages.creator.afterShowButton')}}</app-button>
                                 </div> 
                             </transition>
                         </div>
@@ -87,7 +85,6 @@ export default {
    },
   computed:{
     ...mapGetters([
-        'Creator',
         'SelectedRoles',
         'gameStatus',
         'Numbers',

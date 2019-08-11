@@ -39,9 +39,7 @@ export default {
     computed:{
     ...mapGetters([
         'Dashboard',
-        'God',
         'Numbers',
-        'Common',
         'SavedRoles',
         'SelectedRoles',
         'Actions',

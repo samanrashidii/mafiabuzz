@@ -2,13 +2,13 @@
     <div class="about">
         <div class="dashboard-header">
             <div class="title">
-                <h2 v-html="About.title"></h2>
-                <p v-html="About.subtitle"></p>
+                <h2 v-html="$t('pages.about.title')"></h2>
+                <p v-html="$t('pages.about.subtitle')"></p>
             </div>
         </div>
         <div class="creators">
             <ul>
-                <li v-for="(creator, index) in About.creators" :key="index">
+                <li v-for="(creator, index) in $t('pages.about.creators')" :key="index">
                     <a :href="creator.url" target="_blank" :class="[creator.classes]">
                         <strong>{{creator.name}}</strong>
                         <span>{{creator.title}}</span>
@@ -18,45 +18,43 @@
         </div>
         <div class="step-box only-box contact-box">
             <div class="contact">
-                <p v-html="About.contactText"></p>
-                <a :href="`mailto:${About.contactEmail}`">{{About.contactEmail}}</a>
+                <p v-html="$t('pages.about.contactText')"></p>
+                <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{$t('pages.about.contactEmail')}}</a>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
             pageId : this.$route.params.id
         }
     },
-    computed:{
-        ...mapGetters([
-            'About',
-        ]),
-    },
     metaInfo() {
         return {
-            title : `MafiaBuzz * Abous us`,
+            title : `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
             meta: [
                 {
-                name : 'description',
-                content : `We are some random gamers who wants to help other gamers to play and enjoy party games`
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.about.description')}`
                 },
                 {
-                name : 'og:title',
-                content : `MafiaBuzz * Abous us`
+                    vmid: 'title',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.about.title')}`
                 },
                 {
-                name : 'og:description',
-                content : `We are some random gamers who wants to help other gamers to play and enjoy party games`
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.about.description')}`
                 },
                 {
-                name : 'og:url',
-                content : `http://www.mafiabuzz.com/${this.pageId}/about`
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.about.url')}`
                 }
             ]
         }

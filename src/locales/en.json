@@ -13,7 +13,27 @@
             "title": "Creator",
             "description": "You can setup your game and choose roles as Creator to start a Game",
             "url": "creator"
-        }  
+        },
+        "howtoplay": {
+            "title": "How To Play",
+            "description": "We explained everything you need to know to play MafiaBuzz Party Game",
+            "url": "how-to-play"
+        },
+        "about": {
+            "title": "Abous us",
+            "description": "We are some random gamers who wants to help other gamers to play and enjoy party games",
+            "url": "about"
+        },
+        "player": {
+            "title": "Player",
+            "description": "As player you can join Creator's game by entering it's unique code and play game as a party",
+            "url": "player"
+        },
+        "notfound":{
+            "title": "Page Not Found - Error 404",
+            "description": "Page requested was not found - Error 404",
+            "url": "error-404"
+        }
     },
     "common": {
         "homeButton": "Navigate to Home",
