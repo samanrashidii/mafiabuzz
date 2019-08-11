@@ -1,4 +1,20 @@
 {
+    "general":{
+        "name": "MafiaBuzz",
+        "url": "http://www.mafiabuzz.com"
+    },
+    "meta":{
+        "home": {
+            "title": "MafiaBuzz is a web application to setup and manage Mafia Party Game easily",
+            "description": "MafiaBuzz is a web application to setup and manage 'Mafia Party Game' easily.",
+            "url": "/"
+        },
+        "creator": {
+            "title": "Creator",
+            "description": "You can setup your game and choose roles as Creator to start a Game",
+            "url": "creator"
+        }  
+    },
     "common": {
         "homeButton": "Navigate to Home",
         "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!",
@@ -44,7 +60,11 @@
     "pages": {
         "home": {
             "button1": "One Device",
-            "button2": "Multiple Devices"
+            "button2": "Multiple Devices",
+            "singleDeviceImage": "single-device.png",
+            "multiDeviceImage": "multi-device.png",
+            "singleDeviceAlt": "Single Device",
+            "multiDeviceAlt": "Multi Device"
         },
         "creator": {
             "gameModeButton": "Change Game Mode",

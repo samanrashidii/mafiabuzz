@@ -4,14 +4,14 @@
       <nav>
         <router-link :to="{name: 'menu', params: {id : 'single-device'}}">
           <span>
-            <img :src="getImgUrl('single-device.png')" alt="Single Device Icon" />
-            <strong>{{Home.button1}}</strong>
+            <img :src="getImgUrl($t('pages.home.singleDeviceImage'))" :alt="$t('pages.home.singleDeviceAlt')" />
+            <strong>{{$t('pages.home.button1')}}</strong>
           </span>
         </router-link>
         <router-link :to="{name: 'menu', params: {id : 'multi-device'}}">
           <span>
-            <img :src="getImgUrl('multi-device.png')" alt="Multi Device Icon" />
-            <strong>{{Home.button2}}</strong>
+            <img :src="getImgUrl($t('pages.home.multiDeviceImage'))" :alt="$t('pages.home.singleDeviceAlt')" />
+            <strong>{{$t('pages.home.button2')}}</strong>
           </span>
         </router-link>
       </nav>
@@ -20,33 +20,29 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 export default {
-  computed:{
-      ...mapGetters([
-        'Home',
-      ]),
-  },
-  metaInfo: {
-    title : `MafiaBuzz * Home`,
-    meta: [
-      {
-        name : 'description',
-        content : `MafiaBuzz is a web application to setup and manage "Mafia Party Game" easily.`
-      },
-      {
-        name : 'og:title',
-        content : `MafiaBuzz * Home`
-      },
-      {
-        name : 'og:description',
-        content : `MafiaBuzz is a web application to setup and manage "Mafia Party Game" easily`
-      },
-      {
-        name : 'og:url',
-        content : `http://www.mafiabuzz.com`
-      }
-    ]
+  metaInfo(){
+    return{
+      title: `${this.$t('meta.home.title')}`,
+      meta: [
+        {
+          name : 'description',
+          content : `${this.$t('meta.home.description')}`
+        },
+        {
+          name : 'og:title',
+          content : `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
+        },
+        {
+          name : 'og:description',
+          content : `${this.$t('meta.home.description')}`
+        },
+        {
+          name : 'og:url',
+          content : `${this.$t('general.url')}`
+        }
+      ]
+    }
   },
   methods:{
     getImgUrl(pic) {

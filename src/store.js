@@ -48,7 +48,6 @@ export default new Vuex.Store({
     Common: state => state.db.common,
     ReplacingRole: state => state.db.replacingRoles,
     Navigation: state => state.db.navigation,
-    Home: state => state.db.pages.home,
     Creator: state => state.db.pages.creator,
     Player: state => state.db.pages.player,
     About: state => state.db.pages.about,
