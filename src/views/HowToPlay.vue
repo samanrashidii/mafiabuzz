@@ -2,21 +2,21 @@
     <div class="how-to-play">
         <div class="dashboard-header">
             <div class="title">
-                <h2 v-html="HowToPlay.title"></h2>
-                <p v-html="HowToPlay.subtitle"></p>
+                <h2 v-html="$t('pages.howToPlay.title')"></h2>
+                <p v-html="$t('pages.howToPlay.subtitle')"></p>
             </div>
         </div>
-        <div class="step-box only-box" v-for="(step, index) in HowToPlay.steps" :key="index">
-            <img :src="getHTPImgUrl(step.icon)" alt="How to Play Steps Icon" />
+        <div class="step-box only-box" v-for="(step, index) in $t('pages.howToPlay.steps')" :key="index">
+            <img :src="getHTPImgUrl(step.icon)" alt="How to Play Step Icon" />
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
             <div v-if="step.roles">
-                <div class="info-box static" v-for="(info, index) in Roles" :key="index">
+                <div class="info-box static" v-for="(info, index) in $t('roles')" :key="index">
                     <img :src="getImgUrl(info.icon)" alt="" />
                     <h2>{{info.name}}</h2>
                     <div class="mafia-status">
-                        <strong class="mafia-role" v-if="info.mafia">{{Common.Mafia}}</strong>
-                        <strong class="citizen-role" v-else>{{Common.Citizen}}</strong>
+                        <strong class="mafia-role" v-if="info.mafia">{{$t('common.Mafia')}}</strong>
+                        <strong class="citizen-role" v-else>{{$t('common.Citizen')}}</strong>
                     </div>
                     <p>{{info.description}}</p>
                 </div>
@@ -26,39 +26,35 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
             pageId : this.$route.params.id
         }
     },
-    computed:{
-        ...mapGetters([
-            'HowToPlay',
-            'Roles',
-            'Common'
-        ]),
-    },
     metaInfo() {
         return {
-            title : `MafiaBuzz * How To Play`,
+            title : `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
             meta: [
                 {
-                name : 'description',
-                content : `We explained everything you need to know to play MafiaBuzz Party Game`
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.howtoplay.description')}`
                 },
                 {
-                name : 'og:title',
-                content : `MafiaBuzz * How To Play`
+                    vmid: 'title',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
                 },
                 {
-                name : 'og:description',
-                content : `We explained everything you need to know to play MafiaBuzz Party Game`
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.howtoplay.description')}`
                 },
                 {
-                name : 'og:url',
-                content : `http://www.mafiabuzz.com/${this.pageId}/how-to-play`
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.howtoplay.url')}`
                 }
             ]
         }

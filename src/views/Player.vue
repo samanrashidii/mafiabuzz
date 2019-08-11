@@ -2,18 +2,18 @@
     <div class="player">
         <div class="dashboard-header">
             <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Player.gameModeButton}}</span></router-link>
+                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{$t('pages.player.gameModeButton')}}</span></router-link>
             </div>
             <div class="title">
                 <template v-if="checkGameMode()">
-                    <h2 v-html="Player.title"></h2>
-                    <p v-html="Player.subtitle"></p>
+                    <h2 v-html="$t('pages.player.title')"></h2>
+                    <p v-html="$t('pages.player.subtitle')"></p>
                 </template>
                 <!-- Under Construction -->
                 <template v-else>
                     <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2 v-html="Common.UnderConstructionTitle"></h2>
-                    <p v-html="Common.UnderConstructionText"></p>
+                    <h2 v-html="$t('common.UnderConstructionTitle')"></h2>
+                    <p v-html="$t('common.UnderConstructionText')"></p>
                 </template>
             </div>
         </div>
@@ -21,38 +21,35 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
             pageId : this.$route.params.id
         }
     },
-    computed:{
-        ...mapGetters([
-            'Player',
-            'Common'
-        ]),
-    },
     metaInfo() {
         return {
-            title : `MafiaBuzz * Player`,
+            title : `${this.$t('general.name')} * ${this.$t('meta.player.title')}`,
             meta: [
                 {
-                name : 'description',
-                content : `As player you can join Creator's game by entering it's unique code and play game as a party`
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.player.description')}`
                 },
                 {
-                name : 'og:title',
-                content : `MafiaBuzz * Player`
+                    vmid: 'title',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.player.title')}`
                 },
                 {
-                name : 'og:description',
-                content : `As player you can join Creator's game by entering it's unique code and play game as a party`
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.player.description')}`
                 },
                 {
-                name : 'og:url',
-                content : `http://www.mafiabuzz.com/${this.pageId}/player`
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.player.url')}`
                 }
             ]
         }

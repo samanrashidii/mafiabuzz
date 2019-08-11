@@ -31,20 +31,24 @@ export default {
             title : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
             meta: [
                 {
-                name : 'description',
-                content : `${this.$t('meta.creator.description')}`
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.creator.description')}`
                 },
                 {
-                name : 'og:title',
-                content : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`
+                    vmid: 'title',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`
                 },
                 {
-                name : 'og:description',
-                content : `${this.$t('meta.creator.description')}`
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.creator.description')}`
                 },
                 {
-                name : 'og:url',
-                content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.creator.url')}`
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.creator.url')}`
                 }
             ]
         }

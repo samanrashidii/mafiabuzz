@@ -14,18 +14,22 @@ export default {
       title: `${this.$t('meta.home.title')}`,
       meta: [
         {
+          vmid: 'description',
           name : 'description',
           content : `${this.$t('meta.home.description')}`
         },
         {
+          vmid: 'title',
           name : 'og:title',
           content : `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
         },
         {
+          vmid: 'ogdescription',
           name : 'og:description',
           content : `${this.$t('meta.home.description')}`
         },
         {
+          vmid: 'ogurl',
           name : 'og:url',
           content : `${this.$t('general.url')}`
         }
