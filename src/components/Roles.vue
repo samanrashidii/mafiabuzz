@@ -6,8 +6,8 @@
                 <input @change="checkRoles(role.id), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
-                        <img :src="getImgUrl(role.icon)" :alt="role.alt" />
-                        <strong>{{role.name}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
+                        <img :src="getImgUrl($t(role.icon))" :alt="$t(role.alt)" />
+                        <strong>{{$t(role.name)}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
                     </div>
                 </label>
                 <div class="character-power" :class="{'mafia-pw': role.mafia}"><span :class="{'mafia': role.mafia, 'citizen': !role.mafia}" :style="{width: `${Math.abs(role.power)*2}%`}"><i>{{Math.abs(role.power)}}</i></span></div>
@@ -33,10 +33,10 @@ export default {
             normalCitizen: 0,
             info: {
                 show: false,
-                name: "Loading",
-                description: "...",
-                icon: "loader.svg",
-                mafia: false
+                mafia: false,
+                name: "replacingRoles.loading.name",
+                icon: "replacingRoles.loading.icon",
+                description: "replacingRoles.loading.description"
             },
             selectedRoles: [],
         }

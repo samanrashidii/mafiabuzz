@@ -64,7 +64,7 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl($t('god.hackedIcon'))" alt="Hacked Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}} </span> <strong v-html="$t('god.hackedPerson')"></strong></p>
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.hackedPerson')"></strong></p>
                                         <app-button class="purple" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
                                 </div>
@@ -74,8 +74,8 @@
                                 <div class="table-display">
                                     <div class="table-cell-display">
                                         <img :src="getImgUrl($t('god.deadIcon'))" alt="Dead Icon" />
-                                        <img class="overlap" :src="getImgUrl(info.icon2)" alt="Character Icon" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.name2}} </span> <strong v-html="$t('god.deadPerson')"></strong></p>
+                                        <img class="overlap" :src="getImgUrl($t(info.icon2))" alt="Character Icon" />
+                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.deadPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                             <div class="action-overlay dead-overlay" v-else-if="targetRevived" key="revivedTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl(info.icon2)" alt="Skeleton Icon" />
+                                        <img :src="getImgUrl($t(info.icon2))" alt="Skeleton Icon" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}} </span> <strong v-html="$t('god.revivedPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -92,17 +92,17 @@
                             </div>
                         </transition>
 
-                        <p>{{$t('god.actionQuestion1')}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{info.name2}} </span> {{$t('god.actionQuestion2')}} <strong>{{info.action}}</strong> ?</p>
+                        <p>{{$t('god.actionQuestion1')}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{$t(info.name2)}} </span> {{$t('god.actionQuestion2')}} <strong>{{$t(info.action)}}</strong> ?</p>
                         <div class="player-box-holder has-small-bottom-margin">
                             <div class="player-box">
-                                <img :src="getImgUrl(info.icon2)" alt="Character Icon"  />
+                                <img :src="getImgUrl($t(info.icon2))" alt="Character Icon"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                             </div>
                             <div class="arrow">
-                                <img class="action-image" :src="getActionImgUrl(info.actionIcon)" alt="Character Action Icon" />
+                                <img class="action-image" :src="getActionImgUrl($t(info.actionIcon))" alt="Character Action Icon" />
                             </div>
                             <div class="player-box">
-                                <img :src="getImgUrl(info.targetIcon)" alt="Character Icon"  />
+                                <img :src="getImgUrl($t(info.targetIcon))" alt="Character Icon"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                             </div>
                         </div>
@@ -127,8 +127,8 @@
                 <!-- Log Actions During Night -->
                 <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
                     <div class="log-action">
-                        <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                        <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                        <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                        <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                         <log-events :log="log"></log-events>
                     </div>
                 </overlay>
@@ -156,8 +156,8 @@
                         <tr v-for="(log, index) in totLog" :key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                                <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                                <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                                <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                             </td>
                             <td>
                                 <log-events :log="log"></log-events>
@@ -172,8 +172,8 @@
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
                         <td>
-                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                            <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                         </td>
                         <td>
                             <log-events :log="log"></log-events>
@@ -230,17 +230,17 @@
                                     <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
-                                                <img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}
+                                                <img :src="getImgUrl($t(fM.icon))" :alt="$t(fM.alt)" /> {{$t(fM.name)}}
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
                                         <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+10" /></td>
                                         <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
-                                            <span class="disabled" v-if="fM.action.passive == null && fM.action.action == null"></span>
-                                            <span class="done-action" v-else-if="fM.action.action == null && fM.action.passive != null && fM.actionStatus == true"></span>
-                                            <span @click="showInfo(fM)" class="passive" v-if="fM.action.passive != null && fM.action.action == null"></span>
-                                            <span @click="showInfo(fM)" :class="{'pending-action': fM.actionStatus == false && fM.action.action != null, 'done-action': fM.actionStatus == true}" v-else></span>
+                                            <span class="disabled" v-if="!fM.status.hasPassive && !fM.status.hasAction"></span>
+                                            <span class="done-action" v-else-if="!fM.status.hasAction && fM.status.hasPassive && fM.actionStatus"></span>
+                                            <span @click="showInfo(fM)" class="passive" v-if="fM.status.hasPassive && !fM.status.hasAction"></span>
+                                            <span @click="showInfo(fM)" :class="{'pending-action': !fM.actionStatus && fM.status.hasAction, 'done-action': fM.actionStatus}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -260,17 +260,17 @@
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
-                                                <img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}
+                                                <img :src="getImgUrl($t(fC.icon))" :alt="$t(fC.alt)" /> {{$t(fC.name)}}
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
                                         <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+20" /></td>
                                         <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
                                         <td v-if="dashboard.day == false">
-                                            <span class="disabled" v-if="fC.action.passive == null && fC.action.action == null"></span>
-                                            <span class="done-action" v-else-if="fC.action.action == null && fC.action.passive != null && fC.actionStatus == true"></span>
-                                            <span @click="showInfo(fC)" class="passive" v-else-if="fC.action.passive != null && fC.action.action == null"></span>
-                                            <span @click="showInfo(fC)" :class="{'pending-action': fC.actionStatus == false, 'done-action': fC.actionStatus == true}" v-else></span>
+                                            <span class="disabled" v-if="!fC.status.hasPassive && !fC.status.hasAction"></span>
+                                            <span class="done-action" v-else-if="!fC.status.hasAction && fC.status.hasPassive && fC.actionStatus"></span>
+                                            <span @click="showInfo(fC)" class="passive" v-if="fC.status.hasPassive && !fC.status.hasAction"></span>
+                                            <span @click="showInfo(fC)" :class="{'pending-action': !fC.actionStatus && fC.status.hasAction, 'done-action': fC.actionStatus}" v-else></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -283,8 +283,8 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>
-                                            <img :src="getActionImgUrl(log.actionIcon)" alt="Action Icon" v-if="!log.passiveLog" />
-                                            <img :src="getImgUrl(log.passiveIcon)" :alt="log.target" v-else />
+                                            <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                                         </td>
                                         <td>
                                             <log-events v-if="readyToLog" :log="log"></log-events>
@@ -372,25 +372,26 @@ export default {
             info: {
                 id: 0,
                 show: false,
-                player: "Loading",
+                player: "replacingRoles.loading.name",
                 damageReturned: false,
-                action: "Loading Action",
-                passive: "Passive",
+                action: "replacingRoles.loading.name",
+                passive: "none",
                 ability: {},
                 status: {},
-                name2: "Default",
-                icon: "loader.svg",
-                icon2: "loader.svg",
-                description: "...",
-                actionIcon: "loader.svg",
+                name2: "replacingRoles.loading.name",
+                icon: "replacingRoles.loading.icon",
+                icon2: "replacingRoles.loading.icon",
+                description: "replacingRoles.loading.description",
+                actionIcon: "replacingRoles.loading.icon",
                 mafia: false,
-                target: 'Person ?',
-                targetRole: 'Default',
+                target: this.$t("replacingRoles.preTarget.name"),
+                targetInfo: {},
+                targetRole: "replacingRoles.preTarget.role",
                 targetStatus: null,
-                targetPassive: null,
+                targetPassive: 'none',
                 targetID: 0,
                 targetMafia: null,
-                targetIcon: 'default.png',
+                targetIcon: "replacingRoles.preTarget.icon",
             },
         }
     },
@@ -423,18 +424,18 @@ export default {
                     id: 0,
                     passiveLog: false,
                     action: null,
-                    passive: null,
+                    passive: "none",
                     ability: null,
                     status: null,
                     godLog: false,
-                    passiveIcon: "loader.svg",
+                    passiveIcon: "replacingRoles.loading.icon",
                     attacker: null,
                     target: null,
-                    targetRole: null,
-                    targetPassive: null,
+                    targetRole: "replacingRoles.preTarget.role",
+                    targetPassive: 'none',
                     targetID: 0,
                     target2: null,
-                    actionIcon: "loader.svg",
+                    actionIcon: "replacingRoles.loading.icon",
                     mafia: false,
                     targetMafia: false,
                 },
@@ -519,17 +520,17 @@ export default {
                         if(element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived
                         || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived
                         || element.player == item.attacker && element.status.recentlyDead && !element.status.recentlyRevived){
-                            let logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${$t('god.logDeadText')}</span>`;
+                            let logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span>`;
                             element.status.recentlyDead = false;
                             this.lastNight.push(logNote);
                         }
                         if(element.player == item.target && element.status.recentlyRevived && !element.status.recentlyDead){
-                            let logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${$t('god.logRevivedText')}</span>`;
+                            let logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${this.$t('god.logRevivedText')}</span>`;
                             element.status.recentlyRevived = false;
                             this.lastNight.push(logNote);
                         }
                         if(element.player == item.target && element.status.recentlySilenced){
-                            let logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${$t('god.logSilencedText')}</span>`;
+                            let logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${this.$t('god.logSilencedText')}</span>`;
                             element.status.recentlySilenced = false;
                             this.lastNight.push(logNote);
                         }
@@ -627,32 +628,34 @@ export default {
                     this.killer = true;
                 }
                 if(element.status.mafia && this.killer){
-                    element.action.action = null;
+                    element.status.hasAction = false;
                 }
                 if(element.status.mafia && mafiaNumbers.length > 1){
-                    element.action.action = null;
+                    element.status.hasAction = false;
                     this.multipleMafia = true;
                 }
             });
             for (let i = 0; i < this.SelectedRoles.length; i++) {
                 if(this.SelectedRoles[i].id == 1 && this.multipleMafia){
-                    this.SelectedRoles[i].action.action = 'Kill';
+                    this.SelectedRoles[i].ability.killer = true;
+                    this.SelectedRoles[i].status.hasAction = true;
+                    this.SelectedRoles[i].action.action = "common.Kill";
                     break;
                 }
             }
         },
         // Kill or Heal Character Manually
         deadOrAlive(player){
-            this.log.attacker = $t('god.name');
+            this.log.attacker = "god.name";
             this.log.target = player.player;
             this.log.targetMafia = player.mafia;
             this.log.godLog = true;
             // Check Alive People and People Don't Have Heal Buff = Kill them with filters
             if(!player.status.healed){
                 if(player.status.dead == false){
-                    // Log $t('god when kills
-                    this.log.action = $t('god.killAction');
-                    this.log.actionIcon = $t('god.killIcon');
+                    // Log god when kills
+                    this.log.action = "god.killAction";
+                    this.log.actionIcon = "god.killIcon";
                     // Cupid Targets
                     if(player.status.linked){
                         this.finalPlayers.forEach(element => {
@@ -676,9 +679,11 @@ export default {
                     if(player.ability.hasShield){
                         this.finalPlayers.forEach(element => {
                             if(element.player == player.player){
-                                element.status.dead = true;
-                                element.status.shield = false;
-                                element.status.recentlyDead = true;
+                                if(element.status.shield){
+                                    element.status.dead = true;
+                                    element.status.recentlyDead = true;
+                                    element.status.shield = false;
+                                }
                             }
                         });
                     }
@@ -706,9 +711,9 @@ export default {
                     }
                 // Check Dead People = Revive them with filters
                 } else{
-                    // Log $t('god when revive
-                    this.log.action = $t('god.reviveAction');
-                    this.log.actionIcon = $t('god.reviveIcon');
+                    // Log god when revive
+                    this.log.action = "god.reviveAction";
+                    this.log.actionIcon = "god.reviveIcon";
                     
                     this.finalPlayers.forEach(element => {
                         if(element.player == player.player){
@@ -730,15 +735,17 @@ export default {
             this.log.godLog = false;
         },
         // Do Action
-        executeAction(targetInfo){
-            let attacker = targetInfo.ability;
-            let defender = targetInfo.ability;
-            let defenderID = targetInfo.targetID;
-            let linked = targetInfo.status.linked;
-            let healed = targetInfo.status.healed;
-            let shield = targetInfo.status.shield;
-            let hacked = targetInfo.status.hacked;
-            let damageReturned = targetInfo.damageReturned;
+        executeAction(info){
+            let attacker = info.ability;
+            let attackerID = info.id;
+            let defender = info.targetInfo;
+            let defenderAbility = defender.ability;
+            let defenderID = defender.id;
+            let linked = defender.status.linked;
+            let healed = defender.status.healed;
+            let shield = defender.status.shield;
+            let hacked = defender.status.hacked;
+            let damageReturned = defender.damageReturned;
             
             if(this.log.target != null ){
                 // Check not being cupid and second selectmenu is turned off
@@ -774,8 +781,7 @@ export default {
                                 element.action.oneTime = false;
                             }
                             // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ; 
-                            // element.id == attacker
-                            if(defender.returner && !hacked && !attacker.binder && !attacker.reviver && attacker.hacker){
+                            if(defenderAbility.returner && !hacked && !attacker.binder && !attacker.reviver && !attacker.hacker && element.id == attackerID){
                                 element.status.dead = true;
                                 element.status.recentlyDead = true;
                             }
@@ -785,12 +791,14 @@ export default {
                             element.status.playerSwapped = true;
                             element.status.damageReturned = false;
                             element.status.shield = false;
-                            element.name = $t('replacingRoles.miniYakuza.name');
-                            element.icon = $t('replacingRoles.miniYakuza.icon');
-                            element.description = $t('replacingRoles.miniYakuza.description');
+                            element.name = "replacingRoles.miniYakuza.name";
+                            element.icon = "replacingRoles.miniYakuza.icon";
+                            element.description = "replacingRoles.miniYakuza.description";
                             element.actionStatus = false;
-                            element.action.action = null;
-                            element.action.passive = null;
+                            element.status.hasAction = false;
+                            element.status.hasPassive = false;
+                            element.action.action = "common.None";
+                            element.action.passive = "common.None";
                         }
                         // Cupid Targets
                         if(attacker.binder){
@@ -808,12 +816,14 @@ export default {
                                 element.status.linked = false;
                             }
                             // Revive
-                            element.name = $t('replacingRoles.skeleton.name');
-                            element.icon = $t('replacingRoles.skeleton.icon');
-                            element.description = $t('replacingRoles.skeleton.description');
+                            element.name = "replacingRoles.skeleton.name";
+                            element.icon = "replacingRoles.skeleton.icon";
+                            element.description = "replacingRoles.skeleton.description";
                             element.actionStatus = false;
-                            element.action.action = null;
-                            element.action.passive = null;
+                            element.status.hasAction = false;
+                            element.status.hasPassive = false;
+                            element.action.action = "common.None";
+                            element.action.passive = "common.None";
                             element.status.invisible = false;
                             element.status.dead = false;
                             element.status.revived = true;
@@ -832,10 +842,10 @@ export default {
                             element.status.hacked = true;
                         }
                         // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                        if(defender.returner && element.id == defenderID){
+                        if(defenderAbility.returner && element.id == defenderID && !attacker.binder && !attacker.hacker){
                             this.passiveCalc(element);
                         }
-                        // $t('godfather and Mafia Targets -- Kill if not Healed
+                        // Godfather and Mafia Targets -- Kill if not Healed
                         if(attacker.killer && !healed){
                             // Check not damageReturned
                             if(!damageReturned || damageReturned && hacked){
@@ -851,7 +861,7 @@ export default {
                                     }
                                 }
                                 // Bomb Targets | Passive
-                                if(element.id == defenderID){
+                                if(defenderAbility.detonator && element.id == defenderID){
                                     this.passiveCalc(element);
                                 }
                                 // Cupid Targets | Status
@@ -884,6 +894,7 @@ export default {
         findTarget(target){
             this.finalPlayers.forEach(element => {
                 if(element.player == target){
+                    this.info.targetInfo = element;
                     this.info.targetRole = element.name;
                     this.info.targetPassive = element.action.passive;
                     this.info.targetMafia = element.mafia;
@@ -937,14 +948,14 @@ export default {
                 setTimeout(() => {
                     this.dashboard.currentAction++;
                     this.logActionDone = false;
-                    this.info.target = 'Player?';
-                    this.info.targetRole = 'Default';
+                    this.info.target = this.$t("replacingRoles.preTarget.name");
+                    this.info.targetRole = "replacingRoles.preTarget.role";
                     this.info.targetID = 0;
                     this.info.targetMafia = null;
-                    this.info.targetIcon = 'default.png';
+                    this.info.targetIcon = "replacingRoles.preTarget.icon";
                     this.log.target = null;
-                    this.log.targetRole = null;
-                    this.log.targetPassive = null;
+                    this.log.targetRole = "replacingRoles.preTarget.role";
+                    this.log.targetPassive = "common.None";
                 }, time2);
             }, time1);
         },
@@ -1006,7 +1017,7 @@ export default {
         },
         // Set Actions by Priority
         setActionsByPriority(){
-            let filteredActions = this.finalPlayers.filter(x => x.action.action != null && !x.actionStatus);
+            let filteredActions = this.finalPlayers.filter(x => x.status.hasAction && !x.actionStatus);
             let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
             this.setActions(sorted);
         },

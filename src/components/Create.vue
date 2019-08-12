@@ -27,7 +27,7 @@
                     <div class="step-box">
                         <label for="quantity" v-html="$t('pages.creator.step1')"></label>
                         <select name="quantity" id="quantity" v-model="gameSettings.unit">
-                            <option v-for="(n, index) in $n('pages.creator.maxPlayers')" :key="index">{{n + $n('pages.creator.playerMargin')}}</option>
+                            <option v-for="(n, index) in gameSettings.maxPlayers" :key="index">{{n + gameSettings.playerMargin}}</option>
                         </select>
                     </div>
                     <div class="step-box">
@@ -67,7 +67,7 @@
                                     <th>{{$t('common.Power')}}</th>
                                 </tr>
                                 <tr v-for="(fM, index) in finalMafias" :key="index">
-                                    <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
+                                    <td><img :src="getImgUrl($t(fM.icon))" :alt="fM.alt" /> {{$t(fM.name)}}</td>
                                     <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"><i>{{Math.abs(fM.power)}}</i></span></div></td>
                                 </tr>
                             </table>
@@ -79,7 +79,7 @@
                                     <th>{{$t('common.Power')}}</th>
                                 </tr>
                                 <tr v-for="(fC, index) in finalCitizens" :key="index">
-                                    <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
+                                    <td><img :src="getImgUrl($t(fC.icon))" :alt="fC.alt" /> {{$t(fC.name)}}</td>
                                     <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"><i>{{Math.abs(fC.power)}}</i></span></div></td>
                                 </tr>
                             </table>
@@ -111,6 +111,8 @@ export default {
             fMafias: [],
             fCitizens: [],
             gameSettings: {
+                maxPlayers: 25,
+                playerMargin: 5,
                 unit: 6,
                 mafia: 2,
                 citizens: 4,

@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import key from './locales/en.json'
+import mafiaBuzzRoles from './roles.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    db: key,
+    rolesDB: mafiaBuzzRoles,
     roles: [],
     savedRoles: [],
     gameReset: false,
@@ -22,18 +22,18 @@ export default new Vuex.Store({
       currentAction: 0,
       log: {
         id: 0,
-        action: null,
-        passive: null,
+        action: 'common.None',
+        passive: 'common.None',
         attacker: null,
         ability: {},
         status: {},
-        target: null,
-        targetRole: null,
-        targetPassive: null,
+        target: '',
+        targetRole: 'replacingRoles.loading.role',
+        targetPassive: 'common.None',
         targetID: 0,
         target2: null,
-        actionIcon: "loader.svg",
-        passiveIcon: "loader.svg",
+        actionIcon: 'replacingRoles.loading.icon',
+        passiveIcon: 'replacingRoles.loading.icon',
         mafia: false,
         targetMafia: false,
       },
@@ -44,7 +44,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    Roles: state => state.db.roles,
+    Roles: state => state.rolesDB,
     SelectedRoles: state => state.roles,
     SavedRoles: state => state.savedRoles,
     GameReset: state => state.gameReset,
