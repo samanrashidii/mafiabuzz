@@ -1,31 +1,25 @@
 <template>
     <div class="player">
         <div class="dashboard-header">
-            <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{$t('pages.player.gameModeButton')}}</span></router-link>
-            </div>
-            <div class="title">
-                <template v-if="checkGameMode()">
-                    <h2 v-html="$t('pages.player.title')"></h2>
-                    <p v-html="$t('pages.player.subtitle')"></p>
-                </template>
-                <!-- Under Construction -->
-                <template v-else>
-                    <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2 v-html="$t('common.UnderConstructionTitle')"></h2>
-                    <p v-html="$t('common.UnderConstructionText')"></p>
-                </template>
-            </div>
+            <change-game-mode />
+            <page-title :checkMode="checkGameMode()" />
         </div>
     </div>
 </template>
 
 <script>
+import checkGameMode from '@/mixins/checkGameMode';
+import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import PageTitle from '@/components/PageTitle.vue';
 export default {
     data(){
         return {
             pageId : this.$route.params.id
         }
+    },
+    components:{
+        changeGameMode: ChangeGameMode,
+        pageTitle: PageTitle,
     },
     metaInfo() {
         return {
@@ -54,13 +48,7 @@ export default {
             ]
         }
     },
-    methods:{
-        checkGameMode(){
-            if(this.$route.params.id == 'single-device'){
-                return true;
-            }
-        },
-    },
+    mixins: [checkGameMode],
     watch:{
         $route(to, from){
             this.pageId = to.params.id;
