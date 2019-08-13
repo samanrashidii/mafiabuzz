@@ -2,7 +2,9 @@
     "general":{
         "name": "MafiaBuzz",
         "alt": "MafiaBuzz Logo",
-        "url": "http://www.mafiabuzz.com"
+        "url": "http://www.mafiabuzz.com",
+        "infoIcon": "Info Icon",
+        "notValidIcon": "Not Valid Icon"
     },
     "meta":{
         "home": {

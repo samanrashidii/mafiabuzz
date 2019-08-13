@@ -7,61 +7,34 @@
         </div>
         <template v-if="checkGameMode().status">
             <div class="steps">
-                <step-box :value="gameSettings.maxPlayers"
-                          :margin="gameSettings.playerMargin"
-                          :default="gameSettings.unit"
-                          @selectVal="gameSettings.unit = $event"
+                <step-box 
+                    :value="gameSettings.maxPlayers" 
+                    :margin="gameSettings.playerMargin"
+                    :default="gameSettings.unit"
+                    @selectVal="gameSettings.unit = $event"
                 />
-                <step-box :value="calcMafia"
-                          :margin="1"
-                          :default="gameSettings.mafia"
-                          @selectVal="gameSettings.mafia = $event"
+                <step-box 
+                    :value="calcMafia"
+                    :margin="0"
+                    :default="gameSettings.mafia"
+                    @selectVal="gameSettings.mafia = $event"
                 />
             </div>
             <roles @selectedRoles="gameSettings.roles = $event"></roles>
             <app-button @click.native="checkGame()" class="active start-bttn"><span>{{$t('pages.creator.start')}}</span></app-button>
             <overlay :class="{'active': overlay,'dialog': isValid}">
                 <template v-if="isValid">
-                    <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
-                    <ul class="error-bullet">
-                        <li v-if="error.mafia">
-                            {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.mafia}} </span> <strong class="mafia-role">{{$t('common.Mafia')}}</strong> {{$t('pages.creator.errorText2')}}
-                        </li>
-                        <li class="blue" v-if="error.citizens">
-                            {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.citizens}} </span> <strong class="citizen-role">{{$t('common.Citizen')}}</strong> {{$t('pages.creator.errorText2')}}
-                        </li>
-                    </ul>
+                    <error-box
+                        :errorStatus="error"
+                        :mafiaNumbers="gameSettings.mafia"
+                        :citizenNumbers="gameSettings.citizens"
+                    />
                     <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
                 </template>
                 <template v-else>
-                    <div class="note-box">
-                        <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/info.png`)" alt="Info Icon" />
-                        <h3>{{$t('pages.creator.checkBeforeStart')}}</h3>
-                    </div>
-                    <div class="table mafia-table">
-                        <table>
-                            <tr>
-                                <th>{{$t('common.Role')}}</th>
-                                <th>{{$t('common.Power')}}</th>
-                            </tr>
-                            <tr v-for="(fM, index) in finalMafias" :key="index">
-                                <td><img :src="getImgUrl($t(fM.icon))" :alt="fM.alt" /> {{$t(fM.name)}}</td>
-                                <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"><i>{{Math.abs(fM.power)}}</i></span></div></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="table citizen-table">
-                        <table>
-                            <tr>
-                                <th>{{$t('common.Role')}}</th>
-                                <th>{{$t('common.Power')}}</th>
-                            </tr>
-                            <tr v-for="(fC, index) in finalCitizens" :key="index">
-                                <td><img :src="getImgUrl($t(fC.icon))" :alt="fC.alt" /> {{$t(fC.name)}}</td>
-                                <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"><i>{{Math.abs(fC.power)}}</i></span></div></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <note-box />
+                    <app-table class="mafia-table" :tableData="finalMafias" />
+                    <app-table class="citizen-table" :tableData="finalCitizens" />
                     <app-button @click.native="startGame()" class="start-bttn green "><span>{{$t('pages.creator.start')}}</span></app-button>
                     <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
                 </template>
@@ -72,14 +45,16 @@
 </template>
 
 <script>
-import getImg from '@/mixins/getImg';
 import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
+import NoteBox from '@/components/NoteBox.vue';
 import Overlay from '@/components/Overlay.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
-import StepBox from '@/components/StepBox.vue';
 import Roles from '@/components/Roles.vue';
+import StepBox from '@/components/StepBox.vue';
+import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import {mapGetters, mapActions} from 'vuex';
 export default {
@@ -111,11 +86,14 @@ export default {
     },
     components:{
         changeGameMode: ChangeGameMode,
+        errorBox: ErrorBox,
+        noteBox: NoteBox,
         overlay: Overlay,
         pageTitle: PageTitle,
-        powerMeter : PowerMeter,
-        roles : Roles,
-        stepBox : StepBox,
+        powerMeter: PowerMeter,
+        roles: Roles,
+        stepBox: StepBox,
+        appTable: Table,
         welcomeBox: WelcomeBox,
     },
     computed:{
@@ -138,7 +116,7 @@ export default {
             this.gameSettings.roles.forEach(element => {
                 $power.average += element.power;
                 if(element.mafia){
-                    $power.mafia += -(element.power);
+                    $power.mafia += Math.abs(element.power);
                 } else{
                     $power.citizen += element.power;
                 }
@@ -190,7 +168,7 @@ export default {
             'setSavedRoles'
         ]),
         calcDifference(main,side){
-            return main - side
+            return main - side;
         },
         checkGame(){
             this.overlay = true;
@@ -209,26 +187,13 @@ export default {
             this.setGame(true);
         }
     },
-    mixins: [getImg, checkGameMode]
+    mixins: [checkGameMode]
 }
 </script>
 
 <style lang="scss" scoped>
 
-.create{padding-bottom: $meter_height;}
-
-.note li{
-    font-size: $font_size_3;
-    color:$color_6;
-    margin-bottom:12px;
-    &::before{
-        content:'*';
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 7px;
-    }
-}
-
+        .create{padding-bottom: $meter_height;}
 button{background-color:$creator_color;}
 
 </style>
