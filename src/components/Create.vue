@@ -1,106 +1,87 @@
 <template>
     <div class="create">
         <div class="dashboard-header">
-            <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{$t('pages.creator.gameModeButton')}}</span></router-link>
-            </div>
-            <div class="welcome">
-                <img :src="require(`@/assets/images/${$t('pages.creator.welcome.image')}`)" alt="MafiaBuzz Logo">
-                <h3 v-html="$t('pages.creator.welcome.text')"></h3>
-            </div>
-            <div class="title">
-                <template v-if="checkGameMode()">
-                    <h2 v-html="$t('pages.creator.title')"></h2>
-                    <p v-html="$t('pages.creator.subtitle')"></p>
-                </template>
-                <!-- Under Construction -->
-                <template v-else>
-                    <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2 v-html="$t('common.UnderConstructionTitle')"></h2>
-                    <p v-html="$t('common.UnderConstructionText')"></p>
-                </template>
-            </div>
+            <change-game-mode />
+            <welcome-box />
+            <page-title :checkMode="checkGameMode()" />
         </div>
-        <template v-if="checkGameMode()">
-            <form action="#" method="POST" accept-charset="utf-8" name="game_settings" class="game_settings">
-                <div class="steps">
-                    <div class="step-box">
-                        <label for="quantity" v-html="$t('pages.creator.step1')"></label>
-                        <select name="quantity" id="quantity" v-model="gameSettings.unit">
-                            <option v-for="(n, index) in gameSettings.maxPlayers" :key="index">{{n + gameSettings.playerMargin}}</option>
-                        </select>
+        <template v-if="checkGameMode().status">
+            <div class="steps">
+                <step-box :value="gameSettings.maxPlayers"
+                          :margin="gameSettings.playerMargin"
+                          :default="gameSettings.unit"
+                          @selectVal="gameSettings.unit = $event"
+                />
+                <step-box :value="calcMafia"
+                          :margin="1"
+                          :default="gameSettings.mafia"
+                          @selectVal="gameSettings.mafia = $event"
+                />
+            </div>
+            <roles @selectedRoles="gameSettings.roles = $event"></roles>
+            <app-button @click.native="checkGame()" class="active start-bttn"><span>{{$t('pages.creator.start')}}</span></app-button>
+            <overlay :class="{'active': overlay,'dialog': isValid}">
+                <template v-if="isValid">
+                    <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
+                    <ul class="error-bullet">
+                        <li v-if="error.mafia">
+                            {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.mafia}} </span> <strong class="mafia-role">{{$t('common.Mafia')}}</strong> {{$t('pages.creator.errorText2')}}
+                        </li>
+                        <li class="blue" v-if="error.citizens">
+                            {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.citizens}} </span> <strong class="citizen-role">{{$t('common.Citizen')}}</strong> {{$t('pages.creator.errorText2')}}
+                        </li>
+                    </ul>
+                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                </template>
+                <template v-else>
+                    <div class="note-box">
+                        <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/info.png`)" alt="Info Icon" />
+                        <h3>{{$t('pages.creator.checkBeforeStart')}}</h3>
                     </div>
-                    <div class="step-box">
-                        <label for="mafia_number" v-html="$t('pages.creator.step2')"></label>
-                        <select name="mafia_number" id="mafia_number" v-model.number="gameSettings.mafia">
-                            <option v-for="(n, index) in calcMafia" :key="index">{{n+1}}</option>
-                        </select>
+                    <div class="table mafia-table">
+                        <table>
+                            <tr>
+                                <th>{{$t('common.Role')}}</th>
+                                <th>{{$t('common.Power')}}</th>
+                            </tr>
+                            <tr v-for="(fM, index) in finalMafias" :key="index">
+                                <td><img :src="getImgUrl($t(fM.icon))" :alt="fM.alt" /> {{$t(fM.name)}}</td>
+                                <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"><i>{{Math.abs(fM.power)}}</i></span></div></td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-                
-                <roles @selectedRoles="gameSettings.roles = $event"></roles>
-
-                <app-button @click.native="checkGame()" class="active start-bttn"><span>{{$t('pages.creator.start')}}</span></app-button>
-
-                <overlay :class="{'active': overlay,'dialog': isValid}">
-                    <template v-if="isValid">
-                        <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
-                        <ul class="error-bullet">
-                            <li v-if="error.mafia">
-                                {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.mafia}} </span> <strong class="mafia-role">{{$t('common.Mafia')}}</strong> {{$t('pages.creator.errorText2')}}
-                            </li>
-                            <li class="blue" v-if="error.citizens">
-                                {{$t('pages.creator.errorText1')}} <span class="hint-color">{{gameSettings.citizens}} </span> <strong class="citizen-role">{{$t('common.Citizen')}}</strong> {{$t('pages.creator.errorText2')}}
-                            </li>
-                        </ul>
-                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
-                    </template>
-                    <template v-else>
-                        <div class="note-box">
-                            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/info.png`)" alt="Info Icon" />
-                            <h3>{{$t('pages.creator.checkBeforeStart')}}</h3>
-                        </div>
-                        <div class="table mafia-table">
-                            <table>
-                                <tr>
-                                    <th>{{$t('common.Role')}}</th>
-                                    <th>{{$t('common.Power')}}</th>
-                                </tr>
-                                <tr v-for="(fM, index) in finalMafias" :key="index">
-                                    <td><img :src="getImgUrl($t(fM.icon))" :alt="fM.alt" /> {{$t(fM.name)}}</td>
-                                    <td><div class="character-power"><span class="mafia" :style="{width: `${Math.abs(fM.power)*2}%`}"><i>{{Math.abs(fM.power)}}</i></span></div></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table citizen-table">
-                            <table>
-                                <tr>
-                                    <th>{{$t('common.Role')}}</th>
-                                    <th>{{$t('common.Power')}}</th>
-                                </tr>
-                                <tr v-for="(fC, index) in finalCitizens" :key="index">
-                                    <td><img :src="getImgUrl($t(fC.icon))" :alt="fC.alt" /> {{$t(fC.name)}}</td>
-                                    <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"><i>{{Math.abs(fC.power)}}</i></span></div></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <app-button @click.native="startGame()" class="start-bttn green "><span>{{$t('pages.creator.start')}}</span></app-button>
-                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
-                    </template>
-                </overlay>
-                
-            </form>
+                    <div class="table citizen-table">
+                        <table>
+                            <tr>
+                                <th>{{$t('common.Role')}}</th>
+                                <th>{{$t('common.Power')}}</th>
+                            </tr>
+                            <tr v-for="(fC, index) in finalCitizens" :key="index">
+                                <td><img :src="getImgUrl($t(fC.icon))" :alt="fC.alt" /> {{$t(fC.name)}}</td>
+                                <td><div class="character-power"><span class="citizen" :style="{width: `${fC.power*2}%`}"><i>{{Math.abs(fC.power)}}</i></span></div></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <app-button @click.native="startGame()" class="start-bttn green "><span>{{$t('pages.creator.start')}}</span></app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                </template>
+            </overlay>
             <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)" :class="{'active': !isValid}"></power-meter>
         </template>
     </div>
 </template>
 
 <script>
-import Roles from '@/components/Roles.vue';
-import PowerMeter from '@/components/PowerMeter.vue';
+import getImg from '@/mixins/getImg';
+import checkGameMode from '@/mixins/checkGameMode';
+import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import Overlay from '@/components/Overlay.vue';
-import {mapGetters} from 'vuex';
-import {mapActions} from 'vuex';
+import PageTitle from '@/components/PageTitle.vue';
+import PowerMeter from '@/components/PowerMeter.vue';
+import StepBox from '@/components/StepBox.vue';
+import Roles from '@/components/Roles.vue';
+import WelcomeBox from '@/components/WelcomeBox.vue';
+import {mapGetters, mapActions} from 'vuex';
 export default {
     data(){
         return {
@@ -127,6 +108,15 @@ export default {
             },
             overlay: false,
         }
+    },
+    components:{
+        changeGameMode: ChangeGameMode,
+        overlay: Overlay,
+        pageTitle: PageTitle,
+        powerMeter : PowerMeter,
+        roles : Roles,
+        stepBox : StepBox,
+        welcomeBox: WelcomeBox,
     },
     computed:{
         ...mapGetters([
@@ -207,14 +197,6 @@ export default {
             this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
             this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
         },
-        checkGameMode(){
-            if(this.$route.params.id == 'single-device'){
-                return true;
-            }
-        },
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
         startGame(){
             let numb = {
                 unit : this.gameSettings.unit,
@@ -227,11 +209,7 @@ export default {
             this.setGame(true);
         }
     },
-    components:{
-        roles : Roles,
-        powerMeter : PowerMeter,
-        overlay: Overlay,
-    }
+    mixins: [getImg, checkGameMode]
 }
 </script>
 

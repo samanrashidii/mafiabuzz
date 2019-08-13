@@ -1,12 +1,10 @@
 <template>
     <div class="how-to-play">
         <div class="dashboard-header">
-            <div class="title">
-                <h2 v-html="$t('pages.howToPlay.title')"></h2>
-                <p v-html="$t('pages.howToPlay.subtitle')"></p>
-            </div>
+            <change-game-mode />
+            <page-title :checkMode="checkGameMode()" />
         </div>
-        <div class="step-box only-box" v-for="(step, index) in $t('pages.howToPlay.steps')" :key="index">
+        <div class="step-box only-box" v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
             <img :src="getHTPImgUrl(step.icon)" alt="How to Play Step Icon" />
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
@@ -26,11 +24,18 @@
 </template>
 
 <script>
+import checkGameMode from '@/mixins/checkGameMode';
+import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import PageTitle from '@/components/PageTitle.vue';
 export default {
     data(){
         return {
             pageId : this.$route.params.id
         }
+    },
+    components:{
+        changeGameMode: ChangeGameMode,
+        pageTitle: PageTitle,
     },
     metaInfo() {
         return {
@@ -69,6 +74,7 @@ export default {
             return require(`@/assets/images/howtoplay/${pic}`);
         },
     },
+    mixins: [checkGameMode],
     watch:{
         $route(to, from){
             this.pageId = to.params.id;

@@ -2,8 +2,8 @@
     <div class="roles">
         <info-box :info="info"></info-box>
         <ul class="has-clear-fix">
-            <li v-for="(role, index) in Roles" :key="index" :class="{'mafia': role.mafia}">
-                <input @change="checkRoles(role.id), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
+            <li v-for="(role, index) in getRoles" :key="index" :class="{'mafia': role.mafia}">
+                <input @change="checkRoles(role.id, index), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
                         <img :src="getImgUrl($t(role.icon))" :alt="$t(role.alt)" />
@@ -25,6 +25,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 export default {
     data(){
@@ -46,6 +47,9 @@ export default {
             'Roles',
             'SelectedRoles'
         ]),
+        getRoles(){
+            return JSON.parse(JSON.stringify(this.Roles));
+        }
     },
     created(){
         this.cacheRoles();
@@ -77,8 +81,8 @@ export default {
                 return false;
             }
         },
-        checkRoles(id){
-            this.Roles.forEach(element => {
+        checkRoles(id, index){
+            this.getRoles.forEach(element => {
                 if(element.id == id){
                     element.selected == false ? element.selected = true : element.selected = false;
                 }
@@ -97,7 +101,7 @@ export default {
         },
         decrNumber(role){
             let $roles = this.selectedRoles;
-            if(role.id == 1){
+            if(role.status.mafia){
                 if(this.normalMafia > 1){
                     for(let el of $roles) {
                         if(el.id == role.id){
@@ -107,7 +111,7 @@ export default {
                     }
                 } else{
                     this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.Roles.forEach(element => {
+                    this.getRoles.forEach(element => {
                         if(element.id == role.id){
                             element.selected = false;
                         }
@@ -115,7 +119,7 @@ export default {
                 }
                 this.normalMafia--;
             }
-            if(role.id == 8){
+            if(role.status.citizen){
                 if(this.normalCitizen > 1){
                     for(let el of $roles) {
                         if(el.id == role.id){
@@ -125,7 +129,7 @@ export default {
                     }
                 } else {
                     this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.Roles.forEach(element => {
+                    this.getRoles.forEach(element => {
                         if(element.id == role.id){
                             element.selected = false;
                         }

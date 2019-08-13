@@ -627,9 +627,9 @@ a.info{
             color: $hint_color;
         }
     }
-    label{
-        display:inline-block;
+    p{
         font-size: $font_size_4;
+        padding-top:0;
         margin-bottom:20px;
     }
     &.only-box{margin-top:20px;}
@@ -960,7 +960,7 @@ span.step-number{
     position: relative;
     display: block;
     text-align: center;
-    margin:10px 0 15px 0;
+    margin:10px 0 25px 0;
     box-shadow: 0 0 7px $background_color_middle;
     background-color: $color_site_5;
     border-radius: 7px;

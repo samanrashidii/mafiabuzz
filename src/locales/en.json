@@ -1,6 +1,7 @@
 {
     "general":{
         "name": "MafiaBuzz",
+        "alt": "MafiaBuzz Logo",
         "url": "http://www.mafiabuzz.com"
     },
     "meta":{
@@ -98,8 +99,6 @@
             "subtitle": "Please choose below options to create your game:",
             "step1": "How many people do want to have in your <span class='creator-color'>World</span> :",
             "step2": "How many of these people will be <span class='mafia-role'>Mafia</span> :",
-            "step3": "How long your <span class='day-color'>Day</span> phase takes <span class='white-color'>(minutes)</span> :",
-            "step4": "Game Settings:",
             "start": "Start Game!",
             "changeSettings": "Back to Role Settings",
             "errorText1": "You have to select",
@@ -151,7 +150,7 @@
             "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>? Please email us at :",
             "contactEmail": "info@mafiabuzz.com"
         },
-        "howToPlay": {
+        "howtoplay": {
             "title": "How to <span>Play</span>",
             "subtitle": "Just read and everything is so clear :)",
             "steps": [
