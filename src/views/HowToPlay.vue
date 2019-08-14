@@ -9,7 +9,7 @@
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
             <div v-if="step.roles">
-                <info-box class="static" v-for="(info, index) in $t('roles')" :key="index" :info="info"></info-box>
+                <info-box class="static" v-for="(info, index) in Roles" :key="index" :info="info"></info-box>
             </div>
         </page-box>
     </div>
@@ -20,6 +20,7 @@ import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import {mapGetters} from 'vuex';
 export default {
     data(){
         return {
@@ -30,6 +31,11 @@ export default {
         changeGameMode: ChangeGameMode,
         infoBox: InfoBox,
         pageTitle: PageTitle,
+    },
+    computed:{
+        ...mapGetters([
+            'Roles',
+        ]),
     },
     metaInfo() {
         return {
