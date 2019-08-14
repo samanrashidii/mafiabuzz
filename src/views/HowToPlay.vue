@@ -4,28 +4,21 @@
             <change-game-mode />
             <page-title :checkMode="checkGameMode()" />
         </div>
-        <div class="step-box only-box" v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
+        <page-box v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
             <img :src="getHTPImgUrl(step.icon)" alt="How to Play Step Icon" />
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
             <div v-if="step.roles">
-                <div class="info-box static" v-for="(info, index) in $t('roles')" :key="index">
-                    <img :src="getImgUrl(info.icon)" alt="" />
-                    <h2>{{info.name}}</h2>
-                    <div class="mafia-status">
-                        <strong class="mafia-role" v-if="info.mafia">{{$t('common.Mafia')}}</strong>
-                        <strong class="citizen-role" v-else>{{$t('common.Citizen')}}</strong>
-                    </div>
-                    <p>{{info.description}}</p>
-                </div>
+                <info-box class="static" v-for="(info, index) in $t('roles')" :key="index" :info="info"></info-box>
             </div>
-        </div>
+        </page-box>
     </div>
 </template>
 
 <script>
 import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 export default {
     data(){
@@ -35,6 +28,7 @@ export default {
     },
     components:{
         changeGameMode: ChangeGameMode,
+        infoBox: InfoBox,
         pageTitle: PageTitle,
     },
     metaInfo() {

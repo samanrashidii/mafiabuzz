@@ -471,27 +471,32 @@
         "loading": {
             "name": "Loading",
             "icon": "loader.svg",
+            "alt": "Loading Icon",
             "description": "..."
         },
         "default": {
             "name": "Default",
             "icon": "default.png",
+            "alt": "Default Icon",
             "description": "..."
         },
         "preTarget": {
             "name": "Person ?",
             "icon": "default.png",
+            "alt": "Default Icon",
             "description": "...",
             "role": "Default"
         },
         "miniYakuza": {
             "name": "Mini Yakuza",
             "icon": "ninja.png",
+            "alt": "Ninja Icon",
             "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself"
         },
         "skeleton": {
             "name": "Skeleton",
             "icon": "skeleton.png",
+            "alt": "Skeleton Icon",
             "description": "Skeleton is Night King's minions but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
         }
     }
