@@ -14,12 +14,12 @@
                 </li>
             </ul>
         </div>
-        <div class="step-box only-box contact-box">
+        <page-box class="contact-box">
             <div class="contact">
                 <p v-html="$t('pages.about.contactText')"></p>
                 <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{$t('pages.about.contactEmail')}}</a>
             </div>
-        </div>
+        </page-box>
     </div>
 </template>
 
@@ -75,9 +75,28 @@ export default {
 
 <style lang="scss" scoped>
 
+    .creators li{
+        a{
+            display:block;
+            text-align: center;
+            padding:70px 8px 20px 8px;
+            margin-top:15px;
+            background-color: $background_color_1;
+            border-radius: $site_radius;
+            box-shadow: inset 0 0 4px #7a7a7a;
+            strong{
+                display: block;
+                font-family: $font_mafia;
+                font-size: 44px;
+            }
+            span{
+                color:$color_2;
+            }
+        }
+    }
+
    .contact-box{
        text-align: center;
-       p:first-child{padding:0 0 15px 0;}
        a{
            display: inline-block;
            font-size: $font_size_8;

@@ -37,10 +37,14 @@ export default {
                 mafia: false,
                 name: "replacingRoles.loading.name",
                 icon: "replacingRoles.loading.icon",
+                alt: "replacingRoles.loading.alt",
                 description: "replacingRoles.loading.description"
             },
             selectedRoles: [],
         }
+    },
+    components: {
+        infoBox: InfoBox,
     },
     computed:{
         ...mapGetters([
@@ -164,13 +168,11 @@ export default {
         showInfo(role){
             this.info.name = role.name;
             this.info.icon = role.icon;
+            this.info.alt = role.alt;
             this.info.description = role.description;
             this.info.mafia = role.mafia;
             this.info.show == false ? this.info.show = true : this.info.show = false;
         }
-    },
-    components: {
-        infoBox: InfoBox,
     }
 }
 </script>

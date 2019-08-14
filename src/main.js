@@ -14,8 +14,10 @@ Vue.use(Vue2TouchEvents)
 // Global Components
 
 import Button from '@/components/global/Button.vue';
+import PageBox from '@/components/global/PageBox.vue';
 
 Vue.component('app-button', Button);
+Vue.component('page-box', PageBox);
 
 // Required External Files
 
