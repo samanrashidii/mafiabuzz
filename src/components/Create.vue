@@ -193,7 +193,7 @@ export default {
 
 <style lang="scss" scoped>
 
-        .create{padding-bottom: $meter_height;}
+.create{padding-bottom: $meter_height;}
 button{background-color:$creator_color;}
 
 </style>

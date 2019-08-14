@@ -217,7 +217,6 @@
                             <info-box :info="info"></info-box>
 
                             <!-- Mafia Table in Dashboard -->
-
                             <div class="table mafia-table">
                                 <table>
                                     <tr>
@@ -247,7 +246,6 @@
                             </div>
 
                             <!-- Citizen Table in Dashboard -->
-                            
                             <div class="table citizen-table">
                                 <table>
                                     <tr>
