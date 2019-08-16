@@ -24,7 +24,7 @@
                             <div class="table-cell-display">
                                 <!-- Last Phase Action -->
                                 <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
-                                    <img :src="getImgUrl($t('god.voteIcon'))" alt="Dead Icon" />
+                                    <img :src="getImgUrl($t('god.voteIcon'))" :alt="$t('god.deadIconAlt')" />
                                     <p>{{$t('god.lastPhaseText')}}</p>
                                     <select name="action_target" v-model="log.target">
                                         <option :value="null" disabled>{{$t('god.selectPlaceholder')}}</option>
@@ -35,7 +35,7 @@
                                 </template>
                                 <!-- Last Phase Action -->
                                 <template v-else-if="dashboard.mafiaParty && dashboard.round == 1">
-                                    <img :src="getImgUrl($t('god.mafiaPartyIcon'))" alt="Mafia Party Icon" />
+                                    <img :src="getImgUrl($t('god.mafiaPartyIcon'))" :alt="$t('god.mafiaPartyIconAlt')" />
                                     <p class="site-color">{{$t('god.mafiaPartyText')}}</p>
                                     <ul class="error-bullet type-2">
                                         <li v-for="(mp, index) in $t('god.mafiaPartyException')" :key="index" v-html="mp"></li>
@@ -63,7 +63,7 @@
                             <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t('god.hackedIcon'))" alt="Hacked Icon" />
+                                        <img :src="getImgUrl($t('god.hackedIcon'))" :alt="$t('god.hackedIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.hackedPerson')"></strong></p>
                                         <app-button class="purple" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -73,8 +73,8 @@
                             <div class="action-overlay dead-overlay" v-else-if="targetDead" key="deadTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t('god.deadIcon'))" alt="Dead Icon" />
-                                        <img class="overlap" :src="getImgUrl($t(info.icon2))" alt="Character Icon" />
+                                        <img :src="getImgUrl($t('god.deadIcon'))" :alt="$t('god.deadIconAlt')" />
+                                        <img class="overlap" :src="getImgUrl($t(info.icon2))" :alt="$t('god.playerIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.deadPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -84,7 +84,7 @@
                             <div class="action-overlay dead-overlay" v-else-if="targetRevived" key="revivedTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t(info.icon2))" alt="Skeleton Icon" />
+                                        <img :src="getImgUrl($t(info.icon2))" :alt="$t('god.revivedIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}} </span> <strong v-html="$t('god.revivedPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -95,14 +95,14 @@
                         <p>{{$t('god.actionQuestion1')}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{$t(info.name2)}} </span> {{$t('god.actionQuestion2')}} <strong>{{$t(info.action)}}</strong> ?</p>
                         <div class="player-box-holder has-small-bottom-margin">
                             <div class="player-box">
-                                <img :src="getImgUrl($t(info.icon2))" alt="Character Icon"  />
+                                <img :src="getImgUrl($t(info.icon2))" :alt="$t('god.playerIconAlt')"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                             </div>
                             <div class="arrow">
-                                <img class="action-image" :src="getActionImgUrl($t(info.actionIcon))" alt="Character Action Icon" />
+                                <img class="action-image" :src="getActionImgUrl($t(info.actionIcon))" :alt="$t('god.playerActionIconAlt')" />
                             </div>
                             <div class="player-box">
-                                <img :src="getImgUrl($t(info.targetIcon))" alt="Character Icon"  />
+                                <img :src="getImgUrl($t(info.targetIcon))" :alt="$t('god.playerIconAlt')"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                 <!-- Log Actions During Night -->
                 <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
                     <div class="log-action">
-                        <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                        <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
                         <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                         <log-events :log="log"></log-events>
                     </div>
@@ -138,7 +138,7 @@
         <!-- Alert Box -->
 
         <overlay :class="{'active': alertBox,'dialog': true}">
-            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')" />
             <template>
                 <p>{{$t('god.skipText')}}</p>
                 <app-button @click.native="skipAction()" class="green"><span>{{$t('god.skipButton2')}}</span></app-button>
@@ -156,8 +156,8 @@
                         <tr v-for="(log, index) in totLog" :key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
-                                <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
+                                <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                                <img :src="getImgUrl($t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
                             </td>
                             <td>
                                 <log-events :log="log"></log-events>
@@ -172,8 +172,8 @@
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
                         <td>
-                            <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
+                            <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
                         </td>
                         <td>
                             <log-events :log="log"></log-events>
@@ -190,7 +190,7 @@
         <!-- Last Night Log -->
 
         <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
-            <img :src="getImgUrl($t('god.peopleIcon'))" alt="People Icon">
+            <img :src="getImgUrl($t('god.peopleIcon'))" :alt="$t('god.peopleIconAlt')">
             <h2>{{$t('god.lastNightTitle')}}</h2>
             <ul>
                 <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
@@ -207,7 +207,7 @@
             <div class="center-aligned">
                 <transition-group name="fade" mode="out-in">
                     <div v-if="!dashboard.god" key="beforeShow">
-                        <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" alt="Game Icon" />
+                        <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" :alt="$t('god.gameDashboardIconAlt')" />
                         <h3 class="different-colors" v-html="$t('god.gameStartText')"></h3>
                         <app-button class="active" @click.native="showPlay()">{{$t('god.godButton')}}</app-button>
                     </div>
@@ -281,7 +281,7 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>
-                                            <img :src="getActionImgUrl($t(log.actionIcon))" alt="Action Icon" v-if="!log.passiveLog" />
+                                            <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
                                             <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
                                         </td>
                                         <td>
@@ -321,7 +321,7 @@
         <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="overlay = true, totRestart = true">{{$t('god.resetGame')}}</app-button>
 
         <overlay :class="{'active': overlay,'dialog': true}">
-            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')" />
             <template v-if="!totRestart">
                 <p>{{$t('god.resetText')}}</p>
                 <app-button @click.native="rgwRoles()" class="green "><span>{{$t('god.restartButton')}}</span></app-button>
