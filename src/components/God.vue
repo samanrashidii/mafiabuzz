@@ -734,18 +734,17 @@ export default {
         },
         // Do Action
         executeAction(info){
-            let attacker = info.ability;
-            let attackerID = info.id;
-            let defender = info.targetInfo;
-            let defenderAbility = defender.ability;
-            let defenderID = defender.id;
-            let linked = defender.status.linked;
-            let healed = defender.status.healed;
-            let shield = defender.status.shield;
-            let hacked = defender.status.hacked;
-            let damageReturned = defender.damageReturned;
-            
-            if(this.log.target != null ){
+            if(this.log.target != null && Object.keys(info.targetInfo).length > 0){
+                let attacker = info.ability;
+                let attackerID = info.id;
+                let defender = info.targetInfo;
+                let defenderAbility = defender.ability;
+                let defenderID = defender.id;
+                let linked = defender.status.linked;
+                let healed = defender.status.healed;
+                let shield = defender.status.shield;
+                let hacked = defender.status.hacked;
+                let damageReturned = defender.damageReturned;
                 // Check not being cupid and second selectmenu is turned off
                 if(!(attacker.binder && this.log.target2 == null)){
                     this.log.id = this.info.id;
@@ -808,7 +807,7 @@ export default {
                             }
                         }
                         // Night King
-                        if(attacker.reviver && element.id == defenderID){
+                        if(attacker.reviver && element.player == this.log.target){
                             // Revive Cupid Targets
                             if(element.status.linked && element.status.dead){
                                 element.status.linked = false;
@@ -851,12 +850,20 @@ export default {
                                     // Bulletproof; Check Has shield ; Check if not Hacked
                                     if(shield && !hacked){
                                         this.passiveCalc(element);
+                                        element.status.shield = false;
                                     } else{
                                         element.status.dead = true;
                                         element.status.recentlyDead = true;
-                                        element.status.shield = false;
-                                        element.actionStatus = true;
                                     }
+                                }
+                                // Night King Targets
+                                if(defenderAbility.reviver && element.id == defenderID){
+                                    this.finalPlayers.forEach(element => {
+                                        if(element.status.revived){
+                                            element.status.dead = true;
+                                            element.status.recentlyDead = true;
+                                        }
+                                    });
                                 }
                                 // Bomb Targets | Passive
                                 if(defenderAbility.detonator && element.id == defenderID){
@@ -984,7 +991,6 @@ export default {
             }
             // Bulletproof Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
             else if(element.ability.hasShield && element.status.shield && element.action.oneTime && !element.status.hacked){
-                element.status.shield = false;
                 this.log.target = element.player;
                 this.log.passiveLog = true;
                 this.log.passive = element.action.passive;

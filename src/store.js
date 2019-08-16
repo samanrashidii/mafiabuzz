@@ -5,7 +5,7 @@ import mafiaBuzzRoles from './roles.json';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  strict: true,
+  // strict: true,
   state: {
     rolesDB: mafiaBuzzRoles,
     roles: [],
