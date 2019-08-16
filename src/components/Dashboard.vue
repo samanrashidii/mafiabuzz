@@ -13,7 +13,7 @@
         </div>
         
         <overlay :class="{'active': alertBox,'dialog': true}">
-            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" alt="Warning Icon" />
+            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')" />
             <template v-if="!totRestart">
                 <p>{{$t('pages.creator.changeSettingsText')}}</p>
                 <app-button @click.native="resetGame()" class="green "><span>{{$t('pages.creator.confirmButton')}}</span></app-button>
