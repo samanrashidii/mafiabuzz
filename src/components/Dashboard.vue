@@ -34,7 +34,7 @@
                 <a class="predefined" href="javascript:void(0)" v-else :class="{'active': showPredefined}" @click="handlePredefine()">
                     <span>{{$t('pages.creator.defaultNames')}}</span>
                 </a>
-                <label for="quantity">{{$t('pages.creator.chooseNameHint')}}</label>
+                <p>{{$t('pages.creator.chooseNameHint')}}</p>
                 <template v-for="(roleInput, index) in SelectedRoles">
                     <input type="text" @keyup.enter="$event.target.nextElementSibling.focus();" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]" />
                 </template>
