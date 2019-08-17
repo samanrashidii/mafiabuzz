@@ -100,14 +100,14 @@ export default new Router({
         },
       ],
     },
-    // {
-    //   path: '/error-404',
-    //   name: 'not-found',
-    //   component: NotFound,
-    // },
-    // {
-    //   path: '*',
-    //   redirect: { name: 'not-found' },
-    // },
+    {
+      path: '/error-404',
+      name: 'not-found',
+      component: NotFound,
+    },
+    {
+      path: '*',
+      redirect: { name: 'not-found' },
+    },
   ],
 });
