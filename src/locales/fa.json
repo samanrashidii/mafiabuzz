@@ -97,7 +97,7 @@
             "gameModeButton": "تغییر حالت بازی",
             "welcome": {
                 "image": "logo.png",
-                "text": " به وب اپلیکیشن <strong>مافیا باز</strong> خوش آمدید "
+                "text": " به وب اپلیکیشن <strong>مافیاباز</strong> خوش آمدید "
             },
             "title": "سلام <span>خدا</span>",
             "subtitle": "برای شروع بازی گزینه های زیر رو انتخاب کن",
@@ -180,8 +180,8 @@
     "powerMeter": {
         "mafia": "قدرت تیم مافیا",
         "citizen": "قدرت تیم شهروند",
-        "minus": "نقش باقی مانده",
-        "plus": "نقش اضافی است"
+        "minus": " باقی مانده ",
+        "plus": " اضافی است "
     },
     "god": {
         "name": "God",
