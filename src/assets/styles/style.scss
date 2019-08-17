@@ -14,6 +14,13 @@
   	font-style: normal;
 }
 
+@font-face{
+	font-family:'Iran';
+	src: url('../fonts/Iran.woff') format('woff');
+	font-weight: normal;
+  	font-style: normal;
+}
+
 *{
 	padding: 0;
 	margin: 0;
@@ -39,7 +46,7 @@ body{
 
 body{
     max-width: 980px;
-    font-family: $font_normal, Arial, Helvetica, sans-serif;
+    font-family: $font_normal, $font_reset_default;
     font-size: $font_size_5;
     color: $color_1;
     margin:auto;
@@ -861,7 +868,7 @@ span.step-number{
 .title{
     text-align: center;
     h2 span{
-        font-family: Arial;
+        font-family: $font_reset_default;
         font-size: 25px;
     }
 }
@@ -1399,3 +1406,27 @@ table tr{
         transform:scale(0,0);
     }
 }
+
+// RTL
+
+body{
+    direction: rtl;
+    font-size: $font_size_5;
+}
+
+.roles li label{font-size: $font_size_6 !important;}
+
+.start-bttn span{
+    padding:5px 35px 5px 5px;
+    margin-top:-4px;
+    background-position-x: right;
+}
+
+.welcome strong{
+    font-weight: bold;
+    font-size: 34px;
+}
+
+#app .navigation.internal{height: 66px;}
+#app .navigation.internal nav a{font-size: $font_size_4;}
+#app > div:not(.navigation){padding-top:66px;}

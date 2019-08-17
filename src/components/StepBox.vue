@@ -1,6 +1,6 @@
 <template>
     <div class="step-box">
-        <p v-html="$t('pages.creator.step1')"></p>
+        <p v-html="$t(`pages.creator.step${index}`)"></p>
         <select @change="calcVal" name="quantity" id="quantity" v-model="selectVal">
             <option v-for="(n, index) in value" :key="index">{{n + margin}}</option>
         </select>
@@ -18,6 +18,9 @@ export default {
         this.selectVal = this.default;
     },
     props: {
+        index: {
+            type: Number
+        },
         value: {
             type: Number
         },

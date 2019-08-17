@@ -8,12 +8,14 @@
         <template v-if="checkGameMode().status">
             <div class="steps">
                 <step-box 
+                    :index="1"
                     :value="gameSettings.maxPlayers" 
                     :margin="gameSettings.playerMargin"
                     :default="gameSettings.unit"
                     @selectVal="gameSettings.unit = $event"
                 />
                 <step-box 
+                    :index="2"
                     :value="calcMafia"
                     :margin="0"
                     :default="gameSettings.mafia"
