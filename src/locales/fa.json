@@ -14,8 +14,8 @@
             "url": "/"
         },
         "creator": {
-            "title": "خدا",
-            "description": " با انتخاب نقش های مورد نظر از بین تمامی نقش های موجود، به عنوان خدا، بازی را می سازید ",
+            "title": "گاد",
+            "description": " با انتخاب نقش های مورد نظر از بین تمامی نقش های موجود، به عنوان گاد، بازی را می سازید ",
             "url": "creator"
         },
         "howtoplay": {
@@ -60,10 +60,10 @@
     },
     "navigation": [
         {
-            "name": "خدا",
+            "name": "گاد",
             "url": "creator",
             "image": "creator.png",
-            "alt": "آیکون خدا"
+            "alt": "آیکون گاد"
         },
         {
             "name": "بازیکن",
@@ -78,7 +78,7 @@
             "alt": "آیکون چگونه بازی کنیم ؟"
         },
         {
-            "name": "درباره ی ما",
+            "name": "درباره ما",
             "url": "about",
             "image": "logo.png",
             "alt": "لوگوی مافیاباز"
@@ -99,14 +99,14 @@
                 "image": "logo.png",
                 "text": " به وب اپلیکیشن <strong>مافیاباز</strong> خوش آمدید "
             },
-            "title": "سلام <span>خدا</span>",
+            "title": "سلام <span>گاد</span>",
             "subtitle": "برای شروع بازی گزینه های زیر رو انتخاب کن",
             "step1": " چند بازیکن در <span class='creator-color'>دنیای</span> خود داری ؟ ",
             "step2": " چه تعداد از آن ها <span class='mafia-role'>مافیا</span> باشند ؟ ",
             "start": "شروع بازی !",
             "changeSettings": "بازگشت به تنظیمات بازی",
-            "errorText1": "باید انتخاب کنی",
-            "errorText2": "نقش ها!",
+            "errorText1": "باید نقش",
+            "errorText2": "را انتخاب کنی !",
             "cancelButton": "انصراف",
             "changeSettingsText": "مطمئنی میحوای نقش ها رو تغییر بدی؟",
             "confirmButton": "بله",
@@ -117,10 +117,11 @@
             "lastNames": "اسامی بازی قبل",
             "assign": "تقسیم نقش ها",
             "checkBeforeStart": "بازی با شخصیت های زیر شروع می شود :",
-            "dashboardTitle": " داشبورد <span>خدا</span> ",
+            "dashboardTitle": " داشبورد <span>گاد</span> ",
             "chooseNameHint": "اسامی بازیکنان را وارد کن :",
-            "passMobile": "موبایل را بده نفر بعدی",
-            "beforeShowButton": "نقش من را نشان بده!",
+            "passMobile": "دستگاه رو بده به نفر بعدی :",
+            "gotMobile": "نقشت رو با دقت ببین :",
+            "beforeShowButton": "نقش من را نشان بده !",
             "afterShowButton": "متوجه شدم"
         },
         "player": {
@@ -166,12 +167,12 @@
                 {
                     "icon": "2.png",
                     "titl1": "<strong>توضیح روش بازی</strong>",
-                    "desc1": "<strong>MafiaBuzz</strong> is played by two teams: <span class='mafia-role'> Tho Mafia </span> and <span class='citizen-role'> The Citizens </span>. Live games require a moderator ( <span class='creator-color'>God</span> ) who does not participate as a player, and identities are assigned by application. At the start of the game, every mafioso is given the identities of their teammates, whereas citizens only receive the number of mafioso in the game, and do not know which players are mafia and which are citizens. <br /> There are two phases: <span class='night-color'>Night</span> and <span class='day-color'>Day</span>. At <span class='night-color'>Night</span>, certain players secretly perform special actions; during <span class='day-color'>Day</span>, players discuss and vote to kill one player, or eliminate, one player. These phases alternate with each other until all mafioso have been eliminated or until the mafia outnumbers the citizens. <br /> Some players may be given roles with special abilities (Chosen by <span class='creator-color'>Game Creator</span>) <br /><br /> <span class='night-color'>Night:</span> All players close their eyes. The moderator then instructs all members of <span class='mafia-role'>The Mafia</span> to open their eyes and acknowledge their accomplices. They will pick a victim by silently gesturing to indicate their target and to show unanimity then close their eyes again. A similar process occurs for other roles with nightly actions. <br /><br /> <span class='day-color'>Day:</span> The moderator instructs players to open their eyes and announces what happened the previous night. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafioso and prompt others to vote to kill them. If over half of the players do so, the accused person is eliminated and <span class='night-color'>Night</span> begins. Otherwise, thos phase continues until a killing occurs. Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, <span class='day-color'>Days</span> tend to be longer than <span class='night-color'>Nights</span>."
+                    "desc1": "<strong>مافیا باز</strong> توسط ۲ تیم بازی می شود : <span class='mafia-role'> مافیا </span> و <span class='citizen-role'>  شهروندان </span>. بازی احتیاج به یک اجرا کننده داره ( <span class='creator-color'>گاد</span> ) که به عنوان بازیکن در بازی شرکت نمی کند. نقش ها و شخصیت ها توسط اپلیکیشن به بازیکنان اختصاص داده می شوند. در شروع بازی، مافیاها هم تیمی های خود را می شناسند ، در حالی که شهروندان فقط تعداد مافیای بازی را در بازی می دانند و اطلاعی ندارند کدام بازیکنان مافیا و کدام یک شهروند هستند. <br /> بازی ۲ فاز یا مرحله دارد: <span class='night-color'>شب</span> و <span class='day-color'>روز</span>. در <span class='night-color'>شب</span>، بعضی از بازیکنان مخفیانه اقدامات ویژه ای را انجام می دهند. در طی <span class='day-color'>روز</span>, بازیکنان بحث می کنند و برای کشتن یک بازیکن رای می دهند. این مراحل تکرار می شوند تا زمانی که همه مافیا ها از بین بروند یا اینکه مافیا بر شهروندان غلبه کند. <br /> ممکن است به بعضی از بازیکنان نقش هایی با توانایی های ویژه داده شود (که توسط <span class='creator-color'>گاد</span> انتخاب می شود) <br /><br /> <span class='night-color'>شب :</span> همه بازیکنان چشم هایشان را می بندند. سپس گاد اعلام می کند  <span class='mafia-role'>مافیا ها</span> چشم هایشان را باز کنند و همدیگر را بشناسند. مافیا ها به آرامی و طوری که بقیه متوجه نشوند، با دست فردی که می خواهند کشته شود را به گاد نشان می دهند و دوباره چشم هایشان را می بندند. این پروسه برای همه ی بازیکنانی که در شب اکشنی دارند، جدا جدا و به نوبت تکرار می شود. <br /><br /> <span class='day-color'>روز :</span> گاد از بازیکنان می خواهد چشم هایشان را باز کنند و اتفاقات شب گذشته را برای همه شرح می دهد. بحث در بین بازیکنانی که در بازی باقی مانده اند، آغاز می شود. هر جای بازی, در هرجای بازی، بازیکن ها می توانند به یکی مضنون شوند و بقیه را متقاعد کنند که به آن بازیکن رأی دهند. اگر نصف بازیکنان با کشتن آن فرد موافق باشند آن فرد از بازی می رود و <span class='night-color'>شب</span> آغاز می شود. در غیر این صورت ، این مرحله تا زمانی که یک نفر کشته شود، ادامه دارد. بازیکنانی بعد از مردن، اجازه ی هیچ گونه تاثیر گذاری در جریان بازی را ندارند. چون بازیکنان بیشتر در جریان بازی هم فکری و تبادل نظر می کنند  <span class='day-color'>روز ها</span> طولانی تر از <span class='night-color'>شب ها</span>می شوند."
                 },
                 {
                     "icon": "3.png",
-                    "titl1": "<span>Know more about Roles</span>",
-                    "desc1": "Different roles are making <strong>MafiaBuzz</strong> much funnier and more enjoyable. In below we are explaining about each role seperately:",
+                    "titl1": "<span>در مورد نقش ها و شخصیت های بازی بیشتر بدانید</span>",
+                    "desc1": "شخصیت های متنوع و بیشتر <strong>مافیا باز</strong> را هیجان انگیزتر و باحال تر می کند. در ادامه هر شخصیت را جداگانه توضیح می دهیم:",
                     "roles": true
                 }
             ]
@@ -184,130 +185,130 @@
         "plus": " اضافی است "
     },
     "god": {
-        "name": "God",
-        "gameDashboardIconAlt": "Game Dashboard Icon",
+        "name": "کاد",
+        "gameDashboardIconAlt": "آیکون داشبورد گاد",
         "killIcon": "reaper.png",
-        "killAction": "Killed",
+        "killAction": "کشته شد",
         "reviveIcon": "angel.png",
-        "reviveAction": "Revived",
-        "nightText": "Change to Night",
-        "dayText": "Change to Day",
-        "confirmText": "Go Next Phase",
-        "cancelText": "No, Stay Here!",
-        "gameStartText": "Okay<i>.</i><i>.</i><i>.</i> your game started!",
-        "godButton": "I'm God! Show me game details",
-        "selectPlaceholder": "choose player ...",
-        "actionHintText": "Please select the person who takes action:",
-        "actionHintText2": "Please select the second person:",
-        "cancelButton": "Cancel",
-        "confirmButton": "Action..!",
-        "skipButton": "Skip",
-        "skipButton2": "Yes, Skip it!",
-        "skipButton3": "Skip this action",
+        "reviveAction": "زنده شد",
+        "nightText": "تغییر زمان به شب",
+        "dayText": "تغییر زمان به صبح",
+        "confirmText": "برو به فاز بعدی",
+        "cancelText": "نه، همین جا بمون !",
+        "gameStartText": "خب<i>.</i><i>.</i><i>.</i> بازی شروع شد!",
+        "godButton": "من گاد هستم ! داشبورد رو نشون بده",
+        "selectPlaceholder": "انتخاب شخص ...",
+        "actionHintText": "بازیکنی که قراره اکشن روش انجام شه رو انتخاب کن :",
+        "actionHintText2": "نفر دوم رو انتخاب کن:",
+        "cancelButton": "انصراف",
+        "confirmButton": "انجام اکشن ..!",
+        "skipButton": "انصراف",
+        "skipButton2": "آره، برو اکشن بعدی!",
+        "skipButton3": "برو اکشن بعدی",
         "hackedIcon": "hacked.png",
         "deadIcon": "grave.png",
         "voteIcon": "vote.png",
         "peopleIcon": "people.png",
-        "mafiaPartyIconAlt": "Mafia Party Icon",
-        "lastPhaseText": "Please select who died last day with people's vote :",
+        "mafiaPartyIconAlt": "آیکون مافیاها",
+        "lastPhaseText": "انتخاب کن چه کسی دیشب توسط رأی گیری کشته شد ؟",
         "mafiaPartyIcon": "mafiaparty.png",
-        "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
+        "mafiaPartyText": "به مافیاها بگو چشماشونو باز کنن و همدیگرو ببینن",
         "mafiaPartyException": [
-            "<span>Drunk</span> should not wake up and just rise one hand to let others know him.",
-            "<span>Traitor</span> should not wake up at all."
+            "<span>مست</span> نباید چشماشو باز کنه و فقط دستشو میاره بالا که هم تیمیاش ببیننش.",
+            "<span>خیانتکار</span> به کل چشماشو باز نمی کنه."
         ],
-        "mafiaPartyButton": "Click when it's over",
-        "nightLogButton": "Show Night Log",
-        "historyLogButton": "Show Log History",
-        "noLog": "There is nothing to show yet!",
-        "logCloseButton": "Okay got it!",
-        "logWordUsed": "used",
-        "logWordOn": "on",
-        "logWordBut": "but",
-        "logWordAnd": "and",
-        "logWordHas": "has",
-        "logResult": "result is",
-        "logBeucase": "because of",
-        "logPassive": "passive activated",
-        "restartButton": "Restart Game",
-        "resetText": "Do you want to reset game with same roles?",
-        "resetTotalText": "Are you sure? Your selected roles and players will reset",
-        "skipText": "Do you want to skip this action for tonight?",
-        "thisNight": "Current Night",
-        "logDeadText": "has been killed !!!",
-        "logSilencedText": "has been silenced !!!",
-        "logRevivedText": "has been revived !!!",
-        "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action",
-        "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You can just call role to balance the game for remaining players",
-        "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
-        "hackedIconAlt": "Hacked Icon",
-        "deadIconAlt": "Dead Icon",
-        "revivedIconAlt": "Revived Icon",
-        "playerIconAlt": "Character Icon",
-        "peopleIconAlt": "People Icon",
-        "actionIconAlt": "Action Icon",
-        "passiveIconAlt": "Passive Icon",
-        "playerActionIconAlt": "Character Action Icon",
-        "actionQuestion1": "Ask",
-        "actionQuestion2": "to wake up and tell you the target for",
-        "lastNightTitle": "Tell people what happened last night",
-        "whatHappened": "What Happened Last Night",
+        "mafiaPartyButton": "کارت تموم شد؟ اینجا رو کلیک کن",
+        "nightLogButton": "نمایش اتفاقات شب",
+        "historyLogButton": "تاریخچه کل اتفاقات",
+        "noLog": "هنوز چیزی برای نمایش وجود نداره !",
+        "logCloseButton": "متوجه شدم !",
+        "logWordUsed": "استفاده شده",
+        "logWordOn": "روی",
+        "logWordBut": "اما",
+        "logWordAnd": "و",
+        "logWordHas": "دارد",
+        "logResult": "نتیجه",
+        "logBeucase": "بدلیل",
+        "logPassive": "قابلیت فعال شد",
+        "restartButton": "راه اندازی مجدد بازی",
+        "resetText": "آیا می خواهید بازی را با همان نقش ها راه اندازی مجدد کنید؟",
+        "resetTotalText": "مطمئنی ؟ در این حالت نقش ها و بازیکنان انتخابی قبلی شما، تغییر می کنند . نیاز به تنظیم مجدد دارند.",
+        "skipText": "آیا می خواهید امشب این عملیات را انجام ندهید ؟",
+        "thisNight": "شب جاری",
+        "logDeadText": "کشته شده !!!",
+        "logSilencedText": "ساکت شده !!!",
+        "logRevivedText": "زنده شده !!!",
+        "hackedPerson": " <span class='hack-color'>هک</span>شده ...!!! فقط بیدارش کن اما قادر به انجام هیچ عملیاتی نیست.",
+        "deadPerson": " <span class='dead-color'>مرده</span>...!!! می تونی برای اینکه مردنش برای بقیه لو نره الکی تو شب اسمش رو صدا کنی.",
+        "revivedPerson": " <span class='dead-color'>زنده شده</span>...! ولی قدرتی که قبلا داشته نداره (نرمال یا مافیای بدون قدرت است)",
+        "hackedIconAlt": "آیکون هک شده",
+        "deadIconAlt": "آیکون مرده",
+        "revivedIconAlt": "آیکون زنده شده",
+        "playerIconAlt": "آیکون بازیکن",
+        "peopleIconAlt": "آیکون مردم",
+        "actionIconAlt": "آیکون اکشن",
+        "passiveIconAlt": "آیکون مثبت",
+        "playerActionIconAlt": "آیکون اکشن بازیکن",
+        "actionQuestion1": "بپرس",
+        "actionQuestion2": "بیدار شو و هدف رو بگو",
+        "lastNightTitle": "به بازیکنان توضیح بده شب گذشته چی شد",
+        "whatHappened": "اتفاقات شب گذشته",
         "dashboardHint": [
             {
                 "name": "killer",
-                "hint": "Kill Player by God's power"
+                "hint": "با قدرت گاد ، یک بازیکن را بکشید"
             },
             {
                 "name": "angel",
-                "hint": "Bring back Player to life by God's power"
+                "hint": "با قدرت گاد ، بازیکن مرده ای را به زندگی برگردانید"
             },
             {
                 "name": "passive",
-                "hint": "Player has passive only."
+                "hint": "بازیکن فقط قدرت بدون اکشن دارد."
             },
             {
                 "name": "pending-action",
-                "hint": "Player has action but not used."
+                "hint": "بازیکن اکشنی دارد که هنوز استفاده نکرده."
             },
             {
                 "name": "done-action",
-                "hint": "Player's action has been used."
+                "hint": "اکشن بازیکن استفاده شده."
             },
             {
                 "name": "disabled",
-                "hint": "Player has no action or passive."
+                "hint": "بازیکن هیچ اکشن و قدرتی ندارد."
             },
             {
                 "name": "healed-icon",
-                "hint": "Player has been healed and couldn't get kill this night"
+                "hint": "این بازیکن را نتونستند بکشند چون درمان شده"
             },
             {
                 "name": "linked-icon",
-                "hint": "Player has been linked to another player and when one of them dies, the other dies aswell"
+                "hint": "بازیکن به یک بازیکن دیگه متصل شده و اگر یکیشون کشته بشه هر ۲ می میرند."
             },
             {
                 "name": "silenced-icon",
-                "hint": "Player has been silenced and can't talk during next day"
+                "hint": "بازیکن ساکت شده و در طول روز نمی تواند حرف بزند."
             },
             {
                 "name": "hacked-icon",
-                "hint": "Player is hacked and can't use action or passive this night"
+                "hint": "بازیکن هک شده و امشب اکشنی نمی تواند انجام دهد و قدرتی هم ندارد."
             },
             {
                 "name": "dead-icon",
-                "hint": "Player is dead!"
+                "hint": "بازیکن مرده !"
             },
             {
                 "name": "invisible-icon",
-                "hint": "Player is invisible and cannot be detected by Detective"
+                "hint": "این بازیکن توسط کارآگاه شناسایی نمی شود."
             },
             {
                 "name": "shield-icon",
-                "hint": "Player has shield that prevents one death at night"
+                "hint": "بازیکن سپر داره و این سپر یک شب مانع مرگش می شه."
             }
         ],
-        "rgwRoles": "Restart game with same roles",
-        "resetGame": "Start a new game"
+        "rgwRoles": "راه اندازی مجدد بازی با همین نقش ها",
+        "resetGame": "شروع بازی جدید"
     },
     "roles": [
         {
@@ -489,34 +490,34 @@
     ],
     "replacingRoles": {
         "loading": {
-            "name": "Loading",
+            "name": "در حال لود شدن",
             "icon": "loader.svg",
-            "alt": "Loading Icon",
+            "alt": "آیکون لود شدن",
             "description": "..."
         },
         "default": {
-            "name": "Default",
+            "name": "پیش فرض",
             "icon": "default.png",
-            "alt": "Default Icon",
+            "alt": "آیکون پیش فرض",
             "description": "..."
         },
         "preTarget": {
-            "name": "Person ?",
+            "name": "شخص ?",
             "icon": "default.png",
-            "alt": "Default Icon",
+            "alt": "آیکون پیش فرض",
             "description": "...",
-            "role": "Default"
+            "role": "پیش فرض"
         },
         "miniYakuza": {
-            "name": "Mini Yakuza",
+            "name": "یاکوزای کوچک",
             "icon": "ninja.png",
-            "alt": "Ninja Icon",
+            "alt": "آیکون یاکوزای کوچک",
             "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself"
         },
         "skeleton": {
-            "name": "Skeleton",
+            "name": "اسکلت",
             "icon": "skeleton.png",
-            "alt": "Skeleton Icon",
+            "alt": "آیکون اسکلت",
             "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
         }
     }

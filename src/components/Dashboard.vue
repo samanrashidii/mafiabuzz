@@ -2,12 +2,12 @@
     <div class="dashboard">
         <div class="dashboard-header">
             <div class="title">
-                <h2 class="has-xsmall-bottom-margin" v-html="$t('pages.creator.dashboardTitle')"></h2>
+                <h2 v-html="$t('pages.creator.dashboardTitle')"></h2>
             </div>
-            <div v-if="StepCounter != 3 && !GameReset">
+            <div class="has-xsmall-top-margin" v-if="StepCounter != 3 && !GameReset">
                 <app-button @click.native="alertBox = true, totRestart = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
             </div>
-            <div v-else-if="StepCounter != 3 && GameReset">
+            <div class="has-xsmall-top-margin" v-else-if="StepCounter != 3 && GameReset">
                 <app-button @click.native="alertBox = true, totRestart = true" class="danger"><span>{{$t('pages.creator.restartGame')}}</span></app-button>
             </div>
         </div>
@@ -42,7 +42,8 @@
             </div>
             <div class="step-box display autoheight" v-if="StepCounter == 2" key="step2">
                 <div class="inner-display">
-                    <p>{{$t('pages.creator.passMobile')}}</p>
+                    <p v-if="!showrole">{{$t('pages.creator.passMobile')}}</p>
+                    <p v-else>{{$t('pages.creator.gotMobile')}}</p>
                     <div v-for="(role, index) in gameRoles" :key="index">
                         <div v-if="(index+1) == personNumb">
                             <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{role.player}}</strong>

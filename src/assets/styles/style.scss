@@ -1414,12 +1414,27 @@ body{
     font-size: $font_size_5;
 }
 
+select{
+    line-height: 38px;
+    background-position-x: 15px;
+}
+
 .roles li label{font-size: $font_size_6 !important;}
 
 .start-bttn span{
-    padding:5px 35px 5px 5px;
+    padding: 5px 35px 5px 5px;
     margin-top:-4px;
-    background-position-x: right;
+    background-position-x: 99%;
+}
+
+.settings-bttn span{
+    padding:3px 31px 5px 5px;
+    background-position-x: 99%;
+}
+
+.swap-bttn span{
+    padding:3px 28px 5px 5px;
+    background-position-x: 99%;
 }
 
 .welcome strong{
@@ -1427,6 +1442,59 @@ body{
     font-size: 34px;
 }
 
-#app .navigation.internal{height: 66px;}
-#app .navigation.internal nav a{font-size: $font_size_4;}
+#app .navigation.internal{
+    height: 66px;
+    nav a{
+        font-size: $font_size_4;
+    }
+}
 #app > div:not(.navigation){padding-top:66px;}
+#app .navigation nav a{font-size: 21px;}
+.step-box,
+.page-box{
+    h3{font-size: 22px;}
+    p{font-size: $font_size_3;}
+}
+
+p,
+.info-box p{font-size: $font_size_3 !important;}
+
+a.bttn{font-size: $font_size_4;}
+
+.character-power span i{
+    line-height: 25px;
+    padding-right: 1px;
+}
+
+.creators li a strong{font-size: 24px !important;}
+
+.error-bullet li{
+    text-align: right;
+    &::before{
+        margin:0 0 0 5px;
+    }
+}
+
+.table table tr td:first-child{text-align: right !important;}
+.table table tr td img{margin:0 0 0 4px !important;}
+
+.predefined{
+    right:auto;
+    left:16px;
+    padding:6px 10px 5px 35px;
+}
+
+.step-box.display .inner-display strong,
+.page-box.display .inner-display strong{
+    line-height: 1.2;
+    font-size: 44px;
+    font-weight: bold;
+}
+
+.step-box.display .inner-display .role-info,
+.page-box.display .inner-display .role-info{font-size: $font_size_10;}
+
+.table table tr td input,
+.log-bttn i{line-height: 23px;}
+
+.dashboard-hint li{font-size: $font_size_2;}
