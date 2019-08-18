@@ -120,6 +120,7 @@
             "dashboardTitle": "<span>God</span> Dashboard",
             "chooseNameHint": "Please write the name of each person:",
             "passMobile": "Please pass device to next person:",
+            "gotMobile": "Please see your role carefully :",
             "beforeShowButton": "Show me my role !",
             "afterShowButton": "Ok got it"
         },
