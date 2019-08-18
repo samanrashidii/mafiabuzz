@@ -737,6 +737,7 @@ export default {
             if(this.log.target != null && Object.keys(info.targetInfo).length > 0){
                 let attacker = info.ability;
                 let attackerID = info.id;
+                let attackerStatus = info.status;
                 let defender = info.targetInfo;
                 let defenderAbility = defender.ability;
                 let defenderID = defender.id;
@@ -744,7 +745,7 @@ export default {
                 let healed = defender.status.healed;
                 let shield = defender.status.shield;
                 let hacked = defender.status.hacked;
-                let damageReturned = defender.damageReturned;
+                let damageReturned = defender.status.damageReturned;
                 // Check not being cupid and second selectmenu is turned off
                 if(!(attacker.binder && this.log.target2 == null)){
                     this.log.id = this.info.id;
@@ -840,7 +841,15 @@ export default {
                         }
                         // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
                         if(defenderAbility.returner && element.id == defenderID && !attacker.binder && !attacker.hacker){
-                            this.passiveCalc(element);
+                            if(attackerStatus.linked){
+                                this.finalPlayers.forEach(element => {
+                                    if(element.status.linked){
+                                        element.status.dead = true;
+                                        element.status.recentlyDead = true;
+                                    }
+                                });
+                            }
+                            this.passiveCalc(element, attackerStatus);
                         }
                         // Godfather and Mafia Targets -- Kill if not Healed
                         if(attacker.killer && !healed){
@@ -870,9 +879,15 @@ export default {
                                     this.passiveCalc(element);
                                 }
                                 // Cupid Targets | Status
-                                if(linked && element.status.linked && !element.status.healed){
+                                if(linked && !element.status.healed && element.id == defenderID){
                                     element.status.dead = true;
                                     element.status.recentlyDead = true;
+                                    this.finalPlayers.forEach(element => {
+                                        if(element.status.linked){
+                                            element.status.dead = true;
+                                            element.status.recentlyDead = true;
+                                        }
+                                    });
                                 }
                             }
                             

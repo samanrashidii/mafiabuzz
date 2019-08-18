@@ -1487,7 +1487,7 @@ a.bttn{font-size: $font_size_4;}
 .step-box.display .inner-display strong,
 .page-box.display .inner-display strong{
     line-height: 1.2;
-    font-size: 44px;
+    font-size: 34px;
     font-weight: bold;
 }
 
@@ -1498,3 +1498,22 @@ a.bttn{font-size: $font_size_4;}
 .log-bttn i{line-height: 23px;}
 
 .dashboard-hint li{font-size: $font_size_2;}
+
+.player-box-holder{direction: ltr;}
+
+table tr.love-bind td:nth-child(1)::before{
+    right:auto;
+    left:-13px;
+}
+
+.log-table table td:last-child{text-align: right !important;}
+
+.last-log{
+    text-align: right;
+    padding:9px 48px 5px 8px;
+    background-position-x: 96%;
+}
+
+.overlay.last-night h2{font-size: $font_size_8 !important;}
+
+.log-events span{margin:0 2px;}
