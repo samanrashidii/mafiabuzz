@@ -1420,6 +1420,7 @@ select{
 }
 
 .roles li label{font-size: $font_size_6 !important;}
+.roles li .number-control span{line-height: 34px !important;}
 
 .start-bttn span{
     padding: 5px 35px 5px 5px;
@@ -1494,13 +1495,17 @@ a.bttn{font-size: $font_size_4;}
 .step-box.display .inner-display .role-info,
 .page-box.display .inner-display .role-info{font-size: $font_size_10;}
 
-.table table tr td input,
-.log-bttn i{line-height: 23px;}
-
 .dashboard-hint li{font-size: $font_size_2;}
 
 .player-box-holder{direction: ltr;}
 
+.table table tr td input,
+.log-bttn i{line-height: 23px;}
+
+table tr td:nth-child(1)::before{
+    right:auto;
+    left:4px;
+}
 table tr.love-bind td:nth-child(1)::before{
     right:auto;
     left:-13px;

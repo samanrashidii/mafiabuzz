@@ -472,7 +472,7 @@
             "description": "Night King is one of Citizens, He can ressurect one person each night and make that person one of his skeletons (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
             "actionIcon": "nightking.png",
             "action": {
-                "passive": "Kill Minions OnDead",
+                "passive": "Kill Minions on Dead",
                 "action": "Resurrect"
             }
         },

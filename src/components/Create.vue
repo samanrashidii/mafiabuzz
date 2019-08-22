@@ -199,5 +199,3 @@ export default {
 button{background-color:$creator_color;}
 
 </style>
-
-
