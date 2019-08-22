@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import checkGameMode from '@/mixins/checkGameMode';
 import {mapGetters} from 'vuex';
 export default {
     data(){
@@ -82,8 +82,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-
-</style>

@@ -47,7 +47,6 @@
 </template>
 
 <script>
-import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
@@ -58,6 +57,7 @@ import Roles from '@/components/Roles.vue';
 import StepBox from '@/components/StepBox.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
+import checkGameMode from '@/mixins/checkGameMode';
 import {mapGetters, mapActions} from 'vuex';
 export default {
     data(){

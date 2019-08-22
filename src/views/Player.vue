@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import checkGameMode from '@/mixins/checkGameMode';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import checkGameMode from '@/mixins/checkGameMode';
 export default {
     data(){
         return {
@@ -56,9 +56,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-
-
-</style>
