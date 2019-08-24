@@ -18,9 +18,7 @@ import getImg from '@/mixins/getImg';
 import {mapGetters} from 'vuex';
 export default {
     props:{
-        tableData:{
-            type: Array
-        }
+        tableData: Array
     },
     mixins: [getImg]
 }

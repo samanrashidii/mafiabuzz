@@ -19,9 +19,7 @@
 <script>
 export default {
     props:{
-        power:{
-            type: Object,
-        },
+        power: Object,
         mafia:{
             type: Number,
             default: 0

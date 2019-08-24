@@ -18,18 +18,10 @@ export default {
         this.selectVal = this.default;
     },
     props: {
-        index: {
-            type: Number
-        },
-        value: {
-            type: Number
-        },
-        margin: {
-            type: Number
-        },
-        default: {
-            type: Number
-        }
+        index: Number,
+        value: Number,
+        margin: Number,
+        default: Number
     },
     methods: {
         calcVal(){

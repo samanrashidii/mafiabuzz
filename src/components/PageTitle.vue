@@ -15,9 +15,7 @@ export default {
         underConstruction: UnderConstruction,
     },
     props: {
-        checkMode: {
-            type: Object
-        }
+        checkMode: Object
     }
 }
 </script>
