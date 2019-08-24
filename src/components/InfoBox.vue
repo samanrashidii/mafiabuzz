@@ -15,9 +15,7 @@
 import getImg from '@/mixins/getImg';
 export default {
     props: {
-        info : {
-            type : Object
-        }
+        info : Object
     },
     mixins: [getImg]
 }

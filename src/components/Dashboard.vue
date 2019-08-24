@@ -69,11 +69,12 @@
 <script>
 import God from '@/components/God.vue';
 import Overlay from '@/components/Overlay.vue';
+import getImg from '@/mixins/getImg';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
-  data(){
-      return {
+    data(){
+        return {
             personNumb : 1,
             players : [],
             ready: false,
@@ -83,35 +84,39 @@ export default {
             alertBox: false,
             totRestart: false,
         }
-   },
-  computed:{
-    ...mapGetters([
-        'SelectedRoles',
-        'gameStatus',
-        'Numbers',
-        'StepCounter',
-        'GameReset'
-    ]),
-    checkLocalStorage(){
-        if(localStorage.savedPlayers && localStorage.savedPlayers.length > 0){
-            return true;
-        } else{
-            return false;
-        }
     },
-    gameRoles(){
-        return this.SelectedRoles;
+    components:{
+      god : God,
+      overlay: Overlay,
     },
-  },
-  methods:{
-    ...mapActions([
-        'setGame',
-        'setStep',
-    ]),
-    assignRoles(){
-        let gR = this.gameRoles;
-        let pL = this.players;
-        let checkPlayersInput = pL.filter(function(item, index){
+    computed:{
+        ...mapGetters([
+            'SelectedRoles',
+            'gameStatus',
+            'Numbers',
+            'StepCounter',
+            'GameReset'
+        ]),
+        checkLocalStorage(){
+            if(localStorage.savedPlayers && localStorage.savedPlayers.length > 0){
+                return true;
+            } else{
+                return false;
+            }
+        },
+        gameRoles(){
+            return this.SelectedRoles;
+        },
+    },
+    methods:{
+        ...mapActions([
+            'setGame',
+            'setStep',
+        ]),
+        assignRoles(){
+            let gR = this.gameRoles;
+            let pL = this.players;
+            let checkPlayersInput = pL.filter(function(item, index){
             return pL.indexOf(item) >= index;
         });
         if(pL.length == gR.length && checkPlayersInput.length == pL.length){
@@ -135,79 +140,76 @@ export default {
             this.setStep(2);
         }
         localStorage.savedPlayers = pL;
-    },
-    getImgUrl(pic) {
-        return require(`@/assets/images/roles/${pic}`);
-    },
-    goToPage(obj){
-        this.$router.push(obj);
-    },
-    handlePredefine(){
-        if(this.showPredefined == false){
-            this.preDefined();
-            this.showPredefined = true;
-            this.showSavedNames = false;
-        } else{
-            this.players = [];
-            this.showPredefined = false;
-            this.showSavedNames = true;
-        }
-    },
-    handleSavedNames(){
-        if(this.showSavedNames == false){
-            let $savedPlayers = localStorage.savedPlayers.split(",");
-            this.players = $savedPlayers;
-            if(this.SelectedRoles.length < this.players.length){
-                // Should Test
-                Vue.set(this.players, index, this.SelectedRoles.length);
-                this.players.length = this.SelectedRoles.length;
+        },
+        getImgUrl(pic) {
+            return require(`@/assets/images/roles/${pic}`);
+        },
+        goToPage(obj){
+            this.$router.push(obj);
+        },
+        handlePredefine(){
+            if(this.showPredefined == false){
+                this.preDefined();
+                this.showPredefined = true;
+                this.showSavedNames = false;
+            } else{
+                this.players = [];
+                this.showPredefined = false;
+                this.showSavedNames = true;
             }
-            this.showPredefined = false;
-            this.showSavedNames = true;
-        } else{
-            this.players = [];
-            this.showPredefined = true;
-            this.showSavedNames = false;
-        }
-    },
-    nextPerson(){
-        this.showrole = false;
-        if(this.personNumb == this.gameRoles.length){
-            this.setStep(3);
-        } else{
-            this.personNumb++;
-        }
-    },
-    preDefined(){
-        this.SelectedRoles.forEach((element,index) => {
-            this.players.push(`Player ${index+1}`);
-        });
-    },
-    randomFunc(tg){
-        tg.forEach(element => {
-            for (let i = tg.length - 1; i >= 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [tg[i], tg[j]] = [tg[j], tg[i]];
-                [tg[j], tg[i]] = [tg[i], tg[j]];
-                [tg[i], tg[j]] = [tg[j], tg[i]];
+        },
+        handleSavedNames(){
+            if(this.showSavedNames == false){
+                let $savedPlayers = localStorage.savedPlayers.split(",");
+                this.players = $savedPlayers;
+                if(this.SelectedRoles.length < this.players.length){
+                    // Should Test
+                    Vue.set(this.players, index, this.SelectedRoles.length);
+                    this.players.length = this.SelectedRoles.length;
+                }
+                this.showPredefined = false;
+                this.showSavedNames = true;
+            } else{
+                this.players = [];
+                this.showPredefined = true;
+                this.showSavedNames = false;
             }
-        });
-        return tg;
+        },
+        nextPerson(){
+            this.showrole = false;
+            if(this.personNumb == this.gameRoles.length){
+                this.setStep(3);
+            } else{
+                this.personNumb++;
+            }
+        },
+        preDefined(){
+            this.SelectedRoles.forEach((element,index) => {
+                this.players.push(`Player ${index+1}`);
+            });
+        },
+        randomFunc(tg){
+            tg.forEach(element => {
+                for (let i = tg.length - 1; i >= 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [tg[i], tg[j]] = [tg[j], tg[i]];
+                    [tg[j], tg[i]] = [tg[i], tg[j]];
+                    [tg[i], tg[j]] = [tg[j], tg[i]];
+                }
+            });
+            return tg;
+        },
+        resetGame(){
+            this.setGame(false);
+            this.setStep(1);
+        },
+        restartGame(){
+            this.$router.push({name:'home'});
+            setTimeout(() => {
+                this.$router.go();
+            }, 150);
+        }
     },
-    resetGame(){
-        this.setGame(false);
-        this.setStep(1);
-    },
-    restartGame(){
-        this.$router.push({name:'home'});
-        setTimeout(() => {
-            this.$router.go();
-        }, 150);
-    }
-  },
-  components:{
-      god : God,
-      overlay: Overlay,
-  }
+    mixins: [getImg]
 }
 </script>

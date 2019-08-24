@@ -15,15 +15,9 @@
 <script>
 export default {
     props: {
-        errorStatus:{
-            type: Object
-        },
-        mafiaNumbers:{
-            type: Number
-        },
-        citizenNumbers:{
-            type: Number
-        }
+        errorStatus: Object,
+        mafiaNumbers: Number,
+        citizenNumbers: Number
     }
 }
 </script>

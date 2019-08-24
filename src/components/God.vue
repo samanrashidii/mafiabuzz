@@ -24,7 +24,7 @@
                             <div class="table-cell-display">
                                 <!-- Last Phase Action -->
                                 <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
-                                    <img :src="getImgUrl($t('god.voteIcon'))" :alt="$t('god.deadIconAlt')" />
+                                    <img :src="getImgUrl('roles', $t('god.voteIcon'))" :alt="$t('god.deadIconAlt')" />
                                     <p>{{$t('god.lastPhaseText')}}</p>
                                     <select name="action_target" v-model="log.target">
                                         <option :value="null" disabled>{{$t('god.selectPlaceholder')}}</option>
@@ -35,7 +35,7 @@
                                 </template>
                                 <!-- Last Phase Action -->
                                 <template v-else-if="dashboard.mafiaParty && dashboard.round == 1">
-                                    <img :src="getImgUrl($t('god.mafiaPartyIcon'))" :alt="$t('god.mafiaPartyIconAlt')" />
+                                    <img :src="getImgUrl('roles', $t('god.mafiaPartyIcon'))" :alt="$t('god.mafiaPartyIconAlt')" />
                                     <p class="site-color">{{$t('god.mafiaPartyText')}}</p>
                                     <ul class="error-bullet type-2">
                                         <li v-for="(mp, index) in $t('god.mafiaPartyException')" :key="index" v-html="mp"></li>
@@ -63,7 +63,7 @@
                             <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t('god.hackedIcon'))" :alt="$t('god.hackedIconAlt')" />
+                                        <img :src="getImgUrl('roles', $t('god.hackedIcon'))" :alt="$t('god.hackedIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.hackedPerson')"></strong></p>
                                         <app-button class="purple" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -73,8 +73,8 @@
                             <div class="action-overlay dead-overlay" v-else-if="targetDead" key="deadTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t('god.deadIcon'))" :alt="$t('god.deadIconAlt')" />
-                                        <img class="overlap" :src="getImgUrl($t(info.icon2))" :alt="$t('god.playerIconAlt')" />
+                                        <img :src="getImgUrl('roles', $t('god.deadIcon'))" :alt="$t('god.deadIconAlt')" />
+                                        <img class="overlap" :src="getImgUrl('roles', $t(info.icon2))" :alt="$t('god.playerIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.deadPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -84,7 +84,7 @@
                             <div class="action-overlay dead-overlay" v-else-if="targetRevived" key="revivedTarget">
                                 <div class="table-display">
                                     <div class="table-cell-display">
-                                        <img :src="getImgUrl($t(info.icon2))" :alt="$t('god.revivedIconAlt')" />
+                                        <img :src="getImgUrl('roles', $t(info.icon2))" :alt="$t('god.revivedIconAlt')" />
                                         <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}} </span> <strong v-html="$t('god.revivedPerson')"></strong></p>
                                         <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
                                     </div>
@@ -95,14 +95,14 @@
                         <p>{{$t('god.actionQuestion1')}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{$t(info.name2)}} </span> {{$t('god.actionQuestion2')}} <strong>{{$t(info.action)}}</strong> ?</p>
                         <div class="player-box-holder has-small-bottom-margin">
                             <div class="player-box">
-                                <img :src="getImgUrl($t(info.icon2))" :alt="$t('god.playerIconAlt')"  />
+                                <img :src="getImgUrl('roles', $t(info.icon2))" :alt="$t('god.playerIconAlt')"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
                             </div>
                             <div class="arrow">
-                                <img class="action-image" :src="getActionImgUrl($t(info.actionIcon))" :alt="$t('god.playerActionIconAlt')" />
+                                <img class="action-image" :src="getImgUrl('actions', $t(info.actionIcon))" :alt="$t('god.playerActionIconAlt')" />
                             </div>
                             <div class="player-box">
-                                <img :src="getImgUrl($t(info.targetIcon))" :alt="$t('god.playerIconAlt')"  />
+                                <img :src="getImgUrl('roles', $t(info.targetIcon))" :alt="$t('god.playerIconAlt')"  />
                                 <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
                             </div>
                         </div>
@@ -127,9 +127,9 @@
                 <!-- Log Actions During Night -->
                 <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
                     <div class="log-action">
-                        <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                        <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
-                        <log-events :log="log"></log-events>
+                        <img :src="getImgUrl('actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                        <img :src="getImgUrl('roles', $t(log.passiveIcon))" :alt="log.target" v-else />
+                        <log-events v-if="readyToLog" :log="log"></log-events>
                     </div>
                 </overlay>
             </div>
@@ -156,11 +156,11 @@
                         <tr v-for="(log, index) in totLog" :key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                                <img :src="getImgUrl($t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
+                                <img :src="getImgUrl('actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                                <img :src="getImgUrl('roles', $t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
                             </td>
                             <td>
-                                <log-events :log="log"></log-events>
+                                <log-events v-if="readyToLog" :log="log"></log-events>
                             </td>
                         </tr>
                     </table>
@@ -172,11 +172,11 @@
                     <tr v-for="(log, index) in historyLog" :key="index">
                         <td>{{index+1}}</td>
                         <td>
-                            <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
+                            <img :src="getImgUrl('actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                            <img :src="getImgUrl('roles', $t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
                         </td>
                         <td>
-                            <log-events :log="log"></log-events>
+                            <log-events v-if="readyToLog" :log="log"></log-events>
                         </td>
                     </tr>
                 </table>
@@ -190,7 +190,7 @@
         <!-- Last Night Log -->
 
         <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
-            <img :src="getImgUrl($t('god.peopleIcon'))" :alt="$t('god.peopleIconAlt')">
+            <img :src="getImgUrl('roles', $t('god.peopleIcon'))" :alt="$t('god.peopleIconAlt')">
             <h2>{{$t('god.lastNightTitle')}}</h2>
             <ul>
                 <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
@@ -229,7 +229,7 @@
                                     <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
                                         <td>
                                             <a @click="showInfo(fM)" href="javascript:void(0)">
-                                                <img :src="getImgUrl($t(fM.icon))" :alt="$t(fM.alt)" /> {{$t(fM.name)}}
+                                                <img :src="getImgUrl('roles', $t(fM.icon))" :alt="$t(fM.alt)" /> {{$t(fM.name)}}
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fM.player}}</span></td>
@@ -258,7 +258,7 @@
                                     <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
                                         <td>
                                             <a @click="showInfo(fC)" href="javascript:void(0)">
-                                                <img :src="getImgUrl($t(fC.icon))" :alt="$t(fC.alt)" /> {{$t(fC.name)}}
+                                                <img :src="getImgUrl('roles', $t(fC.icon))" :alt="$t(fC.alt)" /> {{$t(fC.name)}}
                                             </a>
                                         </td>
                                         <td><span class="character-player">{{fC.player}}</span></td>
@@ -281,8 +281,8 @@
                                 <table>
                                     <tr v-for="(log, index) in historyLog" :key="index">
                                         <td>
-                                            <img :src="getActionImgUrl($t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                                            <img :src="getImgUrl($t(log.passiveIcon))" :alt="log.target" v-else />
+                                            <img :src="getImgUrl('actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
+                                            <img :src="getImgUrl('roles', $t(log.passiveIcon))" :alt="log.target" v-else />
                                         </td>
                                         <td>
                                             <log-events v-if="readyToLog" :log="log"></log-events>
@@ -341,6 +341,7 @@
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import Log from '@/components/Log.vue';
+import getImg from '@/mixins/getImg';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 export default {
@@ -397,6 +398,11 @@ export default {
         this.fMafias = this.finalPlayers.filter(x => x.mafia == true);
         this.fCitizens = this.finalPlayers.filter(x => x.mafia == false);
     },
+    components: {
+        overlay: Overlay,
+        infoBox: InfoBox,
+        logEvents: Log,
+    },
     computed:{
         ...mapGetters([
             'Dashboard',
@@ -429,6 +435,7 @@ export default {
                     passiveIcon: "replacingRoles.loading.icon",
                     attacker: null,
                     target: null,
+                    targetInfo: {},
                     targetRole: "replacingRoles.preTarget.role",
                     targetPassive: 'none',
                     targetID: 0,
@@ -756,6 +763,7 @@ export default {
                     this.log.status = this.info.status;
                     this.log.actionIcon = this.info.actionIcon;
                     this.log.mafia = this.info.mafia;
+                    this.log.targetInfo = this.info.targetInfo;
                     this.log.targetRole = this.info.targetRole;
                     this.log.targetMafia = this.info.targetMafia;
                     this.log.targetPassive = this.info.targetPassive;
@@ -942,14 +950,6 @@ export default {
                 this.readyToLog = true;
             }
         },
-        // Get Action Image
-        getActionImgUrl(pic) {
-            return require(`@/assets/images/actions/${pic}`);
-        },
-        // Get Role Image
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
         // Kill Last Phase Target
         killByVote(target){
             this.SelectedRoles.forEach(element => {
@@ -1074,11 +1074,7 @@ export default {
             this.nextAction(0,0);
         }
     },
-    components: {
-        overlay: Overlay,
-        infoBox: InfoBox,
-        logEvents: Log,
-    },
+    mixins: [getImg]
 }
 
 </script>

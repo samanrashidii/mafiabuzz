@@ -6,7 +6,7 @@
                 <input @change="checkRoles(role.id, index), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
-                        <img :src="getImgUrl($t(role.icon))" :alt="$t(role.alt)" />
+                        <img :src="getImgUrl('roles', $t(role.icon))" :alt="$t(role.alt)" />
                         <strong>{{$t(role.name)}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
                     </div>
                 </label>
@@ -24,9 +24,10 @@
 </template>
 
 <script>
+import InfoBox from '@/components/InfoBox.vue';
+import getImg from '@/mixins/getImg';
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
-import InfoBox from '@/components/InfoBox.vue';
 export default {
     data(){
         return {
@@ -146,9 +147,6 @@ export default {
         emitRoles(){
             this.$emit('selectedRoles', this.selectedRoles);
         },
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
         incrNumber(role){
             let targetRole;
             if(role.id == 1){
@@ -173,7 +171,8 @@ export default {
             this.info.mafia = role.mafia;
             this.info.show == false ? this.info.show = true : this.info.show = false;
         }
-    }
+    },
+    mixins: [getImg]
 }
 </script>
 
@@ -236,6 +235,7 @@ export default {
             font-size: 24px;
             color:$black_color;
             text-align: center;
+            transition:all .2s;
             cursor: pointer;
             background-color: $color_1;
             border-radius: 50%;
