@@ -1,3 +1,3 @@
-# MafiaWars
+# MafiaBuzz
 
-See this App on web [MafiaWars](https://www.mafiawars.app).
+See this App on web [MafiaBuzz](https://www.mafiabuzz.com).

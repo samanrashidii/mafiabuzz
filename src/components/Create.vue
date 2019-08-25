@@ -1,112 +1,64 @@
 <template>
     <div class="create">
         <div class="dashboard-header">
-            <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Creator.gameModeButton}}</span></router-link>
-            </div>
-            <div class="title">
-                <template v-if="checkGameMode()">
-                    <h2 v-html="Creator.title"></h2>
-                    <p v-html="Creator.subtitle"></p>
-                </template>
-                <!-- Under Construction -->
-                <template v-else>
-                    <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2>We are <span>Sorry</span></h2>
-                    <p>This mode is under construction ...!!!</p>
-                </template>
-            </div>
+            <change-game-mode />
+            <welcome-box />
+            <page-title :checkMode="checkGameMode()" />
         </div>
-        <template v-if="checkGameMode()">
-            <form action="#" method="POST" accept-charset="utf-8" name="game_settings" class="game_settings">
-                <div class="steps">
-                    <div class="step-box">
-                        <span class="step-number">1</span>
-                        <label for="quantity" v-html="Creator.step1"></label>
-                        <select name="quantity" id="quantity" v-model="gameSettings.unit">
-                            <option v-for="n in Creator.maxPlayers" :key="n">{{n + Creator.playerMargin}}</option>
-                        </select>
-                    </div>
-                    <div class="step-box">
-                        <span class="step-number">2</span>
-                        <label for="mafia_number" v-html="Creator.step2"></label>
-                        <select name="mafia_number" id="mafia_number" v-model.number="gameSettings.mafia">
-                            <option v-for="n in calcMafia" :key="n">{{n+1}}</option>
-                        </select>
-                    </div>
-                    <div class="step-box">
-                        <span class="step-number">3</span>
-                        <label for="day_time" v-html="Creator.step3"></label>
-                        <select name="day_time" id="mafia_number" v-model.number="gameSettings.time">
-                            <option v-for="n in Creator.totalTime" :key="n">{{n+4}}</option>
-                        </select>
-                    </div>
-                    <div class="step-box">
-                        <span class="step-number">4</span>
-                        <label v-html="Creator.step4"></label>
-                        <ul class="note">
-                            <li>Day phase will take <span class="day-color">{{gameSettings.time}}</span> minutes long.</li>
-                            <li>Mafia characters have <span class="mafia-role">red color</span> and you can choose <i class="mafia-role">{{gameSettings.mafia}}</i> of them.</li>
-                            <li>Citizen characters have <strong class="citizen-role">blue color</strong> and you can choose <i class="citizen-role">{{gameSettings.citizens}}</i> of them.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <roles @selectedRoles="gameSettings.roles = $event"></roles>
-
-                <app-button @click.native="checkGame()" class="active start-bttn"><span>{{Creator.start}}</span></app-button>
-
-                <overlay :class="{'active': overlay,'dialog': isValid}">
-                    <template v-if="isValid">
-                        <img class="has-bottom-margin" :src="require(`@/assets/images/icons/not-valid.png`)" alt="Not Valid Icon" />
-                        <ul class="error-bullet">
-                            <li v-if="error.mafia">
-                                You have chosen <span>{{gameSettings.mafia}}</span> Mafia characters but selected <i class="mafia-role">{{gameValdiation.selectedMafia}}</i>
-                            </li>
-                            <li class="blue" v-if="error.citizens">
-                                You have chosen <span>{{gameSettings.citizens}}</span> Citizen characters but selected <i class="citizen-role">{{gameValdiation.selectedCitizen}}</i>
-                            </li>
-                        </ul>
-                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
-                    </template>
-                    <template v-else>
-                        <div class="note-box">
-                            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/info.png`)" alt="Info Icon" />
-                            <h3>{{Creator.checkBeforeStart}}</h3>
-                        </div>
-                        <div class="table mafia-table">
-                            <table>
-                                <tr v-for="(fM, index) in finalMafias" :key="index">
-                                    <td><img :src="getImgUrl(fM.icon)" :alt="fM.alt" /> {{fM.name}}</td>
-                                    <td><span class="character-power">{{Math.abs(fM.power)}}</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="table citizen-table">
-                            <table>
-                                <tr v-for="(fC, index) in finalCitizens" :key="index">
-                                    <td><img :src="getImgUrl(fC.icon)" :alt="fC.alt" /> {{fC.name}}</td>
-                                    <td><span class="character-power">{{Math.abs(fC.power)}}</span></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{Creator.changeSettings}}</span></app-button>
-                        <app-button @click.native="startGame()" class="start-bttn green "><span>{{Creator.start}}</span></app-button>
-                    </template>
-                </overlay>
-                
-            </form>
+        <template v-if="checkGameMode().status">
+            <div class="steps">
+                <step-box 
+                    :index="1"
+                    :value="gameSettings.maxPlayers" 
+                    :margin="gameSettings.playerMargin"
+                    :default="gameSettings.unit"
+                    @selectVal="gameSettings.unit = $event"
+                />
+                <step-box 
+                    :index="2"
+                    :value="calcMafia"
+                    :margin="0"
+                    :default="gameSettings.mafia"
+                    @selectVal="gameSettings.mafia = $event"
+                />
+            </div>
+            <roles @selectedRoles="gameSettings.roles = $event"></roles>
+            <app-button @click.native="checkGame()" class="active start-bttn"><span>{{$t('pages.creator.start')}}</span></app-button>
+            <overlay :class="{'active': overlay,'dialog': isValid}">
+                <template v-if="isValid">
+                    <error-box
+                        :errorStatus="error"
+                        :mafiaNumbers="gameSettings.mafia"
+                        :citizenNumbers="gameSettings.citizens"
+                    />
+                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                </template>
+                <template v-else>
+                    <note-box />
+                    <app-table class="mafia-table" :tableData="finalMafias" />
+                    <app-table class="citizen-table" :tableData="finalCitizens" />
+                    <app-button @click.native="startGame()" class="start-bttn green "><span>{{$t('pages.creator.start')}}</span></app-button>
+                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                </template>
+            </overlay>
             <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)" :class="{'active': !isValid}"></power-meter>
         </template>
     </div>
 </template>
 
 <script>
-import Roles from '@/components/Roles.vue';
-import PowerMeter from '@/components/PowerMeter.vue';
+import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import ErrorBox from '@/components/ErrorBox.vue';
+import NoteBox from '@/components/NoteBox.vue';
 import Overlay from '@/components/Overlay.vue';
-import {mapGetters} from 'vuex';
-import {mapActions} from 'vuex';
+import PageTitle from '@/components/PageTitle.vue';
+import PowerMeter from '@/components/PowerMeter.vue';
+import Roles from '@/components/Roles.vue';
+import StepBox from '@/components/StepBox.vue';
+import Table from '@/components/Table.vue';
+import WelcomeBox from '@/components/WelcomeBox.vue';
+import checkGameMode from '@/mixins/checkGameMode';
+import {mapGetters, mapActions} from 'vuex';
 export default {
     data(){
         return {
@@ -117,6 +69,8 @@ export default {
             fMafias: [],
             fCitizens: [],
             gameSettings: {
+                maxPlayers: 25,
+                playerMargin: 5,
                 unit: 6,
                 mafia: 2,
                 citizens: 4,
@@ -124,7 +78,6 @@ export default {
                 power: 0,
                 mafiaPower: 0,
                 citizenPower: 0,
-                time: 5,
             },
             gameValdiation: {
                 selectedMafia: 0,
@@ -133,13 +86,24 @@ export default {
             overlay: false,
         }
     },
+    components:{
+        changeGameMode: ChangeGameMode,
+        errorBox: ErrorBox,
+        noteBox: NoteBox,
+        overlay: Overlay,
+        pageTitle: PageTitle,
+        powerMeter: PowerMeter,
+        roles: Roles,
+        stepBox: StepBox,
+        appTable: Table,
+        welcomeBox: WelcomeBox,
+    },
     computed:{
         ...mapGetters([
-            'Creator',
             'Numbers',
         ]),
         calcMafia(){
-            let mafiaNumbers = Math.floor(this.gameSettings.unit / 3) -1;
+            let mafiaNumbers = Math.floor(this.gameSettings.unit / 2) -1;
             this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
             return mafiaNumbers;
         },
@@ -154,7 +118,7 @@ export default {
             this.gameSettings.roles.forEach(element => {
                 $power.average += element.power;
                 if(element.mafia){
-                    $power.mafia += -(element.power);
+                    $power.mafia += Math.abs(element.power);
                 } else{
                     $power.citizen += element.power;
                 }
@@ -206,26 +170,17 @@ export default {
             'setSavedRoles'
         ]),
         calcDifference(main,side){
-            return main - side
+            return main - side;
         },
         checkGame(){
             this.overlay = true;
             this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
             this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
         },
-        checkGameMode(){
-            if(this.$route.params.id == 'single-device'){
-                return true;
-            }
-        },
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
-        },
         startGame(){
             let numb = {
                 unit : this.gameSettings.unit,
                 mafia : this.gameSettings.mafia,
-                time : this.gameSettings.time,
             }
             let $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
             this.getRoles(this.gameSettings.roles);
@@ -234,46 +189,13 @@ export default {
             this.setGame(true);
         }
     },
-    components:{
-        roles : Roles,
-        powerMeter : PowerMeter,
-        overlay: Overlay,
-    }
+    mixins: [checkGameMode]
 }
 </script>
 
 <style lang="scss" scoped>
 
 .create{padding-bottom: $meter_height;}
-
-.note li{
-    font-size: $font_size_3;
-    color:$color_6;
-    margin-bottom:12px;
-    &::before{
-        content:'*';
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 7px;
-    }
-}
-
-.citizen-role{color:$blue_color}
-.mafia-role{color:$red_color}
-
-i.mafia-role,
-i.citizen-role{
-    display: inline-block;
-    line-height: 1.4;
-    padding:1px 6px;
-    margin:0 4px;
-    background-color:$background_color_2;
-    border-radius:2px;
-    box-shadow: inset 0 0 2px #7e7e7e;
-}
-
 button{background-color:$creator_color;}
 
 </style>
-
-

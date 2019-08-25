@@ -4,14 +4,14 @@
       <nav>
         <router-link :to="{name: 'menu', params: {id : 'single-device'}}">
           <span>
-            <img :src="getImgUrl('single-device.png')" alt="Single Device Icon" />
-            <strong>One Device</strong>
+            <img :src="getImgUrl($t('pages.home.singleDeviceImage'))" :alt="$t('pages.home.singleDeviceAlt')" />
+            <strong>{{$t('pages.home.button1')}}</strong>
           </span>
         </router-link>
         <router-link :to="{name: 'menu', params: {id : 'multi-device'}}">
           <span>
-            <img :src="getImgUrl('multi-device.png')" alt="Multi Device Icon" />
-            <strong>Multiple Devices</strong>
+            <img :src="getImgUrl($t('pages.home.multiDeviceImage'))" :alt="$t('pages.home.singleDeviceAlt')" />
+            <strong>{{$t('pages.home.button2')}}</strong>
           </span>
         </router-link>
       </nav>
@@ -20,8 +20,34 @@
 </template>
 
 <script>
-
 export default {
+  metaInfo(){
+    return{
+      title: `${this.$t('meta.home.title')}`,
+      meta: [
+        {
+          vmid: 'description',
+          name : 'description',
+          content : `${this.$t('meta.home.description')}`
+        },
+        {
+          vmid: 'title',
+          name : 'og:title',
+          content : `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
+        },
+        {
+          vmid: 'ogdescription',
+          name : 'og:description',
+          content : `${this.$t('meta.home.description')}`
+        },
+        {
+          vmid: 'ogurl',
+          name : 'og:url',
+          content : `${this.$t('general.url')+this.$t('meta.home.url')}`
+        }
+      ]
+    }
+  },
   methods:{
     getImgUrl(pic) {
       return require(`@/assets/images/${pic}`);

@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import dB from './db.json';
+import mafiaBuzzRoles from '@/assets/roles.json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  // strict: true,
   state: {
-    db: dB,
+    rolesDB: mafiaBuzzRoles,
     roles: [],
     savedRoles: [],
     gameReset: false,
@@ -17,28 +18,36 @@ export default new Vuex.Store({
       god: false,
       day: true,
       round: 0,
+      lastPhaseAction: true,
+      mafiaParty: true,
+      currentAction: 0,
       log: {
-        action: null,
-        passive: null,
+        id: 0,
+        passiveLog: false,
+        action: 'common.None',
+        passive: 'common.None',
         attacker: null,
-        target: null,
+        ability: {},
+        status: {},
+        target: '',
+        targetInfo: {},
+        targetRole: 'replacingRoles.loading.role',
+        targetPassive: 'common.None',
+        targetID: 0,
         target2: null,
-        actionIcon: "loader.svg",
+        actionIcon: 'replacingRoles.loading.icon',
+        passiveIcon: 'replacingRoles.loading.icon',
         mafia: false,
         targetMafia: false,
       },
       historyLog: [],
       totalHistory: [],
+      actionBox: [],
+      lastNightLog: []
     },
   },
   getters: {
-    Roles: state => state.db.roles,
-    Navigation: state => state.db.navigation,
-    Creator: state => state.db.pages.creator,
-    Player: state => state.db.pages.player,
-    About: state => state.db.pages.about,
-    HowToPlay: state => state.db.pages.howToPlay,
-    God: state => state.db.god,
+    Roles: state => state.rolesDB,
     SelectedRoles: state => state.roles,
     SavedRoles: state => state.savedRoles,
     GameReset: state => state.gameReset,
@@ -46,6 +55,7 @@ export default new Vuex.Store({
     Numbers: state => state.numbers,
     StepCounter: state => state.stepCounter,
     Dashboard: state => state.dashboard,
+    Actions: state => state.actionBox,
   },
   mutations: {
     GET_ROLES: (state, items) => {
@@ -66,11 +76,11 @@ export default new Vuex.Store({
     CONTROL_DASHBOARD: (state, dashinfo) => {
       Vue.set(state, 'dashboard', dashinfo);
     },
-    UPDATE_LOG: (state, log) => {
-      Vue.set(state.historyLog, 'dashboard', log);
-    },
     GAME_RESET: (state, stat) => {
       Vue.set(state, 'gameReset', stat);
+    },
+    SET_ACTIONS: (state, action) => {
+      Vue.set(state, 'actionBox', action);
     },
   },
   actions: {
@@ -92,11 +102,11 @@ export default new Vuex.Store({
     controlDashboard: (context, dashinfo) => {
       context.commit('CONTROL_DASHBOARD', dashinfo);
     },
-    updateLog: (context, log) => {
-      context.commit('UPDATE_LOG', log);
-    },
     setGameReset: (context, stat) => {
       context.commit('GAME_RESET', stat);
+    },
+    setActions: (context, action) => {
+      context.commit('SET_ACTIONS', action);
     },
   },
 });

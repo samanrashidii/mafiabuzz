@@ -1,7 +1,7 @@
 <template>
   <div class="navigation" :class="{'single-device': checkGameMode()}">
     <nav>
-      <template  v-for="(nav, index) in Navigation">
+      <template  v-for="(nav, index) in $t('navigation')">
         <router-link :to="{name: nav.url}" :key="index" v-if="!checkNav(nav)">
           <span>
             <img :src="getImgUrl(nav.image)" :alt="nav.alt" />
@@ -14,13 +14,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
 export default {
-  computed:{
-    ...mapGetters([
-        'Navigation',
-    ]),
-  },
   methods:{
     checkGameMode(){
       if(this.$route.params.id == 'single-device'){
@@ -40,4 +34,3 @@ export default {
   }
 };
 </script>
-

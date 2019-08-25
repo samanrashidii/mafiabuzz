@@ -1,45 +1,58 @@
 <template>
     <div class="player">
         <div class="dashboard-header">
-            <div>
-                <router-link class="site-bttn game-mode" :to="{name : 'home'}"><span>{{Player.gameModeButton}}</span></router-link>
-            </div>
-            <div class="title">
-                <template v-if="checkGameMode()">
-                    <h2 v-html="Player.title"></h2>
-                    <p v-html="Player.subtitle"></p>
-                </template>
-                <!-- Under Construction -->
-                <template v-else>
-                    <img :src="require(`@/assets/images/under-construction.png`)" alt="Under Construction Icon" />
-                    <h2>We are <span>Sorry</span></h2>
-                    <p>This mode is under construction ...!!!</p>
-                </template>
-            </div>
+            <change-game-mode />
+            <page-title :checkMode="checkGameMode()" />
         </div>
     </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import ChangeGameMode from '@/components/ChangeGameMode.vue';
+import PageTitle from '@/components/PageTitle.vue';
+import checkGameMode from '@/mixins/checkGameMode';
 export default {
-    computed:{
-        ...mapGetters([
-            'Player',
-        ]),
+    data(){
+        return {
+            pageId : this.$route.params.id
+        }
     },
-    methods:{
-        checkGameMode(){
-            if(this.$route.params.id == 'single-device'){
-                return true;
-            }
-        },
+    components:{
+        changeGameMode: ChangeGameMode,
+        pageTitle: PageTitle,
+    },
+    metaInfo() {
+        return {
+            title : `${this.$t('general.name')} * ${this.$t('meta.player.title')}`,
+            meta: [
+                {
+                    vmid: 'description',
+                    name : 'description',
+                    content : `${this.$t('meta.player.description')}`
+                },
+                {
+                    vmid: 'title',
+                    name : 'og:title',
+                    content : `${this.$t('general.name')} * ${this.$t('meta.player.title')}`
+                },
+                {
+                    vmid: 'ogdescription',
+                    name : 'og:description',
+                    content : `${this.$t('meta.player.description')}`
+                },
+                {
+                    vmid: 'ogurl',
+                    name : 'og:url',
+                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.player.url')}`
+                }
+            ]
+        }
+    },
+    mixins: [checkGameMode],
+    watch:{
+        $route(to, from){
+            this.pageId = to.params.id;
+        }
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-
-
-</style>
