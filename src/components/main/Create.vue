@@ -1,11 +1,10 @@
 <template>
     <div class="create">
         <div class="dashboard-header">
-            <change-game-mode />
             <welcome-box />
-            <page-title :checkMode="checkGameMode()" />
+            <page-title :checkRoute="checkRoute()" />
         </div>
-        <template v-if="checkGameMode().status">
+        <template>
             <div class="steps">
                 <step-box
                     :index="1"
@@ -47,8 +46,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -58,7 +55,8 @@ import Roles from '@/components/Roles.vue';
 import StepBox from '@/components/StepBox.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
-import checkGameMode from '@/mixins/checkGameMode';
+import checkRoute from '@/mixins/checkRoute';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -88,7 +86,6 @@ export default {
     };
   },
   components: {
-    changeGameMode: ChangeGameMode,
     errorBox: ErrorBox,
     noteBox: NoteBox,
     overlay: Overlay,
@@ -189,7 +186,7 @@ export default {
       this.setGame(true);
     },
   },
-  mixins: [checkGameMode],
+  mixins: [checkRoute],
 };
 </script>
 

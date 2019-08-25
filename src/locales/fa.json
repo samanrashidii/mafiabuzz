@@ -28,11 +28,6 @@
             "description": "مافیا باز حاصل تلاش و همفکری گیمرهایی هست که هدفشان لذت برند علاقه مندان به بازی های دسته جمعی است",
             "url": "about"
         },
-        "player": {
-            "title": "بازیکنان",
-            "description": "بازیکنان برای بازی گروه باید کد مخصوص گاد بازی را وارد کنند تا همگی به یک بازی متصل شوید.",
-            "url": "player"
-        },
         "notfound":{
             "title": "خطای 404 - صفحه مورد نظر یافت نشد",
             "description": "خطای 404 - صفحه مورد نظر یافت نشد",
@@ -42,9 +37,8 @@
     "common": {
         "homeButton": "بازگشت به خانه",
         "page404": "فکر کنم <strong class='mafia-role'>مافیاها</strong> این صفحه رو <span class='citizen-role'>404</span> بار داغون کردن !!!",
-        "UnderConstructionTitle": "ما خیلی<span>متاسفیم</span>",
-        "UnderConstructionText": "این قسمت از بازی در حال ساخت می باشد ...!!!",
-        "underConstructionAlt": "آیکون در حال ساخت",
+        "page404Image": "error-404.png",
+        "page404Alt": "عکس خطای 404",
         "Mafia": "مافیا",
         "Citizen": "شهروند",
         "Role": "نقش",
@@ -64,12 +58,6 @@
             "url": "creator",
             "image": "creator.png",
             "alt": "آیکون گاد"
-        },
-        {
-            "name": "بازیکن",
-            "url": "player",
-            "image": "player.png",
-            "alt": "آیکون بازیکن"
         },
         {
             "name": "نحوه بازی",
@@ -123,11 +111,6 @@
             "gotMobile": "نقشت رو با دقت ببین :",
             "beforeShowButton": "نقش من رو نشان بده !",
             "afterShowButton": "متوجه شدم"
-        },
-        "player": {
-            "gameModeButton": "تغییر حالت بازی",
-            "title": "سلام <span>بازیکن</span>",
-            "subtitle": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است "
         },
         "about": {
             "title": "<span>درباره ی ما</span>",

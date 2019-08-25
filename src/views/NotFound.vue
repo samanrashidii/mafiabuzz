@@ -1,12 +1,13 @@
 <template>
     <div class="not-found center-aligned">
-        <img :src="require(`@/assets/images/error-404.png`)" alt="404 Page Icon" />
+        <img :src="getImgUrl('', $t('common.page404Image'))" :alt="$t('common.page404Alt')" />
         <h2 class="has-top-margin" v-html="$t('common.page404')"></h2>
         <router-link class="bttn has-top-margin" :to="{name: 'home'}">{{$t('common.homeButton')}}</router-link>
     </div>
 </template>
 
 <script>
+import getImg from '@/mixins/getImg';
 export default {
   metaInfo() {
     return {
@@ -35,5 +36,6 @@ export default {
       ],
     };
   },
+  mixins: [getImg],
 };
 </script>

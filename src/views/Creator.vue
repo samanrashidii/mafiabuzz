@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Create from '@/components/main/Create.vue';
 import Dashboard from '@/components/main/Dashboard.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {

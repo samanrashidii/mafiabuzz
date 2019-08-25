@@ -6,7 +6,7 @@
                 <input @change="checkRoles(role.id, index), emitRoles()" type="checkbox" name="roles" :id="`role_${index+1}`" :class="{'active': role.selected}" :value="role" v-model="selectedRoles" />
                 <label :for="`role_${index+1}`">
                     <div class="inner-label">
-                        <img :src="getImgUrl('roles', $t(role.icon))" :alt="$t(role.alt)" />
+                        <img :src="getImgUrl('/roles', $t(role.icon))" :alt="$t(role.alt)" />
                         <strong>{{$t(role.name)}} <span v-if="checkNumbers(role.id)">x<i>{{role.id == 1 ? normalMafia : normalCitizen}}</i></span></strong>
                     </div>
                 </label>
