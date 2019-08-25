@@ -15,22 +15,21 @@
 
 <script>
 export default {
-  methods:{
-    checkGameMode(){
-      if(this.$route.params.id == 'single-device'){
+  methods: {
+    checkGameMode() {
+      if (this.$route.params.id == 'single-device') {
         return true;
-      } else{
-        return false;
       }
+      return false;
     },
-    checkNav(nav){
-      if(nav.url == 'player' && this.$route.params.id == 'single-device'){
+    checkNav(nav) {
+      if (nav.url == 'player' && this.$route.params.id == 'single-device') {
         return true;
       }
     },
     getImgUrl(pic) {
       return require(`@/assets/images/${pic}`);
-    }
-  }
+    },
+  },
 };
 </script>

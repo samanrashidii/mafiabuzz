@@ -300,7 +300,7 @@
             },
             {
                 "name": "invisible-icon",
-                "hint": "Player is invisible and cannot be detected by Detective"
+                "hint": "Player's identity will be always secret!"
             },
             {
                 "name": "shield-icon",

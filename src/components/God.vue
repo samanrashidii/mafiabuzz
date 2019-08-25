@@ -333,749 +333,747 @@
                 <app-button @click.native="overlay = false" class="danger"><span>{{$t('god.cancelButton')}}</span></app-button>
             </template>
         </overlay>
-        
+
     </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import Log from '@/components/Log.vue';
 import getImg from '@/mixins/getImg';
-import {mapGetters} from 'vuex';
-import {mapActions} from 'vuex';
-export default {
-    props:{
-        finalPlayers: {
-            type: Array,
-        }
-    },
-    data(){
-        return {
-            fMafias: [],
-            fCitizens: [],
-            overlay: false,
-            alertBox: false,
-            logAction: false,
-            logHistory: false,
-            logActionDone: false,
-            readyToLog: false,
-            lastNightBox: false,
-            totRestart: false,
-            targetHacked: false,
-            targetDead: false,
-            targetRevived: false,
-            killer: false,
-            multipleMafia: false,
-            confirmAction: false,
-            info: {
-                id: 0,
-                show: false,
-                player: "replacingRoles.loading.name",
-                damageReturned: false,
-                action: "replacingRoles.loading.name",
-                passive: "none",
-                ability: {},
-                status: {},
-                name2: "replacingRoles.loading.name",
-                icon: "replacingRoles.loading.icon",
-                icon2: "replacingRoles.loading.icon",
-                description: "replacingRoles.loading.description",
-                actionIcon: "replacingRoles.loading.icon",
-                mafia: false,
-                target: this.$t("replacingRoles.preTarget.name"),
-                targetInfo: {},
-                targetRole: "replacingRoles.preTarget.role",
-                targetStatus: null,
-                targetPassive: 'none',
-                targetID: 0,
-                targetMafia: null,
-                targetIcon: "replacingRoles.preTarget.icon",
-            },
-        }
-    },
-    created(){
-        this.fMafias = this.finalPlayers.filter(x => x.mafia == true);
-        this.fCitizens = this.finalPlayers.filter(x => x.mafia == false);
-    },
-    components: {
-        overlay: Overlay,
-        infoBox: InfoBox,
-        logEvents: Log,
-    },
-    computed:{
-        ...mapGetters([
-            'Dashboard',
-            'Numbers',
-            'SavedRoles',
-            'SelectedRoles',
-            'Actions',
-        ]),
-        dashboard:{
-            get: function(){
-                return this.Dashboard;
-            },
-            set: function(newValue){
-                this.Dashboard = newValue;
-            }
-        },
-        defaultDashboard(){
-            return {
-                god: false,
-                day: true,
-                round: 0,
-                log: {
-                    id: 0,
-                    passiveLog: false,
-                    action: null,
-                    passive: "none",
-                    ability: null,
-                    status: null,
-                    godLog: false,
-                    passiveIcon: "replacingRoles.loading.icon",
-                    attacker: null,
-                    target: null,
-                    targetInfo: {},
-                    targetRole: "replacingRoles.preTarget.role",
-                    targetPassive: 'none',
-                    targetID: 0,
-                    target2: null,
-                    actionIcon: "replacingRoles.loading.icon",
-                    mafia: false,
-                    targetMafia: false,
-                },
-            }
-        },
-        finalMafias(){
-            return this.fMafias;
-        },
-        finalCitizens(){
-            return this.fCitizens;
-        },
-        historyLog: {
-            get: function(){
-                return this.Dashboard.historyLog;
-            },
-            set: function(newValue){
-                this.Dashboard.historyLog = newValue;
-            }
-        },
-        lastNight: {
-            get: function(){
-                return this.Dashboard.lastNightLog;
-            },
-            set: function(newValue){
-                this.Dashboard.lastNightLog = newValue;
-            }
-        },
-        log: {
-            get: function(){
-                return this.Dashboard.log;
-            },
-            set: function(newValue){
-                this.Dashboard.log = newValue;
-            }
-        },
-        progress(){
-            return (this.dashboard.currentAction / this.sortByPriority.length) * 100
-        },
-        savedRoles(){
-            let $savedRoles = JSON.parse(JSON.stringify(this.SavedRoles));
-            return $savedRoles;
-        },
-        sortByPriority(){
-            return this.Actions;
-        },
-        totalHistory(){
-            return this.Dashboard.totalHistory;
-        },
-    },
-    methods:{
-        ...mapActions([
-            'setStep',
-            'controlDashboard',
-            'getRoles',
-            'setGameReset',
-            'setActions',
-        ]),
-        // Change Day and Night
-        changePhase(phase){
-            this.confirmAction = false;
-            if(!phase){
-                this.dashboard.day = true;
-                this.finalPlayers.forEach(element => {
-                    // Reset One Night Actions
-                    element.status.roleChecked = false;
-                    element.status.identityChecked = false;
-                    element.status.hacked = false;
-                    element.status.silenced = false;
-                    element.status.healed = false;
-                    // One Time Actions of Yakuza - Cupid - Bomb - Bulletproof
-                    if(element.ability.playerSwaper || element.ability.binder || element.ability.detonator || element.ability.hasShield){
-                        if(!element.action.oneTime){
-                            element.actionStatus = true;
-                        }
-                    } else{
-                        element.actionStatus = false;
-                    }
-                });
-                this.totalHistory.push(this.historyLog);
-                let getTarget = this.finalPlayers.forEach(element => {
-                    this.historyLog.forEach(item => {
-                        if(element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived
-                        || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived
-                        || element.player == item.attacker && element.status.recentlyDead && !element.status.recentlyRevived){
-                            let logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span>`;
-                            element.status.recentlyDead = false;
-                            this.lastNight.push(logNote);
-                        }
-                        if(element.player == item.target && element.status.recentlyRevived && !element.status.recentlyDead){
-                            let logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${this.$t('god.logRevivedText')}</span>`;
-                            element.status.recentlyRevived = false;
-                            this.lastNight.push(logNote);
-                        }
-                        if(element.player == item.target && element.status.recentlySilenced){
-                            let logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${this.$t('god.logSilencedText')}</span>`;
-                            element.status.recentlySilenced = false;
-                            this.lastNight.push(logNote);
-                        }
-                    });
-                });
-                if(this.lastNight.length > 0){
-                    this.lastNightBox = true;
-                }
-                this.historyLog = [];
-            } else{
-                this.dashboard.lastPhaseAction = true;
-                if(this.dashboard.round >= 1){
-                    this.lastNight = [];
-                }
-                this.chooseKiller();
-                this.dashboard.round++;
-                this.dashboard.currentAction = 0;
-                this.setActionsByPriority();
-                this.dashboard.day = false;
-            }
-        },
-        // Classes for Characters
-        characterClasses(char){
-            return {
-                'dead': char.status.dead == true, 
-                'ninja': char.status.playerSwapped == true,
-                'love-bind': char.status.linked == true,
-                'silenced': char.status.silenced == true,
-                'healed': char.status.healed == true,
-                'shield': char.status.shield == true && !char.status.hacked, // Active if not hacked
-                'invisible': char.status.invisible == true && !char.status.hacked, // Active if not hacked
-                'hacked': char.status.hacked == true,
-                'skeleton': char.status.revived == true
-            }
-        },
-        // Select Options for Action
-        checkGroup(player){
-                // Last Day Vote
-                if(player == 'lastDay'){
-                    return this.finalPlayers.filter(x => x.status.dead == false);
-                }
-                // Night King Target
-                else if(player.ability.reviver){
-                    return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
-                } 
-                // Yakuza Target
-                else if(player.ability.playerSwapper){
-                    return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
-                }
-                // Doctor & Ruspy & Cupid Target
-                else if(player.ability.healer || player.ability.silencer || player.ability.binder){
-                    return this.finalPlayers.filter(x => x.status.dead == false);
-                }
-                // Default Target
-                else{
-                    return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false); 
-                }
-        },
-        // Second Select Options for Action
-        checkSecondGroup(player){
-            // Cupid Target
-            if(player.ability.binder){
-               return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
-            } 
-        },
-        checkReadyActions(attacker, index){
-            if(index == this.dashboard.currentAction){
-                if(this.checkGroup(attacker).length <= 0){
-                    this.dashboard.currentAction++;
-                }
-                if(attacker.status.hacked){
-                    this.targetHacked = true;
-                } else{
-                    this.targetHacked = false;
-                }
-                if(attacker.status.dead){
-                    this.targetDead = true;
-                } else{
-                    this.targetDead = false;
-                }
-                if(attacker.status.revived){
-                    this.targetRevived = true;
-                } else{
-                    this.targetRevived = false;
-                }
-                return true;
-            } else{
-                return false;
-            }
-        },
-        chooseKiller(){
-            let mafiaNumbers = this.SelectedRoles.filter(item => item.id == 1);
-            this.SelectedRoles.forEach(element => {
-                if(element.ability.killer && !element.status.mafia){
-                    this.killer = true;
-                }
-                if(element.status.mafia && this.killer){
-                    element.status.hasAction = false;
-                }
-                if(element.status.mafia && mafiaNumbers.length > 1){
-                    element.status.hasAction = false;
-                    this.multipleMafia = true;
-                }
-            });
-            for (let i = 0; i < this.SelectedRoles.length; i++) {
-                if(this.SelectedRoles[i].id == 1 && this.multipleMafia){
-                    this.SelectedRoles[i].ability.killer = true;
-                    this.SelectedRoles[i].status.hasAction = true;
-                    this.SelectedRoles[i].action.action = "common.Kill";
-                    break;
-                }
-            }
-        },
-        // Kill or Heal Character Manually
-        deadOrAlive(player){
-            this.log.attacker = "god.name";
-            this.log.target = player.player;
-            this.log.targetMafia = player.mafia;
-            this.log.godLog = true;
-            // Check Alive People and People Don't Have Heal Buff = Kill them with filters
-            if(!player.status.healed){
-                if(player.status.dead == false){
-                    // Log god when kills
-                    this.log.action = "god.killAction";
-                    this.log.actionIcon = "god.killIcon";
-                    // Cupid Targets
-                    if(player.status.linked){
-                        this.finalPlayers.forEach(element => {
-                            if(element.status.linked){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                            }
-                        });
-                    }
-                    // Bomb Targets
-                    if(player.ability.detonator){
-                        this.finalPlayers.forEach(element => {
-                            if(element.player == player.player){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                                this.passiveCalc(element);
-                            }
-                        });
-                    }
-                    // Bulletproof Targets
-                    if(player.ability.hasShield){
-                        this.finalPlayers.forEach(element => {
-                            if(element.player == player.player){
-                                if(element.status.shield){
-                                    element.status.dead = true;
-                                    element.status.recentlyDead = true;
-                                    element.status.shield = false;
-                                }
-                            }
-                        });
-                    }
-                    // Night King Targets
-                    if(player.ability.reviver){
-                        this.finalPlayers.forEach(element => {
-                            if(element.player == player.player){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                            }
-                            if(element.status.revived){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                            }
-                        });
-                    }
-                    // Default Target
-                    else{
-                        this.finalPlayers.forEach(element => {
-                            if(element.player == player.player){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                            }
-                        });
-                    }
-                // Check Dead People = Revive them with filters
-                } else{
-                    // Log god when revive
-                    this.log.action = "god.reviveAction";
-                    this.log.actionIcon = "god.reviveIcon";
-                    
-                    this.finalPlayers.forEach(element => {
-                        if(element.player == player.player){
-                            // Revive Cupid Targets
-                            if(element.status.linked && element.status.dead){
-                                element.status.linked = false;
-                            }
-                            // Revive
-                            element.status.dead = false;
-                            element.status.recentlyRevived = true;
-                        }
-                    });
-                }         
-                this.historyLog.push({...this.log});
-            }
-            this.log.attacker = null;
-            this.log.target = null;
-            this.log.targetMafia = null;
-            this.log.godLog = false;
-        },
-        // Do Action
-        executeAction(info){
-            if(this.log.target != null && Object.keys(info.targetInfo).length > 0){
-                let attacker = info.ability;
-                let attackerID = info.id;
-                let attackerStatus = info.status;
-                let defender = info.targetInfo;
-                let defenderAbility = defender.ability;
-                let defenderID = defender.id;
-                let linked = defender.status.linked;
-                let healed = defender.status.healed;
-                let shield = defender.status.shield;
-                let hacked = defender.status.hacked;
-                let damageReturned = defender.status.damageReturned;
-                // Check not being cupid and second selectmenu is turned off
-                if(!(attacker.binder && this.log.target2 == null)){
-                    this.log.id = this.info.id;
-                    this.log.attacker = this.info.player;
-                    this.log.action = this.info.action;
-                    this.log.passive = this.info.passive;
-                    this.log.ability = this.info.ability;
-                    this.log.status = this.info.status;
-                    this.log.actionIcon = this.info.actionIcon;
-                    this.log.mafia = this.info.mafia;
-                    this.log.targetInfo = this.info.targetInfo;
-                    this.log.targetRole = this.info.targetRole;
-                    this.log.targetMafia = this.info.targetMafia;
-                    this.log.targetPassive = this.info.targetPassive;
-                    this.log.targetID = this.info.targetID;
-                    
-                    setTimeout(() => {
-                        this.historyLog.push({...this.log});  
-                    }, 3450);
 
-                    this.finalPlayers.forEach((element, index) => {
-                        if(element.player == this.log.attacker){
-                            element.actionStatus = true;
-                            // Yakuza Attacker
-                            if(attacker.playerSwapper && !element.status.healed){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                                element.action.oneTime = false;
-                            }
-                            // Cupid Attacker
-                            if(attacker.binder){
-                                element.action.oneTime = false;
-                            }
-                            // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ; 
-                            if(defenderAbility.returner && !hacked && !attacker.binder && !attacker.reviver && !attacker.hacker && element.id == attackerID){
-                                element.status.dead = true;
-                                element.status.recentlyDead = true;
-                            }
-                        }
-                        // Yakuza Target ; Check if damageReturned ; Check if Hacked
-                        if(element.player == this.log.target && attacker.playerSwapper && !damageReturned || element.player == this.log.target && attacker.playerSwapper && damageReturned && hacked){
-                            element.status.playerSwapped = true;
-                            element.status.damageReturned = false;
-                            element.status.shield = false;
-                            element.name = "replacingRoles.miniYakuza.name";
-                            element.icon = "replacingRoles.miniYakuza.icon";
-                            element.description = "replacingRoles.miniYakuza.description";
-                            element.actionStatus = false;
-                            element.status.hasAction = false;
-                            element.status.hasPassive = false;
-                            element.action.action = "common.None";
-                            element.action.passive = "common.None";
-                        }
-                        // Cupid Targets
-                        if(attacker.binder){
-                            if(element.player == this.log.target){
-                                element.status.linked = true;
-                            }
-                            if(element.player == this.log.target2){
-                                element.status.linked = true;
-                            }
-                        }
-                        // Night King
-                        if(attacker.reviver && element.player == this.log.target){
-                            // Revive Cupid Targets
-                            if(element.status.linked && element.status.dead){
-                                element.status.linked = false;
-                            }
-                            // Revive
-                            element.name = "replacingRoles.skeleton.name";
-                            element.icon = "replacingRoles.skeleton.icon";
-                            element.description = "replacingRoles.skeleton.description";
-                            element.actionStatus = false;
-                            element.status.hasAction = false;
-                            element.status.hasPassive = false;
-                            element.action.action = "common.None";
-                            element.action.passive = "common.None";
-                            element.status.invisible = false;
-                            element.status.dead = false;
-                            element.status.revived = true;
-                            element.status.recentlyRevived = true;
-                        }
-                        // Police
-                        if(attacker.playerChecker && element.id == defenderID){
-                            element.status.identityChecked = true;
-                        }
-                        // Chef
-                        if(attacker.roleChecker && element.id == defenderID){
-                            element.status.roleChecked = true;
-                        }
-                        // Hacker Target
-                        if(attacker.hacker && element.id == defenderID){
-                            element.status.hacked = true;
-                        }
-                        // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ; 
-                        if(defenderAbility.returner && element.id == defenderID && !attacker.binder && !attacker.hacker){
-                            if(attackerStatus.linked){
-                                this.finalPlayers.forEach(element => {
-                                    if(element.status.linked){
-                                        element.status.dead = true;
-                                        element.status.recentlyDead = true;
-                                    }
-                                });
-                            }
-                            this.passiveCalc(element, attackerStatus);
-                        }
-                        // Godfather and Mafia Targets -- Kill if not Healed
-                        if(attacker.killer && !healed){
-                            // Check not damageReturned
-                            if(!damageReturned || damageReturned && hacked){
-                                if(element.player == this.log.target){
-                                    // Bulletproof; Check Has shield ; Check if not Hacked
-                                    if(shield && !hacked){
-                                        this.passiveCalc(element);
-                                        element.status.shield = false;
-                                    } else{
-                                        element.status.dead = true;
-                                        element.status.recentlyDead = true;
-                                    }
-                                }
-                                // Night King Targets
-                                if(defenderAbility.reviver && element.id == defenderID){
-                                    this.finalPlayers.forEach(element => {
-                                        if(element.status.revived){
-                                            element.status.dead = true;
-                                            element.status.recentlyDead = true;
-                                        }
-                                    });
-                                }
-                                // Bomb Targets | Passive
-                                if(defenderAbility.detonator && element.id == defenderID){
-                                    this.passiveCalc(element);
-                                }
-                                // Cupid Targets | Status
-                                if(linked && !element.status.healed && element.id == defenderID){
-                                    element.status.dead = true;
-                                    element.status.recentlyDead = true;
-                                    this.finalPlayers.forEach(element => {
-                                        if(element.status.linked){
-                                            element.status.dead = true;
-                                            element.status.recentlyDead = true;
-                                        }
-                                    });
-                                }
-                            }
-                            
-                        }
-                        // Ruspy Targets ; Check not damageReturned
-                        if(attacker.silencer && !damageReturned || attacker.silencer && damageReturned && hacked){
-                            if(element.player == this.log.target){
-                                element.status.silenced = true;
-                                element.status.recentlySilenced = true;
-                            }
-                        }
-                        // Doctor Targets ; Check not damageReturned
-                        if(attacker.healer && !damageReturned || attacker.healer && damageReturned && hacked){
-                            if(element.player == this.log.target){
-                                element.status.healed = true;
-                            }
-                        }
-                    });
-                    this.nextAction(3000,500);
-                }
-            }
-        },
-        // Get Action Target Info
-        findTarget(target){
-            this.finalPlayers.forEach(element => {
-                if(element.player == target){
-                    this.info.targetInfo = element;
-                    this.info.targetRole = element.name;
-                    this.info.targetPassive = element.action.passive;
-                    this.info.targetMafia = element.mafia;
-                    this.info.targetIcon = element.icon;
-                    this.info.targetID = element.id;
-                    this.info.status = element.status;
-                    this.info.damageReturned = element.status.damageReturned;
-                }
-            });
-            this.info.target = target;
-        },
-        // Add Action stats for current target
-        fireAction(player){
-            if(player.actionStatus == false){
-                this.info.id = player.id;
-                this.info.name2 = player.name;
-                this.info.player = player.player;
-                this.info.icon2 = player.icon;
-                this.info.action = player.action.action;
-                this.info.passive = player.action.passive;
-                this.info.ability = player.ability;
-                this.info.status = player.status;
-                this.info.actionIcon = player.actionIcon;
-                this.info.mafia = player.mafia;
-                this.readyToLog = true;
-            }
-        },
-        // Kill Last Phase Target
-        killByVote(target){
-            this.SelectedRoles.forEach(element => {
-                if(target == element.player){
-                    element.status.dead = true;
-                    this.dashboard.lastPhaseAction = false;
-                    // Cupid Targets on Vote Kill
-                    if(element.status.linked){
-                        this.SelectedRoles.forEach(element => {
-                            if(element.status.linked){
-                                element.status.dead = true;
-                            }
-                        });
-                    }
-                    // Necromancer Targets on Vote Kill
-                    if(element.ability.reviver){
-                        this.SelectedRoles.forEach(element => {
-                            if(element.status.revived){
-                                element.status.dead = true;
-                            }
-                        });
-                    }
-                }
-            });
-        },
-        // Next Action
-        nextAction(time1, time2){
-            this.logAction = true;
-            setTimeout(() => {
-                this.logAction = false;
-                this.logActionDone = true;
-                setTimeout(() => {
-                    this.dashboard.currentAction++;
-                    this.logActionDone = false;
-                    this.info.target = this.$t("replacingRoles.preTarget.name");
-                    this.info.targetRole = "replacingRoles.preTarget.role";
-                    this.info.targetID = 0;
-                    this.info.targetMafia = null;
-                    this.info.targetIcon = "replacingRoles.preTarget.icon";
-                    this.log.target = null;
-                    this.log.targetRole = "replacingRoles.preTarget.role";
-                    this.log.targetPassive = "common.None";
-                }, time2);
-            }, time1);
-        },
-        // Calculate Passive and Log to History Log
-        passiveCalc(element){
-            // Bomb Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
-            setTimeout(() => {
-               if(element.ability.detonator && !element.status.detonated && element.action.oneTime && !element.status.hacked){
-                element.status.detonated = true;
-                this.log.target = element.player;
-                this.log.passiveLog = true;
-                this.log.passive = element.action.passive;
-                this.log.passiveIcon = element.icon;
-                element.status.detonated = true;
-                element.actionStatus = true;
-                element.action.oneTime = false;
-                this.historyLog.push({...this.log});
-                this.log.passiveLog = false;
-            } 
-            // Grandma Activate Passive ; Check Not Hacked
-            else if(element.ability.returner && !element.status.hacked && !element.status.revived){
-                this.log.target = element.player;
-                this.log.passiveLog = true;
-                this.log.passive = element.action.passive;
-                this.log.passiveIcon = element.icon;
-                this.historyLog.push({...this.log});
-                this.log.passiveLog = false;
-            }
-            // Bulletproof Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
-            else if(element.ability.hasShield && element.status.shield && element.action.oneTime && !element.status.hacked){
-                this.log.target = element.player;
-                this.log.passiveLog = true;
-                this.log.passive = element.action.passive;
-                this.log.passiveIcon = element.icon;
-                element.status.shield = false;
-                element.actionStatus = true;
-                element.action.oneTime = false;
-                this.historyLog.push({...this.log});
-                this.log.passiveLog = false;
-            } 
-            }, 3500);
-        },
-        // Reset Game From Start
-        resetGame(){
-            this.$router.push({name:'home'});
-            setTimeout(() => {
-                this.$router.go();
-            }, 444);
-        },
-        // Reset Game with Same Roles and Names
-        rgwRoles(){
-            this.getRoles(this.savedRoles);
-            this.setGameReset(true);
-            this.$emit('ready', false);
-            this.$emit('personNumb', 1);
-            this.controlDashboard(this.defaultDashboard);
-            this.setStep(1);
-        },
-        // Set Actions by Priority
-        setActionsByPriority(){
-            let filteredActions = this.finalPlayers.filter(x => x.status.hasAction && !x.actionStatus);
-            let sorted = filteredActions.sort((a, b) => (a.priority > b.priority) ? 1 : -1);
-            this.setActions(sorted);
-        },
-        // Show Information of roles
-        showInfo(role){
-            this.info.name = role.name;
-            this.info.icon = role.icon;
-            this.info.description = role.description;
-            this.info.mafia = role.mafia;
-            this.info.show == false ? this.info.show = true : this.info.show = false;
-        },
-        // Show $t('god Dashboard
-        showPlay(){
-            this.dashboard.god = true;
-        },
-        // Skip Action
-        skipAction(){
-            this.alertBox = false;
-            this.nextAction(0,0);
-        }
+
+export default {
+  props: {
+    finalPlayers: {
+      type: Array,
     },
-    mixins: [getImg]
-}
+  },
+  data() {
+    return {
+      fMafias: [],
+      fCitizens: [],
+      overlay: false,
+      alertBox: false,
+      logAction: false,
+      logHistory: false,
+      logActionDone: false,
+      readyToLog: false,
+      lastNightBox: false,
+      totRestart: false,
+      targetHacked: false,
+      targetDead: false,
+      targetRevived: false,
+      killer: false,
+      multipleMafia: false,
+      confirmAction: false,
+      info: {
+        id: 0,
+        show: false,
+        player: 'replacingRoles.loading.name',
+        damageReturned: false,
+        action: 'replacingRoles.loading.name',
+        passive: 'none',
+        ability: {},
+        status: {},
+        name2: 'replacingRoles.loading.name',
+        icon: 'replacingRoles.loading.icon',
+        icon2: 'replacingRoles.loading.icon',
+        description: 'replacingRoles.loading.description',
+        actionIcon: 'replacingRoles.loading.icon',
+        mafia: false,
+        target: this.$t('replacingRoles.preTarget.name'),
+        targetInfo: {},
+        targetRole: 'replacingRoles.preTarget.role',
+        targetStatus: null,
+        targetPassive: 'none',
+        targetID: 0,
+        targetMafia: null,
+        targetIcon: 'replacingRoles.preTarget.icon',
+      },
+    };
+  },
+  created() {
+    this.fMafias = this.finalPlayers.filter(x => x.mafia == true);
+    this.fCitizens = this.finalPlayers.filter(x => x.mafia == false);
+  },
+  components: {
+    overlay: Overlay,
+    infoBox: InfoBox,
+    logEvents: Log,
+  },
+  computed: {
+    ...mapGetters([
+      'Dashboard',
+      'Numbers',
+      'SavedRoles',
+      'SelectedRoles',
+      'Actions',
+    ]),
+    dashboard: {
+      get() {
+        return this.Dashboard;
+      },
+      set(newValue) {
+        this.Dashboard = newValue;
+      },
+    },
+    defaultDashboard() {
+      return {
+        god: false,
+        day: true,
+        round: 0,
+        log: {
+          id: 0,
+          passiveLog: false,
+          action: null,
+          passive: 'none',
+          ability: null,
+          status: null,
+          godLog: false,
+          passiveIcon: 'replacingRoles.loading.icon',
+          attacker: null,
+          target: null,
+          targetInfo: {},
+          targetRole: 'replacingRoles.preTarget.role',
+          targetPassive: 'none',
+          targetID: 0,
+          target2: null,
+          actionIcon: 'replacingRoles.loading.icon',
+          mafia: false,
+          targetMafia: false,
+        },
+      };
+    },
+    finalMafias() {
+      return this.fMafias;
+    },
+    finalCitizens() {
+      return this.fCitizens;
+    },
+    historyLog: {
+      get() {
+        return this.Dashboard.historyLog;
+      },
+      set(newValue) {
+        this.Dashboard.historyLog = newValue;
+      },
+    },
+    lastNight: {
+      get() {
+        return this.Dashboard.lastNightLog;
+      },
+      set(newValue) {
+        this.Dashboard.lastNightLog = newValue;
+      },
+    },
+    log: {
+      get() {
+        return this.Dashboard.log;
+      },
+      set(newValue) {
+        this.Dashboard.log = newValue;
+      },
+    },
+    progress() {
+      return (this.dashboard.currentAction / this.sortByPriority.length) * 100;
+    },
+    savedRoles() {
+      const $savedRoles = JSON.parse(JSON.stringify(this.SavedRoles));
+      return $savedRoles;
+    },
+    sortByPriority() {
+      return this.Actions;
+    },
+    totalHistory() {
+      return this.Dashboard.totalHistory;
+    },
+  },
+  methods: {
+    ...mapActions([
+      'setStep',
+      'controlDashboard',
+      'getRoles',
+      'setGameReset',
+      'setActions',
+    ]),
+    // Change Day and Night
+    changePhase(phase) {
+      this.confirmAction = false;
+      if (!phase) {
+        this.dashboard.day = true;
+        this.finalPlayers.forEach((element) => {
+          // Reset One Night Actions
+          element.status.roleChecked = false;
+          element.status.identityChecked = false;
+          element.status.hacked = false;
+          element.status.silenced = false;
+          element.status.healed = false;
+          // One Time Actions of Yakuza - Cupid - Bomb - Bulletproof
+          if (element.ability.playerSwaper || element.ability.binder || element.ability.detonator || element.ability.hasShield) {
+            if (!element.action.oneTime) {
+              element.actionStatus = true;
+            }
+          } else {
+            element.actionStatus = false;
+          }
+        });
+        this.totalHistory.push(this.historyLog);
+        const getTarget = this.finalPlayers.forEach((element) => {
+          this.historyLog.forEach((item) => {
+            if (element.player == item.target && element.status.recentlyDead && !element.status.recentlyRevived
+                        || element.player == item.target2 && element.status.recentlyDead && !element.status.recentlyRevived
+                        || element.player == item.attacker && element.status.recentlyDead && !element.status.recentlyRevived) {
+              const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span>`;
+              element.status.recentlyDead = false;
+              this.lastNight.push(logNote);
+            }
+            if (element.player == item.target && element.status.recentlyRevived && !element.status.recentlyDead) {
+              const logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${this.$t('god.logRevivedText')}</span>`;
+              element.status.recentlyRevived = false;
+              this.lastNight.push(logNote);
+            }
+            if (element.player == item.target && element.status.recentlySilenced) {
+              const logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${this.$t('god.logSilencedText')}</span>`;
+              element.status.recentlySilenced = false;
+              this.lastNight.push(logNote);
+            }
+          });
+        });
+        if (this.lastNight.length > 0) {
+          this.lastNightBox = true;
+        }
+        this.historyLog = [];
+      } else {
+        this.dashboard.lastPhaseAction = true;
+        if (this.dashboard.round >= 1) {
+          this.lastNight = [];
+        }
+        this.chooseKiller();
+        this.dashboard.round++;
+        this.dashboard.currentAction = 0;
+        this.setActionsByPriority();
+        this.dashboard.day = false;
+      }
+    },
+    // Classes for Characters
+    characterClasses(char) {
+      return {
+        dead: char.status.dead == true,
+        ninja: char.status.playerSwapped == true,
+        'love-bind': char.status.linked == true,
+        silenced: char.status.silenced == true,
+        healed: char.status.healed == true,
+        shield: char.status.shield == true && !char.status.hacked, // Active if not hacked
+        invisible: char.status.invisible == true && !char.status.hacked, // Active if not hacked
+        hacked: char.status.hacked == true,
+        skeleton: char.status.revived == true,
+      };
+    },
+    // Select Options for Action
+    checkGroup(player) {
+      // Last Day Vote
+      if (player == 'lastDay') {
+        return this.finalPlayers.filter(x => x.status.dead == false);
+      }
+      // Night King Target
+      if (player.ability.reviver) {
+        return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == true);
+      }
+      // Yakuza Target
+      if (player.ability.playerSwapper) {
+        return this.finalPlayers.filter(x => x.mafia != player.mafia && x.status.dead == false);
+      }
+      // Doctor & Ruspy & Cupid Target
+      if (player.ability.healer || player.ability.silencer || player.ability.binder) {
+        return this.finalPlayers.filter(x => x.status.dead == false);
+      }
+      // Default Target
+
+      return this.finalPlayers.filter(x => x.player != player.player && x.status.dead == false);
+    },
+    // Second Select Options for Action
+    checkSecondGroup(player) {
+      // Cupid Target
+      if (player.ability.binder) {
+        return this.finalPlayers.filter(x => x.player != player.player && x.player != player.target && x.status.dead == false);
+      }
+    },
+    checkReadyActions(attacker, index) {
+      if (index == this.dashboard.currentAction) {
+        if (this.checkGroup(attacker).length <= 0) {
+          this.dashboard.currentAction++;
+        }
+        if (attacker.status.hacked) {
+          this.targetHacked = true;
+        } else {
+          this.targetHacked = false;
+        }
+        if (attacker.status.dead) {
+          this.targetDead = true;
+        } else {
+          this.targetDead = false;
+        }
+        if (attacker.status.revived) {
+          this.targetRevived = true;
+        } else {
+          this.targetRevived = false;
+        }
+        return true;
+      }
+      return false;
+    },
+    chooseKiller() {
+      const mafiaNumbers = this.SelectedRoles.filter(item => item.id == 1);
+      this.SelectedRoles.forEach((element) => {
+        if (element.ability.killer && !element.status.mafia) {
+          this.killer = true;
+        }
+        if (element.status.mafia && this.killer) {
+          element.status.hasAction = false;
+        }
+        if (element.status.mafia && mafiaNumbers.length > 1) {
+          element.status.hasAction = false;
+          this.multipleMafia = true;
+        }
+      });
+      for (let i = 0; i < this.SelectedRoles.length; i++) {
+        if (this.SelectedRoles[i].id == 1 && this.multipleMafia) {
+          this.SelectedRoles[i].ability.killer = true;
+          this.SelectedRoles[i].status.hasAction = true;
+          this.SelectedRoles[i].action.action = 'common.Kill';
+          break;
+        }
+      }
+    },
+    // Kill or Heal Character Manually
+    deadOrAlive(player) {
+      this.log.attacker = 'god.name';
+      this.log.target = player.player;
+      this.log.targetMafia = player.mafia;
+      this.log.godLog = true;
+      // Check Alive People and People Don't Have Heal Buff = Kill them with filters
+      if (!player.status.healed) {
+        if (player.status.dead == false) {
+          // Log god when kills
+          this.log.action = 'god.killAction';
+          this.log.actionIcon = 'god.killIcon';
+          // Cupid Targets
+          if (player.status.linked) {
+            this.finalPlayers.forEach((element) => {
+              if (element.status.linked) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+              }
+            });
+          }
+          // Bomb Targets
+          if (player.ability.detonator) {
+            this.finalPlayers.forEach((element) => {
+              if (element.player == player.player) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+                this.passiveCalc(element);
+              }
+            });
+          }
+          // Bulletproof Targets
+          if (player.ability.hasShield) {
+            this.finalPlayers.forEach((element) => {
+              if (element.player == player.player) {
+                if (element.status.shield) {
+                  element.status.dead = true;
+                  element.status.recentlyDead = true;
+                  element.status.shield = false;
+                }
+              }
+            });
+          }
+          // Night King Targets
+          if (player.ability.reviver) {
+            this.finalPlayers.forEach((element) => {
+              if (element.player == player.player) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+              }
+              if (element.status.revived) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+              }
+            });
+          }
+          // Default Target
+          else {
+            this.finalPlayers.forEach((element) => {
+              if (element.player == player.player) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+              }
+            });
+          }
+          // Check Dead People = Revive them with filters
+        } else {
+          // Log god when revive
+          this.log.action = 'god.reviveAction';
+          this.log.actionIcon = 'god.reviveIcon';
+
+          this.finalPlayers.forEach((element) => {
+            if (element.player == player.player) {
+              // Revive Cupid Targets
+              if (element.status.linked && element.status.dead) {
+                element.status.linked = false;
+              }
+              // Revive
+              element.status.dead = false;
+              element.status.recentlyRevived = true;
+            }
+          });
+        }
+        this.historyLog.push({ ...this.log });
+      }
+      this.log.attacker = null;
+      this.log.target = null;
+      this.log.targetMafia = null;
+      this.log.godLog = false;
+    },
+    // Do Action
+    executeAction(info) {
+      if (this.log.target != null && Object.keys(info.targetInfo).length > 0) {
+        const attacker = info.ability;
+        const attackerID = info.id;
+        const attackerStatus = info.status;
+        const defender = info.targetInfo;
+        const defenderAbility = defender.ability;
+        const defenderID = defender.id;
+        const { linked } = defender.status;
+        const { healed } = defender.status;
+        const { shield } = defender.status;
+        const { hacked } = defender.status;
+        const { damageReturned } = defender.status;
+        // Check not being cupid and second selectmenu is turned off
+        if (!(attacker.binder && this.log.target2 == null)) {
+          this.log.id = this.info.id;
+          this.log.attacker = this.info.player;
+          this.log.action = this.info.action;
+          this.log.passive = this.info.passive;
+          this.log.ability = this.info.ability;
+          this.log.status = this.info.status;
+          this.log.actionIcon = this.info.actionIcon;
+          this.log.mafia = this.info.mafia;
+          this.log.targetInfo = this.info.targetInfo;
+          this.log.targetRole = this.info.targetRole;
+          this.log.targetMafia = this.info.targetMafia;
+          this.log.targetPassive = this.info.targetPassive;
+          this.log.targetID = this.info.targetID;
+
+          setTimeout(() => {
+            this.historyLog.push({ ...this.log });
+          }, 3450);
+
+          this.finalPlayers.forEach((element, index) => {
+            if (element.player == this.log.attacker) {
+              element.actionStatus = true;
+              // Yakuza Attacker
+              if (attacker.playerSwapper && !element.status.healed) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+                element.action.oneTime = false;
+              }
+              // Cupid Attacker
+              if (attacker.binder) {
+                element.action.oneTime = false;
+              }
+              // Grandma Attacker Check if not Hacked ; Attacker not being Cupid or Hacker or Night King ;
+              if (defenderAbility.returner && !hacked && !attacker.binder && !attacker.reviver && !attacker.hacker && element.id == attackerID) {
+                element.status.dead = true;
+                element.status.recentlyDead = true;
+              }
+            }
+            // Yakuza Target ; Check if damageReturned ; Check if Hacked
+            if (element.player == this.log.target && attacker.playerSwapper && !damageReturned || element.player == this.log.target && attacker.playerSwapper && damageReturned && hacked) {
+              element.status.playerSwapped = true;
+              element.status.damageReturned = false;
+              element.status.shield = false;
+              element.name = 'replacingRoles.miniYakuza.name';
+              element.icon = 'replacingRoles.miniYakuza.icon';
+              element.description = 'replacingRoles.miniYakuza.description';
+              element.actionStatus = false;
+              element.status.hasAction = false;
+              element.status.hasPassive = false;
+              element.action.action = 'common.None';
+              element.action.passive = 'common.None';
+            }
+            // Cupid Targets
+            if (attacker.binder) {
+              if (element.player == this.log.target) {
+                element.status.linked = true;
+              }
+              if (element.player == this.log.target2) {
+                element.status.linked = true;
+              }
+            }
+            // Night King
+            if (attacker.reviver && element.player == this.log.target) {
+              // Revive Cupid Targets
+              if (element.status.linked && element.status.dead) {
+                element.status.linked = false;
+              }
+              // Revive
+              element.name = 'replacingRoles.skeleton.name';
+              element.icon = 'replacingRoles.skeleton.icon';
+              element.description = 'replacingRoles.skeleton.description';
+              element.actionStatus = false;
+              element.status.hasAction = false;
+              element.status.hasPassive = false;
+              element.action.action = 'common.None';
+              element.action.passive = 'common.None';
+              element.status.invisible = false;
+              element.status.dead = false;
+              element.status.revived = true;
+              element.status.recentlyRevived = true;
+            }
+            // Police
+            if (attacker.playerChecker && element.id == defenderID) {
+              element.status.identityChecked = true;
+            }
+            // Chef
+            if (attacker.roleChecker && element.id == defenderID) {
+              element.status.roleChecked = true;
+            }
+            // Hacker Target
+            if (attacker.hacker && element.id == defenderID) {
+              element.status.hacked = true;
+            }
+            // Grandma Being Target Check if not Hacked ; Attacker not being Cupid or Hacker ;
+            if (defenderAbility.returner && element.id == defenderID && !attacker.binder && !attacker.hacker) {
+              if (attackerStatus.linked) {
+                this.finalPlayers.forEach((element) => {
+                  if (element.status.linked) {
+                    element.status.dead = true;
+                    element.status.recentlyDead = true;
+                  }
+                });
+              }
+              this.passiveCalc(element, attackerStatus);
+            }
+            // Godfather and Mafia Targets -- Kill if not Healed
+            if (attacker.killer && !healed) {
+              // Check not damageReturned
+              if (!damageReturned || damageReturned && hacked) {
+                if (element.player == this.log.target) {
+                  // Bulletproof; Check Has shield ; Check if not Hacked
+                  if (shield && !hacked) {
+                    this.passiveCalc(element);
+                    element.status.shield = false;
+                  } else {
+                    element.status.dead = true;
+                    element.status.recentlyDead = true;
+                  }
+                }
+                // Night King Targets
+                if (defenderAbility.reviver && element.id == defenderID) {
+                  this.finalPlayers.forEach((element) => {
+                    if (element.status.revived) {
+                      element.status.dead = true;
+                      element.status.recentlyDead = true;
+                    }
+                  });
+                }
+                // Bomb Targets | Passive
+                if (defenderAbility.detonator && element.id == defenderID) {
+                  this.passiveCalc(element);
+                }
+                // Cupid Targets | Status
+                if (linked && !element.status.healed && element.id == defenderID) {
+                  element.status.dead = true;
+                  element.status.recentlyDead = true;
+                  this.finalPlayers.forEach((element) => {
+                    if (element.status.linked) {
+                      element.status.dead = true;
+                      element.status.recentlyDead = true;
+                    }
+                  });
+                }
+              }
+            }
+            // Ruspy Targets ; Check not damageReturned
+            if (attacker.silencer && !damageReturned || attacker.silencer && damageReturned && hacked) {
+              if (element.player == this.log.target) {
+                element.status.silenced = true;
+                element.status.recentlySilenced = true;
+              }
+            }
+            // Doctor Targets ; Check not damageReturned
+            if (attacker.healer && !damageReturned || attacker.healer && damageReturned && hacked) {
+              if (element.player == this.log.target) {
+                element.status.healed = true;
+              }
+            }
+          });
+          this.nextAction(3000, 500);
+        }
+      }
+    },
+    // Get Action Target Info
+    findTarget(target) {
+      this.finalPlayers.forEach((element) => {
+        if (element.player == target) {
+          this.info.targetInfo = element;
+          this.info.targetRole = element.name;
+          this.info.targetPassive = element.action.passive;
+          this.info.targetMafia = element.mafia;
+          this.info.targetIcon = element.icon;
+          this.info.targetID = element.id;
+          this.info.status = element.status;
+          this.info.damageReturned = element.status.damageReturned;
+        }
+      });
+      this.info.target = target;
+    },
+    // Add Action stats for current target
+    fireAction(player) {
+      if (player.actionStatus == false) {
+        this.info.id = player.id;
+        this.info.name2 = player.name;
+        this.info.player = player.player;
+        this.info.icon2 = player.icon;
+        this.info.action = player.action.action;
+        this.info.passive = player.action.passive;
+        this.info.ability = player.ability;
+        this.info.status = player.status;
+        this.info.actionIcon = player.actionIcon;
+        this.info.mafia = player.mafia;
+        this.readyToLog = true;
+      }
+    },
+    // Kill Last Phase Target
+    killByVote(target) {
+      this.SelectedRoles.forEach((element) => {
+        if (target == element.player) {
+          element.status.dead = true;
+          this.dashboard.lastPhaseAction = false;
+          // Cupid Targets on Vote Kill
+          if (element.status.linked) {
+            this.SelectedRoles.forEach((element) => {
+              if (element.status.linked) {
+                element.status.dead = true;
+              }
+            });
+          }
+          // Necromancer Targets on Vote Kill
+          if (element.ability.reviver) {
+            this.SelectedRoles.forEach((element) => {
+              if (element.status.revived) {
+                element.status.dead = true;
+              }
+            });
+          }
+        }
+      });
+    },
+    // Next Action
+    nextAction(time1, time2) {
+      this.logAction = true;
+      setTimeout(() => {
+        this.logAction = false;
+        this.logActionDone = true;
+        setTimeout(() => {
+          this.dashboard.currentAction++;
+          this.logActionDone = false;
+          this.info.target = this.$t('replacingRoles.preTarget.name');
+          this.info.targetRole = 'replacingRoles.preTarget.role';
+          this.info.targetID = 0;
+          this.info.targetMafia = null;
+          this.info.targetIcon = 'replacingRoles.preTarget.icon';
+          this.log.target = null;
+          this.log.targetRole = 'replacingRoles.preTarget.role';
+          this.log.targetPassive = 'common.None';
+        }, time2);
+      }, time1);
+    },
+    // Calculate Passive and Log to History Log
+    passiveCalc(element) {
+      // Bomb Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
+      setTimeout(() => {
+        if (element.ability.detonator && !element.status.detonated && element.action.oneTime && !element.status.hacked) {
+          element.status.detonated = true;
+          this.log.target = element.player;
+          this.log.passiveLog = true;
+          this.log.passive = element.action.passive;
+          this.log.passiveIcon = element.icon;
+          element.status.detonated = true;
+          element.actionStatus = true;
+          element.action.oneTime = false;
+          this.historyLog.push({ ...this.log });
+          this.log.passiveLog = false;
+        }
+        // Grandma Activate Passive ; Check Not Hacked
+        else if (element.ability.returner && !element.status.hacked && !element.status.revived) {
+          this.log.target = element.player;
+          this.log.passiveLog = true;
+          this.log.passive = element.action.passive;
+          this.log.passiveIcon = element.icon;
+          this.historyLog.push({ ...this.log });
+          this.log.passiveLog = false;
+        }
+        // Bulletproof Activate Passive ; Check Detonated ; Check One Time ; Check Not Hacked
+        else if (element.ability.hasShield && element.status.shield && element.action.oneTime && !element.status.hacked) {
+          this.log.target = element.player;
+          this.log.passiveLog = true;
+          this.log.passive = element.action.passive;
+          this.log.passiveIcon = element.icon;
+          element.status.shield = false;
+          element.actionStatus = true;
+          element.action.oneTime = false;
+          this.historyLog.push({ ...this.log });
+          this.log.passiveLog = false;
+        }
+      }, 3500);
+    },
+    // Reset Game From Start
+    resetGame() {
+      this.$router.push({ name: 'home' });
+      setTimeout(() => {
+        this.$router.go();
+      }, 444);
+    },
+    // Reset Game with Same Roles and Names
+    rgwRoles() {
+      this.getRoles(this.savedRoles);
+      this.setGameReset(true);
+      this.$emit('ready', false);
+      this.$emit('personNumb', 1);
+      this.controlDashboard(this.defaultDashboard);
+      this.setStep(1);
+    },
+    // Set Actions by Priority
+    setActionsByPriority() {
+      const filteredActions = this.finalPlayers.filter(x => x.status.hasAction && !x.actionStatus);
+      const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1));
+      this.setActions(sorted);
+    },
+    // Show Information of roles
+    showInfo(role) {
+      this.info.name = role.name;
+      this.info.icon = role.icon;
+      this.info.description = role.description;
+      this.info.mafia = role.mafia;
+      this.info.show == false ? this.info.show = true : this.info.show = false;
+    },
+    // Show $t('god Dashboard
+    showPlay() {
+      this.dashboard.god = true;
+    },
+    // Skip Action
+    skipAction() {
+      this.alertBox = false;
+      this.nextAction(0, 0);
+    },
+  },
+  mixins: [getImg],
+};
 
 </script>
 

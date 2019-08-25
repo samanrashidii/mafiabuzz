@@ -14,12 +14,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import getImg from '@/mixins/getImg';
-import {mapGetters} from 'vuex';
+
 export default {
-    props:{
-        tableData: Array
-    },
-    mixins: [getImg]
-}
+  props: {
+    tableData: Array,
+  },
+  mixins: [getImg],
+};
 </script>

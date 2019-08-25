@@ -24,156 +24,156 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 import getImg from '@/mixins/getImg';
-import {mapGetters} from 'vuex';
-import {mapActions} from 'vuex';
+
+
 export default {
-    data(){
-        return {
-            normalMafia: 0,
-            normalCitizen: 0,
-            info: {
-                show: false,
-                mafia: false,
-                name: "replacingRoles.loading.name",
-                icon: "replacingRoles.loading.icon",
-                alt: "replacingRoles.loading.alt",
-                description: "replacingRoles.loading.description"
-            },
-            selectedRoles: [],
+  data() {
+    return {
+      normalMafia: 0,
+      normalCitizen: 0,
+      info: {
+        show: false,
+        mafia: false,
+        name: 'replacingRoles.loading.name',
+        icon: 'replacingRoles.loading.icon',
+        alt: 'replacingRoles.loading.alt',
+        description: 'replacingRoles.loading.description',
+      },
+      selectedRoles: [],
+    };
+  },
+  components: {
+    infoBox: InfoBox,
+  },
+  computed: {
+    ...mapGetters([
+      'Roles',
+      'SelectedRoles',
+    ]),
+    getRoles() {
+      return JSON.parse(JSON.stringify(this.Roles));
+    },
+  },
+  created() {
+    this.cacheRoles();
+  },
+  methods: {
+    cacheRoles() {
+      if (this.SelectedRoles.length > 0) {
+        this.selectedRoles = this.SelectedRoles;
+        let normalMafia = 0;
+        let normalCitizen = 0;
+        this.selectedRoles.forEach((element) => {
+          if (element.id == 1) {
+            normalMafia++;
+          } else if (element.id == 8) {
+            normalCitizen++;
+          }
+        });
+        this.normalMafia = normalMafia;
+        this.normalCitizen = normalCitizen;
+        this.emitRoles();
+      }
+    },
+    checkNumbers(role) {
+      if (this.normalMafia > 0 && role == 1) {
+        return true;
+      } if (this.normalCitizen > 0 && role == 8) {
+        return true;
+      }
+      return false;
+    },
+    checkRoles(id, index) {
+      this.getRoles.forEach((element) => {
+        if (element.id == id) {
+          element.selected == false ? element.selected = true : element.selected = false;
         }
+      });
+      if (id == 1 && this.normalMafia == 0) {
+        this.normalMafia = 1;
+      } else if (id == 1 && this.normalMafia >= 1) {
+        this.normalMafia = 0;
+        this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
+      } else if (id == 8 && this.normalCitizen == 0) {
+        this.normalCitizen = 1;
+      } else if (id == 8 && this.normalCitizen >= 1) {
+        this.normalCitizen = 0;
+        this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
+      }
     },
-    components: {
-        infoBox: InfoBox,
-    },
-    computed:{
-        ...mapGetters([
-            'Roles',
-            'SelectedRoles'
-        ]),
-        getRoles(){
-            return JSON.parse(JSON.stringify(this.Roles));
+    decrNumber(role) {
+      const $roles = this.selectedRoles;
+      if (role.status.mafia) {
+        if (this.normalMafia > 1) {
+          for (const el of $roles) {
+            if (el.id == role.id) {
+              $roles.splice($roles.indexOf(el), 1);
+              break;
+            }
+          }
+        } else {
+          this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+          this.getRoles.forEach((element) => {
+            if (element.id == role.id) {
+              element.selected = false;
+            }
+          });
         }
-    },
-    created(){
-        this.cacheRoles();
-    },
-    methods:{
-        cacheRoles(){
-            if(this.SelectedRoles.length > 0){
-                this.selectedRoles = this.SelectedRoles;
-                let normalMafia = 0;
-                let normalCitizen = 0;
-                this.selectedRoles.forEach(element => {
-                    if(element.id == 1){
-                        normalMafia++
-                    } else if(element.id == 8){
-                        normalCitizen++
-                    }
-                });
-                this.normalMafia = normalMafia;
-                this.normalCitizen = normalCitizen;
-                this.emitRoles();
+        this.normalMafia--;
+      }
+      if (role.status.citizen) {
+        if (this.normalCitizen > 1) {
+          for (const el of $roles) {
+            if (el.id == role.id) {
+              $roles.splice($roles.indexOf(el), 1);
+              break;
             }
-        },
-        checkNumbers(role){
-            if(this.normalMafia > 0 && role == 1){
-                return true;
-            } else if(this.normalCitizen > 0 && role == 8){
-                return true;
-            } else {
-                return false;
+          }
+        } else {
+          this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+          this.getRoles.forEach((element) => {
+            if (element.id == role.id) {
+              element.selected = false;
             }
-        },
-        checkRoles(id, index){
-            this.getRoles.forEach(element => {
-                if(element.id == id){
-                    element.selected == false ? element.selected = true : element.selected = false;
-                }
-            });
-            if(id == 1 && this.normalMafia == 0){
-                this.normalMafia = 1;
-            } else if(id == 1 && this.normalMafia >= 1){
-                this.normalMafia = 0;
-                this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
-            } else if(id == 8 && this.normalCitizen == 0){
-                this.normalCitizen = 1;
-            } else if(id == 8 && this.normalCitizen >= 1){
-                this.normalCitizen = 0;
-                this.selectedRoles = this.selectedRoles.filter(value => value.id != id);
-            }
-        },
-        decrNumber(role){
-            let $roles = this.selectedRoles;
-            if(role.status.mafia){
-                if(this.normalMafia > 1){
-                    for(let el of $roles) {
-                        if(el.id == role.id){
-                            $roles.splice($roles.indexOf(el),1);
-                            break;
-                        }
-                    }
-                } else{
-                    this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.getRoles.forEach(element => {
-                        if(element.id == role.id){
-                            element.selected = false;
-                        }
-                    });
-                }
-                this.normalMafia--;
-            }
-            if(role.status.citizen){
-                if(this.normalCitizen > 1){
-                    for(let el of $roles) {
-                        if(el.id == role.id){
-                            $roles.splice($roles.indexOf(el),1);
-                            break;
-                        }
-                    }
-                } else {
-                    this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-                    this.getRoles.forEach(element => {
-                        if(element.id == role.id){
-                            element.selected = false;
-                        }
-                    });
-                }
-                this.normalCitizen--;
-            }
-            this.emitRoles();
-        },
-        emitRoles(){
-            this.$emit('selectedRoles', this.selectedRoles);
-        },
-        incrNumber(role){
-            let targetRole;
-            if(role.id == 1){
-                if(this.normalMafia < 10){
-                    this.normalMafia++;
-                    targetRole = JSON.parse(JSON.stringify(role));
-                    this.selectedRoles.push(targetRole);
-                }
-            } else if(role.id == 8){
-                if(this.normalCitizen < 20){
-                    this.normalCitizen++;
-                    targetRole = JSON.parse(JSON.stringify(role));
-                    this.selectedRoles.push(targetRole);
-                }
-            }
-        },
-        showInfo(role){
-            this.info.name = role.name;
-            this.info.icon = role.icon;
-            this.info.alt = role.alt;
-            this.info.description = role.description;
-            this.info.mafia = role.mafia;
-            this.info.show == false ? this.info.show = true : this.info.show = false;
+          });
         }
+        this.normalCitizen--;
+      }
+      this.emitRoles();
     },
-    mixins: [getImg]
-}
+    emitRoles() {
+      this.$emit('selectedRoles', this.selectedRoles);
+    },
+    incrNumber(role) {
+      let targetRole;
+      if (role.id == 1) {
+        if (this.normalMafia < 10) {
+          this.normalMafia++;
+          targetRole = JSON.parse(JSON.stringify(role));
+          this.selectedRoles.push(targetRole);
+        }
+      } else if (role.id == 8) {
+        if (this.normalCitizen < 20) {
+          this.normalCitizen++;
+          targetRole = JSON.parse(JSON.stringify(role));
+          this.selectedRoles.push(targetRole);
+        }
+      }
+    },
+    showInfo(role) {
+      this.info.name = role.name;
+      this.info.icon = role.icon;
+      this.info.alt = role.alt;
+      this.info.description = role.description;
+      this.info.mafia = role.mafia;
+      this.info.show == false ? this.info.show = true : this.info.show = false;
+    },
+  },
+  mixins: [getImg],
+};
 </script>
 
 <style lang="scss" scoped>

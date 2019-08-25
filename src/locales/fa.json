@@ -108,7 +108,7 @@
             "errorText1": "باید نقش",
             "errorText2": "رو انتخاب کنی !",
             "cancelButton": "انصراف",
-            "changeSettingsText": "مطمئنی میحوای نقش ها رو تغییر بدی؟",
+            "changeSettingsText": "مطمئنی می خوای نقش ها رو تغییر بدی ؟",
             "confirmButton": "بله",
             "restartGame": "راه اندازی مجدد بازی و تغییر نقش ها",  
             "restartButton": "راه اندازی مجدد بازی",
@@ -185,7 +185,7 @@
         "plus": " اضافی است "
     },
     "god": {
-        "name": "کاد",
+        "name": "گاد",
         "gameDashboardIconAlt": "آیکون داشبورد گاد",
         "killIcon": "reaper.png",
         "killAction": "کشت",
@@ -260,7 +260,7 @@
             },
             {
                 "name": "angel",
-                "hint": "با قدرت گاد ، بازیکن مرده ای را به زندگی برگردانید"
+                "hint": "با قدرت گاد ، بازیکن را به زندگی برگردانید"
             },
             {
                 "name": "passive",
@@ -296,11 +296,11 @@
             },
             {
                 "name": "dead-icon",
-                "hint": "بازیکن مرده !"
+                "hint": "بازیکن مرده است !"
             },
             {
                 "name": "invisible-icon",
-                "hint": "این بازیکن توسط پلیس شناسایی نمی شود."
+                "hint": "هویت این شخص همیشه مخفی است."
             },
             {
                 "name": "shield-icon",
