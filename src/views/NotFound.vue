@@ -8,32 +8,32 @@
 
 <script>
 export default {
-    metaInfo() {
-        return {
-            title : `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
-            meta: [
-                {
-                    vmid: 'description',
-                    name : 'description',
-                    content : `${this.$t('meta.notfound.description')}`
-                },
-                {
-                    vmid: 'ogtitle',
-                    name : 'og:title',
-                    content : `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`
-                },
-                {
-                    vmid: 'ogdescription',
-                    name : 'og:description',
-                    content : `${this.$t('meta.notfound.description')}`
-                },
-                {
-                    vmid: 'ogurl',
-                    name : 'og:url',
-                    content : `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`
-                }
-            ]
-        }
-    }
-}
+  metaInfo() {
+    return {
+      title: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: `${this.$t('meta.notfound.description')}`,
+        },
+        {
+          vmid: 'ogtitle',
+          name: 'og:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
+        },
+        {
+          vmid: 'ogdescription',
+          name: 'og:description',
+          content: `${this.$t('meta.notfound.description')}`,
+        },
+        {
+          vmid: 'ogurl',
+          name: 'og:url',
+          content: `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`,
+        },
+      ],
+    };
+  },
+};
 </script>

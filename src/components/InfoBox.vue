@@ -13,12 +13,13 @@
 
 <script>
 import getImg from '@/mixins/getImg';
+
 export default {
-    props: {
-        info : Object
-    },
-    mixins: [getImg]
-}
+  props: {
+    info: Object,
+  },
+  mixins: [getImg],
+};
 </script>
 
 <style lang="scss" scoped>

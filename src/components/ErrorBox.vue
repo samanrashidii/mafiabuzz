@@ -14,10 +14,10 @@
 
 <script>
 export default {
-    props: {
-        errorStatus: Object,
-        mafiaNumbers: Number,
-        citizenNumbers: Number
-    }
-}
+  props: {
+    errorStatus: Object,
+    mafiaNumbers: Number,
+    citizenNumbers: Number,
+  },
+};
 </script>

@@ -9,24 +9,24 @@
 
 <script>
 export default {
-    data(){
-        return {
-            selectVal : 0
-        }
+  data() {
+    return {
+      selectVal: 0,
+    };
+  },
+  created() {
+    this.selectVal = this.default;
+  },
+  props: {
+    index: Number,
+    value: Number,
+    margin: Number,
+    default: Number,
+  },
+  methods: {
+    calcVal() {
+      this.$emit('selectVal', parseInt(this.selectVal));
     },
-    created(){
-        this.selectVal = this.default;
-    },
-    props: {
-        index: Number,
-        value: Number,
-        margin: Number,
-        default: Number
-    },
-    methods: {
-        calcVal(){
-            this.$emit('selectVal', parseInt(this.selectVal));
-        }
-    }
-}
+  },
+};
 </script>

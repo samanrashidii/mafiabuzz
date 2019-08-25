@@ -12,8 +12,8 @@
 
 <script>
 export default {
-    
-}
+
+};
 </script>
 
 <style lang="scss" scoped>
@@ -110,7 +110,7 @@ export default {
         ul{
             li{
                 margin-bottom: 10px;
-                
+
             }
         }
         a.bttn{

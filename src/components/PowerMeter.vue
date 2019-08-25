@@ -18,18 +18,18 @@
 
 <script>
 export default {
-    props:{
-        power: Object,
-        mafia:{
-            type: Number,
-            default: 0
-        },
-        citizen:{
-            type: Number,
-            default: 0
-        },
+  props: {
+    power: Object,
+    mafia: {
+      type: Number,
+      default: 0,
     },
-}
+    citizen: {
+      type: Number,
+      default: 0,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -10,12 +10,13 @@
 
 <script>
 import UnderConstruction from '@/components/UnderConstruction.vue';
+
 export default {
-    components:{
-        underConstruction: UnderConstruction,
-    },
-    props: {
-        checkMode: Object
-    }
-}
+  components: {
+    underConstruction: UnderConstruction,
+  },
+  props: {
+    checkMode: Object,
+  },
+};
 </script>

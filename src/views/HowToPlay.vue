@@ -16,69 +16,70 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkGameMode from '@/mixins/checkGameMode';
-import {mapGetters} from 'vuex';
+
 export default {
-    data(){
-        return {
-            pageId : this.$route.params.id
-        }
-    },
-    components:{
-        changeGameMode: ChangeGameMode,
-        infoBox: InfoBox,
-        pageTitle: PageTitle,
-    },
-    computed:{
-        ...mapGetters([
-            'Roles',
-        ]),
-    },
-    metaInfo() {
-        return {
-            title : `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
-            meta: [
-                {
-                    vmid: 'description',
-                    name : 'description',
-                    content : `${this.$t('meta.howtoplay.description')}`
-                },
-                {
-                    vmid: 'title',
-                    name : 'og:title',
-                    content : `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
-                },
-                {
-                    vmid: 'ogdescription',
-                    name : 'og:description',
-                    content : `${this.$t('meta.howtoplay.description')}`
-                },
-                {
-                    vmid: 'ogurl',
-                    name : 'og:url',
-                    content : `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.howtoplay.url')}`
-                }
-            ]
-        }
-    },
-    methods:{
-        // Get Role Image
-        getImgUrl(pic) {
-            return require(`@/assets/images/roles/${pic}`);
+  data() {
+    return {
+      pageId: this.$route.params.id,
+    };
+  },
+  components: {
+    changeGameMode: ChangeGameMode,
+    infoBox: InfoBox,
+    pageTitle: PageTitle,
+  },
+  computed: {
+    ...mapGetters([
+      'Roles',
+    ]),
+  },
+  metaInfo() {
+    return {
+      title: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: `${this.$t('meta.howtoplay.description')}`,
         },
-        // Get How To Play Image
-        getHTPImgUrl(pic) {
-            return require(`@/assets/images/howtoplay/${pic}`);
+        {
+          vmid: 'title',
+          name: 'og:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
         },
+        {
+          vmid: 'ogdescription',
+          name: 'og:description',
+          content: `${this.$t('meta.howtoplay.description')}`,
+        },
+        {
+          vmid: 'ogurl',
+          name: 'og:url',
+          content: `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.howtoplay.url')}`,
+        },
+      ],
+    };
+  },
+  methods: {
+    // Get Role Image
+    getImgUrl(pic) {
+      return require(`@/assets/images/roles/${pic}`);
     },
-    mixins: [checkGameMode],
-    watch:{
-        $route(to, from){
-            this.pageId = to.params.id;
-        }
-    }
-}
+    // Get How To Play Image
+    getHTPImgUrl(pic) {
+      return require(`@/assets/images/howtoplay/${pic}`);
+    },
+  },
+  mixins: [checkGameMode],
+  watch: {
+    $route(to, from) {
+      this.pageId = to.params.id;
+    },
+  },
+};
 </script>

@@ -7,14 +7,14 @@
         </div>
         <template v-if="checkGameMode().status">
             <div class="steps">
-                <step-box 
+                <step-box
                     :index="1"
-                    :value="gameSettings.maxPlayers" 
+                    :value="gameSettings.maxPlayers"
                     :margin="gameSettings.playerMargin"
                     :default="gameSettings.unit"
                     @selectVal="gameSettings.unit = $event"
                 />
-                <step-box 
+                <step-box
                     :index="2"
                     :value="calcMafia"
                     :margin="0"
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
@@ -58,139 +59,138 @@ import StepBox from '@/components/StepBox.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import checkGameMode from '@/mixins/checkGameMode';
-import {mapGetters, mapActions} from 'vuex';
+
 export default {
-    data(){
-        return {
-            error:{
-                mafia: false,
-                citizens: false
-            },
-            fMafias: [],
-            fCitizens: [],
-            gameSettings: {
-                maxPlayers: 25,
-                playerMargin: 5,
-                unit: 6,
-                mafia: 2,
-                citizens: 4,
-                roles: [],
-                power: 0,
-                mafiaPower: 0,
-                citizenPower: 0,
-            },
-            gameValdiation: {
-                selectedMafia: 0,
-                selectedCitizen: 0
-            },
-            overlay: false,
+  data() {
+    return {
+      error: {
+        mafia: false,
+        citizens: false,
+      },
+      fMafias: [],
+      fCitizens: [],
+      gameSettings: {
+        maxPlayers: 25,
+        playerMargin: 5,
+        unit: 6,
+        mafia: 2,
+        citizens: 4,
+        roles: [],
+        power: 0,
+        mafiaPower: 0,
+        citizenPower: 0,
+      },
+      gameValdiation: {
+        selectedMafia: 0,
+        selectedCitizen: 0,
+      },
+      overlay: false,
+    };
+  },
+  components: {
+    changeGameMode: ChangeGameMode,
+    errorBox: ErrorBox,
+    noteBox: NoteBox,
+    overlay: Overlay,
+    pageTitle: PageTitle,
+    powerMeter: PowerMeter,
+    roles: Roles,
+    stepBox: StepBox,
+    appTable: Table,
+    welcomeBox: WelcomeBox,
+  },
+  computed: {
+    ...mapGetters([
+      'Numbers',
+    ]),
+    calcMafia() {
+      const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
+      this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
+      return mafiaNumbers;
+    },
+    calcPower() {
+      const $power = {
+        average: this.gameSettings.power,
+        mafia: this.gameSettings.mafiaPower,
+        citizen: this.gameSettings.citizenPower,
+      };
+      const $mafiaPower = this.gameSettings.mafiaPower;
+      const $citizenPower = this.gameSettings.citizenPower;
+      this.gameSettings.roles.forEach((element) => {
+        $power.average += element.power;
+        if (element.mafia) {
+          $power.mafia += Math.abs(element.power);
+        } else {
+          $power.citizen += element.power;
         }
+      });
+      if ($power.average >= 95) {
+        $power.average = 95;
+      } else if ($power.average <= -95) {
+        $power.average = -95;
+      }
+      return $power;
     },
-    components:{
-        changeGameMode: ChangeGameMode,
-        errorBox: ErrorBox,
-        noteBox: NoteBox,
-        overlay: Overlay,
-        pageTitle: PageTitle,
-        powerMeter: PowerMeter,
-        roles: Roles,
-        stepBox: StepBox,
-        appTable: Table,
-        welcomeBox: WelcomeBox,
+    finalMafias() {
+      return this.fMafias.sort((a, b) => ((a.name > b.name) ? 1 : -1));
     },
-    computed:{
-        ...mapGetters([
-            'Numbers',
-        ]),
-        calcMafia(){
-            let mafiaNumbers = Math.floor(this.gameSettings.unit / 2) -1;
-            this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
-            return mafiaNumbers;
-        },
-        calcPower(){
-            let $power = {
-                average: this.gameSettings.power,
-                mafia: this.gameSettings.mafiaPower,
-                citizen: this.gameSettings.citizenPower,
-            }
-            let $mafiaPower = this.gameSettings.mafiaPower;
-            let $citizenPower = this.gameSettings.citizenPower;
-            this.gameSettings.roles.forEach(element => {
-                $power.average += element.power;
-                if(element.mafia){
-                    $power.mafia += Math.abs(element.power);
-                } else{
-                    $power.citizen += element.power;
-                }
-            });
-            if($power.average >= 95){
-                $power.average = 95;
-            } else if($power.average <= -95){
-                $power.average = -95;
-            }
-            return $power;
-        },
-        finalMafias(){
-            return this.fMafias.sort((a, b) => (a.name > b.name) ? 1 : -1);
-        },
-        finalCitizens(){
-            return this.fCitizens.sort((a, b) =>  (a.name > b.name) ? 1 : -1);
-        },
-        isValid(){
-            this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
-            this.gameValdiation.selectedCitizen = this.gameSettings.roles.filter(x => x.mafia == false).length;
-            if(this.gameValdiation.selectedMafia != this.gameSettings.mafia){
-                this.error.mafia = true
-            } else{
-                this.error.mafia = false
-            }
-            if(this.gameValdiation.selectedCitizen != this.gameSettings.citizens){
-                this.error.citizens = true
-            } else{
-                this.error.citizens = false
-            }
-            if(this.gameValdiation.selectedMafia == this.gameSettings.mafia && this.gameValdiation.selectedCitizen == this.gameSettings.citizens){
-                return false;
-            } else{
-                return true;
-            }
-        }
+    finalCitizens() {
+      return this.fCitizens.sort((a, b) => ((a.name > b.name) ? 1 : -1));
     },
-    created(){
-        if(this.Numbers !== null){
-            this.gameSettings.unit = this.Numbers.unit;
-            this.gameSettings.mafia = this.Numbers.mafia;
-        }
+    isValid() {
+      this.gameValdiation.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
+      this.gameValdiation.selectedCitizen = this.gameSettings.roles.filter(x => x.mafia == false).length;
+      if (this.gameValdiation.selectedMafia != this.gameSettings.mafia) {
+        this.error.mafia = true;
+      } else {
+        this.error.mafia = false;
+      }
+      if (this.gameValdiation.selectedCitizen != this.gameSettings.citizens) {
+        this.error.citizens = true;
+      } else {
+        this.error.citizens = false;
+      }
+      if (this.gameValdiation.selectedMafia == this.gameSettings.mafia && this.gameValdiation.selectedCitizen == this.gameSettings.citizens) {
+        return false;
+      }
+      return true;
     },
-    methods:{
-        ...mapActions([
-            'getRoles',
-            'setGame',
-            'setNumbers',
-            'setSavedRoles'
-        ]),
-        calcDifference(main,side){
-            return main - side;
-        },
-        checkGame(){
-            this.overlay = true;
-            this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
-            this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
-        },
-        startGame(){
-            let numb = {
-                unit : this.gameSettings.unit,
-                mafia : this.gameSettings.mafia,
-            }
-            let $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
-            this.getRoles(this.gameSettings.roles);
-            this.setSavedRoles($savedRoles);
-            this.setNumbers(numb);
-            this.setGame(true);
-        }
+  },
+  created() {
+    if (this.Numbers !== null) {
+      this.gameSettings.unit = this.Numbers.unit;
+      this.gameSettings.mafia = this.Numbers.mafia;
+    }
+  },
+  methods: {
+    ...mapActions([
+      'getRoles',
+      'setGame',
+      'setNumbers',
+      'setSavedRoles',
+    ]),
+    calcDifference(main, side) {
+      return main - side;
     },
-    mixins: [checkGameMode]
-}
+    checkGame() {
+      this.overlay = true;
+      this.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
+      this.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
+    },
+    startGame() {
+      const numb = {
+        unit: this.gameSettings.unit,
+        mafia: this.gameSettings.mafia,
+      };
+      const $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
+      this.getRoles(this.gameSettings.roles);
+      this.setSavedRoles($savedRoles);
+      this.setNumbers(numb);
+      this.setGame(true);
+    },
+  },
+  mixins: [checkGameMode],
+};
 </script>
 
 <style lang="scss" scoped>

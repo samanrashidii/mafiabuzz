@@ -1499,10 +1499,13 @@ a.bttn{font-size: $font_size_4;}
 
 .player-box-holder{direction: ltr;}
 
-.table table tr td input,
-.log-bttn i{
+.table table tr td input{
     line-height: 23px;
     padding-top:3px;
+}
+.log-bttn i{
+    font-size: 13px;
+    line-height: 23px;
 }
 
 table tr td:nth-child(1)::before{
