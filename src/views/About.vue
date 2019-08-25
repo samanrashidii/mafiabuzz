@@ -1,8 +1,7 @@
 <template>
     <div class="about">
         <div class="dashboard-header">
-            <change-game-mode />
-            <page-title :checkMode="checkGameMode()" />
+            <page-title :checkRoute="checkRoute()" />
         </div>
         <div class="creators">
             <ul>
@@ -24,10 +23,8 @@
 </template>
 
 <script>
-import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkGameMode from '@/mixins/checkGameMode';
-
+import checkRoute from '@/mixins/checkRoute';
 export default {
   data() {
     return {
@@ -35,7 +32,6 @@ export default {
     };
   },
   components: {
-    changeGameMode: ChangeGameMode,
     pageTitle: PageTitle,
   },
   metaInfo() {
@@ -65,7 +61,7 @@ export default {
       ],
     };
   },
-  mixins: [checkGameMode],
+  mixins: [checkRoute],
   watch: {
     $route(to, from) {
       this.pageId = to.params.id;

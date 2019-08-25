@@ -340,12 +340,7 @@ button{
             img{
                 transform:rotate(360deg);
             }
-        }
-        &.single-device nav a{
-            &:nth-child(1){width:100%;}
-            &:nth-child(2){background-color: $hint_color;}
-            &:nth-child(3){background-color: $about_color;}
-        }  
+        } 
         nav{
             display:flex;
             flex-wrap: wrap;
@@ -363,9 +358,9 @@ button{
                 border:5px solid $background_color_main;
                 box-shadow: inset 0 0 2px #1e1e1e;
                 &:nth-child(1){background-color: $creator_color;}
-                &:nth-child(2){background-color: $player_color;}
-                &:nth-child(3){background-color: $hint_color;}
-                &:nth-child(4){background-color: $about_color;}
+                &:nth-child(2){background-color: $hint_color;}
+                &:nth-child(3){background-color: $about_color;}
+                &:nth-child(4){background-color: $player_color;}
                 span{
                     display:table-cell;
                     vertical-align: middle;
@@ -381,10 +376,12 @@ button{
                 opacity: .1;
                 transform:scale(1,1);
             }
+            &:nth-child(1){width:100%;}
+            &:nth-child(2){background-color: $hint_color;}
+            &:nth-child(3){background-color: $about_color;}
         }
         &.internal{
             height: 60px;
-            &.single-device nav a{width:33.3333333%;}
             nav{
                 padding:1px;
                 a{
@@ -874,7 +871,6 @@ span.step-number{
 }
 .creator .title h2 span{color:$creator_color;}
 .about .title h2 span{color:$about_color;}
-.player .title h2 span{color:$player_color;}
 .how-to-play .title h2 span{color:$hint_color;}
 
 .different-colors{
@@ -1414,6 +1410,8 @@ body{
     font-size: $font_size_5;
 }
 
+p{line-height: 2;}
+
 select{
     line-height: 38px;
     background-position-x: 15px;
@@ -1435,6 +1433,11 @@ select{
 
 .swap-bttn span{
     padding:3px 28px 5px 5px;
+    background-position-x: 99%;
+}
+
+.assign-bttn span{
+    padding:3px 33px 3px 5px;
     background-position-x: 99%;
 }
 

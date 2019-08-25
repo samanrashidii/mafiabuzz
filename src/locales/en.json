@@ -28,11 +28,6 @@
             "description": "We are some random gamers who wants to help other gamers to play and enjoy party games",
             "url": "about"
         },
-        "player": {
-            "title": "Player",
-            "description": "As player you can join Creator's game by entering it's unique code and play game as a party",
-            "url": "player"
-        },
         "notfound":{
             "title": "Page Not Found - Error 404",
             "description": "Page requested was not found - Error 404",
@@ -42,9 +37,8 @@
     "common": {
         "homeButton": "Navigate to Home",
         "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!",
-        "UnderConstructionTitle": "We are <span>Sorry</span>",
-        "UnderConstructionText": "This mode is under construction ...!!!",
-        "underConstructionAlt": "Under Construction Icon",
+        "page404Image": "error-404.png",
+        "page404Alt": "Error 404 Image",
         "Mafia": "mafia",
         "Citizen": "citizen",
         "Role": "Role",
@@ -64,12 +58,6 @@
             "url": "creator",
             "image": "creator.png",
             "alt": "Creator Icon"
-        },
-        {
-            "name": "Player",
-            "url": "player",
-            "image": "player.png",
-            "alt": "Player Icon"
         },
         {
             "name": "How to play?",
@@ -123,11 +111,6 @@
             "gotMobile": "Please see your role carefully :",
             "beforeShowButton": "Show me my role !",
             "afterShowButton": "Ok got it"
-        },
-        "player": {
-            "gameModeButton": "Change Game Mode",
-            "title": "Hey <span>Player</span>",
-            "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         },
         "about": {
             "title": "<span>About</span>",

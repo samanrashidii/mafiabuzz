@@ -1,11 +1,10 @@
 <template>
     <div class="how-to-play">
         <div class="dashboard-header">
-            <change-game-mode />
-            <page-title :checkMode="checkGameMode()" />
+            <page-title :checkRoute="checkRoute()" />
         </div>
         <page-box v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
-            <img :src="getHTPImgUrl(step.icon)" alt="How to Play Step Icon" />
+            <img :src="getImgUrl('/howtoplay', step.icon)" alt="How to Play Step Icon" />
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
             <div v-if="step.roles">
@@ -16,11 +15,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ChangeGameMode from '@/components/ChangeGameMode.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkGameMode from '@/mixins/checkGameMode';
+import checkRoute from '@/mixins/checkRoute';
+import getImg from '@/mixins/getImg';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -29,7 +28,6 @@ export default {
     };
   },
   components: {
-    changeGameMode: ChangeGameMode,
     infoBox: InfoBox,
     pageTitle: PageTitle,
   },
@@ -65,17 +63,7 @@ export default {
       ],
     };
   },
-  methods: {
-    // Get Role Image
-    getImgUrl(pic) {
-      return require(`@/assets/images/roles/${pic}`);
-    },
-    // Get How To Play Image
-    getHTPImgUrl(pic) {
-      return require(`@/assets/images/howtoplay/${pic}`);
-    },
-  },
-  mixins: [checkGameMode],
+  mixins: [checkRoute, getImg],
   watch: {
     $route(to, from) {
       this.pageId = to.params.id;

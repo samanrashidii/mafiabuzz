@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard">
         <div class="dashboard-header">
-          <page-title dashboardTitle :checkMode="checkGameMode()" />
+          <page-title dashboardTitle :checkRoute="checkRoute()" />
           <app-button class="settings-bttn danger has-small-top-margin" v-if="StepCounter != 3 && !GameReset" @click.native="alertBox = true, totRestart = false"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
           <app-button class="danger has-small-top-margin" v-else-if="StepCounter != 3 && GameReset" @click.native="alertBox = true, totRestart = true"><span>{{$t('pages.creator.restartGame')}}</span></app-button>
         </div>
@@ -47,7 +47,7 @@
                                 <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">{{$t('pages.creator.beforeShowButton')}}</app-button>
                                 <div class="role-info-wrapper" v-else>
                                     <div class="role-info" :class="{'citizen': role.mafia == false}">
-                                        <img :src="getImgUrl('roles', $t(role.icon))" :alt="$t(role.alt)" />
+                                        <img :src="getImgUrl('/roles', $t(role.icon))" :alt="$t(role.alt)" />
                                         <h4>{{$t(role.name)}}</h4>
                                     </div>
                                     <app-button class="green" @click.native.once="nextPerson()">{{$t('pages.creator.afterShowButton')}}</app-button>
@@ -68,7 +68,7 @@
 import God from '@/components/main/God.vue';
 import Overlay from '@/components/Overlay.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkGameMode from '@/mixins/checkGameMode';
+import checkRoute from '@/mixins/checkRoute';
 import getImg from '@/mixins/getImg';
 import { mapGetters, mapActions } from 'vuex';
 
@@ -203,6 +203,6 @@ export default {
       }, 150);
     },
   },
-  mixins: [checkGameMode, getImg],
+  mixins: [checkRoute, getImg],
 };
 </script>
