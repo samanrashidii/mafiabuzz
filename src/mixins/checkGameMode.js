@@ -5,7 +5,7 @@ export default {
         name: this.$route.name,
         status: false,
       };
-      if (this.$route.params.id == 'single-device') {
+      if (this.$route.params.id === 'single-device') {
         mode.status = true;
       }
       return mode;
