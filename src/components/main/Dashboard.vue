@@ -1,15 +1,9 @@
 <template>
     <div class="dashboard">
         <div class="dashboard-header">
-            <div class="title">
-                <h2 v-html="$t('pages.creator.dashboardTitle')"></h2>
-            </div>
-            <div class="has-xsmall-top-margin" v-if="StepCounter != 3 && !GameReset">
-                <app-button @click.native="alertBox = true, totRestart = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
-            </div>
-            <div class="has-xsmall-top-margin" v-else-if="StepCounter != 3 && GameReset">
-                <app-button @click.native="alertBox = true, totRestart = true" class="danger"><span>{{$t('pages.creator.restartGame')}}</span></app-button>
-            </div>
+          <page-title dashboardTitle :checkMode="checkGameMode()" />
+          <app-button class="settings-bttn danger has-small-top-margin" v-if="StepCounter != 3 && !GameReset" @click.native="alertBox = true, totRestart = false"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+          <app-button class="danger has-small-top-margin" v-else-if="StepCounter != 3 && GameReset" @click.native="alertBox = true, totRestart = true"><span>{{$t('pages.creator.restartGame')}}</span></app-button>
         </div>
 
         <overlay :class="{'active': alertBox,'dialog': true}">
@@ -27,6 +21,7 @@
         </overlay>
 
         <transition name="slide" mode="out-in">
+
             <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
                 <a class="predefined type-2" href="javascript:void(0)" v-if="checkLocalStorage" :class="{'active': showSavedNames}" @click="handleSavedNames()">
                     <span>{{$t('pages.creator.lastNames')}}</span>
@@ -40,7 +35,8 @@
                 </template>
                 <app-button @click.native="assignRoles()" class="active assign-bttn"><span>{{$t('pages.creator.assign')}}</span></app-button>
             </div>
-            <div class="step-box display autoheight" v-if="StepCounter == 2" key="step2">
+
+            <div class="step-box display autoheight" v-else-if="StepCounter == 2" key="step2">
                 <div class="inner-display">
                     <p v-if="!showrole">{{$t('pages.creator.passMobile')}}</p>
                     <p v-else>{{$t('pages.creator.gotMobile')}}</p>
@@ -51,7 +47,7 @@
                                 <app-button class="yellow" @click.native="showrole = true" v-if="!showrole" key="showButton">{{$t('pages.creator.beforeShowButton')}}</app-button>
                                 <div class="role-info-wrapper" v-else>
                                     <div class="role-info" :class="{'citizen': role.mafia == false}">
-                                        <img :src="getImgUrl($t(role.icon))" :alt="$t(role.alt)" />
+                                        <img :src="getImgUrl('roles', $t(role.icon))" :alt="$t(role.alt)" />
                                         <h4>{{$t(role.name)}}</h4>
                                     </div>
                                     <app-button class="green" @click.native.once="nextPerson()">{{$t('pages.creator.afterShowButton')}}</app-button>
@@ -61,17 +57,20 @@
                     </div>
                 </div>
             </div>
-            <god :finalPlayers="gameRoles" @personNumb="personNumb = $event" @ready="ready = $event" v-if="StepCounter == 3" key="step3"/>
+
+            <god :finalPlayers="gameRoles" @personNumb="personNumb = $event" @ready="ready = $event" v-else-if="StepCounter == 3" key="step3"/>
+            
         </transition>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import God from '@/components/God.vue';
+import God from '@/components/main/God.vue';
 import Overlay from '@/components/Overlay.vue';
+import PageTitle from '@/components/PageTitle.vue';
+import checkGameMode from '@/mixins/checkGameMode';
 import getImg from '@/mixins/getImg';
-
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -89,6 +88,7 @@ export default {
   components: {
     god: God,
     overlay: Overlay,
+    pageTitle: PageTitle,
   },
   computed: {
     ...mapGetters([
@@ -139,9 +139,6 @@ export default {
       }
       localStorage.savedPlayers = pL;
     },
-    getImgUrl(pic) {
-      return require(`@/assets/images/roles/${pic}`);
-    },
     goToPage(obj) {
       this.$router.push(obj);
     },
@@ -163,7 +160,7 @@ export default {
         if (this.SelectedRoles.length < this.players.length) {
           // Should Test
           Vue.set(this.players, index, this.SelectedRoles.length);
-          this.players.length = this.SelectedRoles.length;
+          // this.players.length = this.SelectedRoles.length;
         }
         this.showPredefined = false;
         this.showSavedNames = true;
@@ -208,6 +205,6 @@ export default {
       }, 150);
     },
   },
-  mixins: [getImg],
+  mixins: [checkGameMode, getImg],
 };
 </script>

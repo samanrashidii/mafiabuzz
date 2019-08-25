@@ -9,8 +9,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Create from '@/components/Create.vue';
-import Dashboard from '@/components/Dashboard.vue';
+import Create from '@/components/main/Create.vue';
+import Dashboard from '@/components/main/Dashboard.vue';
 
 export default {
   data() {
