@@ -158,9 +158,7 @@ export default {
         const $savedPlayers = localStorage.savedPlayers.split(',');
         this.players = $savedPlayers;
         if (this.SelectedRoles.length < this.players.length) {
-          // Should Test
-          Vue.set(this.players, index, this.SelectedRoles.length);
-          // this.players.length = this.SelectedRoles.length;
+          this.players = this.players.slice(0, this.SelectedRoles.length);
         }
         this.showPredefined = false;
         this.showSavedNames = true;
