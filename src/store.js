@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import mafiaBuzzRoles from './roles.json';
+import mafiaBuzzRoles from '@/assets/roles.json';
 
 Vue.use(Vuex);
 
