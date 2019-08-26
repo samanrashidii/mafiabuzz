@@ -7,7 +7,7 @@ import roles from './modules/roles';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  // strict: true,
+  strict: true,
   modules: {
     createBoard,
     gameStatus,
@@ -53,6 +53,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    DefaultState: state => state,
     SelectedRoles: state => state.roles,
     SavedRoles: state => state.savedRoles,
     GameReset: state => state.gameReset,

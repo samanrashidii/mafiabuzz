@@ -4,16 +4,16 @@
       <div class="mafia-power">
         <strong v-if="mafia > 0"><i class="hint-color">{{ mafia }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.minus') }}</strong>
         <strong v-else-if="mafia < 0"><i class="hint-color">{{ Math.abs(mafia) }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.plus') }}</strong>
-        <span>{{ $t('powerMeter.mafia') }}: <b>{{ power.mafia }}</b></span>
+        <span>{{ $t('powerMeter.mafia') }}: <b>{{ powerControl.mafia }}</b></span>
       </div>
       <div class="citizen-power">
         <strong v-if="citizen > 0"><i class="hint-color">{{ citizen }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.minus') }}</strong>
         <strong v-else-if="citizen < 0"><i class="hint-color">{{ Math.abs(citizen) }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.plus') }}</strong>
-        <span>{{ $t('powerMeter.citizen') }} : <b>{{ power.citizen }}</b></span>
+        <span>{{ $t('powerMeter.citizen') }} : <b>{{ powerControl.citizen }}</b></span>
       </div>
       <div
         class="meter"
-        :style="{ transform: `translateX(${power.average}%)`}"
+        :style="{ transform: `translateX(${powerControl.power}%)`}"
       >
         <span />
       </div>
@@ -24,7 +24,7 @@
 <script>
 export default {
   props: {
-    power: Object,
+    powerControl: Object,
     mafia: {
       type: Number,
       default: 0,

@@ -19,3 +19,16 @@
     </transition-group>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed:{
+    ...mapGetters(['DefaultState']),
+  },
+  created(){
+    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
+  }
+}
+</script>
