@@ -1,9 +1,20 @@
 <template>
-    <div class="not-found center-aligned">
-        <img :src="getImgUrl('', $t('common.page404Image'))" :alt="$t('common.page404Alt')" />
-        <h2 class="has-top-margin" v-html="$t('common.page404')"></h2>
-        <router-link class="bttn has-top-margin" :to="{name: 'home'}">{{$t('common.homeButton')}}</router-link>
-    </div>
+  <div class="not-found center-aligned">
+    <img
+      :src="getImgUrl('', $t('common.page404Image'))"
+      :alt="$t('common.page404Alt')"
+    >
+    <h2
+      class="has-top-margin"
+      v-html="$t('common.page404')"
+    />
+    <router-link
+      class="bttn has-top-margin"
+      :to="{name: 'home'}"
+    >
+      {{ $t('common.homeButton') }}
+    </router-link>
+  </div>
 </template>
 
 <script>

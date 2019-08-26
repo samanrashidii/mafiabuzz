@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vue2TouchEvents from 'vue2-touch-events';
 import App from './App.vue';
 import router from './router';
-import store from './store';
+import store from '@/store/index';
 import i18n from './i18n';
 
 import './registerServiceWorker';

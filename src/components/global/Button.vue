@@ -1,7 +1,10 @@
 <template>
-    <a class="bttn" href="javascript:void(0)">
-        <slot></slot>
-    </a>
+  <a
+    class="bttn"
+    href="javascript:void(0)"
+  >
+    <slot />
+  </a>
 </template>
 
 <script>

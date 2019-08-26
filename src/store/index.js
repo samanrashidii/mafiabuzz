@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import mafiaBuzzRoles from '@/assets/roles.json';
+import createBoard from './modules/createBoard';
+import gameStatus from './modules/gameStatus';
+import roles from './modules/roles';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   // strict: true,
+  modules: {
+    createBoard,
+    gameStatus,
+    roles,
+  },
   state: {
-    rolesDB: mafiaBuzzRoles,
     roles: [],
     savedRoles: [],
     gameReset: false,
@@ -47,7 +53,6 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    Roles: state => state.rolesDB,
     SelectedRoles: state => state.roles,
     SavedRoles: state => state.savedRoles,
     GameReset: state => state.gameReset,

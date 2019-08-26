@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <transition name="slide" mode="out-in" tag="div">
-      <router-view></router-view>
+    <transition
+      name="slide"
+      mode="out-in"
+      tag="div"
+    >
+      <router-view />
     </transition>
   </div>
 </template>

@@ -1,16 +1,19 @@
 <template>
-    <div class="creator">
-        <transition name="slide" mode="out-in">
-            <Create v-if="!gameStatus" />
-            <Dashboard v-else />
-        </transition>
-    </div>
+  <div class="creator">
+    <transition
+      name="slide"
+      mode="out-in"
+    >
+      <Create v-if="!gameStatus" />
+      <Dashboard v-else />
+    </transition>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Create from '@/components/main/Create.vue';
 import Dashboard from '@/components/main/Dashboard.vue';
-import { mapGetters } from 'vuex';
 
 export default {
   data() {

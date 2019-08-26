@@ -1,340 +1,754 @@
 <template>
-    <div>
+  <div>
+    <!-- Dashboard Buttons -->
 
-        <!-- Dashboard Buttons -->
-
-        <div class="button-holder" v-if="dashboard.god">
-            <transition name="fade" mode="out-in">
-                <app-button :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}" @click.native="changePhase(dashboard.day)">
-                    <span v-if="dashboard.day">{{$t('god.nightText')}}</span>
-                    <span v-else>{{$t('god.dayText')}}</span>
-                </app-button>
-            </transition>
-        </div>
-
-        <!-- Night Priority Action Box -->
-
-        <transition name="fade">
-            <div class="priority-box" v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction">
-
-                <!-- Before Action Box -->
-                <transition name="fade">
-                    <div class="before-action-box" v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round == 1">
-                        <div class="table-display">
-                            <div class="table-cell-display">
-                                <!-- Last Phase Action -->
-                                <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
-                                    <img :src="getImgUrl('/roles', $t('god.voteIcon'))" :alt="$t('god.deadIconAlt')" />
-                                    <p>{{$t('god.lastPhaseText')}}</p>
-                                    <select name="action_target" v-model="log.target">
-                                        <option :value="null" disabled>{{$t('god.selectPlaceholder')}}</option>
-                                        <option v-for="(person, index) in checkGroup('lastDay')" :key="index">{{person.player}}</option>
-                                    </select>
-                                    <app-button @click.native="killByVote(log.target)">{{$t('god.confirmButton')}}</app-button>
-                                    <app-button class="danger" @click.native="dashboard.lastPhaseAction = false">{{$t('god.skipButton')}}</app-button>
-                                </template>
-                                <!-- Last Phase Action -->
-                                <template v-else-if="dashboard.mafiaParty && dashboard.round == 1">
-                                    <img :src="getImgUrl('/roles', $t('god.mafiaPartyIcon'))" :alt="$t('god.mafiaPartyIconAlt')" />
-                                    <p class="site-color">{{$t('god.mafiaPartyText')}}</p>
-                                    <ul class="error-bullet type-2">
-                                        <li v-for="(mp, index) in $t('god.mafiaPartyException')" :key="index" v-html="mp"></li>
-                                    </ul>
-                                    <app-button class="has-small-top-margin" @click.native="dashboard.mafiaParty = false">{{$t('god.mafiaPartyButton')}}</app-button>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
-                </transition>
-
-                <!-- Actions Progress Bar -->
-                <div class="progress-bar">
-                    <span :style="{width: progress+'%'}"></span>
-                    <i><strong>{{dashboard.currentAction}}</strong> / {{sortByPriority.length}}</i>
-                </div>
-
-                <!-- Handle Actions -->
-                <template v-for="(action, index) in sortByPriority">
-                    <div class="action-box" v-if="checkReadyActions(action, index)" :key="index">
-                        {{fireAction(action)}}
-
-                        <transition name="fade" mode="out-in">
-                            <!-- Hacked Target Action -->
-                            <div class="action-overlay hacked-overlay" v-if="targetHacked" key="hackedTarget">
-                                <div class="table-display">
-                                    <div class="table-cell-display">
-                                        <img :src="getImgUrl('/roles', $t('god.hackedIcon'))" :alt="$t('god.hackedIconAlt')" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.hackedPerson')"></strong></p>
-                                        <app-button class="purple" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Dead Target Action -->
-                            <div class="action-overlay dead-overlay" v-else-if="targetDead" key="deadTarget">
-                                <div class="table-display">
-                                    <div class="table-cell-display">
-                                        <img :src="getImgUrl('/roles', $t('god.deadIcon'))" :alt="$t('god.deadIconAlt')" />
-                                        <img class="overlap" :src="getImgUrl('/roles', $t(info.icon2))" :alt="$t('god.playerIconAlt')" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{$t(info.name2)}} </span> <strong v-html="$t('god.deadPerson')"></strong></p>
-                                        <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Revived Target Action -->
-                            <div class="action-overlay dead-overlay" v-else-if="targetRevived" key="revivedTarget">
-                                <div class="table-display">
-                                    <div class="table-cell-display">
-                                        <img :src="getImgUrl('/roles', $t(info.icon2))" :alt="$t('god.revivedIconAlt')" />
-                                        <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{info.player}} </span> <strong v-html="$t('god.revivedPerson')"></strong></p>
-                                        <app-button class="black" @click.native="skipAction()">{{$t('god.skipButton3')}}</app-button>
-                                    </div>
-                                </div>
-                            </div>
-                        </transition>
-
-                        <p>{{$t('god.actionQuestion1')}}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{$t(info.name2)}} </span> {{$t('god.actionQuestion2')}} <strong>{{$t(info.action)}}</strong> ?</p>
-                        <div class="player-box-holder has-small-bottom-margin">
-                            <div class="player-box">
-                                <img :src="getImgUrl('/roles', $t(info.icon2))" :alt="$t('god.playerIconAlt')"  />
-                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}">{{info.player}}</h4>
-                            </div>
-                            <div class="arrow">
-                                <img class="action-image" :src="getImgUrl('/actions', $t(info.actionIcon))" :alt="$t('god.playerActionIconAlt')" />
-                            </div>
-                            <div class="player-box">
-                                <img :src="getImgUrl('/roles', $t(info.targetIcon))" :alt="$t('god.playerIconAlt')"  />
-                                <h4 class="has-xsmall-top-margin" :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}">{{info.target}}</h4>
-                            </div>
-                        </div>
-                        <select @change="findTarget(log.target, log.targetID)" name="action_target" v-model="log.target">
-                            <option :value="null" disabled>{{$t('god.selectPlaceholder')}}</option>
-                            <option v-for="(person, index) in checkGroup(info)" :key="index">{{person.player}}</option>
-                        </select>
-                        <template v-if="info.ability.binder && log.target != null">
-                            <label for="action_target_2">{{$t('god.actionHintText2')}}</label>
-                            <select name="action_target_2" v-model="log.target2">
-                                <option :value="null" disabled>{{$t('god.selectPlaceholder')}}</option>
-                                <option v-for="(person, index) in checkSecondGroup(info)" :key="index">{{person.player}}</option>
-                            </select>
-                        </template>
-                    </div>
-                </template>
-
-                <!-- Action Buttons -->
-                <app-button @click.native="executeAction(info)">{{$t('god.confirmButton')}}</app-button>
-                <app-button class="danger" @click.native="alertBox = true">{{$t('god.skipButton')}}</app-button>
-
-                <!-- Log Actions During Night -->
-                <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
-                    <div class="log-action">
-                        <img :src="getImgUrl('/actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                        <img :src="getImgUrl('/roles', $t(log.passiveIcon))" :alt="log.target" v-else />
-                        <log-events v-if="readyToLog" :log="log"></log-events>
-                    </div>
-                </overlay>
-            </div>
-        </transition>
-
-        <!-- Alert Box -->
-
-        <overlay :class="{'active': alertBox,'dialog': true}">
-            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')" />
-            <template>
-                <p>{{$t('god.skipText')}}</p>
-                <app-button @click.native="skipAction()" class="green"><span>{{$t('god.skipButton2')}}</span></app-button>
-                <app-button @click.native="alertBox = false" class="danger"><span>{{$t('god.cancelButton')}}</span></app-button>
-            </template>
-        </overlay>
-
-        <!-- Log History -->
-
-        <overlay :class="{'active': logHistory, 'log-history': true}">
-            <template v-for="(totLog, index) in totalHistory">
-                <div class="log-table" :key="index" v-if="totLog.length > 0">
-                    <span class="counter">{{$t('common.Night')}} {{index+1}}</span>
-                    <table>
-                        <tr v-for="(log, index) in totLog" :key="index">
-                            <td>{{index+1}}</td>
-                            <td>
-                                <img :src="getImgUrl('/actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                                <img :src="getImgUrl('/roles', $t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
-                            </td>
-                            <td>
-                                <log-events v-if="readyToLog" :log="log"></log-events>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-             </template>
-             <div class="log-table" v-if="historyLog.length > 0">
-                <span class="counter">{{$t('god.thisNight')}}</span>
-                <table>
-                    <tr v-for="(log, index) in historyLog" :key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="getImgUrl('/actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                            <img :src="getImgUrl('/roles', $t(log.passiveIcon))" :alt="$t('god.passiveIconAlt')" v-else />
-                        </td>
-                        <td>
-                            <log-events v-if="readyToLog" :log="log"></log-events>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div v-if="totalHistory.length == 0 && historyLog.length == 0">
-                <h2>{{$t('god.noLog')}}</h2>
-            </div>
-            <app-button @click.native="logHistory = false" class="active has-small-top-margin"><span>{{$t('god.logCloseButton')}}</span></app-button>
-        </overlay>
-
-        <!-- Last Night Log -->
-
-        <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
-            <img :src="getImgUrl('/roles', $t('god.peopleIcon'))" :alt="$t('god.peopleIconAlt')">
-            <h2>{{$t('god.lastNightTitle')}}</h2>
-            <ul>
-                <li v-for="(nL, index) in lastNight" :key="index" v-html="nL"></li>
-            </ul>
-            <app-button @click.native="lastNightBox = false" class="active"><span>{{$t('god.logCloseButton')}}</span></app-button>
-        </overlay>
-
-        <!-- Day & Night Dashboard -->
-
-        <div class="step-box display godashboard" :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}">
-            <transition name="fade">
-                <strong class="round-tracker" v-if="!dashboard.day">{{dashboard.round}}</strong>
-            </transition>
-            <div class="center-aligned">
-                <transition-group name="fade" mode="out-in">
-                    <div v-if="!dashboard.god" key="beforeShow">
-                        <img class="game-icon" :src="require(`@/assets/images/icons/game.png`)" :alt="$t('god.gameDashboardIconAlt')" />
-                        <h3 class="different-colors" v-html="$t('god.gameStartText')"></h3>
-                        <app-button class="active" @click.native="showPlay()">{{$t('god.godButton')}}</app-button>
-                    </div>
-                    <div v-else key="afterShow">
-                        <div class="players-role">
-
-                            <info-box :info="info"></info-box>
-
-                            <!-- Mafia Table in Dashboard -->
-                            <div class="table mafia-table">
-                                <table>
-                                    <tr>
-                                        <th>{{$t('common.Role')}}</th>
-                                        <th>{{$t('common.Player')}}</th>
-                                        <th v-if="dashboard.day == true">{{$t('common.Vote')}}</th>
-                                        <th v-if="dashboard.day == false">{{$t('common.Status')}}</th>
-                                        <th v-if="dashboard.day == false">{{$t('common.Action')}}</th>
-                                    </tr>
-                                    <tr v-for="(fM, index) in finalMafias" :key="index" :class="characterClasses(fM)">
-                                        <td>
-                                            <a @click="showInfo(fM)" href="javascript:void(0)">
-                                                <img :src="getImgUrl('/roles', $t(fM.icon))" :alt="$t(fM.alt)" /> {{$t(fM.name)}}
-                                            </a>
-                                        </td>
-                                        <td><span class="character-player">{{fM.player}}</span></td>
-                                        <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+10" /></td>
-                                        <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fM)" :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"></a></td>
-                                        <td v-if="dashboard.day == false">
-                                            <span class="disabled" v-if="!fM.status.hasPassive && !fM.status.hasAction"></span>
-                                            <span class="done-action" v-else-if="!fM.status.hasAction && fM.status.hasPassive && fM.actionStatus"></span>
-                                            <span @click="showInfo(fM)" class="passive" v-if="fM.status.hasPassive && !fM.status.hasAction"></span>
-                                            <span @click="showInfo(fM)" :class="{'pending-action': !fM.actionStatus && fM.status.hasAction, 'done-action': fM.actionStatus}" v-else></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <!-- Citizen Table in Dashboard -->
-                            <div class="table citizen-table">
-                                <table>
-                                    <tr>
-                                        <th>{{$t('common.Role')}}</th>
-                                        <th>{{$t('common.Player')}}</th>
-                                        <th v-if="dashboard.day == true">{{$t('common.Vote')}}</th>
-                                        <th v-if="dashboard.day == false">{{$t('common.Status')}}</th>
-                                        <th v-if="dashboard.day == false">{{$t('common.Action')}}</th>
-                                    </tr>
-                                    <tr v-for="(fC, index) in finalCitizens" :key="index" :class="characterClasses(fC)">
-                                        <td>
-                                            <a @click="showInfo(fC)" href="javascript:void(0)">
-                                                <img :src="getImgUrl('/roles', $t(fC.icon))" :alt="$t(fC.alt)" /> {{$t(fC.name)}}
-                                            </a>
-                                        </td>
-                                        <td><span class="character-player">{{fC.player}}</span></td>
-                                        <td class="vote-counter" v-if="dashboard.day == true"><input type="tel" :name="`vote_count_${index}`" placeholder="0" :maxlength="'2'" :tabindex="index+20" /></td>
-                                        <td v-if="dashboard.day == false"><a href="javascript:void(0)" @click="deadOrAlive(fC)" :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"></a></td>
-                                        <td v-if="dashboard.day == false">
-                                            <span class="disabled" v-if="!fC.status.hasPassive && !fC.status.hasAction"></span>
-                                            <span class="done-action" v-else-if="!fC.status.hasAction && fC.status.hasPassive && fC.actionStatus"></span>
-                                            <span @click="showInfo(fC)" class="passive" v-if="fC.status.hasPassive && !fC.status.hasAction"></span>
-                                            <span @click="showInfo(fC)" :class="{'pending-action': !fC.actionStatus && fC.status.hasAction, 'done-action': fC.actionStatus}" v-else></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <!-- Log Actions in Last Night -->
-
-                            <div class="log-table" v-if="historyLog.length > 0 && dashboard.day" :class="{'result': historyLog.length > 0 && dashboard.day}">
-                                <span class="table-title">{{$t('god.whatHappened')}}</span>
-                                <table>
-                                    <tr v-for="(log, index) in historyLog" :key="index">
-                                        <td>
-                                            <img :src="getImgUrl('/actions', $t(log.actionIcon))" :alt="$t('god.actionIconAlt')" v-if="!log.passiveLog" />
-                                            <img :src="getImgUrl('/roles', $t(log.passiveIcon))" :alt="log.target" v-else />
-                                        </td>
-                                        <td>
-                                            <log-events v-if="readyToLog" :log="log"></log-events>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </transition-group>
-            </div>
-        </div>
-
-        <!-- Log Buttons -->
-
-        <transition name="fade">
-            <div class="log-bttn" v-if="dashboard.god">
-                <app-button @click.native="logHistory = true" class="awesome"><span>{{$t('god.historyLogButton')}} <i>{{totalHistory.length}}</i></span></app-button>
-            </div>
-        </transition>
-
-        <!-- Dashboard Game Hint -->
-
-        <div class="step-box only-box" v-if="dashboard.god">
-            <ul class="dashboard-hint">
-                <li v-for="(hint, index) in $t('god.dashboardHint')" :key="index">
-                    <span :class="hint.name">{{hint.hint}}</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Restart or Reset Game -->
-
-        <app-button class="active has-xsmall-bottom-margin" @click.native="overlay = true,  totRestart = false" v-if="dashboard.god">{{$t('god.rgwRoles')}}</app-button>
-        <app-button class="purple has-bottom-margin" v-if="dashboard.god" @click.native="overlay = true, totRestart = true">{{$t('god.resetGame')}}</app-button>
-
-        <overlay :class="{'active': overlay,'dialog': true}">
-            <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')" />
-            <template v-if="!totRestart">
-                <p>{{$t('god.resetText')}}</p>
-                <app-button @click.native="rgwRoles()" class="green "><span>{{$t('god.restartButton')}}</span></app-button>
-                <app-button @click.native="overlay = false" class="danger"><span>{{$t('god.cancelButton')}}</span></app-button>
-            </template>
-            <template v-else>
-                <p>{{$t('god.resetTotalText')}}</p>
-                <app-button @click.native="resetGame()" class="green "><span>{{$t('god.restartButton')}}</span></app-button>
-                <app-button @click.native="overlay = false" class="danger"><span>{{$t('god.cancelButton')}}</span></app-button>
-            </template>
-        </overlay>
-
+    <div
+      class="button-holder"
+      v-if="dashboard.god"
+    >
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <app-button
+          :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}"
+          @click.native="changePhase(dashboard.day)"
+        >
+          <span v-if="dashboard.day">{{ $t('god.nightText') }}</span>
+          <span v-else>{{ $t('god.dayText') }}</span>
+        </app-button>
+      </transition>
     </div>
+
+    <!-- Night Priority Action Box -->
+
+    <transition name="fade">
+      <div
+        class="priority-box"
+        v-if="!dashboard.day && sortByPriority.length !== dashboard.currentAction"
+      >
+        <!-- Before Action Box -->
+        <transition name="fade">
+          <div
+            class="before-action-box"
+            v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round == 1"
+          >
+            <div class="table-display">
+              <div class="table-cell-display">
+                <!-- Last Phase Action -->
+                <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
+                  <img
+                    :src="getImgUrl('/roles', $t('god.voteIcon'))"
+                    :alt="$t('god.deadIconAlt')"
+                  >
+                  <p>{{ $t('god.lastPhaseText') }}</p>
+                  <select
+                    name="action_target"
+                    v-model="log.target"
+                  >
+                    <option
+                      :value="null"
+                      disabled
+                    >
+                      {{ $t('god.selectPlaceholder') }}
+                    </option>
+                    <option
+                      v-for="(person, index) in checkGroup('lastDay')"
+                      :key="index"
+                    >
+                      {{ person.player }}
+                    </option>
+                  </select>
+                  <app-button @click.native="killByVote(log.target)">
+                    {{ $t('god.confirmButton') }}
+                  </app-button>
+                  <app-button
+                    class="danger"
+                    @click.native="dashboard.lastPhaseAction = false"
+                  >
+                    {{ $t('god.skipButton') }}
+                  </app-button>
+                </template>
+                <!-- Last Phase Action -->
+                <template v-else-if="dashboard.mafiaParty && dashboard.round == 1">
+                  <img
+                    :src="getImgUrl('/roles', $t('god.mafiaPartyIcon'))"
+                    :alt="$t('god.mafiaPartyIconAlt')"
+                  >
+                  <p class="site-color">
+                    {{ $t('god.mafiaPartyText') }}
+                  </p>
+                  <ul class="error-bullet type-2">
+                    <li
+                      v-for="(mp, index) in $t('god.mafiaPartyException')"
+                      :key="index"
+                      v-html="mp"
+                    />
+                  </ul>
+                  <app-button
+                    class="has-small-top-margin"
+                    @click.native="dashboard.mafiaParty = false"
+                  >
+                    {{ $t('god.mafiaPartyButton') }}
+                  </app-button>
+                </template>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- Actions Progress Bar -->
+        <div class="progress-bar">
+          <span :style="{width: progress+'%'}" />
+          <i><strong>{{ dashboard.currentAction }}</strong> / {{ sortByPriority.length }}</i>
+        </div>
+
+        <!-- Handle Actions -->
+        <template v-for="(action, index) in sortByPriority">
+          <div
+            class="action-box"
+            v-if="checkReadyActions(action, index)"
+            :key="index"
+          >
+            {{ fireAction(action) }}
+
+            <transition
+              name="fade"
+              mode="out-in"
+            >
+              <!-- Hacked Target Action -->
+              <div
+                class="action-overlay hacked-overlay"
+                v-if="targetHacked"
+                key="hackedTarget"
+              >
+                <div class="table-display">
+                  <div class="table-cell-display">
+                    <img
+                      :src="getImgUrl('/roles', $t('god.hackedIcon'))"
+                      :alt="$t('god.hackedIconAlt')"
+                    >
+                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{ $t(info.name2) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
+                    <app-button
+                      class="purple"
+                      @click.native="skipAction()"
+                    >
+                      {{ $t('god.skipButton3') }}
+                    </app-button>
+                  </div>
+                </div>
+              </div>
+              <!-- Dead Target Action -->
+              <div
+                class="action-overlay dead-overlay"
+                v-else-if="targetDead"
+                key="deadTarget"
+              >
+                <div class="table-display">
+                  <div class="table-cell-display">
+                    <img
+                      :src="getImgUrl('/roles', $t('god.deadIcon'))"
+                      :alt="$t('god.deadIconAlt')"
+                    >
+                    <img
+                      class="overlap"
+                      :src="getImgUrl('/roles', $t(info.icon2))"
+                      :alt="$t('god.playerIconAlt')"
+                    >
+                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{ $t(info.name2) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
+                    <app-button
+                      class="black"
+                      @click.native="skipAction()"
+                    >
+                      {{ $t('god.skipButton3') }}
+                    </app-button>
+                  </div>
+                </div>
+              </div>
+              <!-- Revived Target Action -->
+              <div
+                class="action-overlay dead-overlay"
+                v-else-if="targetRevived"
+                key="revivedTarget"
+              >
+                <div class="table-display">
+                  <div class="table-cell-display">
+                    <img
+                      :src="getImgUrl('/roles', $t(info.icon2))"
+                      :alt="$t('god.revivedIconAlt')"
+                    >
+                    <p><span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}">{{ info.player }} </span> <strong v-html="$t('god.revivedPerson')" /></p>
+                    <app-button
+                      class="black"
+                      @click.native="skipAction()"
+                    >
+                      {{ $t('god.skipButton3') }}
+                    </app-button>
+                  </div>
+                </div>
+              </div>
+            </transition>
+
+            <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': info.mafia, 'citizen-role': !info.mafia}"> {{ $t(info.name2) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(info.action) }}</strong> ?</p>
+            <div class="player-box-holder has-small-bottom-margin">
+              <div class="player-box">
+                <img
+                  :src="getImgUrl('/roles', $t(info.icon2))"
+                  :alt="$t('god.playerIconAlt')"
+                >
+                <h4
+                  class="has-xsmall-top-margin"
+                  :class="{'mafia-role': info.mafia,'citizen-role': !info.mafia}"
+                >
+                  {{ info.player }}
+                </h4>
+              </div>
+              <div class="arrow">
+                <img
+                  class="action-image"
+                  :src="getImgUrl('/actions', $t(info.actionIcon))"
+                  :alt="$t('god.playerActionIconAlt')"
+                >
+              </div>
+              <div class="player-box">
+                <img
+                  :src="getImgUrl('/roles', $t(info.targetIcon))"
+                  :alt="$t('god.playerIconAlt')"
+                >
+                <h4
+                  class="has-xsmall-top-margin"
+                  :class="{'mafia-role': info.targetMafia != null && info.targetMafia, 'citizen-role': info.targetMafia != null && !info.targetMafia}"
+                >
+                  {{ info.target }}
+                </h4>
+              </div>
+            </div>
+            <select
+              @change="findTarget(log.target, log.targetID)"
+              name="action_target"
+              v-model="log.target"
+            >
+              <option
+                :value="null"
+                disabled
+              >
+                {{ $t('god.selectPlaceholder') }}
+              </option>
+              <option
+                v-for="(person, index) in checkGroup(info)"
+                :key="index"
+              >
+                {{ person.player }}
+              </option>
+            </select>
+            <template v-if="info.ability.binder && log.target != null">
+              <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
+              <select
+                name="action_target_2"
+                v-model="log.target2"
+              >
+                <option
+                  :value="null"
+                  disabled
+                >
+                  {{ $t('god.selectPlaceholder') }}
+                </option>
+                <option
+                  v-for="(person, index) in checkSecondGroup(info)"
+                  :key="index"
+                >
+                  {{ person.player }}
+                </option>
+              </select>
+            </template>
+          </div>
+        </template>
+
+        <!-- Action Buttons -->
+        <app-button @click.native="executeAction(info)">
+          {{ $t('god.confirmButton') }}
+        </app-button>
+        <app-button
+          class="danger"
+          @click.native="alertBox = true"
+        >
+          {{ $t('god.skipButton') }}
+        </app-button>
+
+        <!-- Log Actions During Night -->
+        <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
+          <div class="log-action">
+            <img
+              :src="getImgUrl('/actions', $t(log.actionIcon))"
+              :alt="$t('god.actionIconAlt')"
+              v-if="!log.passiveLog"
+            >
+            <img
+              :src="getImgUrl('/roles', $t(log.passiveIcon))"
+              :alt="log.target"
+              v-else
+            >
+            <log-events
+              v-if="readyToLog"
+              :log="log"
+            />
+          </div>
+        </overlay>
+      </div>
+    </transition>
+
+    <!-- Alert Box -->
+
+    <overlay :class="{'active': alertBox,'dialog': true}">
+      <img
+        class="has-xsmall-bottom-margin"
+        :src="require(`@/assets/images/icons/warning.png`)"
+        :alt="$t('general.warningIcon')"
+      >
+      <template>
+        <p>{{ $t('god.skipText') }}</p>
+        <app-button
+          @click.native="skipAction()"
+          class="green"
+        >
+          <span>{{ $t('god.skipButton2') }}</span>
+        </app-button>
+        <app-button
+          @click.native="alertBox = false"
+          class="danger"
+        >
+          <span>{{ $t('god.cancelButton') }}</span>
+        </app-button>
+      </template>
+    </overlay>
+
+    <!-- Log History -->
+
+    <overlay :class="{'active': logHistory, 'log-history': true}">
+      <template v-for="(totLog, index) in totalHistory">
+        <div
+          class="log-table"
+          :key="index"
+          v-if="totLog.length > 0"
+        >
+          <span class="counter">{{ $t('common.Night') }} {{ index+1 }}</span>
+          <table>
+            <tr
+              v-for="(log, index) in totLog"
+              :key="index"
+            >
+              <td>{{ index+1 }}</td>
+              <td>
+                <img
+                  :src="getImgUrl('/actions', $t(log.actionIcon))"
+                  :alt="$t('god.actionIconAlt')"
+                  v-if="!log.passiveLog"
+                >
+                <img
+                  :src="getImgUrl('/roles', $t(log.passiveIcon))"
+                  :alt="$t('god.passiveIconAlt')"
+                  v-else
+                >
+              </td>
+              <td>
+                <log-events
+                  v-if="readyToLog"
+                  :log="log"
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </template>
+      <div
+        class="log-table"
+        v-if="historyLog.length > 0"
+      >
+        <span class="counter">{{ $t('god.thisNight') }}</span>
+        <table>
+          <tr
+            v-for="(log, index) in historyLog"
+            :key="index"
+          >
+            <td>{{ index+1 }}</td>
+            <td>
+              <img
+                :src="getImgUrl('/actions', $t(log.actionIcon))"
+                :alt="$t('god.actionIconAlt')"
+                v-if="!log.passiveLog"
+              >
+              <img
+                :src="getImgUrl('/roles', $t(log.passiveIcon))"
+                :alt="$t('god.passiveIconAlt')"
+                v-else
+              >
+            </td>
+            <td>
+              <log-events
+                v-if="readyToLog"
+                :log="log"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div v-if="totalHistory.length == 0 && historyLog.length == 0">
+        <h2>{{ $t('god.noLog') }}</h2>
+      </div>
+      <app-button
+        @click.native="logHistory = false"
+        class="active has-small-top-margin"
+      >
+        <span>{{ $t('god.logCloseButton') }}</span>
+      </app-button>
+    </overlay>
+
+    <!-- Last Night Log -->
+
+    <overlay :class="{'active': lastNightBox, 'dialog': true, 'last-night': true}">
+      <img
+        :src="getImgUrl('/roles', $t('god.peopleIcon'))"
+        :alt="$t('god.peopleIconAlt')"
+      >
+      <h2>{{ $t('god.lastNightTitle') }}</h2>
+      <ul>
+        <li
+          v-for="(nL, index) in lastNight"
+          :key="index"
+          v-html="nL"
+        />
+      </ul>
+      <app-button
+        @click.native="lastNightBox = false"
+        class="active"
+      >
+        <span>{{ $t('god.logCloseButton') }}</span>
+      </app-button>
+    </overlay>
+
+    <!-- Day & Night Dashboard -->
+
+    <div
+      class="step-box display godashboard"
+      :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}"
+    >
+      <transition name="fade">
+        <strong
+          class="round-tracker"
+          v-if="!dashboard.day"
+        >{{ dashboard.round }}</strong>
+      </transition>
+      <div class="center-aligned">
+        <transition-group
+          name="fade"
+          mode="out-in"
+        >
+          <div
+            v-if="!dashboard.god"
+            key="beforeShow"
+          >
+            <img
+              class="game-icon"
+              :src="require(`@/assets/images/icons/game.png`)"
+              :alt="$t('god.gameDashboardIconAlt')"
+            >
+            <h3
+              class="different-colors"
+              v-html="$t('god.gameStartText')"
+            />
+            <app-button
+              class="active"
+              @click.native="showPlay()"
+            >
+              {{ $t('god.godButton') }}
+            </app-button>
+          </div>
+          <div
+            v-else
+            key="afterShow"
+          >
+            <div class="players-role">
+              <info-box :info="info" />
+
+              <!-- Mafia Table in Dashboard -->
+              <div class="table mafia-table">
+                <table>
+                  <tr>
+                    <th>{{ $t('common.Role') }}</th>
+                    <th>{{ $t('common.Player') }}</th>
+                    <th v-if="dashboard.day == true">
+                      {{ $t('common.Vote') }}
+                    </th>
+                    <th v-if="dashboard.day == false">
+                      {{ $t('common.Status') }}
+                    </th>
+                    <th v-if="dashboard.day == false">
+                      {{ $t('common.Action') }}
+                    </th>
+                  </tr>
+                  <tr
+                    v-for="(fM, index) in finalMafias"
+                    :key="index"
+                    :class="characterClasses(fM)"
+                  >
+                    <td>
+                      <a
+                        @click="showInfo(fM)"
+                        href="javascript:void(0)"
+                      >
+                        <img
+                          :src="getImgUrl('/roles', $t(fM.icon))"
+                          :alt="$t(fM.alt)"
+                        > {{ $t(fM.name) }}
+                      </a>
+                    </td>
+                    <td><span class="character-player">{{ fM.player }}</span></td>
+                    <td
+                      class="vote-counter"
+                      v-if="dashboard.day == true"
+                    >
+                      <input
+                        type="tel"
+                        :name="`vote_count_${index}`"
+                        placeholder="0"
+                        :maxlength="'2'"
+                        :tabindex="index+10"
+                      >
+                    </td>
+                    <td v-if="dashboard.day == false">
+                      <a
+                        href="javascript:void(0)"
+                        @click="deadOrAlive(fM)"
+                        :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"
+                      />
+                    </td>
+                    <td v-if="dashboard.day == false">
+                      <span
+                        class="disabled"
+                        v-if="!fM.status.hasPassive && !fM.status.hasAction"
+                      />
+                      <span
+                        class="done-action"
+                        v-else-if="!fM.status.hasAction && fM.status.hasPassive && fM.actionStatus"
+                      />
+                      <span
+                        @click="showInfo(fM)"
+                        class="passive"
+                        v-if="fM.status.hasPassive && !fM.status.hasAction"
+                      />
+                      <span
+                        @click="showInfo(fM)"
+                        :class="{'pending-action': !fM.actionStatus && fM.status.hasAction, 'done-action': fM.actionStatus}"
+                        v-else
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Citizen Table in Dashboard -->
+              <div class="table citizen-table">
+                <table>
+                  <tr>
+                    <th>{{ $t('common.Role') }}</th>
+                    <th>{{ $t('common.Player') }}</th>
+                    <th v-if="dashboard.day == true">
+                      {{ $t('common.Vote') }}
+                    </th>
+                    <th v-if="dashboard.day == false">
+                      {{ $t('common.Status') }}
+                    </th>
+                    <th v-if="dashboard.day == false">
+                      {{ $t('common.Action') }}
+                    </th>
+                  </tr>
+                  <tr
+                    v-for="(fC, index) in finalCitizens"
+                    :key="index"
+                    :class="characterClasses(fC)"
+                  >
+                    <td>
+                      <a
+                        @click="showInfo(fC)"
+                        href="javascript:void(0)"
+                      >
+                        <img
+                          :src="getImgUrl('/roles', $t(fC.icon))"
+                          :alt="$t(fC.alt)"
+                        > {{ $t(fC.name) }}
+                      </a>
+                    </td>
+                    <td><span class="character-player">{{ fC.player }}</span></td>
+                    <td
+                      class="vote-counter"
+                      v-if="dashboard.day == true"
+                    >
+                      <input
+                        type="tel"
+                        :name="`vote_count_${index}`"
+                        placeholder="0"
+                        :maxlength="'2'"
+                        :tabindex="index+20"
+                      >
+                    </td>
+                    <td v-if="dashboard.day == false">
+                      <a
+                        href="javascript:void(0)"
+                        @click="deadOrAlive(fC)"
+                        :class="{'killer': fC.status.dead == false, 'angel':fC.status.dead == true}"
+                      />
+                    </td>
+                    <td v-if="dashboard.day == false">
+                      <span
+                        class="disabled"
+                        v-if="!fC.status.hasPassive && !fC.status.hasAction"
+                      />
+                      <span
+                        class="done-action"
+                        v-else-if="!fC.status.hasAction && fC.status.hasPassive && fC.actionStatus"
+                      />
+                      <span
+                        @click="showInfo(fC)"
+                        class="passive"
+                        v-if="fC.status.hasPassive && !fC.status.hasAction"
+                      />
+                      <span
+                        @click="showInfo(fC)"
+                        :class="{'pending-action': !fC.actionStatus && fC.status.hasAction, 'done-action': fC.actionStatus}"
+                        v-else
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Log Actions in Last Night -->
+
+              <div
+                class="log-table"
+                v-if="historyLog.length > 0 && dashboard.day"
+                :class="{'result': historyLog.length > 0 && dashboard.day}"
+              >
+                <span class="table-title">{{ $t('god.whatHappened') }}</span>
+                <table>
+                  <tr
+                    v-for="(log, index) in historyLog"
+                    :key="index"
+                  >
+                    <td>
+                      <img
+                        :src="getImgUrl('/actions', $t(log.actionIcon))"
+                        :alt="$t('god.actionIconAlt')"
+                        v-if="!log.passiveLog"
+                      >
+                      <img
+                        :src="getImgUrl('/roles', $t(log.passiveIcon))"
+                        :alt="log.target"
+                        v-else
+                      >
+                    </td>
+                    <td>
+                      <log-events
+                        v-if="readyToLog"
+                        :log="log"
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-group>
+      </div>
+    </div>
+
+    <!-- Log Buttons -->
+
+    <transition name="fade">
+      <div
+        class="log-bttn"
+        v-if="dashboard.god"
+      >
+        <app-button
+          @click.native="logHistory = true"
+          class="awesome"
+        >
+          <span>{{ $t('god.historyLogButton') }} <i>{{ totalHistory.length }}</i></span>
+        </app-button>
+      </div>
+    </transition>
+
+    <!-- Dashboard Game Hint -->
+
+    <div
+      class="step-box only-box"
+      v-if="dashboard.god"
+    >
+      <ul class="dashboard-hint">
+        <li
+          v-for="(hint, index) in $t('god.dashboardHint')"
+          :key="index"
+        >
+          <span :class="hint.name">{{ hint.hint }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Restart or Reset Game -->
+
+    <app-button
+      class="active has-xsmall-bottom-margin"
+      @click.native="overlay = true, totRestart = false"
+      v-if="dashboard.god"
+    >
+      {{ $t('god.rgwRoles') }}
+    </app-button>
+    <app-button
+      class="purple has-bottom-margin"
+      v-if="dashboard.god"
+      @click.native="overlay = true, totRestart = true"
+    >
+      {{ $t('god.resetGame') }}
+    </app-button>
+
+    <overlay :class="{'active': overlay,'dialog': true}">
+      <img
+        class="has-xsmall-bottom-margin"
+        :src="require(`@/assets/images/icons/warning.png`)"
+        :alt="$t('general.warningIcon')"
+      >
+      <template v-if="!totRestart">
+        <p>{{ $t('god.resetText') }}</p>
+        <app-button
+          @click.native="rgwRoles()"
+          class="green "
+        >
+          <span>{{ $t('god.restartButton') }}</span>
+        </app-button>
+        <app-button
+          @click.native="overlay = false"
+          class="danger"
+        >
+          <span>{{ $t('god.cancelButton') }}</span>
+        </app-button>
+      </template>
+      <template v-else>
+        <p>{{ $t('god.resetTotalText') }}</p>
+        <app-button
+          @click.native="resetGame()"
+          class="green "
+        >
+          <span>{{ $t('god.restartButton') }}</span>
+        </app-button>
+        <app-button
+          @click.native="overlay = false"
+          class="danger"
+        >
+          <span>{{ $t('god.cancelButton') }}</span>
+        </app-button>
+      </template>
+    </overlay>
+  </div>
 </template>
 
 <script>
