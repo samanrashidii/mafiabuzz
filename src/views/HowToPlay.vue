@@ -43,9 +43,9 @@ export default {
     PageTitle,
   },
   computed: {
-    ...mapGetters([
-      'Roles',
-    ]),
+    ...mapGetters({
+      Roles: 'roles/Roles',
+    }),
   },
   metaInfo() {
     return {
