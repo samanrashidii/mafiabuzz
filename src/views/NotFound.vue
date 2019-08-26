@@ -8,6 +8,7 @@
 
 <script>
 import getImg from '@/mixins/getImg';
+
 export default {
   metaInfo() {
     return {

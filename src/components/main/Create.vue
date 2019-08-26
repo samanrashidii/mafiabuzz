@@ -1,19 +1,19 @@
 <template>
     <div class="create">
         <div class="dashboard-header">
-            <welcome-box />
-            <page-title :checkRoute="checkRoute()" />
+            <WelcomeBox />
+            <PageTitle :checkRoute="checkRoute()" />
         </div>
         <template>
             <div class="steps">
-                <step-box
+                <StepBox
                     :index="1"
                     :value="gameSettings.maxPlayers"
                     :margin="gameSettings.playerMargin"
                     :default="gameSettings.unit"
                     @selectVal="gameSettings.unit = $event"
                 />
-                <step-box
+                <StepBox
                     :index="2"
                     :value="calcMafia"
                     :margin="0"
@@ -21,26 +21,32 @@
                     @selectVal="gameSettings.mafia = $event"
                 />
             </div>
-            <roles @selectedRoles="gameSettings.roles = $event"></roles>
-            <app-button @click.native="checkGame()" class="active start-bttn"><span>{{$t('pages.creator.start')}}</span></app-button>
-            <overlay :class="{'active': overlay,'dialog': isValid}">
+            <Roles @selectedRoles="gameSettings.roles = $event" />
+            <AppButton @click.native="checkGame()" class="active
+            start-bttn"><span>{{$t('pages.creator.start')}}</span></AppButton>
+            <Overlay :class="{'active': overlay,'dialog': isValid}">
                 <template v-if="isValid">
-                    <error-box
+                    <ErrorBox
                         :errorStatus="error"
                         :mafiaNumbers="gameSettings.mafia"
                         :citizenNumbers="gameSettings.citizens"
                     />
-                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                    <AppButton @click.native="overlay = false" class="settings-bttn
+                    danger"><span>{{$t('pages.creator.changeSettings')}}</span></AppButton>
                 </template>
                 <template v-else>
-                    <note-box />
-                    <app-table class="mafia-table" :tableData="finalMafias" />
-                    <app-table class="citizen-table" :tableData="finalCitizens" />
-                    <app-button @click.native="startGame()" class="start-bttn green "><span>{{$t('pages.creator.start')}}</span></app-button>
-                    <app-button @click.native="overlay = false" class="settings-bttn danger"><span>{{$t('pages.creator.changeSettings')}}</span></app-button>
+                    <NoteBox />
+                    <AppTable class="mafia-table" :tableData="finalMafias" />
+                    <AppTable class="citizen-table" :tableData="finalCitizens" />
+                    <AppButton @click.native="startGame()" class="start-bttn green
+                    "><span>{{$t('pages.creator.start')}}</span></AppButton>
+                    <AppButton @click.native="overlay = false" class="settings-bttn
+                    danger"><span>{{$t('pages.creator.changeSettings')}}</span></AppButton>
                 </template>
-            </overlay>
-            <power-meter :power="calcPower" :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)" :class="{'active': !isValid}"></power-meter>
+            </Overlay>
+            <PowerMeter :power="calcPower" :mafia="calcDifference(gameSettings.mafia,
+            gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens,
+            gameValdiation.selectedCitizen)" :class="{'active': !isValid}" />
         </template>
     </div>
 </template>
@@ -86,15 +92,15 @@ export default {
     };
   },
   components: {
-    errorBox: ErrorBox,
-    noteBox: NoteBox,
-    overlay: Overlay,
-    pageTitle: PageTitle,
-    powerMeter: PowerMeter,
-    roles: Roles,
-    stepBox: StepBox,
-    appTable: Table,
-    welcomeBox: WelcomeBox,
+    ErrorBox,
+    NoteBox,
+    Overlay,
+    PageTitle,
+    PowerMeter,
+    Roles,
+    StepBox,
+    Table,
+    WelcomeBox,
   },
   computed: {
     ...mapGetters([

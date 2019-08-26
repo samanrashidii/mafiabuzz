@@ -1,7 +1,7 @@
 <template>
     <div class="step-box">
         <p v-html="$t(`pages.creator.step${index}`)"></p>
-        <select @change="calcVal" name="quantity" id="quantity" v-model="selectVal">
+        <select @change="calcVal" name="quantity" id="quantity" v-model.number="selectVal">
             <option v-for="(n, index) in value" :key="index">{{n + margin}}</option>
         </select>
     </div>
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     calcVal() {
-      this.$emit('selectVal', parseInt(this.selectVal));
+      this.$emit('selectVal', this.selectVal);
     },
   },
 };
