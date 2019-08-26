@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <div class="dashboard-header">
-            <page-title :checkRoute="checkRoute()" />
+            <PageTitle :checkRoute="checkRoute()" />
         </div>
         <div class="creators">
             <ul>
@@ -13,18 +13,19 @@
                 </li>
             </ul>
         </div>
-        <page-box class="contact-box">
+        <PageBox class="contact-box">
             <div class="contact">
                 <p v-html="$t('pages.about.contactText')"></p>
                 <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{$t('pages.about.contactEmail')}}</a>
             </div>
-        </page-box>
+        </PageBox>
     </div>
 </template>
 
 <script>
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
+
 export default {
   data() {
     return {
@@ -32,7 +33,7 @@ export default {
     };
   },
   components: {
-    pageTitle: PageTitle,
+    PageTitle,
   },
   metaInfo() {
     return {

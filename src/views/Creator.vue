@@ -1,8 +1,8 @@
 <template>
     <div class="creator">
         <transition name="slide" mode="out-in">
-            <create-game v-if="!gameStatus" />
-            <game-dashboard v-else />
+            <Create v-if="!gameStatus" />
+            <Dashboard v-else />
         </transition>
     </div>
 </template>
@@ -24,8 +24,8 @@ export default {
     ]),
   },
   components: {
-    createGame: Create,
-    gameDashboard: Dashboard,
+    Create,
+    Dashboard,
   },
   metaInfo() {
     return {

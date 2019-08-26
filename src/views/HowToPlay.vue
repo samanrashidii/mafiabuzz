@@ -1,16 +1,16 @@
 <template>
     <div class="how-to-play">
         <div class="dashboard-header">
-            <page-title :checkRoute="checkRoute()" />
+            <PageTitle :checkRoute="checkRoute()" />
         </div>
-        <page-box v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
+        <PageBox v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
             <img :src="getImgUrl('/howtoplay', step.icon)" alt="How to Play Step Icon" />
             <h3 v-html="step.titl1"></h3>
             <p v-html="step.desc1"></p>
             <div v-if="step.roles">
-                <info-box class="static" v-for="(info, index) in Roles" :key="index" :info="info"></info-box>
+                <InfoBox class="static" v-for="(info, index) in Roles" :key="index" :info="info" />
             </div>
-        </page-box>
+        </PageBox>
     </div>
 </template>
 
@@ -28,8 +28,8 @@ export default {
     };
   },
   components: {
-    infoBox: InfoBox,
-    pageTitle: PageTitle,
+    InfoBox,
+    PageTitle,
   },
   computed: {
     ...mapGetters([
