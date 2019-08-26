@@ -7,7 +7,7 @@ export default {
       unit: 6,
       mafia: 2,
       citizens: 4,
-      roles: [],
+      selectedRoles: [],
       multipleRoles:{
         normalMafia: 0,
         normalCitizen: 0,
@@ -16,28 +16,24 @@ export default {
       fCitizens: [],
       selectedMafia: 0,
       selectedCitizen: 0,
-      power: 0,
-      mafiaPower: 0,
-      citizenPower: 0,
+      powerControl:{
+        power: 0,
+        mafiaPower: 0,
+        citizenPower: 0,
+      }
     }
   },
   getters: {
     GameSettings: state => state.gameSettings,
   },
   mutations: {
-    SET_ROLES: (state, items) => {
-      Vue.set(state.gameSettings, 'roles', [...items]);
+    SET_GAME_SETTINGS: (state, settings) => {
+      Vue.set(state, 'gameSettings', settings);
     },
-    SET_MULTIPLE_ROLES: (state, mproles) => {
-      Vue.set(state.gameSettings, 'multipleRoles', mproles);
-    }
   },
   actions: {
-    SetRoles: (context, items) => {
-      context.commit('SET_ROLES', items);
+    SetGameSettings: (context, settings) => {
+      context.commit('SET_GAME_SETTINGS', settings);
     },
-    SetMultipleRoles: (context, mproles) => {
-      context.commit('SET_MULTIPLE_ROLES', mproles);
-    }
   }
 }

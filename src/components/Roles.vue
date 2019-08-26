@@ -14,7 +14,7 @@
           :id="`role_${index+1}`"
           :class="{'active': role.selected}"
           :value="role"
-          v-model="selectedRoles"
+          v-model="gameSettings.selectedRoles"
         >
         <label :for="`role_${index+1}`">
           <div class="inner-label">
@@ -24,7 +24,7 @@
             >
             <strong>{{ $t(role.name) }} <span
               v-if="checkNumbers(role)"
-            >x<i>{{ role.status.mafia ? multipleRoles.normalMafia : multipleRoles.normalCitizen }}</i></span></strong>
+            >x<i>{{ role.status.mafia ? gameSettings.multipleRoles.normalMafia : gameSettings.multipleRoles.normalCitizen }}</i></span></strong>
           </div>
         </label>
         <div
@@ -63,10 +63,10 @@ import getImg from '@/mixins/getImg';
 export default {
   data() {
     return {
-      multipleRoles:{},
       normalMafia: 0,
       normalCitizen: 0,
-      selectedRoles: [],
+      getRoles: [],
+      gameSettings: {},
       info: {
         show: false,
         mafia: false,
@@ -77,6 +77,10 @@ export default {
       }
     };
   },
+  created(){
+    this.getRoles = JSON.parse(JSON.stringify(this.Roles));
+    this.gameSettings = JSON.parse(JSON.stringify(this.GameSettings));
+  },
   components: {
     InfoBox,
   },
@@ -85,23 +89,32 @@ export default {
       Roles: 'roles/Roles',
       GameSettings: 'gameStatus/GameSettings',
     }),
-    getRoles() {
-      return JSON.parse(JSON.stringify(this.Roles));
-    },
-  },
-  mounted(){
-    this.selectedRoles = JSON.parse(JSON.stringify(this.GameSettings.roles));
-    this.multipleRoles = JSON.parse(JSON.stringify(this.GameSettings.multipleRoles));
   },
   methods: {
     ...mapActions({
-      SetRoles: 'gameStatus/SetRoles',
-      SetMultipleRoles: 'gameStatus/SetMultipleRoles',
+      SetGameSettings: 'gameStatus/SetGameSettings',
     }),
+    calcPower() {
+      // let $powerControl = this.powerControl;
+      // this.selectedRoles.forEach((element) => {
+      //   $powerControl.power += element.power;
+      //   if (element.mafia) {
+      //     $powerControl.mafiaPower += Math.abs(element.power);
+      //   } else {
+      //     $powerControl.citizenPower += element.power;
+      //   }
+      // });
+      // if ($powerControl.power >= 95) {
+      //   $powerControl.power = 95;
+      // } else if ($powerControl.power <= -95) {
+      //   $powerControl.power = -95;
+      // }
+      // this.SetPower($powerControl);
+    },
     checkNumbers(role) {
-      if (this.multipleRoles.normalMafia > 0 && role.status.mafia) {
+      if (this.gameSettings.multipleRoles.normalMafia > 0 && role.status.mafia) {
         return true;
-      } if (this.multipleRoles.normalCitizen > 0 && role.status.citizen) {
+      } if (this.gameSettings.multipleRoles.normalCitizen > 0 && role.status.citizen) {
         return true;
       }
       return false;
@@ -112,24 +125,22 @@ export default {
           element.selected == false ? element.selected = true : element.selected = false;
         }
       });
-      if (role.status.mafia && this.multipleRoles.normalMafia == 0) {
-        this.multipleRoles.normalMafia = 1;
-      } else if (role.status.mafia && this.multipleRoles.normalMafia >= 1) {
-        this.multipleRoles.normalMafia = 0;
-        this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
-      } else if (role.status.citizen && this.multipleRoles.normalCitizen == 0) {
-        this.multipleRoles.normalCitizen = 1;
-      } else if (role.status.citizen && this.multipleRoles.normalCitizen >= 1) {
-        this.multipleRoles.normalCitizen = 0;
-        this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+      if (role.status.mafia && this.gameSettings.multipleRoles.normalMafia == 0) {
+        this.gameSettings.multipleRoles.normalMafia = 1;
+      } else if (role.status.mafia && this.gameSettings.multipleRoles.normalMafia >= 1) {
+        this.gameSettings.multipleRoles.normalMafia = 0;
+        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
+      } else if (role.status.citizen && this.gameSettings.multipleRoles.normalCitizen == 0) {
+        this.gameSettings.multipleRoles.normalCitizen = 1;
+      } else if (role.status.citizen && this.gameSettings.multipleRoles.normalCitizen >= 1) {
+        this.gameSettings.multipleRoles.normalCitizen = 0;
+        this.gameSettings.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
       }
-      this.SetRoles(this.selectedRoles);
-      this.SetMultipleRoles(this.multipleRoles);
     },
     decrNumber(role) {
-      const $roles = this.selectedRoles;
+      const $roles = this.gameSettings.selectedRoles;
       if (role.status.mafia) {
-        if (this.multipleRoles.normalMafia > 1) {
+        if (this.gameSettings.multipleRoles.normalMafia > 1) {
           for (const el of $roles) {
             if (el.id == role.id) {
               $roles.splice($roles.indexOf(el), 1);
@@ -137,17 +148,17 @@ export default {
             }
           }
         } else {
-          this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+          this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
           this.getRoles.forEach((element) => {
             if (element.id == role.id) {
               element.selected = false;
             }
           });
         }
-        this.multipleRoles.normalMafia--;
+        this.gameSettings.multipleRoles.normalMafia--;
       }
       if (role.status.citizen) {
-        if (this.multipleRoles.normalCitizen > 1) {
+        if (this.gameSettings.multipleRoles.normalCitizen > 1) {
           for (const el of $roles) {
             if (el.id == role.id) {
               $roles.splice($roles.indexOf(el), 1);
@@ -155,35 +166,31 @@ export default {
             }
           }
         } else {
-          this.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+          this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
           this.getRoles.forEach((element) => {
             if (element.id == role.id) {
               element.selected = false;
             }
           });
         }
-        this.multipleRoles.normalCitizen--;
+        this.gameSettings.multipleRoles.normalCitizen--;
       }
-      this.SetRoles(this.selectedRoles);
-      this.SetMultipleRoles(this.multipleRoles);
     },
     incrNumber(role) {
       let targetRole;
       if (role.status.mafia) {
-        if (this.multipleRoles.normalMafia < 10) {
-          this.multipleRoles.normalMafia++;
+        if (this.gameSettings.multipleRoles.normalMafia < 10) {
+          this.gameSettings.multipleRoles.normalMafia++;
           targetRole = JSON.parse(JSON.stringify(role));
-          this.selectedRoles.push(targetRole);
+          this.gameSettings.selectedRoles.push(targetRole);
         }
       } else if (role.status.citizen) {
-        if (this.multipleRoles.normalCitizen < 20) {
-          this.multipleRoles.normalCitizen++;
+        if (this.gameSettings.multipleRoles.normalCitizen < 20) {
+          this.gameSettings.multipleRoles.normalCitizen++;
           targetRole = JSON.parse(JSON.stringify(role));
-          this.selectedRoles.push(targetRole);
+          this.gameSettings.selectedRoles.push(targetRole);
         }
       }
-      this.SetRoles(this.selectedRoles);
-      this.SetMultipleRoles(this.multipleRoles);
     },
     showInfo(role) {
       this.info.name = role.name;
