@@ -132,8 +132,8 @@ export default {
       return this.gameSettings.fCitizens.sort((a, b) => ((a.name > b.name) ? 1 : -1));
     },
     isValid() {
-      this.gameSettings.selectedMafia = this.gameSettings.roles.filter(x => x.mafia == true).length;
-      this.gameSettings.selectedCitizen = this.gameSettings.roles.filter(x => x.mafia == false).length;
+      this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter(x => x.mafia == true).length;
+      this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter(x => x.mafia == false).length;
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
         this.error.mafia = true;
       } else {
@@ -164,8 +164,8 @@ export default {
     },
     checkGame() {
       this.overlay = true;
-      this.gameSettings.fMafias = this.gameSettings.roles.filter(x => x.mafia == true);
-      this.gameSettings.fCitizens = this.gameSettings.roles.filter(x => x.mafia == false);
+      this.gameSettings.fMafias = this.gameSettings.selectedRoles.filter(x => x.mafia == true);
+      this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false);
     },
     startGame() {
       const numb = {

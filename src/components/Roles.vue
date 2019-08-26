@@ -134,7 +134,7 @@ export default {
         this.gameSettings.multipleRoles.normalCitizen = 1;
       } else if (role.status.citizen && this.gameSettings.multipleRoles.normalCitizen >= 1) {
         this.gameSettings.multipleRoles.normalCitizen = 0;
-        this.gameSettings.selectedRoles = this.selectedRoles.filter(value => value.id != role.id);
+        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
       }
     },
     decrNumber(role) {
