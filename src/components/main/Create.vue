@@ -1,57 +1,87 @@
 <template>
-    <div class="create">
-        <div class="dashboard-header">
-            <WelcomeBox />
-            <PageTitle :checkRoute="checkRoute()" />
-        </div>
-        <template>
-            <div class="steps">
-                <StepBox
-                    :index="1"
-                    :value="gameSettings.maxPlayers"
-                    :margin="gameSettings.playerMargin"
-                    :default="gameSettings.unit"
-                    @selectVal="gameSettings.unit = $event"
-                />
-                <StepBox
-                    :index="2"
-                    :value="calcMafia"
-                    :margin="0"
-                    :default="gameSettings.mafia"
-                    @selectVal="gameSettings.mafia = $event"
-                />
-            </div>
-            <Roles @selectedRoles="gameSettings.roles = $event" />
-            <AppButton @click.native="checkGame()" class="active
-            start-bttn"><span>{{$t('pages.creator.start')}}</span></AppButton>
-            <Overlay :class="{'active': overlay,'dialog': isValid}">
-                <template v-if="isValid">
-                    <ErrorBox
-                        :errorStatus="error"
-                        :mafiaNumbers="gameSettings.mafia"
-                        :citizenNumbers="gameSettings.citizens"
-                    />
-                    <AppButton @click.native="overlay = false" class="settings-bttn
-                    danger"><span>{{$t('pages.creator.changeSettings')}}</span></AppButton>
-                </template>
-                <template v-else>
-                    <NoteBox />
-                    <AppTable class="mafia-table" :tableData="finalMafias" />
-                    <AppTable class="citizen-table" :tableData="finalCitizens" />
-                    <AppButton @click.native="startGame()" class="start-bttn green
-                    "><span>{{$t('pages.creator.start')}}</span></AppButton>
-                    <AppButton @click.native="overlay = false" class="settings-bttn
-                    danger"><span>{{$t('pages.creator.changeSettings')}}</span></AppButton>
-                </template>
-            </Overlay>
-            <PowerMeter :power="calcPower" :mafia="calcDifference(gameSettings.mafia,
-            gameValdiation.selectedMafia)" :citizen="calcDifference(gameSettings.citizens,
-            gameValdiation.selectedCitizen)" :class="{'active': !isValid}" />
-        </template>
+  <div class="create">
+    <div class="dashboard-header">
+      <WelcomeBox />
+      <PageTitle :check-route="checkRoute()" />
     </div>
+    <template>
+      <div class="steps">
+        <StepBox
+          :index="1"
+          :value="CreateSettings.maxPlayers"
+          :margin="CreateSettings.playerMargin"
+          :default="gameSettings.unit"
+          @selectVal="gameSettings.unit = $event"
+        />
+        <StepBox
+          :index="2"
+          :value="calcMafia"
+          :margin="0"
+          :default="gameSettings.mafia"
+          @selectVal="gameSettings.mafia = $event"
+        />
+      </div>
+      <Roles />
+      <AppButton
+        @click.native="checkGame()"
+        class="active
+            start-bttn"
+      >
+        <span>{{ $t('pages.creator.start') }}</span>
+      </AppButton>
+      <Overlay :class="{'active': overlay,'dialog': isValid}">
+        <template v-if="isValid">
+          <ErrorBox
+            :error-status="error"
+            :mafia-numbers="gameSettings.mafia"
+            :citizen-numbers="gameSettings.citizens"
+          />
+          <AppButton
+            @click.native="overlay = false"
+            class="settings-bttn
+                    danger"
+          >
+            <span>{{ $t('pages.creator.changeSettings') }}</span>
+          </AppButton>
+        </template>
+        <template v-else>
+          <NoteBox />
+          <Table
+            class="mafia-table"
+            :table-data="finalMafias"
+          />
+          <Table
+            class="citizen-table"
+            :table-data="finalCitizens"
+          />
+          <AppButton
+            @click.native="startGame()"
+            class="start-bttn green
+                    "
+          >
+            <span>{{ $t('pages.creator.start') }}</span>
+          </AppButton>
+          <AppButton
+            @click.native="overlay = false"
+            class="settings-bttn
+                    danger"
+          >
+            <span>{{ $t('pages.creator.changeSettings') }}</span>
+          </AppButton>
+        </template>
+      </Overlay>
+      <PowerMeter
+        :power="calcPower"
+        :mafia="calcDifference(gameSettings.mafia, gameValdiation.selectedMafia)"
+        :citizen="calcDifference(gameSettings.citizens, gameValdiation.selectedCitizen)"
+        :class="{'active': !isValid}"
+      />
+    </template>
+  </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -62,7 +92,6 @@ import StepBox from '@/components/StepBox.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import checkRoute from '@/mixins/checkRoute';
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -74,8 +103,6 @@ export default {
       fMafias: [],
       fCitizens: [],
       gameSettings: {
-        maxPlayers: 25,
-        playerMargin: 5,
         unit: 6,
         mafia: 2,
         citizens: 4,
@@ -103,9 +130,10 @@ export default {
     WelcomeBox,
   },
   computed: {
-    ...mapGetters([
-      'Numbers',
-    ]),
+    ...mapGetters({
+      CreateSettings: 'createBoard/CreateSettings',
+      GameSettings: 'gameStatus/GameSettings',
+    }),
     calcMafia() {
       const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
       this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
@@ -167,7 +195,6 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getRoles',
       'setGame',
       'setNumbers',
       'setSavedRoles',
@@ -186,7 +213,6 @@ export default {
         mafia: this.gameSettings.mafia,
       };
       const $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
-      this.getRoles(this.gameSettings.roles);
       this.setSavedRoles($savedRoles);
       this.setNumbers(numb);
       this.setGame(true);

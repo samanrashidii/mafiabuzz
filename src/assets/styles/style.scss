@@ -1417,7 +1417,8 @@ select{
     background-position-x: 15px;
 }
 
-.roles li label{font-size: $font_size_6 !important;}
+.roles li label,
+.roles li label > div strong span i{font-size: $font_size_6 !important;}
 .roles li .number-control span{line-height: 34px !important;}
 
 .start-bttn span{

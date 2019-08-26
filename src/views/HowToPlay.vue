@@ -1,25 +1,36 @@
 <template>
-    <div class="how-to-play">
-        <div class="dashboard-header">
-            <PageTitle :checkRoute="checkRoute()" />
-        </div>
-        <PageBox v-for="(step, index) in $t('pages.howtoplay.steps')" :key="index">
-            <img :src="getImgUrl('/howtoplay', step.icon)" alt="How to Play Step Icon" />
-            <h3 v-html="step.titl1"></h3>
-            <p v-html="step.desc1"></p>
-            <div v-if="step.roles">
-                <InfoBox class="static" v-for="(info, index) in Roles" :key="index" :info="info" />
-            </div>
-        </PageBox>
+  <div class="how-to-play">
+    <div class="dashboard-header">
+      <PageTitle :check-route="checkRoute()" />
     </div>
+    <PageBox
+      v-for="(step, index) in $t('pages.howtoplay.steps')"
+      :key="index"
+    >
+      <img
+        :src="getImgUrl('/howtoplay', step.icon)"
+        alt="How to Play Step Icon"
+      >
+      <h3 v-html="step.titl1" />
+      <p v-html="step.desc1" />
+      <div v-if="step.roles">
+        <InfoBox
+          class="static"
+          v-for="(info, index) in Roles"
+          :key="index"
+          :info="info"
+        />
+      </div>
+    </PageBox>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
 import getImg from '@/mixins/getImg';
-import { mapGetters } from 'vuex';
 
 export default {
   data() {

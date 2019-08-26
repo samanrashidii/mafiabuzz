@@ -1,25 +1,32 @@
 <template>
-    <div class="about">
-        <div class="dashboard-header">
-            <PageTitle :checkRoute="checkRoute()" />
-        </div>
-        <div class="creators">
-            <ul>
-                <li v-for="(creator, index) in $t('pages.about.creators')" :key="index">
-                    <a :href="creator.url" target="_blank" :class="[creator.classes]">
-                        <strong>{{creator.name}}</strong>
-                        <span>{{creator.title}}</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <PageBox class="contact-box">
-            <div class="contact">
-                <p v-html="$t('pages.about.contactText')"></p>
-                <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{$t('pages.about.contactEmail')}}</a>
-            </div>
-        </PageBox>
+  <div class="about">
+    <div class="dashboard-header">
+      <PageTitle :check-route="checkRoute()" />
     </div>
+    <div class="creators">
+      <ul>
+        <li
+          v-for="(creator, index) in $t('pages.about.creators')"
+          :key="index"
+        >
+          <a
+            :href="creator.url"
+            target="_blank"
+            :class="[creator.classes]"
+          >
+            <strong>{{ creator.name }}</strong>
+            <span>{{ creator.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <PageBox class="contact-box">
+      <div class="contact">
+        <p v-html="$t('pages.about.contactText')" />
+        <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{ $t('pages.about.contactEmail') }}</a>
+      </div>
+    </PageBox>
+  </div>
 </template>
 
 <script>
