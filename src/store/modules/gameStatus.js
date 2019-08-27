@@ -6,7 +6,9 @@ export default {
     gameSettings: {
       unit: 6,
       mafia: 2,
-      citizens: 4,
+      citizen: 4,
+      selectedMafia: 0,
+      selectedCitizen: 0,
       selectedRoles: [],
       multipleRoles:{
         normalMafia: 0,
@@ -14,8 +16,6 @@ export default {
       },
       fMafias: [],
       fCitizens: [],
-      selectedMafia: 0,
-      selectedCitizen: 0,
       powerControl:{
         power: 0,
         mafiaPower: 0,

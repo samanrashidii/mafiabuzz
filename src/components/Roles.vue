@@ -65,8 +65,6 @@ export default {
     return {
       normalMafia: 0,
       normalCitizen: 0,
-      getRoles: [],
-      gameSettings: {},
       info: {
         show: false,
         mafia: false,
@@ -77,10 +75,6 @@ export default {
       }
     };
   },
-  created(){
-    this.getRoles = JSON.parse(JSON.stringify(this.Roles));
-    this.gameSettings = JSON.parse(JSON.stringify(this.GameSettings));
-  },
   components: {
     InfoBox,
   },
@@ -89,27 +83,38 @@ export default {
       Roles: 'roles/Roles',
       GameSettings: 'gameStatus/GameSettings',
     }),
+    getRoles(){
+      return JSON.parse(JSON.stringify(this.Roles));
+    },
+    gameSettings(){
+      return JSON.parse(JSON.stringify(this.GameSettings));
+    },
   },
   methods: {
     ...mapActions({
+      SetRoles: 'roles/SetRoles',
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     calcPower() {
-      // let $powerControl = this.powerControl;
-      // this.selectedRoles.forEach((element) => {
-      //   $powerControl.power += element.power;
-      //   if (element.mafia) {
-      //     $powerControl.mafiaPower += Math.abs(element.power);
-      //   } else {
-      //     $powerControl.citizenPower += element.power;
-      //   }
-      // });
-      // if ($powerControl.power >= 95) {
-      //   $powerControl.power = 95;
-      // } else if ($powerControl.power <= -95) {
-      //   $powerControl.power = -95;
-      // }
-      // this.SetPower($powerControl);
+      let $powerControl = this.gameSettings.powerControl;
+      $powerControl.power = 0;
+      $powerControl.mafiaPower = 0;
+      $powerControl.citizenPower = 0;
+      this.gameSettings.selectedRoles.forEach((element) => {
+        $powerControl.power += element.power;
+        if (element.mafia) {
+          $powerControl.mafiaPower += Math.abs(element.power);
+        } else {
+          $powerControl.citizenPower += element.power;
+        }
+      });
+      if ($powerControl.power >= 95) {
+        $powerControl.power = 95;
+      } else if ($powerControl.power <= -95) {
+        $powerControl.power = -95;
+      }
+      this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter((element) => element.mafia).length;
+      this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter((element) => !element.mafia).length;
     },
     checkNumbers(role) {
       if (this.gameSettings.multipleRoles.normalMafia > 0 && role.status.mafia) {
@@ -136,6 +141,9 @@ export default {
         this.gameSettings.multipleRoles.normalCitizen = 0;
         this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
       }
+      this.calcPower();
+      this.SetRoles(this.getRoles);
+      this.SetGameSettings(this.gameSettings);
     },
     decrNumber(role) {
       const $roles = this.gameSettings.selectedRoles;
@@ -175,6 +183,9 @@ export default {
         }
         this.gameSettings.multipleRoles.normalCitizen--;
       }
+      this.calcPower();
+      this.SetRoles(this.getRoles);
+      this.SetGameSettings(this.gameSettings);
     },
     incrNumber(role) {
       let targetRole;
@@ -191,6 +202,9 @@ export default {
           this.gameSettings.selectedRoles.push(targetRole);
         }
       }
+      this.calcPower();
+      this.SetRoles(this.getRoles);
+      this.SetGameSettings(this.gameSettings);
     },
     showInfo(role) {
       this.info.name = role.name;
