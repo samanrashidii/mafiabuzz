@@ -8,8 +8,8 @@
       <div class="steps">
         <StepBox
           :index="1"
-          :value="CreateSettings.maxPlayers"
-          :margin="CreateSettings.playerMargin"
+          :value="createSettings.maxPlayers"
+          :margin="createSettings.playerMargin"
           :default="gameSettings.unit"
           @selectVal="gameSettings.unit = $event"
         />
@@ -70,12 +70,7 @@
           </AppButton>
         </template>
       </Overlay>
-      <PowerMeter
-        :powerControl="gameSettings.powerControl"
-        :mafia="calcDifference(gameSettings.mafia, gameSettings.selectedMafia)"
-        :citizen="calcDifference(gameSettings.citizens, gameSettings.selectedCitizen)"
-        :class="{'active': !isValid}"
-      />
+      <PowerMeter :class="{'active': !isValid}" />
     </template>
   </div>
 </template>
@@ -100,7 +95,6 @@ export default {
         mafia: false,
         citizens: false,
       },
-      gameSettings: {},
       overlay: false,
     };
   },
@@ -120,6 +114,12 @@ export default {
       CreateSettings: 'createBoard/CreateSettings',
       GameSettings: 'gameStatus/GameSettings',
     }),
+    createSettings(){
+      return JSON.parse(JSON.stringify(this.CreateSettings));
+    },
+    gameSettings(){
+      return JSON.parse(JSON.stringify(this.GameSettings));
+    },
     calcMafia() {
       const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
       this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
@@ -154,14 +154,9 @@ export default {
     this.gameSettings = JSON.parse(JSON.stringify(this.GameSettings));
   },
   methods: {
-    ...mapActions([
-      'setGame',
-      'setNumbers',
-      'setSavedRoles',
-    ]),
-    calcDifference(a, b) {
-      return a - b;
-    },
+    ...mapActions({
+      SetGameSettings: 'gameStatus/SetGameSettings',
+    }),
     checkGame() {
       this.overlay = true;
       this.gameSettings.fMafias = this.gameSettings.selectedRoles.filter(x => x.mafia == true);
