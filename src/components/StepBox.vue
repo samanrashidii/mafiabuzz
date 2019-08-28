@@ -5,8 +5,9 @@
       @change="calcVal"
       name="quantity"
       id="quantity"
-      v-model.number="selectVal"
+      v-model.number="selectedVal"
     >
+      <option value="null" disabled>Please select from below </option>
       <option
         v-for="(n, index) in value"
         :key="index"
@@ -18,25 +19,43 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
   data() {
     return {
-      selectVal: 0,
+      selectedVal: 0,
     };
   },
-  created() {
-    this.selectVal = this.default;
+  computed:{
+    ...mapGetters({
+      gameSettings: 'gameStatus/GameSettings',
+    }),
+    index(){
+      return this.type == 'totalUnit' ? 1 : 2
+    },
+    value(){
+      return this.type == 'totalUnit' ? this.gameSettings.unit : this.gameSettings.mafia
+    },
+    margin(){
+      return this.type == 'totalUnit' ? 5 : 0
+    }
   },
   props: {
-    index: Number,
-    value: Number,
-    margin: Number,
-    default: Number,
+    type: String,
   },
   methods: {
-    calcVal() {
-      this.$emit('selectVal', this.selectVal);
+    ...mapActions({
+      SetGameSettings: 'gameStatus/SetGameSettings',
+    }),
+    calcMafia() {
+     const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
+     this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
+     return mafiaNumbers;
     },
+    calcVal() {
+      this.SetGameSettings(this.gameSettings);
+    }
   },
-};
+}
 </script>
