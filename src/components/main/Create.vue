@@ -6,20 +6,8 @@
     </div>
     <template>
       <div class="steps">
-        <StepBox
-          :index="1"
-          :value="createSettings.maxPlayers"
-          :margin="createSettings.playerMargin"
-          :default="gameSettings.unit"
-          @selectVal="gameSettings.unit = $event"
-        />
-        <StepBox
-          :index="2"
-          :value="calcMafia"
-          :margin="0"
-          :default="gameSettings.mafia"
-          @selectVal="gameSettings.mafia = $event"
-        />
+        <StepBox :type="'totalUnit'" />
+        <StepBox :type="'totalMafia'" />
       </div>
       <Roles />
       <AppButton
@@ -120,20 +108,13 @@ export default {
     gameSettings(){
       return JSON.parse(JSON.stringify(this.GameSettings));
     },
-    calcMafia() {
-      const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
-      this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
-      return mafiaNumbers;
-    },
     finalMafias() {
-      return this.gameSettings.fMafias.sort((a, b) => ((a.name > b.name) ? 1 : -1));
+      return this.gameSettings.fMafias.slice().sort((a, b) => ((a.name > b.name) ? 1 : -1));
     },
     finalCitizens() {
-      return this.gameSettings.fCitizens.sort((a, b) => ((a.name > b.name) ? 1 : -1));
+      return this.gameSettings.fCitizens.slice().sort((a, b) => ((a.name > b.name) ? 1 : -1));
     },
     isValid() {
-      this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter(x => x.mafia == true).length;
-      this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter(x => x.mafia == false).length;
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
         this.error.mafia = true;
       } else {
@@ -150,9 +131,6 @@ export default {
       return true;
     },
   },
-  created(){
-    this.gameSettings = JSON.parse(JSON.stringify(this.GameSettings));
-  },
   methods: {
     ...mapActions({
       SetGameSettings: 'gameStatus/SetGameSettings',
@@ -163,14 +141,6 @@ export default {
       this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false);
     },
     startGame() {
-      const numb = {
-        unit: this.gameSettings.unit,
-        mafia: this.gameSettings.mafia,
-      };
-      const $savedRoles = JSON.parse(JSON.stringify(this.gameSettings.roles));
-      this.setSavedRoles($savedRoles);
-      this.setNumbers(numb);
-      this.setGame(true);
     },
   },
   mixins: [checkRoute],
