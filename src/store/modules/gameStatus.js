@@ -5,8 +5,8 @@ export default {
   state: {
     gameSettings: {
       unit: 6,
-      mafia: 2,
-      citizen: 4,
+      mafia: 1,
+      citizen: 5,
       selectedMafia: 0,
       selectedCitizen: 0,
       selectedRoles: [],

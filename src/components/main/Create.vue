@@ -22,7 +22,7 @@
           <ErrorBox
             :error-status="error"
             :mafia-numbers="gameSettings.mafia"
-            :citizen-numbers="gameSettings.citizens"
+            :citizen-numbers="gameSettings.citizen"
           />
           <AppButton
             @click.native="overlay = false"
@@ -120,12 +120,12 @@ export default {
       } else {
         this.error.mafia = false;
       }
-      if (this.gameSettings.selectedCitizen != this.gameSettings.citizens) {
+      if (this.gameSettings.selectedCitizen != this.gameSettings.citizen) {
         this.error.citizens = true;
       } else {
         this.error.citizens = false;
       }
-      if (this.gameSettings.selectedMafia == this.gameSettings.mafia && this.gameSettings.selectedCitizen == this.gameSettings.citizens) {
+      if (this.gameSettings.selectedMafia == this.gameSettings.mafia && this.gameSettings.selectedCitizen == this.gameSettings.citizen) {
         return false;
       }
       return true;
@@ -141,6 +141,7 @@ export default {
       this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false);
     },
     startGame() {
+      // Start Engine
     },
   },
   mixins: [checkRoute],

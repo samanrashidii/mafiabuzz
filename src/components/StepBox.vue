@@ -24,38 +24,65 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      selectedVal: 0,
+      default: {
+        total: 25,
+        unit: 6,
+        mafia: 1,
+        margin: 5
+      },
+      totalPlayers: 25,
+      selectedVal: 0
     };
   },
   computed:{
     ...mapGetters({
-      gameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings',
     }),
+    gameSettings(){
+      return JSON.parse(JSON.stringify(this.GameSettings));
+    },
     index(){
-      return this.type == 'totalUnit' ? 1 : 2
+      return this.type == 'totalUnit' ? 1 : 2;
     },
     value(){
-      return this.type == 'totalUnit' ? this.gameSettings.unit : this.gameSettings.mafia
+      return this.type == 'totalUnit' ? this.default.total : this.calcMafia;
     },
     margin(){
-      return this.type == 'totalUnit' ? 5 : 0
+      return this.type == 'totalUnit' ? this.default.margin : 0;
+    },
+    calcMafia(){
+      return Math.floor(this.gameSettings.unit / 2) - 1;
+    },
+    calcCitizen(){
+      return this.gameSettings.unit - this.gameSettings.mafia;
+    },
+    bestCombo(){
+      return Math.floor(this.gameSettings.unit / 3);
     }
   },
-  props: {
-    type: String,
+  created(){
+    this.type == 'totalUnit' ? this.selectedVal = this.default.unit : this.selectedVal = this.default.mafia;
+  },
+  updated(){
+    if(this.type == 'totalMafia' && this.selectedVal > this.calcMafia){
+      this.selectedVal = this.bestCombo;
+      this.gameSettings.mafia = this.bestCombo;
+      this.gameSettings.citizen = this.calcCitizen;
+      this.SetGameSettings(this.gameSettings);
+    }
   },
   methods: {
     ...mapActions({
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
-    calcMafia() {
-     const mafiaNumbers = Math.floor(this.gameSettings.unit / 2) - 1;
-     this.gameSettings.citizens = this.gameSettings.unit - this.gameSettings.mafia;
-     return mafiaNumbers;
-    },
     calcVal() {
+      this.type == 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal;
+      this.gameSettings.citizen = this.calcCitizen;
       this.SetGameSettings(this.gameSettings);
     }
+  },
+  props: {
+    type: String,
   },
 }
 </script>
