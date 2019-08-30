@@ -5,6 +5,7 @@
         <router-link
           :to="{name: nav.url}"
           :key="index"
+          :disabled="nav.disabled"
         >
           <span>
             <img
@@ -15,14 +16,18 @@
           </span>
         </router-link>
       </template>
+      <LanguageButton />
     </nav>
   </div>
 </template>
 
 <script>
 import getImg from '@/mixins/getImg';
-
+import LanguageButton from '@/components/LanguageButton';
 export default {
+  components:{
+    LanguageButton
+  },
   mixins: [getImg],
 };
 </script>

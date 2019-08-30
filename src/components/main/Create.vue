@@ -10,11 +10,7 @@
         <StepBox :type="'totalMafia'" />
       </div>
       <Roles />
-      <AppButton
-        @click.native="checkGame()"
-        class="active
-            start-bttn"
-      >
+      <AppButton @click.native="checkGame()" class="active start-bttn">
         <span>{{ $t('pages.creator.start') }}</span>
       </AppButton>
       <Overlay :class="{'active': overlay,'dialog': isValid}">
@@ -24,36 +20,18 @@
             :mafia-numbers="gameSettings.mafia"
             :citizen-numbers="gameSettings.citizen"
           />
-          <AppButton
-            @click.native="overlay = false"
-            class="settings-bttn
-                    danger"
-          >
+          <AppButton @click.native="overlay = false" class="settings-bttn danger">
             <span>{{ $t('pages.creator.changeSettings') }}</span>
           </AppButton>
         </template>
         <template v-else>
           <NoteBox />
-          <Table
-            class="mafia-table"
-            :table-data="finalMafias"
-          />
-          <Table
-            class="citizen-table"
-            :table-data="finalCitizens"
-          />
-          <AppButton
-            @click.native="startGame()"
-            class="start-bttn green
-                    "
-          >
+          <Table class="mafia-table" :table-data="gameSettings.fMafias" />
+          <Table class="citizen-table" :table-data="gameSettings.fCitizens" />
+          <AppButton @click.native="startGame()" class="start-bttn green">
             <span>{{ $t('pages.creator.start') }}</span>
           </AppButton>
-          <AppButton
-            @click.native="overlay = false"
-            class="settings-bttn
-                    danger"
-          >
+          <AppButton @click.native="overlay = false" class="settings-bttn danger">
             <span>{{ $t('pages.creator.changeSettings') }}</span>
           </AppButton>
         </template>
