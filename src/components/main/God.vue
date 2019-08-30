@@ -821,7 +821,6 @@ export default {
   computed: {
     ...mapGetters([
       'Dashboard',
-      'Numbers',
       'SavedRoles',
       'SelectedRoles',
       'Actions',

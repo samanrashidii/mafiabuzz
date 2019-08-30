@@ -20,7 +20,8 @@ export default {
         power: 0,
         mafiaPower: 0,
         citizenPower: 0,
-      }
+      },
+      stepCounter: 1,
     }
   },
   getters: {

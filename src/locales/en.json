@@ -72,6 +72,11 @@
             "alt": "MafiaBuzz Logo"
         }
     ],
+    "language": {
+        "text": "Language",
+        "image": "language.svg",
+        "alt": "Change Language Image"
+    },
     "pages": {
         "home": {
             "button1": "One Device",

@@ -379,6 +379,7 @@ button{
             &:nth-child(1){width:100%;}
             &:nth-child(2){background-color: $hint_color;}
             &:nth-child(3){background-color: $about_color;}
+            &:nth-child(4){display: none;}
         }
         &.internal{
             height: 60px;
@@ -1405,135 +1406,141 @@ table tr{
 
 // RTL
 
-body{
+body.rtl{
     direction: rtl;
     font-size: $font_size_5;
 }
 
-p{line-height: 2;}
+.rtl p{line-height: 2;}
 
-select{
+.rtl select{
     line-height: 38px;
     background-position-x: 15px;
 }
 
-.roles li label,
-.roles li label > div strong span i{font-size: $font_size_6 !important;}
-.roles li .number-control span{line-height: 34px !important;}
+.rtl .roles li label,
+.rtl .roles li label > div strong span i{font-size: $font_size_6 !important;}
+.rtl .roles li .number-control span{line-height: 34px !important;}
 
-.start-bttn span{
+.rtl .start-bttn span{
     padding: 5px 35px 5px 5px;
     margin-top:-4px;
     background-position-x: 99%;
 }
 
-.settings-bttn span{
+.rtl .settings-bttn span{
     padding:3px 31px 5px 5px;
     background-position-x: 99%;
 }
 
-.swap-bttn span{
+.rtl .swap-bttn span{
     padding:3px 28px 5px 5px;
     background-position-x: 99%;
 }
 
-.assign-bttn span{
+.rtl .assign-bttn span{
     padding:3px 33px 3px 5px;
     background-position-x: 99%;
 }
 
-.welcome strong{
+.rtl .welcome{margin:10px 0 25px 0;}
+.rtl .welcome strong{
     font-weight: bold;
     font-size: 34px;
 }
 
-#app .navigation.internal{
+.rtl #app .navigation.internal{
     height: 66px;
     nav a{
-        font-size: $font_size_4;
+        font-size: $font_size_3;
     }
 }
-#app > div:not(.navigation){padding-top:66px;}
-#app .navigation nav a{font-size: 21px;}
-.step-box,
-.page-box{
+.rtl #app > div:not(.navigation){padding-top:66px;}
+.rtl #app .navigation nav a{font-size: 21px;}
+.rtl .step-box,
+.rtl .page-box{
     h3{font-size: 22px;}
     p{font-size: $font_size_3;}
 }
 
-p,
-.info-box p{font-size: $font_size_3 !important;}
+.rtl p,
+.rtl .info-box p{font-size: $font_size_3 !important;}
 
-a.bttn{font-size: $font_size_4;}
+.rtl a.bttn{font-size: $font_size_4;}
 
-.character-power span i{
+.rtl .character-power span i{
     line-height: 25px;
     padding-right: 1px;
 }
 
-.creators li a strong{font-size: 24px !important;}
+.rtl .creators li a strong{font-size: 24px !important;}
 
-.error-bullet li{
+.rtl .error-bullet li{
     text-align: right;
     &::before{
         margin:0 0 0 5px;
     }
 }
 
-.table table tr td:first-child{text-align: right !important;}
-.table table tr td img{margin:0 0 0 4px !important;}
+.rtl .table table tr td:first-child{text-align: right !important;}
+.rtl .table table tr td img{margin:0 0 0 4px !important;}
 
-.predefined{
+.rtl .predefined{
     right:auto;
     left:16px;
     padding:6px 10px 5px 35px;
 }
 
-.step-box.display .inner-display strong,
-.page-box.display .inner-display strong{
+.rtl .step-box.display .inner-display strong,
+.rtl .page-box.display .inner-display strong{
     line-height: 1.2;
     font-size: 34px;
     font-weight: bold;
 }
 
-.step-box.display .inner-display .role-info,
-.page-box.display .inner-display .role-info{font-size: $font_size_10;}
+.rtl .step-box.display .inner-display .role-info,
+.rtl .page-box.display .inner-display .role-info{font-size: $font_size_10;}
 
-.dashboard-hint li{font-size: $font_size_2;}
+.rtl .dashboard-hint li{font-size: $font_size_2;}
 
-.player-box-holder{direction: ltr;}
+.rtl .player-box-holder{direction: ltr;}
 
-.table table tr td input{
+.rtl .table table tr td input{
     line-height: 23px;
     padding-top:3px;
 }
-.log-bttn i{
+.rtl .log-bttn i{
     font-size: 13px;
     line-height: 23px;
 }
 
-table tr td:nth-child(1)::before{
+.rtl table tr td:nth-child(1)::before{
     right:auto;
     left:4px;
 }
-table tr.love-bind td:nth-child(1)::before{
+.rtl table tr.love-bind td:nth-child(1)::before{
     right:auto;
     left:-13px;
 }
 
-.log-table table td:last-child{text-align: right !important;}
+.rtl .log-table table td:last-child{text-align: right !important;}
 
-.last-log{
+.rtl .last-log{
     text-align: right;
     padding:9px 48px 5px 8px;
     background-position-x: 96%;
 }
 
-.overlay.last-night h2{font-size: $font_size_8 !important;}
+.rtl .overlay.last-night h2{font-size: $font_size_8 !important;}
 
-.log-events span{margin:0 2px;}
+.rtl .log-events span{margin:0 2px;}
 
-.priority-box .progress-bar i{
+.rtl .priority-box .progress-bar i{
     direction: rtl;
     line-height: 25px;
+}
+
+.rtl .language-bttn{
+    right:auto !important;
+    left:1px !important;
 }

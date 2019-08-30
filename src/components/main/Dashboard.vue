@@ -208,7 +208,6 @@ export default {
     ...mapGetters([
       'SelectedRoles',
       'gameStatus',
-      'Numbers',
       'StepCounter',
       'GameReset',
     ]),
