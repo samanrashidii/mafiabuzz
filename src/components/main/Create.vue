@@ -125,10 +125,3 @@ export default {
   mixins: [checkRoute],
 };
 </script>
-
-<style lang="scss" scoped>
-
-.create{padding-bottom: $meter_height;}
-button{background-color:$creator_color;}
-
-</style>

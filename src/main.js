@@ -21,7 +21,7 @@ Vue.component('PageBox', PageBox);
 
 // Required External Files
 
-require('./assets/styles/style.scss');
+require('./assets/sass/main.scss');
 
 // Vue Config
 

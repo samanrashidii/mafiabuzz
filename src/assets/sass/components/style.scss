@@ -2,21 +2,21 @@
 
 @font-face{
 	font-family:'Mafia';
-	src: url('../fonts/Mobsters.woff') format('woff');
+	src: url('../../fonts/Mobsters.woff') format('woff');
 	font-weight: normal;
   	font-style: normal;
 }
 
 @font-face{
 	font-family:'Muli';
-	src: url('../fonts/Muli.woff') format('woff');
+	src: url('../../fonts/Muli.woff') format('woff');
 	font-weight: normal;
   	font-style: normal;
 }
 
 @font-face{
 	font-family:'Iran';
-	src: url('../fonts/Iran.woff') format('woff');
+	src: url('../../fonts/Iran.woff') format('woff');
 	font-weight: normal;
   	font-style: normal;
 }
@@ -250,6 +250,9 @@ button{
 	border-radius: 2px;
 	transition:all .2s ease-in-out;
 }
+
+.create{padding-bottom: $meter_height;}
+.create button{background-color:$creator_color;}
 
 .left-aligned{text-align: left;}
 .center-aligned{text-align: center;}
