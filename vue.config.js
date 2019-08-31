@@ -10,9 +10,8 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: '@import "@/assets/styles/_variables.scss";',
+        data: '@import "@/assets/sass/global.scss";',
       },
     },
   },
-  // publicPath: '/mafiabuzzi/',
 };

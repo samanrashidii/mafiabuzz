@@ -4,7 +4,7 @@
       name="slide"
       mode="out-in"
     >
-      <Create v-if="!gameStatus" />
+      <Create v-if="!gameSettings.gameStatus" />
       <Dashboard v-else />
     </transition>
   </div>
@@ -16,15 +16,13 @@ import Create from '@/components/main/Create.vue';
 import Dashboard from '@/components/main/Dashboard.vue';
 
 export default {
-  data() {
-    return {
-      pageId: this.$route.params.id,
-    };
-  },
   computed: {
-    ...mapGetters([
-      'gameStatus',
-    ]),
+    ...mapGetters({
+      GameSettings: 'gameStatus/GameSettings',
+    }),
+    gameSettings(){
+      return JSON.parse(JSON.stringify(this.GameSettings));
+    }
   },
   components: {
     Create,
@@ -56,11 +54,6 @@ export default {
         },
       ],
     };
-  },
-  watch: {
-    $route(to, from) {
-      this.pageId = to.params.id;
-    },
   },
 };
 </script>

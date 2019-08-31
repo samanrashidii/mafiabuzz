@@ -21,6 +21,7 @@ export default {
         mafiaPower: 0,
         citizenPower: 0,
       },
+      gameStatus: false,
       stepCounter: 1,
     }
   },
