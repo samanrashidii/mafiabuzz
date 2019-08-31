@@ -326,6 +326,7 @@ button{
     padding:15px;
     background-color: $background_color_main;
     .navigation{
+        direction: ltr;
         position: absolute;
         top:0;
         left:0;
@@ -1561,9 +1562,4 @@ body.rtl{
 .rtl .priority-box .progress-bar i{
     direction: rtl;
     line-height: 25px;
-}
-
-.rtl .language-bttn{
-    right:auto !important;
-    left:1px !important;
 }
