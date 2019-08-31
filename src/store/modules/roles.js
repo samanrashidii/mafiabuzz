@@ -1,10 +1,9 @@
 import Vue from 'vue';
-import roles from '@/api/roles.json';
 
 export default {
   namespaced: true,
   state: {
-    Roles: roles,
+    Roles: null,
   },
   getters: {
     Roles: state => state.Roles,

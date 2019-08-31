@@ -1,6 +1,6 @@
 <template>
   <div class="how-to-play">
-    <div class="dashboard-header">
+    <div class="dashboard-header has-xsmall-top-margin">
       <PageTitle :check-route="checkRoute()" />
     </div>
     <PageBox

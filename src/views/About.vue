@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div class="dashboard-header">
+    <div class="dashboard-header has-xsmall-top-margin">
       <PageTitle :check-route="checkRoute()" />
     </div>
     <div class="creators">
