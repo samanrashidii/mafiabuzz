@@ -326,6 +326,7 @@ button{
     padding:15px;
     background-color: $background_color_main;
     .navigation{
+        direction: ltr;
         position: absolute;
         top:0;
         left:0;
@@ -1482,6 +1483,7 @@ body.rtl{
 
 .rtl p,
 .rtl .info-box p{font-size: $font_size_3 !important;}
+.rtl .info-box p{line-height: 1.7;}
 
 .rtl a.bttn{font-size: $font_size_4;}
 
@@ -1563,7 +1565,4 @@ body.rtl{
     line-height: 25px;
 }
 
-.rtl .language-bttn{
-    right:auto !important;
-    left:1px !important;
-}
+.rtl .creators li a strong{font-family: $font_rtl !important;}
