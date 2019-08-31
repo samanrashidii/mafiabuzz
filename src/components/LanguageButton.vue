@@ -18,7 +18,7 @@ export default {
   methods:{
       changeLang(){
           let i18n = this.$root._i18n.locale;
-          if(i18n == 'en'){
+          if(i18n === 'en'){
             this.toggleBodyClass('addClass', 'rtl');
             this.$root._i18n.locale = 'fa';
           } else{
@@ -45,7 +45,9 @@ export default {
         position: absolute;
         top:1px;
         right:1px;
-        padding: 10px 2px 6px 2px;
+        font-family: $font_normal;
+        font-size: $font_size_1;
+        padding: 14px 2px 10px 2px;
         z-index: 99;
         img{
             width:24px;
