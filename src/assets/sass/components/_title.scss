@@ -1,0 +1,10 @@
+.title{
+    text-align: center;
+    h2 span{
+        font-family: $font_reset_default;
+        font-size: 25px;
+    }
+}
+.creator .title h2 span{color:$creator_color;}
+.about .title h2 span{color:$about_color;}
+.how-to-play .title h2 span{color:$hint_color;}

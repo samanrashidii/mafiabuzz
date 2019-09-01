@@ -1,0 +1,28 @@
+.welcome-box{
+    color: $color_site_1;
+    text-align: center;
+    padding:25px 10px;
+    margin:10px 0 25px 0;
+    background-image:url('~@/assets/images/logo-small-fade.png');
+    background-color: $color_site_2 !important;
+    border-radius: $site_radius;
+    box-shadow: inset 0 0 10px $black_color;
+    animation:fading 2.4s ease-in-out alternate infinite;
+    img{
+        width:100px;
+        margin-bottom:7px;
+        transform:translateX(30px);
+    }
+    strong{
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $font_mafia;
+        font-size: 44px;
+        color: $black_color;
+    }
+}
+
+@keyframes fading {
+    0%{background-image:url('~@/assets/images/logo-small-fade.png');}
+    100%{background-image:url('~@/assets/images/logo-small.png');}
+}

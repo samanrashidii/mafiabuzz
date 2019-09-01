@@ -25,20 +25,19 @@ import axios from 'axios';
 import { mapGetters } from 'vuex';
 
 export default {
-  computed:{
+  computed: {
     ...mapGetters(['DefaultState']),
   },
-  created(){
+  created() {
     axios.get('https://api.myjson.com/bins/1g4n7r')
-    .then((response) => {
-      this.$store.dispatch('roles/SetRoles', response.data);
-    });
-    
+      .then((response) => {
+        this.$store.dispatch('roles/SetRoles', response.data);
+      });
   },
-  mounted(){
+  mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">

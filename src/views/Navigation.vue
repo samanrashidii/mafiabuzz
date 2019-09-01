@@ -24,9 +24,10 @@
 <script>
 import getImg from '@/mixins/getImg';
 import LanguageButton from '@/components/LanguageButton';
+
 export default {
-  components:{
-    LanguageButton
+  components: {
+    LanguageButton,
   },
   mixins: [getImg],
 };

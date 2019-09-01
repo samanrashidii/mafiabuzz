@@ -72,7 +72,7 @@ export default {
         icon: 'replacingRoles.loading.icon',
         alt: 'replacingRoles.loading.alt',
         description: 'replacingRoles.loading.description',
-      }
+      },
     };
   },
   components: {
@@ -83,10 +83,10 @@ export default {
       Roles: 'roles/Roles',
       GameSettings: 'gameStatus/GameSettings',
     }),
-    getRoles(){
+    getRoles() {
       return JSON.parse(JSON.stringify(this.Roles));
     },
-    gameSettings(){
+    gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
     },
   },
@@ -96,7 +96,7 @@ export default {
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     calcPower() {
-      let $powerControl = this.gameSettings.powerControl;
+      const $powerControl = this.gameSettings.powerControl;
       $powerControl.power = 0;
       $powerControl.mafiaPower = 0;
       $powerControl.citizenPower = 0;
@@ -113,8 +113,8 @@ export default {
       } else if ($powerControl.power <= -95) {
         $powerControl.power = -95;
       }
-      this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter((element) => element.mafia).length;
-      this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter((element) => !element.mafia).length;
+      this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter(element => element.mafia).length;
+      this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter(element => !element.mafia).length;
     },
     checkNumbers(role) {
       if (this.gameSettings.multipleRoles.normalMafia > 0 && role.status.mafia) {
@@ -218,103 +218,3 @@ export default {
   mixins: [getImg],
 };
 </script>
-
-<style lang="scss" scoped>
-
-.roles{
-    margin-top:15px;
-    li{
-        position: relative;
-        float: left;
-        width:48%;
-        margin:4% 0 0 4%;
-        &:nth-child(2n+1){
-            margin-left:0;
-        }
-        input{display: none;}
-        label{
-            display: table;
-            width: 100%;
-            height: 158px;
-            font-family: $font_mafia;
-            font-size: $font_size_big;
-            color:$color_1;
-            text-align: center;
-            padding:5px 7px;
-            cursor: pointer;
-            background-color: $background_color_citizen;
-            border:3px solid $black_color;
-            border-radius: 7px;
-            transition:all .3s ease-in-out;
-            > div{
-                display: table-cell;
-                vertical-align: middle;
-                strong{
-                    display: block;
-                    margin-top:5px;
-                    span{
-                        display: inline-block;
-                        vertical-align: middle;
-                        font-family: $font_normal;
-                        font-size: $font_size_6;
-                        color:$color_1;
-                        margin-left: 5px;
-                        transition:all .3s ease-in-out;
-                        i{font-size: $font_size_8;}
-                    }
-                }
-            }
-        }
-        &.mafia label{background-color:$background_color_mafia;}
-        .number-control span{
-            position:absolute;
-            bottom:-5px;
-            left:-5px;
-            display: block;
-            width:30px;
-            height: 30px;
-            line-height: 26px;
-            font-family: $font_normal;
-            font-size: 24px;
-            color:$black_color;
-            text-align: center;
-            transition:all .2s;
-            cursor: pointer;
-            background-color: $color_1;
-            border-radius: 50%;
-            z-index: 99;
-            &:active{
-                transform: scale(.6,.6);
-                border-color:$black_color;
-            }
-            &:last-child{
-                left:auto;
-                right:-5px;
-            }
-        }
-        .character-power{
-            position: absolute;
-            left: 10px;
-            bottom: 12px;
-            width: calc(100% - 20px);
-            transition:all .2s ease-in-out;
-            background-color: $background_color_2;
-            &.mafia-pw{
-                background-color: $background_color_middle;
-            }
-        }
-        input.active ~ .character-power{
-            visibility: hidden;
-            opacity: 0;
-        }
-        @media #{$breakpoint_tablet} {
-            width:31%;
-            margin:3.5% 0 0 3.5% !important;
-            &:nth-child(3n+1){
-                margin-left:0 !important;
-            }
-        }
-    }
-}
-
-</style>
