@@ -12,7 +12,10 @@
     &.active{
         bottom:0;
     }
-    img{margin-bottom: 5px;}
+    img{
+        width:64px;
+        margin-bottom: 5px;
+    }
     h2{text-align: center;}
     p{font-size: $font_size_4;}
     a{

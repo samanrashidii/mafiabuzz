@@ -27,15 +27,7 @@
             >x<i>{{ role.status.mafia ? gameSettings.multipleRoles.normalMafia : gameSettings.multipleRoles.normalCitizen }}</i></span></strong>
           </div>
         </label>
-        <div
-          class="character-power"
-          :class="{'mafia-pw': role.mafia}"
-        >
-          <span
-            :class="{'mafia': role.mafia, 'citizen': !role.mafia}"
-            :style="{width: `${Math.abs(role.power)*2}%`}"
-          ><i>{{ Math.abs(role.power) }}</i></span>
-        </div>
+        <CharacterPower :mafia="role.mafia" :power="role.power" />
         <transition name="scale">
           <div
             class="number-control"
@@ -57,6 +49,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import getImg from '@/mixins/getImg';
 
@@ -76,6 +69,7 @@ export default {
     };
   },
   components: {
+    CharacterPower,
     InfoBox,
   },
   computed: {

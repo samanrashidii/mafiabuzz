@@ -16,12 +16,7 @@
           > {{ $t(tD.name) }}
         </td>
         <td>
-          <div class="character-power">
-            <span
-              :class="{'mafia': tD.mafia, 'citizen': !tD.mafia}"
-              :style="{width: `${Math.abs(tD.power)*2}%`}"
-            ><i>{{ Math.abs(tD.power) }}</i></span>
-          </div>
+          <CharacterPower :mafia="tD.mafia" :power="tD.power" />        
         </td>
       </tr>
     </table>
@@ -30,9 +25,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import CharacterPower from '@/components/CharacterPower.vue';
 import getImg from '@/mixins/getImg';
 
 export default {
+  components: {
+    CharacterPower,
+  },
   props: {
     tableData: Array,
   },
