@@ -19,10 +19,6 @@ Vue.use(Vue2TouchEvents);
 Vue.component('AppButton', Button);
 Vue.component('PageBox', PageBox);
 
-// Required External Files
-
-require('./assets/sass/main.scss');
-
 // Vue Config
 
 Vue.config.productionTip = false;

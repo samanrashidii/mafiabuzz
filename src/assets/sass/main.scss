@@ -1,8 +1,9 @@
-@import '@/assets/sass/variables';
-@import '@/assets/sass/components/roles';
-@import '@/assets/sass/components/infobox';
-@import '@/assets/sass/components/languagebutton';
-@import '@/assets/sass/components/notebox';
-@import '@/assets/sass/components/overlay';
-@import '@/assets/sass/components/powermeter';
-@import '@/assets/sass/components/style';
+@import "./font.scss"
+@import "./variables.scss";
+@import "./components/roles.scss";
+@import "./components/infobox.scss";
+@import "./components/languagebutton.scss";
+@import "./components/notebox.scss";
+@import "./components/overlay.scss";
+@import "./components/powermeter.scss";
+@import "./components/style.scss";
