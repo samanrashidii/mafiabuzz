@@ -7,11 +7,4 @@ module.exports = {
       enableInSFC: true,
     },
   },
-  css: {
-    loaderOptions: {
-      sass: {
-        data: '@import "@/assets/sass/global.scss";',
-      },
-    },
-  },
 };
