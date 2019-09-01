@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome">
+  <div class="welcome-box">
     <img
       :src="require(`@/assets/images/${$t('pages.creator.welcome.image')}`)"
       :alt="$t('general.alt')"

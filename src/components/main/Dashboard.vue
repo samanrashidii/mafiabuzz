@@ -1,120 +1,55 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-header">
-      <PageTitle
-        dashboard-title
-        :check-route="checkRoute()"
-      />
-      <AppButton
-        class="settings-bttn danger has-small-top-margin"
-        v-if="StepCounter != 3 &&
-          !GameReset"
-        @click.native="alertBox = true, totRestart =
-          false"
-      >
+      <PageTitle dashboard-title :check-route="checkRoute()" />
+      <AppButton @click.native="alertBox = true, totRestart = false" class="settings-bttn danger has-small-top-margin" v-if="StepCounter != 3 && !GameReset">
         <span>{{ $t('pages.creator.changeSettings') }}</span>
       </AppButton>
-      <AppButton
-        class="danger has-small-top-margin"
-        v-else-if="StepCounter != 3 && GameReset"
-        @click.native="alertBox = true, totRestart =
-          true"
-      >
+      <AppButton @click.native="alertBox = true, totRestart = true" class="danger has-small-top-margin" v-else-if="StepCounter != 3 && GameReset">
         <span>{{ $t('pages.creator.restartGame') }}</span>
       </AppButton>
     </div>
 
     <Overlay :class="{'active': alertBox,'dialog': true}">
-      <img
-        class="has-xsmall-bottom-margin"
-        :src="require(`@/assets/images/icons/warning.png`)"
-        :alt="$t('general.warningIcon')"
-      >
+      <img class="has-xsmall-bottom-margin" :src="require(`@/assets/images/icons/warning.png`)" :alt="$t('general.warningIcon')">
       <template v-if="!totRestart">
         <p>{{ $t('pages.creator.changeSettingsText') }}</p>
-        <AppButton
-          @click.native="resetGame()"
-          class="green
-                "
-        >
+        <AppButton  @click.native="resetGame()" class="green">
           <span>{{ $t('pages.creator.confirmButton') }}</span>
         </AppButton>
-        <AppButton
-          @click.native="alertBox = false"
-          class="danger"
-        >
+        <AppButton @click.native="alertBox = false" class="danger">
           <span>{{ $t('pages.creator.cancelButton') }}</span>
         </AppButton>
       </template>
       <template v-else>
         <p>{{ $t('pages.creator.resetTotalText') }}</p>
-        <AppButton
-          @click.native="restartGame()"
-          class="green
-                "
-        >
+        <AppButton @click.native="restartGame()" class="green">
           <span>{{ $t('pages.creator.restartButton') }}</span>
         </AppButton>
-        <AppButton
-          @click.native="alertBox = false"
-          class="danger"
-        >
+        <AppButton @click.native="alertBox = false" class="danger" >
           <span>{{ $t('pages.creator.cancelButton') }}</span>
         </AppButton>
       </template>
     </Overlay>
 
-    <transition
-      name="slide"
-      mode="out-in"
-    >
-      <div
-        class="step-box has-top-padding"
-        v-if="StepCounter == 1"
-        key="step1"
-      >
-        <a
-          class="predefined type-2"
-          href="javascript:void(0)"
-          v-if="checkLocalStorage"
-          :class="{'active': showSavedNames}"
-          @click="handleSavedNames()"
-        >
+    <transition name="slide" mode="out-in">
+      <div class="step-box has-top-padding" v-if="StepCounter == 1" key="step1">
+        <a @click="handleSavedNames()" class="predefined type-2" :class="{'active': showSavedNames}" href="javascript:void(0)" v-if="checkLocalStorage">
           <span>{{ $t('pages.creator.lastNames') }}</span>
         </a>
-        <a
-          class="predefined"
-          href="javascript:void(0)"
-          v-else
-          :class="{'active': showPredefined}"
-          @click="handlePredefine()"
-        >
+        <a @click="handlePredefine()" :class="{'active': showPredefined}" class="predefined" href="javascript:void(0)"v-else>
           <span>{{ $t('pages.creator.defaultNames') }}</span>
         </a>
         <p>{{ $t('pages.creator.chooseNameHint') }}</p>
         <template v-for="(roleInput, index) in SelectedRoles">
-          <input
-            type="text"
-            @keyup.enter="$event.target.nextElementSibling.focus();"
-            class="has-xsmall-bottom-margin"
-            :key="index"
-            v-model="players[index]"
-          >
+          <input @keyup.enter="$event.target.nextElementSibling.focus();" type="text" class="has-xsmall-bottom-margin" :key="index" v-model="players[index]">
         </template>
-        <AppButton
-          @click.native="assignRoles()"
-          class="active
-                assign-bttn"
-        >
+        <AppButton @click.native="assignRoles()" class="active assign-bttn">
           <span>{{ $t('pages.creator.assign') }}</span>
         </AppButton>
       </div>
 
-      <div
-        class="step-box display autoheight"
-        v-else-if="StepCounter == 2"
-        key="step2"
-      >
+      <div class="step-box display autoheight" v-else-if="StepCounter == 2" key="step2">
         <div class="inner-display">
           <p v-if="!showrole">
             {{ $t('pages.creator.passMobile') }}
@@ -122,42 +57,19 @@
           <p v-else>
             {{ $t('pages.creator.gotMobile') }}
           </p>
-          <div
-            v-for="(role, index) in gameRoles"
-            :key="index"
-          >
+          <div v-for="(role, index) in gameRoles" :key="index">
             <div v-if="(index+1) == personNumb">
               <strong :class="showrole == true ? {'mafia-color': role.mafia == true, 'citizen-color': role.mafia == false} : ''">{{ role.player }}</strong>
-              <transition
-                name="fade"
-                mode="out-in"
-              >
-                <AppButton
-                  class="yellow"
-                  @click.native="showrole = true"
-                  v-if="!showrole"
-                  key="showButton"
-                >
+              <transition name="fade" mode="out-in">
+                <AppButton @click.native="showrole = true" class="yellow" key="showButton" v-if="!showrole">
                   {{ $t('pages.creator.beforeShowButton') }}
                 </AppButton>
-                <div
-                  class="role-info-wrapper"
-                  v-else
-                >
-                  <div
-                    class="role-info"
-                    :class="{'citizen': role.mafia == false}"
-                  >
-                    <img
-                      :src="getImgUrl('/roles', $t(role.icon))"
-                      :alt="$t(role.alt)"
-                    >
+                <div class="role-info-wrapper" v-else>
+                  <div class="role-info" :class="{'citizen': role.mafia == false}">
+                    <img :src="getImgUrl('/roles', $t(role.icon))" :alt="$t(role.alt)">
                     <h4>{{ $t(role.name) }}</h4>
                   </div>
-                  <AppButton
-                    class="green"
-                    @click.native.once="nextPerson()"
-                  >
+                  <AppButton @click.native.once="nextPerson()" class="green">
                     {{ $t('pages.creator.afterShowButton') }}
                   </AppButton>
                 </div>

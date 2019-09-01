@@ -77,37 +77,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-    .creators li{
-        a{
-            display:block;
-            text-align: center;
-            padding:70px 8px 20px 8px;
-            margin-top:15px;
-            background-color: $background_color_1;
-            border-radius: $site_radius;
-            box-shadow: inset 0 0 4px #7a7a7a;
-            strong{
-                display: block;
-                font-family: $font_mafia;
-                font-size: 44px;
-            }
-            span{
-                color:$color_2;
-            }
-        }
-    }
-
-   .contact-box{
-       text-align: center;
-       a{
-           display: inline-block;
-           font-size: $font_size_8;
-           color:$green_color;
-           margin:10px 0;
-        }
-   }
-
-</style>

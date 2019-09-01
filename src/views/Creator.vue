@@ -20,9 +20,9 @@ export default {
     ...mapGetters({
       GameSettings: 'gameStatus/GameSettings',
     }),
-    gameSettings(){
+    gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
-    }
+    },
   },
   components: {
     Create,

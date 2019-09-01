@@ -1,0 +1,31 @@
+.note-box{
+    position: relative;
+    color:$color_site_1;
+    padding:15px;
+    margin-bottom:20px;
+    background-color: $background_color_2;
+    border-radius: $site_radius;
+    li{
+        font-size: $font_size_3;
+        color:$color_6;
+        margin-bottom:12px;
+        &::before{
+            content:'*';
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 7px;
+        }
+    }
+    &::after{
+        content:'';
+        position: absolute;
+        bottom:-4px;
+        left:50%;
+        width:10px;
+        height:10px;
+        margin-left: -5px;
+        background-color:inherit;
+        border-radius: 2px;
+        transform:rotate(45deg);
+    }
+}

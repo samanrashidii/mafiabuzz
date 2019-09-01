@@ -10,20 +10,20 @@ export default {
       selectedMafia: 0,
       selectedCitizen: 0,
       selectedRoles: [],
-      multipleRoles:{
+      multipleRoles: {
         normalMafia: 0,
         normalCitizen: 0,
       },
       fMafias: [],
       fCitizens: [],
-      powerControl:{
+      powerControl: {
         power: 0,
         mafiaPower: 0,
         citizenPower: 0,
       },
       gameStatus: false,
       stepCounter: 1,
-    }
+    },
   },
   getters: {
     GameSettings: state => state.gameSettings,
@@ -37,5 +37,5 @@ export default {
     SetGameSettings: (context, settings) => {
       context.commit('SET_GAME_SETTINGS', settings);
     },
-  }
-}
+  },
+};

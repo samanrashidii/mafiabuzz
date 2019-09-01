@@ -17,5 +17,5 @@ export default {
     SetRoles: (context, changedRoles) => {
       context.commit('SET_ROLES', changedRoles);
     },
-  }
-}
+  },
+};

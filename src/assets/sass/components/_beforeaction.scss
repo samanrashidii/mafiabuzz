@@ -1,0 +1,40 @@
+.before-action-box{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    padding: 10px 20px;
+    background-color: $black_color;
+    border-radius: $site_radius;
+    z-index: 100;
+    p{
+        padding-top:10px;
+        padding-bottom: 10px;
+    }
+}
+
+.night-over{
+    text-align: center;
+    padding: 80px 20px 20px 20px;
+    margin-top: 20px;
+    background:url('~@/assets/images/icons/info.png') no-repeat center 20px $background_color_side;
+    border-radius: $site_radius;
+}
+
+.last-log{
+    display:block;
+    font-size: $font_size_6;
+    color: $color_1;
+    text-align: left;
+    padding: 8px 8px 8px 48px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    border-radius: 4px;
+    &.red-bg{background-color:$dark_red_color;}
+    &.blue-bg{background-color:$dark_blue_color;}
+    &.green-bg{background-color:$medium_green_color;}
+    i{
+        color:$black_color;
+    }
+}

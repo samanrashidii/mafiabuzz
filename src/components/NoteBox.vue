@@ -14,19 +14,3 @@ export default {
 
 };
 </script>
-
-<style lang="scss" scoped>
-
-.note li{
-    font-size: $font_size_3;
-    color:$color_6;
-    margin-bottom:12px;
-    &::before{
-        content:'*';
-        display: inline-block;
-        vertical-align: middle;
-        margin-right: 7px;
-    }
-}
-
-</style>
