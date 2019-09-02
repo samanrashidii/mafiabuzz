@@ -20,19 +20,19 @@ export default {
     changeLang() {
       const i18n = this.$root._i18n.locale;
       if (i18n === 'en') {
-        this.toggleBodyClass('addClass', 'rtl');
-        this.$root._i18n.locale = 'fa';
+        this.toggleBodyClass('addClass', 'rtl')
+        this.$root._i18n.locale = 'fa'
       } else {
-        this.toggleBodyClass('removeClass', 'rtl');
-        this.$root._i18n.locale = 'en';
+        this.toggleBodyClass('removeClass', 'rtl')
+        this.$root._i18n.locale = 'en'
       }
     },
     toggleBodyClass(addRemoveClass, className) {
       const el = document.body;
       if (addRemoveClass === 'addClass') {
-        el.classList.add(className);
+        el.classList.add(className)
       } else {
-        el.classList.remove(className);
+        el.classList.remove(className)
       }
     },
   },

@@ -90,7 +90,7 @@
             "gameModeButton": "Change Game Mode",
             "welcome": {
                 "image": "logo.png",
-                "text": "welcome to <strong>MafiaBuzz</strong> app"
+                "text": "welcome to <strong>MafiaBuzz</strong> web application"
             },
             "title": "Dear <span>God</span>",
             "subtitle": "Please choose below options to create your game:",
@@ -112,6 +112,7 @@
             "checkBeforeStart": "Your game will start with below characters",
             "dashboardTitle": "<span>God</span> Dashboard",
             "chooseNameHint": "Please write the name of each person:",
+            "playerDefault": "Player",
             "passMobile": "Please pass device to next person:",
             "gotMobile": "Please see your role carefully :",
             "beforeShowButton": "Show me my role !",

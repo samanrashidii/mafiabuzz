@@ -1456,8 +1456,6 @@ export default {
     rgwRoles() {
       this.getRoles(this.savedRoles);
       this.setGameReset(true);
-      this.$emit('ready', false);
-      this.$emit('personNumb', 1);
       this.controlDashboard(this.defaultDashboard);
       this.setStep(1);
     },

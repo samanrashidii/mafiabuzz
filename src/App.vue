@@ -31,11 +31,11 @@ export default {
   created() {
     axios.get('https://api.myjson.com/bins/1g4n7r')
       .then((response) => {
-        this.$store.dispatch('roles/SetRoles', response.data);
+        this.$store.dispatch('roles/SetRoles', response.data)
       });
   },
   mounted() {
-    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
+    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
   },
 };
 </script>
