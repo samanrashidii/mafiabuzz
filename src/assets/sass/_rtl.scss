@@ -1,7 +1,7 @@
 body.rtl{
     direction: rtl;
     font-family: $font_rtl, $font_reset_default;
-    font-size: $font_size_5;
+    font-size: $font_size_4;
 }
 
 .rtl p{line-height: 2;}
@@ -46,9 +46,10 @@ body.rtl{
 }
 
 .rtl .welcome-box strong{
-    font-family: $font_rtl;
+    font-family: Courier;
     font-weight: bold;
-    font-size: 34px;
+    font-size: 30px;
+    letter-spacing: -4px;
 }
 
 .rtl #app .navigation.internal nav a{

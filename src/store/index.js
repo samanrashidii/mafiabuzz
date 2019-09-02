@@ -12,10 +12,6 @@ export default new Vuex.Store({
     roles,
   },
   state: {
-    roles: [],
-    savedRoles: [],
-    gameReset: false,
-    gameCreated: false,
     dashboard: {
       god: false,
       day: true,

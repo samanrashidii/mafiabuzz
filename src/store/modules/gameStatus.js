@@ -22,7 +22,9 @@ export default {
         citizenPower: 0,
       },
       gameStatus: false,
+      gameReset: false,
       stepCounter: 1,
+      personNumb: 1,
     },
   },
   getters: {
