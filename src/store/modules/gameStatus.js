@@ -32,12 +32,12 @@ export default {
   },
   mutations: {
     SET_GAME_SETTINGS: (state, settings) => {
-      Vue.set(state, 'gameSettings', settings);
+      Vue.set(state, 'gameSettings', settings)
     },
   },
   actions: {
     SetGameSettings: (context, settings) => {
-      context.commit('SET_GAME_SETTINGS', settings);
+      context.commit('SET_GAME_SETTINGS', settings)
     },
   },
 };
