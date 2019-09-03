@@ -197,9 +197,7 @@ export default {
       });
     },
     randomFunc() {
-      let tg = this.gameSettings.selectedRoles
-      for(var j, x, i = tg.length; i; j = parseInt(Math.random() * i), x = tg[--i], tg[i] = tg[j], tg[j] = x);
-      this.SetGameSettings(this.gameSettings);
+      this.gameSettings.selectedRoles.sort(function() { return 0.5 - Math.random() });
     },
     resetGame() {
       this.gameSettings.gameStatus = false;
