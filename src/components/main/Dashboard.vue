@@ -133,9 +133,9 @@ export default {
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     assignRoles() {
-      const gR = this.gameSettings.selectedRoles
-      const pL = this.players;
-      const checkPlayersInput = pL.filter((item, index) => pL.indexOf(item) >= index);
+      let gR = this.gameSettings.selectedRoles
+      let pL = this.players;
+      let checkPlayersInput = pL.filter((item, index) => pL.indexOf(item) >= index);
       if (pL.length == gR.length && checkPlayersInput.length == pL.length) {
         for (let i = 0; i < pL.length; i++) {
           if (pL[i].length < 1) {
@@ -146,13 +146,10 @@ export default {
           }
         }
       }
-
       if (this.ready) {
-        const tg = this.gameSettings.selectedRoles;
-        const tp = this.players;
-        this.randomFunc(tg);
-        for (let i = tg.length - 1; i >= 0; i--) {
-          tg[i].player = tp[i]
+        this.randomFunc();
+        for (let i = gR.length - 1; i >= 0; i--) {
+          gR[i].player = pL[i]
         }
         this.gameSettings.stepCounter = 2
       }
@@ -199,16 +196,10 @@ export default {
         this.players.push(this.$t('pages.creator.playerDefault')+' '+(index+1))
       });
     },
-    randomFunc(tg) {
-      tg.forEach((element) => {
-        for (let i = tg.length - 1; i >= 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1))
-          [tg[i], tg[j]] = [tg[j], tg[i]]
-          [tg[j], tg[i]] = [tg[i], tg[j]]
-          [tg[i], tg[j]] = [tg[j], tg[i]]
-        }
-      });
-      return tg;
+    randomFunc() {
+      let tg = this.gameSettings.selectedRoles
+      for(var j, x, i = tg.length; i; j = parseInt(Math.random() * i), x = tg[--i], tg[i] = tg[j], tg[j] = x);
+      this.SetGameSettings(this.gameSettings);
     },
     resetGame() {
       this.gameSettings.gameStatus = false;

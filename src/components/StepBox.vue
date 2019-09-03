@@ -47,13 +47,13 @@ export default {
       return JSON.parse(JSON.stringify(this.GameSettings))
     },
     index() {
-      return this.type == 'totalUnit' ? 1 : 2
+      return this.type === 'totalUnit' ? 1 : 2
     },
     value() {
-      return this.type == 'totalUnit' ? this.default.total : this.calcMafia
+      return this.type === 'totalUnit' ? this.default.total : this.calcMafia
     },
     margin() {
-      return this.type == 'totalUnit' ? this.default.margin : 0
+      return this.type === 'totalUnit' ? this.default.margin : 0
     },
     calcMafia() {
       return Math.floor(this.gameSettings.unit / 2) - 1
@@ -66,10 +66,10 @@ export default {
     },
   },
   created() {
-    this.type == 'totalUnit' ? this.selectedVal = this.default.unit : this.selectedVal = this.default.mafia
+    this.type === 'totalUnit' ? this.selectedVal = this.default.unit : this.selectedVal = this.default.mafia
   },
   updated() {
-    if (this.type == 'totalMafia' && this.selectedVal > this.calcMafia) {
+    if (this.type === 'totalMafia' && this.selectedVal > this.calcMafia) {
       this.selectedVal = this.bestCombo
       this.gameSettings.mafia = this.bestCombo
       this.gameSettings.citizen = this.calcCitizen
@@ -81,7 +81,7 @@ export default {
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     calcVal() {
-      this.type == 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
+      this.type === 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
       this.gameSettings.citizen = this.calcCitizen
       this.SetGameSettings(this.gameSettings)
     },
