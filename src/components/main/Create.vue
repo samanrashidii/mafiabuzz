@@ -103,12 +103,6 @@ export default {
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings))
     },
-    finalMafias() {
-      return this.gameSettings.fMafias.slice().sort((a, b) => ((a.name > b.name) ? 1 : -1))
-    },
-    finalCitizens() {
-      return this.gameSettings.fCitizens.slice().sort((a, b) => ((a.name > b.name) ? 1 : -1))
-    },
     isValid() {
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
         this.error.mafia = true
