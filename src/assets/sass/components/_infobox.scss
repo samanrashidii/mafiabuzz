@@ -17,7 +17,10 @@
         margin-bottom: 5px;
     }
     h2{text-align: center;}
-    p{font-size: $font_size_4;}
+    p{
+        font-size: $font_size_4;
+        padding-top:15px;
+    }
     a{
         position: absolute;
         top:0;

@@ -3,7 +3,7 @@ export default {
         changePhase(phase) {
             if (!phase) {
                 this.dashboard.day = true
-                this.gameSettings.selectedPlayers.forEach((element) => {
+                this.gameSettings.selectedRoles.forEach((element) => {
                 // Reset One Night Actions
                 element.status.roleChecked = false
                 element.status.identityChecked = false

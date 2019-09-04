@@ -80,7 +80,6 @@
       </div>
 
       <God
-        :finalPlayers="this.gameSettings.selectedRoles"
         v-else-if="gameSettings.stepCounter === 3"
         key="step3"
       />
@@ -136,7 +135,7 @@ export default {
       let gR = this.gameSettings.selectedRoles
       let pL = this.players;
       let checkPlayersInput = pL.filter((item, index) => pL.indexOf(item) >= index);
-      if (pL.length == gR.length && checkPlayersInput.length == pL.length) {
+      if (pL.length === gR.length && checkPlayersInput.length === pL.length) {
         for (let i = 0; i < pL.length; i++) {
           if (pL[i].length < 1) {
             this.ready = false
@@ -153,6 +152,8 @@ export default {
         }
         this.gameSettings.stepCounter = 2
       }
+      this.gameSettings.fMafias = this.gameSettings.selectedRoles.filter(x => x.mafia == true)
+      this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false)
       localStorage.setItem('savedPlayers', pL)
       this.SetGameSettings(this.gameSettings)
     },

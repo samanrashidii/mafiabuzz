@@ -29,7 +29,7 @@ export default {
     ...mapGetters(['DefaultState']),
   },
   created() {
-    axios.get('https://api.myjson.com/bins/1g4n7r')
+    axios.get('http://localhost:8080/roles.json')
       .then((response) => {
         this.$store.dispatch('roles/SetRoles', response.data)
       });

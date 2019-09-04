@@ -200,7 +200,7 @@
                   class="has-xsmall-top-margin"
                   :class="{'mafia-role': dashboard.info.mafia,'citizen-role': !dashboard.info.mafia}"
                 >
-                  {{ info.player }}
+                  {{ dashboard.info.player }}
                 </h4>
               </div>
               <div class="arrow">
@@ -219,7 +219,7 @@
                   class="has-xsmall-top-margin"
                   :class="{'mafia-role': dashboard.info.targetMafia != null && dashboard.info.targetMafia, 'citizen-role': dashboard.info.targetMafia !== null && !dashboard.info.targetMafia}"
                 >
-                  {{ info.target }}
+                  {{ dashboard.info.target }}
                 </h4>
               </div>
             </div>
@@ -492,15 +492,10 @@
                     :class="characterClasses(fM)"
                   >
                     <td>
-                      <a
-                        @click="showInfo(fM)"
-                        href="javascript:void(0)"
-                      >
                         <img
                           :src="getImgUrl('/roles', $t(fM.icon))"
                           :alt="$t(fM.alt)"
                         > {{ $t(fM.name) }}
-                      </a>
                     </td>
                     <td><span class="character-player">{{ fM.player }}</span></td>
                     <td
@@ -537,7 +532,6 @@
                         v-if="fM.status.hasPassive && !fM.status.hasAction"
                       />
                       <span
-                        @click="showInfo(fM)"
                         :class="{'pending-action': !fM.actionStatus && fM.status.hasAction, 'done-action': fM.actionStatus}"
                         v-else
                       />
@@ -568,15 +562,10 @@
                     :class="characterClasses(fC)"
                   >
                     <td>
-                      <a
-                        @click="showInfo(fC)"
-                        href="javascript:void(0)"
-                      >
                         <img
                           :src="getImgUrl('/roles', $t(fC.icon))"
                           :alt="$t(fC.alt)"
                         > {{ $t(fC.name) }}
-                      </a>
                     </td>
                     <td><span class="character-player">{{ fC.player }}</span></td>
                     <td
@@ -608,12 +597,10 @@
                         v-else-if="!fC.status.hasAction && fC.status.hasPassive && fC.actionStatus"
                       />
                       <span
-                        @click="showInfo(fC)"
                         class="passive"
                         v-if="fC.status.hasPassive && !fC.status.hasAction"
                       />
                       <span
-                        @click="showInfo(fC)"
                         :class="{'pending-action': !fC.actionStatus && fC.status.hasAction, 'done-action': fC.actionStatus}"
                         v-else
                       />
@@ -820,15 +807,6 @@ export default {
       const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1))
       this.dashboard.actionBox = sorted
       this.SetDashboard(this.dashboard)
-    },
-    // Show Information of roles
-    showInfo(role) {
-      this.dashboard.info.name = role.name
-      this.dashboard.info.icon = role.icon
-      this.dashboard.info.description = role.description
-      this.dashboard.info.mafia = role.mafia
-      this.dashboard.info.show == false ? this.dashboard.info.show = true : this.dashboard.info.show = false
-      this.SetDashboard(this.dashboard);
     },
     // Show God Dashboard
     showPlay() {
