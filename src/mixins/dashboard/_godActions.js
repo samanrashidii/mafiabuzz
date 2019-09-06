@@ -88,8 +88,6 @@ export default {
       this.dashboard.log.target = null;
       this.dashboard.log.targetMafia = null;
       this.dashboard.log.godLog = false;
-      this.SetDashboard(this.dashboard);
-      this.SetGameSettings(this.gameSettings);
     }
   },
 };

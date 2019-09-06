@@ -23,8 +23,6 @@ export default {
             }
           }
         });
-        this.SetDashboard(this.dashboard)
-        this.SetGameSettings(this.gameSettings)
       }
     }
 }

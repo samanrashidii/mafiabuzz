@@ -37,8 +37,6 @@ export default {
           this.dashboard.log.passiveLog = false;
         }
       }, 3500);
-      this.SetDashboard(this.dashboard)
-      this.SetGameSettings(this.gameSettings)
     }
   },
 };

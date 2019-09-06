@@ -3,6 +3,8 @@ export default {
       findTarget(target) {
         this.gameSettings.selectedRoles.forEach((element) => {
           if (element.player === target) {
+            this.fireAction(element)
+            this.dashboard.info.target = element.player
             this.dashboard.info.targetInfo = element
             this.dashboard.info.targetRole = element.name
             this.dashboard.info.targetPassive = element.action.passive
@@ -13,8 +15,8 @@ export default {
             this.dashboard.info.damageReturned = element.status.damageReturned
           }
         })
-        this.dashboard.info.target = target
         this.SetDashboard(this.dashboard)
+        this.SetGameSettings(this.gameSettings)
       }
     }
 }

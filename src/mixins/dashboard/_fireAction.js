@@ -14,7 +14,6 @@ export default {
           this.dashboard.info.mafia = player.mafia
           this.dashboard.readyToLog = true
         }
-        this.SetDashboard(this.dashboard)
       }
     }
 }
