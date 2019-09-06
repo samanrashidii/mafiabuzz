@@ -22,8 +22,6 @@ export default {
             break;
           }
         }
-        this.SetGameSettings(this.gameSettings);
-        this.SetDashboard(this.dashboard);
       }
     }
 }

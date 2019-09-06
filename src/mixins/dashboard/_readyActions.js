@@ -20,10 +20,8 @@ export default {
           } else {
             this.dashboard.targetRevived = false;
           }
-          this.SetDashboard(this.dashboard);
           return true;
         }
-        this.SetDashboard(this.dashboard);
         return false;
       }
     }

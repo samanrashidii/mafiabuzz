@@ -20,415 +20,6 @@
       </transition>
     </div>
 
-    <!-- Night Priority Action Box -->
-
-    <transition name="fade">
-      <div
-        class="priority-box"
-        v-if="!dashboard.day && dashboard.actionBox.length !== dashboard.actionProgress"
-      >
-        <!-- Before Action Box -->
-        <transition name="fade">
-          <div
-            class="before-action-box"
-            v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round === 1"
-          >
-            <div class="table-display">
-              <div class="table-cell-display">
-                <!-- Last Phase Action -->
-                <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
-                  <img
-                    :src="getImgUrl('/roles', $t('god.voteIcon'))"
-                    :alt="$t('god.deadIconAlt')"
-                  >
-                  <p>{{ $t('god.lastPhaseText') }}</p>
-                  <select
-                    name="action_target"
-                    v-model="dashboard.log.target"
-                  >
-                    <option
-                      :value="null"
-                      disabled
-                    >
-                      {{ $t('god.selectPlaceholder') }}
-                    </option>
-                    <option
-                      v-for="(person, index) in checkGroup('lastDay')"
-                      :key="index"
-                    >
-                      {{ person.player }}
-                    </option>
-                  </select>
-                  <app-button @click.native="killByVote(dashboard.log.target)">
-                    {{ $t('god.confirmButton') }}
-                  </app-button>
-                  <app-button
-                    class="danger"
-                    @click.native="dashboard.lastPhaseAction = false"
-                  >
-                    {{ $t('god.skipButton') }}
-                  </app-button>
-                </template>
-                <!-- Last Phase Action -->
-                <template v-else-if="dashboard.mafiaParty && dashboard.round === 1">
-                  <img
-                    :src="getImgUrl('/roles', $t('god.mafiaPartyIcon'))"
-                    :alt="$t('god.mafiaPartyIconAlt')"
-                  >
-                  <p class="site-color">
-                    {{ $t('god.mafiaPartyText') }}
-                  </p>
-                  <ul class="error-bullet type-2">
-                    <li
-                      v-for="(mp, index) in $t('god.mafiaPartyException')"
-                      :key="index"
-                      v-html="mp"
-                    />
-                  </ul>
-                  <app-button
-                    class="has-small-top-margin"
-                    @click.native="dashboard.mafiaParty = false"
-                  >
-                    {{ $t('god.mafiaPartyButton') }}
-                  </app-button>
-                </template>
-              </div>
-            </div>
-          </div>
-        </transition>
-
-        <!-- Actions Progress Bar -->
-        <div class="progress-bar">
-          <span :style="{width: dashboard.actionProgress+'%'}" />
-          <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
-        </div>
-
-        <!-- Handle Actions -->
-
-        <div v-if="dashboard.actionBox.length > 0">
-          <template v-for="(action, index) in dashboard.actionBox">
-            <div
-              class="action-box"
-              v-if="readyActions(action, index)"
-              :key="index"
-            >
-              {{ fireAction(action) }}
-
-              <transition
-                name="fade"
-                mode="out-in"
-              >
-                <!-- Hacked Target Action -->
-                <div
-                  class="action-overlay hacked-overlay"
-                  v-if="dashboard.targetHacked"
-                  key="hackedTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t('god.hackedIcon'))"
-                        :alt="$t('god.hackedIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ $t(dashboard.info.name2) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
-                      <app-button
-                        class="purple"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
-                </div>
-                <!-- Dead Target Action -->
-                <div
-                  class="action-overlay dead-overlay"
-                  v-else-if="dashboard.targetDead"
-                  key="deadTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t('god.deadIcon'))"
-                        :alt="$t('god.deadIconAlt')"
-                      >
-                      <img
-                        class="overlap"
-                        :src="getImgUrl('/roles', $t(dashboard.info.icon2))"
-                        :alt="$t('god.playerIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ $t(dashboard.info.name2) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
-                      <app-button
-                        class="black"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
-                </div>
-                <!-- Revived Target Action -->
-                <div
-                  class="action-overlay dead-overlay"
-                  v-else-if="dashboard.targetRevived"
-                  key="revivedTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t(dashboard.info.icon2))"
-                        :alt="$t('god.revivedIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ dashboard.info.player }} </span> <strong v-html="$t('god.revivedPerson')" /></p>
-                      <app-button
-                        class="black"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
-                </div>
-              </transition>
-
-              <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}"> {{ $t(dashboard.info.name2) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(dashboard.info.action) }}</strong> ?</p>
-              <div class="player-box-holder has-small-bottom-margin">
-                <div class="player-box">
-                  <img
-                    :src="getImgUrl('/roles', $t(dashboard.info.icon2))"
-                    :alt="$t('god.playerIconAlt')"
-                  >
-                  <h4
-                    class="has-xsmall-top-margin"
-                    :class="{'mafia-role': dashboard.info.mafia,'citizen-role': !dashboard.info.mafia}"
-                  >
-                    {{ dashboard.info.player }}
-                  </h4>
-                </div>
-                <div class="arrow">
-                  <img
-                    class="action-image"
-                    :src="getImgUrl('/actions', $t(dashboard.info.actionIcon))"
-                    :alt="$t('god.playerActionIconAlt')"
-                  >
-                </div>
-                <div class="player-box">
-                  <img
-                    :src="getImgUrl('/roles', $t(dashboard.info.targetIcon))"
-                    :alt="$t('god.playerIconAlt')"
-                  >
-                  <h4
-                    class="has-xsmall-top-margin"
-                    :class="{'mafia-role': dashboard.info.targetMafia != null && dashboard.info.targetMafia, 'citizen-role': dashboard.info.targetMafia !== null && !dashboard.info.targetMafia}"
-                  >
-                    {{ dashboard.info.target }}
-                  </h4>
-                </div>
-              </div>
-              <select
-                @change="findTarget(dashboard.log.target, dashboard.log.targetID)"
-                name="action_target"
-                v-model="dashboard.log.target"
-              >
-                <option
-                  :value="null"
-                  disabled
-                >
-                  {{ $t('god.selectPlaceholder') }}
-                </option>
-                <option
-                  v-for="(person, index) in checkGroup(dashboard.info)"
-                  :key="index"
-                >
-                  {{ person.player }}
-                </option>
-              </select>
-              <template v-if="dashboard.info.ability.binder && dashboard.log.target !== null">
-                <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
-                <select
-                  name="action_target_2"
-                  v-model="dashboard.log.target2"
-                >
-                  <option
-                    :value="null"
-                    disabled
-                  >
-                    {{ $t('god.selectPlaceholder') }}
-                  </option>
-                  <option
-                    v-for="(person, index) in checkSecondGroup(dashboard.info)"
-                    :key="index"
-                  >
-                    {{ person.player }}
-                  </option>
-                </select>
-              </template>
-            </div>
-          </template>
-        </div>
-
-        <!-- Action Buttons -->
-        <app-button @click.native="executeAction(dashboard.info)">
-          {{ $t('god.confirmButton') }}
-        </app-button>
-        <app-button
-          class="danger"
-          @click.native="alertBox = true"
-        >
-          {{ $t('god.skipButton') }}
-        </app-button>
-
-        <!-- Log Actions During Night -->
-        <overlay :class="{'active': logAction, 'log': true, 'done': logActionDone}">
-          <div class="log-action">
-            <img
-              :src="getImgUrl('/actions', $t(dashboard.log.actionIcon))"
-              :alt="$t('god.actionIconAlt')"
-              v-if="!dashboard.log.passiveLog"
-            >
-            <img
-              :src="getImgUrl('/roles', $t(dashboard.log.passiveIcon))"
-              :alt="dashboard.log.target"
-              v-else
-            >
-            <log-events
-              v-if="dashboard.readyToLog"
-              :log="dashboard.log"
-            />
-          </div>
-        </overlay>
-      </div>
-    </transition>
-
-    <!-- Alert Box -->
-
-    <overlay :class="{'active': alertBox,'dialog': true}">
-      <img
-        class="has-xsmall-bottom-margin"
-        :src="require(`@/assets/images/icons/warning.png`)"
-        :alt="$t('general.warningIcon')"
-      >
-      <template>
-        <p>{{ $t('god.skipText') }}</p>
-        <app-button
-          @click.native="skipAction()"
-          class="green"
-        >
-          <span>{{ $t('god.skipButton2') }}</span>
-        </app-button>
-        <app-button
-          @click.native="alertBox = false"
-          class="danger"
-        >
-          <span>{{ $t('god.cancelButton') }}</span>
-        </app-button>
-      </template>
-    </overlay>
-
-    <!-- Log History -->
-
-    <overlay :class="{'active': logHistory, 'log-history': true}">
-      <template v-for="(totLog, index) in dashboard.totalHistory">
-        <div
-          class="log-table"
-          :key="index"
-          v-if="totLog.length > 0"
-        >
-          <span class="counter">{{ $t('common.Night') }} {{ index+1 }}</span>
-          <table>
-            <tr
-              v-for="(log, index) in totLog"
-              :key="index"
-            >
-              <td>{{ index+1 }}</td>
-              <td>
-                <img
-                  :src="getImgUrl('/actions', $t(dashboard.log.actionIcon))"
-                  :alt="$t('god.actionIconAlt')"
-                  v-if="!dashboard.log.passiveLog"
-                >
-                <img
-                  :src="getImgUrl('/roles', $t(dashboard.log.passiveIcon))"
-                  :alt="$t('god.passiveIconAlt')"
-                  v-else
-                >
-              </td>
-              <td>
-                <log-events
-                  v-if="dashboard.readyToLog"
-                  :log="dashboard.log"
-                />
-              </td>
-            </tr>
-          </table>
-        </div>
-      </template>
-      <div
-        class="log-table"
-        v-if="dashboard.historyLog.length > 0"
-      >
-        <span class="counter">{{ $t('god.thisNight') }}</span>
-        <table>
-          <tr
-            v-for="(log, index) in dashboard.historyLog"
-            :key="index"
-          >
-            <td>{{ index+1 }}</td>
-            <td>
-              <img
-                :src="getImgUrl('/actions', $t(dashboard.log.actionIcon))"
-                :alt="$t('god.actionIconAlt')"
-                v-if="!dashboard.log.passiveLog"
-              >
-              <img
-                :src="getImgUrl('/roles', $t(dashboard.log.passiveIcon))"
-                :alt="$t('god.passiveIconAlt')"
-                v-else
-              >
-            </td>
-            <td>
-              <log-events
-                v-if="dashboard.readyToLog"
-                :log="dashboard.log"
-              />
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div v-if="dashboard.totalHistory.length === 0 && dashboard.historyLog.length === 0">
-        <h2>{{ $t('god.noLog') }}</h2>
-      </div>
-      <app-button
-        @click.native="logHistory = false"
-        class="active has-small-top-margin"
-      >
-        <span>{{ $t('god.logCloseButton') }}</span>
-      </app-button>
-    </overlay>
-
-    <!-- Last Night Log -->
-
-    <overlay :class="{'active': dashboard.lastNightBox, 'dialog': true, 'last-night': true}">
-      <img
-        :src="getImgUrl('/roles', $t('god.peopleIcon'))"
-        :alt="$t('god.peopleIconAlt')"
-      >
-      <h2>{{ $t('god.lastNightTitle') }}</h2>
-      <ul>
-        <li
-          v-for="(nL, index) in dashboard.lastNight"
-          :key="index"
-          v-html="nL"
-        />
-      </ul>
-      <app-button
-        @click.native="dashboard.lastNightBox = false"
-        class="active"
-      >
-        <span>{{ $t('god.logCloseButton') }}</span>
-      </app-button>
-    </overlay>
-
     <!-- Day & Night Dashboard -->
 
     <div
@@ -471,7 +62,6 @@
             key="afterShow"
           >
             <div class="players-role">
-              <info-box :info="dashboard.info" />
 
               <!-- Mafia Table in Dashboard -->
               <div class="table mafia-table table-roles">
@@ -614,7 +204,7 @@
 
               <!-- Log Actions in Last Night -->
 
-              <div
+              <!-- <div
                 class="log-table"
                 v-if="dashboard.historyLog.length > 0 && dashboard.day"
                 :class="{'result': dashboard.historyLog.length > 0 && dashboard.day}"
@@ -645,7 +235,7 @@
                     </td>
                   </tr>
                 </table>
-              </div>
+              </div> -->
             </div>
           </div>
         </transition-group>
@@ -654,7 +244,7 @@
 
     <!-- Log Buttons -->
 
-    <transition name="fade">
+    <!-- <transition name="fade">
       <div
         class="log-bttn"
         v-if="dashboard.god"
@@ -666,7 +256,7 @@
           <span>{{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i></span>
         </app-button>
       </div>
-    </transition>
+    </transition> -->
 
     <!-- Dashboard Game Hint -->
 
@@ -742,23 +332,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import Log from '@/components/Log.vue';
 import getImg from '@/mixins/getImg';
-import actions from '@/mixins/dashboard/actions';
 import changePhase from '@/mixins/dashboard/changePhase';
 import characterClasses from '@/mixins/dashboard/characterClasses';
-import checkGroup from '@/mixins/dashboard/checkGroup';
-import chooseKiller from '@/mixins/dashboard/chooseKiller';
-import findTarget from '@/mixins/dashboard/findTarget';
-import fireAction from '@/mixins/dashboard/fireAction';
-import godActions from '@/mixins/dashboard/godActions';
-import nextAction from '@/mixins/dashboard/nextAction';
-import passiveControl from '@/mixins/dashboard/passiveControl';
-import readyActions from '@/mixins/dashboard/readyActions';
-import voteKiller from '@/mixins/dashboard/voteKiller';
 
 export default {
   data() {
@@ -787,15 +368,27 @@ export default {
     gameSettings(){
       return JSON.parse(JSON.stringify(this.GameSettings))
     },
-    progress() {
-      return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
-    },
+    // progress() {
+    //   return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
+    // },
   },
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
+    // lastNightBoxController(){
+    //   this.dashboard.lastNightBox = false
+    //   this.SetDashboard(this.dashboard)
+    // },
+    // lastPhaseController(){
+    //   this.dashboard.lastPhaseAction = false
+    //   this.SetDashboard(this.dashboard)
+    // },
+    // mafiaPartyController(){
+    //   this.dashboard.mafiaParty = false
+    //   this.SetDashboard(this.dashboard)
+    // },
     // Reset Game From Start
     resetGame() {
       console.log('hard reset')
@@ -805,37 +398,26 @@ export default {
       console.log('soft reset')
     },
     // Set Actions by Priority
-    setActionsByPriority() {
-      const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus)
-      const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1))
-      this.dashboard.actionBox = sorted
-      this.SetDashboard(this.dashboard)
-    },
+    // setActionsByPriority() {
+    //   const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus)
+    //   const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1))
+    //   this.dashboard.actionBox = sorted
+    // },
     // Show God Dashboard
     showPlay() {
       this.dashboard.god = true
       this.SetDashboard(this.dashboard);
     },
     // Skip Action
-    skipAction() {
-      this.alertBox = false;
-      this.nextAction(0, 0);
-    },
+    // skipAction() {
+    //   this.alertBox = false;
+    //   this.nextAction(0, 0);
+    // },
   },
   mixins: [
-    actions,
     changePhase,
     characterClasses,
-    checkGroup,
-    chooseKiller,
-    findTarget,
-    fireAction,
     getImg,
-    godActions,
-    nextAction,
-    passiveControl,
-    readyActions,
-    voteKiller
   ],
 };
 

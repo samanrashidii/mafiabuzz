@@ -1,14 +1,14 @@
 export default {
     methods: {
       nextAction(time1, time2) {
-        this.dashboard.logAction = true
+        this.logAction = true
         setTimeout(() => {
-          this.dashboard.logAction = false
-          this.dashboard.logActionDone = true
+          this.logAction = false
+          this.logActionDone = true
           setTimeout(() => {
             this.dashboard.actionProgress++
-            this.dashboard.logActionDone = false
-            this.dashboard.info.target = this.$t('replacingRoles.preTarget.name')
+            this.logActionDone = false
+            this.dashboard.info.target = '?'
             this.dashboard.info.targetRole = 'replacingRoles.preTarget.role'
             this.dashboard.info.targetID = 0
             this.dashboard.info.targetMafia = null
