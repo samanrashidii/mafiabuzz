@@ -32,7 +32,7 @@ export default {
           this.dashboard.historyLog.push({ ...this.dashboard.log })
 
           this.gameSettings.selectedRoles.forEach((element, index) => {
-            if (element.player == this.dashboard.log.attacker) {
+            if (element.player === this.dashboard.log.attacker) {
               element.actionStatus = true
               // Yakuza Attacker
               if (attacker.playerSwapper && !element.status.healed) {
@@ -51,7 +51,7 @@ export default {
               }
             }
             // Yakuza Target ; Check if damageReturned ; Check if Hacked
-            if (element.player === this.dashboard.log.target && attacker.playerSwapper && !damageReturned || element.player == this.dashboard.log.target && attacker.playerSwapper && damageReturned && hacked) {
+            if (element.player === this.dashboard.log.target && attacker.playerSwapper && !damageReturned || element.player === this.dashboard.log.target && attacker.playerSwapper && damageReturned && hacked) {
               element.status.playerSwapped = true
               element.status.damageReturned = false
               element.status.shield = false
@@ -66,10 +66,10 @@ export default {
             }
             // Cupid Targets
             if (attacker.binder) {
-              if (element.player == this.dashboard.log.target) {
+              if (element.player === this.dashboard.log.target) {
                 element.status.linked = true
               }
-              if (element.player == this.dashboard.log.target2) {
+              if (element.player === this.dashboard.log.target2) {
                 element.status.linked = true
               }
             }
