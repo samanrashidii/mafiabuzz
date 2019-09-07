@@ -1,4 +1,3 @@
-.step-box,
 .page-box{
     position: relative;
     padding:20px 15px;
@@ -46,7 +45,6 @@
                 &.citizen-color{color:$background_color_citizen;}
             }
             a.bttn{
-                max-width: 200px;
                 margin:15px auto 0 auto;
             }
             .role-info{
@@ -98,6 +96,7 @@
         }
         &:not(.day):not(.night){margin-bottom:40px;}
         &.day{
+            padding-top:112px;
             background:url('~@/assets/images/day.jpg') no-repeat left bottom;
             background-size: cover;
             &::after{
@@ -106,6 +105,7 @@
             }
         }
         &.night{
+            padding-top:112px;
             background:url('~@/assets/images/night.jpg') no-repeat right center;
             background-size: cover;
             &::before{
@@ -115,4 +115,3 @@
         }
     }
 }
-.page-box{margin-top:20px;}

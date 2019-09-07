@@ -33,7 +33,7 @@
     </Overlay>
 
     <transition name="slide" mode="out-in">
-      <div class="step-box has-top-padding" v-if="gameSettings.stepCounter === 1" key="step1">
+      <PageBox class="has-top-padding" v-if="gameSettings.stepCounter === 1" key="step1">
         <a @click="handleSavedNames()" class="predefined type-2" :class="{'active': showSavedNames}" href="javascript:void(0)" v-if="checkUsers">
           <span>{{ $t('pages.creator.lastNames') }}</span>
         </a>
@@ -47,9 +47,9 @@
         <AppButton @click.native="assignRoles()" class="active assign-bttn">
           <span>{{ $t('pages.creator.assign') }}</span>
         </AppButton>
-      </div>
+      </PageBox>
 
-      <div class="step-box display autoheight" v-else-if="gameSettings.stepCounter === 2" key="step2">
+      <PageBox class="display autoheight" v-else-if="gameSettings.stepCounter === 2" key="step2">
         <div class="inner-display">
           <p v-if="!showrole">
             {{ $t('pages.creator.passMobile') }}
@@ -77,7 +77,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </PageBox>
 
       <God
         v-else-if="gameSettings.stepCounter === 3"
