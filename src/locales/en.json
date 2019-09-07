@@ -302,7 +302,7 @@
     "roles": [
         {
             "name": "Mafia",
-            "icon": "mafia.png",
+            "icon": "mafia.svg",
             "alt": "Mafia Icon",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
             "actionIcon": "mafia.png",
@@ -313,7 +313,7 @@
         },
         {
             "name": "Godfather",
-            "icon": "godfather.png",
+            "icon": "godfather.svg",
             "alt": "Godfather Icon",
             "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed by 'Detective'. If Godfather died during the game, killing role will pass to the next person and that person doesn't have ability anymore",
             "actionIcon": "godfather.png",
@@ -324,7 +324,7 @@
         },
         {
             "name": "Ruspy",
-            "icon": "ruspy.png",
+            "icon": "ruspy.svg",
             "alt": "Ruspy Icon",
             "description": "Ruspy is a mafioso who can silence one person (Cannot silence same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
             "actionIcon": "ruspy.png",

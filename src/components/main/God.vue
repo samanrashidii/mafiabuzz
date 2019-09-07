@@ -1,5 +1,6 @@
 <template>
   <div class="god">
+
     <!-- Dashboard Buttons -->
 
     <div
@@ -22,246 +23,70 @@
 
     <!-- Day & Night Dashboard -->
 
-    <div
-      class="step-box display godashboard"
+    <PageBox
+      class="display godashboard"
       :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}"
     >
-      <transition name="fade">
-        <strong
-          class="round-tracker"
-          v-if="!dashboard.day"
-        >{{ dashboard.round }}</strong>
-      </transition>
-      <div class="center-aligned">
-        <transition-group
-          name="fade"
-          mode="out-in"
-        >
-          <div
-            v-if="!dashboard.god"
-            key="beforeShow"
+      <div class="inner-display">
+        <transition name="fade">
+          <strong
+            class="round-tracker"
+            v-if="!dashboard.day"
+          >{{ dashboard.round }}</strong>
+        </transition>
+        <div class="center-aligned">
+          <transition
+            name="slide"
+            mode="out-in"
           >
-            <img
-              class="game-icon"
-              :src="require(`@/assets/images/icons/game.png`)"
-              :alt="$t('god.gameDashboardIconAlt')"
+            <div
+              v-if="!dashboard.god"
+              key="beforeShow"
             >
-            <h3
-              class="different-colors"
-              v-html="$t('god.gameStartText')"
-            />
-            <app-button
-              class="active"
-              @click.native="showPlay()"
-            >
-              {{ $t('god.godButton') }}
-            </app-button>
-          </div>
-          <div
-            v-else
-            key="afterShow"
-          >
-            <div class="players-role">
-
-              <!-- Mafia Table in Dashboard -->
-              <div class="table mafia-table table-roles">
-                <table>
-                  <tr>
-                    <th>{{ $t('common.Role') }}</th>
-                    <th>{{ $t('common.Player') }}</th>
-                    <th v-if="dashboard.day === true">
-                      {{ $t('common.Vote') }}
-                    </th>
-                    <th v-if="dashboard.day === false">
-                      {{ $t('common.Status') }}
-                    </th>
-                    <th v-if="dashboard.day === false">
-                      {{ $t('common.Action') }}
-                    </th>
-                  </tr>
-                  <tr
-                    v-for="(fM, index) in gameSettings.fMafias"
-                    :key="index"
-                    :class="characterClasses(fM)"
-                  >
-                    <td>
-                        <img
-                          :src="getImgUrl('/roles', $t(fM.icon))"
-                          :alt="$t(fM.alt)"
-                        > {{ $t(fM.name) }}
-                    </td>
-                    <td><span class="character-player">{{ fM.player }}</span></td>
-                    <td
-                      class="vote-counter"
-                      v-if="dashboard.day == true"
-                    >
-                      <input
-                        type="tel"
-                        :name="`vote_count_${index}`"
-                        placeholder="0"
-                        :maxlength="'2'"
-                        :tabindex="index+10"
-                      >
-                    </td>
-                    <td v-if="dashboard.day === false">
-                      <a
-                        href="javascript:void(0)"
-                        @click="godActions(fM)"
-                        :class="{'killer': fM.status.dead == false, 'angel': fM.status.dead == true}"
-                      />
-                    </td>
-                    <td v-if="dashboard.day === false">
-                      <span
-                        class="disabled"
-                        v-if="!fM.status.hasPassive && !fM.status.hasAction"
-                      />
-                      <span
-                        class="done-action"
-                        v-else-if="!fM.status.hasAction && fM.status.hasPassive && fM.actionStatus"
-                      />
-                      <span
-                        @click="godActions(fM)"
-                        class="passive"
-                        v-if="fM.status.hasPassive && !fM.status.hasAction"
-                      />
-                      <span
-                        :class="{'pending-action': !fM.actionStatus && fM.status.hasAction, 'done-action': fM.actionStatus}"
-                        v-else
-                      />
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <!-- Citizen Table in Dashboard -->
-              <div class="table citizen-table table-roles">
-                <table>
-                  <tr>
-                    <th>{{ $t('common.Role') }}</th>
-                    <th>{{ $t('common.Player') }}</th>
-                    <th v-if="dashboard.day === true">
-                      {{ $t('common.Vote') }}
-                    </th>
-                    <th v-if="dashboard.day === false">
-                      {{ $t('common.Status') }}
-                    </th>
-                    <th v-if="dashboard.day === false">
-                      {{ $t('common.Action') }}
-                    </th>
-                  </tr>
-                  <tr
-                    v-for="(fC, index) in gameSettings.fCitizens"
-                    :key="index"
-                    :class="characterClasses(fC)"
-                  >
-                    <td>
-                        <img
-                          :src="getImgUrl('/roles', $t(fC.icon))"
-                          :alt="$t(fC.alt)"
-                        > {{ $t(fC.name) }}
-                    </td>
-                    <td><span class="character-player">{{ fC.player }}</span></td>
-                    <td
-                      class="vote-counter"
-                      v-if="dashboard.day === true"
-                    >
-                      <input
-                        type="tel"
-                        :name="`vote_count_${index}`"
-                        placeholder="0"
-                        :maxlength="'2'"
-                        :tabindex="index+20"
-                      >
-                    </td>
-                    <td v-if="dashboard.day == false">
-                      <a
-                        href="javascript:void(0)"
-                        @click="godActions(fC)"
-                        :class="{'killer': fC.status.dead === false, 'angel':fC.status.dead === true}"
-                      />
-                    </td>
-                    <td v-if="dashboard.day == false">
-                      <span
-                        class="disabled"
-                        v-if="!fC.status.hasPassive && !fC.status.hasAction"
-                      />
-                      <span
-                        class="done-action"
-                        v-else-if="!fC.status.hasAction && fC.status.hasPassive && fC.actionStatus"
-                      />
-                      <span
-                        class="passive"
-                        v-if="fC.status.hasPassive && !fC.status.hasAction"
-                      />
-                      <span
-                        :class="{'pending-action': !fC.actionStatus && fC.status.hasAction, 'done-action': fC.actionStatus}"
-                        v-else
-                      />
-                    </td>
-                  </tr>
-                </table>
-              </div>
-
-              <!-- Log Actions in Last Night -->
-
-              <!-- <div
-                class="log-table"
-                v-if="dashboard.historyLog.length > 0 && dashboard.day"
-                :class="{'result': dashboard.historyLog.length > 0 && dashboard.day}"
+              <img
+                class="game-icon"
+                :src="require(`@/assets/images/icons/game.png`)"
+                :alt="$t('god.gameDashboardIconAlt')"
               >
-                <span class="table-title">{{ $t('god.whatHappened') }}</span>
-                <table>
-                  <tr
-                    v-for="(log, index) in historyLog"
-                    :key="index"
-                  >
-                    <td>
-                      <img
-                        :src="getImgUrl('/actions', $t(log.actionIcon))"
-                        :alt="$t('god.actionIconAlt')"
-                        v-if="!log.passiveLog"
-                      >
-                      <img
-                        :src="getImgUrl('/roles', $t(log.passiveIcon))"
-                        :alt="log.target"
-                        v-else
-                      >
-                    </td>
-                    <td>
-                      <log-events
-                        v-if="dashboard.readyToLog"
-                        :log="log"
-                      />
-                    </td>
-                  </tr>
-                </table>
-              </div> -->
+              <h3
+                class="different-colors"
+                v-html="$t('god.gameStartText')"
+              />
+              <app-button
+                class="active"
+                @click.native="showPlay()"
+              >
+                {{ $t('god.godButton') }}
+              </app-button>
             </div>
-          </div>
-        </transition-group>
-      </div>
-    </div>
+            <div
+              v-else
+              key="afterShow"
+            >
+              <div class="players-role">
 
-    <!-- Log Buttons -->
+                <Table
+                  class="mafia-table table-roles"
+                  :table-data="gameSettings.fMafias"
+                  :dashboardTable="true"
+                />
+                <Table
+                  class="citizen-table table-roles"
+                  :table-data="gameSettings.fCitizens"
+                  :dashboardTable="true"
+                />
 
-    <!-- <transition name="fade">
-      <div
-        class="log-bttn"
-        v-if="dashboard.god"
-      >
-        <app-button
-          @click.native="logHistory = true"
-          class="awesome"
-        >
-          <span>{{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i></span>
-        </app-button>
+              </div>
+            </div>
+          </transition>
+        </div>
       </div>
-    </transition> -->
+    </PageBox>
 
     <!-- Dashboard Game Hint -->
 
-    <div
-      class="step-box only-box"
+    <PageBox
+      class="only-box"
       v-if="dashboard.god"
     >
       <ul class="dashboard-hint">
@@ -272,7 +97,7 @@
           <span :class="hint.name">{{ hint.hint }}</span>
         </li>
       </ul>
-    </div>
+    </PageBox>
 
     <!-- Restart or Reset Game -->
 
@@ -300,7 +125,7 @@
       <template v-if="!totRestart">
         <p>{{ $t('god.resetText') }}</p>
         <app-button
-          @click.native="rgwRoles()"
+          @click.native="resetSameGame()"
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
@@ -315,7 +140,7 @@
       <template v-else>
         <p>{{ $t('god.resetTotalText') }}</p>
         <app-button
-          @click.native="resetGame()"
+          @click.native="resetFactory()"
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
@@ -337,9 +162,9 @@ import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import Log from '@/components/Log.vue';
+import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
 import changePhase from '@/mixins/dashboard/changePhase';
-import characterClasses from '@/mixins/dashboard/characterClasses';
 
 export default {
   data() {
@@ -356,6 +181,7 @@ export default {
     overlay: Overlay,
     infoBox: InfoBox,
     logEvents: Log,
+    Table,
   },
   computed: {
     ...mapGetters({
@@ -368,55 +194,28 @@ export default {
     gameSettings(){
       return JSON.parse(JSON.stringify(this.GameSettings))
     },
-    // progress() {
-    //   return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
-    // },
   },
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
-    // lastNightBoxController(){
-    //   this.dashboard.lastNightBox = false
-    //   this.SetDashboard(this.dashboard)
-    // },
-    // lastPhaseController(){
-    //   this.dashboard.lastPhaseAction = false
-    //   this.SetDashboard(this.dashboard)
-    // },
-    // mafiaPartyController(){
-    //   this.dashboard.mafiaParty = false
-    //   this.SetDashboard(this.dashboard)
-    // },
     // Reset Game From Start
-    resetGame() {
+    resetFactory() {
       console.log('hard reset')
     },
     // Reset Game with Same Roles and Names
-    rgwRoles() {
+    resetSameGame() {
       console.log('soft reset')
     },
-    // Set Actions by Priority
-    // setActionsByPriority() {
-    //   const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus)
-    //   const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1))
-    //   this.dashboard.actionBox = sorted
-    // },
     // Show God Dashboard
     showPlay() {
       this.dashboard.god = true
       this.SetDashboard(this.dashboard);
     },
-    // Skip Action
-    // skipAction() {
-    //   this.alertBox = false;
-    //   this.nextAction(0, 0);
-    // },
   },
   mixins: [
     changePhase,
-    characterClasses,
     getImg,
   ],
 };

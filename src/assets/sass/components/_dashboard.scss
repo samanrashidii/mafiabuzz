@@ -1,8 +1,4 @@
 .dashboard-header .title{
-    position: relative;
-    padding:20px 10px;
-    border-radius: $site_radius;
-    box-shadow: 0 0 10px $black_color;
     h2 strong{color:$hint_color;}
 }
 
@@ -15,14 +11,11 @@
         display:block;
         padding:5px 0 5px 32px;
         background-repeat: no-repeat;
-        background-position: left center;
+        background-position: left 3px;
     }
 }
 
-.game-icon{
-    min-height: 161px;
-    margin-top:-50px;
-}
+.game-icon{min-height: 161px;}
 
 .round-tracker{
     position: absolute;
@@ -32,10 +25,8 @@
     height:34px;
     line-height:34px;
     font-size: 22px;
-    color:$color_site_4;
+    color:$color_1 !important;
     text-align: center;
-    border-radius: $circle_radius;
-    box-shadow: 0 0 8px $background_color_1;
     transform:translateX(28px);
 }
 

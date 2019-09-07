@@ -2,12 +2,18 @@
   <div class="create">
     <div class="dashboard-header">
       <WelcomeBox />
-      <PageTitle :check-route="checkRoute()" />
+      <PageBox>
+        <PageTitle :check-route="checkRoute()" />
+      </PageBox>
     </div>
     <template>
       <div class="steps">
-        <StepBox :type="'totalUnit'" />
-        <StepBox :type="'totalMafia'" />
+        <PageBox>
+          <StepBox :type="'totalUnit'" />
+        </PageBox>
+        <PageBox>
+          <StepBox :type="'totalMafia'" />
+        </PageBox>
       </div>
       <Roles />
       <AppButton
