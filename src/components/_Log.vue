@@ -159,12 +159,6 @@
 
 <script>
 export default {
-  computed: {
-    // Action Progress
-    progress() {
-      return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
-    },
-  },
   methods: {
     lastNightBoxController(){
       this.dashboard.lastNightBox = false
@@ -177,12 +171,6 @@ export default {
     mafiaPartyController(){
       this.dashboard.mafiaParty = false
       this.SetDashboard(this.dashboard)
-    },
-    // Set Actions by Priority
-    setActionsByPriority() {
-      const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus)
-      const sorted = filteredActions.sort((a, b) => ((a.priority > b.priority) ? 1 : -1))
-      this.dashboard.actionBox = sorted
     },
     // Skip Action
     skipAction() {

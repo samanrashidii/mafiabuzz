@@ -23,17 +23,27 @@
 
     <!-- Day & Night Dashboard -->
 
+    <ActionBar />
+
     <PageBox
       class="display godashboard"
       :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}"
     >
       <div class="inner-display">
-        <transition name="fade">
+        <transition-group name="fade">
           <strong
             class="round-tracker"
             v-if="!dashboard.day"
+            key="round-tracker"
           >{{ dashboard.round }}</strong>
-        </transition>
+          <a 
+            v-if="dashboard.god && !dashboard.day" 
+            class="bttn awesome2 night-actions" 
+            href="javascript:void(0)"
+            key="night-actions"
+            >{{$t('god.nightActionButton')}}
+          </a>
+        </transition-group>
         <div class="center-aligned">
           <transition
             name="slide"
@@ -45,7 +55,7 @@
             >
               <img
                 class="game-icon"
-                :src="require(`@/assets/images/icons/game.png`)"
+                :src="getImgUrl('/icons', $t('god.icon'))"
                 :alt="$t('god.gameDashboardIconAlt')"
               >
               <h3
@@ -116,7 +126,7 @@
       {{ $t('god.resetGame') }}
     </app-button>
 
-    <overlay :class="{'active': overlay,'dialog': true}">
+    <Overlay :class="{'active': overlay,'dialog': true}">
       <img
         class="has-xsmall-bottom-margin"
         :src="require(`@/assets/images/icons/warning.png`)"
@@ -152,15 +162,14 @@
           <span>{{ $t('god.cancelButton') }}</span>
         </app-button>
       </template>
-    </overlay>
+    </Overlay>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
 import { mapGetters, mapActions } from 'vuex';
+import ActionBar from '@/components/ActionBar.vue';
 import Overlay from '@/components/Overlay.vue';
-import InfoBox from '@/components/InfoBox.vue';
 import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
@@ -170,7 +179,6 @@ export default {
   data() {
     return {
       overlay: false,
-      alertBox: false,
       logAction: false,
       logHistory: false,
       logActionDone: false,
@@ -178,9 +186,9 @@ export default {
     };
   },
   components: {
-    overlay: Overlay,
-    infoBox: InfoBox,
-    logEvents: Log,
+    ActionBar,
+    Overlay,
+    Log,
     Table,
   },
   computed: {

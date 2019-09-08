@@ -66,7 +66,7 @@
                 </AppButton>
                 <div class="role-info-wrapper" v-else>
                   <div class="role-info" :class="{'citizen': role.mafia === false}">
-                    <img :src="getImgUrl('/roles', $t(role.icon))" :alt="$t(role.alt)">
+                    <img :src="getImgUrl('/roles', role.icon)" :alt="$t(role.alt)">
                     <h4>{{ $t(role.name) }}</h4>
                   </div>
                   <AppButton @click.native.once="nextPerson()" class="green">

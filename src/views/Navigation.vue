@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
     <nav>
-      <template v-for="(nav, index) in $t('navigation')">
+      <template v-for="(nav, index) in MainApp.navigation">
         <router-link
           :to="{name: nav.url}"
           :key="index"
@@ -10,9 +10,9 @@
           <span>
             <img
               :src="getImgUrl('', nav.image)"
-              :alt="nav.alt"
+              :alt="$t(nav.alt)"
             >
-            <strong>{{ nav.name }}</strong>
+            <strong>{{ $t(nav.name) }}</strong>
           </span>
         </router-link>
       </template>
@@ -22,12 +22,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import getImg from '@/mixins/getImg';
 import LanguageButton from '@/components/LanguageButton';
 
 export default {
   components: {
     LanguageButton,
+  },
+  computed: {
+    ...mapGetters({
+      MainApp: 'main/MainApp',
+    }),
   },
   mixins: [getImg],
 };

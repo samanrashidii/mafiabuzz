@@ -20,7 +20,7 @@
         <label :for="`role_${index+1}`">
           <div class="inner-label">
             <img
-              :src="getImgUrl('/roles', $t(role.icon))"
+              :src="getImgUrl('/roles', role.icon)"
               :alt="$t(role.alt)"
             >
             <strong>{{ $t(role.name) }} <span
@@ -63,7 +63,7 @@ export default {
         show: false,
         mafia: false,
         name: 'replacingRoles.loading.name',
-        icon: 'replacingRoles.loading.icon',
+        icon: 'default.png',
         alt: 'replacingRoles.loading.alt',
         description: 'replacingRoles.loading.description',
       },

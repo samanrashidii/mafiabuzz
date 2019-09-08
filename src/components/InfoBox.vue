@@ -8,7 +8,7 @@
       @click="info.show = false"
     />
     <img
-      :src="getImgUrl('/roles', $t(info.icon))"
+      :src="getImgUrl('/roles', info.icon)"
       :alt="$t(info.alt)"
     >
     <h2>{{ $t(info.name) }}</h2>
