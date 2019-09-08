@@ -1,25 +1,38 @@
 <template>
   <div class="about">
     <div class="dashboard-header has-xsmall-top-margin">
-      <PageTitle :check-route="checkRoute()" />
+      <PageBox>
+        <PageTitle :check-route="checkRoute()" />
+      </PageBox>
     </div>
     <div class="creators">
       <ul>
         <li
           v-for="(creator, index) in $t('pages.about.creators')"
           :key="index"
+          :class="[creator.classes]"
         >
           <a
             :href="creator.url"
-            target="_blank"
-            :class="[creator.classes]"
+            target="_blank"  
           >
             <strong>{{ creator.name }}</strong>
-            <span>{{ creator.title }}</span>
           </a>
+          <span>{{ creator.title }}</span>
+          <a href='https://ko-fi.com/J3J11323A'
+             target='_blank'>
+            <img height='26' 
+              class="coffee-bttn"
+              src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2' 
+              border='0' 
+              alt='Buy Us a Coffee at ko-fi.com' 
+            />
+          </a>
+          
         </li>
       </ul>
     </div>
+    
     <PageBox class="contact-box">
       <div class="contact">
         <p v-html="$t('pages.about.contactText')" />

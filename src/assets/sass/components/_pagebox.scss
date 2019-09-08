@@ -59,6 +59,7 @@
                 background-color: $background_color_4;
                 border:2px solid $background_color_mafia;
                 border-radius: $circle_radius;
+                img{width:64px;}
                 &::after{
                     content:'';
                     position: absolute;
@@ -105,7 +106,7 @@
             }
         }
         &.night{
-            padding-top:112px;
+            padding-top:172px;
             background:url('~@/assets/images/night.jpg') no-repeat right center;
             background-size: cover;
             &::before{

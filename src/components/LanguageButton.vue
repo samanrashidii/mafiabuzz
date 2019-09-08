@@ -5,17 +5,22 @@
     @click="changeLang()"
   >
     <img
-      :src="getImgUrl('', $t('language.image'))"
-      :alt="$t('language.alt')"
+      :src="getImgUrl('', MainApp.language.image)"
+      :alt="$t(MainApp.language.alt)"
     >
-    <strong>{{ $t('language.text') }}</strong>
+    <strong>{{ $t(MainApp.language.text) }}</strong>
   </a>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import getImg from '@/mixins/getImg';
-
 export default {
+  computed: {
+    ...mapGetters({
+      MainApp: 'main/MainApp',
+    }),
+  },
   methods: {
     changeLang() {
       const i18n = this.$root._i18n.locale;

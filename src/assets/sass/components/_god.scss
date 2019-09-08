@@ -1,6 +1,21 @@
 .god{
     .step-box.display{padding:110px 15px 15px 15px;}
-
+    .night-actions{
+        position: absolute;
+        top: 100px;
+        left: 10px;
+        width: calc(100% - 20px);
+    }
+    .game-icon{min-height: 161px;}
+    .round-tracker{
+        position: absolute;
+        top:10px;
+        left:40%;
+        font-size: 22px;
+        color:$color_1 !important;
+        text-align: center;
+        transform:translateX(28px);
+    }
     .table table tr{
         position: relative;
         td{

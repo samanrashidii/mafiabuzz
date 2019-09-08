@@ -86,6 +86,7 @@ body.rtl{
     }
 }
 
+.rtl .table table tr th{font-size: $font_size_1;}
 .rtl .table table tr td:first-child{text-align: right !important;}
 .rtl .table table tr td img{margin:0 0 0 4px !important;}
 
@@ -95,8 +96,7 @@ body.rtl{
     padding:6px 10px 5px 35px;
 }
 
-.rtl .step-box.display .inner-display strong,
-.rtl .page-box.display .inner-display strong{
+.rtl .step-box.display .inner-display strong{
     line-height: 1.2;
     font-size: 34px;
     font-weight: bold;
@@ -134,6 +134,8 @@ body.rtl{
 }
 
 .rtl .log-table table td:last-child{text-align: right !important;}
+
+.rtl .god .night-actions{font-size: $font_size_2;}
 
 .rtl .last-log{
     text-align: right;

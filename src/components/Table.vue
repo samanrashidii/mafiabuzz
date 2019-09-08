@@ -5,11 +5,11 @@
         <th>{{ $t('common.Role') }}</th>
         <template v-if="dashboardTable">
           <th>{{ $t('common.Player') }}</th>
+          <th>
+            {{ $t('common.Status') }}
+          </th>
           <th v-if="dashboard.day === true">
             {{ $t('common.Vote') }}
-          </th>
-          <th v-if="dashboard.day === false">
-            {{ $t('common.Status') }}
           </th>
           <th v-if="dashboard.day === false">
             {{ $t('common.Action') }}
@@ -26,12 +26,19 @@
       >
         <td>
           <img
-            :src="getImgUrl('/roles', $t(tD.icon))"
+            :src="getImgUrl('/roles', tD.icon)"
             :alt="tD.alt"
           > {{ $t(tD.name) }}
         </td>
         <template v-if="dashboardTable">
           <td><span class="character-player">{{ tD.player }}</span></td>
+          <td>
+            <a
+              href="javascript:void(0)"
+              @click="godActions(tD)"
+              :class="{'killer': tD.status.dead === false, 'angel': tD.status.dead === true}"
+            />
+          </td>
           <td
             class="vote-counter"
             v-if="dashboard.day === true"
@@ -43,13 +50,6 @@
               :maxlength="'2'"
               :tabindex="index+10"
             >
-          </td>
-          <td v-if="dashboard.day === false">
-            <a
-              href="javascript:void(0)"
-              @click="godActions(tD)"
-              :class="{'killer': tD.status.dead === false, 'angel': tD.status.dead === true}"
-            />
           </td>
           <td v-if="dashboard.day === false">
             <span
