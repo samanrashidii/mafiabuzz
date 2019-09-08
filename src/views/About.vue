@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <div class="dashboard-header has-xsmall-top-margin">
-      <PageTitle :check-route="checkRoute()" />
+      <PageBox>
+        <PageTitle :check-route="checkRoute()" />
+      </PageBox>
     </div>
     <div class="creators">
       <ul>

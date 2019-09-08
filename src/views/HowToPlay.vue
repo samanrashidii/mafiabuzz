@@ -1,7 +1,9 @@
 <template>
   <div class="how-to-play">
     <div class="dashboard-header has-xsmall-top-margin">
-      <PageTitle :check-route="checkRoute()" />
+      <PageBox>
+        <PageTitle :check-route="checkRoute()" />
+      </PageBox>
     </div>
     <PageBox
       v-for="(step, index) in $t('pages.howtoplay.steps')"

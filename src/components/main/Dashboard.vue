@@ -1,7 +1,9 @@
 <template>
   <div class="dashboard">
     <div class="dashboard-header">
-      <PageTitle dashboard-title :check-route="checkRoute()" />
+      <PageBox>
+        <PageTitle dashboard-title :check-route="checkRoute()" />
+      </PageBox>
       <AppButton @click.native="alertBox = true, totRestart = false" class="settings-bttn danger has-small-top-margin" v-if="gameSettings.stepCounter !== 3 && !gameSettings.gameReset">
         <span>{{ $t('pages.creator.changeSettings') }}</span>
       </AppButton>
