@@ -9,6 +9,7 @@ export default {
       round: 0,
       actionBox: [],
       actionProgress: 0,
+      startAction: false,
       // lastPhaseAction: true,
       // mafiaParty: true,
       // readyToLog: false,

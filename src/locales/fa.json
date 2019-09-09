@@ -5,6 +5,7 @@
         "url": "http://www.mafiabuzz.com",
         "infoIcon": "آیکون اطلاعات",
         "notValidIcon": "آیکون نامعتبر",
+        "warning": "warning.png",
         "warningIcon": "آیکون اخطار"
     },
     "meta":{
@@ -117,19 +118,22 @@
             "creators": [
                 {
                     "name": "سامان رشیدی",
+                    "image": "mafia.svg",
                     "url": "http://www.samanrashidi.com",
                     "classes": ["mafia-role", "Saman"],
                     "title": "طراحی و کدنویسی بازی"
                 },
                 {
                     "name": "شهریار اصولی",
+                    "image": "police.png",
                     "url": "https://www.linkedin.com/in/shahriyar-osuli-a9a77654/",
                     "classes": ["citizen-role", "Shahriyar"],
                     "title": "طراحی بازی"
                 },
                 {
                     "name": "سمیرا سلیمیان",
-                    "url": "http://www.samirasalimian.com'",
+                    "image": "grandma.png",
+                    "url": "http://www.samirasalimian.com",
                     "classes": ["binded", "Samira"],
                     "title": "ایده ی بازی و مشاور طرح و رابط کاربری"
                 }

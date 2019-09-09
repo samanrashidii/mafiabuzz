@@ -12,6 +12,7 @@
           :key="index"
           :class="[creator.classes]"
         >
+          <img :src="getImgUrl('/roles', creator.image)" :alt="creator.name" >
           <a
             :href="creator.url"
             target="_blank"  
@@ -45,7 +46,7 @@
 <script>
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
-
+import getImg from '@/mixins/getImg';
 export default {
   data() {
     return {
@@ -82,7 +83,10 @@ export default {
       ],
     };
   },
-  mixins: [checkRoute],
+  mixins: [
+    checkRoute,
+    getImg
+  ],
   watch: {
     $route(to, from) {
       this.pageId = to.params.id;
