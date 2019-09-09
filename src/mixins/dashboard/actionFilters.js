@@ -1,3 +1,4 @@
+import Vue from 'vue';
 export default {
     methods: {
         checkGroup(player) {
@@ -23,25 +24,15 @@ export default {
         checkSecondGroup(player) {
             // Cupid Target
             if (player.ability.binder) {
-              return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.player !== player.target && x.status.dead === false);
+              return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.player !== this.actionTarget1 && x.status.dead === false);
             }
         },
         findTarget(target) {
             this.gameSettings.selectedRoles.forEach((element) => {
               if (element.player === target) {
-                this.fireAction(element)
-                this.dashboard.info.target = element.player
-                this.dashboard.info.targetInfo = element
-                this.dashboard.info.targetRole = element.name
-                this.dashboard.info.targetPassive = element.action.passive
-                this.dashboard.info.targetMafia = element.mafia
-                this.dashboard.info.targetIcon = element.icon
-                this.dashboard.info.targetID = element.id
-                this.dashboard.info.status = element.status
-                this.dashboard.info.damageReturned = element.status.damageReturned
+                Vue.set(this.targetData, 'i', element)
               }
             })
-
         }
     }
 }

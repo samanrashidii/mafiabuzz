@@ -10,7 +10,7 @@
     .round-tracker{
         position: absolute;
         top:10px;
-        left:40%;
+        left:42%;
         font-size: 22px;
         color:$color_1 !important;
         text-align: center;
@@ -127,11 +127,5 @@
                 border-radius: 4px 4px 0 0;
             }
         }
-    }
-
-    .player-box{
-        display:inline-block;
-        vertical-align: middle;
-        img{width:35px;}
     }
 }

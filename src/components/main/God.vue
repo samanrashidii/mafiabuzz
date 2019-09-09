@@ -38,7 +38,7 @@
             key="round-tracker"
           >{{ dashboard.round }}</strong>
           <a 
-            v-if="dashboard.god && !dashboard.day"
+            v-if="dashboard.god && !dashboard.day && dashboard.actionProgress !== dashboard.actionBox.length"
             @click="startAction()"
             class="bttn awesome2 night-actions" 
             href="javascript:void(0)"
@@ -172,7 +172,6 @@
 import { mapGetters, mapActions } from 'vuex';
 import ActionBar from '@/components/ActionBar.vue';
 import Overlay from '@/components/Overlay.vue';
-import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
 import changePhase from '@/mixins/dashboard/changePhase';
@@ -189,7 +188,6 @@ export default {
   components: {
     ActionBar,
     Overlay,
-    Log,
     Table,
   },
   computed: {
@@ -222,6 +220,7 @@ export default {
       this.dashboard.god = true
       this.SetDashboard(this.dashboard);
     },
+    // Start Action Box
     startAction(){
       this.dashboard.startAction = true;
       this.SetDashboard(this.dashboard);

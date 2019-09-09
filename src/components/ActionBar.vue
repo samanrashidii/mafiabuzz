@@ -159,63 +159,52 @@
                 </div>
               </transition> -->
 
-              <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
-              <div class="player-box-holder has-small-bottom-margin">
-                <div class="player-box">
-                  <img
-                    :src="getImgUrl('/roles', player.icon)"
-                    :alt="$t('god.playerIconAlt')"
-                  >
-                  <h4
-                    class="has-xsmall-top-margin"
-                    :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia}"
-                  >
-                    {{ player.player }}
-                  </h4>
+                <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
+                <div class="player-box-holder has-small-bottom-margin">
+                  <div class="player-box">
+                    <img
+                      :src="getImgUrl('/roles', player.icon)"
+                      :alt="$t('god.playerIconAlt')"
+                    >
+                    <h4
+                      class="has-xsmall-top-margin"
+                      :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia}"
+                    >
+                      {{ player.player }}
+                    </h4>
+                  </div>
+                  <div class="arrow">
+                    <img
+                      class="action-image"
+                      :src="getImgUrl('/actions', player.actionIcon)"
+                      :alt="$t('god.playerActionIconAlt')"
+                    >
+                  </div>
+                  <div class="player-box">
+                    <template v-if="Object.keys(targetData).length">
+                      <img
+                        :src="getImgUrl('/roles', targetData.i.icon)"
+                        :alt="$t('god.playerIconAlt')"
+                      >
+                      <h4
+                        class="has-xsmall-top-margin"
+                        :class="{'mafia-role': targetData.i.mafia, 'citizen-role': !targetData.i.mafia}"
+                      >
+                        {{ $t(targetData.i.name) }}
+                      </h4>
+                    </template>
+                    <template v-else>
+                      <img
+                        :src="getImgUrl('/roles', $t('replacingRoles.loading.icon'))"
+                        :alt="$t('replacingRoles.loading.name')"
+                      >
+                    </template>
+                  </div>
                 </div>
-                <div class="arrow">
-                  <img
-                    class="action-image"
-                    :src="getImgUrl('/actions', player.actionIcon)"
-                    :alt="$t('god.playerActionIconAlt')"
-                  >
-                </div>
-                <div class="player-box">
-                  <img
-                    :src="getImgUrl('/roles', player.icon)"
-                    :alt="$t('god.playerIconAlt')"
-                  >
-                  <h4
-                    class="has-xsmall-top-margin"
-                    :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"
-                  >
-                    {{ $t(player.name) }}
-                  </h4>
-                </div>
-              </div>
-              <select
-                @change="findTarget(dashboard.log.target)"
-                name="action_target"
-                v-model="actionTarget"
-              >
-                <option
-                  :value="null"
-                  disabled
-                >
-                  {{ $t('god.selectPlaceholder') }}
-                </option>
-                <option
-                  v-for="(person, index) in checkGroup(player)"
-                  :key="index"
-                >
-                  {{ person.player }}
-                </option>
-              </select>
-              <!-- <template v-if="player.ability.binder && dashboard.log.target !== null">
-                <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
                 <select
-                  name="action_target_2"
-                  v-model="dashboard.log.target2"
+                  @change="findTarget(actionTarget1)"
+                  name="action_target"
+                  v-model="actionTarget1"
                 >
                   <option
                     :value="null"
@@ -224,27 +213,45 @@
                     {{ $t('god.selectPlaceholder') }}
                   </option>
                   <option
-                    v-for="(person, index) in checkSecondGroup(player)"
+                    v-for="(person, index) in checkGroup(player)"
                     :key="index"
                   >
                     {{ person.player }}
                   </option>
                 </select>
-              </template> -->
+                <template v-if="player.ability.binder && actionTarget1.length > 0">
+                  <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
+                  <select
+                    name="action_target_2"
+                    v-model="actionTarget2"
+                  >
+                    <option
+                      :value="null"
+                      disabled
+                    >
+                      {{ $t('god.selectPlaceholder') }}
+                    </option>
+                    <option
+                      v-for="(person, index) in checkSecondGroup(player)"
+                      :key="index"
+                    >
+                      {{ person.player }}
+                    </option>
+                  </select>
+                </template>
+                <!-- Action Buttons -->
+                <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2)">
+                  {{ $t('god.confirmButton') }}
+                </AppButton>
+                <AppButton
+                  class="danger"
+                  @click.native="alertBox = true"
+                >
+                  {{ $t('god.skipButton') }}
+                </AppButton>
               </template>
             </div>
         </div>
-
-        <!-- Action Buttons -->
-        <!-- <AppButton @click.native="executeAction(dashboard.info)">
-          {{ $t('god.confirmButton') }}
-        </AppButton> -->
-        <AppButton
-          class="danger"
-          @click.native="alertBox = true"
-        >
-          {{ $t('god.skipButton') }}
-        </AppButton>
 
         <!-- Alert Box -->
 
@@ -279,12 +286,14 @@ import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import getImg from '@/mixins/getImg';
 import actionFilters from '@/mixins/dashboard/actionFilters';
+import executeAction from '@/mixins/dashboard/executeAction';
 import nextAction from '@/mixins/dashboard/nextAction';
 export default {
     data(){
         return {
             actionTarget1: '',
             actionTarget2: '',
+            targetData: {},
             alertBox: false,
         }
     },
@@ -318,6 +327,7 @@ export default {
     },
     mixins: [
         actionFilters,
+        executeAction,
         getImg,
         nextAction
     ],

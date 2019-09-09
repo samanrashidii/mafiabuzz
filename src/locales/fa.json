@@ -209,6 +209,7 @@
         "nightLogButton": "نمایش اتفاقات شب",
         "historyLogButton": "تاریخچه کل اتفاقات",
         "noLog": "هنوز چیزی برای نمایش وجود نداره !",
+        "errorChoosePlayer": "لطفا قبل از انجام اکشن یک نفر را انتخاب کن",
         "logCloseButton": "متوجه شدم !",
         "logWordUsed": "استفاده کرد",
         "logWordOn": "روی",

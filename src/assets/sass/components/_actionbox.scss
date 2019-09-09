@@ -57,6 +57,13 @@
             &.confirm{background-color: $green_color;}
         }
     }
+
+    .player-box{
+        width:85px;
+        display:inline-block;
+        vertical-align: middle;
+        img{width:35px;}
+    }
     
     .arrow{
         position: relative;
@@ -64,7 +71,7 @@
         vertical-align: middle;
         width:60px;
         height: 60px;
-        margin:0 30px;
+        margin:0 10px;
         background: url('~@/assets/images/assets/down-arrow.png') no-repeat center;
         img{
             width:26px;
