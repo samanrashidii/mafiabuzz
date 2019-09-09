@@ -1,10 +1,6 @@
 <template>
-  
-    <!-- Night Priority Action Box -->
-    <transition name="fade">
       <div
         class="priority-box"
-        
       >
         <!-- Before Action Box -->
         <!-- <transition name="fade">
@@ -84,14 +80,11 @@
 
         <!-- Handle Actions -->
 
-        <div v-if="dashboard.actionBox.length > 0">
-          <template v-for="(action, index) in dashboard.actionBox">
-            <div
-              class="action-box"
+        <div>
+            <div class="action-box" v-for="(player, index) in dashboard.actionBox" :key="index"
               
-              :key="index"
             >
-
+              <template v-if="dashboard.actionProgress === index">
               <!-- <transition
                 name="fade"
                 mode="out-in"
@@ -166,44 +159,44 @@
                 </div>
               </transition> -->
 
-              <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': action.mafia, 'citizen-role': !action.mafia}"> {{ $t(action.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(action.action.action) }}</strong> ?</p>
+              <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
               <div class="player-box-holder has-small-bottom-margin">
                 <div class="player-box">
                   <img
-                    :src="getImgUrl('/roles', action.icon)"
+                    :src="getImgUrl('/roles', player.icon)"
                     :alt="$t('god.playerIconAlt')"
                   >
                   <h4
                     class="has-xsmall-top-margin"
-                    :class="{'mafia-role': action.mafia,'citizen-role': !action.mafia}"
+                    :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia}"
                   >
-                    {{ action.player }}
+                    {{ player.player }}
                   </h4>
                 </div>
                 <div class="arrow">
                   <img
                     class="action-image"
-                    :src="getImgUrl('/actions', action.actionIcon)"
+                    :src="getImgUrl('/actions', player.actionIcon)"
                     :alt="$t('god.playerActionIconAlt')"
                   >
                 </div>
                 <div class="player-box">
                   <img
-                    :src="getImgUrl('/roles', action.Icon)"
+                    :src="getImgUrl('/roles', player.icon)"
                     :alt="$t('god.playerIconAlt')"
                   >
                   <h4
                     class="has-xsmall-top-margin"
-                    :class="{'mafia-role': action.mafia, 'citizen-role': !action.mafia}"
+                    :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"
                   >
-                    {{ action.name }}
+                    {{ $t(player.name) }}
                   </h4>
                 </div>
               </div>
-              <!-- <select
+              <select
                 @change="findTarget(dashboard.log.target)"
                 name="action_target"
-                v-model="dashboard.log.target"
+                v-model="actionTarget"
               >
                 <option
                   :value="null"
@@ -212,15 +205,15 @@
                   {{ $t('god.selectPlaceholder') }}
                 </option>
                 <option
-                  v-for="(person, index) in checkGroup(action)"
+                  v-for="(person, index) in checkGroup(player)"
                   :key="index"
                 >
                   {{ person.player }}
                 </option>
-              </select> -->
-              <template v-if="action.ability.binder && dashboard.log.target !== null">
+              </select>
+              <!-- <template v-if="player.ability.binder && dashboard.log.target !== null">
                 <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
-                <!-- <select
+                <select
                   name="action_target_2"
                   v-model="dashboard.log.target2"
                 >
@@ -231,38 +224,67 @@
                     {{ $t('god.selectPlaceholder') }}
                   </option>
                   <option
-                    v-for="(person, index) in checkSecondGroup(action)"
+                    v-for="(person, index) in checkSecondGroup(player)"
                     :key="index"
                   >
                     {{ person.player }}
                   </option>
-                </select> -->
+                </select>
+              </template> -->
               </template>
             </div>
-          </template>
         </div>
 
         <!-- Action Buttons -->
-        <!-- <app-button @click.native="executeAction(dashboard.info)">
+        <!-- <AppButton @click.native="executeAction(dashboard.info)">
           {{ $t('god.confirmButton') }}
-        </app-button> -->
-        <app-button
+        </AppButton> -->
+        <AppButton
           class="danger"
           @click.native="alertBox = true"
         >
           {{ $t('god.skipButton') }}
-        </app-button>
+        </AppButton>
+
+        <!-- Alert Box -->
+
+        <Overlay :class="{'active': alertBox,'dialog': true}">
+          <img
+            class="has-xsmall-bottom-margin"
+            :src="require(`@/assets/images/icons/warning.png`)"
+            :alt="$t('general.warningIcon')"
+          >
+          <template>
+            <p>{{ $t('god.skipText') }}</p>
+            <AppButton
+              @click.native="skipAction()"
+              class="green"
+            >
+              <span>{{ $t('god.skipButton2') }}</span>
+            </AppButton>
+            <AppButton
+              @click.native="alertBox = false"
+              class="danger"
+            >
+              <span>{{ $t('god.cancelButton') }}</span>
+            </AppButton>
+          </template>
+        </Overlay>
+
       </div>
-    </transition>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import getImg from '@/mixins/getImg';
+import actionFilters from '@/mixins/dashboard/actionFilters';
+import nextAction from '@/mixins/dashboard/nextAction';
 export default {
     data(){
         return {
+            actionTarget1: '',
+            actionTarget2: '',
             alertBox: false,
         }
     },
@@ -289,9 +311,15 @@ export default {
         SetDashboard: 'dashboard/SetDashboard',
         SetGameSettings: 'gameStatus/SetGameSettings',
         }),
+        skipAction() {
+          this.alertBox = false
+          this.nextAction()
+        }
     },
     mixins: [
+        actionFilters,
         getImg,
+        nextAction
     ],
 }
 </script>

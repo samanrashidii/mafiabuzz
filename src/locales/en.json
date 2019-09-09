@@ -5,6 +5,7 @@
         "url": "http://www.mafiabuzz.com",
         "infoIcon": "Info Icon",
         "notValidIcon": "Not Valid Icon",
+        "warning": "warning.png",
         "warningIcon": "Warning Icon"
     },
     "meta":{
@@ -117,19 +118,22 @@
             "creators": [
                 {
                     "name": "Saman Rashidi",
+                    "image": "mafia.svg",
                     "url": "http://www.samanrashidi.com",
                     "classes": ["mafia-role", "Saman"],
                     "title": "Front-end Developer"
                 },
                 {
                     "name": "Shahriyar Osouli",
+                    "image": "police.png",
                     "url": "https://www.linkedin.com/in/shahriyar-osuli-a9a77654/",
                     "classes": ["citizen-role", "Shahriyar"],
                     "title": "Game Designer"
                 },
                 {
                     "name": "Samira Salimian",
-                    "url": "http://www.samirasalimian.com'",
+                    "image": "grandma.png",
+                    "url": "http://www.samirasalimian.com",
                     "classes": ["binded", "Samira"],
                     "title": "Idea / UX / UI Advisor"
                 }

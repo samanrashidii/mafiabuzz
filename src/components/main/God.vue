@@ -11,19 +11,20 @@
         name="fade"
         mode="out-in"
       >
-        <app-button
+        <AppButton
           :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}"
           @click.native="changePhase(dashboard.day)"
         >
           <span v-if="dashboard.day">{{ $t('god.nightText') }}</span>
           <span v-else>{{ $t('god.dayText') }}</span>
-        </app-button>
+        </AppButton>
       </transition>
     </div>
 
     <!-- Day & Night Dashboard -->
-
-    <ActionBar />
+    <transition name="fade">
+      <ActionBar v-if="dashboard.startAction && dashboard.actionProgress !== dashboard.actionBox.length" />
+    </transition>
 
     <PageBox
       class="display godashboard"
@@ -37,7 +38,8 @@
             key="round-tracker"
           >{{ dashboard.round }}</strong>
           <a 
-            v-if="dashboard.god && !dashboard.day" 
+            v-if="dashboard.god && !dashboard.day"
+            @click="startAction()"
             class="bttn awesome2 night-actions" 
             href="javascript:void(0)"
             key="night-actions"
@@ -62,12 +64,12 @@
                 class="different-colors"
                 v-html="$t('god.gameStartText')"
               />
-              <app-button
+              <AppButton
                 class="active"
                 @click.native="showPlay()"
               >
                 {{ $t('god.godButton') }}
-              </app-button>
+              </AppButton>
             </div>
             <div
               v-else
@@ -111,56 +113,56 @@
 
     <!-- Restart or Reset Game -->
 
-    <app-button
+    <AppButton
       class="active has-xsmall-bottom-margin"
       @click.native="overlay = true, totRestart = false"
       v-if="dashboard.god"
     >
       {{ $t('god.rgwRoles') }}
-    </app-button>
-    <app-button
+    </AppButton>
+    <AppButton
       class="purple has-bottom-margin"
       v-if="dashboard.god"
       @click.native="overlay = true, totRestart = true"
     >
       {{ $t('god.resetGame') }}
-    </app-button>
+    </AppButton>
 
     <Overlay :class="{'active': overlay,'dialog': true}">
       <img
         class="has-xsmall-bottom-margin"
-        :src="require(`@/assets/images/icons/warning.png`)"
+        :src="getImgUrl('/icons', $t('general.warning'))"
         :alt="$t('general.warningIcon')"
       >
       <template v-if="!totRestart">
         <p>{{ $t('god.resetText') }}</p>
-        <app-button
+        <AppButton
           @click.native="resetSameGame()"
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
-        </app-button>
-        <app-button
+        </AppButton
+        <AppButton
           @click.native="overlay = false"
           class="danger"
         >
           <span>{{ $t('god.cancelButton') }}</span>
-        </app-button>
+        </AppButton>
       </template>
       <template v-else>
         <p>{{ $t('god.resetTotalText') }}</p>
-        <app-button
+        <AppButton
           @click.native="resetFactory()"
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
-        </app-button>
-        <app-button
+        </AppButton>
+        <AppButton
           @click.native="overlay = false"
           class="danger"
         >
           <span>{{ $t('god.cancelButton') }}</span>
-        </app-button>
+        </AppButton>
       </template>
     </Overlay>
   </div>
@@ -174,7 +176,6 @@ import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
 import changePhase from '@/mixins/dashboard/changePhase';
-
 export default {
   data() {
     return {
@@ -221,6 +222,10 @@ export default {
       this.dashboard.god = true
       this.SetDashboard(this.dashboard);
     },
+    startAction(){
+      this.dashboard.startAction = true;
+      this.SetDashboard(this.dashboard);
+    }
   },
   mixins: [
     changePhase,
