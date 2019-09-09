@@ -17,6 +17,7 @@
         key="top-nav"
       />
     </transition-group>
+    <notifications group="log" position="bottom center" />
   </div>
 </template>
 

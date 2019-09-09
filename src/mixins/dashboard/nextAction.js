@@ -19,7 +19,7 @@ export default {
         // }, time1);
         this.dashboard.actionProgress++
         this.SetDashboard(this.dashboard)
-        // this.SetGameSettings(this.gameSettings)
+        this.SetGameSettings(this.gameSettings)
       }
     }
 }

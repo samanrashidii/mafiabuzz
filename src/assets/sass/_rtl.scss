@@ -153,3 +153,10 @@ body.rtl{
 }
 
 .rtl .creators li a strong{font-family: $font_rtl !important;}
+
+.rtl .vue-notification{
+    direction: rtl;
+    text-align: right;
+    border-left:none;
+    border-right: 5px solid #187FE7;
+}

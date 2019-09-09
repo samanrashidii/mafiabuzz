@@ -60,7 +60,7 @@
             {{ $t('pages.creator.gotMobile') }}
           </p>
           <div v-for="(role, index) in gameSettings.selectedRoles" :key="index">
-            <div v-if="(index+1) === gameSettings.personNumb">
+            <div class="player-displayer" v-if="(index+1) === gameSettings.personNumb">
               <strong :class="showrole === true ? {'mafia-color': role.mafia === true, 'citizen-color': role.mafia === false} : ''">{{ role.player }}</strong>
               <transition name="fade" mode="out-in">
                 <AppButton @click.native="showrole = true" class="yellow" key="showButton" v-if="!showrole">

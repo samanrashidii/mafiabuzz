@@ -54,3 +54,10 @@ span.step-number{
         &:nth-child(3){color:$hint_color;}
     }
 }
+
+.vue-notification{
+    border-radius: 2px;
+    &.warn {border-color: #f48a06 !important;}
+    &.error {border-color: #B82E24 !important;}
+    &.success {border-color: #42A85F !important;}
+}
