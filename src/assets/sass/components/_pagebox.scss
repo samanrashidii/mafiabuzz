@@ -107,7 +107,7 @@
             }
         }
         &.night{
-            padding-top:172px;
+            padding-top:112px;
             background:url('~@/assets/images/night.jpg') no-repeat right center;
             background-size: cover;
             &::before{
@@ -115,5 +115,6 @@
                 background-image: url('~@/assets/images/moon.png');
             }
         }
+        &.has-action-button{padding-top:172px !important;}
     }
 }

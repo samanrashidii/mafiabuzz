@@ -28,7 +28,7 @@
 
     <PageBox
       class="display godashboard"
-      :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day}"
+      :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day, 'has-action-button': dashboard.god && !dashboard.day && !dashboard.startAction}"
     >
       <div class="inner-display">
         <transition-group name="fade">
@@ -38,7 +38,7 @@
             key="round-tracker"
           >{{ dashboard.round }}</strong>
           <a 
-            v-if="dashboard.god && !dashboard.day && dashboard.actionProgress !== dashboard.actionBox.length"
+            v-if="dashboard.god && !dashboard.day && !dashboard.startAction"
             @click="startAction()"
             class="bttn awesome2 night-actions" 
             href="javascript:void(0)"
@@ -141,7 +141,7 @@
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
-        </AppButton
+        </AppButton>
         <AppButton
           @click.native="overlay = false"
           class="danger"
