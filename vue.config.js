@@ -5,14 +5,6 @@ module.exports = {
       fallbackLocale: 'fa',
       localeDir: 'locales',
       enableInSFC: true,
-    }
+    },
   },
-  css: {
-    loaderOptions: {
-      sass: {
-        data: '@import "@/assets/styles/_variables.scss";'
-      }
-    }
-  },
-  // publicPath: '/mafiabuzzi/',
 };

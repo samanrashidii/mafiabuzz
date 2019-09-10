@@ -1,0 +1,91 @@
+.action-box{
+    position: relative;
+    p{
+        font-size: $font_size_3;
+        padding:0 0 25px 0;
+        strong{color:$hint_color;}
+    }
+    .action-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: $black_color;
+        height: 100%;
+        padding: 5px 20px;
+        background-size: cover;
+        z-index: 10;
+        border-radius: $site_radius;
+        p{
+            padding-bottom: 10px;
+            strong{color:inherit;}
+        }
+        img{
+            width:44px;
+            margin-bottom: 10px;
+            &.overlap{
+                width: 24px;
+                margin-top: -48px;
+                margin-bottom: 24px;
+            }
+        }
+        a.bttn{
+            margin-top:0;
+            box-shadow: 0 0 3px $background_color_6;
+        }
+        &.hacked-overlay{
+            background: url('~@/assets/images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+        }
+        &.dead-overlay{
+            background: rgb(244, 244, 244);
+        }
+    }
+    .confirm-action{
+        a{
+            float: left;
+            display: block;
+            width:49%;
+            font-size: $font_size_2;
+            color:$color_1;
+            text-align: center;
+            padding:15px 5px;
+            margin:15px 0 0 2%;
+            border-radius: 2px;
+            box-shadow: 0 0 3px $background_color_default;
+            &:nth-child(2n+1){margin-left: 0;}
+            &.cancel{background-color: $red_color;}
+            &.confirm{background-color: $green_color;}
+        }
+    }
+
+    .player-box{
+        width:85px;
+        display:inline-block;
+        vertical-align: middle;
+        img{width:35px;}
+    }
+    
+    .arrow{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        width:60px;
+        height: 60px;
+        margin:0 10px;
+        background: url('~@/assets/images/assets/down-arrow.png') no-repeat center;
+        img{
+            width:26px;
+            margin:17px 0 0 9px;
+        }
+    }
+}
+
+.action-image{
+    animation: scaling 2.4s ease-in-out alternate infinite;
+}
+
+@keyframes scaling {
+    0%{transform:scale(1,1)}
+    50%{transform:scale(.7,.7)}
+    100%{transform:scale(1,1)}
+}

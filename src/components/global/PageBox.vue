@@ -1,11 +1,11 @@
 <template>
-    <div class="page-box">
-        <slot></slot>
-    </div>
+  <div class="page-box">
+    <slot />
+  </div>
 </template>
 
 <script>
 export default {
-    
-}
+
+};
 </script>

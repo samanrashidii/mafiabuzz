@@ -1,0 +1,125 @@
+.table-roles{
+    table{
+        tr{
+            td{
+                position: relative;
+                &::after{
+                    content:'';
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    width:100%;
+                    height: 100%;
+                    opacity: 0;
+                    visibility: hidden;
+                    background-repeat: no-repeat !important;
+                    background-position: center !important;
+                    transition:all .2s ease-in-out;
+                    z-index: 10;
+                }
+                &:nth-child(1)::before{
+                    content:'';
+                    position: absolute;
+                    top:6px;
+                    right:4px;
+                    width:22px;
+                    height: 22px;
+                    opacity: 0;
+                    visibility: hidden;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    z-index: 10;
+                }
+            }
+            &.love-bind td{
+                &:nth-child(1)::before{
+                    top:50%;
+                    right:-13px;
+                    width:24px;
+                    height:24px;
+                    margin-top:-12px;
+                    opacity: 1;
+                    visibility: visible;
+                    background-image: url('~@/assets/images/icons/linked.png') !important;
+                    z-index: 99;
+                }
+            }
+            &.dead td{
+                &::after{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-color: rgba(0,0,0,.85) !important;
+                }
+                &:nth-child(1)::after{display: none;}
+                &:nth-child(2)::after{background-image: url('~@/assets/images/icons/dead.png') !important;}
+                a.angel{
+                    background-color: $dark_green_color !important;
+                }
+            }
+            &.ninja td{
+                &::after{
+                    visibility: visible;
+                    opacity: 1;
+                    background-color:rgb(194,73,73, .4);
+                }
+                &:last-child::after{
+                    background-color: transparent;
+                }
+            }
+            &.skeleton td{
+                &::after{
+                    visibility: visible;
+                    opacity: 1;
+                    background-color:rgba(22, 22,22, 0.24);
+                }
+                &:last-child::after{
+                    background-color: transparent;
+                }
+            }
+            &.silenced td{
+                &:nth-child(2)::after{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-image: url('~@/assets/images/icons/silence.png');
+                    background-color: rgba(5,31,58,.85);
+                }
+            }
+            &.healed td{
+                &:nth-child(2)::after{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-image: url('~@/assets/images/icons/heal.png');
+                    background-color: rgba(26,66,0,.85);
+                }
+            }
+            &.silenced.healed td{
+                &:nth-child(2)::after{
+                    background-image: url('~@/assets/images/icons/silence_heal.png') !important;
+                    background-color: rgba(3,120,98,.85) !important;
+                }
+            }
+            &.invisible td{
+                &:nth-child(1)::before{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-image: url('~@/assets/images/icons/invisible.png');
+                }
+            }
+            &.shield td{
+                &:nth-child(1)::before{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-image: url('~@/assets/images/icons/shield.png');
+                }
+            }
+            &.hacked td{
+                &:last-child::after{
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    background-image: url('~@/assets/images/icons/hacked.png');
+                    background-color: rgba(54,0,108,.85);
+                }
+            }
+        }
+    }
+}

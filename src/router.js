@@ -14,12 +14,6 @@ const Navigation = (resolve) => {
   });
 };
 
-const Menu = (resolve) => {
-  require.ensure(['./views/Menu.vue'], () => {
-    resolve(require('./views/Menu.vue'));
-  });
-};
-
 const NotFound = (resolve) => {
   require.ensure(['./views/NotFound.vue'], () => {
     resolve(require('./views/NotFound.vue'));
@@ -35,12 +29,6 @@ const About = (resolve) => {
 const Creator = (resolve) => {
   require.ensure(['./views/Creator.vue'], () => {
     resolve(require('./views/Creator.vue'));
-  });
-};
-
-const Player = (resolve) => {
-  require.ensure(['./views/Player.vue'], () => {
-    resolve(require('./views/Player.vue'));
   });
 };
 
@@ -60,21 +48,16 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
-    },
-    {
-      path: '/:id',
-      name: 'menu',
       components: {
-        default: Menu,
+        default: Home,
         'external-nav': Navigation,
       },
     },
     {
-      path: '/:id/',
-      name: 'inner-menu',
+      path: '/',
+      name: 'inner-home',
       components: {
-        default: Menu,
+        default: Home,
         'internal-nav': Navigation,
       },
       children: [
@@ -82,11 +65,6 @@ export default new Router({
           path: 'creator',
           name: 'creator',
           component: Creator,
-        },
-        {
-          path: 'player',
-          name: 'player',
-          component: Player,
         },
         {
           path: 'about',

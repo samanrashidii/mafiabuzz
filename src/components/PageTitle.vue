@@ -1,21 +1,23 @@
 <template>
-    <div class="title">
-        <template v-if="checkMode.status">
-            <h2 v-html="$t(`pages.${checkMode.name}.title`)"></h2>
-            <p v-html="$t(`pages.${checkMode.name}.subtitle`)"></p>
-        </template>
-        <under-construction v-else />
-    </div>
+  <div class="title">
+    <template>
+      <div v-if="!dashboardTitle">
+        <h2 v-html="$t(`pages.${checkRoute}.title`)" />
+        <p v-html="$t(`pages.${checkRoute}.subtitle`)" />
+      </div>
+      <div v-else>
+        <h2 v-html="$t(`pages.${checkRoute}.dashboardTitle`)" />
+      </div>
+    </template>
+  </div>
 </template>
 
 <script>
-import UnderConstruction from '@/components/UnderConstruction.vue';
+
 export default {
-    components:{
-        underConstruction: UnderConstruction,
-    },
-    props: {
-        checkMode: Object
-    }
-}
+  props: {
+    checkRoute: String,
+    dashboardTitle: Boolean,
+  },
+};
 </script>

@@ -1,0 +1,131 @@
+.god{
+    .step-box.display{padding:110px 15px 15px 15px;}
+    .night-actions{
+        position: absolute;
+        top: 100px;
+        left: 10px;
+        width: calc(100% - 20px);
+    }
+    .game-icon{min-height: 161px;}
+    .round-tracker{
+        position: absolute;
+        top:10px;
+        left:42%;
+        font-size: 22px;
+        color:$color_1 !important;
+        text-align: center;
+        transform:translateX(28px);
+    }
+    .table table tr{
+        position: relative;
+        td{
+            position: relative;
+            font-size: $font_size_3;
+            text-align: center;
+            padding:6px 4px;
+            img{
+                width:22px;
+                margin-right: 3px;
+            }
+            &:nth-child(1){
+                width:40%;
+                font-size: $font_size_1;
+                text-align:left;
+            }
+            &:nth-child(2){
+                width:30%;
+                background-color: $background_color_5;
+            }
+            &:nth-child(3){
+                width:15%;
+                background-color: $background_color_default;
+                a{
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    display: block;
+                    width:100%;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-color: inherit;
+                    z-index: 12;
+                }
+            }
+            &:nth-child(4){
+                width:15%;
+                background: $background_color_middle;
+                span{
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    display: block;
+                    width:100%;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    z-index: 10;
+                }
+            }
+        }
+    }
+
+    .log-table{
+        position: relative;
+        padding:1px;
+        border-radius: 3px;
+        background-color: $color_1;
+        table{
+            width: 100%;
+            td{
+                font-weight: normal;
+                font-size: $font_size_3;
+                color:$color_1;
+                word-break: break-word;
+                padding:6px;
+                background-color: $background_color_main;
+                img{width:28px;}
+                &:first-child{
+                    width:9%;
+                    color:$color_2;
+                    text-align: center;
+                    padding:4px 0;
+                    border-radius: 2px 0 0 2px;
+                    background-color: $background_color_5;
+                }
+                &:nth-child(2){
+                    width:14%;
+                    font-size: $font_size_2;
+                }
+                &:last-child{
+                    font-size: $font_size_2;
+                    text-align: left;
+                    border-radius: 0 2px 2px 0;
+                }
+            }
+        }
+        &.result{
+            margin-top:50px;
+            background-color: $background_color_main;
+            td{
+                color:$color_2;
+                background-color: $color_1;
+                &:first-child{width:18%;}
+                &:nth-child(2){width:82%;}
+            }
+            .table-title{
+                position: absolute;
+                top:-34px;
+                left:50%;
+                width:200px;
+                height: 34px;
+                line-height: 34px;
+                font-size: $font_size_3;
+                text-align: center;
+                margin-left: -100px;
+                background-color: $background_color_main;
+                border-radius: 4px 4px 0 0;
+            }
+        }
+    }
+}

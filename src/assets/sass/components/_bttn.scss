@@ -1,0 +1,112 @@
+.bttn{
+    display:block;
+    color:$color_1;
+    text-align: center;
+    padding:12px;
+    margin-top:15px;
+    background-color:$background_color_3;
+    border-radius: $curve_radius;
+    transition:all .2s ease-in-out;
+    &:hover{
+        background-color: $green_color;
+    }
+    &.active{
+        background-color: $creator_color;
+        &:hover{
+            background-color: $dark_orange_color;
+        }
+    }
+    &.danger{
+        background-color: $red_color ;
+        &:hover{
+            background-color: $dark_red_color;
+        }
+    }
+    &.yellow{
+        background-color: $day;
+        &:hover{
+            background-color: $hint_color;
+        }
+    }
+    &.purple{
+        background-color: $purple_color;
+        box-shadow: 0 0 4px $black_color;
+    }
+    &.black{
+        background-color: $background_color_main;
+        box-shadow: 0 0 3px $black_color;
+    }
+    &.green{
+        background-color: $green_color;
+        &:hover{
+            background-color: $dark_green_color;
+        }
+    }
+    &.awesome{
+        background: rgb(27,71,157);
+        background: radial-gradient(circle, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+        border-radius: $curve_radius;
+    }
+    &.awesome2{
+        background: rgb(219,65,65);
+        background: radial-gradient(circle, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);
+        border-radius: $curve_radius;
+    }
+    &.day{
+        padding:13px 10px;
+        background: url('~@/assets/images/moon.png') no-repeat 10px -5px $night !important;
+        box-shadow: 0 0 3px $color_4;
+    }
+    &.night{
+        padding:13px 10px;
+        background: url('~@/assets/images/sun.png') no-repeat 10px -5px $day !important;
+        box-shadow: 0 0 3px $hint_color;
+    }
+}
+
+.button-holder{padding-top:5px;}
+
+.start-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 35px;
+        background:url('~@/assets/images/assets/play.png') no-repeat left center;
+    }
+}
+
+.settings-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('~@/assets/images/assets/settings.png') no-repeat left center;
+    }
+}
+
+.assign-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('~@/assets/images/assets/assign.png') no-repeat left center;
+    }
+}
+
+.swap-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 28px;
+        background:url('~@/assets/images/assets/swap.png') no-repeat left center;
+    }
+}
+
+.coffee-bttn{
+    height: 44px !important;
+    margin:15px auto 0 auto;
+}

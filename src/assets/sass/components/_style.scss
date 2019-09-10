@@ -1,0 +1,68 @@
+.create{padding-bottom: $meter_height;}
+.create button{background-color:$creator_color;}
+
+.citizen-role{color:$blue_color}
+.mafia-role{color:$red_color}
+.binded{color:$pink_color !important;}
+.day-color{color:$day;}
+.hint-color{color:$hint_color;}
+.night-color{color:$night_color;}
+.creator-color{color:$creator_color;}
+.white-color{color:$color_1;}
+.yellow-color{color:$hint_color;}
+.site-color{color:$color_site_2;}
+.hack-color{color:$purple_color;}
+.revive-color{color:$medium_green_color;}
+.action-color{color:$day}
+
+span.step-number{
+    position: absolute;
+    top:-14px;
+    left:-8px;
+    display: inline-block;
+    width:28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: $font_size_4;
+    color: $color_2;
+    text-align: center;
+    margin-right: 4px;
+    background-color:$creator_color;
+    border-radius: $circle_radius;
+}
+
+.mafia-status{text-align: center;}
+.mafia-status strong{
+    display: inline-block;
+    font-size: $font_size_3;
+    color:#ffffff;
+    padding: 3px 12px;
+    margin-top:4px;
+    border-radius: 3px;
+}
+
+.mafia-status strong.mafia-role{background-color: $background_color_mafia;}
+.mafia-status strong.citizen-role{background-color: $background_color_citizen;}
+
+.different-colors{
+    color:$color_1 !important;
+    margin:10px 0 20px 0;
+    i{
+        font-size: 18px;
+        &:nth-child(1){color:$green_color;}
+        &:nth-child(2){color:$red_color;}
+        &:nth-child(3){color:$hint_color;}
+    }
+}
+
+.vue-notification{
+    font-size: $font_size_4 !important;
+    text-align: center !important;
+    padding:15px 10px !important;
+    border-radius: 2px;
+    span{color:$black_color;}
+    strong{color:$purple_color;}
+    &.warn {border-color: #f48a06 !important;}
+    &.error {border-color: #B82E24 !important;}
+    &.success {border-color: #42A85F !important;}
+}

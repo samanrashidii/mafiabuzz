@@ -1,36 +1,40 @@
 <template>
-  <div class="navigation" :class="{'single-device': checkGameMode()}">
+  <div class="navigation">
     <nav>
-      <template  v-for="(nav, index) in $t('navigation')">
-        <router-link :to="{name: nav.url}" :key="index" v-if="!checkNav(nav)">
+      <template v-for="(nav, index) in MainApp.navigation">
+        <router-link
+          :to="{name: nav.url}"
+          :key="index"
+          :disabled="nav.disabled"
+        >
           <span>
-            <img :src="getImgUrl(nav.image)" :alt="nav.alt" />
-            <strong>{{nav.name}}</strong>
+            <img
+              :src="getImgUrl('', nav.image)"
+              :alt="$t(nav.alt)"
+            >
+            <strong>{{ $t(nav.name) }}</strong>
           </span>
         </router-link>
       </template>
+      <LanguageButton />
     </nav>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import getImg from '@/mixins/getImg';
+import LanguageButton from '@/components/LanguageButton';
+
 export default {
-  methods:{
-    checkGameMode(){
-      if(this.$route.params.id == 'single-device'){
-        return true;
-      } else{
-        return false;
-      }
-    },
-    checkNav(nav){
-      if(nav.url == 'player' && this.$route.params.id == 'single-device'){
-        return true;
-      }
-    },
-    getImgUrl(pic) {
-      return require(`@/assets/images/${pic}`);
-    }
-  }
+  components: {
+    LanguageButton,
+  },
+  computed: {
+    ...mapGetters({
+      MainApp: 'main/MainApp',
+    }),
+  },
+  mixins: [getImg],
 };
 </script>

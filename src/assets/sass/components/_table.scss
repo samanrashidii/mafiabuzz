@@ -1,0 +1,55 @@
+.table{
+    padding:5px;
+    margin-top:12px;
+    border-radius: $site_radius;
+    table{
+        width:100%;
+        tr{
+            &:not(:first-child){
+                border-top:5px solid $background_color_mafia;
+            }
+            th{
+                font-weight: normal;
+                font-size: $font_size_2;
+                padding:0 2px 5px 2px;
+            }
+            td{
+                font-weight: normal;
+                font-size: $font_size_4;
+                color:$color_2;
+                padding:5px;
+                background-color: $background_color_2;
+                .character-power span.citizen i{border:1px solid $color_7;}
+                img{
+                    display: inline-block;
+                    vertical-align: middle;
+                    width:24px;
+                    margin-right: 4px;
+                }
+                input{
+                    max-width: 28px;
+                    height: 22px;
+                    line-height: 22px;
+                    text-align: center;
+                    padding: 0 2px;
+                    margin: auto;
+                    border-radius: 2px;
+                }
+                &:first-child{
+                    width:72%;
+                    text-align: left;
+                    border-radius: 2px 0 0 2px;
+                }
+                &:last-child{
+                    border-radius: 0 2px 2px 0;
+                }
+            }
+        }
+        
+    }
+    &.mafia-table{
+        background-color: $background_color_mafia;
+        margin-top:0;
+    }
+    &.citizen-table{background-color: $background_color_citizen;}
+}
