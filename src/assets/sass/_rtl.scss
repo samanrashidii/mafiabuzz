@@ -137,6 +137,12 @@ body.rtl{
 
 .rtl .god .night-actions{font-size: $font_size_2;}
 
+.rtl .dashboard-hint li span{
+    padding: 5px 32px 5px 0;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
 .rtl .last-log{
     text-align: right;
     padding:9px 48px 5px 8px;
@@ -149,14 +155,16 @@ body.rtl{
 
 .rtl .priority-box .progress-bar i{
     direction: ltr;
-    line-height: 25px;
+    line-height: 22px;
+    font-size: 9px;
 }
+
+.rtl .priority-box .progress-bar span{background: linear-gradient(90deg, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);}
 
 .rtl .creators li a strong{font-family: $font_rtl !important;}
 
 .rtl .vue-notification{
     direction: rtl;
-    text-align: right;
     border-left:none;
     border-right: 5px solid #187FE7;
 }

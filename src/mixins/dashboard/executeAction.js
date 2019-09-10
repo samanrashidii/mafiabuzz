@@ -171,19 +171,20 @@ export default {
       //         }
       //       }
       //     });
-        if (this.actionTarget1.length > 0 && this.actionTarget1 !== null
-          || player.ability.binder && this.actionTarget1.length > 0 && this.actionTarget1 !== null
-          ) {
+        if (this.actionTarget1.length > 0 && this.actionTarget1 !== null) {
+          this.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
           this.$notify({ 
             group: 'log', 
             type: 'success', 
-            text: `${this.$t('god.noLog')}` })
+            text: `${this.log.mainText}` 
+          })
           this.nextAction()
         } else{
           this.$notify({ 
             group: 'log', 
             type: 'error', 
-            text: `${this.$t('god.errorChoosePlayer')}` })
+            text: `${this.$t('god.errorChoosePlayer')}` 
+          })
         }
       // }
     },

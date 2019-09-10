@@ -293,6 +293,10 @@ export default {
         return {
             actionTarget1: '',
             actionTarget2: '',
+            log:{
+              mainText: '',
+              sideText: ''
+            },
             targetData: {},
             alertBox: false,
         }
@@ -314,6 +318,9 @@ export default {
         progress() {
             return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
         },
+    },
+    mounted(){
+      this.actionTarget2 = this.gameSettings.selectedRoles[0].player
     },
     methods: {
         ...mapActions({
