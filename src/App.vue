@@ -17,13 +17,25 @@
         key="top-nav"
       />
     </transition-group>
-    <notifications group="log" position="bottom center" />
+    <notifications group="log" position="bottom center" >
+      <template slot="body" slot-scope="props">
+        <div class="vue-notification" :class="props.item.type">
+            <img :src="getImgUrl('/actions', props.item.title)" :alt="'asd'" >
+            <a class="close" @click="props.close">
+              <i class="fa fa-fw fa-close"></i>
+            </a>
+            <div v-html="props.item.text">
+            </div>
+        </div>
+      </template>
+    </notifications>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { mapGetters } from 'vuex';
+import getImg from '@/mixins/getImg';
 
 export default {
   computed: {
@@ -42,6 +54,9 @@ export default {
   mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
   },
+  mixins: [
+    getImg
+  ],
 };
 </script>
 

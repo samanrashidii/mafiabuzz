@@ -295,7 +295,8 @@ export default {
             actionTarget2: '',
             log:{
               mainText: '',
-              sideText: ''
+              sideText: '',
+              image: ''
             },
             targetData: {},
             alertBox: false,

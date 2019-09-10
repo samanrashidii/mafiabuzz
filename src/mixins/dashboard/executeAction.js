@@ -171,19 +171,24 @@ export default {
       //         }
       //       }
       //     });
+        // Notifications
         if (this.actionTarget1.length > 0 && this.actionTarget1 !== null) {
           this.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
+          this.log.image = player.actionIcon
           this.$notify({ 
             group: 'log', 
             type: 'success', 
-            text: `${this.log.mainText}` 
+            title: `${this.log.image}`,
+            text: `${this.log.mainText}`,       
           })
           this.nextAction()
         } else{
           this.$notify({ 
             group: 'log', 
             type: 'error', 
-            text: `${this.$t('god.errorChoosePlayer')}` 
+            title: `error.svg`,
+            image: `${this.log.image}`,
+            text: `${this.$t('god.errorChoosePlayer')}`,
           })
         }
       // }
