@@ -6,6 +6,14 @@ export default {
                 this.dashboard.day = true
                 this.dashboard.actionProgress = 0
                 this.dashboard.startAction = false
+                this.gameSettings.selectedRoles.forEach((el) => {
+                    // Shared
+                    if(el.action.oneTime){
+                        el.actionStatus = true
+                    } else{
+                        el.actionStatus = false
+                    }
+                })
             } else {
                 this.dashboard.round++
                 this.setActionsByPriority()
@@ -16,8 +24,8 @@ export default {
         },
         setActionsByPriority() {
             const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus && !x.status.dead
-                                                                             || x.status.hasAction && x.status.revived 
-                                                                             || x.status.hasAction && minion)
+                                                                             || x.status.hasAction && x.status.resurrected 
+                                                                             || x.status.hasAction && x.status.minion)
             const sorted = [...filteredActions.slice().sort((a, b) => ((a.priority > b.priority) ? 1 : -1))]
             this.dashboard.actionBox = sorted
         },

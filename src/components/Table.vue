@@ -35,7 +35,7 @@
           <td>
             <a
               href="javascript:void(0)"
-              @click="godActions(tD)"
+              @click="godAction(tD)"
               :class="{'killer': tD.status.dead === false, 'angel': tD.status.dead === true}"
             />
           </td>
@@ -81,9 +81,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import getImg from '@/mixins/getImg';
+import actions from '@/mixins/dashboard/actions';
+import godAction from '@/mixins/dashboard/godAction';
 
 export default {
   components: {
@@ -92,9 +94,13 @@ export default {
   computed:{
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
+      GameSettings: 'gameStatus/GameSettings',
     }),
     dashboard(){
       return JSON.parse(JSON.stringify(this.Dashboard))
+    },
+    gameSettings(){
+      return JSON.parse(JSON.stringify(this.GameSettings))
     },
   },
   props: {
@@ -102,6 +108,10 @@ export default {
     dashboardTable: Boolean
   },
   methods:{
+    ...mapActions({
+      SetDashboard: 'dashboard/SetDashboard',
+      SetGameSettings: 'gameStatus/SetGameSettings',
+    }),
     characterClasses(char) {
       if(this.dashboardTable){
         return {
@@ -118,6 +128,10 @@ export default {
       }
     }
   },
-  mixins: [getImg],
+  mixins: [
+    actions,
+    getImg,
+    godAction,
+  ],
 };
 </script>

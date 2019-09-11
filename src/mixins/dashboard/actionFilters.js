@@ -19,12 +19,12 @@ export default {
             //   return this.gameSettings.selectedRoles.filter(x => x.status.dead === false)
             // }
             // Default Target
-            return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.status.dead === false)
+            return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && !x.status.dead)
         },
         checkSecondGroup(player) {
             // Cupid Target
             if (player.ability.binder) {
-              return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.player !== this.actionTarget1 && x.status.dead === false);
+              return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.player !== this.actionTarget1 && !x.status.dead);
             }
         },
         findTarget(target) {

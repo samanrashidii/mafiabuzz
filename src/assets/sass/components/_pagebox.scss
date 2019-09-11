@@ -31,7 +31,10 @@
         padding:10px;
         margin-top:20px;
         .inner-display{
-            .player-displayer{min-height: 305px;}
+            .player-displayer{
+                min-height: 305px;
+                a.bttn{max-width: 240px;}
+            }
             display: table-cell;
             vertical-align: middle;
             text-align: center;

@@ -219,7 +219,7 @@
                     {{ person.player }}
                   </option>
                 </select>
-                <template v-if="player.ability.binder && actionTarget1.length > 0">
+                <template v-if="player.ability.binder && actionTarget1 !== null">
                   <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
                   <select
                     name="action_target_2"
@@ -285,14 +285,15 @@
 import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import getImg from '@/mixins/getImg';
+import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
 import executeAction from '@/mixins/dashboard/executeAction';
 import nextAction from '@/mixins/dashboard/nextAction';
 export default {
     data(){
         return {
-            actionTarget1: '',
-            actionTarget2: '',
+            actionTarget1: null,
+            actionTarget2: null,
             log:{
               mainText: '',
               sideText: '',
@@ -320,9 +321,6 @@ export default {
             return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
         },
     },
-    mounted(){
-      this.actionTarget2 = this.gameSettings.selectedRoles[0].player
-    },
     methods: {
         ...mapActions({
         SetDashboard: 'dashboard/SetDashboard',
@@ -334,6 +332,7 @@ export default {
         }
     },
     mixins: [
+        actions,
         actionFilters,
         executeAction,
         getImg,

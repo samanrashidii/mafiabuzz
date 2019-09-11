@@ -20,7 +20,9 @@
     <notifications group="log" position="bottom center" >
       <template slot="body" slot-scope="props">
         <div class="vue-notification" :class="props.item.type">
-            <img :src="getImgUrl('/actions', props.item.title)" :alt="'asd'" >
+            <div class="image-wrapper">
+              <img :src="getImgUrl('/actions', props.item.title)" :alt="props.item.title" >
+            </div>
             <a class="close" @click="props.close">
               <i class="fa fa-fw fa-close"></i>
             </a>

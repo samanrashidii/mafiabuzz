@@ -132,8 +132,6 @@ export default {
     }),
     checkGame() {
       this.overlay = true
-      this.gameSettings.fMafias = this.gameSettings.selectedRoles.filter(x => x.mafia == true)
-      this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false)
     },
     startGame() {
       // Start Engine
