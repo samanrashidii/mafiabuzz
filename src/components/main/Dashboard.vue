@@ -154,8 +154,6 @@ export default {
         }
         this.gameSettings.stepCounter = 2
       }
-      this.gameSettings.fMafias = this.gameSettings.selectedRoles.filter(x => x.mafia == true)
-      this.gameSettings.fCitizens = this.gameSettings.selectedRoles.filter(x => x.mafia == false)
       if(pL.length > 0){
         localStorage.setItem('savedPlayers', pL)
       }

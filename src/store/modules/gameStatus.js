@@ -33,6 +33,8 @@ export default {
   mutations: {
     SET_GAME_SETTINGS: (state, settings) => {
       Vue.set(state, 'gameSettings', settings)
+      state.gameSettings.fMafias = state.gameSettings.selectedRoles.filter(x => x.mafia === true)
+      state.gameSettings.fCitizens = state.gameSettings.selectedRoles.filter(x => x.mafia === false)
     },
   },
   actions: {
