@@ -18,7 +18,8 @@
     text-align: center;
     padding: 80px 20px 20px 20px;
     margin-top: 20px;
-    background:url('~@/assets/images/icons/info.png') no-repeat center 20px $background_color_side;
+    background:url('~@/assets/images/icons/warning.svg') no-repeat center 20px $background_color_side;
+    background-size: 40px;
     border-radius: $site_radius;
 }
 

@@ -10,14 +10,17 @@ export default {
             el.actionStatus = true
           }
           // Check One Time Action
-          if(el.player === player.player && el.action.oneTime){
-            el.action.oneTime = false
+          if(el.player === player.player && el.status.hasOneAction){
+            el.action.oneTime = true
           }
         })
         // Binder
         if(player.ability.binder){
           this.link(target1, target2)
-          player.action.oneTime = false
+        }
+        // Healer
+        if(player.ability.healer){
+          this.heal(target1)
         }
 
         // Action Log

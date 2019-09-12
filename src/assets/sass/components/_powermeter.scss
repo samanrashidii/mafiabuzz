@@ -47,14 +47,14 @@
             transition:all .4s ease-in-out;
             span{
                 position: absolute;
-                top:0;
+                top:7px;
                 left:50%;
                 display: block;
-                width:48px;
-                height: 48px;
-                margin-left: -24px;
-                background:url('~@/assets/images/icons/meter.png') no-repeat center;
-                background-size: 48px;
+                width:32px;
+                height: 32px;
+                margin-left: -16px;
+                background:url('~@/assets/images/icons/meter.svg') no-repeat center;
+                background-size: 32px;
             }
         }
         strong{

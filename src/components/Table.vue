@@ -57,15 +57,11 @@
               v-if="!tD.status.hasPassive && !tD.status.hasAction"
             />
             <span
-              class="done-action"
-              v-else-if="!tD.status.hasAction && tD.status.hasPassive && tD.actionStatus"
-            />
-            <span
               class="passive"
               v-if="tD.status.hasPassive && !tD.status.hasAction"
             />
             <span
-              :class="{'pending-action': !tD.actionStatus && tD.status.hasAction, 'done-action': tD.actionStatus}"
+              :class="{'pending-action': !tD.actionStatus && tD.status.hasAction && !tD.action.oneTime, 'done-action': tD.actionStatus}"
               v-else
             />
           </td>

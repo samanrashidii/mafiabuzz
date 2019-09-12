@@ -1,20 +1,9 @@
 export default {
     methods: {
-        kill(target){
+        heal(target){
             this.gameSettings.selectedRoles.forEach(element => {
-                if(element.player === target.player){
-                    element.status.dead = true
-                    
-                }
-                if(element.status.linked){
-                    element.status.dead = true
-                }
-            })
-        },
-        revive(target){
-            this.gameSettings.selectedRoles.forEach(element => {
-                if(element.player === target.player){
-                    element.status.dead = false
+                if(element.player === target){
+                    element.status.healed = true
                 }
             })
         },
@@ -27,6 +16,28 @@ export default {
                     element.status.linked = true
                 }
             })
-        }
+        },
+        kill(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target.player && !element.status.healed){
+                    element.status.dead = true
+                    if(element.status.linked){
+                        this.gameSettings.selectedRoles.forEach(el => {
+                            if(el.status.linked && !el.status.healed){
+                                el.status.dead = true
+                                el.status.linked = false
+                            }
+                        })
+                    }
+                }
+            })
+        },
+        revive(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target.player){
+                    element.status.dead = false
+                }
+            })
+        },
     }
 }

@@ -3,6 +3,7 @@
         tr{
             td{
                 position: relative;
+                a{background-size: 24px;}
                 &::after{
                     content:'';
                     position: absolute;
@@ -14,20 +15,23 @@
                     visibility: hidden;
                     background-repeat: no-repeat !important;
                     background-position: center !important;
+                    background-size: 24px;
                     transition:all .2s ease-in-out;
                     z-index: 10;
                 }
                 &:nth-child(1)::before{
                     content:'';
                     position: absolute;
-                    top:6px;
+                    top:50%;
                     right:4px;
                     width:22px;
                     height: 22px;
+                    margin-top:-11px;
                     opacity: 0;
                     visibility: hidden;
                     background-repeat: no-repeat;
                     background-position: center;
+                    background-size: 22px;
                     z-index: 10;
                 }
             }
@@ -40,7 +44,7 @@
                     margin-top:-12px;
                     opacity: 1;
                     visibility: visible;
-                    background-image: url('~@/assets/images/icons/linked.png') !important;
+                    background-image: url('~@/assets/images/icons/linked.svg') !important;
                     z-index: 99;
                 }
             }
@@ -89,7 +93,7 @@
                     opacity: 1 !important;
                     visibility: visible !important;
                     background-image: url('~@/assets/images/icons/heal.png');
-                    background-color: rgba(26,66,0,.85);
+                    background-color: rgba(56,113,18,.85);
                 }
             }
             &.silenced.healed td{
@@ -99,24 +103,26 @@
                 }
             }
             &.invisible td{
+                &:first-child{padding:6px 28px 6px 4px;}
                 &:nth-child(1)::before{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/invisible.png');
+                    background-image: url('~@/assets/images/icons/invisible.svg');
                 }
             }
             &.shield td{
+                &:first-child{padding:6px 28px 6px 4px;}
                 &:nth-child(1)::before{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/shield.png');
+                    background-image: url('~@/assets/images/icons/shield.svg');
                 }
             }
             &.hacked td{
                 &:last-child::after{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/hacked.png');
+                    background-image: url('~@/assets/images/icons/hacked.svg');
                     background-color: rgba(54,0,108,.85);
                 }
             }

@@ -5,7 +5,7 @@
         "url": "http://www.mafiabuzz.com",
         "infoIcon": "آیکون اطلاعات",
         "notValidIcon": "آیکون نامعتبر",
-        "warning": "warning.png",
+        "warning": "warning.svg",
         "warningIcon": "آیکون اخطار"
     },
     "meta":{
