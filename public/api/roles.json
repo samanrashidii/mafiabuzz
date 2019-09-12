@@ -40,6 +40,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -100,6 +101,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": true,
+            "hasOneAction": false,
             "dead": false,
             "invisible": true,
             "silenced": false,
@@ -160,6 +162,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -280,6 +283,7 @@
             "citizen": false,
             "hasAction": false,
             "hasPassive": true,
+            "hasOneAction": false,
             "dead": false,
             "invisible": true,
             "silenced": false,
@@ -340,6 +344,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -371,7 +376,7 @@
         "action": {
             "passive": "roles[6].action.passive",
             "action": "roles[6].action.action",
-            "oneTime": true
+            "oneTime": false
         },
         "actionStatus": false,
         "ability": {
@@ -400,6 +405,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": true,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -460,6 +466,7 @@
             "citizen": true,
             "hasAction": false,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -520,6 +527,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -580,6 +588,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -611,7 +620,7 @@
         "action": {
             "passive": "roles[10].action.passive",
             "action": "roles[10].action.action",
-            "oneTime": true
+            "oneTime": false
         },
         "actionStatus": false,
         "ability": {
@@ -640,6 +649,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": true,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -671,7 +681,7 @@
         "action": {
             "passive": "roles[1].action.passive",
             "action": "roles[11].action.action",
-            "oneTime": true
+            "oneTime": false
         },
         "actionStatus": false,
         "ability": {
@@ -700,6 +710,7 @@
             "citizen": false,
             "hasAction": false,
             "hasPassive": true,
+            "hasOneAction": true,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -760,6 +771,7 @@
             "citizen": false,
             "hasAction": false,
             "hasPassive": true,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -791,7 +803,7 @@
         "action": {
             "passive": "roles[13].action.passive",
             "action": "roles[13].action.action",
-            "oneTime": true
+            "oneTime": false
         },
         "actionStatus": false,
         "ability": {
@@ -820,6 +832,7 @@
             "citizen": false,
             "hasAction": false,
             "hasPassive": true,
+            "hasOneAction": true,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -880,6 +893,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": true,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,
@@ -940,6 +954,7 @@
             "citizen": false,
             "hasAction": true,
             "hasPassive": false,
+            "hasOneAction": false,
             "dead": false,
             "invisible": false,
             "silenced": false,

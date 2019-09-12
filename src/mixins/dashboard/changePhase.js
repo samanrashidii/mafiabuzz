@@ -2,16 +2,20 @@ export default {
     methods: {
         changePhase(phase) {
             if (!phase) {
-                this.dashboard.actionBox = []
                 this.dashboard.day = true
-                this.dashboard.actionProgress = 0
                 this.dashboard.startAction = false
+                // Reset Night Stuff
+                this.dashboard.actionBox = []
+                this.dashboard.actionProgress = 0
                 this.gameSettings.selectedRoles.forEach((el) => {
                     // Shared
                     if(el.action.oneTime){
                         el.actionStatus = true
                     } else{
                         el.actionStatus = false
+                    }
+                    if(el.status.healed){
+                        el.status.healed = false
                     }
                 })
             } else {
