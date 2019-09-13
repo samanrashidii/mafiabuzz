@@ -3,13 +3,13 @@
         {
             "name": "navigation[0].name",
             "url": "creator",
-            "image": "creator.png",
+            "image": "creator.svg",
             "alt": "navigation[0].alt"
         },
         {
             "name": "navigation[1].name",
             "url": "howtoplay",
-            "image": "howtoplay.png",
+            "image": "howtoplay.svg",
             "alt": "navigation[1].alt"
         },
         {

@@ -2,7 +2,7 @@
   <div>
     <img
       class="has-bottom-margin"
-      :src="require(`@/assets/images/icons/not-valid.png`)"
+      :src="getImgUrl('/icons', $t('general.notValid'))"
       :alt="$t('general.notValidIcon')"
     >
     <ul class="error-bullet">
@@ -20,11 +20,15 @@
 </template>
 
 <script>
+import getImg from '@/mixins/getImg';
 export default {
   props: {
     errorStatus: Object,
     mafiaNumbers: Number,
     citizenNumbers: Number,
   },
+  mixins: [
+    getImg
+  ]
 };
 </script>

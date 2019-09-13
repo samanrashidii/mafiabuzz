@@ -106,7 +106,8 @@
             background-size: cover;
             &::after{
                 top:25px;
-                background-image: url('~@/assets/images/sun.png');
+                background-image: url('~@/assets/images/sun.svg');
+                background-size: 64px;
             }
         }
         &.night{
@@ -115,7 +116,8 @@
             background-size: cover;
             &::before{
                 top:25px;
-                background-image: url('~@/assets/images/moon.png');
+                background-image: url('~@/assets/images/moon.svg');
+                background-size: 64px;
             }
         }
         &.has-action-button{padding-top:172px !important;}

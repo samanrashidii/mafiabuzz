@@ -258,7 +258,7 @@
         <Overlay :class="{'active': alertBox,'dialog': true}">
           <img
             class="has-xsmall-bottom-margin"
-            :src="$t('general.warning')"
+            :src="getImgUrl('/icons', $t('general.warning'))"
             :alt="$t('general.warningIcon')"
           >
           <template>
