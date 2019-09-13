@@ -2,7 +2,7 @@
   <div class="note-box">
     <img
       class="has-xsmall-bottom-margin"
-      :src="require(`@/assets/images/icons/warning.svg`)"
+      :src="getImgUrl('/icons', $t('general.warning'))"
       :alt="$t('general.infoIcon')"
     >
     <h3>{{ $t('pages.creator.checkBeforeStart') }}</h3>
@@ -10,7 +10,10 @@
 </template>
 
 <script>
+import getImg from '@/mixins/getImg';
 export default {
-
-};
+  mixins: [
+    getImg
+  ]
+}
 </script>

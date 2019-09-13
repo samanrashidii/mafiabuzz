@@ -13,7 +13,7 @@
     </div>
 
     <Overlay :class="{'active': alertBox,'dialog': true}">
-      <img class="has-xsmall-bottom-margin" :src="$t('general.warning')" :alt="$t('general.warningIcon')">
+      <img class="has-xsmall-bottom-margin" :src="getImgUrl('/icons', $t('general.warning'))" :alt="$t('general.warningIcon')">
       <template v-if="!totRestart">
         <p>{{ $t('pages.creator.changeSettingsText') }}</p>
         <AppButton  @click.native="resetGame()" class="green">
@@ -213,6 +213,9 @@ export default {
       this.$router.push({ name: 'creator' })
     },
   },
-  mixins: [checkRoute, getImg],
+  mixins: [
+    checkRoute, 
+    getImg
+  ]
 };
 </script>

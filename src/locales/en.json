@@ -4,6 +4,7 @@
         "alt": "MafiaBuzz Logo",
         "url": "http://www.mafiabuzz.com",
         "infoIcon": "Info Icon",
+        "notValid": "error.svg",
         "notValidIcon": "Not Valid Icon",
         "warning": "warning.svg",
         "warningIcon": "Warning Icon"
@@ -84,7 +85,7 @@
             "gameModeButton": "Change Game Mode",
             "welcome": {
                 "image": "logo.png",
-                "text": "welcome to <strong>MafiaBuzz</strong> web application"
+                "text": "welcome to <strong>MafiaBuzz</strong>"
             },
             "title": "Dear <span>God</span>",
             "subtitle": "Please choose below options to create your game:",

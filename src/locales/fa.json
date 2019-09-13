@@ -4,6 +4,7 @@
         "alt": "لوگوی مافیاباز",
         "url": "http://www.mafiabuzz.com",
         "infoIcon": "آیکون اطلاعات",
+        "notValid": "error.svg",
         "notValidIcon": "آیکون نامعتبر",
         "warning": "warning.svg",
         "warningIcon": "آیکون اخطار"
@@ -84,7 +85,7 @@
             "gameModeButton": "تغییر حالت بازی",
             "welcome": {
                 "image": "logo.png",
-                "text": " به وب اپلیکیشن <strong>مافیاباز</strong> خوش آمدید "
+                "text": " به <strong>مافیاباز</strong> خوش آمدید "
             },
             "title": "سلام <span>گاد</span>",
             "subtitle": "برای شروع بازی گزینه های زیر رو انتخاب کن",

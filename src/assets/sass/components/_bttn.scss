@@ -54,12 +54,14 @@
     }
     &.day{
         padding:13px 10px;
-        background: url('~@/assets/images/moon.png') no-repeat 10px -5px $night !important;
+        background: url('~@/assets/images/moon.svg') no-repeat 10px -5px $night !important;
+        background-size: 64px !important;
         box-shadow: 0 0 3px $color_4;
     }
     &.night{
         padding:13px 10px;
-        background: url('~@/assets/images/sun.png') no-repeat 10px -5px $day !important;
+        background: url('~@/assets/images/sun.svg') no-repeat 10px -5px $day !important;
+        background-size: 64px !important;
         box-shadow: 0 0 3px $hint_color;
     }
 }
