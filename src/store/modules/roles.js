@@ -7,6 +7,8 @@ export default {
   },
   getters: {
     Roles: state => state.Roles,
+    DefaultAbility: state => state.Roles[0].ability,
+    DefaultStatus: state => state.Roles[0].status
   },
   mutations: {
     SET_ROLES: (state, changedRoles) => {

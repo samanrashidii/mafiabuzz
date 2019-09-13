@@ -10,6 +10,7 @@
 	background: $transparent_black;
 	z-index: 999999;
     transition: all .2s ease-in-out;
+    img{width:60px;}
     .inner-overlay {
         display: table;
         width: 100%;
@@ -57,7 +58,6 @@
         .overlay-box{
             font-size: $font_size_6;
             img{
-                width:40px;
                 padding:10px;
                 border:2px solid $background_color_1;
                 border-radius: 50%;

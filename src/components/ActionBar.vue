@@ -308,23 +308,39 @@ export default {
     },
     computed: {
         ...mapGetters({
-            Dashboard: 'dashboard/Dashboard',
-            GameSettings: 'gameStatus/GameSettings',
+          Dashboard: 'dashboard/Dashboard',
+          DefaultAbility: 'roles/DefaultAbility',
+          DefaultStatus: 'roles/DefaultStatus',
+          GameSettings: 'gameStatus/GameSettings',
         }),
         dashboard(){
-            return JSON.parse(JSON.stringify(this.Dashboard))
+          return JSON.parse(JSON.stringify(this.Dashboard))
+        },
+        defaultAbility(){
+          return JSON.parse(JSON.stringify(this.DefaultAbility))
+        },
+        defaultStatus(){
+          return JSON.parse(JSON.stringify(this.DefaultStatus))
+        },
+        defaultItems(){
+          const dA = Object.keys(this.defaultAbility).forEach(v => this.defaultAbility[v] = false)
+          const dS = Object.keys(this.defaultStatus).forEach(v => this.defaultStatus[v] = false)
+          return {
+            ability: dA,
+            status: dS
+          }
         },
         gameSettings(){
-            return JSON.parse(JSON.stringify(this.GameSettings))
+          return JSON.parse(JSON.stringify(this.GameSettings))
         },
         progress() {
-            return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
+          return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
         },
     },
     methods: {
         ...mapActions({
-        SetDashboard: 'dashboard/SetDashboard',
-        SetGameSettings: 'gameStatus/SetGameSettings',
+          SetDashboard: 'dashboard/SetDashboard',
+          SetGameSettings: 'gameStatus/SetGameSettings',
         }),
         skipAction() {
           this.alertBox = false
