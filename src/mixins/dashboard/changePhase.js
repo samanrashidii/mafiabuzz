@@ -17,6 +17,12 @@ export default {
                     if(el.status.healed){
                         el.status.healed = false
                     }
+                    if(el.status.identityChecked){
+                        el.status.identityChecked = false
+                    }
+                    if(el.status.roleChecked){
+                        el.status.roleChecked = false
+                    }
                 })
             } else {
                 this.dashboard.round++

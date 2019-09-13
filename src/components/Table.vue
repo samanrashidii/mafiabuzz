@@ -112,7 +112,7 @@ export default {
       if(this.dashboardTable){
         return {
           dead: char.status.dead === true,
-          ninja: char.status.playerSwapped === true,
+          ninja: char.status.playerReplaced === true,
           'love-bind': char.status.linked === true,
           silenced: char.status.silenced === true,
           healed: char.status.healed === true,

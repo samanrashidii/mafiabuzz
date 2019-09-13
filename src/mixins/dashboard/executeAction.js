@@ -22,6 +22,24 @@ export default {
         if(player.ability.healer){
           this.heal(target1)
         }
+        // Identity Checker
+        if(player.ability.identityChecker){
+          this.checkIdentity(target1)
+        }
+        // Role Checker
+        if(player.ability.roleChecker){
+          this.checkRole(target1)
+        }
+        // Roler Checker
+        if(player.ability.roleChecker){
+          this.checkRole(target1)
+        }
+        // Replacer
+        if(player.ability.replacer){
+          console.log(this.defaultAbility)
+          console.log(this.defaultStatus)
+          this.replacePlayer(target1, player.player)
+        }
 
         // Action Log
         this.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
