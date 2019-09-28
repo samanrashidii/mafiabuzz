@@ -291,68 +291,56 @@ import executeAction from '@/mixins/dashboard/executeAction';
 import nextAction from '@/mixins/dashboard/nextAction';
 export default {
     data(){
-        return {
-            actionTarget1: null,
-            actionTarget2: null,
-            log:{
-              mainText: '',
-              sideText: '',
-              image: ''
-            },
-            targetData: {},
-            alertBox: false,
-        }
+      return {
+          actionTarget1: null,
+          actionTarget2: null,
+          log:{
+            mainText: '',
+            sideText: '',
+            image: ''
+          },
+          targetData: {},
+          alertBox: false
+      }
     },
     components: {
-        Overlay,
+      Overlay
     },
     computed: {
-        ...mapGetters({
-          Dashboard: 'dashboard/Dashboard',
-          DefaultAbility: 'roles/DefaultAbility',
-          DefaultStatus: 'roles/DefaultStatus',
-          GameSettings: 'gameStatus/GameSettings',
-        }),
-        dashboard(){
-          return JSON.parse(JSON.stringify(this.Dashboard))
-        },
-        defaultAbility(){
-          return JSON.parse(JSON.stringify(this.DefaultAbility))
-        },
-        defaultStatus(){
-          return JSON.parse(JSON.stringify(this.DefaultStatus))
-        },
-        defaultItems(){
-          const dA = Object.keys(this.defaultAbility).forEach(v => this.defaultAbility[v] = false)
-          const dS = Object.keys(this.defaultStatus).forEach(v => this.defaultStatus[v] = false)
-          return {
-            ability: dA,
-            status: dS
-          }
-        },
-        gameSettings(){
-          return JSON.parse(JSON.stringify(this.GameSettings))
-        },
-        progress() {
-          return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
-        },
+      ...mapGetters({
+        Dashboard: 'dashboard/Dashboard',
+        GameSettings: 'gameStatus/GameSettings',
+        ReplacingRoles: 'roles/ReplacingRoles'
+      }),
+      dashboard(){
+        return JSON.parse(JSON.stringify(this.Dashboard))
+      },
+      gameSettings(){
+        return JSON.parse(JSON.stringify(this.GameSettings))
+      },
+      replacingRoles(){
+        return JSON.parse(JSON.stringify(this.ReplacingRoles))
+      },
+      progress() {
+        return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
+      }
     },
     methods: {
-        ...mapActions({
-          SetDashboard: 'dashboard/SetDashboard',
-          SetGameSettings: 'gameStatus/SetGameSettings',
-        }),
-        skipAction() {
-          this.alertBox = false
-          this.nextAction()
-        }
+      ...mapActions({
+        SetDashboard: 'dashboard/SetDashboard',
+        SetGameSettings: 'gameStatus/SetGameSettings'
+      }),
+      skipAction() {
+        this.alertBox = false
+        this.nextAction()
+      }
     },
     mixins: [
-        actions,
-        actionFilters,
-        executeAction,
-        getImg,
-        nextAction
+      actions,
+      actionFilters,
+      executeAction,
+      getImg,
+      nextAction
     ],
 }
 </script>

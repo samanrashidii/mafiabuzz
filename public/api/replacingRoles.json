@@ -1,0 +1,54 @@
+{
+    "miniYakuza": {
+        "name": "replacingRoles.miniYakuza.name",
+        "icon": "miniyakuza.png",
+        "alt": "replacingRoles.miniYakuza.alt",
+        "description": "replacingRoles.miniYakuza.description",
+        "action": {
+            "passive": "replacingRoles.miniYakuza.action.passive",
+            "action": "replacingRoles.miniYakuza.action.action",
+            "oneTime": false
+        },
+        "actionStatus": false,
+        "ability": {
+            "simple": true,
+            "killer": false,
+            "killPriority": null,
+            "healer": false,
+            "silencer": false,
+            "binder": false,
+            "roleChecker": false,
+            "identityChecker": false,
+            "detonator": false,
+            "hasShield": false,
+            "returner": false,
+            "reviver": false,
+            "replacer": false,
+            "hacker": false
+        },
+        "status": {
+            "mafia": false,
+            "citizen": false,
+            "hasAction": false,
+            "hasPassive": false,
+            "hasOneAction": false,
+            "dead": false,
+            "invisible": false,
+            "silenced": false,
+            "roleChecked": false,
+            "playerReplaced": true,
+            "identityChecked": false,
+            "healed": false,
+            "linked": false,
+            "detonated": false,
+            "damageReturned": false,
+            "shield": false,
+            "revived": false,
+            "hacked": false,
+            "minion": false,
+            "recentlyDead": false,
+            "recentlySilenced": false,
+            "recentlyRevived": false
+        }
+    }
+}

@@ -4,20 +4,26 @@ export default {
   namespaced: true,
   state: {
     Roles: null,
+    ReplacingRoles: null,
   },
   getters: {
     Roles: state => state.Roles,
-    DefaultAbility: state => state.Roles[0].ability,
-    DefaultStatus: state => state.Roles[0].status
+    ReplacingRoles: state => state.ReplacingRoles,
   },
   mutations: {
     SET_ROLES: (state, changedRoles) => {
       Vue.set(state, 'Roles', changedRoles)
     },
+    SET_REPLACING_ROLES: (state, data) => {
+      Vue.set(state, 'ReplacingRoles', data)
+    },
   },
   actions: {
     SetRoles: (context, changedRoles) => {
       context.commit('SET_ROLES', changedRoles)
+    },
+    SetReplacingRoles: (context, data) => {
+      context.commit('SET_REPLACING_ROLES', data)
     },
   },
 };
