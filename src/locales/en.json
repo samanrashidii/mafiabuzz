@@ -441,6 +441,15 @@
         }
     ],
     "replacingRoles": {
+        "miniYakuza": {
+            "name": "Mini Yakuza",
+            "alt": "Mini Yakuza Icon",
+            "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself",
+            "action": {
+                "passive": "none",
+                "action": "none"
+            }
+        },
         "loading": {
             "name": "Loading",
             "icon": "loader.svg",
@@ -459,12 +468,6 @@
             "alt": "Default Icon",
             "description": "...",
             "role": "Default"
-        },
-        "miniYakuza": {
-            "name": "Mini Yakuza",
-            "icon": "ninja.png",
-            "alt": "Ninja Icon",
-            "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself"
         },
         "skeleton": {
             "name": "Skeleton",

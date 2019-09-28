@@ -18,6 +18,10 @@ export default {
         if(player.ability.binder){
           this.link(target1, target2)
         }
+        // Hacker
+        if(player.ability.hacker){
+          this.hack(target1)
+        }
         // Healer
         if(player.ability.healer){
           this.heal(target1)
@@ -36,8 +40,6 @@ export default {
         }
         // Replacer
         if(player.ability.replacer){
-          console.log(this.defaultAbility)
-          console.log(this.defaultStatus)
           this.replacePlayer(target1, player.player)
         }
 

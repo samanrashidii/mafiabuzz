@@ -1,12 +1,5 @@
 export default {
     methods: {
-        heal(target){
-            this.gameSettings.selectedRoles.forEach(element => {
-                if(element.player === target){
-                    element.status.healed = true
-                }
-            })
-        },
         checkIdentity(target){
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
@@ -18,6 +11,20 @@ export default {
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
                     element.status.roleChecked = true
+                }
+            })
+        },
+        hack(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target){
+                    element.status.hacked = true
+                }
+            })
+        },
+        heal(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target){
+                    element.status.healed = true
                 }
             })
         },
@@ -50,13 +57,14 @@ export default {
             this.kill(replacer)
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
-                    element.ability = this.defaultItems.dA
-                    element.status = this.defaultItems.dS
-                    element.status.playerReplaced = true
-                    element.name = this.$t('replacingRoles.miniYakuza.name')
-                    element.icon = this.$t('replacingRoles.miniYakuza.icon')
-                    element.alt = this.$t('replacingRoles.miniYakuza.alt')
-                    element.description = this.$t('replacingRoles.miniYakuza.description')
+                    element.name = this.replacingRoles.miniYakuza.name
+                    element.icon = this.replacingRoles.miniYakuza.icon
+                    element.alt = this.replacingRoles.miniYakuza.alt
+                    element.description = this.replacingRoles.miniYakuza.description
+                    element.action = this.replacingRoles.miniYakuza.action
+                    element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
+                    element.ability = this.replacingRoles.miniYakuza.ability
+                    element.status = this.replacingRoles.miniYakuza.status
                 }
             })
         },

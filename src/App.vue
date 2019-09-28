@@ -51,6 +51,10 @@ export default {
     axios.get('http://localhost:8080/api/roles.json')
       .then((response) => {
         this.$store.dispatch('roles/SetRoles', response.data)
+        axios.get('http://localhost:8080/api/replacingRoles.json')
+        .then((response) => {
+          this.$store.dispatch('roles/SetReplacingRoles', response.data)
+        });
       });
   },
   mounted() {
