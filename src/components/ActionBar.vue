@@ -300,6 +300,12 @@ export default {
             image: ''
           },
           targetData: {},
+          freezeStatus:{
+            linked: null,
+            hacked: null,
+            silenced: null,
+            healed: null
+          },
           alertBox: false
       }
     },
@@ -333,6 +339,12 @@ export default {
       skipAction() {
         this.alertBox = false
         this.nextAction()
+      },
+      trackingStatus(status){
+        this.freezeStatus.linked = status.linked,
+        this.freezeStatus.hacked = status.hacked,
+        this.freezeStatus.silenced = status.silenced,
+        this.freezeStatus.healed = status.healed
       }
     },
     mixins: [

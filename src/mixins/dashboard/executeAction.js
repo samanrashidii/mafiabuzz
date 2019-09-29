@@ -42,6 +42,10 @@ export default {
         if(player.ability.replacer){
           this.replacePlayer(target1, player.player)
         }
+        // Silencer
+        if(player.ability.silencer){
+          this.silence(target1)
+        }
 
         // Action Log
         this.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`

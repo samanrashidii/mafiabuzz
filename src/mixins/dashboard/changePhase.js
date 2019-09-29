@@ -14,6 +14,7 @@ export default {
                     } else{
                         el.actionStatus = false
                     }
+
                     if(el.status.healed){
                         el.status.healed = false
                     }
@@ -23,8 +24,16 @@ export default {
                     if(el.status.roleChecked){
                         el.status.roleChecked = false
                     }
+                    if(el.status.hacked){
+                        el.status.hacked = false
+                    }
                 })
             } else {
+                this.gameSettings.selectedRoles.forEach((el) => {
+                    if(el.status.silenced){
+                        el.status.silenced = false
+                    }
+                })
                 this.dashboard.round++
                 this.setActionsByPriority()
                 this.dashboard.day = false

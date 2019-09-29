@@ -96,12 +96,6 @@
                     background-color: rgba(56,113,18,.85);
                 }
             }
-            &.silenced.healed td{
-                &:nth-child(2)::after{
-                    background-image: url('~@/assets/images/icons/silence_heal.png') !important;
-                    background-color: rgba(3,120,98,.85) !important;
-                }
-            }
             &.invisible td{
                 &:first-child{padding:6px 28px 6px 4px;}
                 &:nth-child(1)::before{

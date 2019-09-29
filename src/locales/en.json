@@ -263,12 +263,12 @@
                 "hint": "Player has no action or passive."
             },
             {
-                "name": "healed-icon",
-                "hint": "Player has been healed and couldn't get kill this night"
-            },
-            {
                 "name": "linked-icon",
                 "hint": "Player has been linked to another player and when one of them dies, the other dies aswell"
+            },
+            {
+                "name": "healed-icon",
+                "hint": "Player has been healed and couldn't get kill this night"
             },
             {
                 "name": "silenced-icon",

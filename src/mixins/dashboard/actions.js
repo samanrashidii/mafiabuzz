@@ -57,6 +57,7 @@ export default {
             this.kill(replacer)
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
+                    this.trackingStatus(element.status)
                     element.name = this.replacingRoles.miniYakuza.name
                     element.icon = this.replacingRoles.miniYakuza.icon
                     element.alt = this.replacingRoles.miniYakuza.alt
@@ -65,6 +66,10 @@ export default {
                     element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
                     element.ability = this.replacingRoles.miniYakuza.ability
                     element.status = this.replacingRoles.miniYakuza.status
+                    element.status.linked = this.freezeStatus.linked
+                    element.status.hacked = this.freezeStatus.hacked
+                    element.status.healed = this.freezeStatus.healed
+                    element.status.silenced = this.freezeStatus.silenced
                 }
             })
         },
@@ -72,6 +77,13 @@ export default {
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
                     element.status.dead = false
+                }
+            })
+        },
+        silence(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target){
+                    element.status.silenced = true
                 }
             })
         },
