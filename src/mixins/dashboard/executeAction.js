@@ -42,6 +42,10 @@ export default {
         if(player.ability.replacer){
           this.replacePlayer(target1, player.player)
         }
+        // Reviver
+        if(player.ability.reviver){
+          this.resurrect(target1)
+        }
         // Silencer
         if(player.ability.silencer){
           this.silence(target1)

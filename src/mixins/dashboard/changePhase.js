@@ -8,6 +8,10 @@ export default {
                 this.dashboard.actionBox = []
                 this.dashboard.actionProgress = 0
                 this.gameSettings.selectedRoles.forEach((el) => {
+                    if(el.ability.reviver && this.gameSettings.deadPeople === 0){
+                        console.log(el.actionStatus)
+                       
+                    }
                     // Shared
                     if(el.action.oneTime){
                         el.actionStatus = true
@@ -30,9 +34,16 @@ export default {
                 })
             } else {
                 this.gameSettings.selectedRoles.forEach((el) => {
+                    if(el.ability.reviver && this.gameSettings.deadPeople === 0){
+                        el.actionStatus = true
+                        console.log(el.actionStatus)
+                    } else{
+                        el.actionStatus = false
+                    }
                     if(el.status.silenced){
                         el.status.silenced = false
                     }
+                    this.SetGameSettings(this.gameSettings)
                 })
                 this.dashboard.round++
                 this.setActionsByPriority()
@@ -42,9 +53,7 @@ export default {
             this.SetDashboard(this.dashboard)
         },
         setActionsByPriority() {
-            const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus && !x.status.dead
-                                                                             || x.status.hasAction && x.status.resurrected 
-                                                                             || x.status.hasAction && x.status.minion)
+            const filteredActions = this.gameSettings.selectedRoles.filter(x => x.status.hasAction && !x.actionStatus && !x.status.dead)
             const sorted = [...filteredActions.slice().sort((a, b) => ((a.priority > b.priority) ? 1 : -1))]
             this.dashboard.actionBox = sorted
         },

@@ -450,6 +450,15 @@
                 "action": "none"
             }
         },
+        "skeleton": {
+            "name": "Skeleton",
+            "alt": "Skeleton Icon",
+            "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive",
+            "action": {
+                "passive": "none",
+                "action": "none"
+            }
+        },
         "loading": {
             "name": "Loading",
             "icon": "loader.svg",
@@ -468,12 +477,6 @@
             "alt": "Default Icon",
             "description": "...",
             "role": "Default"
-        },
-        "skeleton": {
-            "name": "Skeleton",
-            "icon": "skeleton.png",
-            "alt": "Skeleton Icon",
-            "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive"
         }
     }
 }

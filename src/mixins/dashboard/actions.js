@@ -50,6 +50,14 @@ export default {
                             }
                         })
                     }
+                    if(element.ability.reviver){
+                        this.gameSettings.selectedRoles.forEach(el => {
+                            if(el.status.minion && !el.status.healed){
+                                el.status.dead = true
+                                el.status.minion = false
+                            }
+                        })
+                    }
                 }
             })
         },
@@ -70,6 +78,20 @@ export default {
                     element.status.hacked = this.freezeStatus.hacked
                     element.status.healed = this.freezeStatus.healed
                     element.status.silenced = this.freezeStatus.silenced
+                }
+            })
+        },
+        resurrect(target){
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target){
+                    element.name = this.replacingRoles.skeleton.name
+                    element.icon = this.replacingRoles.skeleton.icon
+                    element.alt = this.replacingRoles.skeleton.alt
+                    element.description = this.replacingRoles.skeleton.description
+                    element.action = this.replacingRoles.skeleton.action
+                    element.actionStatus = this.replacingRoles.skeleton.actionStatus
+                    element.ability = this.replacingRoles.skeleton.ability
+                    element.status = this.replacingRoles.skeleton.status
                 }
             })
         },

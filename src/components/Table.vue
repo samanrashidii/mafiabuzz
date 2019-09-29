@@ -111,15 +111,15 @@ export default {
     characterClasses(char) {
       if(this.dashboardTable){
         return {
-          dead: char.status.dead === true,
-          ninja: char.status.playerReplaced === true,
-          'love-bind': char.status.linked === true,
-          silenced: char.status.silenced === true,
-          healed: char.status.healed === true,
-          shield: char.status.shield === true && !char.status.hacked, // Active if not hacked
-          invisible: char.status.invisible === true && !char.status.hacked, // Active if not hacked
-          hacked: char.status.hacked === true,
-          skeleton: char.status.revived === true,
+          dead: char.status.dead,
+          ninja: char.status.playerReplaced,
+          'love-bind': char.status.linked,
+          silenced: char.status.silenced,
+          healed: char.status.healed,
+          shield: char.status.shield && !char.status.hacked,
+          invisible: char.status.invisible && !char.status.hacked,
+          hacked: char.status.hacked,
+          skeleton: char.status.minion,
         }
       }
     }

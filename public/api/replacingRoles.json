@@ -50,5 +50,57 @@
             "recentlySilenced": false,
             "recentlyRevived": false
         }
+    },
+    "skeleton": {
+        "name": "replacingRoles.skeleton.name",
+        "icon": "skeleton.png",
+        "alt": "replacingRoles.skeleton.alt",
+        "description": "replacingRoles.skeleton.description",
+        "action": {
+            "passive": "replacingRoles.skeleton.action.passive",
+            "action": "replacingRoles.skeleton.action.action",
+            "oneTime": false
+        },
+        "actionStatus": false,
+        "ability": {
+            "simple": true,
+            "killer": false,
+            "killPriority": null,
+            "healer": false,
+            "silencer": false,
+            "binder": false,
+            "roleChecker": false,
+            "identityChecker": false,
+            "detonator": false,
+            "hasShield": false,
+            "returner": false,
+            "reviver": false,
+            "replacer": false,
+            "hacker": false
+        },
+        "status": {
+            "mafia": false,
+            "citizen": false,
+            "hasAction": false,
+            "hasPassive": false,
+            "hasOneAction": false,
+            "dead": false,
+            "invisible": false,
+            "silenced": false,
+            "roleChecked": false,
+            "playerReplaced": false,
+            "identityChecked": false,
+            "healed": false,
+            "linked": false,
+            "detonated": false,
+            "damageReturned": false,
+            "shield": false,
+            "revived": false,
+            "hacked": false,
+            "minion": true,
+            "recentlyDead": false,
+            "recentlySilenced": false,
+            "recentlyRevived": false
+        }
     }
 }
