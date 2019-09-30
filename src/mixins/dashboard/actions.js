@@ -14,6 +14,19 @@ export default {
                 }
             })
         },
+        checkReturner(target){
+            for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
+                if(this.gameSettings.selectedRoles[i].player === target
+                   && this.gameSettings.selectedRoles[i].ability.returner
+                   && !this.gameSettings.selectedRoles[i].status.hacked)
+                    {
+                    return true
+                }
+            }
+        },
+        damageReturn(player){
+            this.kill(player)
+        },
         hack(target){
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target){
@@ -41,7 +54,11 @@ export default {
         kill(target){
             this.gameSettings.selectedRoles.forEach(element => {
                 if(element.player === target && !element.status.healed){
-                    element.status.dead = true
+                    if(element.status.shield){
+                        element.status.shield = false
+                    } else{
+                        element.status.dead = true
+                    }
                     if(element.status.linked){
                         this.gameSettings.selectedRoles.forEach(el => {
                             if(el.status.linked && !el.status.healed){
@@ -55,6 +72,14 @@ export default {
                             if(el.status.minion && !el.status.healed){
                                 el.status.dead = true
                                 el.status.minion = false
+                            }
+                        })
+                    }
+                    if(element.status.shield){
+                        this.gameSettings.selectedRoles.forEach(el => {
+                            if(el.status.linked && !el.status.healed){
+                                el.status.dead = true
+                                el.status.linked = false
                             }
                         })
                     }

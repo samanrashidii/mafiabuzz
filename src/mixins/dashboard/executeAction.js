@@ -14,6 +14,7 @@ export default {
             el.action.oneTime = true
           }
         })
+
         // Binder
         if(player.ability.binder){
           this.link(target1, target2)
@@ -22,33 +23,37 @@ export default {
         if(player.ability.hacker){
           this.hack(target1)
         }
-        // Healer
-        if(player.ability.healer){
-          this.heal(target1)
-        }
-        // Identity Checker
-        if(player.ability.identityChecker){
-          this.checkIdentity(target1)
-        }
-        // Role Checker
-        if(player.ability.roleChecker){
-          this.checkRole(target1)
-        }
-        // Roler Checker
-        if(player.ability.roleChecker){
-          this.checkRole(target1)
-        }
-        // Replacer
-        if(player.ability.replacer){
-          this.replacePlayer(target1, player.player)
-        }
-        // Reviver
-        if(player.ability.reviver){
-          this.resurrect(target1)
-        }
-        // Silencer
-        if(player.ability.silencer){
-          this.silence(target1)
+
+        // IF Returner
+        if(this.checkReturner(target1)){
+            this.damageReturn(player.player)
+        } 
+        // ELSE
+        else if(!player.status.hacked){
+            // Identity Checker
+            if(player.ability.identityChecker){
+              this.checkIdentity(target1)
+            }
+            // Role Checker
+            if(player.ability.roleChecker){
+              this.checkRole(target1)
+            }
+            // Replacer
+            if(player.ability.replacer){
+              this.replacePlayer(target1, player.player)
+            }
+            // Reviver
+            if(player.ability.reviver){
+              this.resurrect(target1)
+            }
+            // Silencer
+            if(player.ability.silencer){
+              this.silence(target1)
+            }
+            // Healer
+            if(player.ability.healer){
+              this.heal(target1)
+            }
         }
 
         // Action Log
