@@ -175,6 +175,7 @@ import Overlay from '@/components/Overlay.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
 import changePhase from '@/mixins/dashboard/changePhase';
+import setActions from '@/mixins/dashboard/setActions';
 export default {
   data() {
     return {
@@ -229,6 +230,7 @@ export default {
   mixins: [
     changePhase,
     getImg,
+    setActions
   ],
 };
 
