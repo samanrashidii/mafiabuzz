@@ -30,6 +30,10 @@ export default {
         } 
         // ELSE
         else if(!player.status.hacked){
+            // Killer
+            if(player.ability.killer){
+              this.checkIdentity(target1)
+            }
             // Identity Checker
             if(player.ability.identityChecker){
               this.checkIdentity(target1)
