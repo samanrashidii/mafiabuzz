@@ -781,7 +781,7 @@
             "healed": false,
             "linked": false,
             "detonated": false,
-            "damageReturned": true,
+            "damageReturned": false,
             "shield": false,
             "revived": false,
             "hacked": false,

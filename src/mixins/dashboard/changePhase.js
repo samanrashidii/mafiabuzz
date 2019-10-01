@@ -32,6 +32,9 @@ export default {
                     if(el.status.silenced){
                         el.status.silenced = false
                     }
+                    if(el.status.damageReturned){
+                        el.status.damageReturned = false
+                    }
                     this.SetGameSettings(this.gameSettings)
                 })
                 this.dashboard.round++

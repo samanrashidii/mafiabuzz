@@ -14,6 +14,17 @@ export default {
                 }
             })
         },
+        checkDetonator(target){
+            for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
+                if(this.gameSettings.selectedRoles[i].player === target
+                   && this.gameSettings.selectedRoles[i].ability.detonator
+                   && !this.gameSettings.selectedRoles[i].status.hacked
+                   && !this.gameSettings.selectedRoles[i].status.healed)
+                    {
+                    return true
+                }
+            }
+        },
         checkReturner(target){
             for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
                 if(this.gameSettings.selectedRoles[i].player === target
@@ -24,8 +35,34 @@ export default {
                 }
             }
         },
-        damageReturn(player){
+        detonate(target){
+            let prevTarget = '';
+            let nextTarget = '';
+            for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
+                if(this.gameSettings.selectedRoles[i].player === target) {
+                    if(i === this.gameSettings.selectedRoles.length){
+                        prevTarget = i-1
+                        nextTarget = 0
+                    } else if(i === 0){
+                        prevTarget = this.gameSettings.selectedRoles.length;
+                        nextTarget = i+1
+                    } else{
+                        prevTarget = i-1
+                        nextTarget = i+1
+                    }
+                    this.gameSettings.selectedRoles[i].status.detonated = true
+                }
+            }
+            this.kill(this.gameSettings.selectedRoles[prevTarget].player)
+            this.kill(this.gameSettings.selectedRoles[nextTarget].player)
+        },
+        damageReturn(player, target){
             this.kill(player)
+            this.gameSettings.selectedRoles.forEach(element => {
+                if(element.player === target){
+                    element.status.damageReturned = true
+                }
+            })
         },
         hack(target){
             this.gameSettings.selectedRoles.forEach(element => {

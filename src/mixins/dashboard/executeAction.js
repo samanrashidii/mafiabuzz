@@ -26,13 +26,16 @@ export default {
 
         // IF Returner
         if(this.checkReturner(target1)){
-            this.damageReturn(player.player)
-        } 
+            this.damageReturn(player.player, target1)
+        }
         // ELSE
         else if(!player.status.hacked){
             // Killer
             if(player.ability.killer){
               this.kill(target1)
+              if(this.checkDetonator(target1)){
+                this.detonate(target1)
+              }
             }
             // Identity Checker
             if(player.ability.identityChecker){
