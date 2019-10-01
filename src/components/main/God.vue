@@ -1,6 +1,5 @@
 <template>
   <div class="god">
-
     <!-- Dashboard Buttons -->
 
     <div
@@ -37,13 +36,13 @@
             v-if="!dashboard.day"
             key="round-tracker"
           >{{ dashboard.round }}</strong>
-          <a 
+          <a
             v-if="dashboard.god && !dashboard.day && !dashboard.startAction"
             @click="startAction()"
-            class="bttn awesome2 night-actions" 
+            class="bttn awesome2 night-actions"
             href="javascript:void(0)"
             key="night-actions"
-            >{{$t('god.nightActionButton')}}
+          >{{ $t('god.nightActionButton') }}
           </a>
         </transition-group>
         <div class="center-aligned">
@@ -76,18 +75,16 @@
               key="afterShow"
             >
               <div class="players-role">
-
                 <Table
                   class="mafia-table table-roles"
                   :table-data="gameSettings.fMafias"
-                  :dashboardTable="true"
+                  :dashboard-table="true"
                 />
                 <Table
                   class="citizen-table table-roles"
                   :table-data="gameSettings.fCitizens"
-                  :dashboardTable="true"
+                  :dashboard-table="true"
                 />
-
               </div>
             </div>
           </transition>
@@ -176,6 +173,7 @@ import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
 import changePhase from '@/mixins/dashboard/changePhase';
 import setActions from '@/mixins/dashboard/setActions';
+
 export default {
   data() {
     return {
@@ -196,11 +194,11 @@ export default {
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
     }),
-    dashboard(){
-      return JSON.parse(JSON.stringify(this.Dashboard))
+    dashboard() {
+      return JSON.parse(JSON.stringify(this.Dashboard));
     },
-    gameSettings(){
-      return JSON.parse(JSON.stringify(this.GameSettings))
+    gameSettings() {
+      return JSON.parse(JSON.stringify(this.GameSettings));
     },
   },
   methods: {
@@ -210,27 +208,27 @@ export default {
     }),
     // Reset Game From Start
     resetFactory() {
-      console.log('hard reset')
+      console.log('hard reset');
     },
     // Reset Game with Same Roles and Names
     resetSameGame() {
-      console.log('soft reset')
+      console.log('soft reset');
     },
     // Show God Dashboard
     showPlay() {
-      this.dashboard.god = true
+      this.dashboard.god = true;
       this.SetDashboard(this.dashboard);
     },
     // Start Action Box
-    startAction(){
+    startAction() {
       this.dashboard.startAction = true;
       this.SetDashboard(this.dashboard);
-    }
+    },
   },
   mixins: [
     changePhase,
     getImg,
-    setActions
+    setActions,
   ],
 };
 

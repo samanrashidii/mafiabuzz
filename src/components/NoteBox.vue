@@ -11,9 +11,10 @@
 
 <script>
 import getImg from '@/mixins/getImg';
+
 export default {
   mixins: [
-    getImg
-  ]
-}
+    getImg,
+  ],
+};
 </script>

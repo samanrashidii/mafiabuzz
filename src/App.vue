@@ -17,17 +17,31 @@
         key="top-nav"
       />
     </transition-group>
-    <notifications group="log" position="bottom center" >
-      <template slot="body" slot-scope="props">
-        <div class="vue-notification" :class="props.item.type">
-            <div class="image-wrapper">
-              <img :src="getImgUrl('/actions', props.item.title)" :alt="props.item.title" >
-            </div>
-            <a class="close" @click="props.close">
-              <i class="fa fa-fw fa-close"></i>
-            </a>
-            <div v-html="props.item.text">
-            </div>
+    <notifications
+      group="log"
+      position="bottom center"
+    >
+      <template
+        slot="body"
+        slot-scope="props"
+      >
+        <div
+          class="vue-notification"
+          :class="props.item.type"
+        >
+          <div class="image-wrapper">
+            <img
+              :src="getImgUrl('/actions', props.item.title)"
+              :alt="props.item.title"
+            >
+          </div>
+          <a
+            class="close"
+            @click="props.close"
+          >
+            <i class="fa fa-fw fa-close" />
+          </a>
+          <div v-html="props.item.text" />
         </div>
       </template>
     </notifications>
@@ -46,22 +60,22 @@ export default {
   created() {
     axios.get('http://localhost:8080/api/main.json')
       .then((response) => {
-        this.$store.dispatch('main/SetMainApp', response.data)
+        this.$store.dispatch('main/SetMainApp', response.data);
       });
     axios.get('http://localhost:8080/api/roles.json')
       .then((response) => {
-        this.$store.dispatch('roles/SetRoles', response.data)
+        this.$store.dispatch('roles/SetRoles', response.data);
         axios.get('http://localhost:8080/api/replacingRoles.json')
-        .then((response) => {
-          this.$store.dispatch('roles/SetReplacingRoles', response.data)
-        });
+          .then((response) => {
+            this.$store.dispatch('roles/SetReplacingRoles', response.data);
+          });
       });
   },
   mounted() {
-    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
+    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
   },
   mixins: [
-    getImg
+    getImg,
   ],
 };
 </script>

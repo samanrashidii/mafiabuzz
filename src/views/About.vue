@@ -12,28 +12,33 @@
           :key="index"
           :class="[creator.classes]"
         >
-          <img :src="getImgUrl('/roles', creator.image)" :alt="creator.name" >
+          <img
+            :src="getImgUrl('/roles', creator.image)"
+            :alt="creator.name"
+          >
           <a
             :href="creator.url"
-            target="_blank"  
+            target="_blank"
           >
             <strong>{{ creator.name }}</strong>
           </a>
           <span>{{ creator.title }}</span>
-          <a href='https://ko-fi.com/J3J11323A'
-             target='_blank'>
-            <img height='26' 
+          <a
+            href="https://ko-fi.com/J3J11323A"
+            target="_blank"
+          >
+            <img
+              height="26"
               class="coffee-bttn"
-              src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2' 
-              border='0' 
-              alt='Buy Us a Coffee at ko-fi.com' 
-            />
+              src="https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2"
+              border="0"
+              alt="Buy Us a Coffee at ko-fi.com"
+            >
           </a>
-          
         </li>
       </ul>
     </div>
-    
+
     <PageBox class="contact-box">
       <div class="contact">
         <p v-html="$t('pages.about.contactText')" />
@@ -47,6 +52,7 @@
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
 import getImg from '@/mixins/getImg';
+
 export default {
   data() {
     return {
@@ -85,7 +91,7 @@ export default {
   },
   mixins: [
     checkRoute,
-    getImg
+    getImg,
   ],
   watch: {
     $route(to, from) {

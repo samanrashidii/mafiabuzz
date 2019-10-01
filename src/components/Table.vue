@@ -68,7 +68,10 @@
         </template>
         <template v-else>
           <td>
-            <CharacterPower :mafia="tD.mafia" :power="tD.power" />        
+            <CharacterPower
+              :mafia="tD.mafia"
+              :power="tD.power"
+            />
           </td>
         </template>
       </tr>
@@ -87,29 +90,29 @@ export default {
   components: {
     CharacterPower,
   },
-  computed:{
+  computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
     }),
-    dashboard(){
-      return JSON.parse(JSON.stringify(this.Dashboard))
+    dashboard() {
+      return JSON.parse(JSON.stringify(this.Dashboard));
     },
-    gameSettings(){
-      return JSON.parse(JSON.stringify(this.GameSettings))
+    gameSettings() {
+      return JSON.parse(JSON.stringify(this.GameSettings));
     },
   },
   props: {
     tableData: Array,
-    dashboardTable: Boolean
+    dashboardTable: Boolean,
   },
-  methods:{
+  methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     characterClasses(char) {
-      if(this.dashboardTable){
+      if (this.dashboardTable) {
         return {
           dead: char.status.dead,
           ninja: char.status.playerReplaced,
@@ -120,9 +123,9 @@ export default {
           invisible: char.status.invisible && !char.status.hacked,
           hacked: char.status.hacked,
           skeleton: char.status.minion,
-        }
+        };
       }
-    }
+    },
   },
   mixins: [
     actions,

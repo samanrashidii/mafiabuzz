@@ -10,12 +10,12 @@ export default {
   },
   mutations: {
     SET_MAIN_APP: (state, data) => {
-      Vue.set(state, 'mainApp', data)
+      Vue.set(state, 'mainApp', data);
     },
   },
   actions: {
     SetMainApp: (context, data) => {
-      context.commit('SET_MAIN_APP', data)
+      context.commit('SET_MAIN_APP', data);
     },
   },
 };

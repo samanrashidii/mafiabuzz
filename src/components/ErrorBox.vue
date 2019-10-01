@@ -21,6 +21,7 @@
 
 <script>
 import getImg from '@/mixins/getImg';
+
 export default {
   props: {
     errorStatus: Object,
@@ -28,7 +29,7 @@ export default {
     citizenNumbers: Number,
   },
   mixins: [
-    getImg
-  ]
+    getImg,
+  ],
 };
 </script>

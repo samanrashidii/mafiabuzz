@@ -104,26 +104,26 @@ export default {
       GameSettings: 'gameStatus/GameSettings',
     }),
     createSettings() {
-      return JSON.parse(JSON.stringify(this.CreateSettings))
+      return JSON.parse(JSON.stringify(this.CreateSettings));
     },
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
+      return JSON.parse(JSON.stringify(this.GameSettings));
     },
     isValid() {
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
-        this.error.mafia = true
+        this.error.mafia = true;
       } else {
-        this.error.mafia = false
+        this.error.mafia = false;
       }
       if (this.gameSettings.selectedCitizen != this.gameSettings.citizen) {
-        this.error.citizens = true
+        this.error.citizens = true;
       } else {
-        this.error.citizens = false
+        this.error.citizens = false;
       }
       if (this.gameSettings.selectedMafia == this.gameSettings.mafia && this.gameSettings.selectedCitizen == this.gameSettings.citizen) {
-        return false
+        return false;
       }
-      return true
+      return true;
     },
   },
   methods: {
@@ -131,12 +131,12 @@ export default {
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     checkGame() {
-      this.overlay = true
+      this.overlay = true;
     },
     startGame() {
       // Start Engine
-      this.gameSettings.gameStatus = true
-      this.SetGameSettings(this.gameSettings)
+      this.gameSettings.gameStatus = true;
+      this.SetGameSettings(this.gameSettings);
     },
   },
   mixins: [checkRoute],

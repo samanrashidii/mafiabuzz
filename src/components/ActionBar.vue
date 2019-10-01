@@ -1,9 +1,9 @@
 <template>
-      <div
-        class="priority-box"
-      >
-        <!-- Before Action Box -->
-        <!-- <transition name="fade">
+  <div
+    class="priority-box"
+  >
+    <!-- Before Action Box -->
+    <!-- <transition name="fade">
           <div
             class="before-action-box"
             v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round === 1"
@@ -72,20 +72,22 @@
           </div>
         </transition> -->
 
-        <!-- Actions Progress Bar -->
-        <div class="progress-bar">
-          <span :style="{width: progress+'%'}" />
-          <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
-        </div>
+    <!-- Actions Progress Bar -->
+    <div class="progress-bar">
+      <span :style="{width: progress+'%'}" />
+      <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+    </div>
 
-        <!-- Handle Actions -->
+    <!-- Handle Actions -->
 
-        <div>
-            <div class="action-box" v-for="(player, index) in dashboard.actionBox" :key="index"
-              
-            >
-              <template v-if="dashboard.actionProgress === index">
-              <!-- <transition
+    <div>
+      <div
+        class="action-box"
+        v-for="(player, index) in dashboard.actionBox"
+        :key="index"
+      >
+        <template v-if="dashboard.actionProgress === index">
+          <!-- <transition
                 name="fade"
                 mode="out-in"
               >
@@ -159,126 +161,125 @@
                 </div>
               </transition> -->
 
-                <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
-                <div class="player-box-holder has-small-bottom-margin">
-                  <div class="player-box">
-                    <img
-                      :src="getImgUrl('/roles', player.icon)"
-                      :alt="$t('god.playerIconAlt')"
-                    >
-                    <h4
-                      class="has-xsmall-top-margin"
-                      :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia}"
-                    >
-                      {{ player.player }}
-                    </h4>
-                  </div>
-                  <div class="arrow">
-                    <img
-                      class="action-image"
-                      :src="getImgUrl('/actions', player.actionIcon)"
-                      :alt="$t('god.playerActionIconAlt')"
-                    >
-                  </div>
-                  <div class="player-box">
-                    <template v-if="Object.keys(targetData).length">
-                      <img
-                        :src="getImgUrl('/roles', targetData.i.icon)"
-                        :alt="$t('god.playerIconAlt')"
-                      >
-                      <h4
-                        class="has-xsmall-top-margin"
-                        :class="{'mafia-role': targetData.i.mafia, 'citizen-role': !targetData.i.mafia}"
-                      >
-                        {{ $t(targetData.i.name) }}
-                      </h4>
-                    </template>
-                    <template v-else>
-                      <img
-                        :src="getImgUrl('/roles', $t('replacingRoles.loading.icon'))"
-                        :alt="$t('replacingRoles.loading.name')"
-                      >
-                    </template>
-                  </div>
-                </div>
-                <select
-                  @change="findTarget(actionTarget1)"
-                  name="action_target"
-                  v-model="actionTarget1"
+          <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
+          <div class="player-box-holder has-small-bottom-margin">
+            <div class="player-box">
+              <img
+                :src="getImgUrl('/roles', player.icon)"
+                :alt="$t('god.playerIconAlt')"
+              >
+              <h4
+                class="has-xsmall-top-margin"
+                :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia}"
+              >
+                {{ player.player }}
+              </h4>
+            </div>
+            <div class="arrow">
+              <img
+                class="action-image"
+                :src="getImgUrl('/actions', player.actionIcon)"
+                :alt="$t('god.playerActionIconAlt')"
+              >
+            </div>
+            <div class="player-box">
+              <template v-if="Object.keys(targetData).length">
+                <img
+                  :src="getImgUrl('/roles', targetData.i.icon)"
+                  :alt="$t('god.playerIconAlt')"
                 >
-                  <option
-                    :value="null"
-                    disabled
-                  >
-                    {{ $t('god.selectPlaceholder') }}
-                  </option>
-                  <option
-                    v-for="(person, index) in checkGroup(player)"
-                    :key="index"
-                  >
-                    {{ person.player }}
-                  </option>
-                </select>
-                <template v-if="player.ability.binder && actionTarget1 !== null">
-                  <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
-                  <select
-                    name="action_target_2"
-                    v-model="actionTarget2"
-                  >
-                    <option
-                      :value="null"
-                      disabled
-                    >
-                      {{ $t('god.selectPlaceholder') }}
-                    </option>
-                    <option
-                      v-for="(person, index) in checkSecondGroup(player)"
-                      :key="index"
-                    >
-                      {{ person.player }}
-                    </option>
-                  </select>
-                </template>
-                <!-- Action Buttons -->
-                <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2)">
-                  {{ $t('god.confirmButton') }}
-                </AppButton>
-                <AppButton
-                  class="danger"
-                  @click.native="alertBox = true"
+                <h4
+                  class="has-xsmall-top-margin"
+                  :class="{'mafia-role': targetData.i.mafia, 'citizen-role': !targetData.i.mafia}"
                 >
-                  {{ $t('god.skipButton') }}
-                </AppButton>
+                  {{ $t(targetData.i.name) }}
+                </h4>
+              </template>
+              <template v-else>
+                <img
+                  :src="getImgUrl('/roles', $t('replacingRoles.loading.icon'))"
+                  :alt="$t('replacingRoles.loading.name')"
+                >
               </template>
             </div>
-        </div>
-
-        <!-- Alert Box -->
-
-        <Overlay :class="{'active': alertBox,'dialog': true}">
-          <img
-            class="has-xsmall-bottom-margin"
-            :src="getImgUrl('/icons', $t('general.warning'))"
-            :alt="$t('general.warningIcon')"
+          </div>
+          <select
+            @change="findTarget(actionTarget1)"
+            name="action_target"
+            v-model="actionTarget1"
           >
-          <template>
-            <p>{{ $t('god.skipText') }}</p>
-            <AppButton
-              @click.native="skipAction()"
-              class="green"
+            <option
+              :value="null"
+              disabled
             >
-              <span>{{ $t('god.skipButton2') }}</span>
-            </AppButton>
-            <AppButton
-              @click.native="alertBox = false"
-              class="danger"
+              {{ $t('god.selectPlaceholder') }}
+            </option>
+            <option
+              v-for="(person, index) in checkGroup(player)"
+              :key="index"
             >
-              <span>{{ $t('god.cancelButton') }}</span>
-            </AppButton>
+              {{ person.player }}
+            </option>
+          </select>
+          <template v-if="player.ability.binder && actionTarget1 !== null">
+            <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
+            <select
+              name="action_target_2"
+              v-model="actionTarget2"
+            >
+              <option
+                :value="null"
+                disabled
+              >
+                {{ $t('god.selectPlaceholder') }}
+              </option>
+              <option
+                v-for="(person, index) in checkSecondGroup(player)"
+                :key="index"
+              >
+                {{ person.player }}
+              </option>
+            </select>
           </template>
-        </Overlay>
-
+          <!-- Action Buttons -->
+          <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2)">
+            {{ $t('god.confirmButton') }}
+          </AppButton>
+          <AppButton
+            class="danger"
+            @click.native="alertBox = true"
+          >
+            {{ $t('god.skipButton') }}
+          </AppButton>
+        </template>
       </div>
+    </div>
+
+    <!-- Alert Box -->
+
+    <Overlay :class="{'active': alertBox,'dialog': true}">
+      <img
+        class="has-xsmall-bottom-margin"
+        :src="getImgUrl('/icons', $t('general.warning'))"
+        :alt="$t('general.warningIcon')"
+      >
+      <template>
+        <p>{{ $t('god.skipText') }}</p>
+        <AppButton
+          @click.native="skipAction()"
+          class="green"
+        >
+          <span>{{ $t('god.skipButton2') }}</span>
+        </AppButton>
+        <AppButton
+          @click.native="alertBox = false"
+          class="danger"
+        >
+          <span>{{ $t('god.cancelButton') }}</span>
+        </AppButton>
+      </template>
+    </Overlay>
+  </div>
 </template>
 
 <script>
@@ -289,70 +290,71 @@ import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
 import executeAction from '@/mixins/dashboard/executeAction';
 import nextAction from '@/mixins/dashboard/nextAction';
+
 export default {
-    data(){
-      return {
-          actionTarget1: null,
-          actionTarget2: null,
-          log:{
-            mainText: '',
-            sideText: '',
-            image: ''
-          },
-          targetData: {},
-          freezeStatus:{
-            linked: null,
-            hacked: null,
-            silenced: null,
-            healed: null
-          },
-          alertBox: false
-      }
-    },
-    components: {
-      Overlay
-    },
-    computed: {
-      ...mapGetters({
-        Dashboard: 'dashboard/Dashboard',
-        GameSettings: 'gameStatus/GameSettings',
-        ReplacingRoles: 'roles/ReplacingRoles'
-      }),
-      dashboard(){
-        return JSON.parse(JSON.stringify(this.Dashboard))
+  data() {
+    return {
+      actionTarget1: null,
+      actionTarget2: null,
+      log: {
+        mainText: '',
+        sideText: '',
+        image: '',
       },
-      gameSettings(){
-        return JSON.parse(JSON.stringify(this.GameSettings))
+      targetData: {},
+      freezeStatus: {
+        linked: null,
+        hacked: null,
+        silenced: null,
+        healed: null,
       },
-      replacingRoles(){
-        return JSON.parse(JSON.stringify(this.ReplacingRoles))
-      },
-      progress() {
-        return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
-      }
+      alertBox: false,
+    };
+  },
+  components: {
+    Overlay,
+  },
+  computed: {
+    ...mapGetters({
+      Dashboard: 'dashboard/Dashboard',
+      GameSettings: 'gameStatus/GameSettings',
+      ReplacingRoles: 'roles/ReplacingRoles',
+    }),
+    dashboard() {
+      return JSON.parse(JSON.stringify(this.Dashboard));
     },
-    methods: {
-      ...mapActions({
-        SetDashboard: 'dashboard/SetDashboard',
-        SetGameSettings: 'gameStatus/SetGameSettings'
-      }),
-      skipAction() {
-        this.alertBox = false
-        this.nextAction()
-      },
-      trackingStatus(status){
-        this.freezeStatus.linked = status.linked,
-        this.freezeStatus.hacked = status.hacked,
-        this.freezeStatus.silenced = status.silenced,
-        this.freezeStatus.healed = status.healed
-      }
+    gameSettings() {
+      return JSON.parse(JSON.stringify(this.GameSettings));
     },
-    mixins: [
-      actions,
-      actionFilters,
-      executeAction,
-      getImg,
-      nextAction
-    ],
-}
+    replacingRoles() {
+      return JSON.parse(JSON.stringify(this.ReplacingRoles));
+    },
+    progress() {
+      return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
+    },
+  },
+  methods: {
+    ...mapActions({
+      SetDashboard: 'dashboard/SetDashboard',
+      SetGameSettings: 'gameStatus/SetGameSettings',
+    }),
+    skipAction() {
+      this.alertBox = false;
+      this.nextAction();
+    },
+    trackingStatus(status) {
+      this.freezeStatus.linked = status.linked,
+      this.freezeStatus.hacked = status.hacked,
+      this.freezeStatus.silenced = status.silenced,
+      this.freezeStatus.healed = status.healed;
+    },
+  },
+  mixins: [
+    actions,
+    actionFilters,
+    executeAction,
+    getImg,
+    nextAction,
+  ],
+};
 </script>

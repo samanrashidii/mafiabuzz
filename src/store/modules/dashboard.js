@@ -66,19 +66,19 @@ export default {
       //   targetMafia: null,
       //   targetIcon: 'replacingRoles.preTarget.icon',
       // },
-    }
+    },
   },
   getters: {
     Dashboard: state => state.dashboard,
   },
   mutations: {
     SET_DASHBOARD: (state, dashboard) => {
-      Vue.set(state, 'dashboard', dashboard)
+      Vue.set(state, 'dashboard', dashboard);
     },
   },
   actions: {
     SetDashboard: (context, dashboard) => {
-      context.commit('SET_DASHBOARD', dashboard)
+      context.commit('SET_DASHBOARD', dashboard);
     },
   },
 };
