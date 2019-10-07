@@ -58,7 +58,7 @@ export default {
     ...mapGetters(['DefaultState']),
   },
   created() {
-    const BASE_URL = 'http://localhost:8080'//'http://mafiabuzz.netlify.com'
+    const BASE_URL = 'http://mafiabuzz.netlify.com'//'http://localhost:8080'
     axios.get(`${BASE_URL}/api/main.json`)
       .then((response) => {
         this.$store.dispatch('main/SetMainApp', response.data);
