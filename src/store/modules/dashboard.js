@@ -10,8 +10,6 @@ export default {
       actionBox: [],
       actionProgress: 0,
       startAction: false,
-      actionTarget1: null,
-      actionTarget2: null,
       log: {
         mainText: '',
         sideText: '',

@@ -34,10 +34,12 @@ export default {
       }
     },
     detonate(target) {
+      let mainTarget = ''
       let prevTarget = ''
       let nextTarget = ''
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target) {
+          mainTarget = i
           if (i === this.gameSettings.selectedRoles.length) {
             prevTarget = i - 1
             nextTarget = 0;
@@ -49,9 +51,9 @@ export default {
             nextTarget = i + 1
           }
           this.gameSettings.selectedRoles[i].status.detonated = true;
-          this.passiveActive(this.gameSettings.selectedRoles[i])
         }
       }
+      this.passiveActive(this.gameSettings.selectedRoles[mainTarget])
       this.kill(this.gameSettings.selectedRoles[prevTarget].player)
       this.kill(this.gameSettings.selectedRoles[nextTarget].player)
     },

@@ -185,14 +185,14 @@
             <div class="player-box">
               <template v-if="Object.keys(dashboard.targetData).length">
                 <img
-                  :src="getImgUrl('/roles', dashboard.targetData.i.icon)"
+                  :src="getImgUrl('/roles', dashboard.targetData.icon)"
                   :alt="$t('god.playerIconAlt')"
                 >
                 <h4
                   class="has-xsmall-top-margin"
-                  :class="{'mafia-role': dashboard.targetData.i.mafia, 'citizen-role': !dashboard.targetData.i.mafia}"
+                  :class="{'mafia-role': dashboard.targetData.mafia, 'citizen-role': !dashboard.targetData.mafia}"
                 >
-                  {{ $t(dashboard.targetData.i.name) }}
+                  {{ $t(dashboard.targetData.name) }}
                 </h4>
               </template>
               <template v-else>
@@ -295,15 +295,13 @@ import passiveActive from '@/mixins/dashboard/passiveActive';
 export default {
   data() {
     return {
-      alertBox: false,
-      dashobard: null
+      actionTarget1: null,
+      actionTarget2: null,
+      alertBox: false
     };
   },
   components: {
     Overlay,
-  },
-  created(){
-    this.dashboard = JSON.parse(JSON.stringify(this.Dashboard));
   },
   computed: {
     ...mapGetters({
@@ -313,6 +311,9 @@ export default {
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
+    },
+    dashboard() {
+      return JSON.parse(JSON.stringify(this.Dashboard));
     },
     replacingRoles() {
       return JSON.parse(JSON.stringify(this.ReplacingRoles));
