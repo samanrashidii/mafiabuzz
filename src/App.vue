@@ -58,14 +58,15 @@ export default {
     ...mapGetters(['DefaultState']),
   },
   created() {
-    axios.get('http://localhost:8080/api/main.json')
+    const BASE_URL = 'http://mafiabuzz.netlify.com'//'http://localhost:8080'
+    axios.get(`${BASE_URL}/api/main.json`)
       .then((response) => {
         this.$store.dispatch('main/SetMainApp', response.data);
       });
-    axios.get('http://localhost:8080/api/roles.json')
+    axios.get(`${BASE_URL}/api/roles.json`)
       .then((response) => {
         this.$store.dispatch('roles/SetRoles', response.data);
-        axios.get('http://localhost:8080/api/replacingRoles.json')
+        axios.get(`${BASE_URL}/api/replacingRoles.json`)
           .then((response) => {
             this.$store.dispatch('roles/SetReplacingRoles', response.data);
           });

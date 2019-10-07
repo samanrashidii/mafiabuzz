@@ -85,6 +85,7 @@ import CharacterPower from '@/components/CharacterPower.vue';
 import getImg from '@/mixins/getImg';
 import actions from '@/mixins/dashboard/actions';
 import godAction from '@/mixins/dashboard/godAction';
+import passiveActive from '@/mixins/dashboard/passiveActive';
 
 export default {
   components: {
@@ -131,6 +132,7 @@ export default {
     actions,
     getImg,
     godAction,
+    passiveActive
   ],
 };
 </script>
