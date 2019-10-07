@@ -183,16 +183,16 @@
               >
             </div>
             <div class="player-box">
-              <template v-if="Object.keys(targetData).length">
+              <template v-if="Object.keys(dashboard.targetData).length">
                 <img
-                  :src="getImgUrl('/roles', targetData.i.icon)"
+                  :src="getImgUrl('/roles', dashboard.targetData.i.icon)"
                   :alt="$t('god.playerIconAlt')"
                 >
                 <h4
                   class="has-xsmall-top-margin"
-                  :class="{'mafia-role': targetData.i.mafia, 'citizen-role': !targetData.i.mafia}"
+                  :class="{'mafia-role': dashboard.targetData.i.mafia, 'citizen-role': !dashboard.targetData.i.mafia}"
                 >
-                  {{ $t(targetData.i.name) }}
+                  {{ $t(dashboard.targetData.i.name) }}
                 </h4>
               </template>
               <template v-else>
@@ -290,29 +290,20 @@ import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
 import executeAction from '@/mixins/dashboard/executeAction';
 import nextAction from '@/mixins/dashboard/nextAction';
+import passiveActive from '@/mixins/dashboard/passiveActive';
 
 export default {
   data() {
     return {
-      actionTarget1: null,
-      actionTarget2: null,
-      log: {
-        mainText: '',
-        sideText: '',
-        image: '',
-      },
-      targetData: {},
-      freezeStatus: {
-        linked: null,
-        hacked: null,
-        silenced: null,
-        healed: null,
-      },
       alertBox: false,
+      dashobard: null
     };
   },
   components: {
     Overlay,
+  },
+  created(){
+    this.dashboard = JSON.parse(JSON.stringify(this.Dashboard));
   },
   computed: {
     ...mapGetters({
@@ -320,9 +311,6 @@ export default {
       GameSettings: 'gameStatus/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
     }),
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
-    },
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
     },
@@ -343,10 +331,10 @@ export default {
       this.nextAction();
     },
     trackingStatus(status) {
-      this.freezeStatus.linked = status.linked,
-      this.freezeStatus.hacked = status.hacked,
-      this.freezeStatus.silenced = status.silenced,
-      this.freezeStatus.healed = status.healed;
+      this.dashboard.freezeStatus.linked = status.linked,
+      this.dashboard.freezeStatus.hacked = status.hacked,
+      this.dashboard.freezeStatus.silenced = status.silenced,
+      this.dashboard.freezeStatus.healed = status.healed;
     },
   },
   mixins: [
@@ -355,6 +343,7 @@ export default {
     executeAction,
     getImg,
     nextAction,
+    passiveActive
   ],
 };
 </script>

@@ -213,7 +213,7 @@
         "errorChoosePlayer": "Please choose a <span>player</span> before executing an action",
         "logCloseButton": "Okay got it!",
         "logMainText": " used on : ",
-        "logPassive": "Passive activated",
+        "logPassive": "Passive activated : ",
         "restartButton": "Restart Game",
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
@@ -470,13 +470,6 @@
             "icon": "default.png",
             "alt": "Default Icon",
             "description": "..."
-        },
-        "preTarget": {
-            "name": "Person ?",
-            "icon": "default.png",
-            "alt": "Default Icon",
-            "description": "...",
-            "role": "Default"
         }
     }
 }

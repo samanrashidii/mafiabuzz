@@ -28,7 +28,7 @@ export default {
     findTarget(target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
-          Vue.set(this.targetData, 'i', element);
+          Vue.set(this.dashboard.targetData, 'i', element);
         }
       });
     },
