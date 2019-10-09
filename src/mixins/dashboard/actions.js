@@ -113,7 +113,7 @@ export default {
               }
             });
           }
-          if (element.status.shield) {
+          if (!element.status.shield) {
             this.gameSettings.selectedRoles.forEach((el) => {
               if (el.status.linked && !el.status.healed) {
                 el.status.dead = true
