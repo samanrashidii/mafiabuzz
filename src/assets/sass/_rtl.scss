@@ -90,6 +90,9 @@ body.rtl{
 .rtl .table table tr td:first-child{text-align: right !important;}
 .rtl .table table tr td img{margin:0 0 0 4px !important;}
 
+.rtl .table-roles table tr.invisible td:first-child{padding:6px 4px 6px 28px}
+.rtl .table-roles table tr.shield td:first-child{padding:6px 4px 6px 28px}
+
 .rtl .predefined{
     right:auto;
     left:16px;

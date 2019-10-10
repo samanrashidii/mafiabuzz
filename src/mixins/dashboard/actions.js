@@ -1,13 +1,16 @@
 export default {
   methods: {
-    activeLink() {
+    activeLink(target) {
       let linkTarget = ''
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].status.linked && !this.gameSettings.selectedRoles[i].status.healed) {
+        if (this.gameSettings.selectedRoles[i].player !== target
+        && this.gameSettings.selectedRoles[i].status.linked
+        && !this.gameSettings.selectedRoles[i].status.healed) {
           linkTarget = i
           this.gameSettings.selectedRoles[i].status.linked = false;
         }
       }
+      console.log(this.gameSettings.selectedRoles[linkTarget].player)
       this.kill(this.gameSettings.selectedRoles[linkTarget].player)
     },
     chainKill(){
@@ -115,7 +118,7 @@ export default {
             element.status.dead = true
           }
           if (element.status.linked) {
-            this.activeLink()
+            this.activeLink(element.player)
           }
           if (element.ability.reviver) {
             this.chainKill()
