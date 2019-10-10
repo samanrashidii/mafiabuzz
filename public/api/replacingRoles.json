@@ -1,7 +1,7 @@
 {
     "miniYakuza": {
         "name": "replacingRoles.miniYakuza.name",
-        "icon": "miniyakuza.png",
+        "icon": "miniyakuza.svg",
         "alt": "replacingRoles.miniYakuza.alt",
         "description": "replacingRoles.miniYakuza.description",
         "action": {
@@ -53,7 +53,7 @@
     },
     "skeleton": {
         "name": "replacingRoles.skeleton.name",
-        "icon": "skeleton.png",
+        "icon": "skeleton.svg",
         "alt": "replacingRoles.skeleton.alt",
         "description": "replacingRoles.skeleton.description",
         "action": {
