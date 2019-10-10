@@ -15,21 +15,20 @@ export default {
           }
         });
 
-        // Binder
-        if (player.ability.binder) {
-          this.link(target1, target2)
-        }
-        // Hacker
-        if (player.ability.hacker) {
-          this.hack(target1)
-        }
-
         // IF Returner
         if (this.checkReturner(target1)) {
           this.damageReturn(player.player, target1)
         }
         // ELSE
         else if (!player.status.hacked) {
+          // Binder
+          if (player.ability.binder) {
+            this.link(target1, target2)
+          }
+          // Hacker
+          if (player.ability.hacker) {
+            this.hack(target1)
+          }
           // Killer
           if (player.ability.killer) {
             this.kill(target1);

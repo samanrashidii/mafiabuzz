@@ -1,5 +1,23 @@
 export default {
   methods: {
+    activeLink() {
+      let linkTarget = ''
+      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
+        if (this.gameSettings.selectedRoles[i].status.linked && !this.gameSettings.selectedRoles[i].status.healed) {
+          linkTarget = i
+          this.gameSettings.selectedRoles[i].status.linked = false;
+        }
+      }
+      this.kill(this.gameSettings.selectedRoles[linkTarget].player)
+    },
+    chainKill(){
+      this.gameSettings.selectedRoles.forEach((el) => {
+        if (el.status.minion && !el.status.healed) {
+          this.kill(el.player)
+          el.status.minion = false
+        }
+      });
+    },
     checkIdentity(target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
@@ -17,9 +35,8 @@ export default {
     checkDetonator(target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target
-                   && this.gameSettings.selectedRoles[i].ability.detonator
-                   && !this.gameSettings.selectedRoles[i].status.hacked
-                   && !this.gameSettings.selectedRoles[i].status.healed) {
+         && this.gameSettings.selectedRoles[i].ability.detonator
+         && !this.gameSettings.selectedRoles[i].status.hacked) {
           return true;
         }
       }
@@ -92,34 +109,16 @@ export default {
     kill(target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target && !element.status.healed) {
-          if (element.status.shield) {
+          if (element.status.shield && !element.status.hacked) {
             element.status.shield = false
           } else {
             element.status.dead = true
           }
           if (element.status.linked) {
-            this.gameSettings.selectedRoles.forEach((el) => {
-              if (el.status.linked && !el.status.healed) {
-                el.status.dead = true
-                el.status.linked = false
-              }
-            });
+            this.activeLink()
           }
           if (element.ability.reviver) {
-            this.gameSettings.selectedRoles.forEach((el) => {
-              if (el.status.minion && !el.status.healed) {
-                el.status.dead = true
-                el.status.minion = false
-              }
-            });
-          }
-          if (!element.status.shield) {
-            this.gameSettings.selectedRoles.forEach((el) => {
-              if (el.status.linked && !el.status.healed) {
-                el.status.dead = true
-                el.status.linked = false
-              }
-            });
+            this.chainKill()
           }
           if (this.checkDetonator(element.player)) {
             this.detonate(element.player)
