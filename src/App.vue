@@ -59,7 +59,7 @@ export default {
   },
   created() {
     const BASE_URL = 'https://mafiabuzz.netlify.com'
-                      //'http://localhost:8080'
+                      // 'http://localhost:8080'
     axios.get(`${BASE_URL}/api/main.json`)
       .then((response) => {
         this.$store.dispatch('main/SetMainApp', response.data);
@@ -71,7 +71,7 @@ export default {
           .then((response) => {
             this.$store.dispatch('roles/SetReplacingRoles', response.data);
           });
-      });
+    });
   },
   mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));

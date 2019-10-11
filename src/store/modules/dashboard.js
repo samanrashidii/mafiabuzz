@@ -14,7 +14,9 @@ export default {
         mainText: '',
         sideText: '',
         passiveText: '',
+        resultText: '',
         image: '',
+        resultImage: ''
       },
       targetData: {},
       freezeStatus: {

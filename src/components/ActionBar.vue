@@ -286,6 +286,7 @@
 import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import getImg from '@/mixins/getImg';
+import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
 import executeAction from '@/mixins/dashboard/executeAction';
@@ -339,6 +340,7 @@ export default {
     },
   },
   mixins: [
+    actionLog,
     actions,
     actionFilters,
     executeAction,
