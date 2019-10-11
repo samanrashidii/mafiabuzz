@@ -10,21 +10,22 @@ export default {
           this.gameSettings.selectedRoles[i].status.linked = false;
         }
       }
-      console.log(this.gameSettings.selectedRoles[linkTarget].player)
       this.kill(this.gameSettings.selectedRoles[linkTarget].player)
     },
-    chainKill(){
+    destroyMinions(element){
       this.gameSettings.selectedRoles.forEach((el) => {
         if (el.status.minion && !el.status.healed) {
           this.kill(el.player)
           el.status.minion = false
         }
       });
+      this.passiveActive(element)
     },
     checkIdentity(target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.identityChecked = true
+          this.actionLog(element, 'checkIdentity')
         }
       });
     },
@@ -32,6 +33,7 @@ export default {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.roleChecked = true
+          this.actionLog(element, 'checkRole')
         }
       });
     },
@@ -81,6 +83,7 @@ export default {
       this.kill(player);
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
+          this.passiveActive(element)
           element.status.damageReturned = true
         }
       });
@@ -113,15 +116,17 @@ export default {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target && !element.status.healed) {
           if (element.status.shield && !element.status.hacked) {
+            this.passiveActive(element)
             element.status.shield = false
           } else {
             element.status.dead = true
           }
           if (element.status.linked) {
+            element.status.linked = false
             this.activeLink(element.player)
           }
           if (element.ability.reviver) {
-            this.chainKill()
+            this.destroyMinions(element)
           }
           if (this.checkDetonator(element.player)) {
             this.detonate(element.player)
