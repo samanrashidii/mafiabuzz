@@ -210,8 +210,8 @@ export default {
     }),
     // Reset Game From Start
     resetFactory() {
-      const BASE_URL = // 'https://mafiabuzz.netlify.com'
-                      'http://localhost:8080'
+      const BASE_URL = 'https://mafiabuzz.netlify.com'
+                      // 'http://localhost:8080'
       const defaultState = JSON.parse(localStorage.getItem('defaultState'));
       axios.get(`${BASE_URL}/api/main.json`)
         .then((response) => {
