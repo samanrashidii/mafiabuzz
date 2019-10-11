@@ -166,6 +166,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapGetters, mapActions } from 'vuex';
 import ActionBar from '@/components/ActionBar.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -205,10 +206,27 @@ export default {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
+      SetRoles: 'roles/SetRoles',
     }),
     // Reset Game From Start
     resetFactory() {
-      console.log('hard reset');
+      const BASE_URL = // 'https://mafiabuzz.netlify.com'
+                      'http://localhost:8080'
+      const defaultState = JSON.parse(localStorage.getItem('defaultState'));
+      axios.get(`${BASE_URL}/api/main.json`)
+        .then((response) => {
+          this.$store.dispatch('main/SetMainApp', response.data);
+        });
+      axios.get(`${BASE_URL}/api/roles.json`)
+        .then((response) => {
+          this.$store.dispatch('roles/SetRoles', response.data);
+          axios.get(`${BASE_URL}/api/replacingRoles.json`)
+            .then((response) => {
+              this.$store.dispatch('roles/SetReplacingRoles', response.data);
+              this.SetGameSettings(defaultState.gameStatus.gameSettings)
+              this.SetDashboard(defaultState.dashboard.dashboard)
+            });
+      });
     },
     // Reset Game with Same Roles and Names
     resetSameGame() {

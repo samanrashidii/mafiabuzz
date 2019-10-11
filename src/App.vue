@@ -71,7 +71,7 @@ export default {
           .then((response) => {
             this.$store.dispatch('roles/SetReplacingRoles', response.data);
           });
-      });
+    });
   },
   mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
