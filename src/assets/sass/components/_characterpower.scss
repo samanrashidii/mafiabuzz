@@ -20,6 +20,7 @@
             text-align: center;
             background-color: $background_color_2;
             border-radius: $circle_radius;
+            z-index: 99;
         }
         &.mafia i{
             color: $color_1;
