@@ -57,7 +57,7 @@
                     background-color: rgba(0,0,0,.85) !important;
                 }
                 &:nth-child(1)::after{display: none;}
-                &:nth-child(2)::after{background-image: url('~@/assets/images/icons/dead.png') !important;}
+                &:nth-child(2)::after{background-image: url('~@/assets/images/icons/dead.svg') !important;}
                 a.angel{
                     background-color: $dark_green_color !important;
                 }
@@ -86,7 +86,7 @@
                 &:nth-child(2)::after{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/silence.png');
+                    background-image: url('~@/assets/images/icons/silence.svg');
                     background-color: rgba(5,31,58,.85);
                 }
             }
@@ -94,7 +94,7 @@
                 &:nth-child(2)::after{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/heal.png');
+                    background-image: url('~@/assets/images/icons/heal.svg');
                     background-color: rgba(56,113,18,.85);
                 }
             }

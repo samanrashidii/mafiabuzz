@@ -17,6 +17,11 @@ body.rtl{
 .rtl ::-moz-placeholder {font-family: $font_rtl;}
 .rtl :-ms-input-placeholder {font-family: $font_rtl;}
 
+.rtl .title h2{
+    font-family: $font_rtl;
+    font-size: $font_size_medium;
+}
+
 .rtl .roles li label,
 .rtl .roles li label > div strong span i{
     font-family: $font_rtl;
@@ -43,13 +48,6 @@ body.rtl{
 .rtl .assign-bttn span{
     padding:3px 33px 3px 5px;
     background-position-x: 99%;
-}
-
-.rtl .welcome-box strong{
-    font-family: Courier;
-    font-weight: bold;
-    font-size: 30px;
-    letter-spacing: -4px;
 }
 
 .rtl #app .navigation.internal nav a{

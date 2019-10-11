@@ -10,6 +10,7 @@
       :key="index"
     >
       <img
+        class="normal-size"
         :src="getImgUrl('/howtoplay', step.icon)"
         alt="How to Play Step Icon"
       >

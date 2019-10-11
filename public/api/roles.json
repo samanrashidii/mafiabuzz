@@ -9,8 +9,8 @@
         "icon": "mafia.svg",
         "alt": "roles[0].alt",
         "description": "roles[0].description",
-        "actionIcon": "mafia.png",
-        "passiveIcon": "default.svg",
+        "actionIcon": "kill.svg",
+        "passiveIcon": "default.png",
         "action": {
             "passive": "roles[0].action.passive",
             "action": "roles[0].action.action",
@@ -73,7 +73,7 @@
         "icon": "godfather.svg",
         "alt": "roles[1].alt",
         "description": "roles[1].description",
-        "actionIcon": "godfather.png",
+        "actionIcon": "godfather.svg",
         "passiveIcon": "invisible.svg",
         "action": {
             "passive": "roles[1].action.passive",
@@ -137,7 +137,7 @@
         "icon": "ruspy.svg",
         "alt": "roles[2].alt",
         "description": "roles[2].description",
-        "actionIcon": "ruspy.png",
+        "actionIcon": "silence.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[2].action.passive",
@@ -328,7 +328,7 @@
         "icon": "chef.svg",
         "alt": "roles[5].alt",
         "description": "roles[5].description",
-        "actionIcon": "chef.png",
+        "actionIcon": "chef.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[5].action.passive",
@@ -392,7 +392,7 @@
         "icon": "yakuza.svg",
         "alt": "roles[6].alt",
         "description": "roles[6].description",
-        "actionIcon": "yakuza.png",
+        "actionIcon": "yakuza.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[6].action.passive",
@@ -520,7 +520,7 @@
         "icon": "police.svg",
         "alt": "roles[8].alt",
         "description": "roles[8].description",
-        "actionIcon": "police.png",
+        "actionIcon": "police.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[8].action.passive",
@@ -584,7 +584,7 @@
         "icon": "doctor.svg",
         "alt": "roles[9].alt",
         "description": "roles[9].description",
-        "actionIcon": "doctor.png",
+        "actionIcon": "doctor.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[9].action.passive",
@@ -648,7 +648,7 @@
         "icon": "cupid.svg",
         "alt": "roles[10].alt",
         "description": "roles[10].description",
-        "actionIcon": "cupid.png",
+        "actionIcon": "cupid.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[10].action.passive",
@@ -904,7 +904,7 @@
         "icon": "nightking.svg",
         "alt": "roles[14].alt",
         "description": "roles[14].description",
-        "actionIcon": "nightking.png",
+        "actionIcon": "nightking.svg",
         "passiveIcon": "destroyMinions.svg",
         "action": {
             "passive": "roles[14].action.passive",
@@ -968,7 +968,7 @@
         "icon": "hacker.svg",
         "alt": "roles[15].alt",
         "description": "roles[15].description",
-        "actionIcon": "hacker.png",
+        "actionIcon": "hacker.svg",
         "passiveIcon": "default.png",
         "action": {
             "passive": "roles[15].action.passive",
