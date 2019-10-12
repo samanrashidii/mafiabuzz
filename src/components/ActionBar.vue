@@ -308,7 +308,7 @@ export default {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
-      ReplacingRoles: 'roles/ReplacingRoles',
+      ReplacingRoles: 'roles/ReplacingRoles'
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));

@@ -13,7 +13,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -65,7 +64,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -98,6 +96,55 @@
             "revived": false,
             "hacked": false,
             "minion": true,
+            "recentlyDead": false,
+            "recentlySilenced": false,
+            "recentlyRevived": false
+        }
+    },
+    "killerMafia": {
+        "actionIcon": "kill.svg",
+        "passiveIcon": "default.png",
+        "action": {
+            "passive": "replacingRoles.killerMafia.action.passive",
+            "action": "replacingRoles.killerMafia.action.action",
+            "oneTime": false
+        },
+        "actionStatus": false,
+        "ability": {
+            "simple": false,
+            "killer": true,
+            "healer": false,
+            "silencer": false,
+            "binder": false,
+            "roleChecker": false,
+            "identityChecker": false,
+            "detonator": false,
+            "hasShield": false,
+            "returner": false,
+            "reviver": false,
+            "replacer": false,
+            "hacker": false
+        },
+        "status": {
+            "mafia": false,
+            "citizen": false,
+            "hasAction": true,
+            "hasPassive": false,
+            "hasOneAction": false,
+            "dead": false,
+            "invisible": false,
+            "silenced": false,
+            "roleChecked": false,
+            "playerReplaced": false,
+            "identityChecked": false,
+            "healed": false,
+            "linked": false,
+            "detonated": false,
+            "damageReturned": false,
+            "shield": false,
+            "revived": false,
+            "hacked": false,
+            "minion": false,
             "recentlyDead": false,
             "recentlySilenced": false,
             "recentlyRevived": false
