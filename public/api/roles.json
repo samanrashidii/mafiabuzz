@@ -2,6 +2,8 @@
     {
         "id": 1,
         "priority": 160,
+        "killPriority": 10,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[0].name",
         "roleType": "roles[0].roleType",
@@ -19,8 +21,7 @@
         "actionStatus": false,
         "ability": {
             "simple": false,
-            "killer": true,
-            "killPriority": 10,
+            "killer": false,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -41,7 +42,7 @@
         "status": {
             "mafia": true,
             "citizen": false,
-            "hasAction": true,
+            "hasAction": false,
             "hasPassive": false,
             "hasOneAction": false,
             "dead": false,
@@ -66,6 +67,8 @@
     {
         "id": 2,
         "priority": 140,
+        "killPriority": 1,
+        "potentialKiller": false,
         "mafia": true,
         "name": "roles[1].name",
         "roleType": "roles[1].roleType",
@@ -73,7 +76,7 @@
         "icon": "godfather.svg",
         "alt": "roles[1].alt",
         "description": "roles[1].description",
-        "actionIcon": "godfather.svg",
+        "actionIcon": "kill.svg",
         "passiveIcon": "invisible.svg",
         "action": {
             "passive": "roles[1].action.passive",
@@ -84,7 +87,6 @@
         "ability": {
             "simple": false,
             "killer": true,
-            "killPriority": 1,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -130,6 +132,8 @@
     {
         "id": 3,
         "priority": 120,
+        "killPriority": 20,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[2].name",
         "roleType": "roles[2].roleType",
@@ -148,7 +152,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": 20,
             "healer": false,
             "silencer": true,
             "binder": false,
@@ -194,6 +197,8 @@
     {
         "id": 4,
         "priority": null,
+        "killPriority": 60,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[3].name",
         "roleType": "roles[3].roleType",
@@ -212,7 +217,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": 60,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -257,6 +261,8 @@
     {
         "id": 5,
         "priority": null,
+        "killPriority": 70,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[4].name",
         "roleType": "roles[4].roleType",
@@ -275,7 +281,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": 70,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -321,6 +326,8 @@
     {
         "id": 6,
         "priority": 100,
+        "killPriority": 50,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[5].name",
         "roleType": "roles[5].roleType",
@@ -339,7 +346,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": 50,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -385,6 +391,8 @@
     {
         "id": 7,
         "priority": 180,
+        "killPriority": 40,
+        "potentialKiller": true,
         "mafia": true,
         "name": "roles[6].name",
         "roleType": "roles[6].roleType",
@@ -403,7 +411,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": 40,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -449,6 +456,8 @@
     {
         "id": 8,
         "priority": null,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[7].name",
         "roleType": "roles[7].roleType",
@@ -467,7 +476,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -513,6 +521,8 @@
     {
         "id": 9,
         "priority": 80,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[8].name",
         "roleType": "roles[8].roleType",
@@ -531,7 +541,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -577,6 +586,8 @@
     {
         "id": 10,
         "priority": 40,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[9].name",
         "roleType": "roles[9].roleType",
@@ -595,7 +606,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": true,
             "silencer": false,
             "binder": false,
@@ -641,6 +651,8 @@
     {
         "id": 11,
         "priority": 0,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[10].name",
         "roleType": "roles[10].roleType",
@@ -659,7 +671,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": true,
@@ -705,6 +716,8 @@
     {
         "id": 12,
         "priority": null,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[11].name",
         "roleType": "roles[11].roleType",
@@ -723,7 +736,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -769,6 +781,8 @@
     {
         "id": 13,
         "priority": null,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[12].name",
         "roleType": "roles[12].roleType",
@@ -787,7 +801,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -833,6 +846,8 @@
     {
         "id": 14,
         "priority": null,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[13].name",
         "roleType": "roles[13].roleType",
@@ -851,7 +866,6 @@
         "ability": {
             "simple": true,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -897,6 +911,8 @@
     {
         "id": 15,
         "priority": 60,
+        "killPriority": null,
+        "potentialKiller": false,
         "mafia": false,
         "name": "roles[14].name",
         "roleType": "roles[14].roleType",
@@ -915,7 +931,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,
@@ -962,6 +977,8 @@
         "id": 16,
         "mafia": false,
         "priority": 20,
+        "killPriority": null,
+        "potentialKiller": false,
         "name": "roles[15].name",
         "roleType": "roles[15].roleType",
         "hiddenRoleType": null,
@@ -979,7 +996,6 @@
         "ability": {
             "simple": false,
             "killer": false,
-            "killPriority": null,
             "healer": false,
             "silencer": false,
             "binder": false,

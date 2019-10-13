@@ -49,35 +49,31 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import getImg from '@/mixins/getImg';
-
+import startGame from '@/mixins/startGame';
 export default {
   computed: {
     ...mapGetters(['DefaultState']),
   },
   created() {
-    const BASE_URL = 'https://mafiabuzz.netlify.com'
-                      // 'http://localhost:8080'
-    axios.get(`${BASE_URL}/api/main.json`)
-      .then((response) => {
-        this.$store.dispatch('main/SetMainApp', response.data);
-      });
-    axios.get(`${BASE_URL}/api/roles.json`)
-      .then((response) => {
-        this.$store.dispatch('roles/SetRoles', response.data);
-        axios.get(`${BASE_URL}/api/replacingRoles.json`)
-          .then((response) => {
-            this.$store.dispatch('roles/SetReplacingRoles', response.data);
-          });
-    });
+    this.startGameEngine()
   },
   mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
   },
+  methods:{
+    ...mapActions({
+      SetMainApp : 'main/SetMainApp',
+      SetRoles: 'roles/SetRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetDashboard: 'dashboard/SetDashboard',
+      SetGameSettings: 'gameStatus/SetGameSettings'
+    })
+  },
   mixins: [
     getImg,
+    startGame
   ],
 };
 </script>
