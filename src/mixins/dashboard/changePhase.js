@@ -38,11 +38,11 @@ export default {
           this.SetGameSettings(this.gameSettings);
         });
         this.dashboard.round++;
-        this.setActionsByPriority();
         this.dashboard.day = false;
+        this.setActionsByPriority();
       }
-      this.SetGameSettings(this.gameSettings);
       this.SetDashboard(this.dashboard);
+      this.SetGameSettings(this.gameSettings);
     },
   },
 };

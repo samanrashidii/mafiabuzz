@@ -22,6 +22,7 @@ export default {
             element.actionStatus = this.replacingRoles.killerMafia.actionStatus
             element.ability = this.replacingRoles.killerMafia.ability
             element.status = this.replacingRoles.killerMafia.status
+            actions.push(element)
           }
         })
       }
