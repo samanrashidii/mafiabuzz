@@ -172,6 +172,7 @@ import ActionBar from '@/components/ActionBar.vue';
 import Overlay from '@/components/Overlay.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
+import startGame from '@/mixins/startGame';
 import changePhase from '@/mixins/dashboard/changePhase';
 import setActions from '@/mixins/dashboard/setActions';
 
@@ -208,33 +209,19 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetMainApp : 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetDashboard: 'dashboard/SetDashboard',
+      SetGameSettings: 'gameStatus/SetGameSettings'
     }),
     // Reset Game From Start
     resetFactory() {
-      const BASE_URL = // 'https://mafiabuzz.netlify.com'
-                      'http://localhost:8080'
-      const defaultState = JSON.parse(localStorage.getItem('defaultState'));
-      axios.get(`${BASE_URL}/api/main.json`)
-        .then((response) => {
-          this.$store.dispatch('main/SetMainApp', response.data);
-        });
-      axios.get(`${BASE_URL}/api/roles.json`)
-        .then((response) => {
-          this.$store.dispatch('roles/SetRoles', response.data);
-          axios.get(`${BASE_URL}/api/replacingRoles.json`)
-            .then((response) => {
-              this.$store.dispatch('roles/SetReplacingRoles', response.data);
-              this.SetGameSettings(defaultState.gameStatus.gameSettings)
-              this.SetDashboard(defaultState.dashboard.dashboard)
-            });
-      });
+      this.startGameEngine('hard')
     },
     // Reset Game with Same Roles and Names
     resetSameGame() {
-      console.log('soft reset');
+      this.startGameEngine('soft')
     },
     // Show God Dashboard
     showPlay() {
@@ -251,6 +238,7 @@ export default {
     changePhase,
     getImg,
     setActions,
+    startGame
   ],
 };
 

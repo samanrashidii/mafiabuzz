@@ -102,6 +102,7 @@ export default {
   computed: {
     ...mapGetters({
       GameSettings: 'gameStatus/GameSettings',
+      DefaultState: 'DefaultState'
     }),
     createSettings() {
       return JSON.parse(JSON.stringify(this.CreateSettings));
@@ -137,6 +138,7 @@ export default {
       // Start Engine
       this.gameSettings.gameStatus = true;
       this.SetGameSettings(this.gameSettings);
+      localStorage.setItem('defaultSettings', JSON.stringify(this.DefaultState));
     },
   },
   mixins: [checkRoute],

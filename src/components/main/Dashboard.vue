@@ -8,18 +8,11 @@
         />
       </PageBox>
       <AppButton
-        @click.native="alertBox = true, totRestart = false"
+        @click.native="alertBox = true"
         class="settings-bttn danger has-small-top-margin"
-        v-if="gameSettings.stepCounter !== 3 && !gameSettings.gameReset"
+        v-if="gameSettings.stepCounter !== 3"
       >
         <span>{{ $t('pages.creator.changeSettings') }}</span>
-      </AppButton>
-      <AppButton
-        @click.native="alertBox = true, totRestart = true"
-        class="danger has-small-top-margin"
-        v-else-if="gameSettings.stepCounter !== 3 && gameSettings.gameReset"
-      >
-        <span>{{ $t('pages.creator.restartGame') }}</span>
       </AppButton>
     </div>
 
@@ -29,28 +22,13 @@
         :src="getImgUrl('/icons', $t('general.warning'))"
         :alt="$t('general.warningIcon')"
       >
-      <template v-if="!totRestart">
+      <template>
         <p>{{ $t('pages.creator.changeSettingsText') }}</p>
         <AppButton
-          @click.native="resetGame()"
+          @click.native="changeGameSettings()"
           class="green"
         >
           <span>{{ $t('pages.creator.confirmButton') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="alertBox = false"
-          class="danger"
-        >
-          <span>{{ $t('pages.creator.cancelButton') }}</span>
-        </AppButton>
-      </template>
-      <template v-else>
-        <p>{{ $t('pages.creator.resetTotalText') }}</p>
-        <AppButton
-          @click.native="restartGame()"
-          class="green"
-        >
-          <span>{{ $t('pages.creator.restartButton') }}</span>
         </AppButton>
         <AppButton
           @click.native="alertBox = false"
@@ -181,6 +159,7 @@ import Overlay from '@/components/Overlay.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
 import getImg from '@/mixins/getImg';
+import startGame from '@/mixins/startGame';
 
 export default {
   data() {
@@ -191,7 +170,6 @@ export default {
       showSavedNames: false,
       showrole: false,
       alertBox: false,
-      totRestart: false,
     };
   },
   components: {
@@ -216,7 +194,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetMainApp : 'main/SetMainApp',
+      SetRoles: 'roles/SetRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetGameSettings: 'gameStatus/SetGameSettings'
     }),
     assignRoles() {
       const gR = this.gameSettings.selectedRoles;
@@ -286,20 +267,14 @@ export default {
     randomFunc() {
       this.gameSettings.selectedRoles.sort(() => 0.5 - Math.random());
     },
-    resetGame() {
-      this.gameSettings.gameStatus = false;
-      this.gameSettings.stepCounter = 1;
-      this.SetGameSettings(this.gameSettings);
-    },
-    restartGame() {
-      const defaultSettings = localStorage.getItem(defaultState);
-      this.SetGameSettings(defaultSettings);
-      this.$router.push({ name: 'creator' });
-    },
+    changeGameSettings() {
+      this.startGameEngine('change');
+    }
   },
   mixins: [
     checkRoute,
     getImg,
+    startGame
   ],
 };
 </script>
