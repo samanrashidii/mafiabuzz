@@ -5,7 +5,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store/index';
 import i18n from './i18n';
-
+import VueMeta from 'vue-meta'
 import './registerServiceWorker';
 
 // Global Components
@@ -17,6 +17,7 @@ import PageBox from './components/global/PageBox.vue';
 
 // Vue.use(Vue2TouchEvents);
 Vue.use(Notifications);
+Vue.use(VueMeta)
 
 Vue.component('AppButton', Button);
 Vue.component('PageBox', PageBox);

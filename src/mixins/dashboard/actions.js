@@ -120,6 +120,7 @@ export default {
             element.status.shield = false
           } else {
             element.status.dead = true
+            element.status.recentlyDead = true
           }
           if (element.status.linked) {
             element.status.linked = false

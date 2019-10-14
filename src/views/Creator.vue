@@ -50,7 +50,7 @@ export default {
         {
           vmid: 'ogurl',
           name: 'og:url',
-          content: `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.creator.url')}`,
+          content: window.location.href,
         },
       ],
     };

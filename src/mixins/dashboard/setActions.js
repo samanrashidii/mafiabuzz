@@ -3,10 +3,10 @@ export default {
     setActionsByPriority() {
       const actions = [];
       this.gameSettings.selectedRoles.forEach((x) => {
-        if (x.status.hasAction && !x.actionStatus && !x.status.dead && !x.ability.reviver) {
+        if (x.status.hasAction && !x.actionStatus && !x.ability.reviver) {
           actions.push(x);
         }
-        if (x.status.hasAction && !x.actionStatus && !x.status.dead && x.ability.reviver && this.gameSettings.deadPeople !== 0) {
+        if (x.status.hasAction && !x.actionStatus && x.ability.reviver && this.gameSettings.deadPeople !== 0) {
           actions.push(x);
         }
       });

@@ -87,79 +87,79 @@
         :key="index"
       >
         <template v-if="dashboard.actionProgress === index">
-          <!-- <transition
-                name="fade"
-                mode="out-in"
-              >
-                <div
-                  class="action-overlay hacked-overlay"
-                  v-if="dashboard.targetHacked"
-                  key="hackedTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t('god.hackedIcon'))"
-                        :alt="$t('god.hackedIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ $t(dashboard.info.name2) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
-                      <app-button
-                        class="purple"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
+          <transition
+            name="fade"
+            mode="out-in"
+          >
+            <div
+              class="action-overlay hacked-overlay"
+              v-if="checkStatus(player).status.hacked"
+              key="hackedTarget"
+            >
+              <div class="table-display">
+                <div class="table-cell-display">
+                  <img
+                    :src="getImgUrl('/roles', $t('god.hackedIcon'))"
+                    :alt="$t('god.hackedIconAlt')"
+                  >
+                  <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
+                  <app-button
+                    class="purple"
+                    @click.native="skipAction()"
+                  >
+                    {{ $t('god.skipButton3') }}
+                  </app-button>
                 </div>
-                <div
-                  class="action-overlay dead-overlay"
-                  v-else-if="dashboard.targetDead"
-                  key="deadTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t('god.deadIcon'))"
-                        :alt="$t('god.deadIconAlt')"
-                      >
-                      <img
-                        class="overlap"
-                        :src="getImgUrl('/roles', $t(dashboard.info.icon2))"
-                        :alt="$t('god.playerIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ $t(dashboard.info.name2) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
-                      <app-button
-                        class="black"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div
+              class="action-overlay dead-overlay"
+              v-if="checkStatus(player).status.dead"
+              key="deadTarget"
+            >
+              <div class="table-display">
+                <div class="table-cell-display">
+                  <img
+                    :src="getImgUrl('/roles', $t('god.deadIcon'))"
+                    :alt="$t('god.deadIconAlt')"
+                  >
+                  <img
+                    class="overlap"
+                    :src="getImgUrl('/roles', player.icon)"
+                    :alt="$t('god.playerIconAlt')"
+                  >
+                  <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
+                  <app-button
+                    class="black"
+                    @click.native="skipAction()"
+                  >
+                    {{ $t('god.skipButton3') }}
+                  </app-button>
                 </div>
-                <div
-                  class="action-overlay dead-overlay"
-                  v-else-if="dashboard.targetRevived"
-                  key="revivedTarget"
-                >
-                  <div class="table-display">
-                    <div class="table-cell-display">
-                      <img
-                        :src="getImgUrl('/roles', $t(dashboard.info.icon2))"
-                        :alt="$t('god.revivedIconAlt')"
-                      >
-                      <p><span :class="{'mafia-role': dashboard.info.mafia, 'citizen-role': !dashboard.info.mafia}">{{ dashboard.info.player }} </span> <strong v-html="$t('god.revivedPerson')" /></p>
-                      <app-button
-                        class="black"
-                        @click.native="skipAction()"
-                      >
-                        {{ $t('god.skipButton3') }}
-                      </app-button>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div
+              class="action-overlay dead-overlay"
+              v-if="checkStatus(player).status.revived"
+              key="revivedTarget"
+            >
+              <div class="table-display">
+                <div class="table-cell-display">
+                  <img
+                    :src="getImgUrl('/roles', player.icon)"
+                    :alt="$t('god.revivedIconAlt')"
+                  >
+                  <p><span >{{ player.player }} </span> <strong v-html="$t('god.revivedPerson')" /></p>
+                  <app-button
+                    class="black"
+                    @click.native="skipAction()"
+                  >
+                    {{ $t('god.skipButton3') }}
+                  </app-button>
                 </div>
-              </transition> -->
+              </div>
+            </div>
+          </transition> 
 
           <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
           <div class="player-box-holder has-small-bottom-margin">
@@ -338,6 +338,18 @@ export default {
       this.dashboard.freezeStatus.silenced = status.silenced,
       this.dashboard.freezeStatus.healed = status.healed;
     },
+    checkStatus(player){
+      let target = '';
+      console.log(player)
+      if(player){
+        this.gameSettings.selectedRoles.forEach(element => {
+          if(element.player === player.player){
+            target = element
+          }
+        });
+      }
+      return target
+    }
   },
   mixins: [
     actionLog,
