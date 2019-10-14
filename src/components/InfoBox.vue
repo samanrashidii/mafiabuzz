@@ -8,6 +8,7 @@
       @click="info.show = false"
     />
     <img
+      :class="{'floating': floating}"
       :src="getImgUrl('/roles', info.icon)"
       :alt="$t(info.alt)"
     >
@@ -32,6 +33,7 @@ import getImg from '@/mixins/getImg';
 export default {
   props: {
     info: Object,
+    floating: Boolean
   },
   mixins: [getImg],
 };

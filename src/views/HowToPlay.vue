@@ -22,6 +22,7 @@
           v-for="(info, index) in Roles"
           :key="index"
           :info="info"
+          :floating="true"
         />
       </div>
     </PageBox>

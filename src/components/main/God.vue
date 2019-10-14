@@ -152,7 +152,7 @@
           @click.native="resetFactory()"
           class="green "
         >
-          <span>{{ $t('god.restartButton') }}</span>
+          <span>{{ $t('god.startButton') }}</span>
         </AppButton>
         <AppButton
           @click.native="overlay = false"

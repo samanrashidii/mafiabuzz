@@ -16,13 +16,17 @@ export default {
         const sortedPotentialKillers = [...potentialKillers.slice().sort((a, b) => ((a.killPriority > b.killPriority) ? 1 : -1))];
         this.gameSettings.selectedRoles.forEach((element) => {
           if(element.player === sortedPotentialKillers[0].player){
+            const characterStatus = element.status.hasAction
             element.actionIcon = this.replacingRoles.killerMafia.actionIcon
             element.passiveIcon = this.replacingRoles.killerMafia.passiveIcon
             element.action = this.replacingRoles.killerMafia.action
             element.actionStatus = this.replacingRoles.killerMafia.actionStatus
             element.ability = this.replacingRoles.killerMafia.ability
             element.status = this.replacingRoles.killerMafia.status
-            actions.push(element)
+            // Check character had action or not
+            if(!characterStatus){
+              actions.push(element)
+            }
           }
         })
       }

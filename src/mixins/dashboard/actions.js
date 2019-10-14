@@ -62,11 +62,11 @@ export default {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target) {
           mainTarget = i
-          if (i === this.gameSettings.selectedRoles.length) {
+          if (i === this.gameSettings.selectedRoles.length - 1) {
             prevTarget = i - 1
             nextTarget = 0;
           } else if (i === 0) {
-            prevTarget = this.gameSettings.selectedRoles.length;
+            prevTarget = this.gameSettings.selectedRoles.length - 1;
             nextTarget = i + 1
           } else {
             prevTarget = i - 1

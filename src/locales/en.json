@@ -216,6 +216,7 @@
         "logPassive": "Passive activated : ",
         "logResult": "The Result is : ",
         "restartButton": "Restart Game",
+        "startButton": "Start Game",
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
