@@ -11,7 +11,8 @@ export default {
         }
       });
       const killersInGame = this.gameSettings.selectedRoles.filter((x)=>{return x.ability.killer && !x.status.dead}).length
-      if(killersInGame === 0){
+      const mafiaInGame = this.gameSettings.aliveMafia
+      if(killersInGame === 0 && mafiaInGame !== 0){
         const potentialKillers = this.gameSettings.selectedRoles.filter((x) => {return x.potentialKiller && !x.status.dead});
         const sortedPotentialKillers = [...potentialKillers.slice().sort((a, b) => ((a.killPriority > b.killPriority) ? 1 : -1))];
         this.gameSettings.selectedRoles.forEach((element) => {

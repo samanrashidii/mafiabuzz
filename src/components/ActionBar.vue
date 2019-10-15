@@ -138,27 +138,6 @@
                 </div>
               </div>
             </div>
-            <div
-              class="action-overlay dead-overlay"
-              v-if="checkStatus(player).status.revived"
-              key="revivedTarget"
-            >
-              <div class="table-display">
-                <div class="table-cell-display">
-                  <img
-                    :src="getImgUrl('/roles', player.icon)"
-                    :alt="$t('god.revivedIconAlt')"
-                  >
-                  <p><span >{{ player.player }} </span> <strong v-html="$t('god.revivedPerson')" /></p>
-                  <app-button
-                    class="black"
-                    @click.native="skipAction()"
-                  >
-                    {{ $t('god.skipButton3') }}
-                  </app-button>
-                </div>
-              </div>
-            </div>
           </transition> 
 
           <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
@@ -340,7 +319,6 @@ export default {
     },
     checkStatus(player){
       let target = '';
-      console.log(player)
       if(player){
         this.gameSettings.selectedRoles.forEach(element => {
           if(element.player === player.player){
