@@ -1,6 +1,4 @@
 import SERVER from '@/server';
-const defaultState = JSON.parse(localStorage.getItem('defaultState'));
-const defaultSettings = JSON.parse(localStorage.getItem('defaultSettings'));
 export default {
   methods: {
     startGameEngine(type) {
@@ -13,6 +11,8 @@ export default {
           this.SetRoles(response.data);
           SERVER.getReplacingRoles()
             .then((response) => {
+              const defaultState = JSON.parse(localStorage.getItem('defaultState'));
+              const defaultSettings = JSON.parse(localStorage.getItem('defaultSettings'));
               this.SetReplacingRoles(response.data);
               if(type === 'hard'){
                 this.SetGameSettings(defaultState.gameStatus.gameSettings)

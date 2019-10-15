@@ -166,6 +166,7 @@ export default {
           element.actionStatus = this.replacingRoles.skeleton.actionStatus
           element.ability = this.replacingRoles.skeleton.ability
           element.status = this.replacingRoles.skeleton.status
+          element.status.recentlyRevived = true
         }
       });
     },
@@ -173,6 +174,7 @@ export default {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.dead = false
+          element.status.recentlyRevived = true
         }
       });
     },
@@ -180,6 +182,7 @@ export default {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.silenced = true
+          element.status.recentlySilenced = true
         }
       });
     },

@@ -27,6 +27,26 @@ export default {
             el.status.hacked = false;
           }
         });
+        if(this.dashboard.lastNight.length > 0){
+          this.dashboard.lastNightBox = true;
+          this.gameSettings.selectedRoles.forEach((element) => {
+            if (element.status.recentlyRevived) {
+              const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span>`;
+              element.status.recentlyDead = false;
+              this.dashboard.lastNight.push(logNote);
+            }
+            if (element.status.recentlyDead) {
+              const logNote = `<span class='last-log green-bg revived-icon'><i>${element.player}</i> ${this.$t('god.logRevivedText')}</span>`;
+              element.status.recentlyRevived = false;
+              this.dashboard.lastNight.push(logNote);
+            }
+            if (element.status.recentlySilenced) {
+              const logNote = `<span class='last-log blue-bg silenced-icon'><i>${element.player}</i> ${this.$t('god.logSilencedText')}</span>`;
+              element.status.recentlySilenced = false;
+              this.dashboard.lastNight.push(logNote);
+            }
+          });
+        }
       } else {
         this.gameSettings.selectedRoles.forEach((el) => {
           if (el.status.silenced) {
@@ -37,8 +57,11 @@ export default {
           }
           this.SetGameSettings(this.gameSettings);
         });
-        this.dashboard.round++;
         this.dashboard.day = false;
+        if (this.dashboard.round >= 1) {
+          this.dashboard.lastNight = [];
+        }
+        this.dashboard.round++;
         this.setActionsByPriority();
       }
       this.SetDashboard(this.dashboard);
