@@ -221,7 +221,7 @@
             </select>
           </template>
           <!-- Action Buttons -->
-          <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2)">
+          <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2, index)">
             {{ $t('god.confirmButton') }}
           </AppButton>
           <AppButton
@@ -287,7 +287,8 @@ export default {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
-      ReplacingRoles: 'roles/ReplacingRoles'
+      ReplacingRoles: 'roles/ReplacingRoles',
+      DefaultState: 'DefaultState'
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
