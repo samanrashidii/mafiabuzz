@@ -102,7 +102,7 @@ export default {
   computed: {
     ...mapGetters({
       GameSettings: 'gameStatus/GameSettings',
-      DefaultState: 'DefaultState'
+      DefaultState: 'DefaultState',
     }),
     createSettings() {
       return JSON.parse(JSON.stringify(this.CreateSettings));

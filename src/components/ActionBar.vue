@@ -74,10 +74,16 @@
 
     <!-- Actions Progress Bar -->
     <div class="progress-bar">
-      <a class="prev-action" href="javascript:void(0)" />
+      <a
+        class="prev-action"
+        href="javascript:void(0)"
+      />
       <span :style="{width: progress+'%'}" />
       <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
-      <a class="next-action" href="javascript:void(0)" />
+      <a
+        class="next-action"
+        href="javascript:void(0)"
+      />
     </div>
 
     <!-- Handle Actions -->
@@ -140,7 +146,7 @@
                 </div>
               </div>
             </div>
-          </transition> 
+          </transition>
 
           <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
           <div class="player-box-holder has-small-bottom-margin">
@@ -259,7 +265,6 @@
         </template>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -279,7 +284,7 @@ export default {
     return {
       actionTarget1: null,
       actionTarget2: null,
-      alertBox: false
+      alertBox: false,
     };
   },
   components: {
@@ -290,7 +295,7 @@ export default {
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
+      DefaultState: 'DefaultState',
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
@@ -320,17 +325,17 @@ export default {
       this.dashboard.freezeStatus.silenced = status.silenced,
       this.dashboard.freezeStatus.healed = status.healed;
     },
-    checkStatus(player){
+    checkStatus(player) {
       let target = '';
-      if(player){
-        this.gameSettings.selectedRoles.forEach(element => {
-          if(element.player === player.player){
-            target = element
+      if (player) {
+        this.gameSettings.selectedRoles.forEach((element) => {
+          if (element.player === player.player) {
+            target = element;
           }
         });
       }
-      return target
-    }
+      return target;
+    },
   },
   mixins: [
     actionLog,
@@ -339,7 +344,7 @@ export default {
     executeAction,
     getImg,
     nextAction,
-    passiveActive
+    passiveActive,
   ],
 };
 </script>

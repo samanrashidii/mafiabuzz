@@ -8,13 +8,13 @@ export default {
           group: 'log',
           title: `${this.dashboard.log.passiveIcon}`,
           text: `${this.dashboard.log.passiveText}`,
-          duration: 4000
-        })
+          duration: 4000,
+        });
         this.dashboard.historyLog.push({
           image: `${element.passiveIcon}`,
-          text: `${this.dashboard.log.passiveText}`
-        })
+          text: `${this.dashboard.log.passiveText}`,
+        });
       }, 500);
-    }
-  }
-}
+    },
+  },
+};

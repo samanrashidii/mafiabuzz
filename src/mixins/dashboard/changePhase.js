@@ -47,7 +47,7 @@ export default {
             this.dashboard.lastNight.push(logNote);
           }
         });
-        if(this.dashboard.lastNight.length > 0){
+        if (this.dashboard.lastNight.length > 0) {
           this.dashboard.lastNightBox = true;
         }
       } else {

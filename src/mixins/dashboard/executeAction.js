@@ -7,7 +7,7 @@ export default {
         this.gameSettings.selectedRoles.forEach((el) => {
           // Shared
           if (el.player === player.player) {
-            el.actionStatus = true
+            el.actionStatus = true;
           }
           // Check One Time Action
           if (el.player === player.player && el.status.hasOneAction) {
@@ -17,17 +17,17 @@ export default {
 
         // IF Returner
         if (this.checkReturner(target1)) {
-          this.damageReturn(player.player, target1)
+          this.damageReturn(player.player, target1);
         }
         // ELSE
         else if (!player.status.hacked) {
           // Binder
           if (player.ability.binder) {
-            this.link(target1, target2)
+            this.link(target1, target2);
           }
           // Hacker
           if (player.ability.hacker) {
-            this.hack(target1)
+            this.hack(target1);
           }
           // Killer
           if (player.ability.killer) {
@@ -35,11 +35,11 @@ export default {
           }
           // Identity Checker
           if (player.ability.identityChecker) {
-            this.checkIdentity(target1)
+            this.checkIdentity(target1);
           }
           // Role Checker
           if (player.ability.roleChecker) {
-            this.checkRole(target1)
+            this.checkRole(target1);
           }
           // Replacer
           if (player.ability.replacer) {
@@ -47,15 +47,15 @@ export default {
           }
           // Reviver
           if (player.ability.reviver) {
-            this.resurrect(target1)
+            this.resurrect(target1);
           }
           // Silencer
           if (player.ability.silencer) {
-            this.silence(target1)
+            this.silence(target1);
           }
           // Healer
           if (player.ability.healer) {
-            this.heal(target1)
+            this.heal(target1);
           }
         }
 
@@ -67,9 +67,9 @@ export default {
           type: 'success',
           title: `${this.dashboard.log.image}`,
           text: `${this.dashboard.log.mainText}`,
-          duration: 4000
-        })
-        this.nextAction(index)
+          duration: 4000,
+        });
+        this.nextAction(index);
       } else {
         // Error Log
         this.$notify({
@@ -77,8 +77,8 @@ export default {
           type: 'error',
           title: 'error.svg',
           image: `${this.dashboard.log.image}`,
-          text: `${this.$t('god.errorChoosePlayer')}`
-        })
+          text: `${this.$t('god.errorChoosePlayer')}`,
+        });
       }
     },
   },

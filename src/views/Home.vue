@@ -36,9 +36,9 @@ export default {
           vmid: 'ogurl',
           name: 'og:url',
           content: window.location.href,
-        }
-      ]
-    }
-  }
+        },
+      ],
+    };
+  },
 };
 </script>
