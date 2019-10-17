@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://mafiabuzz.netlify.com';
+const BASE_URL = 'https://www.mafiabuzz.com';
 // 'http://localhost:8080'
 export default {
   getMainData() {
