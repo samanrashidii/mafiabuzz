@@ -52,28 +52,29 @@
 import { mapGetters, mapActions } from 'vuex';
 import getImg from '@/mixins/getImg';
 import startGame from '@/mixins/startGame';
+
 export default {
   computed: {
     ...mapGetters(['DefaultState']),
   },
   created() {
-    this.startGameEngine()
+    this.startGameEngine();
   },
   mounted() {
     localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
   },
-  methods:{
+  methods: {
     ...mapActions({
-      SetMainApp : 'main/SetMainApp',
+      SetMainApp: 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings'
-    })
+      SetGameSettings: 'gameStatus/SetGameSettings',
+    }),
   },
   mixins: [
     getImg,
-    startGame
+    startGame,
   ],
 };
 </script>

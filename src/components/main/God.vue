@@ -218,7 +218,7 @@ export default {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
-      ReplacingRoles: 'roles/ReplacingRoles'
+      ReplacingRoles: 'roles/ReplacingRoles',
     }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard));
@@ -228,23 +228,23 @@ export default {
     },
     replacingRoles() {
       return JSON.parse(JSON.stringify(this.ReplacingRoles));
-    }
+    },
   },
   methods: {
     ...mapActions({
-      SetMainApp : 'main/SetMainApp',
+      SetMainApp: 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     // Reset Game From Start
     resetFactory() {
-      this.startGameEngine('hard')
+      this.startGameEngine('hard');
     },
     // Reset Game with Same Roles and Names
     resetSameGame() {
-      this.startGameEngine('soft')
+      this.startGameEngine('soft');
     },
     // Show God Dashboard
     showPlay() {
@@ -265,7 +265,7 @@ export default {
     changePhase,
     getImg,
     setActions,
-    startGame
+    startGame,
   ],
 };
 

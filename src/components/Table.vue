@@ -134,7 +134,7 @@ export default {
     actions,
     getImg,
     godAction,
-    passiveActive
+    passiveActive,
   ],
 };
 </script>

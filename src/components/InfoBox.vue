@@ -33,7 +33,7 @@ import getImg from '@/mixins/getImg';
 export default {
   props: {
     info: Object,
-    floating: Boolean
+    floating: Boolean,
   },
   mixins: [getImg],
 };

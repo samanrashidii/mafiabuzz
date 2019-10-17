@@ -194,10 +194,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetMainApp : 'main/SetMainApp',
+      SetMainApp: 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameStatus/SetGameSettings',
     }),
     assignRoles() {
       const gR = this.gameSettings.selectedRoles;
@@ -269,12 +269,12 @@ export default {
     },
     changeGameSettings() {
       this.startGameEngine('change');
-    }
+    },
   },
   mixins: [
     checkRoute,
     getImg,
-    startGame
+    startGame,
   ],
 };
 </script>
