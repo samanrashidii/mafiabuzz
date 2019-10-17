@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: './',
   pluginOptions: {
     i18n: {
       locale: 'en',
@@ -6,5 +7,5 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: true,
     },
-  },
+  }
 };

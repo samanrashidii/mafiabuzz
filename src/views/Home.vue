@@ -15,7 +15,7 @@
 export default {
   metaInfo() {
     return {
-      title: `${this.$t('meta.home.title')}`,
+      title: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,
       meta: [
         {
           vmid: 'description',
@@ -37,6 +37,21 @@ export default {
           name: 'og:url',
           content: window.location.href,
         },
+        {
+          vmid : 'twitter:title',
+          name : 'twitter:title',
+          content : `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,
+        },
+        {
+          vmid : 'twitter:description',
+          name : 'twitter:description',
+          content: `${this.$t('meta.home.description')}`,
+        },
+        {
+          vmid : 'twitter:url',
+          name : 'twitter:url',
+          content : window.location.href,
+        }
       ],
     };
   },

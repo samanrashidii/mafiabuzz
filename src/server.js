@@ -1,7 +1,6 @@
 import axios from 'axios';
-
-const BASE_URL = 'https://www.mafiabuzz.com';
-// 'http://localhost:8080'
+console.log(process.env.BASE_URL)
+const BASE_URL = process.env.BASE_URL
 export default {
   getMainData() {
     return axios.get(`${BASE_URL}/api/main.json`);
