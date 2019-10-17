@@ -22,6 +22,7 @@
           v-for="(info, index) in Roles"
           :key="index"
           :info="info"
+          :floating="true"
         />
       </div>
     </PageBox>
@@ -72,7 +73,7 @@ export default {
         {
           vmid: 'ogurl',
           name: 'og:url',
-          content: `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.howtoplay.url')}`,
+          content: window.location.href,
         },
       ],
     };

@@ -1,6 +1,6 @@
 export default {
   methods: {
-    executeAction(player, target1, target2) {
+    executeAction(player, target1, target2, index) {
       if (!player.ability.binder && this.actionTarget1 !== null
         || player.ability.binder && this.actionTarget1 !== null && this.actionTarget2 !== null) {
         // For All Each
@@ -69,7 +69,7 @@ export default {
           text: `${this.dashboard.log.mainText}`,
           duration: 4000
         })
-        this.nextAction()
+        this.nextAction(index)
       } else {
         // Error Log
         this.$notify({

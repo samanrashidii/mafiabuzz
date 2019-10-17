@@ -35,10 +35,10 @@ export default {
         {
           vmid: 'ogurl',
           name: 'og:url',
-          content: `${this.$t('general.url')}`,
-        },
-      ],
-    };
-  },
+          content: window.location.href,
+        }
+      ]
+    }
+  }
 };
 </script>

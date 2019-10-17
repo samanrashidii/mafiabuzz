@@ -64,6 +64,9 @@ export default {
   },
   metaInfo() {
     return {
+      changed (newInfo, addedTags, removedTags) {
+        console.log('Metadata was updated!')
+      },
       title: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
       meta: [
         {
@@ -84,7 +87,7 @@ export default {
         {
           vmid: 'ogurl',
           name: 'og:url',
-          content: `${this.$t('general.url')}/${this.pageId}/${this.$t('meta.about.url')}`,
+          content: window.location.href,
         },
       ],
     };

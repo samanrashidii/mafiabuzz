@@ -138,6 +138,7 @@ export default {
       // Start Engine
       this.gameSettings.gameStatus = true;
       this.SetGameSettings(this.gameSettings);
+      localStorage.removeItem('defaultSettings');
       localStorage.setItem('defaultSettings', JSON.stringify(this.DefaultState));
     },
   },

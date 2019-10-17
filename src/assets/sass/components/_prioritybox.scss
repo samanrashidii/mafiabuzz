@@ -23,10 +23,21 @@
         width: calc(100% - 20px);
         height: 18px;
         line-height: 16px;
-        overflow: hidden;
         font-size: $font_size_1;
         background-color: $background_color_default;
         border-radius: $curve_radius;
+        a{
+            position: absolute;
+            top:-6px;
+            display: block;
+            width:30px;
+            height: 30px;
+            background-color: tomato;
+            border-radius: 50%;
+            z-index: 10;
+            &.prev-action{left:-2px;}
+            &.next-action{right: -2px;}
+        }
         span{
             display: block;
             height: 100%;
