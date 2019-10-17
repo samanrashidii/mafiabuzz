@@ -64,6 +64,9 @@ export default {
   },
   metaInfo() {
     return {
+      changed (newInfo, addedTags, removedTags) {
+        console.log('Metadata was updated!')
+      },
       title: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
       meta: [
         {

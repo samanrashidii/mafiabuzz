@@ -74,8 +74,10 @@
 
     <!-- Actions Progress Bar -->
     <div class="progress-bar">
+      <a class="prev-action" href="javascript:void(0)" />
       <span :style="{width: progress+'%'}" />
       <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+      <a class="next-action" href="javascript:void(0)" />
     </div>
 
     <!-- Handle Actions -->
@@ -105,7 +107,7 @@
                   <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
                   <app-button
                     class="purple"
-                    @click.native="skipAction()"
+                    @click.native="skipAction(index)"
                   >
                     {{ $t('god.skipButton3') }}
                   </app-button>
@@ -131,7 +133,7 @@
                   <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
                   <app-button
                     class="black"
-                    @click.native="skipAction()"
+                    @click.native="skipAction(index)"
                   >
                     {{ $t('god.skipButton3') }}
                   </app-button>
@@ -230,34 +232,34 @@
           >
             {{ $t('god.skipButton') }}
           </AppButton>
+
+          <!-- Alert Box -->
+          <Overlay :class="{'active': alertBox,'dialog': true}">
+            <img
+              class="has-xsmall-bottom-margin"
+              :src="getImgUrl('/icons', $t('general.warning'))"
+              :alt="$t('general.warningIcon')"
+            >
+            <template>
+              <p>{{ $t('god.skipText') }}</p>
+              <AppButton
+                @click.native="skipAction(index)"
+                class="green"
+              >
+                <span>{{ $t('god.skipButton2') }}</span>
+              </AppButton>
+              <AppButton
+                @click.native="alertBox = false"
+                class="danger"
+              >
+                <span>{{ $t('god.cancelButton') }}</span>
+              </AppButton>
+            </template>
+          </Overlay>
         </template>
       </div>
     </div>
 
-    <!-- Alert Box -->
-
-    <Overlay :class="{'active': alertBox,'dialog': true}">
-      <img
-        class="has-xsmall-bottom-margin"
-        :src="getImgUrl('/icons', $t('general.warning'))"
-        :alt="$t('general.warningIcon')"
-      >
-      <template>
-        <p>{{ $t('god.skipText') }}</p>
-        <AppButton
-          @click.native="skipAction()"
-          class="green"
-        >
-          <span>{{ $t('god.skipButton2') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="alertBox = false"
-          class="danger"
-        >
-          <span>{{ $t('god.cancelButton') }}</span>
-        </AppButton>
-      </template>
-    </Overlay>
   </div>
 </template>
 
@@ -308,9 +310,9 @@ export default {
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
     }),
-    skipAction() {
+    skipAction(index) {
       this.alertBox = false;
-      this.nextAction();
+      this.nextAction(index);
     },
     trackingStatus(status) {
       this.dashboard.freezeStatus.linked = status.linked,

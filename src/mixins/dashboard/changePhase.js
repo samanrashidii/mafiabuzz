@@ -5,6 +5,9 @@ export default {
         this.dashboard.day = true;
         this.dashboard.startAction = false;
         // Reset Night Stuff
+        this.dashboard.actionBox.forEach((element, index) => {
+          localStorage.removeItem(`action_${index}`);
+        });
         this.dashboard.actionBox = [];
         this.dashboard.actionProgress = 0;
         this.gameSettings.selectedRoles.forEach((el) => {
