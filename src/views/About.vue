@@ -64,9 +64,6 @@ export default {
   },
   metaInfo() {
     return {
-      changed(newInfo, addedTags, removedTags) {
-        console.log('Metadata was updated!');
-      },
       title: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
       meta: [
         {
@@ -89,6 +86,21 @@ export default {
           name: 'og:url',
           content: window.location.href,
         },
+        {
+          vmid : 'twitter:title',
+          name : 'twitter:title',
+          content : `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
+        },
+        {
+          vmid : 'twitter:description',
+          name : 'twitter:description',
+          content: `${this.$t('meta.about.description')}`,
+        },
+        {
+          vmid : 'twitter:url',
+          name : 'twitter:url',
+          content : window.location.href,
+        }
       ],
     };
   },

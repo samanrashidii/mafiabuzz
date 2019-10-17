@@ -45,6 +45,21 @@ export default {
           name: 'og:url',
           content: `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`,
         },
+        {
+          vmid : 'twitter:title',
+          name : 'twitter:title',
+          content : `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
+        },
+        {
+          vmid : 'twitter:description',
+          name : 'twitter:description',
+          content: `${this.$t('meta.notfound.description')}`,
+        },
+        {
+          vmid : 'twitter:url',
+          name : 'twitter:url',
+          content : window.location.href,
+        }
       ],
     };
   },
