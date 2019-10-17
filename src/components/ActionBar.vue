@@ -77,12 +77,18 @@
       <a
         class="prev-action"
         href="javascript:void(0)"
+        @click="navigateActions(dashboard.actionProgress, 'prev')"
+        v-if="dashboard.actionProgress !== 0"
       />
-      <span :style="{width: progress+'%'}" />
-      <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+      <div class="bar-holder">
+        <span :style="{width: progress+'%'}" />
+        <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+      </div>
       <a
         class="next-action"
         href="javascript:void(0)"
+        @click="navigateActions(dashboard.actionProgress, 'next')"
+        v-if="dashboard.actionProgress !== dashboard.actionBox.length"
       />
     </div>
 
@@ -276,6 +282,7 @@ import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
 import executeAction from '@/mixins/dashboard/executeAction';
+import navigateActions from '@/mixins/dashboard/navigateActions';
 import nextAction from '@/mixins/dashboard/nextAction';
 import passiveActive from '@/mixins/dashboard/passiveActive';
 
@@ -343,6 +350,7 @@ export default {
     actionFilters,
     executeAction,
     getImg,
+    navigateActions,
     nextAction,
     passiveActive,
   ],
