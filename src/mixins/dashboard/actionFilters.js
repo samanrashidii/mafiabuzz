@@ -5,7 +5,7 @@ export default {
     checkGroup(player) {
       // Last Day Vote
       if (player === 'lastDay') {
-        return this.gameSettings.selectedRoles.filter(x => x.status.dead === false);
+        return this.gameSettings.selectedRoles.filter(x => !x.status.dead);
       }
       if (player.ability.reviver) {
         return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.status.dead);

@@ -1,13 +1,14 @@
 .before-action-box{
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
     padding: 10px 20px;
     background-color: $black_color;
     border-radius: $site_radius;
     z-index: 100;
+    img{width: 105px;}
     p{
         padding-top:10px;
         padding-bottom: 10px;

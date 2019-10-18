@@ -94,7 +94,7 @@
 
     <!-- Last Night Log -->
 
-    <overlay :class="{'active': dashboard.lastNightBox, 'dialog': true, 'last-night': true}">
+    <overlay :class="{'active': dashboard.lastNightBox, 'dialog': false, 'last-night': true}">
       <img
         :src="getImgUrl('/roles', $t('god.peopleIcon'))"
         :alt="$t('god.peopleIconAlt')"

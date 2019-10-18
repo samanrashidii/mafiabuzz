@@ -3,10 +3,6 @@ import SERVER from '@/server';
 export default {
   methods: {
     startGameEngine(type) {
-      SERVER.getMainData()
-        .then((response) => {
-          this.SetMainApp(response.data);
-        });
       SERVER.getRoles()
         .then((response) => {
           this.SetRoles(response.data);

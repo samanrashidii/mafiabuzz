@@ -62,6 +62,7 @@ export default {
         this.dashboard.day = false;
         if (this.dashboard.round >= 1) {
           this.dashboard.lastNight = [];
+          this.dashboard.lastPhaseAction = true;
         }
         this.dashboard.round++;
         this.setActionsByPriority();
