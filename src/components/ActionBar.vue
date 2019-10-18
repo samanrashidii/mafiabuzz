@@ -327,6 +327,10 @@ export default {
       this.alertBox = false;
       this.nextAction(index);
     },
+    dice(number) {
+      const diceValue = Math.floor(Math.random() * number) + 1
+      return diceValue
+    },
     trackingStatus(status) {
       this.dashboard.freezeStatus.linked = status.linked,
       this.dashboard.freezeStatus.hacked = status.hacked,

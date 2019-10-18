@@ -59,7 +59,7 @@ export default {
           }
           // Magician
           if (player.ability.magician) {
-            const dice = Math.floor(Math.random() * 3) + 1
+            const dice = this.dice(3)
             if (dice === 1){
               this.kill(target1);
             } else if (dice === 2){
