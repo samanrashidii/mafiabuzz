@@ -57,6 +57,17 @@ export default {
           if (player.ability.healer) {
             this.heal(target1);
           }
+          // Magician
+          if (player.ability.magician) {
+            const dice = this.dice(3)
+            if (dice === 1){
+              this.kill(target1);
+            } else if (dice === 2){
+              this.silence(target1)
+            } else if (dice === 3){
+              this.kill(player.player)
+            }
+          }
         }
 
         // Action Log
