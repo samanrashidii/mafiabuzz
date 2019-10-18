@@ -3,74 +3,75 @@
     class="priority-box"
   >
     <!-- Before Action Box -->
-    <!-- <transition name="fade">
-          <div
-            class="before-action-box"
-            v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round === 1"
-          >
-            <div class="table-display">
-              <div class="table-cell-display">
+    <transition name="fade">
+      <div
+        class="before-action-box"
+        v-if="dashboard.lastPhaseAction && dashboard.round > 1 || dashboard.mafiaParty && dashboard.round === 1"
+      >
+        <div class="table-display">
+          <div class="table-cell-display">
 
-                <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
-                  <img
-                    :src="getImgUrl('/roles', $t('god.voteIcon'))"
-                    :alt="$t('god.deadIconAlt')"
-                  >
-                  <p>{{ $t('god.lastPhaseText') }}</p>
-                  <select
-                    name="action_target"
-                    v-model="dashboard.log.target"
-                  >
-                    <option
-                      :value="null"
-                      disabled
-                    >
-                      {{ $t('god.selectPlaceholder') }}
-                    </option>
-                    <option
-                      v-for="(person, index) in checkGroup('lastDay')"
-                      :key="index"
-                    >
-                      {{ person.player }}
-                    </option>
-                  </select>
-                  <app-button @click.native="killByVote(dashboard.log.target)">
-                    {{ $t('god.confirmButton') }}
-                  </app-button>
-                  <app-button
-                    class="danger"
-                    @click.native="lastPhaseController()"
-                  >
-                    {{ $t('god.skipButton') }}
-                  </app-button>
-                </template>
+            <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
+              <img
+                :src="getImgUrl('/roles', $t('god.voteIcon'))"
+                :alt="$t('god.deadIconAlt')"
+              >
+              <p>{{ $t('god.lastPhaseText') }}</p>
+              <select
+                name="last_day_target"
+                v-model="lastDayTarget"
+                @change="findTarget(lastDayTarget)"
+              >
+                <option
+                  :value="null"
+                  disabled
+                >
+                  {{ $t('god.selectPlaceholder') }}
+                </option>
+                <option
+                  v-for="(person, index) in checkGroup('lastDay')"
+                  :key="index"
+                >
+                  {{ person.player }}
+                </option>
+              </select>
+              <app-button @click.native="killByVote(dashboard.targetData.player)">
+                {{ $t('god.confirmButton') }}
+              </app-button>
+              <app-button
+                class="danger"
+                @click.native="lastPhaseController()"
+              >
+                {{ $t('god.skipButton') }}
+              </app-button>
+            </template>
 
-                <template v-else-if="dashboard.mafiaParty && dashboard.round === 1">
-                  <img
-                    :src="getImgUrl('/roles', $t('god.mafiaPartyIcon'))"
-                    :alt="$t('god.mafiaPartyIconAlt')"
-                  >
-                  <p class="site-color">
-                    {{ $t('god.mafiaPartyText') }}
-                  </p>
-                  <ul class="error-bullet type-2">
-                    <li
-                      v-for="(mp, index) in $t('god.mafiaPartyException')"
-                      :key="index"
-                      v-html="mp"
-                    />
-                  </ul>
-                  <app-button
-                    class="has-small-top-margin"
-                    @click.native="mafiaPartyController()"
-                  >
-                    {{ $t('god.mafiaPartyButton') }}
-                  </app-button>
-                </template>
-              </div>
-            </div>
+            <template v-else-if="dashboard.mafiaParty && dashboard.round === 1">
+              <img
+                :src="getImgUrl('/roles', $t('god.mafiaPartyIcon'))"
+                :alt="$t('god.mafiaPartyIconAlt')"
+              >
+              <p class="site-color">
+                {{ $t('god.mafiaPartyText') }}
+              </p>
+              <ul class="error-bullet type-2">
+                <li
+                  v-for="(mp, index) in $t('god.mafiaPartyException')"
+                  :key="index"
+                  v-html="mp"
+                />
+              </ul>
+              <app-button
+                class="has-small-top-margin"
+                @click.native="mafiaPartyController()"
+              >
+                {{ $t('god.mafiaPartyButton') }}
+              </app-button>
+            </template>
           </div>
-        </transition> -->
+        </div>
+      </div>
+    </transition>
 
     <!-- Actions Progress Bar -->
     <div class="progress-bar">
@@ -100,39 +101,37 @@
         v-for="(player, index) in dashboard.actionBox"
         :key="index"
       >
+        <!-- Actions Overlay -->
         <template v-if="dashboard.actionProgress === index">
-          <transition
-            name="fade"
-            mode="out-in"
+          <div
+            class="action-overlay hacked-overlay"
+            v-if="checkStatus(player).status.hacked"
+            key="hackedTarget"
           >
-            <div
-              class="action-overlay hacked-overlay"
-              v-if="checkStatus(player).status.hacked"
-              key="hackedTarget"
-            >
-              <div class="table-display">
-                <div class="table-cell-display">
-                  <img
-                    :src="getImgUrl('/roles', $t('god.hackedIcon'))"
-                    :alt="$t('god.hackedIconAlt')"
-                  >
-                  <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
-                  <app-button
-                    class="purple"
-                    @click.native="skipAction(index)"
-                  >
-                    {{ $t('god.skipButton3') }}
-                  </app-button>
-                </div>
+            <div class="table-display">
+              <div class="table-cell-display">
+                <img
+                  :src="getImgUrl('/roles', $t('god.hackedIcon'))"
+                  :alt="$t('god.hackedIconAlt')"
+                >
+                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
+                <app-button
+                  class="purple"
+                  @click.native="skipAction(index)"
+                >
+                  {{ $t('god.skipButton3') }}
+                </app-button>
               </div>
             </div>
-            <div
-              class="action-overlay dead-overlay"
-              v-if="checkStatus(player).status.dead"
-              key="deadTarget"
-            >
-              <div class="table-display">
-                <div class="table-cell-display">
+          </div>
+          <div
+            class="action-overlay dead-overlay"
+            v-if="checkStatus(player).status.dead"
+            key="deadTarget"
+          >
+            <div class="table-display">
+              <div class="table-cell-display">
+                <div class="has-clear-fix">
                   <img
                     :src="getImgUrl('/roles', $t('god.deadIcon'))"
                     :alt="$t('god.deadIconAlt')"
@@ -142,17 +141,17 @@
                     :src="getImgUrl('/roles', player.icon)"
                     :alt="$t('god.playerIconAlt')"
                   >
-                  <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
-                  <app-button
-                    class="black"
-                    @click.native="skipAction(index)"
-                  >
-                    {{ $t('god.skipButton3') }}
-                  </app-button>
                 </div>
+                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
+                <app-button
+                  class="black"
+                  @click.native="skipAction(index)"
+                >
+                  {{ $t('god.skipButton3') }}
+                </app-button>
               </div>
             </div>
-          </transition>
+          </div>
 
           <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
           <div class="player-box-holder has-small-bottom-margin">
@@ -285,6 +284,7 @@ import executeAction from '@/mixins/dashboard/executeAction';
 import navigateActions from '@/mixins/dashboard/navigateActions';
 import nextAction from '@/mixins/dashboard/nextAction';
 import passiveActive from '@/mixins/dashboard/passiveActive';
+import voteKiller from '@/mixins/dashboard/voteKiller';
 
 export default {
   data() {
@@ -292,6 +292,7 @@ export default {
       actionTarget1: null,
       actionTarget2: null,
       alertBox: false,
+      lastDayTarget: null,
     };
   },
   components: {
@@ -343,6 +344,14 @@ export default {
       }
       return target;
     },
+    lastPhaseController() {
+      this.dashboard.lastPhaseAction = false;
+      this.SetDashboard(this.dashboard);
+    },
+    mafiaPartyController() {
+      this.dashboard.mafiaParty = false;
+      this.SetDashboard(this.dashboard);
+    },
   },
   mixins: [
     actionLog,
@@ -353,6 +362,7 @@ export default {
     navigateActions,
     nextAction,
     passiveActive,
+    voteKiller
   ],
 };
 </script>

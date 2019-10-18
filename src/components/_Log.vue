@@ -141,14 +141,6 @@ export default {
       this.dashboard.lastNightBox = false;
       this.SetDashboard(this.dashboard);
     },
-    lastPhaseController() {
-      this.dashboard.lastPhaseAction = false;
-      this.SetDashboard(this.dashboard);
-    },
-    mafiaPartyController() {
-      this.dashboard.mafiaParty = false;
-      this.SetDashboard(this.dashboard);
-    },
     // Skip Action
     skipAction() {
       this.alertBox = false;
