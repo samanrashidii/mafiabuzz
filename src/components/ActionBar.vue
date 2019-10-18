@@ -280,6 +280,8 @@ import getImg from '@/mixins/getImg';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
 import actionFilters from '@/mixins/dashboard/actionFilters';
+import beforeActions from '@/mixins/dashboard/beforeActions';
+import dice from '@/mixins/dashboard/dice';
 import executeAction from '@/mixins/dashboard/executeAction';
 import navigateActions from '@/mixins/dashboard/navigateActions';
 import nextAction from '@/mixins/dashboard/nextAction';
@@ -327,10 +329,6 @@ export default {
       this.alertBox = false;
       this.nextAction(index);
     },
-    dice(number) {
-      const diceValue = Math.floor(Math.random() * number) + 1
-      return diceValue
-    },
     trackingStatus(status) {
       this.dashboard.freezeStatus.linked = status.linked,
       this.dashboard.freezeStatus.hacked = status.hacked,
@@ -348,19 +346,13 @@ export default {
       }
       return target;
     },
-    lastPhaseController() {
-      this.dashboard.lastPhaseAction = false;
-      this.SetDashboard(this.dashboard);
-    },
-    mafiaPartyController() {
-      this.dashboard.mafiaParty = false;
-      this.SetDashboard(this.dashboard);
-    },
   },
   mixins: [
     actionLog,
     actions,
     actionFilters,
+    beforeActions,
+    dice,
     executeAction,
     getImg,
     navigateActions,
