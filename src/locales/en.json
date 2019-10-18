@@ -472,6 +472,28 @@
                 "passive": "none",
                 "action": "Hack"
             }
+        },
+        {
+            "name": "Vigilante",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Vigilante Icon",
+            "description": "Vigilante is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
+            "action": {
+                "passive": "none",
+                "action": "Kill"
+            }
+        },
+        {
+            "name": "Magician",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Magician Icon",
+            "description": "The Magician is a mafioso with the power of sacrifice himself from the second night and choose an innocent and God will touch that person's head to give up his role and join the mafioso with 'Mafia' role.",
+            "action": {
+                "passive": "none",
+                "action": "Magic Action"
+            }
         }
     ],
     "replacingRoles": {
