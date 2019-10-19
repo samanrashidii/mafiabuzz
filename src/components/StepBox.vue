@@ -11,7 +11,7 @@
         value="null"
         disabled
       >
-        Please select from below
+        {{ $t('general.selectPlaceholder') }}
       </option>
       <option
         v-for="(n, index) in value"
@@ -29,13 +29,6 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      default: {
-        total: 25,
-        unit: 6,
-        mafia: 1,
-        margin: 5,
-      },
-      totalPlayers: 25,
       selectedVal: 0,
     };
   },
@@ -50,10 +43,10 @@ export default {
       return this.type === 'totalUnit' ? 1 : 2;
     },
     value() {
-      return this.type === 'totalUnit' ? this.default.total : this.calcMafia;
+      return this.type === 'totalUnit' ? this.gameSettings.totalPlayers : this.calcMafia;
     },
     margin() {
-      return this.type === 'totalUnit' ? this.default.margin : 0;
+      return this.type === 'totalUnit' ? this.gameSettings.playerMargin : 0;
     },
     calcMafia() {
       return Math.floor(this.gameSettings.unit / 2) - 1;
@@ -66,7 +59,7 @@ export default {
     },
   },
   created() {
-    this.type === 'totalUnit' ? this.selectedVal = this.default.unit : this.selectedVal = this.default.mafia;
+    this.type === 'totalUnit' ? this.selectedVal = this.gameSettings.unit : this.selectedVal = this.gameSettings.mafia;
   },
   updated() {
     if (this.type === 'totalMafia' && this.selectedVal > this.calcMafia) {
