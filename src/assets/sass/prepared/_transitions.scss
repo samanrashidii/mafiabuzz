@@ -37,6 +37,13 @@
     animation: scale-out 300ms ease-out;
 }
 
+.scale-slow-enter-active span{
+    animation: scale-in 1000ms ease-out forwards;
+}
+.scale-slow-leave-active span{
+    animation: scale-out 1000ms ease-out;
+}
+
 @keyframes scale-in {
     from{
         visibility: hidden;

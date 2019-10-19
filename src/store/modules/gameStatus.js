@@ -29,6 +29,8 @@ export default {
       },
       gameStatus: false,
       gameReset: false,
+      gameFinished: false,
+      winner: null,
       stepCounter: 1,
       personNumb: 1,
     },

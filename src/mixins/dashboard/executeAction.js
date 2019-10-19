@@ -15,12 +15,10 @@ export default {
           }
         });
 
-        // IF Returner
-        if (this.checkReturner(target1)) {
-          this.damageReturn(player.player, target1);
-        }
-        // ELSE
-        else if (!player.status.hacked) {
+        if (!player.status.hacked) {
+          if (this.checkReturner(target1)) {
+            this.damageReturn(player.player, target1);
+          }
           // Binder
           if (player.ability.binder) {
             this.link(target1, target2);

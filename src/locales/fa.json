@@ -8,7 +8,23 @@
         "notValidIcon": "آیکون نامعتبر",
         "warning": "warning.svg",
         "warningIcon": "آیکون اخطار",
-        "selectPlaceholder": "لطفا از گزینه های زیر انتخاب کنید"
+        "selectPlaceholder": "لطفا از گزینه های زیر انتخاب کنید",
+        "winner": [
+            {
+                "class": "mafia",
+                "name": "مافیا",
+                "image": "mafiaparty.svg",
+                "alt": "آیکون مافیا پارتی",
+                "title": "تبریک به تیم <strong>مافیا</strong>"
+            },
+            {
+                "class": "citizen",
+                "name": "شهروند",
+                "image": "citizenparty.svg",
+                "alt": "آیکون شهروند پارتی",
+                "title": "تبریک به تیم <strong>شهروند</strong>"
+            }
+        ]
     },
     "meta":{
         "home": {
@@ -217,7 +233,8 @@
         "logPassive": "قابلیت درونی فعال شد : ",
         "logResult": "نتیجه به این صورت است : ",
         "restartButton": "راه اندازی مجدد بازی",
-        "startButton": "شروع بازی",
+        "startButton": "شروع بازی جدید",
+        "viewButton": "مشاهده جزییات بازی",
         "resetText": "می خوای بازی رو با همون نقش های قبلی راه اندازی مجدد کنی ؟",
         "resetTotalText": "مطمئنی ؟ در این حالت نقش ها تغییر می کنند و دوباره نیاز به تنظیم مجدد دارند.",
         "skipText": "می خوای امشب این عملیات رو انجام ندی ؟",

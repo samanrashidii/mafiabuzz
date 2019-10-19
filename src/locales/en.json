@@ -8,7 +8,23 @@
         "notValidIcon": "Not Valid Icon",
         "warning": "warning.svg",
         "warningIcon": "Warning Icon",
-        "selectPlaceholder": "Please select from below"
+        "selectPlaceholder": "Please select from below",
+        "winner": [
+            {
+                "class": "mafia",
+                "name": "mafia",
+                "image": "mafiaparty.svg",
+                "alt": "Mafia Party Icon",
+                "title": "Congratulation to <strong>The Mafia</strong>"
+            },
+            {
+                "class": "citizen",
+                "name": "citizen",
+                "image": "citizenparty.svg",
+                "alt": "Citizen Party Icon",
+                "title": "Congratulation to <strong>The Citizen</strong>"
+            }
+        ]
     },
     "meta":{
         "home": {
@@ -217,7 +233,8 @@
         "logPassive": "Passive activated : ",
         "logResult": "The Result is : ",
         "restartButton": "Restart Game",
-        "startButton": "Start Game",
+        "startButton": "Start New Game",
+        "viewButton": "View Game Details",
         "resetText": "Do you want to reset game with same roles?",
         "resetTotalText": "Are you sure? Your selected roles and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
