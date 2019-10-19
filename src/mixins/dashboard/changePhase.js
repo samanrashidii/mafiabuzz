@@ -47,9 +47,13 @@ export default {
             this.dashboard.lastNight.push(logNote);
           }
         });
-        if (this.dashboard.lastNight.length > 0) {
-          this.dashboard.lastNightBox = true;
+        this.finishRules()
+        if(!this.gameSettings.gameFinished){
+          if (this.dashboard.lastNight.length > 0) {
+            this.dashboard.lastNightBox = true;
+          }
         }
+        
       } else {
         this.gameSettings.selectedRoles.forEach((el) => {
           if (el.status.silenced) {

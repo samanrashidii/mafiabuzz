@@ -185,6 +185,8 @@
         </AppButton>
       </template>
     </Overlay>
+
+    <GameFinished :class="{'active': gameSettings.gameFinished}" :gameWinner="gameSettings.winner" />
   </div>
 </template>
 
@@ -192,9 +194,11 @@
 import axios from 'axios';
 import { mapGetters, mapActions } from 'vuex';
 import ActionBar from '@/components/ActionBar.vue';
+import GameFinished from '@/components/GameFinished.vue';
 import Overlay from '@/components/Overlay.vue';
 import Table from '@/components/Table.vue';
 import getImg from '@/mixins/getImg';
+import finishGame from '@/mixins/dashboard/finishGame';
 import startGame from '@/mixins/startGame';
 import changePhase from '@/mixins/dashboard/changePhase';
 import setActions from '@/mixins/dashboard/setActions';
@@ -211,6 +215,7 @@ export default {
   },
   components: {
     ActionBar,
+    GameFinished,
     Overlay,
     Table,
   },
@@ -263,6 +268,7 @@ export default {
   },
   mixins: [
     changePhase,
+    finishGame,
     getImg,
     setActions,
     startGame,
