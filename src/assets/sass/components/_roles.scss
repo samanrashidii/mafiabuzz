@@ -14,8 +14,8 @@
             height: 28px;
             visibility: hidden;
             opacity: 0;
-            background:url('~@/assets/images/assets/info.png') no-repeat center $background_color_2;
-            background-size: 24px;
+            background:url('~@/assets/images/assets/info.svg') no-repeat center $background_color_2;
+            background-size: 33px;
             border-radius: $circle_radius;
             z-index: 99;
             transform:scale(0.5,0.5);
@@ -83,7 +83,7 @@
                 height: 28px;
                 opacity: 0;
                 visibility: hidden;
-                background:url('~@/assets/images/assets/checked.png') no-repeat center $background_color_2;
+                background:url('~@/assets/images/assets/checked.svg') no-repeat center $background_color_2;
                 background-size: 24px;
                 border-radius: $circle_radius;
                 transition:all .2s ease-in-out;

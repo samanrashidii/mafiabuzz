@@ -7,7 +7,8 @@
         "notValid": "error.svg",
         "notValidIcon": "آیکون نامعتبر",
         "warning": "warning.svg",
-        "warningIcon": "آیکون اخطار"
+        "warningIcon": "آیکون اخطار",
+        "selectPlaceholder": "لطفا از گزینه های زیر انتخاب کنید"
     },
     "meta":{
         "home": {
