@@ -1,1 +1,1 @@
-Sitemap: http://www.mafiabuzz.com/sitemap.xml
+Sitemap: https://www.mafiabuzz.com/sitemap.xml
