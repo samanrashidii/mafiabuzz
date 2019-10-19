@@ -74,6 +74,7 @@ export default {
         },
         changeGameFinshed(state){
             this.gameSettings.gameFinished = state
+            this.gameSettings.reviewGame = !state
             this.SetGameSettings(this.gameSettings)
         }
     },

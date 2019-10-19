@@ -47,7 +47,6 @@ export default {
             this.dashboard.lastNight.push(logNote);
           }
         });
-        this.finishRules()
         if(!this.gameSettings.gameFinished){
           if (this.dashboard.lastNight.length > 0) {
             this.dashboard.lastNightBox = true;
