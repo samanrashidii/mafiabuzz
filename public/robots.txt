@@ -1,2 +1,1 @@
-User-agent: *
-Disallow:
+Sitemap: http://www.mafiabuzz.com/sitemap.xml
