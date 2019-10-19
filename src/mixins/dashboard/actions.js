@@ -19,7 +19,9 @@ export default {
           el.status.minion = false;
         }
       });
-      this.passiveActive(element);
+      setTimeout(() => {
+        this.passiveActive(element);
+      }, 500);
     },
     checkIdentity(target) {
       this.gameSettings.selectedRoles.forEach((element) => {
@@ -49,8 +51,9 @@ export default {
     checkReturner(target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target
-                   && this.gameSettings.selectedRoles[i].ability.returner
-                   && !this.gameSettings.selectedRoles[i].status.hacked) {
+        &&  !this.gameSettings.selectedRoles[i].status.dead
+        &&  this.gameSettings.selectedRoles[i].ability.returner
+        &&  !this.gameSettings.selectedRoles[i].status.hacked) {
           return true;
         }
       }
