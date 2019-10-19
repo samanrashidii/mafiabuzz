@@ -150,7 +150,10 @@ body.rtl{
     background-position-x: 96%;
 }
 
-.rtl .overlay.last-night h2{font-size: $font_size_8 !important;}
+.rtl .overlay.last-night h2{
+    font-family: $font_rtl;
+    font-size: $font_size_8 !important;
+}
 
 .rtl .log-events span{margin:0 2px;}
 
@@ -170,4 +173,10 @@ body.rtl{
     font-size: $font_size_2 !important;
     border-left:none;
     border-right: 5px solid #187FE7;
+}
+
+.rtl .game-finished .game-finish-box h2 strong{
+    line-height: 1;
+    font-family: $font_rtl;
+    font-size: $font_size_super_big !important;
 }
