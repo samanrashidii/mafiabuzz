@@ -242,8 +242,8 @@
         "logDeadText": "has been killed !!!",
         "logSilencedText": "has been silenced !!!",
         "logRevivedText": "has been revived !!!",
-        "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action",
-        "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You can just call role to balance the game for remaining players",
+        "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action.",
+        "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You should pretend and play as if the player is alive.",
         "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
         "hackedIconAlt": "Hacked Icon",
         "deadIconAlt": "Dead Icon",
@@ -492,11 +492,11 @@
             }
         },
         {
-            "name": "Avenger",
+            "name": "Vigilante",
             "roleType": "Citizen",
             "hiddenRoleType": "",
-            "alt": "Avenger Icon",
-            "description": "Avenger is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
+            "alt": "Vigilante Icon",
+            "description": "Vigilante is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
             "action": {
                 "passive": "none",
                 "action": "Kill"
