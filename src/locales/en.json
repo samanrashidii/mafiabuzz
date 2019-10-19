@@ -492,11 +492,11 @@
             }
         },
         {
-            "name": "Vigilante",
+            "name": "Avenger",
             "roleType": "Citizen",
             "hiddenRoleType": "",
-            "alt": "Vigilante Icon",
-            "description": "Vigilante is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
+            "alt": "Avenger Icon",
+            "description": "Avenger is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
             "action": {
                 "passive": "none",
                 "action": "Kill"

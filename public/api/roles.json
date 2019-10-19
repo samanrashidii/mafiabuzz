@@ -1180,7 +1180,7 @@
         "name": "roles[16].name",
         "roleType": "roles[16].roleType",
         "hiddenRoleType": null,
-        "icon": "vigilante.svg",
+        "icon": "avenger.svg",
         "alt": "roles[16].alt",
         "description": "roles[16].description",
         "actionIcon": "kill.svg",
