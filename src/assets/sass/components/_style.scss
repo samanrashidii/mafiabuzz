@@ -99,3 +99,17 @@ span.step-number{
       border-color: #42A85F !important;
     }
 }
+
+body{
+  max-width: 540px !important;
+}
+
+@media (min-width:560px){
+  .power-meter{
+    left:auto;
+    width:100%;
+    max-width: 540px;
+    margin-left: -15px;
+    box-shadow: none;
+  }
+}
