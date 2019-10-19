@@ -7,11 +7,11 @@
     text-align: center;
     padding:10px;
     visibility: hidden;
-    opacity: 0.5;
+    opacity: 0.1;
     background: rgba(0,0,0, .98);
     z-index: 9999999999999999;
-    transform:scale(0,0);
-    transition:all 0.5s ease-out;
+    transform:scale(1.5,1.5);
+    transition:all 0.3s ease-in-out;
     &.active{
         visibility: visible;
         opacity: 1;

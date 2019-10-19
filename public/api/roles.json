@@ -104,7 +104,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": -40,
+        "power": -35,
         "free": true,
         "new": false,
         "lock": false,
@@ -242,7 +242,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": -20,
+        "power": -15,
         "free": true,
         "new": false,
         "lock": false,
@@ -310,7 +310,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": -35,
+        "power": -10,
         "free": true,
         "new": false,
         "lock": false,
@@ -379,7 +379,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": -45,
+        "power": -35,
         "free": true,
         "new": false,
         "lock": false,
@@ -517,7 +517,7 @@
             "hacker": false,
             "magician": true
         },
-        "power": -30,
+        "power": -35,
         "free": true,
         "new": true,
         "lock": false,
@@ -655,7 +655,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 25,
+        "power": 20,
         "free": true,
         "new": false,
         "lock": false,
@@ -793,7 +793,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 20,
+        "power": 10,
         "free": true,
         "new": false,
         "lock": false,
@@ -862,7 +862,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 15,
+        "power": 10,
         "free": true,
         "new": false,
         "lock": false,
@@ -931,7 +931,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 20,
+        "power": 10,
         "free": true,
         "new": false,
         "lock": false,
@@ -1000,7 +1000,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 30,
+        "power": 15,
         "free": true,
         "new": false,
         "lock": false,
@@ -1069,7 +1069,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 40,
+        "power": 25,
         "free": true,
         "new": false,
         "lock": false,
@@ -1138,7 +1138,7 @@
             "hacker": true,
             "magician": false
         },
-        "power": 40,
+        "power": 20,
         "free": true,
         "new": false,
         "lock": false,
@@ -1207,7 +1207,7 @@
             "hacker": false,
             "magician": false
         },
-        "power": 25,
+        "power": 15,
         "free": true,
         "new": true,
         "lock": false,
