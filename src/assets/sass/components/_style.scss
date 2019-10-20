@@ -122,4 +122,10 @@ body{
     max-width: 540px;
     margin-left: -15px;
   }
+
+  .rtl .power-meter,
+  .rtl .game-finished{
+    margin-left: 0;
+    margin-right: -15px;
+  }
 }

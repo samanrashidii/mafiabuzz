@@ -11,7 +11,8 @@
         position: absolute;
         top:10px;
         left:42%;
-        font-size: 22px;
+        font-family: $font_mafia !important;
+        font-size: $font_size_large !important;
         color:$color_1 !important;
         text-align: center;
         transform:translateX(28px);

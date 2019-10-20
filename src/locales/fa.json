@@ -245,7 +245,7 @@
         "logDeadText": "کشته شده !!!",
         "logSilencedText": "ساکت شده !!!",
         "logRevivedText": "زنده شده !!!",
-        "hackedPerson": " <span class='hack-color'>هک</span>شده ...!!! فقط بیدارش کن اما قادر به انجام هیچ عملیاتی نیست.",
+        "hackedPerson": " <span class='hack-color'> هک </span>شده ...!!! فقط بیدارش کن اما قادر به انجام هیچ عملیاتی نیست.",
         "deadPerson": " <span class='dead-color'>مرده</span>...!!! می تونی برای اینکه مردنش برای بقیه لو نره الکی تو شب اسمش رو صدا کنی.",
         "revivedPerson": " <span class='dead-color'>زنده شده</span>...! ولی قدرتی که قبلا داشته نداره (نرمال یا مافیای بدون قدرت است)",
         "hackedIconAlt": "آیکون هک شده",
