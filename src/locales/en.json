@@ -24,7 +24,10 @@
                 "alt": "Citizen Party Icon",
                 "title": "Congratulation to <strong>The Citizen</strong>"
             }
-        ]
+        ],
+        "errors": {
+            "uniquePlayers": "Please write unique names"
+        }
     },
     "meta":{
         "home": {
