@@ -212,6 +212,14 @@ export default {
             this.ready = true;
           }
         }
+      } else{
+        this.$notify({
+          group: 'log',
+          type: 'error',
+          title: 'error.svg',
+          text: `${this.$t('general.errors.uniquePlayers')}`,
+          duration: 4000,
+        });
       }
       if (this.ready) {
         this.randomFunc();
