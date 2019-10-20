@@ -27,7 +27,6 @@ body.rtl{
     font-family: $font_rtl;
     font-size: $font_size_6 !important;
 }
-.rtl .roles li .number-control span{line-height: 34px !important;}
 
 .rtl .start-bttn span{
     padding: 5px 35px 5px 5px;
@@ -157,8 +156,8 @@ body.rtl{
 
 .rtl .log-events span{margin:0 2px;}
 
+.rtl .priority-box .progress-bar{direction: ltr;}
 .rtl .priority-box .progress-bar i{
-    direction: ltr;
     line-height: 22px;
     font-size: 9px;
 }
@@ -177,6 +176,11 @@ body.rtl{
 
 .rtl .game-finished .game-finish-box h2 strong{
     line-height: 1;
+    font-family: $font_rtl;
+    font-size: $font_size_super_big !important;
+}
+
+.rtl .page-box.display .inner-display strong{
     font-family: $font_rtl;
     font-size: $font_size_super_big !important;
 }
