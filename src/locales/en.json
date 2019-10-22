@@ -135,7 +135,7 @@
         },
         "about": {
             "title": "<span>About us</span>",
-            "subtitle": "Don't tell anyone <span class='site-color'>about us</span> :p",
+            "subtitle": "Talk with your friends <span class='site-color'>about us</span> :)",
             "creators": [
                 {
                     "name": "Saman Rashidi",
@@ -499,7 +499,7 @@
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Avenger Icon",
-            "description": "Avenger is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
+            "description": "Avenger will get his revenge for sure !!! He has a gun with one bullet and can use his bullet whenever he wants during the game, even before he dies.",
             "action": {
                 "passive": "none",
                 "action": "Kill"
@@ -510,7 +510,7 @@
             "roleType": "Mafia",
             "hiddenRoleType": "",
             "alt": "Magician Icon",
-            "description": "The Magician is a mafioso with the power of sacrifice himself from the second night and choose an innocent and God will touch that person's head to give up his role and join the mafioso with 'Mafia' role.",
+            "description": "The Magician is a mafioso with power of magic. When he choose a target one of these 3 possibilities will happen : 1- Kill the taget 2- Silence the target 3- Kill himself accidentally",
             "action": {
                 "passive": "none",
                 "action": "Magic Action"
