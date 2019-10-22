@@ -23,7 +23,7 @@
         v-else
       >{{ $t('common.Citizen') }}</strong>
     </div>
-    <p>{{ $t(info.description) }}</p>
+    <p v-html="$t(info.description)"></p>
   </div>
 </template>
 
