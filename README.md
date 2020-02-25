@@ -13,7 +13,7 @@ Visit enterprised version by clicking the link  : [MafiaBuzz](https://mafiabuzz.
 Clone the project from Github:
 
 ```
-git clone git@github.com:samanrashidii/mafiabuzz-v1.git
+git clone git@github.com:samanrashidii/mafiabuzz.git
 ```
 
 Install and save dependencies:
