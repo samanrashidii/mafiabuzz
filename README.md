@@ -1,4 +1,4 @@
-# Mafiabuzz v1
+# Mafiabuzz - v1.0
 
 Mafiabuzz is a game application to help people run and play "Mafia Party Game" easily and managable
 
