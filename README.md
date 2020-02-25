@@ -10,9 +10,11 @@ Mafiabuzz is a game application to help people run and play "Mafia Party Game" e
 
 ## Demo
 
-You can see the demo by clicking the link : [mafiabuzz-v1](https://mafiabuzz.netlify.com)
+You can see the open source version by clicking below link :
+[https://mafiabuzz.netlify.com](https://mafiabuzz.netlify.com)
 
-Visit enterprised version by clicking the link  : [MafiaBuzz](https://mafiabuzz.app)
+Visit enterprised version by clicking below link  :
+[https://mafiabuzz.app](https://mafiabuzz.app)
 
 ## Getting Started
 
@@ -46,7 +48,6 @@ npm run build
 * HTML 5
 * Sass
 * Javascript
-* PWA
 
 ## Contributing
 
