@@ -8,6 +8,12 @@
 
 Mafiabuzz is a game application to help people run and play "Mafia Party Game" easily and managable
 
+## Language
+
+English - LTR
+
+Persian - RTL
+
 ## Demo
 
 You can see the open source version by clicking below link :
