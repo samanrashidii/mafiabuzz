@@ -2,6 +2,12 @@
 
 Mafiabuzz is a game application to help people run and play "Mafia Party Game" easily and managable
 
+## Demo
+
+You can see the demo by clicking the link : [mafiabuzz-v1](https://mafiabuzz.netlify.com)
+
+Visit enterprised version by clicking the link  : [MafiaBuzz](https://mafiabuzz.app)
+
 ## Getting Started
 
 Clone the project from github:
@@ -10,7 +16,7 @@ Clone the project from github:
 git clone git@github.com:samanrashidii/mafiabuzz-v1.git
 ```
 
-Install nodejs and npm then install dependecies:
+Install and save dependencies:
 
 ```
 npm install --save --verbose
@@ -34,6 +40,7 @@ npm run build
 * HTML 5
 * Sass
 * Javascript
+* PWA
 
 ## Contributing
 
