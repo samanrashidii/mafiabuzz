@@ -4,9 +4,9 @@
   </a>
 </p>
 
-# Mafiabuzz - v1.0
+# MafiaBuzz - v1.0
 
-Mafiabuzz is a game application to help people run and play "Mafia Party Game" easily and managable
+MafiaBuzz is a game application to help people run and play "Mafia Party Game" easily and manageable. MafiaBuzz has more interesting characters than usual mafia game and can calculate every events happens in game and show the result to the game moderator (God)
 
 ## Language
 
@@ -16,10 +16,10 @@ Persian - RTL
 
 ## Demo
 
-You can see the open source version by clicking below link :
+You can see the open source version by clicking below link : <br />
 [https://mafiabuzz.netlify.com](https://mafiabuzz.netlify.com)
 
-Visit enterprised version by clicking below link  :
+Visit enterprised version by clicking below link  : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)
 
 ## Getting Started
@@ -61,7 +61,7 @@ npm run build
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am "Add some feature"`
 4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request:  Done👍
+5. Submit a pull request:  <span>Done</span>👍
 
 ## Authors
 
