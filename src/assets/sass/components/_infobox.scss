@@ -41,6 +41,7 @@
         padding:15px;
         margin:15px auto;
         border-radius: $site_radius;
+        &:last-child{margin-bottom: 0;}
         a{display:none;}
         p{padding-top:15px;}
     }
