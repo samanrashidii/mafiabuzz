@@ -14,15 +14,34 @@ English - LTR
 
 Persian - RTL
 
-## Demo
+## About
 
-You can see the open source version by clicking below link : <br />
+<p>We are a bunch of gamers, developers, and designers who designed and created a web application to help people around the world play "Mafia Party Game" easily and manageable by the application instead of using lots of papers and confusing tables for the game moderator.</p>
+<p>We thought this app could be an <b>open-source</b> for all developers who want to participate to add features or customize it differently for themselves. There is a <b>Business</b> version that has more hardcore featured developed and integrated with a back-end to have interesting new characters and actions in the application.</p>
+
+Feature | Open-source(Free) | Private(Business)
+------------ | ------------- | -------------
+Characters | 17 | +25
+Team Balance Bar | ✔ | ✔
+Random Character Dealer | ✔ | ✔
+God Dashboard | ✔ | ✔
+Calculating Actions During Night Phase | ✔ | ✔
+End Game Watcher | ✔ | ✔
+Multi-language | ✔ | ✔
+Game History | ✖ | ✔
+Autosave | ✖ | ✔
+Solo Class Characters | ✖ | ✔
+Login / Register | ✖ | ✔
+Shop For In-game Purchase | ✖ | ✔
+Gamification To Unlock Characters | ✖ | ✔
+
+You can see the open-source version here : <br />
 [https://mafiabuzz.netlify.com](https://mafiabuzz.netlify.com)
 
-Visit enterprised version by clicking below link  : <br />
+and Business version here  : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)
 
-## Getting Started
+## Getting Started with development
 
 Clone the project from Github:
 
