@@ -51,9 +51,9 @@ export default {
     checkReturner(target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target
-        &&  !this.gameSettings.selectedRoles[i].status.dead
-        &&  this.gameSettings.selectedRoles[i].ability.returner
-        &&  !this.gameSettings.selectedRoles[i].status.hacked) {
+        && !this.gameSettings.selectedRoles[i].status.dead
+        && this.gameSettings.selectedRoles[i].ability.returner
+        && !this.gameSettings.selectedRoles[i].status.hacked) {
           return true;
         }
       }

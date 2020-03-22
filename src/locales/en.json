@@ -160,7 +160,22 @@
                 }
             ],
             "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>? Please email us at :",
-            "contactEmail": "info@mafiabuzz.com"
+            "contactEmail": "info@mafiabuzz.com",
+            "socialText": "Follow us on Social Media",
+            "socials": [
+                {
+                    "name": "Instagram",
+                    "url": "https://instagram.com/mafia.buzz",
+                    "icon": "instagram.svg",
+                    "alt": "Instagram Icon"
+                },
+                {
+                    "name": "Linkedin",
+                    "url": "https://www.linkedin.com/company/mafiabuzz",
+                    "icon": "linkedin.svg",
+                    "alt": "Linkedin Icon"
+                }
+            ]
         },
         "howtoplay": {
             "title": "How to <span>Play</span>?",

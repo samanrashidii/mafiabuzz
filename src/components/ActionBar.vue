@@ -10,7 +10,6 @@
       >
         <div class="table-display">
           <div class="table-cell-display">
-
             <template v-if="dashboard.lastPhaseAction && dashboard.round > 1">
               <img
                 :src="getImgUrl('/roles', $t('god.voteIcon'))"
@@ -358,7 +357,7 @@ export default {
     navigateActions,
     nextAction,
     passiveActive,
-    voteKiller
+    voteKiller,
   ],
 };
 </script>

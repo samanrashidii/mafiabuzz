@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.BASE_URL
+const { BASE_URL } = process.env;
 export default {
   getRoles() {
     return axios.get(`${BASE_URL}/api/roles.json`);

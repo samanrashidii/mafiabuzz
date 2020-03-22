@@ -212,7 +212,7 @@ export default {
             this.ready = true;
           }
         }
-      } else{
+      } else {
         this.$notify({
           group: 'log',
           type: 'error',

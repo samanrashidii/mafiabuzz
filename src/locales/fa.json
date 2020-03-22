@@ -160,7 +160,22 @@
                 }
             ],
             "contactText": "می خوای <span class='mafia-role'>مشکلی</span> رو گزارش بدی؟ یا برای بهبود بازی <span class='citizen-role'>نظری داری؟</span> لطفا برای ما ایمیلش کن :",
-            "contactEmail": "info@mafiabuzz.com"
+            "contactEmail": "info@mafiabuzz.com",
+            "socialText": "ما رو در صفحات اجتماعی دنبال کنید",
+            "socials": [
+                {
+                    "name": "اینستاگرام",
+                    "url": "https://instagram.com/mafia.buzz",
+                    "icon": "instagram.svg",
+                    "alt": "آیکون اینستاگرام"
+                },
+                {
+                    "name": "لینکدین",
+                    "url": "https://www.linkedin.com/company/mafiabuzz",
+                    "icon": "linkedin.svg",
+                    "alt": "آیکون لینکدین"
+                }
+            ]
         },
         "howtoplay": {
             "title": "چگونه <span>بازی</span> کنیم ؟",

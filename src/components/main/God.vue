@@ -186,7 +186,10 @@
       </template>
     </Overlay>
 
-    <GameFinished :class="{'active': gameSettings.gameFinished}" :gameWinner="gameSettings.winner" />
+    <GameFinished
+      :class="{'active': gameSettings.gameFinished}"
+      :game-winner="gameSettings.winner"
+    />
   </div>
 </template>
 

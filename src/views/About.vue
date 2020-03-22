@@ -39,10 +39,21 @@
       </ul>
     </div>
 
-    <PageBox class="contact-box">
-      <div class="contact">
-        <p v-html="$t('pages.about.contactText')" />
-        <a :href="`mailto:${$t('pages.about.contactEmail')}`">{{ $t('pages.about.contactEmail') }}</a>
+    <PageBox class="social-box">
+      <div class="social">
+        <p v-html="$t('pages.about.socialText')" />
+        <template v-for="(social, index) in $t('pages.about.socials')">
+          <a
+            :href="social.url"
+            :key="index"
+            target="_blank"
+          >
+            <img
+              :src="getImgUrl('/icons', social.icon)"
+              :alt="social.alt"
+            >
+          </a>
+        </template>
       </div>
     </PageBox>
   </div>
@@ -87,20 +98,20 @@ export default {
           content: window.location.href,
         },
         {
-          vmid : 'twitter:title',
-          name : 'twitter:title',
-          content : `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
+          vmid: 'twitter:title',
+          name: 'twitter:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
         },
         {
-          vmid : 'twitter:description',
-          name : 'twitter:description',
+          vmid: 'twitter:description',
+          name: 'twitter:description',
           content: `${this.$t('meta.about.description')}`,
         },
         {
-          vmid : 'twitter:url',
-          name : 'twitter:url',
-          content : window.location.href,
-        }
+          vmid: 'twitter:url',
+          name: 'twitter:url',
+          content: window.location.href,
+        },
       ],
     };
   },

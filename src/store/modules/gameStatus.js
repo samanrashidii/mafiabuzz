@@ -51,18 +51,17 @@ export default {
       state.gameSettings.aliveCitizen = state.gameSettings.selectedRoles.filter(x => !x.status.dead && !x.mafia).length;
       // End Game Rules
       const mafiaOdds1 = state.gameSettings.selectedRoles.filter(x => !x.status.dead && x.mafia && !x.status.drunk && !x.status.traitor).length;
-      const mafiaOdds2 = state.gameSettings.selectedRoles.filter(x => !x.status.dead && x.mafia && !x.status.traitor).length
-      var finishGame = (winner) => {
-        state.gameSettings.gameFinished = true
-        state.gameSettings.winner = winner
+      const mafiaOdds2 = state.gameSettings.selectedRoles.filter(x => !x.status.dead && x.mafia && !x.status.traitor).length;
+      const finishGame = (winner) => {
+        state.gameSettings.gameFinished = true;
+        state.gameSettings.winner = winner;
+      };
+      if (state.gameSettings.alivePeople / 2 <= mafiaOdds1 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame) {
+        finishGame('mafia');
       }
-      if(state.gameSettings.alivePeople / 2 <= mafiaOdds1 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame){
-        finishGame('mafia')
+      if (mafiaOdds2 === 0 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame) {
+        finishGame('citizen');
       }
-      if(mafiaOdds2 === 0 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame){
-        finishGame('citizen')
-      }
-      
     },
   },
   actions: {

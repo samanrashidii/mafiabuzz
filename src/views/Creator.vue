@@ -53,20 +53,20 @@ export default {
           content: window.location.href,
         },
         {
-          vmid : 'twitter:title',
-          name : 'twitter:title',
-          content : `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
+          vmid: 'twitter:title',
+          name: 'twitter:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
         },
         {
-          vmid : 'twitter:description',
-          name : 'twitter:description',
+          vmid: 'twitter:description',
+          name: 'twitter:description',
           content: `${this.$t('meta.creator.description')}`,
         },
         {
-          vmid : 'twitter:url',
-          name : 'twitter:url',
-          content : window.location.href,
-        }
+          vmid: 'twitter:url',
+          name: 'twitter:url',
+          content: window.location.href,
+        },
       ],
     };
   },
