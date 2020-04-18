@@ -27,14 +27,14 @@ Random Character Dealer | ✔ | ✔
 God Dashboard | ✔ | ✔
 Calculating Actions During Night Phase | ✔ | ✔
 End Game Watcher | ✔ | ✔
-Multi-language | ✔ | ✔
+Multi Language | ✔ | ✔
 Night Phase Hints | ✖ | ✔
 Game History | ✖ | ✔
 Autosave | ✖ | ✔
 Solo Class Characters | ✖ | ✔
 Authorization | ✖ | ✔
-Shop For In-game Purchases | ✖ | ✔
-Gamification To Unlock Characters | ✖ | ✔
+Shop for in-game Purchases | ✖ | ✔
+Gamification to Unlock Characters | ✖ | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✖ | ✔
 
 You can see the open-source version here : <br />
