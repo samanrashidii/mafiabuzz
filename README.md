@@ -32,7 +32,7 @@ Night Phase Hints | ✖ | ✔
 Game History | ✖ | ✔
 Autosave | ✖ | ✔
 Solo Class Characters | ✖ | ✔
-Login / Register | ✖ | ✔
+Authorization | ✖ | ✔
 Shop For In-game Purchases | ✖ | ✔
 Gamification To Unlock Characters | ✖ | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✖ | ✔
