@@ -35,6 +35,7 @@ Solo Class Characters | ✖ | ✔
 Authorization | ✖ | ✔
 Shop for in-game Purchases | ✖ | ✔
 Gamification to Unlock Characters | ✖ | ✔
+Patch Notes | ✖ | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✖ | ✔
 
 You can see the open-source version here : <br />
