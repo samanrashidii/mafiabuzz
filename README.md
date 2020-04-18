@@ -21,19 +21,21 @@ Persian - RTL
 
 Feature | Open-source(Free) | Private(Business)
 ------------ | ------------- | -------------
-Characters | 17 | +25
+Characters | 17 | +30
 Team Balance Bar | ✔ | ✔
 Random Character Dealer | ✔ | ✔
 God Dashboard | ✔ | ✔
 Calculating Actions During Night Phase | ✔ | ✔
 End Game Watcher | ✔ | ✔
 Multi-language | ✔ | ✔
+Night Phase Hints | ✖ | ✔
 Game History | ✖ | ✔
 Autosave | ✖ | ✔
 Solo Class Characters | ✖ | ✔
 Login / Register | ✖ | ✔
-Shop For In-game Purchase | ✖ | ✔
+Shop For In-game Purchases | ✖ | ✔
 Gamification To Unlock Characters | ✖ | ✔
+Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✖ | ✔
 
 You can see the open-source version here : <br />
 [https://mafiabuzz.netlify.com](https://mafiabuzz.netlify.com)
@@ -82,13 +84,30 @@ npm run build
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request:  <span>Done</span>👍
 
-## Authors
+## Team
 
 **Saman Rashidi**
+<p>Product Design & Front-end Development</p>
 
 - [Linkedin](https://www.linkedin.com/in/samanrashidii)
 - [Github](https://github.com/samanrashidii)
 - [Personal page](http://samanrashidi.com)
+
+**Shahriyar Osouli**
+<p>Game Design</p>
+
+- [Linkedin](https://www.linkedin.com/in/shahriyar-osuli-a9a77654/)
+
+**Samira Salimian**
+<p>Content and Social Media</p>
+
+- [Linkedin](https://www.linkedin.com/in/samira-salimian)
+- [Instagram](https://www.instagram.com/samirasaly)
+
+**Siavash Mirzaei**
+<p>Back-end Development</p>
+
+- [Linkedin](https://www.linkedin.com/in/siavash-mirzaei/)
 
 ## License
 
