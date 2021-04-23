@@ -1,6 +1,6 @@
 <template>
   <div class="step-box">
-    <p v-html="$t(`pages.creator.step${index}`)" />
+    <p v-html="$t(`pages.home.step${index}`)" />
     <select
       @change="calcVal"
       name="quantity"

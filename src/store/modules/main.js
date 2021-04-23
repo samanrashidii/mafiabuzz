@@ -7,7 +7,7 @@ export default {
       navigation: [
         {
           name: 'navigation[0].name',
-          url: 'creator',
+          url: 'home',
           image: 'creator.svg',
           alt: 'navigation[0].alt'
         },

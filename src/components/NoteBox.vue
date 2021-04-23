@@ -5,7 +5,7 @@
       src="@/assets/images/icons/warning.svg"
       :alt="$t('general.infoIcon')"
     >
-    <h3>{{ $t('pages.creator.checkBeforeStart') }}</h3>
+    <h3>{{ $t('pages.home.checkBeforeStart') }}</h3>
   </div>
 </template>
 

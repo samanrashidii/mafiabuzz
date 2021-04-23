@@ -1,6 +1,6 @@
 <template>
   <a
-    class="bttn subnav-bttn"
+    class="bttn red subnav-bttn"
     href="javascript:void(0)"
     @click="changeLang()"
     rel="langbttn"

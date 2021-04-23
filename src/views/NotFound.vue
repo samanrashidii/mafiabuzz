@@ -10,7 +10,7 @@
     />
     <router-link
       class="bttn has-top-margin"
-      :to="{name: 'creator'}"
+      :to="{name: 'home'}"
     >
       {{ $t('common.homeButton') }}
     </router-link>

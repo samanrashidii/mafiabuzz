@@ -51,6 +51,9 @@
                 &:nth-child(3){
                     background-color: $about_color !important;
                 }
+                &:nth-child(4){
+                    background-color: $background_color_citizen !important;
+                }
                 &:active{
                     opacity: .1;
                     transform:scale(1,1);

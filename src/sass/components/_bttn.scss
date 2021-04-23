@@ -19,6 +19,9 @@
     &.sm-fontsize{
         font-size: .85em !important;
     }
+    &.lg-fontsize{
+        font-size: 1.2em !important;
+    }
     &.square{
         border-radius: 5px;
     }
@@ -45,6 +48,12 @@
             background-color: $red_color;
         }
     }
+    &.red{
+        background-color: $red_color;
+        &:hover{
+            background-color: $dark_red_color;
+        }
+    }
     &.yellow{
         background-color: $day;
         &:hover{
@@ -66,6 +75,12 @@
         background-color: $green_color;
         &:hover{
             background-color: $dark_green_color;
+        }
+    }
+    &.blue{
+        background-color: $blue_color;
+        &:hover{
+            background-color: $dark_blue_color;
         }
     }
     &.site{
@@ -106,11 +121,10 @@
     &.subnav-bttn{
         direction: ltr;
         display: block;
-        width:48.8%;
+        width:49%;
         font-family: $font_rtl;
         font-size: $font_size_5 !important;
         padding: 8px 2px 6px 2px;
-        background-color: $player_color;
         transition:all .3s ease-in-out;
         z-index: 99;
         box-shadow: inset 0 0 2px $black_color;
@@ -121,11 +135,12 @@
             width:26px;
             margin:0 5px;
         }
-        strong{margin:0 5px}
+        strong{
+            margin:0 5px
+        }
         &.characters-bttn{
             direction: rtl;
             padding:4px 2px;
-            animation: colorful 2s ease-in-out alternate infinite;
             img{
                 display: inline-block;
                 vertical-align: middle;
@@ -153,20 +168,6 @@
         display: inline-block;
         padding: 5px 5px 5px 28px;
         background:url('~@/assets/images/assets/patch-button.svg') no-repeat left center;
-        background-size: 20px;
-    }
-}
-
-.debit-card-bttn{
-    width:calc(100% - 2px);
-    height:44px;
-    padding:7px !important;
-    margin:0 auto !important;
-    border-radius: 5px !important;
-    span{
-        display: inline-block;
-        padding: 5px 5px 5px 28px;
-        background:url('~@/assets/images/assets/debit-card.svg') no-repeat left center;
         background-size: 20px;
     }
 }
@@ -203,6 +204,16 @@
         padding: 5px 5px 5px 32px;
         background:url('~@/assets/images/assets/play.svg') no-repeat left center;
         background-size: 22px;
+    }
+}
+
+.support-bttn{
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 35px;
+        background:url('~@/assets/images/assets/support.svg') no-repeat left center;
+        background-size: 28px;
     }
 }
 
@@ -257,17 +268,6 @@
         display: inline-block;
         padding: 5px 5px 2px 30px;
         background:url('~@/assets/images/assets/exit.svg') no-repeat left center;
-        background-size: 18px;
-    }
-}
-
-.cart-bttn{
-    height:32px;
-    padding:5px !important;
-    span{
-        display: inline-block;
-        padding: 4px 5px 3px 26px;
-        background:url('~@/assets/images/assets/cart.svg') no-repeat left center;
         background-size: 18px;
     }
 }

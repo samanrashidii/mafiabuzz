@@ -12,7 +12,7 @@
         class="settings-bttn danger has-small-top-margin"
         v-if="gameSettings.stepCounter !== 3"
       >
-        <span>{{ $t('pages.creator.changeSettings') }}</span>
+        <span>{{ $t('pages.home.changeSettings') }}</span>
       </AppButton>
     </div>
 
@@ -23,18 +23,18 @@
         :alt="$t('general.warningIcon')"
       >
       <template>
-        <p>{{ $t('pages.creator.changeSettingsText') }}</p>
+        <p>{{ $t('pages.home.changeSettingsText') }}</p>
         <AppButton
           @click.native="changeGameSettings()"
           class="green"
         >
-          <span>{{ $t('pages.creator.confirmButton') }}</span>
+          <span>{{ $t('pages.home.confirmButton') }}</span>
         </AppButton>
         <AppButton
           @click.native="alertBox = false"
           class="danger"
         >
-          <span>{{ $t('pages.creator.cancelButton') }}</span>
+          <span>{{ $t('pages.home.cancelButton') }}</span>
         </AppButton>
       </template>
     </Overlay>
@@ -55,7 +55,7 @@
           href="javascript:void(0)"
           v-if="checkUsers"
         >
-          <span>{{ $t('pages.creator.lastNames') }}</span>
+          <span>{{ $t('pages.home.lastNames') }}</span>
         </a>
         <a
           @click="handlePredefine()"
@@ -64,11 +64,11 @@
           href="javascript:void(0)"
           v-else
         >
-          <span>{{ $t('pages.creator.defaultNames') }}</span>
+          <span>{{ $t('pages.home.defaultNames') }}</span>
         </a>
-        <p>{{ $t('pages.creator.chooseNameHint') }}</p>
+        <p>{{ $t('pages.home.chooseNameHint') }}</p>
         <p class="important-hint">
-          {{ $t('pages.creator.nameExtraHint') }}
+          {{ $t('pages.home.nameExtraHint') }}
         </p>
         <template v-for="(roleInput, index) in gameSettings.selectedRoles">
           <input
@@ -83,7 +83,7 @@
           @click.native="assignRoles()"
           class="active assign-bttn"
         >
-          <span>{{ $t('pages.creator.assign') }}</span>
+          <span>{{ $t('pages.home.assign') }}</span>
         </AppButton>
       </PageBox>
 
@@ -225,7 +225,7 @@ export default {
     },
     preDefined() {
       this.gameSettings.selectedRoles.forEach((element, index) => {
-        this.players.push(`${this.$t('pages.creator.playerDefault')} ${index + 1}`)
+        this.players.push(`${this.$t('pages.home.playerDefault')} ${index + 1}`)
       })
     },
     randomFunc() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="creator">
+  <div class="home">
     <transition
       name="slide"
       mode="out-in"
@@ -42,7 +42,7 @@ import Overlay from '@/components/Overlay.vue';
 import startGame from '@/mixins/startGame';
 
 export default {
-  name: 'Creator',
+  name: 'Home',
   data() {
     return {
       overlay: false
@@ -99,7 +99,7 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
+          content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
         },
         {
           vmid: 'title',
@@ -109,7 +109,7 @@ export default {
         {
           vmid: 'ogdescription',
           property: 'og:description',
-          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
+          content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
         },
         {
           vmid: 'ogurl',
@@ -124,7 +124,7 @@ export default {
         {
           vmid: 'twitter:description',
           name: 'twitter:description',
-          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
+          content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
         },
         {
           vmid: 'twitter:url',

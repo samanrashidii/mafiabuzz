@@ -54,7 +54,7 @@
         @click.native="checkGame()"
         class="start-bttn has-top-margin active"
       >
-        <span>{{ $t('pages.creator.start') }}</span>
+        <span>{{ $t('pages.home.start') }}</span>
       </AppButton>
       <Overlay :class="{'active': overlay,'dialog': isValid}">
         <template v-if="isValid">
@@ -67,7 +67,7 @@
             @click.native="overlay = false"
             class="settings-bttn danger"
           >
-            <span>{{ $t('pages.creator.changeSettings') }}</span>
+            <span>{{ $t('pages.home.changeSettings') }}</span>
           </AppButton>
         </template>
         <template v-else>
@@ -84,13 +84,13 @@
             @click.native="startGame()"
             class="start-bttn green"
           >
-            <span>{{ $t('pages.creator.start') }}</span>
+            <span>{{ $t('pages.home.start') }}</span>
           </AppButton>
           <AppButton
             @click.native="overlay = false"
             class="settings-bttn danger"
           >
-            <span>{{ $t('pages.creator.changeSettings') }}</span>
+            <span>{{ $t('pages.home.changeSettings') }}</span>
           </AppButton>
         </template>
       </Overlay>

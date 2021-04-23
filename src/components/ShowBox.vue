@@ -1,10 +1,10 @@
 <template>
   <div class="show-box">
     <p v-if="!showrole">
-      {{ $t('pages.creator.passMobile') }}
+      {{ $t('pages.home.passMobile') }}
     </p>
     <p v-else>
-      {{ $t('pages.creator.gotMobile') }}
+      {{ $t('pages.home.gotMobile') }}
     </p>
     <div
       v-for="(role, index) in gameSettings.selectedRoles"
@@ -25,7 +25,7 @@
             key="showButton"
             v-if="!showrole"
           >
-            {{ $t('pages.creator.beforeShowButton') }}
+            {{ $t('pages.home.beforeShowButton') }}
           </AppButton>
           <div
             class="role-info-wrapper"
@@ -45,7 +45,7 @@
               @click.native.once="nextPerson()"
               class="green"
             >
-              {{ $t('pages.creator.afterShowButton') }}
+              {{ $t('pages.home.afterShowButton') }}
             </AppButton>
             <AppButton
               v-if="gameSettings.discordChannel"

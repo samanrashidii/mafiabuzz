@@ -160,16 +160,3 @@
     50%{transform:scale(.7,.7)}
     100%{transform:scale(1,1)}
 }
-
-.color-flow{
-    animation: colorful 2s ease-in-out alternate infinite;
-}
-
-@keyframes colorful {
-    0%{
-        box-shadow: 0 0 10px transparent;
-    }
-    100%{
-        box-shadow: 0 0 10px $light_purple_color;
-    }
-}

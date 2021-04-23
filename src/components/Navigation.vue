@@ -8,7 +8,6 @@
           :to="{name: nav.url}"
           :key="index"
           :disabled="nav.disabled"
-          class="mafia-bg"
         >
           <span>
             <img

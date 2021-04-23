@@ -13,9 +13,9 @@ const About = (resolve) => {
   })
 }
 
-const Creator = (resolve) => {
-  require.ensure(['./views/Creator.vue'], () => {
-    resolve(require('./views/Creator.vue'))
+const Home = (resolve) => {
+  require.ensure(['./views/Home.vue'], () => {
+    resolve(require('./views/Home.vue'))
   })
 }
 
@@ -45,8 +45,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'creator',
-      component: Creator
+      name: 'home',
+      component: Home
     },
     {
       path: '/about',

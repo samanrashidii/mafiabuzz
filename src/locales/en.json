@@ -117,11 +117,6 @@
             "description": "MafiaBuzz is a web application to set up and manage the 'Mafia Party Game' easily. People can set up their game and choose multiple roles as a creator to start playing the game in a group of friends or family",
             "url": "/"
         },
-        "creator": {
-            "title": "Creator",
-            "description": "You can setup your game and choose roles as Creator to start a Game",
-            "url": "creator"
-        },
         "howtoplay": {
             "title": "How To Play",
             "description": "We explained everything you need to know to play MafiaBuzz Party Game",
@@ -170,7 +165,7 @@
         "alt": "Change Language Image"
     },
     "pages": {
-        "creator": {
+        "home": {
             "gameModeButton": "Change Game Mode",
             "welcome": {
                 "text": "<strong><i>M</i>afia<i>B</i>uzz</strong> <span>v{appVersion}</span>"
@@ -248,7 +243,7 @@
             "contactEmail": "mafiabuzzgame@gmail.com",
             "supportText": "Contact us :",
             "supportTel": "+989038996930",
-            "thanksForSupport": "Thanks for supporting our team so we can add new cool features to the application 🙏",
+            "thanksForSupport": "Thanks for supporting our team so we can keep developing new tools and features to the application for you 🙏",
             "supportButton": "Donate to MafiaBuzz",
             "socialText": "Follow us on Social Media and share your feedback with us 😊",
             "socials": [
@@ -299,6 +294,9 @@
                     "roles": true
                 }
             ]
+        },
+        "characters": {
+            "alt": "Characters"
         }
     },
     "powerMeter": {

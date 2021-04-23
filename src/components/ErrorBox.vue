@@ -8,7 +8,7 @@
     <ul class="error-bullet">
       <li
         v-if="errorStatus.mafia"
-        v-html="$t('pages.creator.errorText1', {
+        v-html="$t('pages.home.errorText1', {
           number: mafiaNumbers,
           role: $t('common.Mafia'),
           chosen: GameSettings.aliveMafia
@@ -17,7 +17,7 @@
       <li
         class="blue"
         v-if="errorStatus.citizens"
-        v-html="$t('pages.creator.errorText2', {
+        v-html="$t('pages.home.errorText2', {
           number: citizenNumbers,
           role: $t('common.Citizen'),
           secondRole: $t('common.Solo'),

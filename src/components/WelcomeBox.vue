@@ -5,7 +5,7 @@
         src="@/assets/images/logo.png"
         :alt="$t('general.alt')"
       >
-      <h1 v-html="$t('pages.creator.welcome.text', { appVersion: appVersion })" />
+      <h1 v-html="$t('pages.home.welcome.text', { appVersion: appVersion })" />
     </div>
   </div>
 </template>
