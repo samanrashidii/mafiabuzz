@@ -77,9 +77,6 @@ export default {
     }
   },
   created() {
-    const token = window.localStorage.getItem('token')
-    const userLoggedin = window.localStorage.getItem('userLoggedIn')
-    const expireTime = window.localStorage.getItem('exT') - Date.now()
     const savedLocale = JSON.parse(window.localStorage.getItem('locale'))
     const discordToken = window.localStorage.getItem('discordToken')
     if (discordToken) {
