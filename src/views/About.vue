@@ -8,70 +8,65 @@
     <div class="creators">
       <ul>
         <li
-          v-for="(creator, index) in $t('pages.about.creators')"
+          v-for="(creator, index) in creators"
           :key="index"
           :class="[creator.classes]"
         >
-          <img
-            :src="getImgUrl('/roles', creator.image)"
-            :alt="creator.name"
-          >
+          <div>
+            <img
+              :src="getImg('/roles', creator.image)"
+              :alt="creator.name"
+            >
+          </div>
           <a
             :href="creator.url"
             target="_blank"
           >
             <strong>{{ creator.name }}</strong>
           </a>
-          <span>{{ creator.title }}</span>
-          <a
-            href="https://ko-fi.com/J3J11323A"
-            target="_blank"
-          >
-            <img
-              height="26"
-              class="coffee-bttn"
-              src="https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2"
-              border="0"
-              alt="Buy Us a Coffee at ko-fi.com"
-            >
-          </a>
+          <div>
+            <span>{{ creator.title }}</span>
+          </div>
         </li>
       </ul>
     </div>
 
     <PageBox class="social-box">
       <div class="social">
+        <p v-html="$t('pages.about.contactText')" />
         <p v-html="$t('pages.about.socialText')" />
         <template v-for="(social, index) in $t('pages.about.socials')">
           <a
             :href="social.url"
             :key="index"
+            :title="social.name"
             target="_blank"
           >
             <img
-              :src="getImgUrl('/icons', social.icon)"
+              :src="getImg('/icons', social.icon)"
               :alt="social.alt"
             >
           </a>
         </template>
       </div>
     </PageBox>
+    
   </div>
 </template>
 
 <script>
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
-import getImg from '@/mixins/getImg';
 
 export default {
-  data() {
-    return {
-      pageId: this.$route.params.id,
-    };
-  },
+  name: 'About',
   components: {
-    PageTitle,
+    PageTitle
+  },
+  computed: {
+    creators () {
+      return JSON.parse(JSON.stringify(this.$t('pages.about.creators')))
+    }
   },
   metaInfo() {
     return {
@@ -80,49 +75,43 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: `${this.$t('meta.about.description')}`,
+          content: `${this.$t('meta.about.description')}`
         },
         {
           vmid: 'title',
-          name: 'og:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
+          property: 'og:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`
         },
         {
           vmid: 'ogdescription',
-          name: 'og:description',
-          content: `${this.$t('meta.about.description')}`,
+          property: 'og:description',
+          content: `${this.$t('meta.about.description')}`
         },
         {
           vmid: 'ogurl',
-          name: 'og:url',
-          content: window.location.href,
+          property: 'og:url',
+          content: window.location.href
         },
         {
           vmid: 'twitter:title',
           name: 'twitter:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
+          content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`
         },
         {
           vmid: 'twitter:description',
           name: 'twitter:description',
-          content: `${this.$t('meta.about.description')}`,
+          content: `${this.$t('meta.about.description')}`
         },
         {
           vmid: 'twitter:url',
           name: 'twitter:url',
-          content: window.location.href,
-        },
-      ],
-    };
+          content: window.location.href
+        }
+      ]
+    }
   },
   mixins: [
     checkRoute,
-    getImg,
   ],
-  watch: {
-    $route(to, from) {
-      this.pageId = to.params.id;
-    },
-  },
 };
 </script>

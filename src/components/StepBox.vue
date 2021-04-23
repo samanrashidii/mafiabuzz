@@ -27,6 +27,9 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  props: {
+    type: String,
+  },
   data() {
     return {
       selectedVal: 0,
@@ -78,9 +81,6 @@ export default {
       this.gameSettings.citizen = this.calcCitizen;
       this.SetGameSettings(this.gameSettings);
     },
-  },
-  props: {
-    type: String,
   },
 };
 </script>

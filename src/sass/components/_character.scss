@@ -1,0 +1,85 @@
+.character-wrapper{
+    padding: 2px 8px 8px 8px;
+    background-color: $background_color_main;
+    border-radius: $site_radius;
+    box-shadow: inset 0 0 15px $black_color;
+    .character{
+        position: relative;
+        float: left;
+        width:49%;
+        height: 158px;
+        color:$color_1;
+        text-align: center;
+        padding:15px;
+        margin:2% 0 0 2%;
+        background-color: $background_color_side;
+        border:2px solid $black_color;
+        border-radius: 7px;
+        box-shadow: 0 0 7px $black_color;
+        transition:all .2s ease-in-out;
+        &:active{
+            transform:scale(0.75,0.75)
+        }
+        &::after{
+            content:'';
+            position: absolute;
+            left:2px;
+            top:2px;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            box-shadow: 0 0 5px $background_color_citizen;
+            border:1px solid $background_color_citizen;
+            border-radius: 4px;
+        }
+        &.mafia{
+            .inner-character > div{
+                strong{
+                    color: $background_color_mafia;
+                }
+            }
+            &::after{
+                box-shadow: 0 0 5px $background_color_mafia;
+                border:1px solid $background_color_mafia;
+            }
+        }
+        &.solo{
+            .inner-character > div{
+                strong{
+                    color: $background_color_solo;
+                }
+            }
+            &::after{
+                box-shadow: 0 0 5px $background_color_solo;
+                border:1px solid $background_color_solo;
+            }
+        }
+        .inner-character{
+            display: table;
+            width:100%;
+            height: 100%;
+            > div{
+                display: table-cell;
+                vertical-align: middle;
+                img{
+                    width:50px;
+                }
+                strong{
+                    display: block;
+                    font-size: $font_size_6;
+                    color: $background_color_citizen;
+                    margin-top:5px;
+                }
+            }
+        }
+        &:nth-child(2n+1){
+            margin-left:0;
+        }
+        .character-power{
+            position: absolute;
+            left: 10px;
+            bottom: 15px;
+            width: calc(100% - 20px);
+            z-index: 9;
+        }
+    }
+}

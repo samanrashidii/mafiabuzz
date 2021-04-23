@@ -26,7 +26,7 @@
       >
         <td>
           <img
-            :src="getImgUrl('/roles', tD.icon)"
+            :src="getImg('/roles', tD.icon)"
             :alt="tD.alt"
           > {{ $t(tD.name) }}
         </td>
@@ -46,9 +46,12 @@
             <input
               type="tel"
               :name="`vote_count_${index}`"
+              v-model.number="tD.vote"
               placeholder="0"
               :maxlength="'2'"
               :tabindex="index+10"
+              @blur="updateVotes(tD.vote, tD.id)"
+              @click="selectThis"
             >
           </td>
           <td v-if="dashboard.day === false">
@@ -61,7 +64,9 @@
               v-if="tD.status.hasPassive && !tD.status.hasAction"
             />
             <span
-              :class="{'pending-action': !tD.actionStatus && tD.status.hasAction && !tD.action.oneTime, 'done-action': tD.actionStatus}"
+              :class="{'pending-action': (!tD.actionStatus && tD.status.hasAction && !tD.action.oneTime)
+                         || (!tD.actionStatus && tD.status.hasAction && tD.status.hasOneAction && tD.action.oneTime),
+                       'done-action': tD.actionStatus}"
               v-else
             />
           </td>
@@ -70,6 +75,7 @@
           <td>
             <CharacterPower
               :mafia="tD.mafia"
+              :solo="tD.solo"
               :power="tD.power"
             />
           </td>
@@ -82,36 +88,37 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
-import getImg from '@/mixins/getImg';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
+import deadWatcher from '@/mixins/dashboard/deadWatcher';
 import godAction from '@/mixins/dashboard/godAction';
 import passiveActive from '@/mixins/dashboard/passiveActive';
+import saveHistory from '@/mixins/dashboard/saveHistory';
 
 export default {
   components: {
-    CharacterPower,
+    CharacterPower
   },
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings'
     }),
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
+      return JSON.parse(JSON.stringify(this.Dashboard))
     },
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
+      return JSON.parse(JSON.stringify(this.GameSettings))
     },
   },
   props: {
     tableData: Array,
-    dashboardTable: Boolean,
+    dashboardTable: Boolean
   },
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetGameSettings: 'gameStatus/SetGameSettings'
     }),
     characterClasses(char) {
       if (this.dashboardTable) {
@@ -120,21 +127,36 @@ export default {
           ninja: char.status.playerReplaced,
           'love-bind': char.status.linked,
           silenced: char.status.silenced,
-          healed: char.status.healed,
           shield: char.status.shield && !char.status.hacked,
           invisible: char.status.invisible && !char.status.hacked,
           hacked: char.status.hacked,
           skeleton: char.status.minion,
-        };
+          solo: char.solo,
+        }
+      }
+      return {
+        solo: char.solo,
       }
     },
+    selectThis (event) {
+      event.target.setSelectionRange(0, 2)
+    },
+    updateVotes (vote, id) {
+      this.gameSettings.selectedRoles.forEach(element => {
+        if (element.id === id) {
+          element.vote = vote
+        }
+      })
+      this.SetGameSettings(this.gameSettings)
+    }
   },
   mixins: [
     actionLog,
     actions,
-    getImg,
+    deadWatcher,
     godAction,
     passiveActive,
-  ],
-};
+    saveHistory
+  ]
+}
 </script>

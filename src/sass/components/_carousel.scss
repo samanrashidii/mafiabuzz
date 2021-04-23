@@ -1,0 +1,85 @@
+.owl-carousel{
+    direction: ltr;
+    &.owl-theme{
+        .owl-nav{
+            position: absolute;
+            top:50%;
+            left:-40px;
+            width:calc(100% + 80px);
+            margin-top:-18px;
+            @media #{$breakpoint_mobile_xs} {
+                left:-20px;
+                width:calc(100% + 40px);
+            }
+            [class*='owl-']{
+                width:36px;
+                height: 36px;
+                color:transparent !important;
+                margin:0;
+                background: url('~@/assets/images/assets/arrow-right.svg') no-repeat $medium_red_color !important;
+                background-size: 20px !important;
+                border-radius: 50%;
+                &.owl-prev{
+                    float: left;
+                    transform:rotate(180deg);
+                    background-position: 9px center !important; 
+                }
+                &.owl-next{
+                    float: right;  
+                    background-position: 9px center !important;  
+                }
+                &:active{
+                    background-size: 16px !important;
+                }
+            }
+        }
+    }
+}
+
+.legendary{
+    .owl-carousel{
+        &.owl-theme{
+            .owl-nav{
+                [class*='owl-']{
+                    background-color: $color-legendary !important;
+                }
+            }
+        }
+    }
+}
+
+.epic{
+    .owl-carousel{
+        &.owl-theme{
+            .owl-nav{
+                [class*='owl-']{
+                    background-color: $color-epic !important;
+                }
+            }
+        }
+    }
+}
+
+.rare{
+    .owl-carousel{
+        &.owl-theme{
+            .owl-nav{
+                [class*='owl-']{
+                    background-color: $color-rare !important;
+                }
+            }
+        }
+    }
+}
+
+.uncommon{
+    .owl-carousel{
+        &.owl-theme{
+            .owl-nav{
+                [class*='owl-']{
+                    background-color: $color-uncommon !important;
+                }
+            }
+        }
+    }
+}

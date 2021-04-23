@@ -1,7 +1,7 @@
 export default {
   methods: {
-    checkRoute() {
-      return this.$route.name;
-    },
-  },
-};
+    checkRoute () {
+      return this.$route.name
+    }
+  }
+}

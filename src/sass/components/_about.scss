@@ -1,0 +1,54 @@
+.about{
+    .creators li{
+        display:block;
+        text-align: center;
+        padding:8px 8px 20px 8px;
+        margin-top:12px;
+        background-color: $background_color_body;
+        border-radius: $site_radius;
+        > div{
+            > img{
+                width:70px;
+                margin:10px auto;
+                transition: all .18s ease-in-out;
+            }
+            &:active{
+                img {
+                    transform: scale(.44,.44);
+                }
+            }
+        }
+        strong{
+            display: inline-block;
+            font-family: $font_mafia;
+            font-size: 44px;
+        }
+        span{
+            display: block;
+            color:$white-color;
+            margin-top: 12px;
+        }
+    }
+
+    .contact-box{
+        text-align: center;
+        a{
+            display: inline-block;
+            font-size: $font_size_8;
+            color:$green_color;
+            margin:10px 0;
+        }
+    }
+
+    .social-box{
+        text-align: center;
+        a{
+            display: inline-block;
+            width:44px;
+            margin:0 10px;
+            img{
+                height: 44px !important;
+            }
+        }
+    }
+}

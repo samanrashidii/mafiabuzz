@@ -1,9 +1,13 @@
 {
     "miniYakuza": {
         "name": "replacingRoles.miniYakuza.name",
+        "roleType": "replacingRoles.miniYakuza.roleType",
         "icon": "miniyakuza.svg",
         "alt": "replacingRoles.miniYakuza.alt",
         "description": "replacingRoles.miniYakuza.description",
+        "killPriority": 1000,
+        "potentialKiller": true,
+        "mafia": true,
         "action": {
             "passive": "replacingRoles.miniYakuza.action.passive",
             "action": "replacingRoles.miniYakuza.action.action",
@@ -102,6 +106,7 @@
         }
     },
     "killerMafia": {
+        "priority": 1000,
         "actionIcon": "kill.svg",
         "passiveIcon": "default.png",
         "action": {

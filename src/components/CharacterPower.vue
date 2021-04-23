@@ -4,7 +4,12 @@
     :class="{'mafia-pw': mafia}"
   >
     <span
-      :class="{'mafia': mafia, 'citizen': !mafia}"
+      :class="{
+        'mafia': mafia,
+        'solo': !mafia && solo,
+        'citizen': !mafia && !solo,
+        'zero-state': (solo || !mafia) && power <= 5
+      }"
       :style="{width: `${Math.abs(power)*2}%`}"
     ><i>{{ Math.abs(power) }}</i></span>
   </div>
@@ -14,6 +19,7 @@
 export default {
   props: {
     mafia: Boolean,
+    solo: Boolean,
     power: Number,
   },
 };

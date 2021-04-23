@@ -2,25 +2,34 @@
   <div>
     <img
       class="has-bottom-margin"
-      :src="getImgUrl('/icons', $t('general.notValid'))"
+      src="@/assets/images/icons/error.svg"
       :alt="$t('general.notValidIcon')"
     >
     <ul class="error-bullet">
-      <li v-if="errorStatus.mafia">
-        {{ $t('pages.creator.errorText1') }} <span class="hint-color">{{ mafiaNumbers }} </span> <strong class="mafia-role">{{ $t('common.Mafia') }}</strong> {{ $t('pages.creator.errorText2') }}
-      </li>
+      <li
+        v-if="errorStatus.mafia"
+        v-html="$t('pages.creator.errorText1', {
+          number: mafiaNumbers,
+          role: $t('common.Mafia'),
+          chosen: GameSettings.aliveMafia
+        })"
+      />
       <li
         class="blue"
         v-if="errorStatus.citizens"
-      >
-        {{ $t('pages.creator.errorText1') }} <span class="hint-color">{{ citizenNumbers }} </span> <strong class="citizen-role">{{ $t('common.Citizen') }}</strong> {{ $t('pages.creator.errorText2') }}
-      </li>
+        v-html="$t('pages.creator.errorText2', {
+          number: citizenNumbers,
+          role: $t('common.Citizen'),
+          secondRole: $t('common.Solo'),
+          chosen: GameSettings.aliveCitizen + GameSettings.aliveSolo
+        })"
+      />
     </ul>
   </div>
 </template>
 
 <script>
-import getImg from '@/mixins/getImg';
+import { mapGetters } from 'vuex';
 
 export default {
   props: {
@@ -28,8 +37,10 @@ export default {
     mafiaNumbers: Number,
     citizenNumbers: Number,
   },
-  mixins: [
-    getImg,
-  ],
-};
+  computed: {
+    ...mapGetters({
+      GameSettings: 'gameStatus/GameSettings'
+    })
+  }
+}
 </script>

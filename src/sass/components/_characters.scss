@@ -1,0 +1,58 @@
+.characters{
+    padding-bottom: 90px;
+    .characters-image{
+        position: relative;
+        max-width: 345px;
+        margin:30px auto 0 auto;
+        z-index: 1;
+        @media #{$breakpoint_mobile_xs} {
+            max-width: 295px;
+        }
+    }
+    .characters-inner{
+        direction: ltr;
+        position: relative;
+        max-width: 312px;
+        min-height: 400px;
+        padding:20px 20px 30px 20px;
+        margin:-179px auto 0 auto;
+        background-color: $background_color_default;
+        border-radius: 4px;
+        box-shadow: 0 5px 18px $background_color_side;
+        z-index: 10;
+        h1{
+            width: 170px;
+            height: 60px;
+            line-height: 50px;
+            font-size: 1.15em;
+            text-align: center;
+            padding-right: 15px;
+            text-shadow: 0 0 4px $background_color_default;
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: 170px;
+            &.legendary{
+                background-image: url('~@/assets/images/assets/ribbon-legendary.svg');
+            }
+            &.epic{
+                background-image: url('~@/assets/images/assets/ribbon-epic.svg');
+            }
+            &.rare{
+                background-image: url('~@/assets/images/assets/ribbon-rare.svg');
+            }
+            &.uncommon{
+                background-image: url('~@/assets/images/assets/ribbon-uncommon.svg');
+            }
+        }
+        &::before{
+            content: '';
+            position: absolute;
+            top:5px;
+            left:5px;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            border:2px solid $background_color_side_2;
+            border-radius: 4px;
+        }
+    }
+}

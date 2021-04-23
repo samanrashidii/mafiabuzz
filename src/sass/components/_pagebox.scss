@@ -1,0 +1,85 @@
+.page-box{
+    position: relative;
+    padding:20px 15px;
+    margin-top:20px;
+    border-radius: $site_radius;
+    box-shadow: 0 0 10px $black_color;
+    .show-box{
+        position: relative;
+    }
+    h3{
+        text-align: center;
+        margin:20px 0;
+        color: $hint_color;
+    }
+    p{
+        font-size: $font_size_4;
+        padding-top:0;
+        &:not(:last-child){margin-bottom: 020px;}
+    }
+    .icon-image{width:120px;}
+    &.dark{
+        padding:3px;
+        background-color: $color_site_6;
+    }
+    &.dark-color{
+        background-color: $background_color_body;
+        box-shadow: none;
+    }
+    &.same-padding{padding:15px;}
+    &.has-top-padding{padding-top:64px;}
+    &.display{
+        display: table;
+        width:100%;
+        height: 400px;
+        padding:20px 10px;
+        margin-top:20px;
+        .inner-display{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        &.autoheight{height: auto;}
+    }
+    &.godashboard{
+        overflow: hidden;
+        transition:all .3s ease-in-out;
+        background-position: left bottom;
+        &::after,
+        &::before{
+            content:'';
+            position: absolute;
+            top:-100px;
+            left:40%;
+            width:64px;
+            height: 64px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition:all .5s ease-in-out;
+        }
+        &:not(.day):not(.night){margin-bottom:40px;}
+        &.day{
+            padding-top:112px;
+            padding-bottom: 10px;
+            background:url('~@/assets/images/day.jpg') no-repeat left bottom;
+            background-size: cover;
+            &::after{
+                top:25px;
+                background-image: url('~@/assets/images/sun.svg');
+                background-size: 64px;
+            }
+        }
+        &.night{
+            padding-top:112px;
+            padding-bottom: 10px;
+            background:url('~@/assets/images/night.jpg') no-repeat right center;
+            background-size: cover;
+            &::before{
+                top:25px;
+                background-image: url('~@/assets/images/moon.svg');
+                background-size: 64px;
+            }
+        }
+        &.has-action-button{padding-top:172px !important;}
+    }
+}

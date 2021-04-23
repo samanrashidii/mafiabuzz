@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default {
   namespaced: true,
@@ -17,40 +17,50 @@ export default {
         resultText: '',
         image: '',
         resultImage: '',
+        godImage: '',
+        godText: '',
+        voteImage: '',
+        voteText: ''
       },
       freezeStatus: {
         linked: null,
         hacked: null,
         silenced: null,
         healed: null,
+        antiSilenced: null
       },
       targetData: {},
-      lastPhaseAction: true,
+      lastPhaseAction: false,
+      voteKill: false,
       mafiaParty: true,
       historyLog: [],
       totalHistory: [],
-      lastNightLog: [],
       lastNight: [],
       lastNightBox: false,
-      // readyToLog: false,
-      // targetHacked: false,
-      // targetDead: false,
-      // targetRevived: false,
-      // killer: false,
-      // multipleMafia: false
-    },
+      revengeKillBox: false,
+      revengeUsed: false,
+      avenger: null,
+      justiceUsed: false,
+      killerChanged: false,
+      nextKiller: {
+        icon: null,
+        alt: null,
+        name: null,
+        player: null
+      }
+    }
   },
   getters: {
-    Dashboard: state => state.dashboard,
+    Dashboard: state => state.dashboard
   },
   mutations: {
     SET_DASHBOARD: (state, dashboard) => {
-      Vue.set(state, 'dashboard', dashboard);
-    },
+      Vue.set(state, 'dashboard', dashboard)
+    }
   },
   actions: {
     SetDashboard: (context, dashboard) => {
-      context.commit('SET_DASHBOARD', dashboard);
-    },
-  },
-};
+      context.commit('SET_DASHBOARD', dashboard)
+    }
+  }
+}

@@ -1,0 +1,119 @@
+.create{
+    padding-bottom: $meter_height;
+    button{
+      background-color:$creator_color;
+    }
+}
+
+.not-found{
+    padding-top:50px;
+    img{
+      max-width: 320px;
+    }
+}
+
+.login-page{
+  form{
+    max-width: 300px;
+    margin:auto;
+  }
+}
+
+.payment-confirm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 130px);
+    padding-bottom: 20px;
+    img{
+        width:150px;
+        margin:0;
+    }
+    h1{
+        color: $color_site_2;
+        margin-top:10px;
+    }
+}
+
+.purchase-failed{
+    padding-top:50px;
+    img{
+        width:200px;
+        transform: translateX(-15px);
+    }
+    h1{
+        margin-top:20px;
+        strong{
+            color: $red_color;
+        }
+    }
+    a.bttn{
+        max-width: 240px;
+        margin:auto;
+    }
+}
+
+.welcome,
+.thank-you{
+    margin-bottom: 30px;
+    > img{
+        width:200px;
+        margin-top:40px;
+        margin-bottom: 10px;
+        &.email-activation{
+        width:80px;
+        }
+    }
+    p.hint{
+        font-size: $font_size_5 !important;
+        strong{
+        color: $red_color;
+        }
+    }
+    > h1{
+        font-size: 1.4em;
+        strong{
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $font_mafia;
+        font-size: $font_size_large;
+        color: $about_color;
+        }
+    }
+}
+
+.forgot-password-box{
+    padding:25px 20px;
+    border-radius: $site_radius;
+    box-shadow: inset 0 0 15px $black_color;
+    button{
+      font-size: $font_size_4;
+      height: 36px;
+      margin-top:10px;
+      border-radius: $curve_radius;
+    }
+}
+  
+.activate{
+    margin-bottom: 30px;
+    img{
+      width:150px;
+      margin-top:40px;
+      margin-bottom: 20px;
+    }
+    h2{
+      strong{
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $font_mafia;
+        font-size: $font_size_medium_big;
+        color: $about_color;
+      }
+      &.fail{
+        strong{
+          color: $red_color;
+        }
+      }
+    }
+}

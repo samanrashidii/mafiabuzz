@@ -1,0 +1,139 @@
+.action-box-wrapper{
+    p{
+        font-size: $font_size_3;
+        padding:0 0 25px 0;
+        strong{color:$hint_color;}
+    }
+    .action-overlay{
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 100%;
+        color: $black_color;
+        height: calc(100% - 48px);
+        padding: 5px 20px;
+        background-size: cover;
+        z-index: 10;
+        border-radius: $site_radius;
+        p{
+            padding-bottom: 10px;
+            strong{color:inherit;}
+        }
+        img{
+            width:90px;
+            margin-bottom: 10px;
+            &.overlap{
+                width: 64px;
+                margin-top:17px;
+                margin-bottom: 0;
+            }
+        }
+        a.bttn{
+            margin-top:0;
+            box-shadow: 0 0 3px $background_color_6;
+        }
+        &.hacked-overlay{
+            background: url('~@/assets/images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+        }
+        &.dead-overlay{
+            img:nth-of-type(1){
+                float: right;
+
+            }
+            img:nth-of-type(2){
+                float: left;
+                
+            }
+            background: rgb(244, 244, 244);
+        }
+    }
+    .action-box{
+        position: relative;
+        .confirm-action{
+            a{
+                float: left;
+                display: block;
+                width:49%;
+                font-size: $font_size_2;
+                color:$color_1;
+                text-align: center;
+                padding:15px 5px;
+                margin:15px 0 0 2%;
+                border-radius: 2px;
+                box-shadow: 0 0 3px $background_color_default;
+                &:nth-child(2n+1){margin-left: 0;}
+                &.cancel{background-color: $red_color;}
+                &.confirm{background-color: $green_color;}
+            }
+        }
+
+        .action-limit{
+            display:block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin:-9px auto 0 auto;
+            border:2px dashed $hint_color;
+            border-radius: 50%;
+        }
+    
+        .player-box{
+            width:85px;
+            display:inline-block;
+            vertical-align: middle;
+            img{width:35px;}
+            h4{
+                span{
+                    display: block;
+                    font-size: $font_size_1;
+                    color:$color_1;
+                }
+            }
+        }
+    
+        .question{
+            margin: 30px 0;
+            input{
+                display: none;
+            }
+            label{
+                display: block;
+                max-width: 160px;
+                color: $color_1;
+                text-align: center;
+                padding:10px;
+                margin:0 auto;
+                background-repeat: no-repeat;
+                background-position: 20px center;
+                background-size: 16px;
+                border:1px solid $background_color_2;
+                border-radius: 5px;
+                box-shadow: 0 1px 7px $black_color;
+                transition: all .2s ease-in-out;
+            } 
+            input:checked + label{
+                background-image: url('~@/assets/images/assets/tick.svg');
+                background-color: $yellow_color;
+                border-color: $yellow_color;
+            }
+        }
+        
+        .arrow{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width:60px;
+            height: 60px;
+            margin:0 10px;
+            img{
+                width:50px;
+                margin:9px auto 0 auto;
+            }
+        }
+    }
+    
+    .action-image{
+        animation: scaling 2.4s ease-in-out alternate infinite;
+    }
+    
+}

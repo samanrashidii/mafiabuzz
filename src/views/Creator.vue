@@ -7,68 +7,132 @@
       <Create v-if="!gameSettings.gameStatus" />
       <Dashboard v-else />
     </transition>
+    <Overlay
+      class="main-alert"
+      :class="{'active': overlay}"
+    >
+      <template>
+        <img
+          src="@/assets/images/savedgame.svg"
+          :alt="$t('general.loadFromLastgameMessage')"
+        >
+        <h3 v-html="$t('general.loadFromLastgameMessage')" />
+        <AppButton
+          @click.native="loadFromSave()"
+          class="green disc-bttn"
+        >
+          <span>{{ $t('common.loadLastGameButton') }}</span>
+        </AppButton>
+        <AppButton
+          @click.native="resetFactory()"
+          class="danger start-bttn"
+        >
+          <span>{{ $t('common.startNewGameButton') }}</span>
+        </AppButton>
+      </template>
+    </Overlay>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Create from '@/components/main/Create.vue';
-import Dashboard from '@/components/main/Dashboard.vue';
+import { mapGetters, mapActions } from 'vuex';
+import Create from '@/components/steps/Create.vue';
+import Dashboard from '@/components/steps/Dashboard.vue';
+import Overlay from '@/components/Overlay.vue';
+import startGame from '@/mixins/startGame';
 
 export default {
+  name: 'Creator',
+  data() {
+    return {
+      overlay: false
+    }
+  },
   computed: {
     ...mapGetters({
+      Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
+      ReplacingRoles: 'roles/ReplacingRoles',
+      Roles: 'roles/Roles'
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings));
-    },
+    }
   },
   components: {
     Create,
     Dashboard,
+    Overlay
   },
+  mounted() {
+    const capturedState = JSON.parse(localStorage.getItem('capturedState'))
+    if (capturedState) {
+      this.overlay = true
+    }
+  },
+  methods: {
+    ...mapActions({
+      SetRoles: 'roles/SetRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetDashboard: 'dashboard/SetDashboard',
+      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+    }),
+    loadFromSave() {
+      this.startGameEngine('captured')
+      this.overlay = false
+      this.SetAppLoaded(true)
+    },
+    resetFactory() {
+      this.startGameEngine('hard')
+      this.overlay = false
+      this.SetAppLoaded(true)
+    }
+  },
+  mixins: [
+    startGame
+  ],
   metaInfo() {
     return {
-      title: `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
+      title: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,
       meta: [
         {
           vmid: 'description',
           name: 'description',
-          content: `${this.$t('meta.creator.description')}`,
+          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
         },
         {
           vmid: 'title',
-          name: 'og:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
+          property: 'og:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
         },
         {
           vmid: 'ogdescription',
-          name: 'og:description',
-          content: `${this.$t('meta.creator.description')}`,
+          property: 'og:description',
+          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
         },
         {
           vmid: 'ogurl',
-          name: 'og:url',
-          content: window.location.href,
+          property: 'og:url',
+          content: window.location.href
         },
         {
           vmid: 'twitter:title',
           name: 'twitter:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.creator.title')}`,
+          content: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
         },
         {
           vmid: 'twitter:description',
           name: 'twitter:description',
-          content: `${this.$t('meta.creator.description')}`,
+          content: `${this.$t('meta.home.description') + this.$t('meta.creator.description')}`
         },
         {
           vmid: 'twitter:url',
           name: 'twitter:url',
-          content: window.location.href,
-        },
-      ],
-    };
-  },
-};
+          content: window.location.href
+        }
+      ]
+    }
+  }
+}
 </script>

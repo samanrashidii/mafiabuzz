@@ -1,7 +1,8 @@
 <template>
   <a
     class="bttn"
-    href="javascript:void(0)"
+    :href="link"
+    :target="target"
   >
     <slot />
   </a>
@@ -9,6 +10,15 @@
 
 <script>
 export default {
-
-};
+  props: {
+    link: {
+      type: String,
+      default: 'javascript:void(0)'
+    },
+    target: {
+      type: String,
+      default: '_self'
+    }
+  }
+}
 </script>

@@ -1,0 +1,175 @@
+.fade-enter-active,
+.fade-leave-active{
+    transition: all .4s;
+}
+.bounce-enter-active,
+.bounce-leave-active{
+    transition: all 1.5s;
+}
+.fade-enter,
+.fade-leave-to{
+    opacity: 0;
+}
+.bounce-enter,
+.bounce-leave-to{
+    opacity: 0;
+    transform: scale(.1,.1);
+}
+.slide-enter-active{
+    animation: slide-in 200ms ease-out forwards;
+}
+.slide-leave-active{
+    animation: slide-out 200ms ease-out;
+}
+
+@keyframes slide-in {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes slide-out {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.scale-enter-active span{
+    animation: scale-in 300ms ease-out forwards;
+}
+.scale-leave-active span{
+    animation: scale-out 300ms ease-out;
+}
+
+.scale-slow-enter-active span{
+    animation: scale-in 1000ms ease-out forwards;
+}
+.scale-slow-leave-active span{
+    animation: scale-out 1000ms ease-out;
+}
+
+@keyframes scale-in {
+    from{
+        visibility: hidden;
+        opacity: 0;
+        transform:scale(0,0);
+    }
+    to{
+        visibility: visible;
+        opacity: 1;
+        transform:scale(1,1);
+    }
+}
+@keyframes scale-out {
+    from{
+        visibility: visible;
+        opacity: 1;
+        transform:scale(1,1);
+    }
+    to{
+        visibility: hidden;
+        opacity: 0;
+        transform:scale(0,0);
+    }
+}
+
+.floating{
+    animation-name:floating;
+    animation-duration:2.4s;
+    animation-direction:alternate;
+    animation-iteration-count:infinite;
+    animation-play-state:running;
+    animation-timing-function:linear;
+}
+
+.floating-reverse{
+    animation-name:floating-reverse;
+    animation-duration:4.4s;
+    animation-direction:alternate;
+    animation-iteration-count:infinite;
+    animation-play-state:running;
+    animation-timing-function:ease-in-out;
+}
+
+@keyframes floating{
+    from{
+        transform:translateY(5px)
+    }
+    to{
+        transform:translateY(-5px)
+    }
+}
+
+@keyframes floating-reverse{
+    from{
+        transform:translateY(20px) rotate3d(0,0,1,15deg)
+    }
+    to{
+        transform:translateY(-45px) rotate3d(0,0,1,-10deg)
+    }
+}
+
+@keyframes floating-reverse-2{
+    from{
+        transform:translateY(-30px) rotate3d(0,0,1,35deg)
+    }
+    to{
+        transform:translateY(60px) rotate3d(0,0,1,-22deg)
+    }
+}
+
+@keyframes floating-reverse-3{
+    from{
+        bottom:5%;
+        transform:rotate3d(0,0,1,720deg)
+    }
+    to{
+        bottom:70%;
+        transform:rotate3d(0,0,1,-720deg)
+    }
+}
+
+
+@keyframes floating-reverse-4{
+    from{
+        left:0;
+        transform:translateY(20%) rotate3d(0,0,1,1000deg)
+    }
+    to{
+        left:70%;
+        transform:translateY(-100%) rotate3d(0,0,1,-1000deg)
+    }
+}
+
+@keyframes floating-small{
+    from{
+        transform:rotate3d(0,0,1,35deg)
+    }
+    to{
+        transform:rotate3d(0,0,1,-35deg)
+    }
+}
+
+@keyframes scaling {
+    0%{transform:scale(1,1)}
+    50%{transform:scale(.7,.7)}
+    100%{transform:scale(1,1)}
+}
+
+.color-flow{
+    animation: colorful 2s ease-in-out alternate infinite;
+}
+
+@keyframes colorful {
+    0%{
+        box-shadow: 0 0 10px transparent;
+    }
+    100%{
+        box-shadow: 0 0 10px $light_purple_color;
+    }
+}

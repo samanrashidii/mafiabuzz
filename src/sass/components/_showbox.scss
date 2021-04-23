@@ -1,0 +1,56 @@
+.show-box{
+    .player-displayer{
+        min-height: 310px;
+        a.bttn{max-width: 240px;}
+    }
+    strong{
+        display: block;
+        font-family: $font_mafia;
+        font-size: 60px;
+        color:$hint_color;
+        word-break: break-word;
+        transition:all .4s ease-in-out;
+        &.mafia-color{color:$background_color_mafia;}
+        &.citizen-color{color:$background_color_citizen;}
+    }
+    a.bttn{
+        margin:15px auto 0 auto;
+    }
+    .role-info{
+        position: relative;
+        display: inline-block;
+        min-width: 162px;
+        min-height: 162px;
+        font-family: $font_mafia;
+        font-size: 30px;
+        color:$color_site_4;
+        padding:30px 25px;
+        margin:10px 0 7px 0;
+        background-color: $background_color_4;
+        border:2px solid $background_color_mafia;
+        border-radius: $circle_radius;
+        img{
+            width:64px;
+            height:64px;
+        }
+        &::after{
+            content:'';
+            position: absolute;
+            top:5px;
+            left:5px;
+            display: block;
+            width:calc(100% - 10px);
+            height:calc(100% - 10px);
+            border:2px solid $background_color_mafia;
+            border-radius: $circle_radius;
+        }
+        &.citizen{
+            border:2px solid $background_color_citizen;
+            &::after{border:2px solid $background_color_citizen;}
+        }
+        &.solo{
+            border:2px solid $background_color_solo;
+            &::after{border:2px solid $background_color_solo;}
+        }
+    }
+}

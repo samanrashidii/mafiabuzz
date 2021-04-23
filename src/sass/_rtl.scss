@@ -1,0 +1,434 @@
+body.rtl{
+    direction: rtl;
+    font-family: $font_rtl, $font_reset_default;
+    font-size: $font_size_4;
+}
+
+.rtl{
+    p{
+        line-height: 2;
+        font-size: $font_size_3 !important;
+    }
+    input{font-family: $font_rtl;}
+    select{
+        line-height: 38px;
+        font-family: $font_rtl;
+        background-position-x: 15px;
+    }
+
+    ::-webkit-input-placeholder {font-family: $font_rtl;}
+    :-moz-placeholder {font-family: $font_rtl;}
+    ::-moz-placeholder {font-family: $font_rtl;}
+    :-ms-input-placeholder {font-family: $font_rtl;}
+
+    .title h2{
+        font-family: $font_rtl;
+        font-size: $font_size_medium;
+    }
+
+    .roles li label,
+    .roles li label > div strong span i{
+        font-family: $font_rtl;
+        font-size: $font_size_6 !important;
+    }
+
+    .start-bttn span{
+        padding: 5px 32px 5px 5px;
+        margin-top:-4px;
+        background-position-x: 99%;
+    }
+
+    .settings-bttn span{
+        padding:3px 31px 5px 5px;
+        background-position-x: 99%;
+    }
+
+    .swap-bttn span{
+        padding:3px 35px 5px 5px;
+        background-position-x: 99%;
+    }
+
+    .settings-bttn span{
+        padding:3px 31px 5px 5px;
+        background-position-x: 99%;
+    }
+
+    .disc-bttn span{
+        padding:4px 30px 2px 5px;
+        background-position-x: 99%;
+    }
+
+    .exit-bttn span{
+        padding:4px 30px 2px 5px;
+        background-position-x: 99%;
+    }
+
+    .cart-bttn{
+        padding:3px !important;
+        span{
+            padding:4px 26px 2px 5px;
+            background-position-x: 99%;
+        }
+    } 
+
+    .patch-bttn span{
+        padding:4px 30px 2px 5px;
+        background-position-x: 99%;
+    }
+
+    .debit-card-bttn span{
+        padding:4px 30px 2px 5px;
+        background-position-x: 99%;
+    }
+
+    .success-bttn span{
+        padding:4px 30px 2px 5px;
+        background-position-x: 99%;
+    }
+
+    .close-bttn span{
+        padding:0 22px 0 5px;
+        background-position-x: 99%;
+    }
+
+    .discord-bttn span{
+        padding:1px 40px 3px 3px;
+        background-position-x: 99%;
+    }
+
+    #app .navigation nav a{
+        font-family: $font_rtl;
+        font-size: $font_size_medium;
+    }
+    #app .navigation.sticky nav a{
+        font-family: $font_rtl;
+        font-size: $font_size_3;
+        &.language-bttn{padding:12px 2px 8px 2px;}
+    }
+    .step-box,
+    .page-box{
+        h3{
+            font-family: $font_rtl;
+            font-size: 22px;
+        }
+        p{font-size: $font_size_3;}
+    }
+
+    .info-box{
+        p{
+            line-height: 1.8;
+            font-size: $font_size_2 !important;
+        }
+        .details-info > div{
+            > span{
+                margin: 0 0 0 10px;
+            }
+            .data-holder{
+                img{
+                    margin:0 0 0 8px;
+                }
+            }
+        }
+        h2{
+            font-size: 1.3em;
+            margin-top:0;
+        }
+        img{
+            float: right;
+            margin:0 0 0 10px;
+        }
+        .mafia-status,
+        .citizen-status,
+        .solo-status{
+            text-align: right;
+            margin-top:2px;
+        }
+    }
+
+    a.bttn{font-size: $font_size_4;}
+
+    .character-power span i{
+        line-height: 25px;
+        padding-right: 1px;
+    }
+
+    .creators li a strong{font-size: 24px !important;}
+
+    .error-bullet li{
+        text-align: right;
+        &::before{
+            margin:0 0 0 5px;
+        }
+    }
+
+    .table{
+        table{
+            tr{
+                th{
+                    font-size: $font_size_1;
+                }
+                td{
+                    &:first-child{
+                        text-align: right !important;
+                        border-radius:0 2px 2px 0;
+                    }
+                    &:nth-child(1){
+                        &::before{
+                            right:auto;
+                            left:4px;
+                        }
+                    }
+                    &:last-child{
+                        border-radius:2px 0 0 2px;
+                    }
+                    img{
+                        margin:0 0 0 4px !important;
+                    }
+                    input{
+                        padding-top:3px;
+                    }
+                }
+                &.love-bind{
+                    td{
+                        &:nth-child(1){
+                            &::before{
+                                right:auto;
+                                left:-13px;
+                            }
+                        }
+                    }
+                }
+                &.dead{
+                    td{
+                        &:nth-child(1){
+                            &::after{
+                                background-position: 4px center !important;
+                            }
+                        }
+                    }
+                }
+                &.silenced{
+                    td{
+                        &:nth-child(1){
+                            &::after{
+                                background-position: 2px center !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .table-roles{
+        table{
+            tr{
+                &.invisible{
+                    td{
+                        &:first-child{
+                            padding:6px 4px 6px 28px;
+                        }
+                    }
+                }
+                &.shield{
+                    td{
+                        &:first-child{
+                            padding:6px 4px 6px 28px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .predefined{
+        right:auto;
+        left:16px;
+        padding:6px 10px 5px 35px;
+    }
+
+    .step-box.display .inner-display strong{
+        line-height: 1.2;
+        font-size: 34px;
+        font-weight: bold;
+    }
+
+    .step-box.display .inner-display .role-info,
+    .page-box.display .inner-display .role-info{
+        font-family: $font_rtl;
+        font-size: $font_size_7;
+    }
+
+    .priority-box .progress-bar i strong{font-family: $font_rtl;}
+    .step-box.display .inner-display strong{font-family: $font_rtl;}
+
+    .dashboard-hint li{font-size: $font_size_2;}
+
+    .player-box-holder{direction: ltr;}
+
+    .log-bttn i{
+        font-size: 13px;
+        line-height: 23px;
+    }
+
+    .log-table table td:last-child{text-align: right !important;}
+
+    .god .night-actions{font-size: $font_size_2;}
+
+    .dashboard-hint li span{
+        padding: 5px 32px 5px 0;
+        background-repeat: no-repeat;
+        background-position-x: right;
+    }
+
+    .character-unlock{
+        margin-left: 0;
+        margin-right: -12px;
+        p{
+            strong{
+                font-family: $font_rtl;
+                line-height: 1.5;
+            }
+        }
+        .inner-unlocked-character{
+            h1{
+                line-height: 1.8;
+                font-family: $font_rtl;
+                font-size: 2.2rem;
+            }
+        }
+    }
+
+    .overlay{
+        &.last-night{
+            ul li{
+                .last-log{
+                    text-align: right;
+                    padding:9px 48px 5px 75px;
+                    background-position-x: 96%;
+                }
+                em{
+                    right:auto;
+                    left:6px
+                }
+            }
+            h2{
+                font-family: $font_rtl;
+                font-size: $font_size_8 !important;
+            }
+        }
+    }
+
+    .log-events span{margin:0 2px;}
+
+    .priority-box .progress-bar{direction: ltr;}
+    .priority-box .progress-bar i{
+        line-height: 22px;
+        font-size: 9px;
+    }
+
+    .priority-box .progress-bar span{background: linear-gradient(90deg, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);}
+
+    .creators li a strong{font-family: $font_rtl !important;}
+
+    .vue-notification{
+        direction: rtl;
+        font-family: $font_rtl;
+        font-size: $font_size_4 !important;
+        border-left:none;
+        border-right: 5px solid #187FE7;
+    }
+
+    .notif{
+        line-height: 22px;
+    }
+
+    .game-finished .game-finish-box h2 strong{
+        line-height: 1;
+        font-family: $font_rtl;
+        font-size: $font_size_super_big !important;
+    }
+
+    .page-box.display .inner-display strong{
+        font-family: $font_rtl;
+        font-size: $font_size_super_big !important;
+    }
+
+    .list-item li{
+        font-size: $font_size_3;
+        text-align: right;
+        &::before{
+        margin:0 0 0 10px;
+        }
+    }
+
+    .nextkiller-box p strong{
+        display: inline-block;
+        vertical-align: middle;
+        font-family: $font_rtl;
+        font-size: $font_size_medium_big;
+        margin:0 5px;
+    }
+
+    .sub-header{
+        .bttn.subnav-bttn{
+            font-size: $font_size_3 !important;
+            direction: rtl;
+            &.characters-bttn{
+                direction: ltr;
+                strong{
+                    font-family: $font_rtl;
+                    font-size: $font_size_5 !important;
+                }
+            }
+        }
+    }
+
+    .character{
+        font-family: $font_rtl;
+        font-size: $font_size_8;
+    }
+
+    form{
+        h2{
+            font-family: $font_rtl;
+            font-size: $font_size_big;
+        }
+        .field-holder{
+            .promo-submit{
+                position: absolute;
+                top:8.5px;
+                right:auto;
+                left:4px;
+                font-size: $font_size_2;
+            }
+            #promo_code{
+                padding-right: 15px;
+                padding-left: 90px;
+            }
+            label{
+                font-size: $font_size_3;
+                img{margin:0 0 0 7px;}
+                span i{
+                    font-size: $font_size_2;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 500px) {
+    .rtl {
+        .power-meter,
+        .game-finished,
+        .overlay,
+        .info-box,
+        .notifications{
+          margin-left: 0;
+          margin-right: -12px;
+        }
+        .overlay.viewer{
+          margin-right: -32px;
+        }
+    }
+}

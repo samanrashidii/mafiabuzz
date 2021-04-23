@@ -1,0 +1,94 @@
+.left-aligned{text-align: left;}
+.center-aligned{text-align: center;}
+.force-center-aligned{text-align: center !important;}
+.right-aligned{text-align: right;}
+.has-minus-top-margin{margin-top:-5px !important;}
+.has-top-margin{margin-top:30px !important;}
+.has-bottom-margin{margin-bottom:30px !important;}
+.has-auto-margin{
+    margin-left:auto;
+    margin-right:auto;
+}
+.has-small-top-margin{margin-top:20px !important;}
+.has-small-bottom-margin{margin-bottom: 20px !important;}
+.has-xsmall-top-margin{margin-top:10px !important;}
+.has-xsmall-bottom-margin{margin-bottom: 10px !important;}
+.has-top-space{margin-top: 15px !important;}
+.has-left-right-margin{
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+.mt-0{margin-top:0 !important;}
+.mb-0{ margin-top:0 !important;}
+.mr-0{ margin-right:0 !important;}
+.ml-0{ margin-left:0 !important;}
+.w-100{width: 100%;}
+.max-width-input{max-width: 200px;}
+.onlayer-image{
+    width:60px;
+    margin-top:-41px;
+    transform:translateX(46px)
+}
+.brand-input{
+    font-family: $font_mafia !important;
+    font-size: 28px !important;
+    color: $black_color;
+    letter-spacing: 10px;
+    padding-top:4px;
+    padding-right: 0;
+}
+.brand-button{
+    max-width: 200px;
+    height: 35px;
+    margin: 8px auto;
+    border-radius: 20px;
+}
+.max-width-box{
+    max-width: 200px;
+    margin: 0 auto;
+}
+.ltr{
+    direction: ltr;
+    display: inline-block;
+}
+.d-flex{
+    display: flex;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.equal-buttons{
+    a{
+        width: 49%;
+    }
+}
+
+.has-clear-fix::after {
+    content: '';
+    display: table;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.table-display{
+    display:table;
+    width:100%;
+    height: 100%;
+}
+
+.table-cell-display{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.divider{
+    width: 100%;
+    padding-top:25px;
+    margin-top:25px;
+    border-top:1px solid $background_color_default;
+    &.light{
+        border-color: $color_site_4;
+    }
+}

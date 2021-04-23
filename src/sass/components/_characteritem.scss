@@ -1,0 +1,66 @@
+.character-item{
+    position: relative;
+    width:100%;
+    max-width: 250px;
+    overflow: hidden;
+    text-align: center;
+    padding:20px 10px 10px 10px;
+    margin:0 auto;
+    background-color: $background_color_main;
+    border-radius: $site_radius;
+    box-shadow: inset 0 0 20px $black_color;
+    img{
+        width: 80px !important;
+    }
+    h2{
+        margin-top:10px;
+    }
+    > span{
+        display:inline-block;
+        min-width: 80px;
+        padding:5px 10px;
+        margin-bottom: 4px;
+        background-color: $background_color_2;
+        border-radius: $site_radius;
+        box-shadow: 0 0 5px $background_color_middle;
+    }
+    > strong{
+        direction: ltr;
+        position: absolute;
+        top: 42px;
+        right: 10px;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-family: $font_normal;
+        font-size: $font_size_3;
+        background: $awesome;
+        border-radius: $circle_radius;
+        box-shadow: 0 0 12px $background_color_side;
+        &::before{
+            content:'';
+            display:block;
+            height: 50px;
+            margin-top:-50px;
+            background: url('~@/assets/images/icons/rope.svg') no-repeat center;
+            background-size: 50px;
+        }
+    }
+    a.bttn{
+        width: 100%;
+        height: 40px;
+        padding: 6px !important;
+        margin-top:25px;
+        border-radius: $default_radius;
+    }
+    .close-bttn{
+        background-color: $red_color;
+    }
+}
+
+@keyframes drop{
+    0%{transform:translateY(-10px);}
+    30%{transform:translateY(0);}
+    66%{transform:translateY(10px);}
+	100%{transform:translateY(0);}
+}

@@ -1,43 +1,42 @@
-import Vue from 'vue';
+import Vue from 'vue'
 // import Vue2TouchEvents from 'vue2-touch-events';
-import Notifications from 'vue-notification';
-import VueMeta from 'vue-meta';
-import App from './App.vue';
-import router from './router';
-import store from './store/index';
-import i18n from './i18n';
-import './registerServiceWorker';
+import Notifications from 'vue-notification'
+import VueMeta from 'vue-meta'
+import Loading from 'vue-loading-overlay'
+import App from './App.vue'
+import router from './router'
+import store from './store/index'
+import i18n from './i18n'
+import VueClipboard from 'vue-clipboard2'
+import 'vue-loading-overlay/dist/vue-loading.css'
+import getImg from '@/mixins/getImg'
+import discord from '@/mixins/discord'
+import BackToTop from 'vue-backtotop'
 
-// Global Components
+// Global Items
 
-import Button from './components/global/Button.vue';
-import PageBox from './components/global/PageBox.vue';
+import Button from './components/global/Button.vue'
+import PageBox from './components/global/PageBox.vue'
+const VueScrollTo = require('vue-scrollto')
 
-// Mobile Touch
+Vue.component('AppButton', Button)
+Vue.component('PageBox', PageBox)
 
-// Vue.use(Vue2TouchEvents);
-Vue.use(Notifications);
-Vue.use(VueMeta);
+Vue.mixin(getImg)
+Vue.mixin(discord)
 
-Vue.component('AppButton', Button);
-Vue.component('PageBox', PageBox);
+Vue.use(VueMeta)
+Vue.use(Notifications)
+Vue.use(Loading)
+Vue.use(VueClipboard)
+Vue.use(VueScrollTo)
+Vue.use(BackToTop)
 
-// Vue Config
-
-Vue.config.productionTip = false;
-
-// Vue Router
-
-router.beforeEach((to, from, next) => {
-  window.scrollTo(0, 0);
-  next();
-});
-
-// Create Vue
+Vue.config.productionTip = false
 
 new Vue({
   i18n,
   router,
   store,
-  render: h => h(App),
-}).$mount('#app');
+  render: h => h(App)
+}).$mount('#app')

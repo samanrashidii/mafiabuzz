@@ -1,0 +1,17 @@
+.role-viewer{
+    direction: ltr;
+    overflow: hidden;
+    .role-view{
+        width:280px;
+        height: 280px;
+        text-align: center;
+        margin:35px auto;
+        img{
+            width:200px !important;
+        }
+        h1{
+            font-size: 3em;
+            margin-top:15px;
+        }
+    }
+}

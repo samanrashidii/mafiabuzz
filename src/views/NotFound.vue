@@ -1,7 +1,7 @@
 <template>
   <div class="not-found center-aligned">
     <img
-      :src="getImgUrl('', $t('common.page404Image'))"
+      src="@/assets/images/error-404.png"
       :alt="$t('common.page404Alt')"
     >
     <h2
@@ -10,7 +10,7 @@
     />
     <router-link
       class="bttn has-top-margin"
-      :to="{name: 'home'}"
+      :to="{name: 'creator'}"
     >
       {{ $t('common.homeButton') }}
     </router-link>
@@ -18,9 +18,8 @@
 </template>
 
 <script>
-import getImg from '@/mixins/getImg';
-
 export default {
+  name: 'NotFound',
   metaInfo() {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
@@ -32,17 +31,17 @@ export default {
         },
         {
           vmid: 'ogtitle',
-          name: 'og:title',
+          property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
         },
         {
           vmid: 'ogdescription',
-          name: 'og:description',
+          property: 'og:description',
           content: `${this.$t('meta.notfound.description')}`,
         },
         {
           vmid: 'ogurl',
-          name: 'og:url',
+          property: 'og:url',
           content: `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`,
         },
         {
@@ -63,6 +62,5 @@ export default {
       ],
     };
   },
-  mixins: [getImg],
 };
 </script>

@@ -1,38 +1,120 @@
 {
+    "patchNotes": [
+        {"text": "Change : Shopping flow has been removed and all characters are now free to play"},
+        {"text": "Change : Shop page to Characters"},
+        {"text": "Remove : Purchased characters from Profile page"},
+        {"text": "Remove : Order history from Profile page"},
+        {"text": "Fix : Minor issues and bugs"}
+    ],
+    "thirdparty": {
+        "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='red-color'>webhook</span> code below",
+        "discordHelp": "View setup instruction in Instagram",
+        "discordConnected": "Mafiabuzz is now connected to your Discord channel",
+        "discordDisconnect": "Disconnect this channel",
+        "discordCodeSubmit": "Submit",
+        "discordDayPhase": "🌞 Starting Day Phase : ",
+        "discordNightPhase": "🌚 Starting Night Phase : ",
+        "discordGameStarted": "🎮 Game Started ...!!!",
+        "discordPlayers": "🕵️‍♂️👨‍👩‍👧‍👦🕵️‍♀️ These players are playing game : ",
+        "discordMafia": "🕵🏼 Mafia Characters : ",
+        "discordCitizen": "👨‍👩‍👧‍👦 Citizen Characters : ",
+        "discordSolo": "🦸‍♂️ Solo Characters : ",
+        "discordMafiaPower": "☢️ Mafia Power : ",
+        "discordCitizenPower": "☢️ Citizen and Solo Power : ",
+        "discordGodGameStarted": "⚔️ Everyone know his/her role now. Let the game begin...",
+        "discordUpdateButton": "Send latest game status to discord",
+        "discordLatestStats": "📜 Latest Game Stats : ",
+        "discordAlivePeople": "💚 Alive People : ",
+        "discordDeadPeople": "💀 Dead People : ",
+        "discordSpentNights": "🌚 Spent Nights : ",
+        "discordMafiaTeam": "Your teammates are : ",
+        "discordSendVoteResult": "Send vote counts to Discord",
+        "discordVoteResultText": "🏳️ Vote Report for alive people in game : "
+    },
     "general":{
         "name": "MafiaBuzz",
+        "lastUpdate": "15-12-2020",
+        "welcomeToMafiabuzz": "❤️🔔 Welcome to MafiaBuzz Web Application 🔔❤️",
         "alt": "MafiaBuzz Logo",
-        "url": "http://www.mafiabuzz.com",
+        "url": "https://www.mafiabuzz.app",
+        "currency": "T",
         "infoIcon": "Info Icon",
-        "notValid": "error.svg",
         "notValidIcon": "Not Valid Icon",
-        "warning": "warning.svg",
         "warningIcon": "Warning Icon",
+        "correct": "correct.svg",
+        "correctIcon": "Correct Icon",
+        "wrong": "wrong.svg",
+        "wrongIcon": "Wrong Icon",
+        "seeDetails": "Details",
+        "instagramBanner": {
+            "title": "How to work with Mafiabuzz app?",
+            "button": "Open in Instagram"
+        },
         "selectPlaceholder": "Please select from below",
+        "patchButton": "View Patch Notes",
+        "characters": "Characters",
+        "characterUnlocked": "<strong>Congratz!!!</strong> You unlocked a new character",
+        "loadFromLastgameMessage": "Would you like to resume your <span class='green-color'>Last Game</span> or start a <span class='creator-color'>New Game</span>?",
         "winner": [
             {
                 "class": "mafia",
                 "name": "mafia",
                 "image": "mafiaparty.svg",
                 "alt": "Mafia Party Icon",
-                "title": "Congratulation to <strong>The Mafia</strong>"
+                "title": "Congratulation to <strong>The Mafia</strong>",
+                "text": "🕵️‍♀️🕵️‍♂️🎂🎊🎉❤️ Congratulation to the Mafia team"
             },
             {
                 "class": "citizen",
                 "name": "citizen",
                 "image": "citizenparty.svg",
                 "alt": "Citizen Party Icon",
-                "title": "Congratulation to <strong>The Citizen</strong>"
+                "title": "Congratulation to <strong>The Citizen</strong>",
+                "text": "👩‍👩‍👧‍👦🎂🎊🎉💙 Congratulation to the Citizen team"
+            },
+            {
+                "class": "solo",
+                "name": "solo",
+                "image": "citizenparty.svg",
+                "alt": "Solo Icon",
+                "title": "Congratulation to The Solo Player",
+                "text": "🦹‍♂️🎂🎊🎉🧡 Congratulation to the Solo player : "
             }
         ],
         "errors": {
-            "uniquePlayers": "Please write unique names"
+            "uniquePlayers": "Please write unique names",
+            "generalFail": "There was an error!"
         }
+    },
+    "common": {
+        "homeButton": "Navigate to Home",
+        "closeButton": "Close",
+        "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='yellow-color'>404</span> times !!!",
+        "page404Alt": "Error 404 Image",
+        "Mafia": "mafia",
+        "Citizen": "citizen",
+        "Solo": "solo",
+        "Role": "Role",
+        "Power": "Power",
+        "Vote": "Vote Counter",
+        "Player": "Player",
+        "Status": "Kill / Revive",
+        "Action": "Action",
+        "Night": "Night",
+        "Day": "Day",
+        "Kill": "kill",
+        "None": "None",
+        "loadLastGameButton": "Load Last Game",
+        "startNewGameButton": "Start New Game",
+        "cancelButton": "Cancel",
+        "newAlt": "New Icon",
+        "hotAlt": "Hot Icon",
+        "copyToClipboard": "Copy name for Discord"
     },
     "meta":{
         "home": {
-            "title": "MafiaBuzz is a web application to setup and manage Mafia Party Game easily",
-            "description": "MafiaBuzz is a web application to setup and manage 'Mafia Party Game' easily.",
+            "title": "MafiaBuzz is a web application for playing The Mafia party game",
+            "description": "MafiaBuzz is a web application to set up and manage the 'Mafia Party Game' easily. People can set up their game and choose multiple roles as a creator to start playing the game in a group of friends or family",
             "url": "/"
         },
         "creator": {
@@ -46,37 +128,28 @@
             "url": "how-to-play"
         },
         "about": {
-            "title": "Abous us",
-            "description": "We are some random gamers who wants to help other gamers to play and enjoy party games",
+            "title": "About us",
+            "description": "We are some random gamers who wants to help other gamers to play and enjoy party and role play games",
             "url": "about"
         },
         "notfound":{
             "title": "Page Not Found - Error 404",
             "description": "Page requested was not found - Error 404",
             "url": "error-404"
+        },
+        "support": {
+            "title": "Support MafiaBuzz",
+            "description": "We are some random gamers who wants to help other gamers to play and enjoy party and role play games",
+            "url": "support"
+        },
+        "characters": {
+            "title": "Characters",
+            "description": "Meet all MafiaBuzz characters and their abilities"
         }
-    },
-    "common": {
-        "homeButton": "Navigate to Home",
-        "page404": "I think <strong class='mafia-role'>Mafia</strong> has destoryed this page <span class='citizen-role'>404</span> times !!!",
-        "page404Image": "error-404.png",
-        "page404Alt": "Error 404 Image",
-        "Mafia": "mafia",
-        "Citizen": "citizen",
-        "Role": "Role",
-        "Power": "Power",
-        "Vote": "Vote Counter",
-        "Player": "Player",
-        "Status": "Status",
-        "Action": "Action",
-        "Night": "Night",
-        "Day": "Day",
-        "Kill": "kill",
-        "None": "none"
     },
     "navigation": [
         {
-            "name": "Creator",
+            "name": "Game Panel",
             "alt": "Creator Icon"
         },
         {
@@ -86,69 +159,67 @@
         {
             "name": "About",
             "alt": "MafiaBuzz Logo"
+        },
+        {
+            "name": "Support Us",
+            "alt": "Support Mafiabuzz Icon"
         }
     ],
     "language": {
-        "text": "FA Language",
+        "text": "فارسی",
         "alt": "Change Language Image"
     },
     "pages": {
-        "home": {
-            "button1": "One Device",
-            "button2": "Multiple Devices",
-            "singleDeviceImage": "single-device.png",
-            "multiDeviceImage": "multi-device.png",
-            "singleDeviceAlt": "Single Device",
-            "multiDeviceAlt": "Multi Device"
-        },
         "creator": {
             "gameModeButton": "Change Game Mode",
             "welcome": {
-                "image": "logo.png",
-                "text": "<strong><i>M</i>afia<i>B</i>uzz</strong> <span>v1.0</span>"
+                "text": "<strong><i>M</i>afia<i>B</i>uzz</strong> <span>v{appVersion}</span>"
             },
-            "title": "Dear <span>God</span>",
-            "subtitle": "Please choose below options to create your game:",
-            "step1": "How many people do want to have in your <span class='creator-color'>World</span> :",
-            "step2": "How many of these people will be <span class='mafia-role'>Mafia</span> :",
-            "start": "Go next level !",
-            "changeSettings": "Back to Role Settings",
-            "errorText1": "You have to select",
-            "errorText2": "roles !",
+            "image": "creator.svg",
+            "title": "Mighty God",
+            "subtitle": "🎮 Please choose below options to create your game :",
+            "step1": "Total <span class='creator-color'>Players</span> :",
+            "step2": "How many will be <span class='mafia-role'>Mafia</span> :",
+            "start": "Go next step !",
+            "changeSettings": "Back to Game Settings",
+            "errorText1": "You have to select <span class='hint-color'> {number} </span> characters from group of <strong class='mafia-role'> {role} </strong>, But you have chosen <span class='mafia-role'> {chosen} </span> characters",
+            "errorText2": "You have to select <span class='hint-color'> {number} </span> characters from group of <strong class='citizen-role'> {role} </strong> or <strong class='solo-role'> {secondRole} </strong>, But you have chosen <span class='citizen-role'> {chosen} </span> characters",
             "cancelButton": "Cancel",
-            "changeSettingsText": "Are you sure about changing roles?",
+            "changeSettingsText": "Are you sure about changing characters?",
             "confirmButton": "Yes I want to",
-            "restartGame": "Restart game and change roles",
+            "restartGame": "Restart game and change characters",
             "restartButton": "Restart Game",
-            "resetTotalText": "Are you sure? Your selected roles and players will reset",
+            "resetTotalText": "Are you sure? Your selected characters and players will reset",
             "defaultNames": "Default Names",
             "lastNames": "Last Names",
-            "assign": "Assign Roles",
+            "assign": "Assign characters",
             "checkBeforeStart": "Your game will start with below characters",
-            "dashboardTitle": "<span>God</span> Dashboard",
+            "dashboardTitle": "<span>God</span>'s Dashboard",
             "chooseNameHint": "Please write the name of each person:",
+            "nameExtraHint": "Write each player's name based on position and sitting order",
             "playerDefault": "Player",
             "passMobile": "Please pass device to next person:",
-            "gotMobile": "Please see your role carefully :",
-            "beforeShowButton": "Show me my role !",
+            "gotMobile": "Please see your character carefully :",
+            "beforeShowButton": "Show me my character !",
             "afterShowButton": "Ok got it"
         },
         "about": {
-            "title": "<span>About us</span>",
-            "subtitle": "Talk with your friends <span class='site-color'>about us</span> :)",
+            "image": "logo.png",
+            "title": "<span>About</span> us",
+            "subtitle": "Talk with your friends <span class='site-color'>About us</span>, That's the best support of us ❤️",
             "creators": [
                 {
                     "name": "Saman Rashidi",
-                    "image": "mafia.svg",
+                    "image": "godfather.svg",
                     "url": "http://www.samanrashidi.com",
                     "classes": ["mafia-role", "Saman"],
-                    "title": "Design & Development"
+                    "title": "Product Design & Front-end Development"
                 },
                 {
                     "name": "Shahriyar Osouli",
-                    "image": "police.svg",
+                    "image": "magician.svg",
                     "url": "https://www.linkedin.com/in/shahriyar-osuli-a9a77654/",
-                    "classes": ["citizen-role", "Shahriyar"],
+                    "classes": ["hack-color", "Shahriyar"],
                     "title": "Game Design"
                 },
                 {
@@ -156,18 +227,42 @@
                     "image": "grandma.svg",
                     "url": "https://www.instagram.com/samirasaly/",
                     "classes": ["binded", "Samira"],
-                    "title": "Idea / UX / UI Advisor"
+                    "title": "Idea, Content & Social Media"
+                },
+                {
+                    "name": "Siavash Mirzaei",
+                    "image": "hacker.svg",
+                    "url": "https://www.linkedin.com/in/siavash-mirzaei-72a96a64",
+                    "classes": ["solo-role", "Siavash"],
+                    "title": "Back-end Development"
+                },
+                {
+                    "name": "Milad Senobari",
+                    "image": "mafia.svg",
+                    "url": "https://www.linkedin.com/in/miladsenobari",
+                    "classes": ["citizen-role", "Milad"],
+                    "title": "Development Advisor"
                 }
             ],
-            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>? Please email us at :",
-            "contactEmail": "info@mafiabuzz.com",
-            "socialText": "Follow us on Social Media",
+            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>?",
+            "contactEmail": "mafiabuzzgame@gmail.com",
+            "supportText": "Contact us :",
+            "supportTel": "+989038996930",
+            "thanksForSupport": "Thanks for supporting our team so we can add new cool features to the application 🙏",
+            "supportButton": "Donate to MafiaBuzz",
+            "socialText": "Follow us on Social Media and share your feedback with us 😊",
             "socials": [
                 {
                     "name": "Instagram",
                     "url": "https://instagram.com/mafia.buzz",
                     "icon": "instagram.svg",
                     "alt": "Instagram Icon"
+                },
+                {
+                    "name": "Discord",
+                    "url": "https://discord.gg/zjZnRrG",
+                    "icon": "discord.svg",
+                    "alt": "Discord Icon"
                 },
                 {
                     "name": "Linkedin",
@@ -178,23 +273,29 @@
             ]
         },
         "howtoplay": {
+            "image": "howtoplay.svg",
             "title": "How to <span>Play</span>?",
-            "subtitle": "Just read and everything is so clear :)",
+            "subtitle": "🔍 Just read and everything is so clear",
             "steps": [
                 {
                     "icon": "1.svg",
-                    "titl1": "What is this Game?",
-                    "desc1": "<strong>MafiaBuzz</strong> is a party game with modeling a conflict between two groups: an informed minority (<span class='mafia-role'> Tho Mafia </span>), and an uninformed majority (<span class='citizen-role'> The Citizens </span>). At the start of the game, each player is secretly assigned a role affiliated with one of these teams. The game has two alternating phases: <span class='night-color'>Night</span>, during which the mafia may covertly 'murder' an innocent, and <span class='day-color'>Day</span>, in which surviving players debate the identities of the mafia and vote to eliminate a suspect. The game continues until all of the mafia have been eliminated or until the mafia outnumber the innocents."
+                    "titl1": "The Mafia game",
+                    "desc1": "Mafia is a party game with modeling a conflict between two groups: an informed minority (<span class='mafia-role'> Tho Mafia </span>), and an uninformed majority (<span class='citizen-role'> The Citizens </span>). At the start of the game, each player is secretly assigned a role affiliated with one of these teams. The game has two alternating phases: <br /><span class='night-color'>Night</span>, during which the mafia may covertly 'murder' a citizen, and <span class='day-color'>Day</span>, in which surviving players debate the identities of the mafia and vote to eliminate a suspect. The game continues until all the mafia players have been eliminated or the mafia outnumber the citizens."
+                },
+                {
+                    "icon": "0.png",
+                    "titl1": "What is MafiaBuzz?",
+                    "desc1": "Mafia is a popular and interesting party game, but always it is hard to control and manage the game by the game moderator ( <span class='creator-color'>God</span> ) when you want to play it with a large group of people. <br /><strong>MafiaBuzz</strong> is a web application created by a team of developers and gamers. With the help of the application, you just have to select players and characters to start the game. Write the name of each person and give the phone to them to see their roles. After that <span class='creator-color'>God</span> can start the game and app will tell him what to do, calculate possibilities and show the result. <br /><strong>MafiaBuzz</strong> team will add new characters to the game in a small period of time."
                 },
                 {
                     "icon": "2.svg",
-                    "titl1": "<strong>Explaining Gameplay</strong>",
-                    "desc1": "<strong>MafiaBuzz</strong> is played by two teams: <span class='mafia-role'> Tho Mafia </span> and <span class='citizen-role'> The Citizens </span>. Live games require a moderator ( <span class='creator-color'>God</span> ) who does not participate as a player, and identities are assigned by application. At the start of the game, every mafioso is given the identities of their teammates, whereas citizens only receive the number of mafioso in the game, and do not know which players are mafia and which are citizens. <br /> There are two phases: <span class='night-color'>Night</span> and <span class='day-color'>Day</span>. At <span class='night-color'>Night</span>, certain players secretly perform special actions; during <span class='day-color'>Day</span>, players discuss and vote to kill one player, or eliminate, one player. These phases alternate with each other until all mafioso have been eliminated or until the mafia outnumbers the citizens. <br /> Some players may be given roles with special abilities (Chosen by <span class='creator-color'>Game Creator</span>) <br /><br /> <span class='night-color'>Night:</span> All players close their eyes. The moderator then instructs all members of <span class='mafia-role'>The Mafia</span> to open their eyes and acknowledge their accomplices. They will pick a victim by silently gesturing to indicate their target and to show unanimity then close their eyes again. A similar process occurs for other roles with nightly actions. <br /><br /> <span class='day-color'>Day:</span> The moderator instructs players to open their eyes and announces what happened the previous night. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafioso and prompt others to vote to kill them. If over half of the players do so, the accused person is eliminated and <span class='night-color'>Night</span> begins. Otherwise, thos phase continues until a killing occurs. Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, <span class='day-color'>Days</span> tend to be longer than <span class='night-color'>Nights</span>."
+                    "titl1": "Explaining Gameplay",
+                    "desc1": "Game is played by two teams: <span class='mafia-role'> Tho Mafia </span> and <span class='citizen-role'> The Citizens </span> ( There is a team named <span class='solo-role'>Solo</span> and it is part of citizen's team but they can win the game seperately from citizens with their abilities ). Live games require a moderator ( <span class='creator-color'>God</span> ) who does not participate as a player, and identities are assigned by application. At the start of the game, every mafioso is given the identities of their teammates, whereas citizens only receive the number of mafioso in the game, and do not know which players are mafia and which are citizens. <br /> There are two phases: <span class='night-color'>Night</span> and <span class='day-color'>Day</span>. At <span class='night-color'>Night</span>, certain players secretly perform special actions; during <span class='day-color'>Day</span>, players discuss and vote to kill one player. These phases alternate with each other until all mafioso have been eliminated or until the mafia outnumbers the citizens. <br /> Some players may be given roles with special abilities (Chosen by <span class='creator-color'>Game Creator</span>) <br /><br /> <span class='night-color'>Night:</span> All players close their eyes. The moderator then instructs all members of <span class='mafia-role'>The Mafia</span> to open their eyes and acknowledge their accomplices. Similar process for waking up pepole occurs by moderator for other roles with nightly actions. <br /><br /> <span class='day-color'>Day:</span> The moderator instructs players to open their eyes and announces what happened the previous night. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafioso and prompt others to vote to kill them. If over half of the players do so, the accused person is eliminated and <span class='night-color'>Night</span> begins. Otherwise, thos phase continues until a killing occurs. Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, <span class='day-color'>Days</span> tend to be longer than <span class='night-color'>Nights</span>."
                 },
                 {
                     "icon": "3.svg",
-                    "titl1": "<span>Know more about Roles</span>",
-                    "desc1": "Different roles are making <strong>MafiaBuzz</strong> much funnier and more enjoyable. In below we are explaining about each role seperately:",
+                    "titl1": "Know more about Roles",
+                    "desc1": "Different characters and roles are making <strong>MafiaBuzz</strong> much funnier and more enjoyable. In below we are explaining about each character seperately:",
                     "roles": true
                 }
             ]
@@ -203,11 +304,10 @@
     "powerMeter": {
         "mafia": "Mafia Power",
         "citizen": "Citizen Power",
-        "minus": "roles left",
-        "plus": "roles overplus"
+        "minus": "characters left",
+        "plus": "characters overplus"
     },
     "god": {
-        "icon": "game.png",
         "name": "God",
         "gameDashboardIconAlt": "Game Dashboard Icon",
         "killIcon": "reaper.png",
@@ -222,59 +322,74 @@
         "godButton": "I'm God! Show me game details",
         "nightActionButton": "Start Night Actions",
         "selectPlaceholder": "choose player ...",
-        "actionHintText": "Please select the person who takes action:",
-        "actionHintText2": "Please select the second person:",
+        "actionHintText": "Please select the person who takes action :",
+        "actionHintText2": "Please select the second person :",
         "cancelButton": "Cancel",
         "confirmButton": "Action..!",
-        "skipButton": "Skip",
+        "skipButton": "Skip, Go next action",
         "skipButton2": "Yes, Skip it!",
         "skipButton3": "Skip this action",
-        "hackedIcon": "hacked.svg",
-        "deadIcon": "grave.svg",
-        "voteIcon": "vote.svg",
-        "peopleIcon": "people.svg",
+        "question": "Please select the answer :",
+        "useAbility": "Use Ability",
+        "godKillIcon": "reaper.svg",
+        "godReviveIcon": "angel.svg",
         "mafiaPartyIconAlt": "Mafia Party Icon",
-        "lastPhaseText": "Please select who died last day with people's vote :",
-        "mafiaPartyIcon": "mafiaparty.svg",
+        "justiceAlt": "Justice",
+        "lastPhaseText": "Please select who died during the day with people's vote :",
+        "avengerText": "Has been killed !!!",
+        "revengeText": "Please select a target to get revenge :",
+        "justiceText": "Judge used his ability!!! Tell people to close their eyes and judge will decide who is going to die",
         "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
         "mafiaPartyException": [
-            "<span>Drunk</span> should not wake up and just rise one hand to let others know him.",
+            "<span>Drunk</span> should not open his eyes, and must inform his team by raising his hand",
             "<span>Traitor</span> should not wake up at all."
         ],
         "mafiaPartyButton": "Click when it's over",
         "nightLogButton": "Show Night Log",
         "historyLogButton": "Show Log History",
         "noLog": "There is nothing to show yet!",
-        "errorChoosePlayer": "Please choose a <span>player</span> before executing an action",
+        "errorChoosePlayer": "Please choose a <span>Player</span> or <span>Answer</span> before executing an action",
         "logCloseButton": "Okay got it!",
         "logMainText": " used on : ",
+        "logSideText": "used",
         "logPassive": "Passive activated : ",
         "logResult": "The Result is : ",
         "restartButton": "Restart Game",
         "startButton": "Start New Game",
         "viewButton": "View Game Details",
-        "resetText": "Do you want to reset game with same roles?",
-        "resetTotalText": "Are you sure? Your selected roles and players will reset",
+        "resetText": "Do you want to reset game with same characters?",
+        "resetTotalText": "Are you sure? Your selected characters and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
         "thisNight": "Current Night",
         "logDeadText": "has been killed !!!",
         "logSilencedText": "has been silenced !!!",
         "logRevivedText": "has been revived !!!",
+        "nextKiler": "is now <strong>The Killer</strong>",
+        "godKill": "God used his power and killed : ",
+        "godRevive": "God used his power and revived : ",
+        "revengeKill": "Chosen player has been killed : ",
+        "voteKill": "People killed this person by vote : ",
         "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action.",
         "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You should pretend and play as if the player is alive.",
         "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
         "hackedIconAlt": "Hacked Icon",
         "deadIconAlt": "Dead Icon",
+        "voteIcon": "vote.svg",
+        "voteIconAlt": "Vote Icon",
+        "revengeIcon": "revenge.svg",
+        "revengeIconAlt": "Revenge Icon",
         "revivedIconAlt": "Revived Icon",
         "playerIconAlt": "Character Icon",
         "peopleIconAlt": "People Icon",
         "actionIconAlt": "Action Icon",
-        "passiveIconAlt": "Passive Icon",
         "playerActionIconAlt": "Character Action Icon",
         "actionQuestion1": "Ask",
         "actionQuestion2": "to wake up and tell you the target for",
-        "lastNightTitle": "Tell people what happened last night",
-        "whatHappened": "What Happened Last Night",
+        "lastNightTitle": "Tell people what happened",
+        "whatHappened": "Events History",
+        "viewerText": "Show the result of action to the target",
+        "viewerButton": "Close the view box",
+        "dashboardHintTitle": "Game Icons and Signs",
         "dashboardHint": [
             {
                 "name": "killer",
@@ -305,10 +420,6 @@
                 "hint": "Player has been linked to another player and when one of them dies, the other dies aswell"
             },
             {
-                "name": "healed-icon",
-                "hint": "Player has been healed and couldn't get kill this night"
-            },
-            {
                 "name": "silenced-icon",
                 "hint": "Player has been silenced and can't talk during next day"
             },
@@ -321,6 +432,10 @@
                 "hint": "Player is dead!"
             },
             {
+                "name": "revived-icon",
+                "hint": "Player has been revived!"
+            },
+            {
                 "name": "invisible-icon",
                 "hint": "Player's identity will be always secret!"
             },
@@ -329,8 +444,21 @@
                 "hint": "Player has shield that prevents one death at night"
             }
         ],
-        "rgwRoles": "Restart game with same roles",
+        "rgwRoles": "Restart game with same characters",
         "resetGame": "Start a new game"
+    },
+    "rolesInfo": {
+        "power": "Power for Team :",
+        "rarity": "Rarity :",
+        "action": "Action :",
+        "passive": "Passive :",
+        "price": "Price :",
+        "unlock": "How to unlock :",
+        "free": "Free",
+        "uncommon": "Uncommon",
+        "rare": "Rare",
+        "epic": "Epic",
+        "legendary": "Legendary"
     },
     "roles": [
         {
@@ -340,9 +468,10 @@
             "alt": "Mafia Icon",
             "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night ",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Kill"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Godfather",
@@ -353,7 +482,8 @@
             "action": {
                 "passive": "Invisible",
                 "action": "Kill"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Ruspy",
@@ -362,20 +492,23 @@
             "alt": "Ruspy Icon",
             "description": "Ruspy is a mafioso who can silence one person (Cannot silence same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Silence"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Drunk",
             "roleType": "Mafia",
             "hiddenRoleType": "",
             "alt": "Drunk Icon",
-            "description": "Drunk is a mafioso who drinks too much and can't remember his teammates but his teammates will know him by raising hand",
+            "description": "Drunk is a mafioso who drinks too much and can't remember his teammates at first but his teammates will know him by raising hand. During the game, each night god will tell him one of his alive teammates until he knows all of them.",
             "action": {
-                "passive": "Forgot",
-                "action": "none"
-            }
+                "passive": "Forgetfulness",
+                "action": "None"
+            },
+            "unlockText": "You solved the puzzle. A drunk person could forgot the password😜",
+            "unlockDescription": "Only a drunk person can solve this puzzle. Solve the puzzle in web application and unlock the Drunk character ( you should be logged in )"
         },
         {
             "name": "Traitor",
@@ -384,9 +517,10 @@
             "alt": "Traitor Icon",
             "description": "The Traitor is a mafioso who lives between citizens, He Doesn't wake up at night and will not revealed as a mafioso by 'Detective', but works to protect mafia and make them win",
             "action": {
-                "passive": "Betray",
-                "action": "none"
-            }
+                "passive": "Invisible",
+                "action": "None"
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Chef",
@@ -395,7 +529,7 @@
             "alt": "Chef Icon",
             "description": "Chef is a mafioso who can poison one person at night and make him reveal his role to chef",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Check Role"
             }
         },
@@ -406,7 +540,7 @@
             "alt": "Yakuza Icon",
             "description": "The Yakuza is a mafioso with the power of sacrifice himself from the second night and choose an innocent and God will touch that person's head to give up his role and join the mafioso with 'Mafia' role.",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Suicide Replace"
             }
         },
@@ -417,42 +551,46 @@
             "alt": "Citizen Icon",
             "description": "Regular Citizen wihout any power and just want to make peace in city",
             "action": {
-                "passive": "none",
-                "action": "none"
-            }
+                "passive": "None",
+                "action": "None"
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Police",
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Police Icon",
-            "description": "The Detective is with Citizens and can detect whether a player is a mafioso or not. He will typically wake up, and point at one person; The god will silently indicate to the Detective whether that player is Mafia or Citizen.",
+            "description": "The Police is with Citizens and can detect whether a player is a mafioso or not. He will typically wake up, and point at one person; The god will silently indicate to the Detective whether that player is Mafia or Citizen.",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Check Identity"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Doctor",
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Doctor Icon",
-            "description": "The Doctor is with Citizens and defends others, He can save one perseon or himself during night",
+            "description": "The Doctor is with Citizens and defends others, He can save one person or himself during night from getting killed",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Heal"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Cupid",
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Cupid Icon",
-            "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well.",
+            "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well. Because of the 'Love Power', Cupid won't get hurt if touches someone with deadly ability",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Bind"
-            }
+            },
+            "unlockDescription": "Free for all"
         },
         {
             "name": "Bomb",
@@ -462,7 +600,7 @@
             "description": "The Bomb is with Citizens and when he gets killed during day or night, He will detonate himself and kill his sibling players.",
             "action": {
                 "passive": "Detonate",
-                "action": "none"
+                "action": "None"
             }
         },
         {
@@ -470,10 +608,10 @@
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Grandma Icon",
-            "description": "Grandma is a Citizen and she is so  sensitive, If someone touch her at night will get killed instantly",
+            "description": "Grandma is a Citizen and she is so  sensitive, If someone touches her at night and use an ability on her will get killed instantly (except these characters: 1.Hacker 2.Cupid) but also the effect will be applied on Grandma",
             "action": {
                 "passive": "Do not touch me!",
-                "action": "none"
+                "action": "None"
             }
         },
         {
@@ -484,8 +622,10 @@
             "description": "The Bulletproof is with Citizens and has a shield that can save him for one death at night.",
             "action": {
                 "passive": "Shield",
-                "action": "none"
-            }
+                "action": "None"
+            },
+            "unlockText": "❤️ This is a gift from <span>MafiaBuzz</span> for your first purchase ❤️",
+            "unlockDescription": "َYou will get this character free as a gift after your first purchase from mafiabuzz"
         },
         {
             "name": "Night King",
@@ -505,7 +645,7 @@
             "alt": "Hacker Icon",
             "description": "Hacker is an intelligent and coder Citizen who wakes up first at night and hacks one person. Hacked person cannot use his action or passive during that night",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Hack"
             }
         },
@@ -514,9 +654,9 @@
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Avenger Icon",
-            "description": "Avenger will get his revenge for sure !!! He has a gun with one bullet and can use his bullet whenever he wants during the game, even before he dies.",
+            "description": "Avenger will get his revenge for sure !!! He has a gun with one bullet and whenever he dies god ask him to take someone else with himself.",
             "action": {
-                "passive": "none",
+                "passive": "Revenge",
                 "action": "Kill"
             }
         },
@@ -525,21 +665,156 @@
             "roleType": "Mafia",
             "hiddenRoleType": "",
             "alt": "Magician Icon",
-            "description": "The Magician is a mafioso with power of magic. When he choose a target one of these 3 possibilities will happen : 1- Kill the taget 2- Silence the target 3- Kill himself accidentally",
+            "description": "The Magician is a mafioso with power of magic. When he choose a target one of these 4 possibilities will happen : 1- Kill the taget 2- Silence the target 3- Kill himself accidentally 4- Silence himself",
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Magic Action"
+            }
+        },
+        {
+            "name": "Gravekeeper",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Gravekeeper Icon",
+            "description": "The Gravekeeper is one of citizens and can search for dead people roles at once!!!",
+            "action": {
+                "passive": "None",
+                "action": "Searching"
+            }
+        },
+        {
+            "name": "Judge",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Judge Icon",
+            "description": "The Judge is one of citizens and can use his ability once in game. When he use his ability during the night, the next day after the vote is finished, God will tell people to close their eyes and judge will decide who is going to die.",
+            "action": {
+                "passive": "None",
+                "action": "Justice"
+            }
+        },
+        {
+            "name": "Night Hunter",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Night Hunter Icon",
+            "description": "Night Hunter is bomb of mafioso team. When he dies, his siblings will be hacked during the remaining nights!",
+            "action": {
+                "passive": "Detonate and Hack",
+                "action": "None"
+            }
+        },
+        {
+            "name": "Nuclear Bomb",
+            "roleType": "Solo",
+            "hiddenRoleType": "",
+            "alt": "Nuclear Bomb Icon",
+            "description": "The Nuclear Bomb person doesn't like to be in any team, he just wants to blow everyone up by targeting him in amount of (Total players divided by 4) and win the game",
+            "action": {
+                "passive": "Explosion",
+                "action": "None"
+            },
+            "unlockDescription": "Free for all"
+        },
+        {
+            "name": "Psychic",
+            "roleType": "Solo",
+            "hiddenRoleType": "",
+            "alt": "Psychic Icon",
+            "description": "Psychic came from out of city, he doesn't know anyone and just wants to predict 1 dead each night and when it reaches below numbers and survives until the day, He will win the game solo <br /><br /> 6 - 15 Players : 2 Nights <br /> 15 - 25 Players : 3 Nights <br /> 25 - 35 Players : 4 Nights <br /> 35 - 50 Players : 5 Nights",
+            "action": {
+                "passive": "None",
+                "action": "Prediction"
+            }
+        },
+        {
+            "name": "Dentist",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Dentist Icon",
+            "description": "The dentist is a citizen that can undo the action of “ruspy” or “magician” in case of silence. The person which dentist choose, can’t be silenced that day.",
+            "action": {
+                "passive": "None",
+                "action": "Anti Silence"
+            }
+        },
+        {
+            "name": "Joker",
+            "roleType": "Solo",
+            "hiddenRoleType": "",
+            "alt": "Joker Icon",
+            "description": "The joker is another character who does not like to be part of any team. He plays alone and can win the game alone. If he gets out of the game by voting, during the day time, he wins the game.",
+            "action": {
+                "passive": "Vote Seeker",
+                "action": "None"
+            }
+        },
+        {
+            "name": "Bully",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Bully Icon",
+            "description": "When he is the target to die at night, He survives until the end of the next game voting phase.",
+            "action": {
+                "passive": "Die Hard",
+                "action": "None"
+            }
+        },
+        {
+            "name": "Sniper",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Sniper Icon",
+            "description": "Sniper can save citizens with accurate shots. He can kill one player each night until he is out of ammo. Sniper's ammo is equal to half of mafia numbers in each game but he should be careful because he can miss a shot and kill one of citizens ( He can choose not to kill any person at night).",
+            "action": {
+                "passive": "None",
+                "action": "Kill"
+            }
+        },
+        {
+            "name": "Serial Killer",
+            "roleType": "Solo",
+            "hiddenRoleType": "",
+            "alt": "Serial Killer Icon",
+            "description": "Serial Killer is a solo player. Every night he can kill one player and his goal is to get rid of all the Mafia and Citizens to win the game.",
+            "action": {
+                "passive": "None",
+                "action": "Kill"
+            },
+            "unlockDescription": "You will get this character free when you sign up and login in application"
+        },
+        {
+            "name": "Bodygaurd",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Bodygaurd Icon",
+            "description": "Bodygaurd is one of the mafioso team. When the mafia killer player is about to die, The bodygaurd will die instead of the killer.",
+            "action": {
+                "passive": "Protection",
+                "action": "None"
+            }
+        },
+        {
+            "name": "Terrorist",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Terrorist Icon",
+            "description": "Terrorist is the avenger of Mafia team. When he dies during the day or night, he can choose and kill one of citizens.",
+            "action": {
+                "passive": "Revenge",
+                "action": "Kill"
             }
         }
     ],
     "replacingRoles": {
         "miniYakuza": {
             "name": "Mini Yakuza",
+            "roleType": "Mafia",
             "alt": "Mini Yakuza Icon",
             "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself",
             "action": {
-                "passive": "none",
-                "action": "none"
+                "passive": "None",
+                "action": "None"
             }
         },
         "skeleton": {
@@ -547,13 +822,13 @@
             "alt": "Skeleton Icon",
             "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive",
             "action": {
-                "passive": "none",
-                "action": "none"
+                "passive": "None",
+                "action": "None"
             }
         },
         "killerMafia": {
             "action": {
-                "passive": "none",
+                "passive": "None",
                 "action": "Kill"
             }
         },

@@ -1,11 +1,13 @@
+process.env.VUE_APP_VERSION = require('./package.json').version
+
 module.exports = {
-  publicPath: './',
+  publicPath: '',
   pluginOptions: {
     i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
+      locale: 'fa',
+      fallbackLocale: 'fa',
       localeDir: 'locales',
-      enableInSFC: true,
-    },
-  },
-};
+      enableInSFC: true
+    }
+  }
+}

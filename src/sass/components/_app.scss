@@ -1,0 +1,33 @@
+#app {
+    .app-version{
+        display: inline-block;
+        min-width: 78px;
+        font-family: $font_reset_default;
+        font-size: $font_size_10;
+        padding: 4px 5px;
+        background-color: $background_color_3;
+        border-radius: 4px;
+        box-shadow: inset 0 0 5px $background_color_side;
+    }
+      
+    .patch-date{
+        display: block;
+        color:$color_4;
+        margin:5px 0 30px 0;
+    }
+      
+    .app-logo{
+        width:100px !important;
+    }
+}
+
+@media (min-width:500px){
+    body{
+      max-width: 540px !important;
+      padding:30px 20px;
+      #app{
+        border-radius: $site_radius;
+        box-shadow: 0 0 20px $black_color;
+      }
+    }
+}

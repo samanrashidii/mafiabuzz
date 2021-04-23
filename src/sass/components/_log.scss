@@ -1,0 +1,42 @@
+.log-bttn{
+    margin-top:20px;
+    i{
+        display: inline-block;
+        vertical-align: middle;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: $font_size_4;
+        color: #323d3c;
+        text-align: center;
+        margin-left: 4px;
+        background-color: $background_color_2;
+        border-radius: $circle_radius;
+    }
+}
+
+.log-history{
+    padding-top:40px;
+    .log-table{
+        margin-bottom: 60px;
+        &:last-of-type{margin-bottom:30px;}
+        p{padding-top:0;}
+        span{color:$hint_color;}
+        strong{color:$creator_color;}
+        span.counter{
+            position: absolute;
+            top:-34px;
+            left:50%;
+            display: block;
+            width:100px;
+            font-size: $font_size_3;
+            color:$color_1;
+            padding:6px 0;
+            margin-left: -40px;
+            background: #1b479d;
+            background: radial-gradient(circle, #1b479d 0%, #9627d7 100%);
+            border-radius: 4px;
+            z-index: 10;
+        }
+    }
+}

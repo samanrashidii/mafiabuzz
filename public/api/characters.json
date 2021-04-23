@@ -1,0 +1,302 @@
+[
+    {
+        "id": 1,
+        "character": "Mafia",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[0].name",
+        "description": "roles[0].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 2,
+        "character": "Godfather",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[1].name",
+        "description": "roles[1].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 3,
+        "character": "Ruspy",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[2].name",
+        "description": "roles[2].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 4,
+        "character": "Drunk",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[3].name",
+        "description": "roles[3].description",
+        "free": false,
+        "price": 0
+    },
+    {
+        "id": 5,
+        "character": "Traitor",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[4].name",
+        "description": "roles[4].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 6,
+        "character": "Chef",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[5].name",
+        "description": "roles[5].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 7,
+        "character": "Yakuza",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[6].name",
+        "description": "roles[6].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 8,
+        "character": "Citizen",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[7].name",
+        "description": "roles[7].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 9,
+        "character": "Police",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[8].name",
+        "description": "roles[8].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 10,
+        "character": "Doctor",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[9].name",
+        "description": "roles[9].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 11,
+        "character": "Cupid",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[10].name",
+        "description": "roles[10].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 12,
+        "character": "Bomb",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[11].name",
+        "description": "roles[11].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 13,
+        "character": "Grandma",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[12].name",
+        "description": "roles[12].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 14,
+        "character": "Bulletproof",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[13].name",
+        "description": "roles[13].description",
+        "free": false,
+        "price": 0
+    },
+    {
+        "id": 15,
+        "character": "Nightking",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[14].name",
+        "description": "roles[14].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 16,
+        "character": "Hacker",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[15].name",
+        "description": "roles[15].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 17,
+        "character": "Avenger",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[16].name",
+        "description": "roles[16].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 18,
+        "character": "Magician",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[17].name",
+        "description": "roles[17].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 19,
+        "character": "Gravekeeper",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[18].name",
+        "description": "roles[18].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 20,
+        "character": "Judge",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[19].name",
+        "description": "roles[19].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 21,
+        "character": "Night Hunter",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[20].name",
+        "description": "roles[20].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 22,
+        "character": "Nuclear Bomb",
+        "mafia": null,
+        "solo": true,
+        "name": "roles[21].name",
+        "description": "roles[21].description",
+        "free": true,
+        "price": 0
+    },
+    {
+        "id": 23,
+        "character": "Psychic",
+        "mafia": null,
+        "solo": true,
+        "name": "roles[22].name",
+        "description": "roles[22].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 24,
+        "character": "Dentist",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[23].name",
+        "description": "roles[23].description",
+        "free": false,
+        "price": 4000
+    },
+    {
+        "id": 25,
+        "character": "Joker",
+        "mafia": null,
+        "solo": true,
+        "name": "roles[24].name",
+        "description": "roles[24].description",
+        "free": false,
+        "price": 7000
+    },
+    {
+        "id": 26,
+        "character": "Bully",
+        "mafia": false,
+        "solo": false,
+        "name": "roles[25].name",
+        "description": "roles[25].description",
+        "free": false,
+        "price": 10000
+    },
+    {
+        "id": 27,
+        "character": "Sniper",
+        "mafia": null,
+        "solo": true,
+        "name": "roles[26].name",
+        "description": "roles[26].description",
+        "free": false,
+        "price": 10000
+    },
+    {
+        "id": 28,
+        "character": "Serial Killer",
+        "mafia": null,
+        "solo": true,
+        "name": "roles[27].name",
+        "description": "roles[27].description",
+        "free": false,
+        "price": 0
+    },
+    {
+        "id": 29,
+        "character": "Bodygaurd",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[28].name",
+        "description": "roles[28].description",
+        "free": false,
+        "price": 10000
+    },
+    {
+        "id": 30,
+        "character": "Terrorist",
+        "mafia": true,
+        "solo": false,
+        "name": "roles[29].name",
+        "description": "roles[29].description",
+        "free": false,
+        "price": 10000
+    }
+]

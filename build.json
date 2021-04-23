@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "mafia.keystore",
+            "storePassword": "KeyStore159357$",
+            "alias": "key0",
+            "password" : "Key159357$",
+            "keystoreType": ""
+        },
+        "release": {
+            "keystore": "mafia.keystore",
+            "storePassword": "KeyStore159357$",
+            "alias": "key0",
+            "password" : "Key159357$",
+            "keystoreType": ""
+        }
+    }
+}

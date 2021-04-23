@@ -1,0 +1,26 @@
+.instagram-banner{
+    position: relative;
+    min-height: 200px;
+    text-align: center;
+    padding:30px 180px 30px 15px;
+    margin: 70px 0;
+    background-color: $background_color_body;
+    border-radius: $site_radius;
+    @media #{$breakpoint_mobile_xs} {
+        padding-right: 140px;
+        margin: 40px 0;
+        h3{
+            font-size: 0.8em !important;
+        }
+        .screenshot{
+            width: 120px;
+            bottom: -10% !important;
+        }
+    }
+    .screenshot{
+        position: absolute;
+        z-index: 10;
+        bottom: -25%;
+        right: 15px;
+    }
+}

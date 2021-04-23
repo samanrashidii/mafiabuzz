@@ -1,6 +1,6 @@
 <template>
   <div class="game-finished">
-    <template v-for="(winner, index) in this.$t('general.winner')">
+    <template v-for="(winner, index) in $t('general.winner')">
       <div
         :key="index"
         class="game-finish-box"
@@ -8,11 +8,22 @@
         v-if="winner.class === gameWinner"
       >
         <div class="inner-game-finish-box">
-          <img
-            :src="getImgUrl('/game', winner.image)"
-            :alt="winner.alt"
-          >
-          <h2 v-html="winner.title" />
+          <div v-if="soloWinnerDetails">
+            <img
+              :src="getImg('/roles', soloWinnerDetails.icon)"
+              :alt="soloWinnerDetails.alt"
+              class="solo-player"
+            >
+            <h2 v-html="winner.title" />
+            <h2><strong>{{ $t(soloWinnerDetails.name) }}</strong></h2>
+          </div>
+          <div v-else>
+            <img
+              :src="getImg('/game', winner.image)"
+              :alt="winner.alt"
+            >
+            <h2 v-html="winner.title" />
+          </div>
           <div class="button-holder">
             <AppButton
               @click.native="changeGameFinshed(false)"
@@ -41,20 +52,39 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import getImg from '@/mixins/getImg';
 import startGame from '@/mixins/startGame';
 
 export default {
   props: {
     gameWinner: String,
+    soloWinnerDetails: Object
   },
   computed: {
     ...mapGetters({
       GameSettings: 'gameStatus/GameSettings',
+      Roles: 'roles/Roles'
     }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
+    roles() {
+      return JSON.parse(JSON.stringify(this.Roles))
     },
+    gameSettings() {
+      return JSON.parse(JSON.stringify(this.GameSettings))
+    },
+  },
+  updated () {
+    if (this.gameSettings.gameFinished) {
+      let text = ''
+      this.$t('general.winner').forEach((winner) => {
+        if (winner.class === this.gameWinner) {
+          text += winner.text
+        }
+      })
+      if (this.soloWinnerDetails) {
+        text += this.$t(this.soloWinnerDetails.name)
+      }
+      // Post Finish Game Result To Discord
+      this.postDiscord(text)
+    }
   },
   methods: {
     ...mapActions({
@@ -63,24 +93,22 @@ export default {
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
+      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
     }),
-    // Reset Game From Start
     resetFactory() {
-      this.startGameEngine('hard');
+      this.startGameEngine('hard')
     },
-    // Reset Game with Same Roles and Names
     resetSameGame() {
-      this.startGameEngine('soft');
+      this.startGameEngine('soft')
     },
     changeGameFinshed(state) {
-      this.gameSettings.gameFinished = state;
-      this.gameSettings.reviewGame = !state;
-      this.SetGameSettings(this.gameSettings);
-    },
+      this.gameSettings.gameFinished = state
+      this.gameSettings.reviewGame = !state
+      this.SetGameSettings(this.gameSettings)
+    }
   },
   mixins: [
-    getImg,
-    startGame,
-  ],
-};
+    startGame
+  ]
+}
 </script>

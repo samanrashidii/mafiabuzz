@@ -1,22 +1,27 @@
 <template>
-  <div id="app">
-    <transition-group
+  <div
+    id="app"
+  >
+    <Navigation />
+    <div class="sub-header">
+      <LanguageButton />
+      <router-link
+        class="bttn subnav-bttn characters-bttn awesome"
+        :to="{name: 'characters'}"
+      >
+        <strong>{{ $t('general.characters') }}</strong>
+        <img
+          src="@/assets/images/characters.svg"
+          :alt="$t('pages.characters.alt')"
+        >
+      </router-link>
+    </div>
+    <transition
       name="slide"
       mode="out-in"
-      tag="div"
     >
-      <router-view
-        name="external-nav"
-        class="external"
-        key="main-nav"
-      />
-      <router-view key="main-display" />
-      <router-view
-        name="internal-nav"
-        class="internal"
-        key="top-nav"
-      />
-    </transition-group>
+      <router-view />
+    </transition>
     <notifications
       group="log"
       position="bottom center"
@@ -31,7 +36,7 @@
         >
           <div class="image-wrapper">
             <img
-              :src="getImgUrl('/actions', props.item.title)"
+              :src="getImg('/actions', props.item.title)"
               :alt="props.item.title"
             >
           </div>
@@ -49,36 +54,95 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import getImg from '@/mixins/getImg';
-import startGame from '@/mixins/startGame';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
+import Navigation from '@/components/Navigation.vue';
+import LanguageButton from '@/components/LanguageButton.vue';
+import SERVER from '@/service/server';
 
 export default {
+  components: {
+    Navigation,
+    LanguageButton
+  },
   computed: {
-    ...mapGetters(['DefaultState']),
+    ...mapGetters({
+      DefaultState: 'DefaultState',
+      Dashboard: 'dashboard/Dashboard',
+      GameSettings: 'gameStatus/GameSettings',
+      Roles: 'roles/Roles',
+      ReplacingRoles: 'roles/ReplacingRoles'
+    }),
+    roles() {
+      return JSON.parse(JSON.stringify(this.Roles))
+    }
   },
   created() {
-    this.startGameEngine();
-  },
-  mounted() {
-    localStorage.setItem('defaultState', JSON.stringify(this.DefaultState));
+    const token = window.localStorage.getItem('token')
+    const userLoggedin = window.localStorage.getItem('userLoggedIn')
+    const expireTime = window.localStorage.getItem('exT') - Date.now()
+    const savedLocale = JSON.parse(window.localStorage.getItem('locale'))
+    const discordToken = window.localStorage.getItem('discordToken')
+    if (discordToken) {
+      this.SetDiscordChannel(discordToken)
+    }
+    const loader = this.$loading.show({
+      loader: 'dots',
+      color: '#c33e3e',
+      width: 75,
+      height: 75,
+      backgroundColor: '#000000',
+      canCancel: false,
+      onCancel: this.onCancel
+    })
+    SERVER.getRoles()
+      .then((res) => {
+        this.SetRoles(JSON.parse(JSON.stringify(res.data)))
+        SERVER.getReplacingRoles()
+          .then((response) => {
+            this.SetReplacingRoles(JSON.parse(JSON.stringify(response.data)))
+              .then(() => {
+                window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
+                loader.hide()
+              })
+          })
+          .catch(() => {
+            loader.hide()
+          })
+      })
+      .catch(() => {
+        loader.hide()
+      })
+    const el = document.body
+    const html = document.documentElement
+    if (savedLocale) {
+      if (savedLocale === 'fa') {
+        el.classList.add('rtl')
+        html.setAttribute('dir', 'rtl')
+        html.setAttribute('lang', 'fa')
+      } else {
+        el.classList.remove('rtl')
+        html.setAttribute('dir', 'ltr')
+        html.setAttribute('lang', 'en')
+      }
+      this.$root._i18n.locale = savedLocale
+    } else if (this.$root._i18n.locale === 'fa') {
+      el.classList.add('rtl')
+      html.setAttribute('dir', 'rtl')
+      html.setAttribute('lang', 'fa')
+    }
   },
   methods: {
     ...mapActions({
-      SetMainApp: 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
-    }),
-  },
-  mixins: [
-    getImg,
-    startGame,
-  ],
-};
+      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+    })
+  }
+}
 </script>
 
 <style lang="scss">
-@import "./assets/sass/main";
+@import "./sass/main";
 </style>

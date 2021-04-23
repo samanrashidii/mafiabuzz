@@ -1,0 +1,300 @@
+.bttn{
+    display:block;
+    color:$color_1;
+    text-align: center;
+    padding:12px;
+    margin-top:15px;
+    background-color:$background_color_3;
+    border-radius: $curve_radius;
+    transition:all .2s ease-in-out;
+    &.sm{
+        display:inline-block;
+        min-width: 150px;
+        font-size: .85em !important;
+        padding:8px 10px;
+    }
+    &.sm-padding{
+        padding:10px;
+    }
+    &.sm-fontsize{
+        font-size: .85em !important;
+    }
+    &.square{
+        border-radius: 5px;
+    }
+    &.square-circle{
+        border-radius: 13px;
+    }
+    &:hover{
+        background-color: $green_color;
+    }
+    &.active{
+        background-color: $creator_color;
+        &:hover{
+            background-color: $dark_orange_color;
+        }
+    }
+    &.btn-center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &.danger{
+        background-color: $dark_red_color;
+        &:hover{
+            background-color: $red_color;
+        }
+    }
+    &.yellow{
+        background-color: $day;
+        &:hover{
+            background-color: $hint_color;
+        }
+    }
+    &.purple{
+        background-color: $purple_color;
+        box-shadow: 0 0 4px $black_color;
+        &:hover{
+            background-color: $purple_dark_color;
+        }
+    }
+    &.black{
+        background-color: $background_color_main;
+        box-shadow: 0 0 3px $black_color;
+    }
+    &.green{
+        background-color: $green_color;
+        &:hover{
+            background-color: $dark_green_color;
+        }
+    }
+    &.site{
+        background: $site;
+        box-shadow: 0 0 10px $black_color;
+        &:hover{
+            background: $site_reverse;
+        }
+    }
+    &.awesome{
+        background: $awesome;
+        &:hover{
+            background: $awesome_reverse;
+        }
+    }
+    &.awesome2{
+        background: $awesome_2;
+        &:hover{
+            background: $awesome_2_reverse;
+        }
+    }
+    &.awesome3{
+        background: $awesome_3;
+        box-shadow: 0 0 5px $black_color;
+    }
+    &.day{
+        padding:13px 10px;
+        background: url('~@/assets/images/moon.svg') no-repeat 10px -5px $night !important;
+        background-size: 64px !important;
+        box-shadow: 0 0 3px $color_4;
+    }
+    &.night{
+        padding:13px 10px;
+        background: url('~@/assets/images/sun.svg') no-repeat 10px -5px $day !important;
+        background-size: 64px !important;
+        box-shadow: 0 0 3px $hint_color;
+    }
+    &.subnav-bttn{
+        direction: ltr;
+        display: block;
+        width:48.8%;
+        font-family: $font_rtl;
+        font-size: $font_size_5 !important;
+        padding: 8px 2px 6px 2px;
+        background-color: $player_color;
+        transition:all .3s ease-in-out;
+        z-index: 99;
+        box-shadow: inset 0 0 2px $black_color;
+        border-radius: 4px;
+        img{
+            display: inline-block;
+            vertical-align: middle;
+            width:26px;
+            margin:0 5px;
+        }
+        strong{margin:0 5px}
+        &.characters-bttn{
+            direction: rtl;
+            padding:4px 2px;
+            animation: colorful 2s ease-in-out alternate infinite;
+            img{
+                display: inline-block;
+                vertical-align: middle;
+                width:30px;
+            }
+            strong{
+                display: inline-block;
+                vertical-align: middle;
+                font-family: $font_mafia;
+                font-size: $font_size_big !important;
+                transform: translateY(2px);
+            }
+        }
+    }
+}
+
+.button-holder{padding-top:5px;}
+
+.patch-bttn{
+    height:46px;
+    padding:9px !important;
+    margin-top:-10px !important;
+    border-radius: 5px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 28px;
+        background:url('~@/assets/images/assets/patch-button.svg') no-repeat left center;
+        background-size: 20px;
+    }
+}
+
+.debit-card-bttn{
+    width:calc(100% - 2px);
+    height:44px;
+    padding:7px !important;
+    margin:0 auto !important;
+    border-radius: 5px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 28px;
+        background:url('~@/assets/images/assets/debit-card.svg') no-repeat left center;
+        background-size: 20px;
+    }
+}
+
+.success-bttn{
+    width:calc(100% - 2px);
+    height:44px;
+    padding:7px !important;
+    margin:0 auto !important;
+    border-radius: 5px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 28px;
+        background:url('~@/assets/images/assets/tick.svg') no-repeat left center;
+        background-size: 20px;
+    }
+}
+
+.close-bttn{
+    height:46px;
+    span{
+        display: inline-block;
+        padding: 3px 5px 3px 20px;
+        background:url('~@/assets/images/assets/close.svg') no-repeat left center;
+        background-size: 12px;
+    }
+}
+
+.start-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 32px;
+        background:url('~@/assets/images/assets/play.svg') no-repeat left center;
+        background-size: 22px;
+    }
+}
+
+.settings-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('~@/assets/images/assets/settings.svg') no-repeat left center;
+        background-size: 24px;
+    }
+}
+
+.assign-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 30px;
+        background:url('~@/assets/images/assets/assign.svg') no-repeat left center;
+        background-size: 28px;
+    }
+}
+
+.swap-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 5px 35px;
+        background:url('~@/assets/images/assets/swap.svg') no-repeat left center;
+        background-size: 24px;
+    }
+}
+
+.disc-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 2px 30px;
+        background:url('~@/assets/images/assets/disc.svg') no-repeat left center;
+        background-size: 18px;
+    }
+}
+
+.exit-bttn{
+    height:46px;
+    padding:9px !important;
+    span{
+        display: inline-block;
+        padding: 5px 5px 2px 30px;
+        background:url('~@/assets/images/assets/exit.svg') no-repeat left center;
+        background-size: 18px;
+    }
+}
+
+.cart-bttn{
+    height:32px;
+    padding:5px !important;
+    span{
+        display: inline-block;
+        padding: 4px 5px 3px 26px;
+        background:url('~@/assets/images/assets/cart.svg') no-repeat left center;
+        background-size: 18px;
+    }
+}
+
+.info-bttn{
+    height:32px;
+    padding:5px !important;
+    background-color: $green_color;
+    span{
+        display: inline-block;
+        padding: 4px 5px 3px 26px;
+        background:url('~@/assets/images/assets/info-white.svg') no-repeat left center;
+        background-size: 18px;
+    }
+}
+
+.coffee-bttn{
+    height: 44px !important;
+    margin:15px auto 0 auto;
+}
+
+.discord-bttn{
+    height:46px;
+    span{
+        display: inline-block;
+        padding: 3px 5px 3px 40px;
+        background:url('~@/assets/images/icons/discord-white.svg') no-repeat left center;
+        background-size: 34px;
+    }
+}

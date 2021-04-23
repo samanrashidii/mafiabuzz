@@ -1,0 +1,35 @@
+.nextkiller-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding:5px 20px;
+    background-color: $transparent_black_dark;
+    z-index: 9999;
+    img{
+        width:80px;
+    }
+    a.bttn{
+        padding:12px !important;
+        margin-top:20px !important;
+    }
+    h2{
+        color:$creator_color;
+        margin-top:12px;
+        span{
+            display: block;
+            font-size: 0.5em;
+            color:$day;
+        }
+    }
+    p{
+        strong{
+            display: block;
+            line-height: 1;
+            font-family: $font_mafia;
+            font-size: $font_size_super_big;
+            color:$background_color_mafia;
+        }
+    }
+}

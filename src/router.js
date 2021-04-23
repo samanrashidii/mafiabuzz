@@ -1,91 +1,81 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Meta from 'vue-meta';
-
-const Home = (resolve) => {
-  require.ensure(['./views/Home.vue'], () => {
-    resolve(require('./views/Home.vue'));
-  });
-};
-
-const Navigation = (resolve) => {
-  require.ensure(['./views/Navigation.vue'], () => {
-    resolve(require('./views/Navigation.vue'));
-  });
-};
+import Vue from 'vue'
+import Router from 'vue-router'
 
 const NotFound = (resolve) => {
   require.ensure(['./views/NotFound.vue'], () => {
-    resolve(require('./views/NotFound.vue'));
-  });
-};
+    resolve(require('./views/NotFound.vue'))
+  })
+}
 
 const About = (resolve) => {
   require.ensure(['./views/About.vue'], () => {
-    resolve(require('./views/About.vue'));
-  });
-};
+    resolve(require('./views/About.vue'))
+  })
+}
 
 const Creator = (resolve) => {
   require.ensure(['./views/Creator.vue'], () => {
-    resolve(require('./views/Creator.vue'));
-  });
-};
+    resolve(require('./views/Creator.vue'))
+  })
+}
 
 const HowToPlay = (resolve) => {
   require.ensure(['./views/HowToPlay.vue'], () => {
-    resolve(require('./views/HowToPlay.vue'));
-  });
-};
+    resolve(require('./views/HowToPlay.vue'))
+  })
+}
 
-Vue.use(Router);
-Vue.use(Meta);
+const Characters = (resolve) => {
+  require.ensure(['./views/Characters.vue'], () => {
+    resolve(require('./views/Characters.vue'))
+  })
+}
+
+const Support = (resolve) => {
+  require.ensure(['./views/Support.vue'], () => {
+    resolve(require('./views/Support.vue'))
+  })
+}
+
+Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: process.env.CORDOVA_PLATFORM ? 'hash' : 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
-      name: 'home',
-      components: {
-        default: Home,
-        'external-nav': Navigation,
-      },
+      name: 'creator',
+      component: Creator
     },
     {
-      path: '/',
-      name: 'inner-home',
-      components: {
-        default: Home,
-        'internal-nav': Navigation,
-      },
-      children: [
-        {
-          path: 'creator',
-          name: 'creator',
-          component: Creator,
-        },
-        {
-          path: 'about',
-          name: 'about',
-          component: About,
-        },
-        {
-          path: 'how-to-play',
-          name: 'howtoplay',
-          component: HowToPlay,
-        },
-      ],
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/how-to-play',
+      name: 'howtoplay',
+      component: HowToPlay
+    },
+    {
+      path: '/characters',
+      name: 'characters',
+      component: Characters
+    },
+    {
+      path: '/support',
+      name: 'support',
+      component: Support
     },
     {
       path: '/error-404',
       name: 'not-found',
-      component: NotFound,
+      component: NotFound
     },
     {
       path: '*',
-      redirect: { name: 'not-found' },
-    },
-  ],
-});
+      redirect: { name: 'not-found' }
+    }
+  ]
+})

@@ -11,7 +11,7 @@
     >
       <img
         class="normal-size"
-        :src="getImgUrl('/howtoplay', step.icon)"
+        :src="getImg('/howtoplay', step.icon)"
         alt="How to Play Step Icon"
       >
       <h3 v-html="step.titl1" />
@@ -19,13 +19,17 @@
       <div v-if="step.roles">
         <InfoBox
           class="static"
-          v-for="(info, index) in Roles"
+          v-for="(info, index) in getRoles"
           :key="index"
           :info="info"
-          :floating="true"
         />
       </div>
     </PageBox>
+    <back-to-top
+      bottom="20px"
+      right="20px"
+      visibleoffset="600"
+    />
   </div>
 </template>
 
@@ -34,70 +38,67 @@ import { mapGetters } from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
-import getImg from '@/mixins/getImg';
+import sortedRoles from '@/mixins/sortedRoles';
 
 export default {
-  data() {
-    return {
-      pageId: this.$route.params.id,
-    };
-  },
+  name: 'HowToPlay',
+  mixins: [
+    checkRoute,
+    sortedRoles
+  ],
   components: {
     InfoBox,
-    PageTitle,
+    PageTitle
   },
   computed: {
     ...mapGetters({
       Roles: 'roles/Roles',
     }),
+    roles () {
+      return JSON.parse(JSON.stringify(this.Roles));
+    }
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
       meta: [
         {
           vmid: 'description',
           name: 'description',
-          content: `${this.$t('meta.howtoplay.description')}`,
+          content: `${this.$t('meta.howtoplay.description')}`
         },
         {
           vmid: 'title',
-          name: 'og:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
+          property: 'og:title',
+          content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
           vmid: 'ogdescription',
-          name: 'og:description',
-          content: `${this.$t('meta.howtoplay.description')}`,
+          property: 'og:description',
+          content: `${this.$t('meta.howtoplay.description')}`
         },
         {
           vmid: 'ogurl',
-          name: 'og:url',
-          content: window.location.href,
+          property: 'og:url',
+          content: window.location.href
         },
         {
           vmid: 'twitter:title',
           name: 'twitter:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
+          content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
           vmid: 'twitter:description',
           name: 'twitter:description',
-          content: `${this.$t('meta.howtoplay.description')}`,
+          content: `${this.$t('meta.howtoplay.description')}`
         },
         {
           vmid: 'twitter:url',
           name: 'twitter:url',
-          content: window.location.href,
-        },
-      ],
-    };
-  },
-  mixins: [checkRoute, getImg],
-  watch: {
-    $route(to, from) {
-      this.pageId = to.params.id;
-    },
-  },
-};
+          content: window.location.href
+        }
+      ]
+    }
+  }
+}
 </script>

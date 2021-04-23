@@ -1,0 +1,192 @@
+.citizen-role{color:$background_color_citizen}
+.mafia-role{color:$background_color_mafia}
+.solo-role{color:$background_color_solo}
+.citizen-bg{background-color:$background_color_citizen}
+.mafia-bg{background-color:$background_color_mafia}
+.solo-bg{background-color:$background_color_mafia}
+.purple-bg{background-color:$purple_color !important;}
+.green-bg{background-color:$medium_green_color !important;}
+.uncommon-bg{background-color:$color-uncommon !important;}
+.rare-bg{background-color:$color-rare !important;}
+.epic-bg{background-color:$color-epic !important;}
+.legendary-bg{background-color:$color-legendary !important;}
+.binded{color:$pink_color !important;}
+.day-color{color:$day;}
+.hint-color{color:$hint_color;}
+.night-color{color:$night_color;}
+.creator-color{color:$creator_color;}
+.white-color{color:$color_1;}
+.black-color{color:$black_color;}
+.yellow-color{color:$hint_color;}
+.red-color{color:$light_red_color;}
+.site-color{color:$color_site_2;}
+.green-color{color:$green_color;}
+.hack-color{color:$purple_color;}
+.revive-color{color:$medium_green_color;}
+.action-color{color:$day}
+.square-rounded{border-radius: $default_radius;}
+.curve-rounded{border-radius: $curve_radius;}
+.color-uncommon{color: $color-uncommon;}
+.color-rare{color: $color-rare;}
+.color-epic{color: $color-epic;}
+.color-legendary{color: $color-legendary;}
+
+.font-size-smaller{
+    font-size: .875em;
+}
+
+.seo-clipboard{
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    padding-top:0;
+}
+
+span.step-number{
+    position: absolute;
+    top:-14px;
+    left:-8px;
+    display: inline-block;
+    width:28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: $font_size_4;
+    color: $color_2;
+    text-align: center;
+    margin-right: 4px;
+    background-color:$creator_color;
+    border-radius: $circle_radius;
+}
+
+.mafia-status{text-align: center;}
+.mafia-status strong,
+.mafia-status span{
+    display: inline-block;
+    font-size: $font_size_3;
+    color:#ffffff;
+    padding: 3px 12px;
+    margin-top:4px;
+    border-radius: 3px;
+}
+
+.mafia-status .mafia-role{background-color: $background_color_mafia;}
+.mafia-status .citizen-role{background-color: $background_color_citizen;}
+.mafia-status .solo-role{background-color: $background_color_solo;}
+
+.different-colors{
+    color:$color_1 !important;
+    margin:10px 0 20px 0;
+    i{
+        font-size: 18px;
+        &:nth-child(1){color:$green_color;}
+        &:nth-child(2){color:$red_color;}
+        &:nth-child(3){color:$hint_color;}
+    }
+}
+
+.normal-size{width:80px;}
+
+.default-image-size{
+    display:inline-block;
+    width:80px;
+    margin:0 10px;
+    &.sm{
+        width:40px;
+    }
+}
+
+.important-hint{color: $light_red_color;}
+
+.timer{
+    display: block;
+    margin-bottom:5px;
+}
+
+.list-item li{
+    position: relative;
+    line-height: 1.6;
+    font-size: $font_size_4;
+    color:$color_7;
+    text-align: left;
+    margin:10px 0;
+    &::before{
+      content:'';
+      display: inline-block;
+      vertical-align: middle;
+      width:7px;
+      height: 7px;
+      margin-right: 8px;
+      background-color: $background_color_3;
+      border-radius: 2px;
+    }
+}
+
+.vld-overlay{
+  z-index: 999999999999999 !important;
+  .vld-background{
+    opacity: .85 !important;
+  }
+}
+
+#confetti-canvas{
+    left:0;
+    z-index: 999999999999999999;
+}
+
+.quest-box.overlay .inner-overlay .overlay-box .inner-overlay-box{
+    max-width: 270px;
+    ::-webkit-input-placeholder {
+        font-family: $font_mafia !important;
+        font-size: $font_size_10;
+        color: $black_color;
+        transform: translateY(-3px);
+    }
+    :-moz-placeholder {
+        font-family: $font_mafia !important;
+        font-size: $font_size_10;
+        color: $black_color;
+        transform: translateY(-3px);
+    }
+    ::-moz-placeholder {
+        font-family: $font_mafia !important;
+        font-size: $font_size_10;
+        color: $black_color;
+        transform: translateY(-3px);
+    }
+    :-ms-input-placeholder {
+        font-family: $font_mafia !important;
+        font-size: $font_size_10;
+        color: $black_color;
+        transform: translateY(-3px);
+    }
+}
+
+#app{
+    .vue-back-to-top{
+        .default{
+            width:50px;
+            height: 50px;
+            background: url('~@/assets/images/icons/arrow-top.svg') no-repeat center $red_color;
+            background-size: 18px;
+            border-radius: 50%;
+            span{
+                color: transparent !important;
+            }
+        }
+    }
+}
+
+.empty-bullet{
+    display:inline-block;
+    vertical-align: middle;
+    width:15px;
+    height: 15px;
+    margin:0 5px;
+    border-radius: 50%;
+}
+
+.rarity-uncommon{background-color: $color-uncommon;}
+.rarity-rare{background-color: $color-rare;}
+.rarity-epic{background-color: $color-epic;}
+.rarity-legendary{background-color: $color-legendary;}
