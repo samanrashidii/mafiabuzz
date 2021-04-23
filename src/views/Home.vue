@@ -81,12 +81,10 @@ export default {
     loadFromSave() {
       this.startGameEngine('captured')
       this.overlay = false
-      this.SetAppLoaded(true)
     },
     resetFactory() {
       this.startGameEngine('hard')
       this.overlay = false
-      this.SetAppLoaded(true)
     }
   },
   mixins: [
