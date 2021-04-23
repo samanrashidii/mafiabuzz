@@ -1,10 +1,8 @@
 {
     "patchNotes": [
-        {"text": "Change : Shopping flow has been removed and all characters are now free to play"},
-        {"text": "Change : Shop page to Characters"},
-        {"text": "Remove : Purchased characters from Profile page"},
-        {"text": "Remove : Order history from Profile page"},
-        {"text": "Fix : Minor issues and bugs"}
+        {"text": "Feature : Removed Login and Register process for unlocking characters for better experience"},
+        {"text": "Feature : Make project open-source again"},
+        {"text": "Fix : Removed extra files and fixed some issues"}
     ],
     "thirdparty": {
         "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='red-color'>webhook</span> code below",
@@ -33,7 +31,7 @@
     },
     "general":{
         "name": "MafiaBuzz",
-        "lastUpdate": "15-12-2020",
+        "lastUpdate": "24-04-2021",
         "welcomeToMafiabuzz": "❤️🔔 Welcome to MafiaBuzz Web Application 🔔❤️",
         "alt": "MafiaBuzz Logo",
         "url": "https://www.mafiabuzz.app",
