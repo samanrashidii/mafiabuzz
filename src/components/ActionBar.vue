@@ -101,7 +101,7 @@
           </div>
           <div
             class="action-overlay dead-overlay"
-            v-if="checkStatus(player).status.dead"
+            v-if="checkStatus(player).status.dead && !checkStatus(player).status.recentlyDead"
             key="deadTarget"
           >
             <div class="table-display">
