@@ -278,7 +278,6 @@ export default {
       this.info.status.hasAction = role.status.hasAction
       this.info.status.hasPassive = role.status.hasPassive
       this.info.power = role.power
-      this.info.price = role.price
       this.info.show === false ? this.info.show = true : this.info.show = false
     }
   }
