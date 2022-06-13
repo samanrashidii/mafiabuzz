@@ -143,9 +143,6 @@ export default {
       this.info.status.hasPassive = role.status.hasPassive
       this.info.power = role.power
       this.info.price = role.price
-      this.info.unlockMethod = role.unlockMethod
-      this.info.unlockDescription = role.unlockDescription
-      this.info.hiddenQuest = role.hiddenQuest
       this.info.show === false ? this.info.show = true : this.info.show = false
     },
   },

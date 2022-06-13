@@ -466,8 +466,7 @@
             "action": {
                 "passive": "None",
                 "action": "Kill"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Godfather",
@@ -478,8 +477,7 @@
             "action": {
                 "passive": "Invisible",
                 "action": "Kill"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Ruspy",
@@ -490,8 +488,7 @@
             "action": {
                 "passive": "None",
                 "action": "Silence"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Drunk",
@@ -502,9 +499,7 @@
             "action": {
                 "passive": "Forgetfulness",
                 "action": "None"
-            },
-            "unlockText": "You solved the puzzle. A drunk person could forgot the password😜",
-            "unlockDescription": "Only a drunk person can solve this puzzle. Solve the puzzle in web application and unlock the Drunk character ( you should be logged in )"
+            }
         },
         {
             "name": "Traitor",
@@ -515,8 +510,7 @@
             "action": {
                 "passive": "Invisible",
                 "action": "None"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Chef",
@@ -549,8 +543,7 @@
             "action": {
                 "passive": "None",
                 "action": "None"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Police",
@@ -561,8 +554,7 @@
             "action": {
                 "passive": "None",
                 "action": "Check Identity"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Doctor",
@@ -573,8 +565,7 @@
             "action": {
                 "passive": "None",
                 "action": "Heal"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Cupid",
@@ -585,8 +576,7 @@
             "action": {
                 "passive": "None",
                 "action": "Bind"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Bomb",
@@ -619,9 +609,7 @@
             "action": {
                 "passive": "Shield",
                 "action": "None"
-            },
-            "unlockText": "❤️ This is a gift from <span>MafiaBuzz</span> for your first purchase ❤️",
-            "unlockDescription": "َYou will get this character free as a gift after your first purchase from mafiabuzz"
+            }
         },
         {
             "name": "Night King",
@@ -709,8 +697,7 @@
             "action": {
                 "passive": "Explosion",
                 "action": "None"
-            },
-            "unlockDescription": "Free for all"
+            }
         },
         {
             "name": "Psychic",
@@ -776,8 +763,7 @@
             "action": {
                 "passive": "None",
                 "action": "Kill"
-            },
-            "unlockDescription": "You will get this character free when you sign up and login in application"
+            }
         },
         {
             "name": "Bodygaurd",
@@ -799,6 +785,17 @@
             "action": {
                 "passive": "Revenge",
                 "action": "Kill"
+            }
+        },
+        {
+            "name": "Doctor Lecter",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Doctor Lecter Icon",
+            "description": "The Doctor Lecter is with Mafia and defends others, He can save one person or himself during night from getting killed (He can only heal himself once)",
+            "action": {
+                "passive": "None",
+                "action": "Heal"
             }
         }
     ],
