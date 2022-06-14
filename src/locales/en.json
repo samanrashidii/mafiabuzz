@@ -809,6 +809,17 @@
                 "passive": "None",
                 "action": "Kill"
             }
+        },
+        {
+            "name": "Guardian Angel",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Guardian Angel Icon",
+            "description": "Guardian Angel can save citizens with accurate shots. He can kill one player each night until he shot one of the citizens. if he shot wrong he will die instead.",
+            "action": {
+                "passive": "Save People in Day Phase",
+                "action": "None"
+            }
         }
     ],
     "replacingRoles": {

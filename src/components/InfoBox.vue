@@ -55,17 +55,10 @@
       <div>
         <span>{{ $t('rolesInfo.action') }}</span>
         <div class="data-holder">
-          <template v-if="info.status.hasAction || info.status.hasLaterAction">
+          <template>
             <img
               :src="getImg('/actions', info.actionIcon)"
               :alt="info.alt"
-            >
-            <strong>{{ $t(info.action.action) }}</strong>
-          </template>
-          <template v-else>
-            <img
-              src="@/assets/images/icons/disabled.svg"
-              alt="Disabled"
             >
             <strong>{{ $t(info.action.action) }}</strong>
           </template>
@@ -74,17 +67,10 @@
       <div>
         <span>{{ $t('rolesInfo.passive') }}</span>
         <div class="data-holder">
-          <template v-if="info.status.hasPassive">
+          <template>
             <img
               :src="getImg('/actions', info.passiveIcon)"
               :alt="info.alt"
-            >
-            <strong>{{ $t(info.action.passive) }}</strong>
-          </template>
-          <template v-else>
-            <img
-              src="@/assets/images/icons/disabled.svg"
-              alt="Disabled"
             >
             <strong>{{ $t(info.action.passive) }}</strong>
           </template>
