@@ -56,7 +56,8 @@ export default {
   },
   data() {
     return {
-      item: 0
+      item: 0,
+      interval: null
     }
   },
   computed: {
@@ -68,15 +69,13 @@ export default {
     }
   },
   mounted() {
-    if (this.show && this.roles.length > 1) {
-      setInterval(() => {
-        if (this.item < this.roles.length - 1) {
-          this.item++
-        } else {
-          this.item = 0
-        }
-      }, 2000)
-    }
+    this.interval = setInterval(() => {
+      if (this.item < this.roles.length - 1) {
+        this.item++
+      } else {
+        this.item = 0
+      }
+    }, 2000)
   },
   methods: {
     ...mapActions({
@@ -87,6 +86,7 @@ export default {
       this.gameSettings.searchingUsed = false
       this.gameSettings.viewerItems = []
       this.SetGameSettings(this.gameSettings)
+      clearInterval(this.interval)
     }
   }
 }
