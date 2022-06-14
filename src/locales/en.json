@@ -815,7 +815,7 @@
             "roleType": "Citizen",
             "hiddenRoleType": "",
             "alt": "Guardian Angel Icon",
-            "description": "Guardian Angel can save citizens with accurate shots. He can kill one player each night until he shot one of the citizens. if he shot wrong he will die instead.",
+            "description": "The Gaurdian salvation can be the savior of the city. The citizen or independent player who leaves the game by voting has a chance to guess the name of the player of guardian angel and returns to the game if it is correct.",
             "action": {
                 "passive": "Save People in Day Phase",
                 "action": "None"
