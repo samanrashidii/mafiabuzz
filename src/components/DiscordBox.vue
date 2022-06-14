@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings'
     })
   },
   methods: {

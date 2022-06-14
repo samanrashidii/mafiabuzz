@@ -140,7 +140,8 @@
                 }
             }
         }
-        input.active + label img:not(.new-character):not(.hot){
+        input.active + label img:not(.new-character):not(.hot):not(.rarity-icon){
+            width: 70px;
             transform:rotate(360deg);
         }
         .number-control span{

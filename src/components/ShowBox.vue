@@ -72,16 +72,16 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   data () {
     return {
-      showrole: false,
-    };
+      showrole: false
+    }
   },
   computed: {
     ...mapGetters({
       GameSettings: 'gameStatus/GameSettings'
     }),
     gameSettings () {
-      return JSON.parse(JSON.stringify(this.GameSettings));
-    },
+      return JSON.parse(JSON.stringify(this.GameSettings))
+    }
   },
   methods: {
     ...mapActions({

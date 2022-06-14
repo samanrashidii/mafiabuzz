@@ -29,22 +29,22 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings'
     }),
     gameSettings() {
-      return this.GameSettings;
+      return this.GameSettings
     },
     mafia() {
-      return this.gameSettings.mafia - this.gameSettings.selectedMafia;
+      return this.gameSettings.mafia - this.gameSettings.selectedMafia
     },
     citizen() {
-      return this.gameSettings.citizen - this.gameSettings.selectedCitizen;
-    },
+      return this.gameSettings.citizen - this.gameSettings.selectedCitizen
+    }
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings',
-    }),
-  },
-};
+      SetGameSettings: 'gameStatus/SetGameSettings'
+    })
+  }
+}
 </script>

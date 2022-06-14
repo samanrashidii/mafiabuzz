@@ -20,11 +20,7 @@ export default {
   props: {
     mafia: Boolean,
     solo: Boolean,
-    power: Number,
-  },
-};
+    power: Number
+  }
+}
 </script>
-
-<style>
-
-</style>

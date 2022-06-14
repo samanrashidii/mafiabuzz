@@ -210,14 +210,14 @@
     <!-- Role Viewer -->
     <Overlay
       :class="{
-        'active': gameSettings.roleViewer,
+        'active': gameSettings.searchingUsed,
         'viewer': true
       }"
     >
       <RoleViewer
-        v-if="gameSettings.roleViewer"
+        v-if="gameSettings.searchingUsed"
         :roles="deadRoles"
-        :show="gameSettings.roleViewer"
+        :show="gameSettings.searchingUsed"
       />
     </Overlay>
 

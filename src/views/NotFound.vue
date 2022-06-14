@@ -27,40 +27,40 @@ export default {
         {
           vmid: 'description',
           name: 'description',
-          content: `${this.$t('meta.notfound.description')}`,
+          content: `${this.$t('meta.notfound.description')}`
         },
         {
           vmid: 'ogtitle',
           property: 'og:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
+          content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`
         },
         {
           vmid: 'ogdescription',
           property: 'og:description',
-          content: `${this.$t('meta.notfound.description')}`,
+          content: `${this.$t('meta.notfound.description')}`
         },
         {
           vmid: 'ogurl',
           property: 'og:url',
-          content: `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`,
+          content: `${this.$t('general.url')}/${this.$t('meta.notfound.url')}`
         },
         {
           vmid: 'twitter:title',
           name: 'twitter:title',
-          content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`,
+          content: `${this.$t('general.name')} * ${this.$t('meta.notfound.title')}`
         },
         {
           vmid: 'twitter:description',
           name: 'twitter:description',
-          content: `${this.$t('meta.notfound.description')}`,
+          content: `${this.$t('meta.notfound.description')}`
         },
         {
           vmid: 'twitter:url',
           name: 'twitter:url',
-          content: window.location.href,
-        },
-      ],
-    };
-  },
-};
+          content: window.location.href
+        }
+      ]
+    }
+  }
+}
 </script>

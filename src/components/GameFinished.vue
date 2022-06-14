@@ -69,7 +69,7 @@ export default {
     },
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings))
-    },
+    }
   },
   updated () {
     if (this.gameSettings.gameFinished) {

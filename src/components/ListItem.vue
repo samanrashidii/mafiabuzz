@@ -15,7 +15,7 @@
 
 export default {
   props: {
-    list: Array,
-  },
-};
+    list: Array
+  }
+}
 </script>

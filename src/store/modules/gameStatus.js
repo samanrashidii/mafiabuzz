@@ -38,6 +38,7 @@ export default {
       stepCounter: 1,
       personNumb: 1,
       roleViewer: false,
+      searchingUsed: false,
       viewerItems: [],
       discordChannel: null
     }

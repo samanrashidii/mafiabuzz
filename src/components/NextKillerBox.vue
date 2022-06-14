@@ -30,20 +30,20 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
+      Dashboard: 'dashboard/Dashboard'
     }),
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
-    },
+      return JSON.parse(JSON.stringify(this.Dashboard))
+    }
   },
   methods: {
     ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
+      SetDashboard: 'dashboard/SetDashboard'
     }),
     closeNextKiller() {
-      this.dashboard.killerChanged = false;
-      this.SetDashboard(this.dashboard);
-    },
-  },
-};
+      this.dashboard.killerChanged = false
+      this.SetDashboard(this.dashboard)
+    }
+  }
+}
 </script>

@@ -111,7 +111,7 @@ export default {
     }
   },
   mixins: [
-    checkRoute,
-  ],
-};
+    checkRoute
+  ]
+}
 </script>

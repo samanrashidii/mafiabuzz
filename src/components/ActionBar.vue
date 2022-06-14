@@ -200,45 +200,45 @@ export default {
     ActionBox,
     NextKillerBox,
     Overlay,
-    RoleViewer,
+    RoleViewer
   },
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState',
+      DefaultState: 'DefaultState'
     }),
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
+      return JSON.parse(JSON.stringify(this.GameSettings))
     },
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
+      return JSON.parse(JSON.stringify(this.Dashboard))
     },
     replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles));
+      return JSON.parse(JSON.stringify(this.ReplacingRoles))
     },
     progress() {
-      return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100;
+      return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
     },
   },
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles'
     }),
     checkStatus(player) {
-      let target;
+      let target
       if (player) {
         this.gameSettings.selectedRoles.forEach((element) => {
           if (element.player === player.player) {
-            target = element;
+            target = element
           }
-        });
+        })
       }
-      return target;
-    },
+      return target
+    }
   },
   mixins: [
     actionLog,
@@ -252,7 +252,7 @@ export default {
     saveHistory,
     skipAction,
     voteKiller,
-    trackingStatus,
-  ],
-};
+    trackingStatus
+  ]
+}
 </script>

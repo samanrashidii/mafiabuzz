@@ -44,20 +44,20 @@ import Overlay from '@/components/Overlay.vue';
 
 export default {
   components: {
-    Overlay,
+    Overlay
   },
   computed: {
     ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
+      Dashboard: 'dashboard/Dashboard'
     }),
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
-    },
+      return JSON.parse(JSON.stringify(this.Dashboard))
+    }
   },
   methods: {
     closeLog() {
-      this.$emit('closeLog', false);
-    },
-  },
-};
+      this.$emit('closeLog', false)
+    }
+  }
+}
 </script>

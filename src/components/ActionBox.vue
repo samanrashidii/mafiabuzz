@@ -178,24 +178,24 @@ export default {
       actionTarget1: null,
       actionTarget2: null,
       useAbility: false,
-      alertBox: false,
+      alertBox: false
     };
   },
   components: {
-    Overlay,
+    Overlay
   },
   props: {
     player: {
       type: Object,
-      default: false,
+      default: false
     },
     playerIndex: {
       type: Number,
-      default: 0,
+      default: 0
     },
     force: {
       type: Boolean,
-      default: false,
+      default: false
     },
   },
   computed: {
@@ -203,27 +203,27 @@ export default {
       Dashboard: 'dashboard/Dashboard',
       GameSettings: 'gameStatus/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState',
+      DefaultState: 'DefaultState'
     }),
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
+      return JSON.parse(JSON.stringify(this.GameSettings))
     },
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
+      return JSON.parse(JSON.stringify(this.Dashboard))
     },
     replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles));
-    },
+      return JSON.parse(JSON.stringify(this.ReplacingRoles))
+    }
   },
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles'
     }),
     skipAction(index) {
-      this.alertBox = false;
-      this.nextAction(index);
+      this.alertBox = false
+      this.nextAction(index)
     },
   },
   mixins: [
@@ -239,7 +239,7 @@ export default {
     possibilities,
     saveHistory,
     skipAction,
-    trackingStatus,
-  ],
-};
+    trackingStatus
+  ]
+}
 </script>

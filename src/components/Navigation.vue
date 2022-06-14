@@ -28,8 +28,8 @@ import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      loggedIn: true,
-    };
+      loggedIn: true
+    }
   },
   computed: {
     ...mapGetters({

@@ -84,6 +84,7 @@ export default {
     }),
     closeViewer() {
       this.gameSettings.roleViewer = false
+      this.gameSettings.searchingUsed = false
       this.gameSettings.viewerItems = []
       this.SetGameSettings(this.gameSettings)
     }

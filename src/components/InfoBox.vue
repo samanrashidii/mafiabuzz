@@ -101,10 +101,10 @@ import CharacterPower from '@/components/CharacterPower.vue';
 export default {
   props: {
     info: Object,
-    floating: Boolean,
+    floating: Boolean
   },
   components: {
-    CharacterPower,
-  },
-};
+    CharacterPower
+  }
+}
 </script>

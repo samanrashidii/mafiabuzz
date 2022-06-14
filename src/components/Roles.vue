@@ -91,18 +91,18 @@ export default {
         icon: 'default.png',
         alt: 'replacingRoles.loading.alt',
         description: 'replacingRoles.loading.description',
-        status: {},
-      },
-    };
+        status: {}
+      }
+    }
   },
   components: {
     CharacterPower,
-    InfoBox,
+    InfoBox
   },
   computed: {
     ...mapGetters({
       Roles: 'roles/Roles',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings'
     }),
     getRoles() {
       const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary']
@@ -130,12 +130,12 @@ export default {
     },
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings))
-    },
+    }
   },
   methods: {
     ...mapActions({
       SetRoles: 'roles/SetRoles',
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetGameSettings: 'gameStatus/SetGameSettings'
     }),
     calcPower() {
       const $powerControl = this.gameSettings.powerControl
@@ -149,7 +149,7 @@ export default {
         } else {
           $powerControl.citizenPower += element.power
         }
-      });
+      })
       if ($powerControl.power >= 95) {
         $powerControl.power = 95
       } else if ($powerControl.power <= -95) {
@@ -176,12 +176,12 @@ export default {
         this.gameSettings.multipleRoles.normalMafia = 1
       } else if (role.status.mafia && this.gameSettings.multipleRoles.normalMafia >= 1) {
         this.gameSettings.multipleRoles.normalMafia = 0
-        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
+        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id)
       } else if (role.status.citizen && this.gameSettings.multipleRoles.normalCitizen == 0) {
         this.gameSettings.multipleRoles.normalCitizen = 1
       } else if (role.status.citizen && this.gameSettings.multipleRoles.normalCitizen >= 1) {
         this.gameSettings.multipleRoles.normalCitizen = 0
-        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id);
+        this.gameSettings.selectedRoles = this.gameSettings.selectedRoles.filter(value => value.id != role.id)
       }
       this.calcPower()
       this.SetRoles(this.getRoles)
@@ -212,7 +212,7 @@ export default {
           for (const el of $roles) {
             if (el.id == role.id) {
               $roles.splice($roles.indexOf(el), 1)
-              break;
+              break
             }
           }
         } else {
@@ -221,7 +221,7 @@ export default {
             if (element.id == role.id) {
               element.selected = false
             }
-          });
+          })
         }
         this.gameSettings.multipleRoles.normalCitizen--
       }

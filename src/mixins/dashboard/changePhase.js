@@ -158,7 +158,7 @@ export default {
           element.status.booleanAbility = false
         }
         if (element.ability.searching && element.status.booleanAbility) {
-          this.dashboard.searchingUsed = true
+          this.gameSettings.searchingUsed = true
           element.status.booleanAbility = false
         }
         if (element.status.marked && element.status.dead) {
@@ -174,25 +174,13 @@ export default {
           })
         }
       })
+
       if (!this.gameSettings.gameFinished) {
         if (this.dashboard.lastNight.length > 0) {
           this.dashboard.lastNightBox = true
           // Post Event To Discord
           this.postDiscord(resultForDiscord)
         }
-      }
-
-      // If Searching Used Popup Dead People
-      if (this.dashboard.searchingUsed) {
-        const deadPeoples = []
-        this.gameSettings.selectedRoles.forEach((element) => {
-          if (element.status.dead) {
-            deadPeoples.push(element)
-          }
-        })
-        this.gameSettings.viewerItems = deadPeoples
-        this.gameSettings.roleViewer = true
-        this.dashboard.searchingUsed = false
       }
 
       this.dashboard.day = true

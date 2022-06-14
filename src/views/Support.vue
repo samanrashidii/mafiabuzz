@@ -1,17 +1,25 @@
 <template>
-  <div class="support-us center-aligned">
+  <div
+    class="support-us center-aligned"
+  >
     <PageBox>
-      <div class="support-box">
+      <div
+        class="support-box"
+      >
         <img
           width="100"
           class="support-icon"
           src="@/assets/images/support.svg"
           alt="Heart Icon"
         >
-        <p class="has-small-top-margin">
+        <p
+          class="has-small-top-margin"
+        >
           {{ $t('pages.about.thanksForSupport') }}
         </p>
-        <div class="text-center">
+        <div
+          class="text-center"
+        >
           <a
             href="https://ko-fi.com/J3J11323A"
             target="_blank"

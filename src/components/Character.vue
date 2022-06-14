@@ -25,10 +25,10 @@ import CharacterPower from '@/components/CharacterPower.vue';
 
 export default {
   props: {
-    role: Object,
+    role: Object
   },
   components: {
-    CharacterPower,
-  },
-};
+    CharacterPower
+  }
+}
 </script>

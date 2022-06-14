@@ -109,7 +109,7 @@ export default {
     },
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings))
-    },
+    }
   },
   props: {
     tableData: Array,
@@ -131,11 +131,11 @@ export default {
           invisible: char.status.invisible && !char.status.hacked,
           hacked: char.status.hacked,
           skeleton: char.status.minion,
-          solo: char.solo,
+          solo: char.solo
         }
       }
       return {
-        solo: char.solo,
+        solo: char.solo
       }
     },
     selectThis (event) {
