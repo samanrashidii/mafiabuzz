@@ -207,6 +207,30 @@
       </template>
     </Overlay>
 
+    <!-- Role Viewer -->
+    <Overlay
+      :class="{
+        'active': gameSettings.roleViewer,
+        'viewer': true
+      }"
+    >
+      <RoleViewer
+        v-if="gameSettings.roleViewer"
+        :roles="deadRoles"
+        :show="gameSettings.roleViewer"
+      />
+    </Overlay>
+
+    <!-- Last Night Log -->
+    <Overlay
+      :class="{
+        'active': dashboard.lastNightBox,
+        'dialog': false, 'last-night': true
+      }"
+    >
+      <LastNightLog />
+    </Overlay>
+
     <!-- Revenge Kill Targeting -->
     <Overlay
       class="revenge-box dialog"
@@ -227,7 +251,9 @@
           src="@/assets/images/roles/revenge.svg"
           :alt="$t('god.revengeIconAlt')"
         >
-        <p>{{ $t('god.revengeText') }}</p>
+        <p>
+          {{ $t('god.revengeText') }}
+        </p>
         <select
           class="has-top-margin"
           name="last_day_target"
@@ -247,7 +273,9 @@
             {{ person.player }}
           </option>
         </select>
-        <AppButton @click.native="killByVote(dashboard.targetData.player, true)">
+        <AppButton
+          @click.native="killByVote(dashboard.targetData.player, true)"
+        >
           {{ $t('god.confirmButton') }}
         </AppButton>
         <AppButton
@@ -257,11 +285,6 @@
           {{ $t('god.skipButton') }}
         </AppButton>
       </template>
-    </Overlay>
-
-    <!-- Last Night Log -->
-    <Overlay :class="{'active': dashboard.lastNightBox, 'dialog': false, 'last-night': true}">
-      <LastNightLog />
     </Overlay>
 
     <!-- Restart or Reset Game -->
@@ -345,6 +368,7 @@ import saveHistory from '@/mixins/dashboard/saveHistory';
 import setActions from '@/mixins/dashboard/setActions';
 import skipAction from '@/mixins/dashboard/skipAction';
 import voteKiller from '@/mixins/dashboard/voteKiller';
+import RoleViewer from '@/components/RoleViewer.vue';
 import startGame from '@/mixins/startGame';
 
 export default {
@@ -365,6 +389,7 @@ export default {
     LastNightLog,
     Log,
     Overlay,
+    RoleViewer,
     Table
   },
   computed: {
@@ -386,6 +411,10 @@ export default {
     },
     replacingRoles() {
       return JSON.parse(JSON.stringify(this.ReplacingRoles))
+    },
+    deadRoles () {
+      const output = this.GameSettings.selectedRoles.filter(role => role.status.dead)
+      return output
     }
   },
   mounted () {

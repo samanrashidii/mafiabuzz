@@ -41,6 +41,7 @@ export default {
       revengeUsed: false,
       avenger: null,
       justiceUsed: false,
+      searchingUsed: false,
       killerChanged: false,
       nextKiller: {
         icon: null,

@@ -157,6 +157,10 @@ export default {
           this.dashboard.justiceUsed = true
           element.status.booleanAbility = false
         }
+        if (element.ability.searching && element.status.booleanAbility) {
+          this.dashboard.searchingUsed = true
+          element.status.booleanAbility = false
+        }
         if (element.status.marked && element.status.dead) {
           this.gameSettings.selectedRoles.forEach((element) => {
             if (element.ability.prediction) {
@@ -177,8 +181,21 @@ export default {
           this.postDiscord(resultForDiscord)
         }
       }
-      this.dashboard.day = true
 
+      // If Searching Used Popup Dead People
+      if (this.dashboard.searchingUsed) {
+        const deadPeoples = []
+        this.gameSettings.selectedRoles.forEach((element) => {
+          if (element.status.dead) {
+            deadPeoples.push(element)
+          }
+        })
+        this.gameSettings.viewerItems = deadPeoples
+        this.gameSettings.roleViewer = true
+        this.dashboard.searchingUsed = false
+      }
+
+      this.dashboard.day = true
       // Post Day Phase To Discord
       const text = `${this.$t('thirdparty.discordDayPhase')} ${this.dashboard.round}`
       this.postDiscord(text)

@@ -66,8 +66,14 @@
       </div>
     </div>
 
-    <template v-if="!player.ability.chooseBoolean">
-      <label for="action_target">{{ $t('god.actionHintText') }}</label>
+    <template
+      v-if="!player.ability.chooseBoolean"
+    >
+      <label
+        for="action_target"
+      >
+        {{ $t('god.actionHintText') }}
+      </label>
       <select
         @change="findTarget(actionTarget1)"
         name="action_target"

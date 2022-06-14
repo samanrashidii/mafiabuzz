@@ -383,8 +383,9 @@
         "actionQuestion2": "to wake up and tell you the target for",
         "lastNightTitle": "Tell people what happened",
         "whatHappened": "Events History",
-        "viewerText": "Show the result of action to the target",
-        "viewerButton": "Close the view box",
+        "roleViewerText": "Announce result of searching for dead pepole to the city",
+        "roleViewerButton": "Close the view box",
+        "noRolesToView": "There is no role to show!",
         "dashboardHintTitle": "Game Icons and Signs",
         "dashboardHint": [
             {

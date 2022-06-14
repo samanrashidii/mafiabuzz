@@ -27,20 +27,20 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
+      Dashboard: 'dashboard/Dashboard'
     }),
     dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard));
-    },
+      return JSON.parse(JSON.stringify(this.Dashboard))
+    }
   },
   methods: {
     ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
+      SetDashboard: 'dashboard/SetDashboard'
     }),
     lastNightBoxController() {
-      this.dashboard.lastNightBox = false;
-      this.SetDashboard(this.dashboard);
-    },
-  },
-};
+      this.dashboard.lastNightBox = false
+      this.SetDashboard(this.dashboard)
+    }
+  }
+}
 </script>

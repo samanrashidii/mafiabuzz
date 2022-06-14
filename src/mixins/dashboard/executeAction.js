@@ -25,14 +25,6 @@ export default {
               }
               if (el.ability.searching) {
                 el.status.booleanAbility = true
-                const deadPeoples = []
-                this.gameSettings.selectedRoles.forEach((element) => {
-                  if (element.status.dead) {
-                    deadPeoples.push(element)
-                  }
-                })
-                this.gameSettings.viewerItems = deadPeoples
-                this.gameSettings.roleViewer = true
               }
             }
           }

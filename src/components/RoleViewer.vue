@@ -1,26 +1,41 @@
 <template>
-  <div class="role-viewer">
-    <h4>{{ $t('god.viewerText') }}</h4>
-    <transition
-      name="slide"
-      mode="out-in"
+  <div
+    class="role-viewer"
+  >
+    <template
+      v-if="roles.length > 0"
     >
-      <template v-for="(role, index) in roles">
-        <div
-          class="role-view"
-          :key="index"
-          v-if="index === item"
-        >
-          <img
-            :src="getImg('/roles', role.icon)"
-            :alt="$t(role.alt)"
+      <h4>
+        {{ $t('god.roleViewerText') }}
+      </h4>
+      <transition
+        name="slide"
+        mode="out-in"
+      >
+        <template v-for="(role, index) in roles">
+          <div
+            class="role-view"
+            :key="index"
+            v-if="index === item"
           >
-          <h1>{{ $t(role.name) }}</h1>
-        </div>
-      </template>
-    </transition>
-    <AppButton @click.native="closeViewer()">
-      {{ $t('god.viewerButton') }}
+            <img
+              :src="getImg('/roles', role.icon)"
+              :alt="$t(role.alt)"
+            >
+            <h1>{{ $t(role.name) }}</h1>
+          </div>
+        </template>
+      </transition>
+    </template>
+    <h2
+      v-else
+    >
+      {{ $t('god.noRolesToView') }}
+    </h2>
+    <AppButton
+      @click.native="closeViewer()"
+    >
+      {{ $t('god.roleViewerButton') }}
     </AppButton>
   </div>
 </template>
@@ -32,46 +47,46 @@ export default {
   props: {
     roles: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     show: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
-      item: 0,
-    };
+      item: 0
+    }
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameStatus/GameSettings'
     }),
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
-    },
+      return JSON.parse(JSON.stringify(this.GameSettings))
+    }
   },
   mounted() {
     if (this.show && this.roles.length > 1) {
       setInterval(() => {
         if (this.item < this.roles.length - 1) {
-          this.item++;
+          this.item++
         } else {
-          this.item = 0;
+          this.item = 0
         }
-      }, 2000);
+      }, 2000)
     }
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetGameSettings: 'gameStatus/SetGameSettings'
     }),
     closeViewer() {
-      this.gameSettings.roleViewer = false;
-      this.gameSettings.viewerItems = [];
-      this.SetGameSettings(this.gameSettings);
-    },
-  },
-};
+      this.gameSettings.roleViewer = false
+      this.gameSettings.viewerItems = []
+      this.SetGameSettings(this.gameSettings)
+    }
+  }
+}
 </script>

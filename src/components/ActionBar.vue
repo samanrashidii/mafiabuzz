@@ -3,21 +3,31 @@
     class="priority-box"
   >
     <!-- Before Action Box -->
-    <transition name="fade">
+    <transition
+      name="fade"
+    >
       <div
         class="before-action-box"
         v-if="dashboard.mafiaParty && dashboard.round === 1"
       >
-        <div class="table-display">
-          <div class="table-cell-display">
+        <div
+          class="table-display"
+        >
+          <div
+            class="table-cell-display"
+          >
             <img
               src="@/assets/images/roles/mafiaparty.svg"
               :alt="$t('god.mafiaPartyIconAlt')"
             >
-            <p class="site-color">
+            <p
+              class="site-color"
+            >
               {{ $t('god.mafiaPartyText') }}
             </p>
-            <ul class="error-bullet type-2">
+            <ul
+              class="error-bullet type-2"
+            >
               <li
                 v-for="(mp, index) in $t('god.mafiaPartyException')"
                 :key="index"
@@ -36,12 +46,21 @@
     </transition>
 
     <!-- Next Killer Box -->
-    <transition name="fade">
-      <NextKillerBox v-if="dashboard.killerChanged" />
+    <transition
+      name="fade"
+    >
+      <NextKillerBox
+        v-if="dashboard.killerChanged"
+      />
     </transition>
 
     <!-- Role Viewer -->
-    <Overlay :class="{'active': gameSettings.roleViewer, 'viewer': true}">
+    <Overlay
+      :class="{
+        'active': gameSettings.roleViewer,
+        'viewer': true
+      }"
+    >
       <RoleViewer
         v-if="gameSettings.roleViewer"
         :roles="gameSettings.viewerItems"
@@ -50,15 +69,21 @@
     </Overlay>
 
     <!-- Actions Progress Bar -->
-    <div class="progress-bar">
+    <div
+      class="progress-bar"
+    >
       <a
         class="prev-action"
         href="javascript:void(0)"
         @click="navigateActions(dashboard.actionProgress, 'prev')"
         v-if="dashboard.actionProgress !== 0"
       />
-      <div class="bar-holder">
-        <span :style="{width: progress+'%'}" />
+      <div
+        class="bar-holder"
+      >
+        <span
+          :style="{width: progress+'%'}"
+        />
         <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
       </div>
       <a
@@ -77,14 +102,20 @@
         :key="index"
       >
         <!-- Actions Overlay -->
-        <template v-if="dashboard.actionProgress === index">
+        <template
+          v-if="dashboard.actionProgress === index"
+        >
           <div
             class="action-overlay hacked-overlay"
             v-if="checkStatus(player).status.hacked"
             key="hackedTarget"
           >
-            <div class="table-display">
-              <div class="table-cell-display">
+            <div
+              class="table-display"
+            >
+              <div
+                class="table-cell-display"
+              >
                 <img
                   src="@/assets/images/roles/hacked.svg"
                   :alt="$t('god.hackedIconAlt')"
@@ -104,9 +135,15 @@
             v-if="checkStatus(player).status.dead && !checkStatus(player).status.recentlyDead"
             key="deadTarget"
           >
-            <div class="table-display">
-              <div class="table-cell-display">
-                <div class="has-clear-fix">
+            <div
+              class="table-display"
+            >
+              <div
+                class="table-cell-display"
+              >
+                <div
+                  class="has-clear-fix"
+                >
                   <img
                     src="@/assets/images/roles/grave.svg"
                     :alt="$t('god.deadIconAlt')"

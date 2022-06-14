@@ -383,8 +383,9 @@
         "actionQuestion2": "بگو بیدار بشه و هدف رو بگه برای ",
         "lastNightTitle": "به بازیکنان توضیح بده چه اتفاقی افتاده",
         "whatHappened": "تاریخچه اتفاقات",
-        "viewerText": "نتیجه اکشن رو به بازیکن نشون بده",
-        "viewerButton": "صفحه رو ببند",
+        "roleViewerText": "نتیجه جستجو برای افراد بیرون بازی رو به بازیکنان اعلام کن",
+        "roleViewerButton": "صفحه رو ببند",
+        "noRolesToView": "نقشی برای نمایش وجود ندارد",
         "dashboardHintTitle": "توضیح علامت ها و آیکن ها",
         "dashboardHint": [
             {
