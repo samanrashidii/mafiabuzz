@@ -656,11 +656,11 @@
             }
         },
         {
-            "name": "Gravekeeper",
+            "name": "Gravedigger",
             "roleType": "Citizen",
             "hiddenRoleType": "",
-            "alt": "Gravekeeper Icon",
-            "description": "The Gravekeeper is one of citizens and can search for dead people roles at once!!!",
+            "alt": "Gravedigger Icon",
+            "description": "The Gravedigger is one of citizens and can search 2 Times for dead people roles!!!",
             "action": {
                 "passive": "None",
                 "action": "Searching"
@@ -796,6 +796,17 @@
             "action": {
                 "passive": "None",
                 "action": "Heal"
+            }
+        },
+        {
+            "name": "Professional",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Professional Icon",
+            "description": "Sniper can save citizens with accurate shots. He can kill one player each night until he shot one of the citizens. if he shot wrong he will die instead.",
+            "action": {
+                "passive": "None",
+                "action": "Kill"
             }
         }
     ],

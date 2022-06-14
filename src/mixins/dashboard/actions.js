@@ -147,17 +147,23 @@ export default {
         }
       })
     },
-    kill (target, killType) {
+    kill (target, killType, player) {
+      const checkLoyalty = this.gameSettings.selectedRoles.filter(role =>  player.ability.loyalty && role.player === target && player.mafia === role.mafia && player.solo === role.solo)
       // Check If DeadMagnet is in the game, He should be the target
       const checkDeadMagnet = this.gameSettings.selectedRoles.filter(el => el.ability.deadMagnet && el.mafia && !el.status.dead)
       const checkKillerPlayer = this.gameSettings.selectedRoles.filter(el => el.player === target && el.ability.killer && el.mafia && !el.status.dead)
+      const hasLoyalty = checkLoyalty.length > 0
       const hasDeadMagnet = checkDeadMagnet.length > 0
       const isTargetTheKiller = checkKillerPlayer.length > 0
       let killTarget
       if (hasDeadMagnet && isTargetTheKiller) {
         killTarget = checkDeadMagnet[0].player
       } else {
-        killTarget = target
+        if (hasLoyalty) {
+          killTarget = player.player
+        } else {
+          killTarget = target
+        }
       }
       this.gameSettings.selectedRoles.forEach((element) => {
         // Check if target is not healed

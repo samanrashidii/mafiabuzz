@@ -15,11 +15,8 @@
           :class="{'active': role.selected}"
           :value="role"
           v-model="gameSettings.selectedRoles"
-          :disabled="role.lock"
-          v-if="!role.lock"
         >
         <label
-          :class="{'character-locked': role.lock}"
           :for="`role_${index+1}`"
         >
           <div class="inner-label">
@@ -50,19 +47,6 @@
             >x<i>{{ role.status.mafia ? gameSettings.multipleRoles.normalMafia : gameSettings.multipleRoles.normalCitizen }}</i></span></strong>
           </div>
         </label>
-        <div
-          class="locked"
-          v-if="role.lock"
-          @click="showInfo(role)"
-        >
-          <strong>Locked</strong>
-          <router-link
-            class="bttn awesome2"
-            :to="{name: 'login'}"
-          >
-            <span>{{ $t('general.registerWarning') }}</span>
-          </router-link>
-        </div>
         <CharacterPower
           :mafia="role.mafia"
           :solo="role.solo"

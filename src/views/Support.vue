@@ -11,22 +11,14 @@
         <p class="has-small-top-margin">
           {{ $t('pages.about.thanksForSupport') }}
         </p>
-        <div class="d-flex justify-content-between equal-buttons">
-          <AppButton
-            class="bttn support-bttn blue square-circle lg-fontsize btn-center mt-0"
-            link="https://reymit.ir/mafiabuzz"
-            target="_blank"
-          >
-            <span>
-              {{ $t('pages.about.supportButton') }}
-            </span>
-          </AppButton>
+        <div class="text-center">
           <a
             href="https://ko-fi.com/J3J11323A"
             target="_blank"
+            class="d-inline-block has-top-margin"
           >
             <img
-              width="100%"
+              width="200"
               src="https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2"
               border="0"
               alt="Buy Us a Coffee at ko-fi.com"

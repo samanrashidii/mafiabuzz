@@ -75,7 +75,7 @@ export default {
           }
           // Killer
           if (player.ability.killer) {
-            this.kill(target1)
+            this.kill(target1, '', player)
           }
           // Identity Checker
           if (player.ability.identityChecker) {
