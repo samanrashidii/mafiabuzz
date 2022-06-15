@@ -1,7 +1,13 @@
 {
     "patchNotes": [
-        {"text": "Feature : Removed Login and Register process for unlocking characters for better experience"},
-        {"text": "Feature : Make project open-source again"},
+        {"text": "New Character : Doctor Lecter for Mafia team"},
+        {"text": "New Character : Professional for Citizen team"},
+        {"text": "New Character : Guardian Angel for Citizen team"},
+        {"text": "New Character : Zealot for Citizen team"},
+        {"text": "New Character : Bomber for Mafia team"},
+        {"text": "New Character : Mayor for Citizen team"},
+        {"text": "Change Character : Changed 'Gravekeeper' to 'GraveDigger' (Read more in Characters page)"},
+        {"text": "Change Character : 'Gravekeeper' functionality changed"},
         {"text": "Fix : Removed extra files and fixed some issues"}
     ],
     "thirdparty": {
@@ -31,7 +37,7 @@
     },
     "general":{
         "name": "MafiaBuzz",
-        "lastUpdate": "23-04-2021",
+        "lastUpdate": "15-06-2022",
         "welcomeToMafiabuzz": "❤️🔔 Welcome to MafiaBuzz Web Application 🔔❤️",
         "alt": "MafiaBuzz Logo",
         "url": "https://www.mafiabuzz.app",
