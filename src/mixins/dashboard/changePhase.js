@@ -12,13 +12,7 @@ export default {
         this.dashboard.actionBox = []
         this.dashboard.actionProgress = 0
         this.dashboard.voteKill = false
-        let hasRevenger
-        const revengeTime = this.gameSettings.selectedRoles.filter(element => element.ability.revenge && element.status.dead).length
-        revengeTime > 0 ? hasRevenger = true : hasRevenger = false
         this.finishNight()
-        if (hasRevenger && !this.dashboard.revengeUsed) {
-          this.deadWatcher(true)
-        }
       } else if (this.dashboard.round === 0) {
         this.finishDay()
       } else {

@@ -8,6 +8,7 @@
       href="javascript:void(0)"
     />
     <img
+      v-if="info.icon"
       :class="{'floating': floating}"
       :src="getImg('/roles', info.icon)"
       :alt="$t(info.alt)"
@@ -57,6 +58,7 @@
         <div class="data-holder">
           <template>
             <img
+              v-if="info.actionIcon"
               :src="getImg('/actions', info.actionIcon)"
               :alt="info.alt"
             >
@@ -69,6 +71,7 @@
         <div class="data-holder">
           <template>
             <img
+              v-if="info.passiveIcon"
               :src="getImg('/actions', info.passiveIcon)"
               :alt="info.alt"
             >
@@ -77,7 +80,9 @@
         </div>
       </div>
     </div>
-    <p v-html="$t(info.description)" />
+    <p
+      v-html="$t(info.description)"
+    />
   </div>
 </template>
 

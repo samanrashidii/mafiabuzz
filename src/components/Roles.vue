@@ -88,7 +88,7 @@ export default {
         mafia: false,
         action: {},
         name: 'replacingRoles.loading.name',
-        icon: 'default.png',
+        icon: 'default.svg',
         alt: 'replacingRoles.loading.alt',
         description: 'replacingRoles.loading.description',
         status: {}

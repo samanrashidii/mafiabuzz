@@ -820,6 +820,28 @@
                 "passive": "Save People in Day Phase",
                 "action": "None"
             }
+        },
+        {
+            "name": "Zealot",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Zealot Icon",
+            "description": "Zealot can get up and kill someone the day before the first ballot. Also, if there is a bomber, it can neutralize the bomber action within 7 seconds",
+            "action": {
+                "passive": "Revenge",
+                "action": "Kill"
+            }
+        },
+        {
+            "name": "Bomber",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Bomber Icon",
+            "description": "Bomber can get up and call to kill someone the day before the first ballot. (after he stood up, should wait 7 seconds then call name of the target)",
+            "action": {
+                "passive": "Revenge",
+                "action": "Kill"
+            }
         }
     ],
     "replacingRoles": {
@@ -856,7 +878,7 @@
         },
         "default": {
             "name": "Default",
-            "icon": "default.png",
+            "icon": "default.svg",
             "alt": "Default Icon",
             "description": "..."
         }
