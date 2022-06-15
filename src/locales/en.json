@@ -842,6 +842,17 @@
                 "passive": "Revenge",
                 "action": "Kill"
             }
+        },
+        {
+            "name": "Mayor",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Mayor Icon",
+            "description": "The mayor can stand up the day before the first ballot and dissolve the ballot. The mayor must determine who will leave the game during voting time.",
+            "action": {
+                "passive": "None",
+                "action": "Justice"
+            }
         }
     ],
     "replacingRoles": {
