@@ -859,6 +859,28 @@
                 "passive": "None",
                 "action": "Justice"
             }
+        },
+        {
+            "name": "Salesman",
+            "roleType": "Citizen",
+            "hiddenRoleType": "",
+            "alt": "Salesman Icon",
+            "description": "The seller can execute his action once a night. He can hack a person and that person loses his ability until the end of the game.",
+            "action": {
+                "passive": "None",
+                "action": "Hack"
+            }
+        },
+        {
+            "name": "Charlatan",
+            "roleType": "Mafia",
+            "hiddenRoleType": "",
+            "alt": "Charlatan Icon",
+            "description": "Charlatan can do his Ashkan twice a night. He can overnight turn the character of a Mafia into a citizen, and a citizen or independent into a Mafia, and that person's query changes.",
+            "action": {
+                "passive": "None",
+                "action": "Change Identity"
+            }
         }
     ],
     "replacingRoles": {

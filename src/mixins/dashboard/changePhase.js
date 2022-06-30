@@ -42,7 +42,11 @@ export default {
           element.status.marked = false
         }
         if (element.status.recentlyDead) {
-          const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span><em>${this.$t(element.roleType)}</em>`
+          let currentIdentity = this.$t('common.Citizen')
+          if (element.mafia) {
+            currentIdentity = this.$t('common.Mafia')
+          }
+          const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span><em>${currentIdentity}</em>`
           resultForDiscord += `
           💀 ${element.player} ${this.$t('god.logDeadText')}
           ----------
@@ -99,7 +103,11 @@ export default {
 
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.status.recentlyDead) {
-          const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span><em>${this.$t(element.roleType)}</em>`
+          let currentIdentity = this.$t('common.Citizen')
+          if (element.mafia) {
+            currentIdentity = this.$t('common.Mafia')
+          }
+          const logNote = `<span class='last-log red-bg dead-icon'><i>${element.player}</i> ${this.$t('god.logDeadText')}</span><em>${currentIdentity}</em>`
           resultForDiscord += `
           💀 ${element.player} ${this.$t('god.logDeadText')}
           ----------
@@ -137,10 +145,14 @@ export default {
         if (element.status.identityChecked) {
           element.status.identityChecked = false
         }
+        if (element.status.identityChanged) {
+          element.mafia = !element.mafia
+          element.status.identityChanged = false
+        }
         if (element.status.roleChecked) {
           element.status.roleChecked = false
         }
-        if (element.status.hacked) {
+        if (element.status.hacked && !element.status.hackedForever) {
           element.status.hacked = false
         }
         element.status.recentlySilenced = false

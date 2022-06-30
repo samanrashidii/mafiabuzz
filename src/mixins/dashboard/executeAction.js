@@ -65,6 +65,10 @@ export default {
           if (player.ability.hacker) {
             this.hack(target1)
           }
+          // Hack Forever
+          if (player.ability.hackForever) {
+            this.hack(target1, true)
+          }
           // Killer
           if (player.ability.killer) {
             this.kill(target1, '', player)
@@ -72,6 +76,10 @@ export default {
           // Identity Checker
           if (player.ability.identityChecker) {
             this.checkIdentity(target1)
+          }
+          // Identity Changer
+          if (player.ability.identityChanger) {
+            this.changeIdentity(target1)
           }
           // Role Checker
           if (player.ability.roleChecker) {

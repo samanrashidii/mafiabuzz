@@ -26,6 +26,14 @@ export default {
         }
       })
     },
+    changeIdentity (target) {
+      this.gameSettings.selectedRoles.forEach((element) => {
+        if (element.player === target) {
+          element.mafia = !element.mafia
+          element.status.identityChanged = true
+        }
+      })
+    },
     checkRole (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
@@ -103,10 +111,13 @@ export default {
         }
       })
     },
-    hack (target) {
+    hack (target, forever) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.hacked = true
+          if (forever) {
+            element.status.hackedForever = true
+          }
         }
       })
     },
@@ -238,7 +249,6 @@ export default {
           element.killPriority = this.replacingRoles.miniYakuza.mafia
           element.potentialKiller = this.replacingRoles.miniYakuza.mafia
           element.mafia = this.replacingRoles.miniYakuza.mafia
-          element.roleType = this.replacingRoles.miniYakuza.roleType
           element.status.linked = this.dashboard.freezeStatus.linked
           element.status.hacked = this.dashboard.freezeStatus.hacked
           element.status.healed = this.dashboard.freezeStatus.healed

@@ -2,7 +2,11 @@ export default {
   methods: {
     actionLog (element, type) {
       if (type === 'checkIdentity') {
-        this.dashboard.log.resultText = `<span>${this.$t('god.logResult')}</span> <strong>${element.status.invisible ? `${this.$t(element.action.passive)} ${this.$t(element.hiddenRoleType)}` : this.$t(element.roleType)}</strong>`
+        let currentIdentity = this.$t('common.Citizen')
+        if (element.mafia) {
+          currentIdentity = this.$t('common.Mafia')
+        }
+        this.dashboard.log.resultText = `<span>${this.$t('god.logResult')}</span> <strong>${element.status.invisible ? `${this.$t(element.action.passive)}` : currentIdentity}</strong>`
         this.dashboard.log.resultImage = 'investigate.svg'
       }
       if (type === 'checkRole') {
