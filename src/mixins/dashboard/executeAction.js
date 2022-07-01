@@ -105,6 +105,10 @@ export default {
           if (player.ability.antiSilencer) {
             this.antiSilence(target1)
           }
+          // Buster
+          if (player.ability.buster) {
+            this.bust(target1)
+          }
           // Magician
           if (player.ability.magician) {
             const dice = this.dice(4)

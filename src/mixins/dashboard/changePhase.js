@@ -29,6 +29,9 @@ export default {
       `
 
       this.gameSettings.selectedRoles.forEach((element) => {
+        if (element.status.busted) {
+          element.status.inJail = true
+        }
         if (element.status.poisoned) {
           this.kill(element.player)
         }
@@ -141,6 +144,10 @@ export default {
         }
         if (element.status.antiSilenced) {
           element.status.antiSilenced = false
+        }
+        if (element.status.inJail) {
+          element.status.busted = false
+          element.status.inJail = false
         }
         if (element.status.identityChecked) {
           element.status.identityChecked = false

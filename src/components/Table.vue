@@ -57,17 +57,17 @@
           <td v-if="dashboard.day === false">
             <span
               class="disabled"
-              v-if="!tD.status.hasPassive && !tD.status.hasAction"
+              v-if="!tD.status.hasPassive && !tD.status.hasAction && !tD.actionStatus"
             />
             <span
               class="passive"
               v-if="tD.status.hasPassive && !tD.status.hasAction"
             />
             <span
+              v-else
               :class="{'pending-action': (!tD.actionStatus && tD.status.hasAction && !tD.action.oneTime)
                          || (!tD.actionStatus && tD.status.hasAction && tD.status.hasOneAction && tD.action.oneTime),
                        'done-action': tD.actionStatus}"
-              v-else
             />
           </td>
         </template>
@@ -129,6 +129,7 @@ export default {
           silenced: char.status.silenced,
           shield: char.status.shield && !char.status.hacked,
           invisible: char.status.invisible && !char.status.hacked,
+          'in-jail': char.status.inJail || char.status.busted,
           hacked: char.status.hacked,
           skeleton: char.status.minion,
           solo: char.solo

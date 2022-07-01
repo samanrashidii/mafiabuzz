@@ -375,9 +375,11 @@
         "revengeKill": "Chosen player has been killed : ",
         "voteKill": "People killed this person by vote : ",
         "hackedPerson": "is <span class='hack-color'>Hacked</span>...!!! Just wake him up but he is unable to perform an action.",
+        "inJailPerson": "is in <span class='gray-color'>Prison</span>...!!! He is unable to perform an action.",
         "deadPerson": "is <span class='dead-color'>Dead</span>...!!! You should pretend and play as if the player is alive.",
         "revivedPerson": "is <span class='dead-color'>Revived</span>...!!! But doesn't have his role anymore.",
         "hackedIconAlt": "Hacked Icon",
+        "inJailIconAlt": "In Jail Icon",
         "deadIconAlt": "Dead Icon",
         "voteIcon": "vote.svg",
         "voteIconAlt": "Vote Icon",
@@ -807,6 +809,15 @@
             "action": {
                 "passive": "None",
                 "action": "Change Identity"
+            }
+        },
+        {
+            "name": "Jailer",
+            "alt": "Jailer Icon",
+            "description": "The jailer can send a person to jail once during the game, and the jailed person will be out of the game for one day and one night and will not participate in the discussion and voting.",
+            "action": {
+                "passive": "None",
+                "action": "Bust"
             }
         }
     ],

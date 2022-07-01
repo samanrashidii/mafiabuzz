@@ -105,9 +105,10 @@
         <template
           v-if="dashboard.actionProgress === index"
         >
+          <!-- Hacked Overlay -->
           <div
-            class="action-overlay hacked-overlay"
             v-if="checkStatus(player).status.hacked"
+            class="action-overlay hacked-overlay"
             key="hackedTarget"
           >
             <div
@@ -123,6 +124,32 @@
                 <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
                 <AppButton
                   class="purple"
+                  @click.native="skipAction(index)"
+                >
+                  {{ $t('god.skipButton3') }}
+                </AppButton>
+              </div>
+            </div>
+          </div>
+          <!-- In Jail Overlay -->
+          <div
+            v-if="checkStatus(player).status.inJail"
+            class="action-overlay jail-overlay"
+            key="inJailTarget"
+          >
+            <div
+              class="table-display"
+            >
+              <div
+                class="table-cell-display"
+              >
+                <img
+                  src="@/assets/images/icons/in-jail.svg"
+                  :alt="$t('god.inJailIconAlt')"
+                >
+                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
+                <AppButton
+                  class="black"
                   @click.native="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}

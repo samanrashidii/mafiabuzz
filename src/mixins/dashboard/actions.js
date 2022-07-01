@@ -292,6 +292,13 @@ export default {
           element.status.recentlySilenced = true
         }
       })
+    },
+    bust (target) {
+      this.gameSettings.selectedRoles.forEach((element) => {
+        if (element.player === target) {
+          element.status.busted = true
+        }
+      })
     }
   }
 }

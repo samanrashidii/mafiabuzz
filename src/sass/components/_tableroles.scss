@@ -50,6 +50,22 @@
                     z-index: 99;
                 }
             }
+            &.in-jail td{
+                &:nth-child(1)::before{
+                    content:'';
+                    position: absolute;
+                    top:50%;
+                    left:-13px;
+                    width:24px;
+                    height:24px;
+                    margin-top:-12px;
+                    opacity: 1;
+                    visibility: visible;
+                    background-image: url('~@/assets/images/icons/in-jail.svg') !important;
+                    background-size: 24px;
+                    z-index: 99;
+                }
+            }
             &.dead td{
                 &::after{
                     opacity: 1 !important;
