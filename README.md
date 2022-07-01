@@ -4,7 +4,7 @@
   </a>
 </p>
 
-# MafiaBuzz - v4.1
+# MafiaBuzz - v4.2.0
 
 MafiaBuzz is a game application to help people run and play "Mafia Party Game" easily and manageable. MafiaBuzz has more interesting characters than usual mafia game and can calculate every events happens in game and show the result to the game moderator (God)
 
