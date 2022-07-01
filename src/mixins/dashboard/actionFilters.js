@@ -7,7 +7,7 @@ export default {
       if (player === 'lastDay') {
         return this.gameSettings.selectedRoles.filter(x => !x.status.dead)
       }
-      if (player.ability.reviver) {
+      if (player.ability.reviver || player.ability.resurrect) {
         return this.gameSettings.selectedRoles.filter(x => x.player !==
                                                        player.player &&
                                                         x.status.dead)

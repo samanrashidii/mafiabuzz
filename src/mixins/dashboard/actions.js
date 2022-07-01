@@ -260,7 +260,7 @@ export default {
         }
       })
     },
-    resurrect (target) {
+    revive (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.name = this.replacingRoles.skeleton.name
@@ -276,7 +276,7 @@ export default {
         }
       })
     },
-    revive (target) {
+    resurrect (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.status.dead = false

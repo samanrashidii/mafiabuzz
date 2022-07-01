@@ -91,6 +91,10 @@ export default {
           }
           // Reviver
           if (player.ability.reviver) {
+            this.revive(target1)
+          }
+          // Resurrect
+          if (player.ability.resurrect) {
             this.resurrect(target1)
           }
           // Silencer

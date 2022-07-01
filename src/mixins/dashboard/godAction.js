@@ -2,7 +2,7 @@ export default {
   methods: {
     godAction (target) {
       if (target.status.dead) {
-        this.revive(target.player)
+        this.resurrect(target.player)
         this.dashboard.log.godText = `<span>${this.$t('god.godRevive')}</span> <strong>${target.player}</strong>`
         this.dashboard.log.godImage = `${this.$t('god.godReviveIcon')}`
       } else {

@@ -3,13 +3,17 @@ export default {
     setActionsByPriority () {
       const actions = []
       this.gameSettings.selectedRoles.forEach((x) => {
-        if (x.status.hasAction && !x.actionStatus && !x.ability.reviver) {
+        if (x.status.hasAction && !x.actionStatus && !x.ability.reviver && !x.ability.resurrect) {
           actions.push(x)
         }
         if (x.status.hasAction && !x.actionStatus && x.ability.reviver && this.gameSettings.deadPeople !== 0) {
           actions.push(x)
         }
+        if (x.status.hasAction && !x.actionStatus && x.ability.resurrect && this.gameSettings.deadPeople !== 0) {
+          actions.push(x)
+        }
       })
+      console.log(actions)
       const killersInGame = this.gameSettings.selectedRoles.filter(x => x.ability.killer && !x.status.dead && x.mafia).length
       const mafiaInGame = this.gameSettings.aliveMafia
       if (killersInGame === 0 && mafiaInGame !== 0) {

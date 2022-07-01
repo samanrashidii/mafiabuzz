@@ -2,12 +2,15 @@
     "patchNotes": [
         {"text": "New Character : Charlatan for Mafia team"},
         {"text": "New Character : Salesman for Citizen team"},
+        {"text": "New Character : Jailer for Citizen team"},
+        {"text": "New Character : Druid for Citizen team"},
         {"text": "New Character : Doctor Lecter for Mafia team"},
         {"text": "New Character : Professional for Citizen team"},
         {"text": "New Character : Guardian Angel for Citizen team"},
         {"text": "New Character : Zealot for Citizen team"},
         {"text": "New Character : Bomber for Mafia team"},
         {"text": "New Character : Mayor for Citizen team"},
+        {"text": "Change Character : Changed name of 'Ruspy' to 'Natasha'"},
         {"text": "Change Character : Hacker can now hack maximum of 2 times during the night"},
         {"text": "Change Character : Changed 'Gravekeeper' to 'GraveDigger' (Read more in Characters page)"},
         {"text": "Change Character : 'Gravekeeper' functionality changed"},
@@ -488,9 +491,9 @@
             }
         },
         {
-            "name": "Ruspy",
-            "alt": "Ruspy Icon",
-            "description": "Ruspy is a mafioso who can silence one person (Cannot silence same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
+            "name": "Natasha",
+            "alt": "Natasha Icon",
+            "description": "Natasha is a mafioso who can silence one person (Cannot silence same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
             "action": {
                 "passive": "None",
                 "action": "Silence"
@@ -598,10 +601,10 @@
         {
             "name": "Night King",
             "alt": "Night King Icon",
-            "description": "Night King is one of Citizens, He can ressurect one person each night and make that person one of his skeletons (The resurrected person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
+            "description": "Night King is one of Citizens, He can ressurect one person each night and make that person one of his skeletons (The revived person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
             "action": {
                 "passive": "Kill Minions on Dead",
-                "action": "Resurrect"
+                "action": "Revive"
             }
         },
         {
@@ -679,7 +682,7 @@
         {
             "name": "Dentist",
             "alt": "Dentist Icon",
-            "description": "The dentist is a citizen that can undo the action of “ruspy” or “magician” in case of silence. The person which dentist choose, can’t be silenced that day.",
+            "description": "The dentist is a citizen that can undo the action of “Natasha” or “magician” in case of silence. The person which dentist choose, can't be silenced that day.",
             "action": {
                 "passive": "None",
                 "action": "Anti Silence"
@@ -818,6 +821,15 @@
             "action": {
                 "passive": "None",
                 "action": "Bust"
+            }
+        },
+        {
+            "name": "Druid",
+            "alt": "Druid Icon",
+            "description": "The Druid can revive a person who died during the game with the power of nature.",
+            "action": {
+                "passive": "None",
+                "action": "Resurrect"
             }
         }
     ],
