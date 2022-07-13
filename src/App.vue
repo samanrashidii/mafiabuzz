@@ -20,6 +20,7 @@
       href="https://youtube.com/c/youdonome"
       target="_blank"
       class="d-block has-xsmall-top-margin rounded shadow"
+      @click="trackEvent"
     >
       <img
         class="youdonome-banner rounded"
@@ -146,7 +147,15 @@ export default {
       SetDashboard: 'dashboard/SetDashboard',
       SetGameSettings: 'gameStatus/SetGameSettings',
       SetDiscordChannel: 'gameStatus/SetDiscordChannel'
-    })
+    }),
+    trackEvent () {
+      const platform = navigator.platform || 'none'
+      gtag('event', 'click', {
+        'event_category': 'Youdonome Banner',
+        'event_label': platform,
+        'value': 1
+      })
+    }
   }
 }
 </script>
