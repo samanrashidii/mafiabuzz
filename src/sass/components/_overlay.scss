@@ -39,12 +39,7 @@
 	    opacity: 1;
     }
     &.dialog{
-        top:0.5%;
-        left:0.5%;
-        width: 99%;
-        height: 99%;
         overflow-y: hidden;
-        border-radius: 6px;
         background:rgba(0, 0, 0, 0.97);
     }
     &.main-alert{
@@ -136,7 +131,7 @@
     .overlay{
         left:auto !important;
         max-width: 500px;
-        margin-left: -12px;
+        margin-left: -10px;
         &.viewer{
           margin-left: -32px;
         }

@@ -362,7 +362,7 @@ body.rtl{
         font-size: $font_size_3;
         text-align: right;
         &::before{
-        margin:0 0 0 10px;
+        margin:0 0 0 8px;
         }
     }
 
@@ -429,7 +429,7 @@ body.rtl{
         .info-box,
         .notifications{
           margin-left: 0;
-          margin-right: -12px;
+          margin-right: -10px;
         }
         .overlay.viewer{
           margin-right: -32px;

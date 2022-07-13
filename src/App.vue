@@ -16,6 +16,17 @@
         >
       </router-link>
     </div>
+    <a
+      href="https://youtube.com/c/youdonome"
+      target="_blank"
+      class="d-block has-xsmall-top-margin rounded shadow"
+    >
+      <img
+        class="youdonome-banner rounded"
+        src="@/assets/images/youdonome-banner.png"
+        alt="Youdonome Banner"
+      >
+    </a>
     <transition
       name="slide"
       mode="out-in"

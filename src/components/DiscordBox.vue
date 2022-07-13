@@ -21,7 +21,7 @@
             </div>
             <button
               type="submit"
-              class="purple-bg sm has-minus-top-margin curve-rounded"
+              class="purple-bg sm curve-rounded"
             >
               {{ $t('thirdparty.discordCodeSubmit') }}
             </button>

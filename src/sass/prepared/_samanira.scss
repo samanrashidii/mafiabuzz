@@ -51,6 +51,9 @@
     direction: ltr;
     display: inline-block;
 }
+.d-block{
+    display: block
+}
 .d-flex{
     display: flex;
 }
@@ -84,6 +87,14 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+}
+
+.rounded{
+    border-radius: 5px;
+}
+
+.shadow{
+    box-shadow: -1px 1px 5px #111111;
 }
 
 .divider{

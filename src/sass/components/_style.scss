@@ -115,11 +115,11 @@ span.step-number{
       content:'';
       display: inline-block;
       vertical-align: middle;
-      width:7px;
-      height: 7px;
+      width:5px;
+      height: 5px;
       margin-right: 8px;
       background-color: $background_color_3;
-      border-radius: 2px;
+      border-radius: 50%;
     }
 }
 
