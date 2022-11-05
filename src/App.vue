@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Navigation from '@/components/Navigation.vue';
 import LanguageButton from '@/components/LanguageButton.vue';
 import SERVER from '@/service/server';
