@@ -7,7 +7,9 @@
       <LanguageButton />
       <router-link
         class="bttn subnav-bttn characters-bttn awesome"
-        :to="{name: 'characters'}"
+        :to="{
+          name: 'characters'
+        }"
       >
         <strong>{{ $t('general.characters') }}</strong>
         <img

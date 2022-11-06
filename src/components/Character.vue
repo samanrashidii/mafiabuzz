@@ -7,9 +7,9 @@
       <div>
         <img
           :src="getImg('/roles', role.icon)"
-          :alt="$t(role.alt)"
+          :alt="$t(role.info[currentLang].name)"
         >
-        <strong>{{ $t(role.name) }}</strong>
+        <strong>{{ $t(role.info[currentLang].name) }}</strong>
         <CharacterPower
           :mafia="role.mafia"
           :solo="role.solo"

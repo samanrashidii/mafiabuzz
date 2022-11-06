@@ -95,7 +95,6 @@ export default {
         action: {},
         name: 'replacingRoles.loading.name',
         icon: 'default.svg',
-        alt: 'replacingRoles.loading.alt',
         description: 'replacingRoles.loading.description',
         status: {}
       },
@@ -131,7 +130,6 @@ export default {
     showInfo(role) {
       this.info.name = role.name
       this.info.icon = role.icon
-      this.info.alt = role.alt
       this.info.description = role.description
       this.info.mafia = role.mafia
       this.info.solo = role.solo

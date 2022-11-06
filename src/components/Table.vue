@@ -27,7 +27,7 @@
         <td>
           <img
             :src="getImg('/roles', tD.icon)"
-            :alt="tD.alt"
+            :alt="tD.name"
           > {{ $t(tD.name) }}
         </td>
         <template v-if="dashboardTable">

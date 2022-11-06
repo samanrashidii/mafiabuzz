@@ -20,7 +20,7 @@
           >
             <img
               :src="getImg('/roles', role.icon)"
-              :alt="$t(role.alt)"
+              :alt="$t(role.name)"
             >
             <h1>{{ $t(role.name) }}</h1>
           </div>

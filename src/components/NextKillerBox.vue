@@ -5,7 +5,7 @@
         <div class="has-clear-fix">
           <img
             :src="getImg('/roles', dashboard.nextKiller.icon)"
-            :alt="dashboard.nextKiller.alt"
+            :alt="dashboard.nextKiller.name"
           >
         </div>
         <h2>

@@ -35,11 +35,13 @@
       <div class="social">
         <p v-html="$t('pages.about.contactText')" />
         <p v-html="$t('pages.about.socialText')" />
-        <template v-for="(social, index) in $t('pages.about.socials')">
+        <template
+          v-for="(social, index) in $t('pages.about.socials')"
+        >
           <a
             :href="social.url"
-            :key="index"
             :title="social.name"
+            :key="index"
             target="_blank"
           >
             <img

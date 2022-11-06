@@ -24,7 +24,6 @@ export default {
             const characterStatus = element.status.hasAction
             this.dashboard.killerChanged = true
             this.dashboard.nextKiller.icon = element.icon
-            this.dashboard.nextKiller.alt = element.alt
             this.dashboard.nextKiller.name = element.name
             this.dashboard.nextKiller.player = element.player
             if (element.priority === null) {

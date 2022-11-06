@@ -1,87 +1,119 @@
 <template>
   <div
     class="info-box"
-    :class="{'active': info.show}"
-    @click="info.show = false"
+    :class="{'active': show}"
+    @click="hideInfo()"
   >
     <a
       href="javascript:void(0)"
     />
     <img
-      v-if="info.icon"
+      v-if="role.icon"
       :class="{'floating': floating}"
-      :src="getImg('/roles', info.icon)"
-      :alt="$t(info.alt)"
+      :src="getImg('/roles', role.icon)"
+      :alt="$t(role.name)"
     >
-    <h2>{{ $t(info.name) }}</h2>
-    <div class="mafia-status">
+    <h2>
+      {{ $t(role.name) }}
+    </h2>
+    <div
+      class="mafia-status"
+    >
       <strong
+      v-if="role.mafia"
         class="mafia-role"
-        v-if="info.mafia"
-      >{{ $t('common.Mafia') }}</strong>
+      >
+        {{ $t('common.Mafia') }}
+      </strong>
       <strong
+        v-else-if="role.solo"
         class="solo-role"
-        v-else-if="info.solo"
-      >{{ $t('common.Solo') }}</strong>
+      >
+        {{ $t('common.Solo') }}
+      </strong>
       <strong
-        class="citizen-role"
         v-else
-      >{{ $t('common.Citizen') }}</strong>
+        class="citizen-role"
+      >
+        {{ $t('common.Citizen') }}
+      </strong>
     </div>
-    <div class="details-info">
+    <div
+      class="details-info"
+    >
       <div>
-        <span>{{ $t('rolesInfo.power') }}</span>
+        <span>
+          {{ $t('rolesInfo.power') }}
+        </span>
         <CharacterPower
-          :mafia="info.mafia"
-          :solo="info.solo"
-          :power="info.power"
+          :mafia="role.mafia"
+          :solo="role.solo"
+          :power="role.power"
         />
       </div>
       <div>
-        <span>{{ $t('rolesInfo.rarity') }}</span>
-        <div class="data-holder">
-          <template v-if="info.rarity">
+        <span>
+          {{ $t('rolesInfo.rarity') }}
+        </span>
+        <div
+          class="data-holder"
+        >
+          <template
+            v-if="role.rarity"
+          >
             <img
-              :src="getImg('/icons', info.rarity + '.svg')"
-              :alt="$t('rolesInfo.'+info.rarity)"
+              :src="getImg('/icons', role.rarity + '.svg')"
+              :alt="$t('rolesInfo.'+role.rarity)"
             >
             <strong
-              :class="`color-${info.rarity}`"
+              :class="`color-${role.rarity}`"
             >
-              {{ $t('rolesInfo.'+info.rarity) }}
+              {{ $t('rolesInfo.'+role.rarity) }}
             </strong>
           </template>
         </div>
       </div>
       <div>
-        <span>{{ $t('rolesInfo.action') }}</span>
-        <div class="data-holder">
+        <span>
+          {{ $t('rolesInfo.action') }}
+        </span>
+        <div
+          class="data-holder"
+        >
           <template>
             <img
-              v-if="info.actionIcon"
-              :src="getImg('/actions', info.actionIcon)"
-              :alt="info.alt"
+              v-if="role.actionIcon"
+              :src="getImg('/actions', role.actionIcon)"
+              :alt="role.name"
             >
-            <strong>{{ $t(info.action.action) }}</strong>
+            <strong>
+              {{ $t(role.action.action) }}
+            </strong>
           </template>
         </div>
       </div>
       <div>
-        <span>{{ $t('rolesInfo.passive') }}</span>
-        <div class="data-holder">
+        <span>
+          {{ $t('rolesInfo.passive') }}
+        </span>
+        <div
+          class="data-holder"
+        >
           <template>
             <img
-              v-if="info.passiveIcon"
-              :src="getImg('/actions', info.passiveIcon)"
-              :alt="info.alt"
+              v-if="role.passiveIcon"
+              :src="getImg('/actions', role.passiveIcon)"
+              :alt="role.name"
             >
-            <strong>{{ $t(info.action.passive) }}</strong>
+            <strong>
+              {{ $t(role.action.passive) }}
+            </strong>
           </template>
         </div>
       </div>
     </div>
     <p
-      v-html="$t(info.description)"
+      v-html="$t(role.info[currentLang].description)"
     />
   </div>
 </template>
@@ -91,11 +123,26 @@ import CharacterPower from '@/components/CharacterPower.vue';
 
 export default {
   props: {
-    info: Object,
-    floating: Boolean
+    role: {
+      type: Object,
+      default: () => {}
+    },
+    floating: {
+      type: Boolean,
+      default: false
+    },
+    show: {
+      type: Boolean,
+      default: false
+    }
   },
   components: {
     CharacterPower
+  },
+  methods: {
+    hideInfo () {
+      this.$emit('hideInfo')
+    }
   }
 }
 </script>

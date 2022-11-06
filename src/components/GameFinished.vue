@@ -11,7 +11,7 @@
           <div v-if="soloWinnerDetails">
             <img
               :src="getImg('/roles', soloWinnerDetails.icon)"
-              :alt="soloWinnerDetails.alt"
+              :alt="soloWinnerDetails.name"
               class="solo-player"
             >
             <h2 v-html="winner.title" />
@@ -20,7 +20,7 @@
           <div v-else>
             <img
               :src="getImg('/game', winner.image)"
-              :alt="winner.alt"
+              :alt="winner.name"
             >
             <h2 v-html="winner.title" />
           </div>

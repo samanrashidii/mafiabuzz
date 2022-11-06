@@ -9,8 +9,7 @@ import store from './store/index'
 import i18n from './i18n'
 import VueClipboard from 'vue-clipboard2'
 import 'vue-loading-overlay/dist/vue-loading.css'
-import getImg from '@/mixins/getImg'
-import discord from '@/mixins/discord'
+import global from '@/mixins/global'
 import BackToTop from 'vue-backtotop'
 
 // Global Items
@@ -22,8 +21,7 @@ const VueScrollTo = require('vue-scrollto')
 Vue.component('AppButton', Button)
 Vue.component('PageBox', PageBox)
 
-Vue.mixin(getImg)
-Vue.mixin(discord)
+Vue.mixin(global)
 
 Vue.use(VueMeta)
 Vue.use(Notifications)

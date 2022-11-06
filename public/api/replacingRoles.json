@@ -3,7 +3,6 @@
         "name": "replacingRoles.miniYakuza.name",
         "roleType": "replacingRoles.miniYakuza.roleType",
         "icon": "miniyakuza.svg",
-        "alt": "replacingRoles.miniYakuza.alt",
         "description": "replacingRoles.miniYakuza.description",
         "killPriority": 1000,
         "potentialKiller": true,
@@ -57,7 +56,6 @@
     "skeleton": {
         "name": "replacingRoles.skeleton.name",
         "icon": "skeleton.svg",
-        "alt": "replacingRoles.skeleton.alt",
         "description": "replacingRoles.skeleton.description",
         "action": {
             "passive": "replacingRoles.skeleton.action.passive",

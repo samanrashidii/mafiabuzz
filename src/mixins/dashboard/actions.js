@@ -240,7 +240,6 @@ export default {
           }
           element.name = this.replacingRoles.miniYakuza.name
           element.icon = this.replacingRoles.miniYakuza.icon
-          element.alt = this.replacingRoles.miniYakuza.alt
           element.description = this.replacingRoles.miniYakuza.description
           element.action = this.replacingRoles.miniYakuza.action
           element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
@@ -265,7 +264,6 @@ export default {
         if (element.player === target) {
           element.name = this.replacingRoles.skeleton.name
           element.icon = this.replacingRoles.skeleton.icon
-          element.alt = this.replacingRoles.skeleton.alt
           element.description = this.replacingRoles.skeleton.description
           element.action = this.replacingRoles.skeleton.action
           element.actionStatus = this.replacingRoles.skeleton.actionStatus

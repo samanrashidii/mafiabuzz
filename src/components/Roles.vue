@@ -1,6 +1,11 @@
 <template>
   <div class="roles">
-    <InfoBox :info="info" />
+    <InfoBox
+      v-if="showInfo"
+      :role="info"
+      :show="showInfo"
+      @hideInfo="hideInfoBox()"
+    />
     <ul class="has-clear-fix">
       <li
         v-for="(role, index) in getRoles"
@@ -11,13 +16,13 @@
           @change="checkRoles(role, index)"
           type="checkbox"
           name="roles"
-          :id="`role_${index+1}`"
+          :id="`role_${index + 1}`"
           :class="{'active': role.selected}"
           :value="role"
           v-model="gameSettings.selectedRoles"
         >
         <label
-          :for="`role_${index+1}`"
+          :for="`role_${index + 1}`"
         >
           <div class="inner-label">
             <img
@@ -34,7 +39,7 @@
             >
             <img
               :src="getImg('/roles', role.icon)"
-              :alt="$t(role.alt)"
+              :alt="$t(role.name)"
             >
             <img
               v-if="role.rarity"
@@ -62,7 +67,7 @@
           </div>
         </transition>
         <a
-          @click="showInfo(role)"
+          @click="openInfoBox(role)"
           class="info"
           href="javascript:void(0)"
         />
@@ -83,16 +88,8 @@ export default {
     return {
       normalMafia: 0,
       normalCitizen: 0,
-      info: {
-        show: false,
-        mafia: false,
-        action: {},
-        name: 'replacingRoles.loading.name',
-        icon: 'default.svg',
-        alt: 'replacingRoles.loading.alt',
-        description: 'replacingRoles.loading.description',
-        status: {}
-      }
+      showInfo: false,
+      info: {}
     }
   },
   components: {
@@ -248,21 +245,12 @@ export default {
       this.SetRoles(this.getRoles)
       this.SetGameSettings(this.gameSettings)
     },
-    showInfo(role) {
-      this.info.name = role.name
-      this.info.icon = role.icon
-      this.info.alt = role.alt
-      this.info.description = role.description
-      this.info.mafia = role.mafia
-      this.info.solo = role.solo
-      this.info.rarity = role.rarity
-      this.info.action = role.action
-      this.info.actionIcon = role.actionIcon
-      this.info.passiveIcon = role.passiveIcon
-      this.info.status.hasAction = role.status.hasAction
-      this.info.status.hasPassive = role.status.hasPassive
-      this.info.power = role.power
-      this.info.show === false ? this.info.show = true : this.info.show = false
+    openInfoBox (role) {
+      this.info = role
+      this.showInfo = !this.showInfo
+    },
+    hideInfoBox () {
+      this.showInfo = false
     }
   }
 }
