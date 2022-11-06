@@ -513,7 +513,7 @@
             }
         },
         {
-            "name": "Night Hunter",
+            "name": "Nighthunter",
             "description": "Night Hunter is bomb of mafioso team. When he dies, his siblings will be hacked during the remaining nights!",
             "action": {
                 "passive": "Detonate and Hack",
