@@ -114,6 +114,7 @@
         "priority": 160,
         "killPriority": 1,
         "potentialKiller": false,
+        "slug": "godfather",
         "icon": "godfather.svg",
         "emoji": "🚬",
         "actionIcon": "kill.svg",
@@ -130,14 +131,14 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Godfather",
+                "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed by 'Detective'. If Godfather died during the game, killing role will pass to the next person and that person doesn't have ability anymore",
+                "passive": "نامرئی",
+                "action": "کشتن"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "گادفادر",
+                "description": "گادفادر، رئیس مافیاهاست و هر شب یک نفر را می کشد. (موارد استثنا با توجه به نقش‌هایی مثل هکر وجود دارد) خاصیت اصلی گادفادر این است که نقش مافیایی آن برای پلیس مشخص نمی‌شود. (اگر پلیس نقش گادفادر را بپرسد، گاد نقش او را شهروند اعلام می‌کند) اگر گادفادر بمیرد، مسئولیت کشتن در شب به مافیای بعد از آن منتقل می‌شود و آن مافیا قدرت خاص خودش را از دست می‌دهد (اگر قدرت کشتن بعد از گادفادر به ناتاشا منتقل شود، ازین به بعد ناتاشا فقط می‌کشد و نمی‌تواند کسی‌را ساکت کند) بهتر است گاد،  قبل از بازی ترتیب مافیا ها را بعد از مردن گادفادر، به همه توضیح دهد.",
                 "passive": "ندارد",
                 "action": "کشتن"
             }
@@ -220,6 +221,7 @@
         "priority": 120,
         "killPriority": 20,
         "potentialKiller": true,
+        "slug": "natasha",
         "icon": "natasha.svg",
         "emoji": "💄",
         "actionIcon": "silence.svg",
@@ -236,16 +238,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Natasha",
+                "description": "Natasha is a mafioso who can silence one person (Cannot silence same player on successive days). The silenced person wakes in the morning and is immediately instructed not to talk until the end of the day. They can still raise their hand to vote",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Silence"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "ناتاشا",
+                "description": "ناتاشا، مافیایی است که یک نفر را ساکت می‌کند (۲شب پشت سرهم یک نفر را نمی‌تواند ساکت کند) فردی که ساکت شده، به محض روز شدن توسط گادِ بازی معرفی می‌گردد و تا پایان گرفتنِ آن روز نمی‌تواند حرفی بزند. فرد ساکت شده، می‌تواند با بالا آوردن دست، در رأی گیری‌ها شرکت کند.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "ساکت کردن"
             }
         },
         "ability": {
@@ -326,6 +328,7 @@
         "priority": null,
         "killPriority": 60,
         "potentialKiller": true,
+        "slug": "drunk",
         "icon": "drunk.svg",
         "emoji": "🍺",
         "actionIcon": "no-sign.svg",
@@ -342,16 +345,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Drunk",
+                "description": "Drunk is a mafioso who drinks too much and can't remember his teammates at first but his teammates will know him by raising hand. During the game, each night god will tell him one of his alive teammates until he knows all of them.",
+                "passive": "Forgetfulness",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "مست",
+                "description": "مست، نقشی دیگر از گروه مافیایی است که بقیه همدستانش (مافیاهای دیگر) را نمی‌شناسد ولی مافیاها او را می‌شناسند. بدین صورت که، شب اول وقتی گاد مافیا ها را بیدار می‌کند، مست با چشمان بسته دستش را بلند می‌کند تا مافیاها او را بشناسند. طی شب های بعدی که مست هوشیار می شود خدای بازی هر شب اسم یکی از هم تیمی هایش را که زنده است به او می گوید.",
+                "passive": "فراموشی",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -432,6 +435,7 @@
         "priority": null,
         "killPriority": 70,
         "potentialKiller": true,
+        "slug": "traitor",
         "icon": "traitor.svg",
         "emoji": "😈",
         "actionIcon": "no-sign.svg",
@@ -448,16 +452,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Traitor",
+                "description": "The Traitor is a mafioso who lives between citizens, He Doesn't wake up at night and will not revealed as a mafioso by 'Detective', but works to protect mafia and make them win",
+                "passive": "Invisible",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "خیانتکار",
+                "description": "خیانتکار، مافیایی است که نه خودش بقیه مافیاها را می شناسد، نه مافیاهای دیگر او را می شناسند. مثل شهروندی است که هیچ نقشی را نمی داند با این تفاوت که هدف خیانتکار، بردن تیم مافیاست. <br /> اگر پلیس نقش خیانتکار را سوال کند، شهروند اعلام می‌شود. <br />(فرق خیانتکار با مست در این نکته است که خیانتکار را مافیاهای دیگر هم نمی‌شناسند)",
+                "passive": "نامرئی",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -538,6 +542,7 @@
         "priority": 100,
         "killPriority": 40,
         "potentialKiller": true,
+        "slug": "chef",
         "icon": "chef.svg",
         "emoji": "👨🏽‍🍳",
         "actionIcon": "chef.svg",
@@ -554,16 +559,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Chef",
+                "description": "Chef is a mafioso who can poison one person at night and make him reveal his role to chef",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Check Role"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "آشپز",
+                "description": "آشپز، مافیایی است که هر شب می‌تواند نقش یک نفر را سوال کند ( بدین صورت ممکن است، نقش‌های مهمی چون پلیس، دکتر، هکر و ... را متوجه شود)",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "چک کردن نقش"
             }
         },
         "ability": {
@@ -644,6 +649,7 @@
         "priority": 140,
         "killPriority": 50,
         "potentialKiller": true,
+        "slug": "yakuza",
         "icon": "yakuza.svg",
         "emoji": "👹",
         "actionIcon": "yakuza.svg",
@@ -660,16 +666,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Yakuza",
+                "description": "The Yakuza is a mafioso with the power of sacrifice himself from the second night and choose an innocent and God will touch that person's head to give up his role and join the mafioso with 'Mafia' role.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Suicide Replace"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "یاکوزا",
+                "description": "یاکوزا، نقشی دیگر از گروه مافیایی است که می‌تواند در هر جای بازی (فقط شب) خودش را قربانی کند و یک شهروند معمولی را به گروه مافیا بیاورد. یاکوزا بعد از تبدیل یک شهروند به مافیا خودش همان شب می‌میرد. <br />گاد: بهتر است هر شب و موقع اسم یاکوزا گاد بین بازیکنان بچرخد، تا شبی که بالاخره یاکوزا تصمیم به خودکشی بگیرد. در این لحظه گاد، دستش را روی سر یکی از شهروندان در حالیکه چشمانش بسته است می‌کشد. این شهروند با هر نقشی که تا قبل ازین داشته(دکتر، پلیس، ...) ازین به بعد فقط و فقط یک مافیای ساده است و قطعا هدفش بردن تیم مافیاست. <br />نکته: شهروندی که گاد روی سرش دست می‌کشد نباید چشمانش را باز کند یا عکس العملی نشان بدهد.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "خود کشی و جابجایی"
             }
         },
         "ability": {
@@ -750,6 +756,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "citizen",
         "icon": "citizen.svg",
         "emoji": "💼",
         "actionIcon": "no-sign.svg",
@@ -766,16 +773,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Citizen",
+                "description": "Regular Citizen wihout any power and just want to make peace in city",
                 "passive": "None",
-                "action": "Kill"
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "شهروند",
+                "description": "شهروند، ساده ترین نقش از گروه شهروندان است. هیچ قدرت خاصی ندارد. فقط هدفش بردن تیم شهروندان است.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -856,6 +863,7 @@
         "priority": 80,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "police",
         "icon": "police.svg",
         "emoji": "👮🏻",
         "actionIcon": "police.svg",
@@ -872,16 +880,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Police",
+                "description": "The Police is with Citizens and can detect whether a player is a mafioso or not. He will typically wake up, and point at one person; The god will silently indicate to the Detective whether that player is Mafia or Citizen.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Check Identity"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "پلیس",
+                "description": "پلیس، نقشی مهم از گروه شهروندان است که با سوال کردن از گاد هر شب می‌تواند متوجه بشود آن فرد، مافیا یا شهروند است.<br />پلیس در شب بیدار می‌شود و گاد از او می‌خواهد به فقط و فقط یک نفر اشاره کند. گاد با توجه به اطلاعاتی که از هر فرد داره به آرامی طوری که بقیه که چشم هایشان بسته است متوجه نشوند ۲ پاسخ می‌تواند به پلیس بدهد : مافیا یا شهروند <br />نکته ۱ : گادفادر و خیانتکار ۲ نقش از گروه مافیا هستند که شهروند اعلام می‌شوند <br />نکته ۲ : گاد نقش کسی را نمی‌گوید مثلا آشپز، دکتر، هکر و ... فقط شهروند یا مافیا بودنشان را به پلیس می‌گوید",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "چک کردن شخصیت"
             }
         },
         "ability": {
@@ -962,6 +970,7 @@
         "priority": 40,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "doctor",
         "icon": "doctor.svg",
         "emoji": "👨🏻‍⚕️",
         "actionIcon": "doctor.svg",
@@ -978,16 +987,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Doctor",
+                "description": "The Doctor is with Citizens and defends others, He can save one person or himself during night from getting killed.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Heal"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "دکتر",
+                "description": "دکتر، نقشی از گروه شهروندان است و همانطور که از اسمش پیداست وظیفه درمان کردن افراد را به عهده دارد. بدین صورت که اگر شخصی در شب کشته شود با شخصی که دکتر در همان شب درمان می‌کند، یکی باشند. آن شخص نمی میرد و در بازی می ماند (فقط یکبار می تواند خودش رو خوب کند).",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "شفا بخشیدن"
             }
         },
         "ability": {
@@ -1068,6 +1077,7 @@
         "priority": 19,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "cupid",
         "icon": "cupid.svg",
         "emoji": "💘",
         "actionIcon": "cupid.svg",
@@ -1084,16 +1094,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Cupid",
+                "description": "Cupid is a Citizen and chooses a pair of Lovers on the first night. Lovers are bind to each other and if one of the pair dies, the other dies as well. Because of the 'Love Power', Cupid won't get hurt if touches someone with deadly ability",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Bind"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "الهه عشق",
+                "description": "الهه عشق، نقشی از گروه شهروندان است که یک بار در شب بیدار می‌شود و ۲ نفر را به همدیگه متصل می‌کند. این ۲ نفر عشاقی هستند که اگر یکی از آنها کشته شوند ( در شب یا روز ) ، شخصی که به او متصل هم هست، می‌میرد. به خاطر 'قدرت عشق'، اگر الهه عشق به کسی که قدرت کشنده دارد دست بزند، نمی میرد. <br /> نکته :‌الهه عشق می تواند هر شبی که خواست، کارش را انجام دهد(مجبور نیست شب اول وصل کند)",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "وصل کردن"
             }
         },
         "ability": {
@@ -1174,6 +1184,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "bomb",
         "icon": "bomb.svg",
         "emoji": "💣",
         "actionIcon": "no-sign.svg",
@@ -1190,16 +1201,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Bomb",
+                "description": "The Bomb is with Citizens and when he gets killed during day or night, He will detonate himself and kill his sibling players.",
+                "passive": "Detonate",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "بمب",
+                "description": "بمب، یکی از نقش‌های شهروندان است که در شب یا روز وقتی کشته شود، علاوه بر خودش ۲ شخص کناری خود را نیز منفجر می‌کند و آنها هم می‌میرند. وقتی نقش بمب در بازی هست با کناری‌های خودتون مهربون باشید <br /> نکته :‌قدرت بمب از یک بازیکن فراتر نمیره. به این معنی که اگر شخصی که سمت راست بمب نشسته قبلا مرده باشه و چند روز بعد بمب منفجر بشه فقط کسی که سمت چپ بمب نشسته می میرد.",
+                "passive": "منفجر شدن",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -1280,6 +1291,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "grandma",
         "icon": "grandma.svg",
         "emoji": "👵🏾",
         "actionIcon": "no-sign.svg",
@@ -1296,16 +1308,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Grandma",
+                "description": "Grandma is a Citizen and she is so  sensitive, If someone touches her at night and use an ability on her will get killed instantly (except these characters: 1.Hacker 2.Cupid) but also the effect will be applied on Grandma",
+                "passive": "Do not touch me!",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "مادربزرگ",
+                "description": "مادربزرگ، نقشی دیگر از شهروندان است که بسیار بسیار حساس است و هر کسی او را لمس کند و در شب او را به خدا نشان دهد ( به جز شخصیت های هکر و الهه عشق ) خودش می‌میرد.<br /> نکته: مادربزرگ در روز و با رای گیری به صورت یک شهروند معمولی میمیرد و این خاصیت کشندگی فقط مخصوص شب است.<br /> مثال : اگر گادفادر در شب مادربزرگ را بکشد. هم مادربزرگ میمیرد هم گادفادر. <br /> یا اگر دکتر مادربزرگ را درمان کند، خود دکتر میمرد.(مادربزرگ در بازی میماند)<br /> و …",
+                "passive": "به من دست نزن!",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -1386,6 +1398,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "bulletproof",
         "icon": "bulletproof.svg",
         "emoji": "🧥",
         "actionIcon": "no-sign.svg",
@@ -1402,16 +1415,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Bulletproof",
+                "description": "The Bulletproof is with Citizens and has a shield that can save him for one death at night.",
+                "passive": "Shield",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "ضد گلوله",
+                "description": "ضد گلوله، نقشی از شهروندان است که در شب سپری دارد که یک بار از مردن او جلوگیری می کند. این نقش اگر در طول روز و با رأی گیری بمیرد، سپری ندارد و بلافاصله کشته می‌شود.",
+                "passive": "سپر",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -1492,6 +1505,7 @@
         "rarity": "legendary",
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "nightking",
         "icon": "nightking.svg",
         "emoji": "💀",
         "actionIcon": "nightking.svg",
@@ -1508,16 +1522,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Night King",
+                "description": "Night King is one of Citizens, He can ressurect one person each night and make that person one of his skeletons (The revived person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
+                "passive": "Kill Minions on Dead",
+                "action": "Resurrect"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "شاه شب",
+                "description": "شاه شب، یکی دیگر از نقش‌های گروه شهروندان است که هرشب می‌تواند یکی از مردگان را به بازی برگرداند. (می‌تواند کسی را هم زنده نکند) فرد برگردانده شده به بازی فقط نقش کلی خودش را حفظ می‌کند و هیچ قدرتی ندارد. مثال: اگر دکتر بوده به عنوان یک شهروند معمولی به بازی می‌آید. و اگر آشپز باشد، به عنوان یک مافیای معمولی برمی‌گردد. نکته: در صورتیکه شخص پادشاه شب بمیرد، تمامی افرادی که زنده کرده بوده نیز با او می‌میرند! نکته : اگر نقش پادشاه شب در بازی شما هست، حتما از مردگان بازی بخواهید در طول شب چشم‌هایشان را ببندند چون هر لحظه ممکن است به بازی برگردند!",
+                "passive": "از بین رفتن اسکلت ها با مردن",
+                "action": "زنده کردن"
             }
         },
         "ability": {
@@ -1598,6 +1612,7 @@
         "priority": 20,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "hacker",
         "icon": "hacker.svg",
         "emoji": "👨‍💻",
         "actionIcon": "hacker.svg",
@@ -1704,6 +1719,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "avenger",
         "icon": "avenger.svg",
         "emoji": "🔫",
         "actionIcon": "kill.svg",
@@ -1810,6 +1826,7 @@
         "priority": 125,
         "killPriority": 45,
         "potentialKiller": true,
+        "slug": "magician",
         "icon": "magician.svg",
         "emoji": "🦹‍♂️",
         "actionIcon": "magician.svg",
@@ -1916,6 +1933,7 @@
         "priority": 21,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "gravedigger",
         "icon": "gravedigger.svg",
         "emoji": "⚰️",
         "actionIcon": "shovel.svg",
@@ -2022,6 +2040,7 @@
         "priority": 22,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "judge",
         "icon": "judge.svg",
         "emoji": "👨‍⚖️",
         "actionIcon": "justice.svg",
@@ -2128,6 +2147,7 @@
         "priority": null,
         "killPriority": 55,
         "potentialKiller": true,
+        "slug": "nighthunter",
         "icon": "nighthunter.svg",
         "emoji": "👨‍🎤",
         "actionIcon": "no-sign.svg",
@@ -2234,7 +2254,8 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
-        "icon": "nuclearbomb.svg",
+        "slug": "nuclear-bomb",
+        "icon": "nuclear-bomb.svg",
         "emoji": "☣️",
         "actionIcon": "no-sign.svg",
         "passiveIcon": "explosion.svg",
@@ -2340,6 +2361,7 @@
         "priority": 18,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "psychic",
         "icon": "psychic.svg",
         "emoji": "🔮",
         "actionIcon": "psychic.svg",
@@ -2446,6 +2468,7 @@
         "priority": 45,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "dentist",
         "icon": "dentist.svg",
         "emoji": "🥼",
         "actionIcon": "anti-silence.svg",
@@ -2552,6 +2575,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "joker",
         "icon": "joker.svg",
         "emoji": "🤡",
         "actionIcon": "no-sign.svg",
@@ -2658,6 +2682,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "bully",
         "icon": "bully.svg",
         "emoji": "🥊",
         "actionIcon": "no-sign.svg",
@@ -2764,6 +2789,7 @@
         "priority": 162,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "sniper",
         "icon": "sniper.svg",
         "emoji": "🌂",
         "actionIcon": "snipe.svg",
@@ -2870,7 +2896,8 @@
         "priority": 165,
         "killPriority": null,
         "potentialKiller": false,
-        "icon": "serialkiller.svg",
+        "slug": "serial-killer",
+        "icon": "serial-killer.svg",
         "emoji": "🔪",
         "actionIcon": "stab.svg",
         "passiveIcon": "no-sign.svg",
@@ -2976,6 +3003,7 @@
         "priority": null,
         "killPriority": 56,
         "potentialKiller": true,
+        "slug": "bodygaurd",
         "icon": "bodygaurd.svg",
         "emoji": "🏍",
         "actionIcon": "kill.svg",
@@ -3082,6 +3110,7 @@
         "priority": null,
         "killPriority": 55,
         "potentialKiller": true,
+        "slug": "terrorist",
         "icon": "terrorist.svg",
         "emoji": "🧨",
         "actionIcon": "kill.svg",
@@ -3188,6 +3217,7 @@
         "priority": 99,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "doctor-lecter",
         "icon": "doctor-lecter.svg",
         "emoji": "👨🏻‍⚕️",
         "actionIcon": "doctor.svg",
@@ -3294,6 +3324,7 @@
         "priority": 162,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "professional",
         "icon": "professional.svg",
         "emoji": "🧢",
         "actionIcon": "snipe.svg",
@@ -3400,6 +3431,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "guardian-angel",
         "icon": "guardian-angel.svg",
         "emoji": "💼",
         "actionIcon": "no-sign.svg",
@@ -3506,6 +3538,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "zealot",
         "icon": "zealot.svg",
         "emoji": "🔫",
         "actionIcon": "kill.svg",
@@ -3613,6 +3646,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "bomber",
         "icon": "bomber.svg",
         "emoji": "🧨",
         "actionIcon": "kill.svg",
@@ -3720,6 +3754,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "mayor",
         "icon": "mayor.svg",
         "emoji": "👔",
         "actionIcon": "justice.svg",
@@ -3826,6 +3861,7 @@
         "priority": null,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "salesman",
         "icon": "salesman.svg",
         "emoji": "💰",
         "actionIcon": "hacker.svg",
@@ -3933,6 +3969,7 @@
         "priority": 23,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "charlatan",
         "icon": "charlatan.svg",
         "emoji": "👺",
         "actionIcon": "hand-point.svg",
@@ -4041,6 +4078,7 @@
         "priority": 27,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "jailer",
         "icon": "jailer.svg",
         "emoji": "👺",
         "actionIcon": "bust.svg",
@@ -4150,6 +4188,7 @@
         "priority": 61,
         "killPriority": null,
         "potentialKiller": false,
+        "slug": "druid",
         "icon": "druid.svg",
         "emoji": "🧚🏼‍♀️",
         "actionIcon": "revive.svg",

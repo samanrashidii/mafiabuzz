@@ -1,30 +1,41 @@
 <template>
-  <div class="roles">
+  <div
+    class="roles"
+  >
     <InfoBox
       v-if="showInfo"
       :role="info"
       :show="showInfo"
       @hideInfo="hideInfoBox()"
     />
-    <ul class="has-clear-fix">
+    <ul
+      class="has-clear-fix"
+    >
       <li
         v-for="(role, index) in getRoles"
         :key="index"
-        :class="{'mafia': role.mafia, 'solo': role.solo}"
+        :class="{
+          'mafia': role.mafia,
+          'solo': role.solo
+        }"
       >
         <input
           @change="checkRoles(role, index)"
           type="checkbox"
           name="roles"
           :id="`role_${index + 1}`"
-          :class="{'active': role.selected}"
+          :class="{
+            'active': role.selected
+          }"
           :value="role"
           v-model="gameSettings.selectedRoles"
         >
         <label
           :for="`role_${index + 1}`"
         >
-          <div class="inner-label">
+          <div
+            class="inner-label"
+          >
             <img
               v-if="role.new"
               class="new-character"
@@ -39,7 +50,7 @@
             >
             <img
               :src="getImg('/roles', role.icon)"
-              :alt="$t(role.name)"
+              :alt="role.info[currentLang].name"
             >
             <img
               v-if="role.rarity"
@@ -47,7 +58,7 @@
               :src="getImg('/icons', role.rarity + '.svg')"
               :alt="$t('rolesInfo.'+role.rarity)"
             >
-            <strong>{{ $t(role.name) }} <span
+            <strong>{{ role.info[currentLang].name }} <span
               v-if="checkNumbers(role)"
             >x<i>{{ role.status.mafia ? gameSettings.multipleRoles.normalMafia : gameSettings.multipleRoles.normalCitizen }}</i></span></strong>
           </div>
@@ -57,13 +68,19 @@
           :solo="role.solo"
           :power="role.power"
         />
-        <transition name="scale">
+        <transition
+          name="scale"
+        >
           <div
-            class="number-control"
             v-if="checkNumbers(role)"
+            class="number-control"
           >
-            <span @click="decrNumber(role)">-</span>
-            <span @click="incrNumber(role)">+</span>
+            <span
+              @click="decrNumber(role)"
+            >-</span>
+            <span
+              @click="incrNumber(role)"
+            >+</span>
           </div>
         </transition>
         <a

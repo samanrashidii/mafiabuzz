@@ -11,10 +11,10 @@
       v-if="role.icon"
       :class="{'floating': floating}"
       :src="getImg('/roles', role.icon)"
-      :alt="$t(role.name)"
+      :alt="role.info[currentLang].name"
     >
     <h2>
-      {{ $t(role.name) }}
+      {{ role.info[currentLang].name }}
     </h2>
     <div
       class="mafia-status"
@@ -68,7 +68,7 @@
             <strong
               :class="`color-${role.rarity}`"
             >
-              {{ $t('rolesInfo.'+role.rarity) }}
+              {{ $t('rolesInfo.' + role.rarity) }}
             </strong>
           </template>
         </div>
@@ -84,10 +84,10 @@
             <img
               v-if="role.actionIcon"
               :src="getImg('/actions', role.actionIcon)"
-              :alt="role.name"
+              :alt="role.info[currentLang].name"
             >
             <strong>
-              {{ $t(role.action.action) }}
+              {{ role.info[currentLang].action }}
             </strong>
           </template>
         </div>
@@ -106,14 +106,14 @@
               :alt="role.name"
             >
             <strong>
-              {{ $t(role.action.passive) }}
+              {{ role.info[currentLang].passive }}
             </strong>
           </template>
         </div>
       </div>
     </div>
     <p
-      v-html="$t(role.info[currentLang].description)"
+      v-html="role.info[currentLang].description"
     />
   </div>
 </template>
