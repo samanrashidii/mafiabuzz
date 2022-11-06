@@ -7,114 +7,118 @@
     <a
       href="javascript:void(0)"
     />
-    <img
-      v-if="role.icon"
-      :class="{'floating': floating}"
-      :src="getImg('/roles', role.icon)"
-      :alt="role.info[currentLang].name"
+    <template
+      v-if="role.id"
     >
-    <h2>
-      {{ role.info[currentLang].name }}
-    </h2>
-    <div
-      class="mafia-status"
-    >
-      <strong
-      v-if="role.mafia"
-        class="mafia-role"
+      <img
+        v-if="role.icon"
+        :class="{'floating': floating}"
+        :src="getImg('/roles', role.icon)"
+        :alt="role.info[currentLang].name"
       >
-        {{ $t('common.Mafia') }}
-      </strong>
-      <strong
-        v-else-if="role.solo"
-        class="solo-role"
+      <h2>
+        {{ role.info[currentLang].name }}
+      </h2>
+      <div
+        class="mafia-status"
       >
-        {{ $t('common.Solo') }}
-      </strong>
-      <strong
-        v-else
-        class="citizen-role"
-      >
-        {{ $t('common.Citizen') }}
-      </strong>
-    </div>
-    <div
-      class="details-info"
-    >
-      <div>
-        <span>
-          {{ $t('rolesInfo.power') }}
-        </span>
-        <CharacterPower
-          :mafia="role.mafia"
-          :solo="role.solo"
-          :power="role.power"
-        />
-      </div>
-      <div>
-        <span>
-          {{ $t('rolesInfo.rarity') }}
-        </span>
-        <div
-          class="data-holder"
+        <strong
+          v-if="role.mafia"
+          class="mafia-role"
         >
-          <template
-            v-if="role.rarity"
+          {{ $t('common.Mafia') }}
+        </strong>
+        <strong
+          v-else-if="role.solo"
+          class="solo-role"
+        >
+          {{ $t('common.Solo') }}
+        </strong>
+        <strong
+          v-else
+          class="citizen-role"
+        >
+          {{ $t('common.Citizen') }}
+        </strong>
+      </div>
+      <div
+        class="details-info"
+      >
+        <div>
+          <span>
+            {{ $t('rolesInfo.power') }}
+          </span>
+          <CharacterPower
+            :mafia="role.mafia"
+            :solo="role.solo"
+            :power="role.power"
+          />
+        </div>
+        <div>
+          <span>
+            {{ $t('rolesInfo.rarity') }}
+          </span>
+          <div
+            class="data-holder"
           >
-            <img
-              :src="getImg('/icons', role.rarity + '.svg')"
-              :alt="$t('rolesInfo.'+role.rarity)"
+            <template
+              v-if="role.rarity"
             >
-            <strong
-              :class="`color-${role.rarity}`"
-            >
-              {{ $t('rolesInfo.' + role.rarity) }}
-            </strong>
-          </template>
+              <img
+                :src="getImg('/icons', role.rarity + '.svg')"
+                :alt="$t('rolesInfo.'+role.rarity)"
+              >
+              <strong
+                :class="`color-${role.rarity}`"
+              >
+                {{ $t('rolesInfo.' + role.rarity) }}
+              </strong>
+            </template>
+          </div>
+        </div>
+        <div>
+          <span>
+            {{ $t('rolesInfo.action') }}
+          </span>
+          <div
+            class="data-holder"
+          >
+            <template>
+              <img
+                v-if="role.actionIcon"
+                :src="getImg('/actions', role.actionIcon)"
+                :alt="role.info[currentLang].name"
+              >
+              <strong>
+                {{ role.info[currentLang].action }}
+              </strong>
+            </template>
+          </div>
+        </div>
+        <div>
+          <span>
+            {{ $t('rolesInfo.passive') }}
+          </span>
+          <div
+            class="data-holder"
+          >
+            <template>
+              <img
+                v-if="role.passiveIcon"
+                :src="getImg('/actions', role.passiveIcon)"
+                :alt="role.name"
+              >
+              <strong>
+                {{ role.info[currentLang].passive }}
+              </strong>
+            </template>
+          </div>
         </div>
       </div>
-      <div>
-        <span>
-          {{ $t('rolesInfo.action') }}
-        </span>
-        <div
-          class="data-holder"
-        >
-          <template>
-            <img
-              v-if="role.actionIcon"
-              :src="getImg('/actions', role.actionIcon)"
-              :alt="role.info[currentLang].name"
-            >
-            <strong>
-              {{ role.info[currentLang].action }}
-            </strong>
-          </template>
-        </div>
-      </div>
-      <div>
-        <span>
-          {{ $t('rolesInfo.passive') }}
-        </span>
-        <div
-          class="data-holder"
-        >
-          <template>
-            <img
-              v-if="role.passiveIcon"
-              :src="getImg('/actions', role.passiveIcon)"
-              :alt="role.name"
-            >
-            <strong>
-              {{ role.info[currentLang].passive }}
-            </strong>
-          </template>
-        </div>
-      </div>
-    </div>
-    <p
-      v-html="role.info[currentLang].description"
-    />
+      <p
+        v-html="role.info[currentLang].description"
+      />
+    </template>
   </div>
 </template>
 

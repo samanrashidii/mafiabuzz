@@ -3,7 +3,6 @@
     class="roles"
   >
     <InfoBox
-      v-if="showInfo"
       :role="info"
       :show="showInfo"
       @hideInfo="hideInfoBox()"

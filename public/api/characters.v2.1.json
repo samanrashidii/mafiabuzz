@@ -2699,16 +2699,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Bully",
+                "description": "When he is the target to die at night, He survives until the end of the next game voting phase.",
+                "passive": "Die Hard",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "گردن کلفت",
+                "description": "وقتی در شب هدف کشته شدن قرار میگیرد، تا انتهای رای گیری در روز بعد زنده می ماند",
+                "passive": "سخت جون",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -2806,14 +2806,14 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Sniper",
+                "description": "Sniper can save citizens with accurate shots. He can kill one player each night until he is out of ammo. Sniper's ammo is equal to half of mafia numbers in each game but he should be careful because he can miss a shot and kill one of citizens ( He can choose not to kill any person at night).",
                 "passive": "None",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "اسنایپر",
+                "description": "اسنایپر می تواند شهروندها رو با شلیک های دقیق نجات بدهد. او می تواند هر شب یک نفر را مورد هدف قرار بدهد و بکشد تا زمانی که تعداد گلوله هایش به اتمام برسد. تعداد گلوله های اسنایپر در هر بازی مساوی با نصف تعداد مافیاها در اون بازی است اما باید مراقب باشد تا به اشتباه شهروندی رو نکشد ( می تواند در شب کسی را نکشد )",
                 "passive": "ندارد",
                 "action": "کشتن"
             }
@@ -2913,14 +2913,14 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Serial Killer",
+                "description": "Serial Killer is a solo player. Every night he can kill one player and his goal is to get rid of all the Mafia and Citizens to win the game.",
                 "passive": "None",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "قاتل زنجیره ای",
+                "description": "قاتل زنجیره ای یکی از نقش های تنهای بازی است. او می تواند هر شب یک نفر را بکشد و هدف او از بین بردن تمام مافیاها و شهروندهاست تا بازی رو به تنهایی ببرد.",
                 "passive": "ندارد",
                 "action": "کشتن"
             }
@@ -3020,16 +3020,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Bodygaurd",
+                "description": "Bodygaurd is one of the mafioso team. When the mafia killer player is about to die, The bodygaurd will die instead of the killer.",
+                "passive": "Protection",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "بادیگارد",
+                "description": "بادیگارد یک نقش از گروه مافیا است. هنگامی که مافیای قاتل بازی در خطر مردن قرار بگیرد بادیگارد به جای او کشته می شود.",
+                "passive": "محافظت",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -3127,15 +3127,15 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
+                "name": "Terrorist",
+                "description": "Terrorist is the avenger of Mafia team. When he dies during the day or night, he can choose and kill one of citizens.",
+                "passive": "Revenge",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
+                "name": "تروریست",
+                "description": "تروریست فرد انتقام جوی مافیاهاست. تروریست بعد از کشته شدنش چه در طول روز و یا چه شب می تواند یک فرد از شهروندان را انتخاب کند و او را بکشد.",
+                "passive": "انتقام",
                 "action": "کشتن"
             }
         },
@@ -3234,16 +3234,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Doctor Lecter",
+                "description": "The Doctor Lecter is with Mafia and defends others, He can save one person or himself during night from getting killed (He can only heal himself once)",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Heal"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "دکتر لکتر",
+                "description": "دکتر لکتر، نقشی از گروه مافیا است و همانطور که از اسمش پیداست وظیفه درمان کردن افراد را به عهده دارد. بدین صورت که اگر شخصی در شب کشته شود با شخصی که دکتر لکتر در همان شب درمان می‌کند، یکی باشند. آن شخص نمی میرد و در بازی می ماند (فقط یکبار می تواند خودش رو خوب کند).",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "شفا بخشیدن"
             }
         },
         "ability": {
@@ -3341,14 +3341,14 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Professional",
+                "description": "Professional Sniper can save citizens with accurate shots. He can kill one player each night until he shot one of the citizens. if he shot wrong he will die instantly.",
                 "passive": "None",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "حرفه ای",
+                "description": "حرفه ای می تواند شهروندها رو با شلیک های دقیق نجات بدهد. او می تواند هر شب یک نفر را مورد هدف قرار بدهد ولی در صورتی که به اشتباه یکی از شهروندان را بزند، خودش کشته می شود ( می تواند در شب کسی را نکشد )",
                 "passive": "ندارد",
                 "action": "کشتن"
             }
@@ -3448,16 +3448,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Guardian Angel",
+                "description": "The Gaurdian salvation can be the savior of the city. The citizen or independent player who leaves the game by voting has a chance to guess the name of the player of guardian angel and returns to the game if it is correct.",
+                "passive": "Save People in Day Phase",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "فرشته نجات",
+                "description": "فرشته نجات می تواند ناجی شهر باشد. شهروند یا بازیکن مستقلی که با رای گیری از بازی بیرون برود یکبار شانس دارد تا نام بازیکن فرشته نجات را پیش گاد حدس بزند و در صورت درست بودن به بازی بر میگردد.",
+                "passive": "نجات دهنده در روز",
+                "action": "ندارد"
             }
         },
         "ability": {
@@ -3555,15 +3555,15 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
+                "name": "Zealot",
+                "description": "Zealot can get up and kill someone the day before the first ballot. Also, if there is a bomber, it can neutralize the bomber action within 7 seconds",
+                "passive": "Revenge",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
+                "name": "فدایی",
+                "description": "فدایی میتواند در روز قبل از رای گیری اول از جای خود بلند شود و یک نفر را بکشد. همچنین در صورت وجود بمب ساز، می تواند طی 7 ثانیه اکشن بمب ساز را خنثی کند",
+                "passive": "انتقام",
                 "action": "کشتن"
             }
         },
@@ -3663,15 +3663,15 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
+                "name": "Bomber",
+                "description": "Bomber can get up and call to kill someone the day before the first ballot. (after he stood up, should wait 7 seconds then call name of the target)",
+                "passive": "Revenge",
                 "action": "Kill"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
+                "name": "بمب ساز",
+                "description": "بمب ساز میتواند در روز قبل از رای گیری اول از جای خود بلند شود و یک نفر را بکشد. (بعد از بلند شدن باید 7 ثانیه صبر کند و بعدش اسم هدف رو اعلام کند)",
+                "passive": "انتقام",
                 "action": "کشتن"
             }
         },
@@ -3771,16 +3771,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Mayor",
+                "description": "The mayor can stand up the day before the first ballot and dissolve the ballot. The mayor must determine who will leave the game during voting time.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Justice"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "شهردار",
+                "description": "شهردار میتواند در روز قبل از رای گیری اول از جای خود بلند شود و رای گیری را منحل کند. شهردار باید مشخص کند که چه کسی از بازی در طول زمان رای گیری از بازی بیرون برود.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "اجرای عدالت"
             }
         },
         "ability": {
@@ -3878,16 +3878,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Salesman",
+                "description": "The Salesman can execute his action once a night. He can hack a person and that person loses his ability until the end of the game.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Hack"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "فروشنده",
+                "description": "فروشنده میتواند اکشن خودش رو یکبار تو شب اجرا کند. او میتواند یک نفر را هک کند و آن شخص توانایی خود را تا آخر بازی از دست میدهد.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "هک کردن"
             }
         },
         "ability": {
@@ -3986,16 +3986,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Charlatan",
+                "description": "Charlatan can do his Ashkan twice a night. He can overnight turn the character of a Mafia into a citizen, and a citizen or independent into a Mafia, and that person's query changes.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Change Identity"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "شارلاتان",
+                "description": "شارلاتان می تواند دو بار در شب اشکن خود را انجام دهد. اون می تونه برای یک شب شخصیت یک مافیا رو به شهروند، و یک شهروند یا مستقل را به مافیا تبدیل کند و استعلام اون فرد تغییر می کند.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "تغییر شخصیت"
             }
         },
         "ability": {
@@ -4095,16 +4095,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Jailer",
+                "description": "The jailer can send a person to jail once during the game, and the jailed person will be out of the game for one day and one night and will not participate in the discussion and voting.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Bust"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "زندانبان",
+                "description": "زندانبان میتواند یکبار در طول بازی یک نفر را به زندان بفرستد و فرد زندان رفته یک روز و یک شب از بازی خارج میشود و داخل بحث و رای گیری هم شرکت نمی کند.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "دستگیر کردن"
             }
         },
         "ability": {
@@ -4205,16 +4205,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
+                "name": "Druid",
+                "description": "The Druid can revive a person who died during the game with the power of nature.",
                 "passive": "None",
-                "action": "Kill"
+                "action": "Resurrect"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
+                "name": "دروید",
+                "description": "دروید با قدرت گرفته شده از طبیعت میتواند یک نفر را زنده کند و به بازی برگرداند.",
                 "passive": "ندارد",
-                "action": "کشتن"
+                "action": "زنده کردن"
             }
         },
         "ability": {
