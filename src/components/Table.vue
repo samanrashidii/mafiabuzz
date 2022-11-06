@@ -27,8 +27,8 @@
         <td>
           <img
             :src="getImg('/roles', tD.icon)"
-            :alt="tD.name"
-          > {{ $t(tD.name) }}
+            :alt="tD.info[currentLang].name"
+          > {{ tD.info[currentLang].name }}
         </td>
         <template v-if="dashboardTable">
           <td><span class="character-player">{{ tD.player }}</span></td>

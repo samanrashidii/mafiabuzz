@@ -2,9 +2,9 @@
   <div class="character-item">
     <img
       :src="getImg('/roles', role.icon)"
-      :alt="$t(role.name)"
+      :alt="role.info[currentLang].name"
     >
-    <h2>{{ $t(role.name) }}</h2>
+    <h2>{{ role.info[currentLang].name }}</h2>
     <div class="mafia-status">
       <span
         class="mafia-role has-rope"

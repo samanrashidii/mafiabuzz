@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref } from 'firebase/database';
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -13,7 +12,3 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
-const asd = ref(db, 'collection', 'characters')
-
-console.log(asd)

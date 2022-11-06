@@ -11,16 +11,16 @@
           <div v-if="soloWinnerDetails">
             <img
               :src="getImg('/roles', soloWinnerDetails.icon)"
-              :alt="soloWinnerDetails.name"
+              :alt="soloWinnerDetails.info[currentLang].name"
               class="solo-player"
             >
             <h2 v-html="winner.title" />
-            <h2><strong>{{ $t(soloWinnerDetails.name) }}</strong></h2>
+            <h2><strong>{{ soloWinnerDetails.info[currentLang].name }}</strong></h2>
           </div>
           <div v-else>
             <img
               :src="getImg('/game', winner.image)"
-              :alt="winner.name"
+              :alt="winner.info[currentLang].name"
             >
             <h2 v-html="winner.title" />
           </div>
@@ -80,7 +80,7 @@ export default {
         }
       })
       if (this.soloWinnerDetails) {
-        text += this.$t(this.soloWinnerDetails.name)
+        text += this.soloWinnerDetails.info[this.currentLang].name
       }
       // Post Finish Game Result To Discord
       this.postDiscord(text)

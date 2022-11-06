@@ -194,11 +194,11 @@ export default {
       • `
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.mafia) {
-          mafia += `${element.emoji} ${this.$t(element.name)} • `
+          mafia += `${element.emoji} ${element.info[this.currentLang].name} • `
         } else if (!element.mafia && !element.solo) {
-          citizen += `${element.emoji} ${this.$t(element.name)} • `
+          citizen += `${element.emoji} ${element.info[this.currentLang].name} • `
         } else if (!element.mafia && element.solo) {
-          solo += `${element.emoji} ${this.$t(element.name)} • `
+          solo += `${element.emoji} ${element.info[this.currentLang].name} • `
         }
       })
       let text = `${this.$t('general.welcomeToMafiabuzz')}

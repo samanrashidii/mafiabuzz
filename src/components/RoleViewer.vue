@@ -20,9 +20,9 @@
           >
             <img
               :src="getImg('/roles', role.icon)"
-              :alt="$t(role.name)"
+              :alt="role.info[currentLang].name"
             >
-            <h1>{{ $t(role.name) }}</h1>
+            <h1>{{ role.info[currentLang].name }}</h1>
           </div>
         </template>
       </transition>

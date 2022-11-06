@@ -79,7 +79,7 @@ export default {
   },
   data () {
     return {
-      imageCounter: true
+      imageCounter: false
     }
   },
   computed: {
@@ -125,7 +125,6 @@ export default {
               .then(() => {
                 window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
                 loader.hide()
-                this.changeImage()
               })
           })
           .catch(() => {

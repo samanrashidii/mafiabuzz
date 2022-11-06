@@ -2592,16 +2592,16 @@
         },
         "info": {
             "en": {
-                "name": "Mafia",
-                "description": "Mafia is a regular mafioso with no special abilites and if there is no 'Godfather' in game, May kill one person at night",
-                "passive": "None",
-                "action": "Kill"
+                "name": "Joker",
+                "description": "The joker is another character who does not like to be part of any team. He plays alone and can win the game alone. If he gets out of the game by voting, during the day time, he wins the game.",
+                "passive": "Vote Seeker",
+                "action": "None"
             },
             "fa": {
-                "name": "مافیا",
-                "description": "مافیا، یک فرد از گروه مافیاهاست که هیچ قدرت خاصی ندارد و اگر گادفادر در بازی نباشد، تصمیم کشتن افراد در شب به عهده مافیا است.",
-                "passive": "ندارد",
-                "action": "کشتن"
+                "name": "جوکر",
+                "description": "جوکر، شخصیتی مستقل است که نه جزو مافیاهاست، نه شهروندان، که اگر با رأی گیری از بازی بیرون برود، به تنهایی برنده بازی می‌شود.",
+                "passive": "رای جمع کن",
+                "action": "ندارد"
             }
         },
         "ability": {

@@ -84,7 +84,9 @@
         <span
           :style="{width: progress+'%'}"
         />
-        <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+        <i>
+          <strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}
+        </i>
       </div>
       <a
         class="next-action"
@@ -121,7 +123,7 @@
                   src="@/assets/images/roles/hacked.svg"
                   :alt="$t('god.hackedIconAlt')"
                 >
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
                 <AppButton
                   class="purple"
                   @click.native="skipAction(index)"
@@ -147,7 +149,7 @@
                   src="@/assets/images/icons/in-jail.svg"
                   :alt="$t('god.inJailIconAlt')"
                 >
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
                 <AppButton
                   class="black"
                   @click.native="skipAction(index)"
@@ -181,7 +183,7 @@
                     :alt="$t('god.playerIconAlt')"
                   >
                 </div>
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.deadPerson')" /></p>
                 <AppButton
                   class="black"
                   @click.native="skipAction(index)"

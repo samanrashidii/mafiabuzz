@@ -1,8 +1,14 @@
 <template>
-  <div class="how-to-play">
-    <div class="dashboard-header has-xsmall-top-margin">
+  <div
+    class="how-to-play"
+  >
+    <div
+      class="dashboard-header has-xsmall-top-margin"
+    >
       <PageBox>
-        <PageTitle :check-route="checkRoute()" />
+        <PageTitle
+          :check-route="checkRoute()"
+        />
       </PageBox>
     </div>
     <PageBox
@@ -14,18 +20,24 @@
         :src="getImg('/howtoplay', step.icon)"
         alt="How to Play Step Icon"
       >
-      <h3 v-html="step.titl1" />
-      <p v-html="step.desc1" />
-      <div v-if="step.roles">
+      <h3
+        v-html="step.titl1"
+      />
+      <p
+        v-html="step.desc1"
+      />
+      <div
+        v-if="step.roles"
+      >
         <InfoBox
           class="static"
-          v-for="(info, index) in getRoles"
+          v-for="(role, index) in getRoles"
           :key="index"
-          :info="info"
+          :role="role"
         />
       </div>
     </PageBox>
-    <back-to-top
+    <BackToTop
       bottom="20px"
       right="20px"
       visibleoffset="600"

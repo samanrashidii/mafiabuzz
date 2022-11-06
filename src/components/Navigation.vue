@@ -14,7 +14,9 @@
               :src="getImg('', nav.image)"
               :alt="$t(nav.alt)"
             >
-            <strong>{{ $t(nav.name) }}</strong>
+            <strong>
+              {{ $t(nav.name) }}
+            </strong>
           </span>
         </router-link>
       </template>

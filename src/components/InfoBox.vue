@@ -106,7 +106,7 @@
               <img
                 v-if="role.passiveIcon"
                 :src="getImg('/actions', role.passiveIcon)"
-                :alt="role.name"
+                :alt="role.info[currentLang].name"
               >
               <strong>
                 {{ role.info[currentLang].passive }}

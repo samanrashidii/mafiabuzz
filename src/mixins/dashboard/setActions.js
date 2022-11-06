@@ -13,7 +13,6 @@ export default {
           actions.push(x)
         }
       })
-      console.log(actions)
       const killersInGame = this.gameSettings.selectedRoles.filter(x => x.ability.killer && !x.status.dead && x.mafia).length
       const mafiaInGame = this.gameSettings.aliveMafia
       if (killersInGame === 0 && mafiaInGame !== 0) {
@@ -24,7 +23,7 @@ export default {
             const characterStatus = element.status.hasAction
             this.dashboard.killerChanged = true
             this.dashboard.nextKiller.icon = element.icon
-            this.dashboard.nextKiller.name = element.name
+            this.dashboard.nextKiller.info[this.currentLang].name = element.info[this.currentLang].name
             this.dashboard.nextKiller.player = element.player
             if (element.priority === null) {
               element.priority = this.replacingRoles.killerMafia.priority

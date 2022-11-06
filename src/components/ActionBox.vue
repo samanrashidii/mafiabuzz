@@ -1,7 +1,13 @@
 <template>
-  <div class="action-box">
-    <div class="player-box-holder has-small-bottom-margin">
-      <div class="player-box">
+  <div
+    class="action-box"
+  >
+    <div
+      class="player-box-holder has-small-bottom-margin"
+    >
+      <div
+        class="player-box"
+      >
         <img
           :src="getImg('/roles', player.icon)"
           :alt="$t('god.playerIconAlt')"
@@ -10,11 +16,13 @@
           class="has-xsmall-top-margin"
           :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia && !player.solo, 'solo-role': !player.mafia && player.solo}"
         >
-          {{ $t(player.name) }}
+          {{ player.info[currentLang].name }}
           <span>( {{ player.player }} )</span>
         </h4>
       </div>
-      <div class="arrow">
+      <div
+        class="arrow"
+      >
         <span
           v-if="player.status.actionLimit > 0"
           class="action-limit"
@@ -27,8 +35,12 @@
           :alt="$t('god.playerActionIconAlt')"
         >
       </div>
-      <div class="player-box">
-        <template v-if="Object.keys(dashboard.targetData).length">
+      <div
+        class="player-box"
+      >
+        <template
+          v-if="Object.keys(dashboard.targetData).length"
+        >
           <img
             :src="getImg('/roles', dashboard.targetData.icon)"
             :alt="$t('god.playerIconAlt')"
@@ -37,11 +49,13 @@
             class="has-xsmall-top-margin"
             :class="{'mafia-role': dashboard.targetData.mafia, 'citizen-role': !dashboard.targetData.mafia && !dashboard.targetData.solo, 'solo-role': !dashboard.targetData.mafia && dashboard.targetData.solo}"
           >
-            {{ $t(dashboard.targetData.name) }}
+            {{ dashboard.targetData.info[currentLang].name }}
             <span>( {{ dashboard.targetData.player }} )</span>
           </h4>
         </template>
-        <template v-else>
+        <template
+          v-else
+        >
           <img
             src="@/assets/images/roles/loader.svg"
             :alt="$t('replacingRoles.loading.name')"

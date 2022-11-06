@@ -238,7 +238,7 @@ export default {
           if (element.ability.reviver) {
             this.destroyMinions(element)
           }
-          element.name = this.replacingRoles.miniYakuza.name
+          element.info[this.currentLang].name = this.replacingRoles.miniYakuza.info[this.currentLang].name
           element.icon = this.replacingRoles.miniYakuza.icon
           element.description = this.replacingRoles.miniYakuza.description
           element.action = this.replacingRoles.miniYakuza.action
@@ -262,7 +262,7 @@ export default {
     revive (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
-          element.name = this.replacingRoles.skeleton.name
+          element.info[this.currentLang].name = this.replacingRoles.skeleton.name
           element.icon = this.replacingRoles.skeleton.icon
           element.description = this.replacingRoles.skeleton.description
           element.action = this.replacingRoles.skeleton.action

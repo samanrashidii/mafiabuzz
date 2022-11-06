@@ -3,7 +3,7 @@
     class="roles"
   >
     <InfoBox
-      :role="info"
+      :role="roleInfo"
       :show="showInfo"
       @hideInfo="hideInfoBox()"
     />
@@ -105,7 +105,7 @@ export default {
       normalMafia: 0,
       normalCitizen: 0,
       showInfo: false,
-      info: {}
+      roleInfo: {}
     }
   },
   components: {
@@ -262,7 +262,7 @@ export default {
       this.SetGameSettings(this.gameSettings)
     },
     openInfoBox (role) {
-      this.info = role
+      this.roleInfo = role
       this.showInfo = !this.showInfo
     },
     hideInfoBox () {

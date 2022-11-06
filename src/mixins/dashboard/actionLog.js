@@ -10,7 +10,7 @@ export default {
         this.dashboard.log.resultImage = 'investigate.svg'
       }
       if (type === 'checkRole') {
-        this.dashboard.log.resultText = `<span>${this.$t('god.logResult')}</span> <strong>${this.$t(element.name)}</strong>`
+        this.dashboard.log.resultText = `<span>${this.$t('god.logResult')}</span> <strong>${this.$t(element.info[currentLang].name)}</strong>`
         this.dashboard.log.resultImage = 'search.svg'
       }
       this.saveHistory(this.dashboard.log.resultImage, this.dashboard.log.resultText)

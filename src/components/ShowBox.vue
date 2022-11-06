@@ -37,9 +37,9 @@
             >
               <img
                 :src="getImg('/roles', role.icon)"
-                :alt="$t(role.name)"
+                :alt="role.info[currentLang].name"
               >
-              <h4>{{ $t(role.name) }}</h4>
+              <h4>{{ role.info[currentLang].name }}</h4>
             </div>
             <AppButton
               @click.native.once="nextPerson()"
@@ -55,7 +55,7 @@
               <span>{{ $t('common.copyToClipboard') }}</span>
               <input
                 type="hidden"
-                :value="role.emoji + ' ' + $t(role.name)"
+                :value="role.emoji + ' ' + role.info[currentLang].name"
                 ref="copyToDiscord"
               >
             </AppButton>

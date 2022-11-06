@@ -20,7 +20,7 @@
           :key="index"
           :role="character"
           rarity="legendary"
-          @showInfo="showInfo"
+          @showInfo="openInfoBox"
         />
       </Carousel>
       <h1 class="epic has-top-margin">
@@ -37,7 +37,7 @@
           :key="index"
           :role="character"
           rarity="epic"
-          @showInfo="showInfo"
+          @showInfo="openInfoBox"
         />
       </Carousel>
       <h1 class="rare has-top-margin">
@@ -54,7 +54,7 @@
           :key="index"
           :role="character"
           rarity="rare"
-          @showInfo="showInfo"
+          @showInfo="openInfoBox"
         />
       </Carousel>
       <h1 class="uncommon has-top-margin">
@@ -71,11 +71,15 @@
           :key="index"
           :role="character"
           rarity="uncommon"
-          @showInfo="showInfo"
+          @showInfo="openInfoBox"
         />
       </Carousel>
     </div>
-    <InfoBox :info="info" />
+    <InfoBox
+      :role="roleInfo"
+      :show="showInfo"
+      @hideInfo="hideInfoBox()"
+    />
   </div>
 </template>
 
@@ -89,16 +93,9 @@ export default {
   name: 'Characters',
   data() {
     return {
-      info: {
-        show: false,
-        mafia: false,
-        action: {},
-        name: 'replacingRoles.loading.name',
-        icon: 'default.svg',
-        description: 'replacingRoles.loading.description',
-        status: {}
-      },
-    };
+      showInfo: false,
+      roleInfo: {}
+    }
   },
   components: {
     Carousel,
@@ -127,21 +124,13 @@ export default {
     }
   },
   methods: {
-    showInfo(role) {
-      this.info.name = role.name
-      this.info.icon = role.icon
-      this.info.description = role.description
-      this.info.mafia = role.mafia
-      this.info.solo = role.solo
-      this.info.rarity = role.rarity
-      this.info.action = role.action
-      this.info.actionIcon = role.actionIcon
-      this.info.passiveIcon = role.passiveIcon
-      this.info.status.hasAction = role.status.hasAction
-      this.info.status.hasPassive = role.status.hasPassive
-      this.info.power = role.power
-      this.info.show === false ? this.info.show = true : this.info.show = false
+    openInfoBox (role) {
+      this.roleInfo = role
+      this.showInfo = !this.showInfo
     },
+    hideInfoBox () {
+      this.showInfo = false
+    }
   },
   metaInfo() {
     return {
