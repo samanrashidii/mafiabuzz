@@ -17,15 +17,14 @@
       </router-link>
     </div>
     <a
-      href="https://youtube.com/c/youdonome"
-      target="_blank"
+      href="javascript:void(0)"
       class="d-block has-xsmall-top-margin rounded shadow"
-      @click="trackEvent"
+      @click="changeImage"
     >
       <img
-        class="youdonome-banner rounded"
-        src="@/assets/images/youdonome-banner.png"
-        alt="Youdonome Banner"
+        class="top-banner rounded"
+        :src="getImg('', currentBannerImage)"
+        alt="Woman Life Freedom"
       >
     </a>
     <transition
@@ -76,6 +75,11 @@ export default {
     Navigation,
     LanguageButton
   },
+  data () {
+    return {
+      imageCounter: true
+    }
+  },
   computed: {
     ...mapGetters({
       DefaultState: 'DefaultState',
@@ -86,6 +90,13 @@ export default {
     }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
+    },
+    currentBannerImage () {
+      let output = 'woman-life-freedom.png'
+      if (this.imageCounter) {
+        output = 'woman-life-freedom-2.png'
+      }
+      return output
     }
   },
   created() {
@@ -112,6 +123,7 @@ export default {
               .then(() => {
                 window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
                 loader.hide()
+                this.changeImage()
               })
           })
           .catch(() => {
@@ -155,6 +167,9 @@ export default {
         'event_label': platform,
         'value': 1
       })
+    },
+    changeImage () {
+      this.imageCounter = !this.imageCounter
     }
   }
 }
