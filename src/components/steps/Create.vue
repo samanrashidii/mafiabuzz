@@ -113,7 +113,6 @@ import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import InstagramBanner from '@/components/InstagramBanner.vue';
 import checkRoute from '@/mixins/checkRoute';
-import startGame from '@/mixins/startGame';
 
 export default {
   data() {
@@ -240,8 +239,7 @@ export default {
     }
   },
   mixins: [
-    checkRoute,
-    startGame
+    checkRoute
   ]
 }
 </script>

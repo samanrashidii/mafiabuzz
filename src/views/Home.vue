@@ -46,7 +46,6 @@
 import Create from '@/components/steps/Create.vue';
 import Dashboard from '@/components/steps/Dashboard.vue';
 import Overlay from '@/components/Overlay.vue';
-import startGame from '@/mixins/startGame';
 
 export default {
   name: 'Home',
@@ -76,9 +75,6 @@ export default {
       this.overlay = false
     }
   },
-  mixins: [
-    startGame
-  ],
   metaInfo() {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,

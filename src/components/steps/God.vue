@@ -368,7 +368,6 @@ import setActions from '@/mixins/dashboard/setActions';
 import skipAction from '@/mixins/dashboard/skipAction';
 import voteKiller from '@/mixins/dashboard/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
-import startGame from '@/mixins/startGame';
 
 export default {
   data() {
@@ -514,7 +513,6 @@ export default {
     setActions,
     saveHistory,
     skipAction,
-    startGame,
     voteKiller
   ]
 }

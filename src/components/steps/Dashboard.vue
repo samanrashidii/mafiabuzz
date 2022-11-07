@@ -110,7 +110,6 @@ import Overlay from '@/components/Overlay.vue';
 import ShowBox from '@/components/ShowBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
-import startGame from '@/mixins/startGame';
 
 export default {
   data() {
@@ -220,8 +219,7 @@ export default {
     }
   },
   mixins: [
-    checkRoute,
-    startGame
+    checkRoute
   ]
 }
 </script>

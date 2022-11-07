@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import startGame from '@/mixins/startGame';
 
 export default {
   props: {
@@ -101,9 +100,6 @@ export default {
       this.gameSettings.reviewGame = !state
       this.SetGameSettings(this.gameSettings)
     }
-  },
-  mixins: [
-    startGame
-  ]
+  }
 }
 </script>
