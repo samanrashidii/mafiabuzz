@@ -96,7 +96,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetMainApp: 'main/SetMainApp',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
