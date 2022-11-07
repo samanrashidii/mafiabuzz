@@ -16,7 +16,7 @@ import Button from './components/BaseButton.vue'
 import PageBox from './components/BasePageBox.vue'
 const VueScrollTo = require('vue-scrollto')
 
-Vue.component('AppButton', Button)
+Vue.component('BaseButton', Button)
 Vue.component('PageBox', PageBox)
 Vue.mixin(global)
 Vue.use(VueMeta)

@@ -13,12 +13,12 @@
           <span>( {{ dashboard.nextKiller.player }} )</span>
         </h2>
         <p v-html="$t('god.nextKiler')" />
-        <AppButton
+        <BaseButton
           class="active"
-          @click.native="closeNextKiller()"
+          @clicked="closeNextKiller()"
         >
           {{ $t('god.logCloseButton') }}
-        </AppButton>
+        </BaseButton>
       </div>
     </div>
   </div>

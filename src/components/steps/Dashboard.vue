@@ -7,13 +7,13 @@
           :check-route="checkRoute()"
         />
       </PageBox>
-      <AppButton
-        @click.native="alertBox = true"
+      <BaseButton
+        @clicked="alertBox = true"
         class="settings-bttn danger has-small-top-margin"
         v-if="gameSettings.stepCounter !== 3"
       >
         <span>{{ $t('pages.home.changeSettings') }}</span>
-      </AppButton>
+      </BaseButton>
     </div>
 
     <Overlay :class="{'active': alertBox,'dialog': true}">
@@ -24,18 +24,18 @@
       >
       <template>
         <p>{{ $t('pages.home.changeSettingsText') }}</p>
-        <AppButton
-          @click.native="changeGameSettings()"
+        <BaseButton
+          @clicked="changeGameSettings()"
           class="green"
         >
           <span>{{ $t('pages.home.confirmButton') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="alertBox = false"
+        </BaseButton>
+        <BaseButton
+          @clicked="alertBox = false"
           class="danger"
         >
           <span>{{ $t('pages.home.cancelButton') }}</span>
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
 
@@ -78,12 +78,12 @@
             :key="index"
             v-model="players[index]"
           >
-        <AppButton
-          @click.native="assignRoles()"
+        <BaseButton
+          @clicked="assignRoles()"
           class="active assign-bttn"
         >
           <span>{{ $t('pages.home.assign') }}</span>
-        </AppButton>
+        </BaseButton>
       </PageBox>
 
       <PageBox

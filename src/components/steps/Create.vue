@@ -3,12 +3,12 @@
     <div class="dashboard-header">
       <p class="seo-clipboard">{{ $t('meta.home.description') }}</p>
       <WelcomeBox />
-      <AppButton
-        @click.native="patchNotes = true"
+      <BaseButton
+        @clicked="patchNotes = true"
         class="patch-bttn awesome3"
       >
         <span>{{ $t('general.patchButton') }}</span>
-      </AppButton>
+      </BaseButton>
       <PageBox>
         <PageTitle :check-route="checkRoute()" />
       </PageBox>
@@ -30,12 +30,12 @@
           {{ $t('general.lastUpdate') }}
         </span>
         <ListItem :list="$t('patchNotes')" />
-        <AppButton
-          @click.native="patchNotes = false"
+        <BaseButton
+          @clicked="patchNotes = false"
           class="close-bttn danger has-top-margin"
         >
           <span>{{ $t('common.closeButton') }}</span>
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
     <InstagramBanner />
@@ -50,12 +50,12 @@
       </div>
       <DiscordBox />
       <Roles />
-      <AppButton
-        @click.native="checkGame()"
+      <BaseButton
+        @clicked="checkGame()"
         class="start-bttn has-top-margin active"
       >
         <span>{{ $t('pages.home.start') }}</span>
-      </AppButton>
+      </BaseButton>
       <Overlay :class="{'active': overlay,'dialog': isValid}">
         <template v-if="isValid">
           <ErrorBox
@@ -63,12 +63,12 @@
             :mafia-numbers="gameSettings.mafia"
             :citizen-numbers="gameSettings.citizen"
           />
-          <AppButton
-            @click.native="overlay = false"
+          <BaseButton
+            @clicked="overlay = false"
             class="settings-bttn danger"
           >
             <span>{{ $t('pages.home.changeSettings') }}</span>
-          </AppButton>
+          </BaseButton>
         </template>
         <template v-else>
           <NoteBox />
@@ -80,18 +80,18 @@
             class="citizen-table"
             :table-data="gameSettings.fCitizens"
           />
-          <AppButton
-            @click.native="startGame()"
+          <BaseButton
+            @clicked="startGame()"
             class="start-bttn green"
           >
             <span>{{ $t('pages.home.start') }}</span>
-          </AppButton>
-          <AppButton
-            @click.native="overlay = false"
+          </BaseButton>
+          <BaseButton
+            @clicked="overlay = false"
             class="settings-bttn danger"
           >
             <span>{{ $t('pages.home.changeSettings') }}</span>
-          </AppButton>
+          </BaseButton>
         </template>
       </Overlay>
       <PowerMeter :class="{'active': !isValid}" />

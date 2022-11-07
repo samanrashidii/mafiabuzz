@@ -34,12 +34,12 @@
                 v-html="mp"
               />
             </ul>
-            <AppButton
+            <BaseButton
               class="has-small-top-margin"
-              @click.native="mafiaPartyController()"
+              @clicked="mafiaPartyController()"
             >
               {{ $t('god.mafiaPartyButton') }}
-            </AppButton>
+            </BaseButton>
           </div>
         </div>
       </div>
@@ -124,12 +124,12 @@
                   :alt="$t('god.hackedIconAlt')"
                 >
                 <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
-                <AppButton
+                <BaseButton
                   class="purple"
-                  @click.native="skipAction(index)"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>
@@ -150,12 +150,12 @@
                   :alt="$t('god.inJailIconAlt')"
                 >
                 <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
-                <AppButton
+                <BaseButton
                   class="black"
-                  @click.native="skipAction(index)"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>
@@ -184,12 +184,12 @@
                   >
                 </div>
                 <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.deadPerson')" /></p>
-                <AppButton
+                <BaseButton
                   class="black"
-                  @click.native="skipAction(index)"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>

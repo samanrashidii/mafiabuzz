@@ -33,24 +33,24 @@
           <div
             class="button-holder"
           >
-            <AppButton
-              @click.native="changeGameFinshed(false)"
+            <BaseButton
+              @clicked="changeGameFinshed(false)"
               class="active"
             >
               <span>{{ $t('god.viewButton') }}</span>
-            </AppButton>
-            <AppButton
-              @click.native="resetSameGame()"
+            </BaseButton>
+            <BaseButton
+              @clicked="resetSameGame()"
               class="awesome"
             >
               <span>{{ $t('god.restartButton') }}</span>
-            </AppButton>
-            <AppButton
-              @click.native="resetFactory()"
+            </BaseButton>
+            <BaseButton
+              @clicked="resetFactory()"
               class="awesome2"
             >
               <span>{{ $t('god.startButton') }}</span>
-            </AppButton>
+            </BaseButton>
           </div>
         </div>
       </div>

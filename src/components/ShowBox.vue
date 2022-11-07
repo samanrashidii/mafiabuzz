@@ -19,14 +19,14 @@
           name="fade"
           mode="out-in"
         >
-          <AppButton
-            @click.native="showrole = true"
+          <BaseButton
+            @clicked="showrole = true"
             class="yellow"
             key="showButton"
             v-if="!showrole"
           >
             {{ $t('pages.home.beforeShowButton') }}
-          </AppButton>
+          </BaseButton>
           <div
             class="role-info-wrapper"
             v-else
@@ -41,15 +41,15 @@
               >
               <h4>{{ role.info[currentLang].name }}</h4>
             </div>
-            <AppButton
-              @click.native.once="nextPerson()"
+            <BaseButton
+              @clicked.once="nextPerson()"
               class="green"
             >
               {{ $t('pages.home.afterShowButton') }}
-            </AppButton>
-            <AppButton
+            </BaseButton>
+            <BaseButton
               v-if="gameSettings.discordChannel"
-              @click.native="copyToClipboard(role)"
+              @clicked="copyToClipboard(role)"
               class="discord-bttn purple"
             >
               <span>{{ $t('common.copyToClipboard') }}</span>
@@ -58,7 +58,7 @@
                 :value="role.emoji + ' ' + role.info[currentLang].name"
                 ref="copyToDiscord"
               >
-            </AppButton>
+            </BaseButton>
           </div>
         </transition>
       </div>

@@ -5,31 +5,31 @@
       class="button-holder"
       v-if="dashboard.god"
     >
-      <AppButton
+      <BaseButton
         v-if="gameSettings.discordChannel"
-        @click.native="sendStats()"
+        @clicked="sendStats()"
         class="discord-bttn purple"
       >
         <span>{{ $t('thirdparty.discordUpdateButton') }}</span>
-      </AppButton>
-      <AppButton
+      </BaseButton>
+      <BaseButton
         v-if="gameSettings.discordChannel"
-        @click.native="sendVoteResult()"
+        @clicked="sendVoteResult()"
         class="discord-bttn purple"
       >
         <span>{{ $t('thirdparty.discordSendVoteResult') }}</span>
-      </AppButton>
+      </BaseButton>
       <transition
         name="fade"
         mode="out-in"
       >
-        <AppButton
+        <BaseButton
           :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}"
-          @click.native="changePhase(dashboard.day)"
+          @clicked="changePhase(dashboard.day)"
         >
           <span v-if="dashboard.day">{{ $t('god.nightText') }}</span>
           <span v-else>{{ $t('god.dayText') }}</span>
-        </AppButton>
+        </BaseButton>
       </transition>
     </div>
 
@@ -80,12 +80,12 @@
                   class="different-colors"
                   v-html="$t('god.gameStartText')"
                 />
-                <AppButton
+                <BaseButton
                   class="active"
-                  @click.native="showPlay()"
+                  @clicked="showPlay()"
                 >
                   {{ $t('god.godButton') }}
-                </AppButton>
+                </BaseButton>
               </div>
               <div
                 v-else
@@ -114,12 +114,12 @@
       class="log-bttn"
       v-if="dashboard.god"
     >
-      <AppButton
-        @click.native="logHistory = true"
+      <BaseButton
+        @clicked="logHistory = true"
         class="awesome"
       >
         <span>{{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i></span>
-      </AppButton>
+      </BaseButton>
     </div>
 
     <!-- Dashboard Game Hint -->
@@ -195,15 +195,15 @@
             {{ person.player }}
           </option>
         </select>
-        <AppButton @click.native="killByVote(dashboard.targetData.player)">
+        <BaseButton @clicked="killByVote(dashboard.targetData.player)">
           {{ $t('god.confirmButton') }}
-        </AppButton>
-        <AppButton
+        </BaseButton>
+        <BaseButton
           class="danger"
-          @click.native="lastPhaseController()"
+          @clicked="lastPhaseController()"
         >
           {{ $t('god.skipButton') }}
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
 
@@ -273,35 +273,35 @@
             {{ person.player }}
           </option>
         </select>
-        <AppButton
-          @click.native="killByVote(dashboard.targetData.player, true)"
+        <BaseButton
+          @clicked="killByVote(dashboard.targetData.player, true)"
         >
           {{ $t('god.confirmButton') }}
-        </AppButton>
-        <AppButton
+        </BaseButton>
+        <BaseButton
           class="danger"
-          @click.native="deadWatcher(false)"
+          @clicked="deadWatcher(false)"
         >
           {{ $t('god.skipButton') }}
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
 
     <!-- Restart or Reset Game -->
-    <AppButton
+    <BaseButton
       class="active has-xsmall-bottom-margin"
-      @click.native="overlay = true, totRestart = false"
+      @clicked="overlay = true, totRestart = false"
       v-if="dashboard.god"
     >
       {{ $t('god.rgwRoles') }}
-    </AppButton>
-    <AppButton
+    </BaseButton>
+    <BaseButton
       class="danger has-bottom-margin"
       v-if="dashboard.god"
-      @click.native="overlay = true, totRestart = true"
+      @clicked="overlay = true, totRestart = true"
     >
       {{ $t('god.resetGame') }}
-    </AppButton>
+    </BaseButton>
     <Overlay :class="{'active': overlay,'dialog': true}">
       <img
         class="has-xsmall-bottom-margin"
@@ -310,33 +310,33 @@
       >
       <template v-if="!totRestart">
         <p>{{ $t('god.resetText') }}</p>
-        <AppButton
-          @click.native="resetSameGame()"
+        <BaseButton
+          @clicked="resetSameGame()"
           class="green "
         >
           <span>{{ $t('god.restartButton') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="overlay = false"
+        </BaseButton>
+        <BaseButton
+          @clicked="overlay = false"
           class="danger"
         >
           <span>{{ $t('god.cancelButton') }}</span>
-        </AppButton>
+        </BaseButton>
       </template>
       <template v-else>
         <p>{{ $t('god.resetTotalText') }}</p>
-        <AppButton
-          @click.native="resetFactory()"
+        <BaseButton
+          @clicked="resetFactory()"
           class="green "
         >
           <span>{{ $t('god.startButton') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="overlay = false"
+        </BaseButton>
+        <BaseButton
+          @clicked="overlay = false"
           class="danger"
         >
           <span>{{ $t('god.cancelButton') }}</span>
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
 

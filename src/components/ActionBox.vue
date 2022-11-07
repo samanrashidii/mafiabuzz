@@ -130,17 +130,17 @@
     </template>
 
     <!-- Action Buttons -->
-    <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2, playerIndex)">
+    <BaseButton @clicked="executeAction(player, actionTarget1, actionTarget2, playerIndex)">
       {{ $t('god.confirmButton') }}
-    </AppButton>
+    </BaseButton>
 
     <template v-if="!force">
-      <AppButton
+      <BaseButton
         class="danger"
-        @click.native="alertBox = true"
+        @clicked="alertBox = true"
       >
         {{ $t('god.skipButton') }}
-      </AppButton>
+      </BaseButton>
       <!-- Alert Box -->
       <Overlay :class="{'active': alertBox,'dialog': true}">
         <img
@@ -150,18 +150,18 @@
         >
         <template>
           <p>{{ $t('god.skipText') }}</p>
-          <AppButton
-            @click.native="skipAction(playerIndex)"
+          <BaseButton
+            @clicked="skipAction(playerIndex)"
             class="green"
           >
             <span>{{ $t('god.skipButton2') }}</span>
-          </AppButton>
-          <AppButton
-            @click.native="alertBox = false"
+          </BaseButton>
+          <BaseButton
+            @clicked="alertBox = false"
             class="danger"
           >
             <span>{{ $t('god.cancelButton') }}</span>
-          </AppButton>
+          </BaseButton>
         </template>
       </Overlay>
     </template>

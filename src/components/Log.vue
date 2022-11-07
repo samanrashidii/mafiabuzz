@@ -29,12 +29,12 @@
     <div v-if="dashboard.totalHistory.length === 0">
       <h2>{{ $t('god.noLog') }}</h2>
     </div>
-    <AppButton
-      @click.native="closeLog()"
+    <BaseButton
+      @clicked="closeLog()"
       class="active has-small-top-margin"
     >
       <span>{{ $t('god.logCloseButton') }}</span>
-    </AppButton>
+    </BaseButton>
   </Overlay>
 </template>
 

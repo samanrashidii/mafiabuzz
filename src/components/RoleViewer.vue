@@ -32,11 +32,11 @@
     >
       {{ $t('god.noRolesToView') }}
     </h2>
-    <AppButton
-      @click.native="closeViewer()"
+    <BaseButton
+      @clicked="closeViewer()"
     >
       {{ $t('god.roleViewerButton') }}
-    </AppButton>
+    </BaseButton>
   </div>
 </template>
 

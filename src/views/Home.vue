@@ -22,19 +22,21 @@
           src="@/assets/images/savedgame.svg"
           :alt="$t('general.loadFromLastgameMessage')"
         >
-        <h3 v-html="$t('general.loadFromLastgameMessage')" />
-        <AppButton
-          @click.native="loadFromSave()"
+        <h3
+          v-html="$t('general.loadFromLastgameMessage')"
+        />
+        <BaseButton
+          @clicked="loadFromSave()"
           class="green disc-bttn"
         >
           <span>{{ $t('common.loadLastGameButton') }}</span>
-        </AppButton>
-        <AppButton
-          @click.native="resetFactory()"
+        </BaseButton>
+        <BaseButton
+          @clicked="resetFactory()"
           class="danger start-bttn"
         >
           <span>{{ $t('common.startNewGameButton') }}</span>
-        </AppButton>
+        </BaseButton>
       </template>
     </Overlay>
   </div>

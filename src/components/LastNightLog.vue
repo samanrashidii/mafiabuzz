@@ -13,7 +13,7 @@
       />
     </ul>
     <app-button
-      @click.native="lastNightBoxController()"
+      @clicked="lastNightBoxController()"
       class="active"
     >
       <span>{{ $t('god.logCloseButton') }}</span>

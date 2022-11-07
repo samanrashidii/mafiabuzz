@@ -25,15 +25,15 @@
         v-else
       >{{ $t('common.Citizen') }}</span>
     </div>
-    <AppButton
+    <BaseButton
       class="info-bttn"
       :class="rarity+'-bg'"
-      @click.native="showInfo()"
+      @clicked="showInfo()"
     >
       <span>
         {{ $t('general.seeDetails') }}
       </span>
-    </AppButton>
+    </BaseButton>
   </div>
 </template>
 

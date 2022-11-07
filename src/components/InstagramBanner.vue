@@ -11,13 +11,13 @@
             alt=""
         >
         <h3>{{ $t('general.instagramBanner.title') }}</h3>
-        <AppButton
+        <BaseButton
             href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDcyNTI2ODEwMTc3MTk2?igshid=qojs3lcnml81"
             target="_blank"
             class="awesome sm"
         >
             <span>{{ $t('general.instagramBanner.button') }}</span>
-        </AppButton>
+        </BaseButton>
     </div>
 </template>
 

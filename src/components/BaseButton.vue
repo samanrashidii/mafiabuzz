@@ -3,6 +3,7 @@
     class="bttn"
     :href="link"
     :target="target"
+    @click="$emit('clicked')"
   >
     <slot />
   </a>

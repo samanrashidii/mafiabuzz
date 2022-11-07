@@ -25,25 +25,25 @@
             >
               {{ $t('thirdparty.discordCodeSubmit') }}
             </button>
-            <AppButton
+            <BaseButton
               v-if="!this.gameSettings.discordChannel"
               href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTAxMDQ4NTMwMTM2MjIz?igshid=2pvecoho35pg"
               target="_blank"
               class="awesome sm-fontsize"
             >
               {{ $t('thirdparty.discordHelp') }}
-            </AppButton>
+            </BaseButton>
           </form>
         </template>
         <template v-else>
             <img class="onlayer-image" src="@/assets/images/assets/correct.svg" alt="Correct Icon" />
             <p class="has-small-top-margin center-aligned">{{ $t('thirdparty.discordConnected') }}</p>
-            <AppButton
+            <BaseButton
               class="danger"
-              @click.native="disconnectDiscord()"
+              @clicked="disconnectDiscord()"
             >
               {{ $t('thirdparty.discordDisconnect') }}
-            </AppButton>
+            </BaseButton>
         </template>
       </PageBox>
   </div>
