@@ -4,6 +4,7 @@ export default {
     startGameEngine (type) {
       let state = {}
       const discordToken = window.localStorage.getItem('discordToken')
+
       if (type === 'hard') {
         state = JSON.parse(window.localStorage.getItem('defaultState'))
       } else if (type === 'soft') {
@@ -13,12 +14,14 @@ export default {
       } else if (type === 'captured') {
         state = JSON.parse(window.localStorage.getItem('capturedState'))
       }
+
       if (type) {
         this.SetRoles(state.roles.Roles)
         this.SetReplacingRoles(state.roles.ReplacingRoles)
         this.SetGameSettings(state.gameSettings.gameSettings)
         this.SetDashboard(state.dashboard.dashboard)
       }
+
       if (discordToken) {
         this.SetDiscordChannel(discordToken)
       }

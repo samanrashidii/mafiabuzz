@@ -396,7 +396,6 @@ export default {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       DefaultState: 'DefaultState',
-      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       Roles: 'roles/Roles'
     }),
@@ -406,14 +405,11 @@ export default {
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     },
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    },
     replacingRoles() {
       return JSON.parse(JSON.stringify(this.ReplacingRoles))
     },
     deadRoles () {
-      const output = this.GameSettings.selectedRoles.filter(role => role.status.dead)
+      const output = this.gameSettings.selectedRoles.filter(role => role.status.dead)
       return output
     }
   },
@@ -427,7 +423,6 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameSettings/SetGameSettings',
       SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     lastPhaseController() {

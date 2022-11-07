@@ -1,11 +1,17 @@
 <template>
-  <div class="home">
+  <div
+    class="home"
+  >
     <transition
       name="slide"
       mode="out-in"
     >
-      <Create v-if="!gameSettings.gameSettings" />
-      <Dashboard v-else />
+      <Create
+        v-if="!gameSettings.gameStarted"
+      />
+      <Dashboard
+        v-else
+      />
     </transition>
     <Overlay
       class="main-alert"
@@ -51,13 +57,9 @@ export default {
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       Roles: 'roles/Roles'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings));
-    }
+    })
   },
   components: {
     Create,
@@ -75,7 +77,6 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameSettings/SetGameSettings',
       SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     loadFromSave() {

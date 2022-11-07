@@ -215,13 +215,9 @@ export default {
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       DefaultState: 'DefaultState'
     }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    },
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     },
@@ -232,7 +228,6 @@ export default {
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameSettings/SetGameSettings',
       SetReplacingRoles: 'roles/SetReplacingRoles'
     }),
     skipAction(index) {

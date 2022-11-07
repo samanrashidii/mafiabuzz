@@ -24,27 +24,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    }),
-    gameSettings() {
-      return this.GameSettings
-    },
     mafia() {
       return this.gameSettings.mafia - this.gameSettings.selectedMafia
     },
     citizen() {
       return this.gameSettings.citizen - this.gameSettings.selectedCitizen
     }
-  },
-  methods: {
-    ...mapActions({
-      SetGameSettings: 'gameSettings/SetGameSettings'
-    })
   }
 }
 </script>

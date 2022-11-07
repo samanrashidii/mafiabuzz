@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import DiscordBox from '@/components/DiscordBox.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
@@ -144,17 +144,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      DefaultState: 'DefaultState',
-      GameSettings: 'gameSettings/GameSettings'
+      DefaultState: 'DefaultState'
     }),
     appVersion () {
       return process.env.VUE_APP_VERSION
     },
     createSettings () {
       return JSON.parse(JSON.stringify(this.CreateSettings))
-    },
-    gameSettings () {
-      return JSON.parse(JSON.stringify(this.GameSettings))
     },
     isValid () {
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
@@ -174,15 +170,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      SetGameSettings: 'gameSettings/SetGameSettings'
-    }),
     checkGame () {
       this.overlay = true
     },
     startGame () {
       localStorage.setItem('defaultSettings', JSON.stringify(this.DefaultState))
-      this.gameSettings.gameSettings = true
+      this.gameSettings.gameStarted = true
       this.SetGameSettings(this.gameSettings)
       localStorage.setItem('sameSettings', JSON.stringify(this.DefaultState))
       // Post Event To Discord

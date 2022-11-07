@@ -1,7 +1,13 @@
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   computed: {
+    ...mapGetters({
+      GameSettings: 'gameSettings/gameSettings'
+    }),
+    gameSettings () {
+      return JSON.parse(JSON.stringify(this.GameSettings))
+    },
     currentLang () {
       const output = this.$root._i18n.locale
       return output
@@ -9,6 +15,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      SetGameSettings: 'gameSettings/SetGameSettings',
       PostToDiscord: 'gameSettings/PostToDiscord'
     }),
     postDiscord (text, staticUrl) {

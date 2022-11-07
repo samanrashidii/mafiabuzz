@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -60,14 +59,6 @@ export default {
       interval: null
     }
   },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    }
-  },
   mounted() {
     this.interval = setInterval(() => {
       if (this.item < this.roles.length - 1) {
@@ -78,9 +69,6 @@ export default {
     }, 2000)
   },
   methods: {
-    ...mapActions({
-      SetGameSettings: 'gameSettings/SetGameSettings'
-    }),
     closeViewer() {
       this.gameSettings.roleViewer = false
       this.gameSettings.searchingUsed = false

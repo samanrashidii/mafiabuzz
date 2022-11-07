@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import Vue2TouchEvents from 'vue2-touch-events';
+// Plugins
 import Notifications from 'vue-notification'
 import VueMeta from 'vue-meta'
 import Loading from 'vue-loading-overlay'
@@ -9,20 +9,16 @@ import store from './store/index'
 import i18n from './i18n'
 import VueClipboard from 'vue-clipboard2'
 import 'vue-loading-overlay/dist/vue-loading.css'
-import global from '@/mixins/global'
 import BackToTop from 'vue-backtotop'
-
 // Global Items
-
-import Button from './components/global/Button.vue'
-import PageBox from './components/global/PageBox.vue'
+import global from '@/mixins/global'
+import Button from './components/BaseButton.vue'
+import PageBox from './components/BasePageBox.vue'
 const VueScrollTo = require('vue-scrollto')
 
 Vue.component('AppButton', Button)
 Vue.component('PageBox', PageBox)
-
 Vue.mixin(global)
-
 Vue.use(VueMeta)
 Vue.use(Notifications)
 Vue.use(Loading)

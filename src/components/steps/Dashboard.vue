@@ -70,15 +70,14 @@
         <p class="important-hint">
           {{ $t('pages.home.nameExtraHint') }}
         </p>
-        <template v-for="(roleInput, index) in gameSettings.selectedRoles">
-          <input
-            @keyup.enter="$event.target.nextElementSibling.focus();"
+        <input
+            v-for="(roleInput, index) in gameSettings.selectedRoles"
+            @keyup.enter="$event.target.nextElementSibling.focus()"
             type="text"
             class="has-xsmall-bottom-margin"
             :key="index"
             v-model="players[index]"
           >
-        </template>
         <AppButton
           @click.native="assignRoles()"
           class="active assign-bttn"
@@ -88,8 +87,8 @@
       </PageBox>
 
       <PageBox
+      v-else-if="gameSettings.stepCounter === 2"
         class="display autoheight"
-        v-else-if="gameSettings.stepCounter === 2"
         key="step2"
       >
         <div class="inner-display">
@@ -132,14 +131,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings',
       Roles: 'roles/Roles'
     }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
-    },
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
     },
     checkUsers() {
       const savedPlayers = JSON.parse(localStorage.getItem('savedPlayers'))
@@ -153,7 +148,6 @@ export default {
     ...mapActions({
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetGameSettings: 'gameSettings/SetGameSettings',
       SetDiscordChannel: 'gameSettings/SetDiscordChannel',
       SetDashboard: 'dashboard/SetDashboard'
     }),

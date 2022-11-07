@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   props: {
@@ -36,12 +35,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    },
     index() {
       return this.type === 'totalUnit' ? 1 : 2
     },
@@ -73,9 +66,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetGameSettings: 'gameSettings/SetGameSettings'
-    }),
     calcVal() {
       this.type === 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
       this.gameSettings.citizen = this.calcCitizen

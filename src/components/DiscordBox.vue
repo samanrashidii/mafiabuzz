@@ -2,7 +2,7 @@
   <div class="discord-box has-xsmall-bottom-margin">
       <PageBox class="dark-color">
         <img class="default-size has-xsmall-bottom-margin" src="@/assets/images/icons/discord.svg" alt="Discord Icon" />
-        <template v-if="!this.GameSettings.discordChannel">
+        <template v-if="!this.gameSettings.discordChannel">
           <p
             v-html="$t('thirdparty.discordText')"
             class="center-aligned"
@@ -26,7 +26,7 @@
               {{ $t('thirdparty.discordCodeSubmit') }}
             </button>
             <AppButton
-              v-if="!this.GameSettings.discordChannel"
+              v-if="!this.gameSettings.discordChannel"
               href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTAxMDQ4NTMwMTM2MjIz?igshid=2pvecoho35pg"
               target="_blank"
               class="awesome sm-fontsize"
@@ -50,17 +50,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
   data () {
     return {
         connectKey: null
     }
-  },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    })
   },
   methods: {
     ...mapActions({

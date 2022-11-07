@@ -11,7 +11,7 @@
         v-html="$t('pages.home.errorText1', {
           number: mafiaNumbers,
           role: $t('common.Mafia'),
-          chosen: GameSettings.aliveMafia
+          chosen: gameSettings.aliveMafia
         })"
       />
       <li
@@ -21,7 +21,7 @@
           number: citizenNumbers,
           role: $t('common.Citizen'),
           secondRole: $t('common.Solo'),
-          chosen: GameSettings.aliveCitizen + GameSettings.aliveSolo
+          chosen: gameSettings.aliveCitizen + gameSettings.aliveSolo
         })"
       />
     </ul>
@@ -29,18 +29,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 
 export default {
   props: {
     errorStatus: Object,
     mafiaNumbers: Number,
     citizenNumbers: Number,
-  },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    })
   }
 }
 </script>

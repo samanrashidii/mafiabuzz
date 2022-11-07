@@ -102,8 +102,6 @@ export default {
   mixins: [sortedRoles],
   data() {
     return {
-      normalMafia: 0,
-      normalCitizen: 0,
       showInfo: false,
       roleInfo: {}
     }
@@ -114,8 +112,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      Roles: 'roles/Roles',
-      GameSettings: 'gameSettings/GameSettings'
+      Roles: 'roles/Roles'
     }),
     getRoles() {
       const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary']
@@ -140,15 +137,11 @@ export default {
         }
       })
       return sortedRoles
-    },
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
     }
   },
   methods: {
     ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetGameSettings: 'gameSettings/SetGameSettings'
+      SetRoles: 'roles/SetRoles'
     }),
     calcPower () {
       const $powerControl = this.gameSettings.powerControl

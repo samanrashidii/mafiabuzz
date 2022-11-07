@@ -69,14 +69,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings',
       Roles: 'roles/Roles'
     }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
     },
     gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
+      return JSON.parse(JSON.stringify(this.gameSettings))
     }
   },
   updated () {
@@ -99,7 +98,6 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameSettings/SetGameSettings',
       SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     resetFactory() {

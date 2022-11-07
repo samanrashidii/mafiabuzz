@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data () {
@@ -75,18 +74,7 @@ export default {
       showrole: false
     }
   },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameSettings/GameSettings'
-    }),
-    gameSettings () {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    }
-  },
   methods: {
-    ...mapActions({
-      SetGameSettings: 'gameSettings/SetGameSettings'
-    }),
     nextPerson () {
       this.showrole = false;
       if (this.gameSettings.personNumb == this.gameSettings.selectedRoles.length) {
