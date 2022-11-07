@@ -1,6 +1,10 @@
 <template>
-  <div class="game-finished">
-    <template v-for="(winner, index) in $t('general.winner')">
+  <div
+    class="game-finished"
+  >
+    <template
+      v-for="(winner, index) in $t('general.winner')"
+    >
       <div
         :key="index"
         class="game-finish-box"
@@ -11,20 +15,24 @@
           <div v-if="soloWinnerDetails">
             <img
               :src="getImg('/roles', soloWinnerDetails.icon)"
-              :alt="soloWinnerDetails.info[currentLang].name"
+              :alt="soloWinnerDetails.name"
               class="solo-player"
             >
             <h2 v-html="winner.title" />
-            <h2><strong>{{ soloWinnerDetails.info[currentLang].name }}</strong></h2>
+            <h2><strong>{{ soloWinnerDetails.name }}</strong></h2>
           </div>
           <div v-else>
             <img
               :src="getImg('/game', winner.image)"
-              :alt="winner.info[currentLang].name"
+              :alt="winner.name"
             >
-            <h2 v-html="winner.title" />
+            <h2
+              v-html="winner.title"
+            />
           </div>
-          <div class="button-holder">
+          <div
+            class="button-holder"
+          >
             <AppButton
               @click.native="changeGameFinshed(false)"
               class="active"

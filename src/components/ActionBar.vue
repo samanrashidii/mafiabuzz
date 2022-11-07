@@ -194,7 +194,7 @@
             </div>
           </div>
 
-          <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia && !player.solo , 'solo-role': !player.mafia && player.solo}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
+          <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia && !player.solo , 'solo-role': !player.mafia && player.solo}"> {{ player.info[currentLang].name }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
           <ActionBox
             :player="player"
             :player-index="index"

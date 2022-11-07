@@ -150,7 +150,7 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetGameSettings: 'gameStatus/SetGameSettings'
     }),
-    calcPower() {
+    calcPower () {
       const $powerControl = this.gameSettings.powerControl
       $powerControl.power = 0
       $powerControl.mafiaPower = 0
@@ -171,7 +171,7 @@ export default {
       this.gameSettings.selectedMafia = this.gameSettings.selectedRoles.filter(element => element.mafia).length
       this.gameSettings.selectedCitizen = this.gameSettings.selectedRoles.filter(element => !element.mafia).length
     },
-    checkNumbers(role) {
+    checkNumbers (role) {
       if (this.gameSettings.multipleRoles.normalMafia > 0 && role.status.mafia) {
         return true
       } if (this.gameSettings.multipleRoles.normalCitizen > 0 && role.status.citizen) {
@@ -179,7 +179,7 @@ export default {
       }
       return false
     },
-    checkRoles(role, index) {
+    checkRoles (role) {
       this.getRoles.forEach((element) => {
         if (element.id == role.id) {
           element.selected == false ? element.selected = true : element.selected = false
@@ -200,7 +200,7 @@ export default {
       this.SetRoles(this.getRoles)
       this.SetGameSettings(this.gameSettings)
     },
-    decrNumber(role) {
+    decrNumber (role) {
       const $roles = this.gameSettings.selectedRoles
       if (role.status.mafia) {
         if (this.gameSettings.multipleRoles.normalMafia > 1) {
@@ -242,7 +242,7 @@ export default {
       this.SetRoles(this.getRoles)
       this.SetGameSettings(this.gameSettings)
     },
-    incrNumber(role) {
+    incrNumber (role) {
       let targetRole
       if (role.status.mafia) {
         if (this.gameSettings.multipleRoles.normalMafia < this.gameSettings.mafia) {

@@ -23,7 +23,7 @@ export default {
             const characterStatus = element.status.hasAction
             this.dashboard.killerChanged = true
             this.dashboard.nextKiller.icon = element.icon
-            this.dashboard.nextKiller.info[this.currentLang].name = element.info[this.currentLang].name
+            this.dashboard.nextKiller.name = element.info[this.currentLang].name
             this.dashboard.nextKiller.player = element.player
             if (element.priority === null) {
               element.priority = this.replacingRoles.killerMafia.priority

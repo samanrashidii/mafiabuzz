@@ -5,11 +5,11 @@
         <div class="has-clear-fix">
           <img
             :src="getImg('/roles', dashboard.nextKiller.icon)"
-            :alt="dashboard.nextKiller.info[currentLang].name"
+            :alt="dashboard.nextKiller.name"
           >
         </div>
         <h2>
-          <strong>{{ dashboard.nextKiller.info[currentLang].name }}</strong>
+          <strong>{{ dashboard.nextKiller.name }}</strong>
           <span>( {{ dashboard.nextKiller.player }} )</span>
         </h2>
         <p v-html="$t('god.nextKiler')" />

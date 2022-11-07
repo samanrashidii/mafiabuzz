@@ -1,11 +1,17 @@
 <template>
-  <div class="character-item">
+  <div
+    class="character-item"
+  >
     <img
       :src="getImg('/roles', role.icon)"
       :alt="role.info[currentLang].name"
     >
-    <h2>{{ role.info[currentLang].name }}</h2>
-    <div class="mafia-status">
+    <h2>
+      {{ role.info[currentLang].name }}
+    </h2>
+    <div
+      class="mafia-status"
+    >
       <span
         class="mafia-role has-rope"
         v-if="role.mafia"
@@ -24,13 +30,15 @@
       :class="rarity+'-bg'"
       @click.native="showInfo()"
     >
-      <span>{{ $t('general.seeDetails') }}</span>
+      <span>
+        {{ $t('general.seeDetails') }}
+      </span>
     </AppButton>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 

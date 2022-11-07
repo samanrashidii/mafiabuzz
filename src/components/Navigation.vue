@@ -3,7 +3,9 @@
     class="navigation sticky"
   >
     <nav>
-      <template v-for="(nav, index) in MainApp.navigation">
+      <template
+        v-for="(nav, index) in MainApp.navigation"
+        >
         <router-link
           :to="{name: nav.url}"
           :key="index"
