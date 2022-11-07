@@ -59,7 +59,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import startGame from '@/mixins/startGame';
 
 export default {
@@ -68,9 +67,6 @@ export default {
     soloWinnerDetails: Object
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
     },
@@ -94,12 +90,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
-    }),
     resetFactory() {
       this.startGameEngine('hard')
     },

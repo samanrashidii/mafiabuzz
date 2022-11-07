@@ -93,7 +93,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 import sortedRoles from '@/mixins/sortedRoles';
@@ -111,9 +110,6 @@ export default {
     InfoBox
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    }),
     getRoles() {
       const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary']
       let roles = JSON.parse(JSON.stringify(this.Roles))
@@ -140,9 +136,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles'
-    }),
     calcPower () {
       const $powerControl = this.gameSettings.powerControl
       $powerControl.power = 0

@@ -50,7 +50,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 export default {
   data () {
     return {
@@ -58,9 +57,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
-    }),
     connectDiscord () {
       const isWebhookCode = this.connectKey.indexOf('discord.com/api/webhooks')
       if (isWebhookCode !== -1) {

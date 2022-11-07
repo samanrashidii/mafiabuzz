@@ -100,7 +100,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import DiscordBox from '@/components/DiscordBox.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
@@ -143,9 +142,6 @@ export default {
     InstagramBanner
   },
   computed: {
-    ...mapGetters({
-      DefaultState: 'DefaultState'
-    }),
     appVersion () {
       return process.env.VUE_APP_VERSION
     },

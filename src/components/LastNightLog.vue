@@ -1,10 +1,14 @@
 <template>
-  <div class="last-night-log">
+  <div
+    class="last-night-log"
+  >
     <img
       src="@/assets/images/roles/people.svg"
       :alt="$t('god.peopleIconAlt')"
     >
-    <h2>{{ $t('god.lastNightTitle') }}</h2>
+    <h2>
+      {{ $t('god.lastNightTitle') }}
+    </h2>
     <ul>
       <li
         v-for="(nL, index) in dashboard.lastNight"
@@ -12,32 +16,26 @@
         v-html="nL"
       />
     </ul>
-    <app-button
+    <BaseButton
       @clicked="lastNightBoxController()"
       class="active"
     >
-      <span>{{ $t('god.logCloseButton') }}</span>
-    </app-button>
+      <span>
+        {{ $t('god.logCloseButton') }}
+      </span>
+    </BaseButton>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-
 export default {
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard'
-    }),
-    dashboard() {
+    dashboard () {
       return JSON.parse(JSON.stringify(this.Dashboard))
     }
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard'
-    }),
-    lastNightBoxController() {
+    lastNightBoxController () {
       this.dashboard.lastNightBox = false
       this.SetDashboard(this.dashboard)
     }

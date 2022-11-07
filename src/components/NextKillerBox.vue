@@ -25,21 +25,13 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-
 export default {
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard'
-    }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     }
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard'
-    }),
     closeNextKiller() {
       this.dashboard.killerChanged = false
       this.SetDashboard(this.dashboard)

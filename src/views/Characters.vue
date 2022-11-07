@@ -84,7 +84,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import Carousel from 'vue-owl-carousel2';
 import InfoBox from '@/components/InfoBox.vue';
 import CharacterItem from '@/components/CharacterItem.vue';
@@ -103,9 +102,6 @@ export default {
     CharacterItem
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    }),
     legendaries() {
       const characters = this.Roles.filter(element => element.rarity === 'legendary')
       return characters

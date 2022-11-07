@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import checkRoute from '@/mixins/checkRoute';
@@ -63,9 +62,6 @@ export default {
     PageTitle
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles',
-    }),
     roles () {
       return JSON.parse(JSON.stringify(this.Roles));
     }

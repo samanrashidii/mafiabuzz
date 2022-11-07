@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 
 export default {
@@ -47,9 +46,6 @@ export default {
     Overlay
   },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard'
-    }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     }

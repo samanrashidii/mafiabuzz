@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import Create from '@/components/steps/Create.vue';
 import Dashboard from '@/components/steps/Dashboard.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -55,13 +54,6 @@ export default {
     return {
       overlay: false
     }
-  },
-  computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      Roles: 'roles/Roles'
-    })
   },
   components: {
     Create,
@@ -75,12 +67,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
-    }),
     loadFromSave() {
       this.startGameEngine('captured')
       this.overlay = false

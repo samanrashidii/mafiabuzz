@@ -169,7 +169,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import Overlay from '@/components/Overlay.vue';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
@@ -213,11 +212,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
-    }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     },
@@ -226,10 +220,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
-      SetReplacingRoles: 'roles/SetReplacingRoles'
-    }),
     skipAction(index) {
       this.alertBox = false
       this.nextAction(index)

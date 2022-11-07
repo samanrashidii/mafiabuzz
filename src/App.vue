@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import Navigation from '@/components/Navigation.vue';
 import LanguageButton from '@/components/LanguageButton.vue';
 import SERVER from '@/service/server';
@@ -83,12 +82,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      DefaultState: 'DefaultState',
-      Dashboard: 'dashboard/Dashboard',
-      Roles: 'roles/Roles',
-      ReplacingRoles: 'roles/ReplacingRoles'
-    }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
     },
@@ -153,12 +146,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
-    }),
     trackEvent () {
       const platform = navigator.platform || 'none'
       gtag('event', 'click', {

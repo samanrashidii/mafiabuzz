@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 
@@ -56,11 +55,6 @@ export default {
   components: {
     CharacterPower,
     InfoBox
-  },
-  computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    })
   },
   methods: {
     showInfo() {

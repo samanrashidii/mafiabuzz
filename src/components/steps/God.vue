@@ -350,7 +350,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import ActionBar from '@/components/ActionBar.vue';
 import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
@@ -393,12 +392,6 @@ export default {
     Table
   },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      DefaultState: 'DefaultState',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      Roles: 'roles/Roles'
-    }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
     },
@@ -419,12 +412,6 @@ export default {
     }, 60000)
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
-    }),
     lastPhaseController() {
       // Finish Day After Taking Vote
       this.dashboard.lastPhaseAction = false

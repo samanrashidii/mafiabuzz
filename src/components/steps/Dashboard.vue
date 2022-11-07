@@ -105,7 +105,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import God from '@/components/steps/God.vue';
 import Overlay from '@/components/Overlay.vue';
 import ShowBox from '@/components/ShowBox.vue';
@@ -130,9 +129,6 @@ export default {
     PageTitle
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    }),
     roles() {
       return JSON.parse(JSON.stringify(this.Roles))
     },
@@ -145,12 +141,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDiscordChannel: 'gameSettings/SetDiscordChannel',
-      SetDashboard: 'dashboard/SetDashboard'
-    }),
     assignRoles() {
       const gR = this.gameSettings.selectedRoles
       const pL = this.players

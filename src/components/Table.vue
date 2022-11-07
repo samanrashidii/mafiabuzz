@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
@@ -100,9 +99,6 @@ export default {
     CharacterPower
   },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard'
-    }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     }
@@ -112,9 +108,6 @@ export default {
     dashboardTable: Boolean
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard'
-    }),
     characterClasses(char) {
       if (this.dashboardTable) {
         return {

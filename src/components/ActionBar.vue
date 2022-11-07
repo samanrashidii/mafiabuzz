@@ -206,7 +206,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import ActionBox from '@/components/ActionBox.vue';
 import NextKillerBox from '@/components/NextKillerBox.vue';
 import Overlay from '@/components/Overlay.vue';
@@ -232,11 +231,6 @@ export default {
     RoleViewer
   },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
-    }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
     },
@@ -248,10 +242,6 @@ export default {
     },
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
-      SetReplacingRoles: 'roles/SetReplacingRoles'
-    }),
     checkStatus(player) {
       let target
       if (player) {

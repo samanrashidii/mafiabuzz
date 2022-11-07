@@ -3,7 +3,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      GameSettings: 'gameSettings/gameSettings'
+      GameSettings: 'gameSettings/gameSettings',
+      Dashboard: 'dashboard/Dashboard',
+      Roles: 'roles/Roles',
+      ReplacingRoles: 'roles/ReplacingRoles',
+      DefaultState: 'DefaultState'
     }),
     gameSettings () {
       return JSON.parse(JSON.stringify(this.GameSettings))
@@ -16,6 +20,10 @@ export default {
   methods: {
     ...mapActions({
       SetGameSettings: 'gameSettings/SetGameSettings',
+      SetRoles: 'roles/SetRoles',
+      SetReplacingRoles: 'roles/SetReplacingRoles',
+      SetDashboard: 'dashboard/SetDashboard',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel',
       PostToDiscord: 'gameSettings/PostToDiscord'
     }),
     postDiscord (text, staticUrl) {
