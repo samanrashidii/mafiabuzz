@@ -145,7 +145,7 @@ export default {
   computed: {
     ...mapGetters({
       DefaultState: 'DefaultState',
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     appVersion () {
       return process.env.VUE_APP_VERSION
@@ -175,14 +175,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     }),
     checkGame () {
       this.overlay = true
     },
     startGame () {
       localStorage.setItem('defaultSettings', JSON.stringify(this.DefaultState))
-      this.gameSettings.gameStatus = true
+      this.gameSettings.gameSettings = true
       this.SetGameSettings(this.gameSettings)
       localStorage.setItem('sameSettings', JSON.stringify(this.DefaultState))
       // Post Event To Discord

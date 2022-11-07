@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     gameSettings () {
       return JSON.parse(JSON.stringify(this.GameSettings))
@@ -85,7 +85,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     }),
     nextPerson () {
       this.showrole = false;

@@ -396,7 +396,7 @@ export default {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
       DefaultState: 'DefaultState',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       Roles: 'roles/Roles'
     }),
@@ -427,8 +427,8 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+      SetGameSettings: 'gameSettings/SetGameSettings',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     lastPhaseController() {
       // Finish Day After Taking Vote

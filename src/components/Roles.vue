@@ -115,7 +115,7 @@ export default {
   computed: {
     ...mapGetters({
       Roles: 'roles/Roles',
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     getRoles() {
       const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary']
@@ -148,7 +148,7 @@ export default {
   methods: {
     ...mapActions({
       SetRoles: 'roles/SetRoles',
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     }),
     calcPower () {
       const $powerControl = this.gameSettings.powerControl
@@ -207,7 +207,7 @@ export default {
           for (const el of $roles) {
             if (el.id == role.id) {
               $roles.splice($roles.indexOf(el), 1)
-              break;
+              break
             }
           }
         } else {
@@ -245,17 +245,13 @@ export default {
     incrNumber (role) {
       let targetRole
       if (role.status.mafia) {
-        if (this.gameSettings.multipleRoles.normalMafia < this.gameSettings.mafia) {
-          this.gameSettings.multipleRoles.normalMafia++
-          targetRole = JSON.parse(JSON.stringify(role))
-          this.gameSettings.selectedRoles.push(targetRole)
-        }
+        targetRole = JSON.parse(JSON.stringify(role))
+        this.gameSettings.selectedRoles.push(targetRole)
+        this.gameSettings.multipleRoles.normalMafia++
       } else if (role.status.citizen) {
-        if (this.gameSettings.multipleRoles.normalCitizen < this.gameSettings.citizen) {
-          this.gameSettings.multipleRoles.normalCitizen++
-          targetRole = JSON.parse(JSON.stringify(role))
-          this.gameSettings.selectedRoles.push(targetRole)
-        }
+        targetRole = JSON.parse(JSON.stringify(role))
+        this.gameSettings.selectedRoles.push(targetRole)
+        this.gameSettings.multipleRoles.normalCitizen++
       }
       this.calcPower()
       this.SetRoles(this.getRoles)

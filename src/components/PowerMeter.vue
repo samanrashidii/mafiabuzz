@@ -29,7 +29,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     gameSettings() {
       return this.GameSettings
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     })
   }
 }

@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     gameSettings() {
       return JSON.parse(JSON.stringify(this.GameSettings))
@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     }),
     calcVal() {
       this.type === 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal

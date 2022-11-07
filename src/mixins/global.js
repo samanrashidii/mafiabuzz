@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      PostToDiscord: 'gameStatus/PostToDiscord'
+      PostToDiscord: 'gameSettings/PostToDiscord'
     }),
     postDiscord (text, staticUrl) {
       const discordPayload = {

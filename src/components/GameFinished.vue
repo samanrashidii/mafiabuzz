@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       Roles: 'roles/Roles'
     }),
     roles() {
@@ -99,8 +99,8 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+      SetGameSettings: 'gameSettings/SetGameSettings',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     resetFactory() {
       this.startGameEngine('hard')

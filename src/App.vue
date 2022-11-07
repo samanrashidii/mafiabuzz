@@ -86,7 +86,7 @@ export default {
     ...mapGetters({
       DefaultState: 'DefaultState',
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       Roles: 'roles/Roles',
       ReplacingRoles: 'roles/ReplacingRoles'
     }),
@@ -158,8 +158,8 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+      SetGameSettings: 'gameSettings/SetGameSettings',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     trackEvent () {
       const platform = navigator.platform || 'none'

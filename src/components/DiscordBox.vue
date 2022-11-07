@@ -59,12 +59,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     })
   },
   methods: {
     ...mapActions({
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     connectDiscord () {
       const isWebhookCode = this.connectKey.indexOf('discord.com/api/webhooks')

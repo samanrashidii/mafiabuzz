@@ -132,7 +132,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       Roles: 'roles/Roles'
     }),
     roles() {
@@ -153,8 +153,8 @@ export default {
     ...mapActions({
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel',
+      SetGameSettings: 'gameSettings/SetGameSettings',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel',
       SetDashboard: 'dashboard/SetDashboard'
     }),
     assignRoles() {

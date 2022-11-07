@@ -28,7 +28,7 @@ export default {
         mafiaPower: 0,
         citizenPower: 0
       },
-      gameStatus: false,
+      gameSettings: false,
       gameReset: false,
       gameFinished: false,
       winner: null,
@@ -44,8 +44,7 @@ export default {
     }
   },
   getters: {
-    GameSettings: state => state.gameSettings,
-    DiscordGroups: state => state.discordGroups
+    GameSettings: state => state.gameSettings
   },
   mutations: {
     SET_GAME_SETTINGS: (state, settings) => {
@@ -66,16 +65,16 @@ export default {
         state.gameSettings.gameFinished = true
         state.gameSettings.winner = winner
       }
-      if (state.gameSettings.alivePeople <= 2 && state.gameSettings.gameStatus && soloOdds) {
+      if (state.gameSettings.alivePeople <= 2 && state.gameSettings.gameSettings && soloOdds) {
         state.gameSettings.soloWinner = hasFinishStopper[0]
         state.gameSettings.soloWins = true
       }
 
       if (state.gameSettings.soloWins && !state.gameSettings.reviewGame) {
         finishGame('solo')
-      } else if (state.gameSettings.alivePeople / 2 <= mafiaOdds && hasFinishStopper.length === 0 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame) {
+      } else if (state.gameSettings.alivePeople / 2 <= mafiaOdds && hasFinishStopper.length === 0 && state.gameSettings.gameSettings && !state.gameSettings.reviewGame) {
         finishGame('mafia')
-      } else if (mafiaOdds === 0 && hasFinishStopper.length === 0 && state.gameSettings.gameStatus && !state.gameSettings.reviewGame) {
+      } else if (mafiaOdds === 0 && hasFinishStopper.length === 0 && state.gameSettings.gameSettings && !state.gameSettings.reviewGame) {
         finishGame('citizen')
       }
     },

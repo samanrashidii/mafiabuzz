@@ -102,7 +102,7 @@ export default {
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings'
+      GameSettings: 'gameSettings/GameSettings'
     }),
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
@@ -118,7 +118,7 @@ export default {
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings'
+      SetGameSettings: 'gameSettings/SetGameSettings'
     }),
     characterClasses(char) {
       if (this.dashboardTable) {

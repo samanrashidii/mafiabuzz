@@ -4,7 +4,7 @@
       name="slide"
       mode="out-in"
     >
-      <Create v-if="!gameSettings.gameStatus" />
+      <Create v-if="!gameSettings.gameSettings" />
       <Dashboard v-else />
     </transition>
     <Overlay
@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       Roles: 'roles/Roles'
     }),
@@ -75,8 +75,8 @@ export default {
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
+      SetGameSettings: 'gameSettings/SetGameSettings',
+      SetDiscordChannel: 'gameSettings/SetDiscordChannel'
     }),
     loadFromSave() {
       this.startGameEngine('captured')

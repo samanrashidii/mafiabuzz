@@ -234,7 +234,7 @@ export default {
   computed: {
     ...mapGetters({
       Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
+      GameSettings: 'gameSettings/GameSettings',
       ReplacingRoles: 'roles/ReplacingRoles',
       DefaultState: 'DefaultState'
     }),
@@ -254,7 +254,7 @@ export default {
   methods: {
     ...mapActions({
       SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
+      SetGameSettings: 'gameSettings/SetGameSettings',
       SetReplacingRoles: 'roles/SetReplacingRoles'
     }),
     checkStatus(player) {
