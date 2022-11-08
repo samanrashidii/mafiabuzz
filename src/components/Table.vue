@@ -141,11 +141,6 @@ export default {
   components: {
     CharacterPower
   },
-  computed: {
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    }
-  },
   props: {
     tableData: {
       type: Array,

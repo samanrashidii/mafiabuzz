@@ -191,7 +191,7 @@ export default {
       actionTarget2: null,
       useAbility: false,
       alertBox: false
-    };
+    }
   },
   props: {
     player: {
@@ -205,21 +205,13 @@ export default {
     force: {
       type: Boolean,
       default: false
-    },
-  },
-  computed: {
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    },
-    replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles))
     }
   },
   methods: {
     skipAction(index) {
       this.alertBox = false
       this.nextAction(index)
-    },
+    }
   },
   mixins: [
     actionLog,
@@ -234,7 +226,8 @@ export default {
     possibilities,
     saveHistory,
     skipAction,
-    trackingStatus
+    trackingStatus,
+    voteKiller
   ]
 }
 </script>

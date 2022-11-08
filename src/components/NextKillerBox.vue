@@ -26,11 +26,6 @@
 
 <script>
 export default {
-  computed: {
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    }
-  },
   methods: {
     closeNextKiller() {
       this.dashboard.killerChanged = false

@@ -51,7 +51,7 @@ export default {
     }
   },
   getters: {
-    Dashboard: state => state.dashboard
+    dashboard: state => state.dashboard
   },
   mutations: {
     SET_DASHBOARD: (state, dashboard) => {

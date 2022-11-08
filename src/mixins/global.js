@@ -4,13 +4,19 @@ export default {
   computed: {
     ...mapGetters({
       GameSettings: 'gameSettings/gameSettings',
-      Dashboard: 'dashboard/Dashboard',
+      Dashboard: 'dashboard/dashboard',
       Roles: 'roles/Roles',
       ReplacingRoles: 'roles/ReplacingRoles',
       DefaultState: 'DefaultState'
     }),
     gameSettings () {
       return JSON.parse(JSON.stringify(this.GameSettings))
+    },
+    dashboard () {
+      return JSON.parse(JSON.stringify(this.Dashboard))
+    },
+    replacingRoles () {
+      return JSON.parse(JSON.stringify(this.ReplacingRoles))
     },
     checkRoute () {
       return this.$route.name

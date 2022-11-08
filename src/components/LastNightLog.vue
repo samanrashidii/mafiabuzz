@@ -29,11 +29,6 @@
 
 <script>
 export default {
-  computed: {
-    dashboard () {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    }
-  },
   methods: {
     lastNightBoxController () {
       this.dashboard.lastNightBox = false

@@ -229,15 +229,9 @@ export default {
     RoleViewer
   },
   computed: {
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    },
-    replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles))
-    },
     progress() {
       return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
-    },
+    }
   },
   methods: {
     checkStatus(player) {

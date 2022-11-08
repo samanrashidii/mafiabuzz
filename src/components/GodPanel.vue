@@ -61,7 +61,7 @@
       class="main-dashboard"
     >
       <PageBox
-        class="display godashboard"
+        class="display god-dashboard"
         :class="{
           'day': dashboard.day && dashboard.god,
           'night': !dashboard.day,
@@ -464,15 +464,6 @@ export default {
     Table
   },
   computed: {
-    roles() {
-      return JSON.parse(JSON.stringify(this.Roles))
-    },
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    },
-    replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles))
-    },
     deadRoles () {
       const output = this.gameSettings.selectedRoles.filter(role => role.status.dead)
       return output
