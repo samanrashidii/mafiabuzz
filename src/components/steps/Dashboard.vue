@@ -161,7 +161,7 @@ export default {
     }
   },
   methods: {
-    assignRoles() {
+    assignRoles () {
       const gR = this.gameSettings.selectedRoles
       const pL = this.players
       let text = this.$t('thirdparty.discordPlayers')
@@ -202,8 +202,8 @@ export default {
       }
       this.SetGameSettings(this.gameSettings)
     },
-    handlePredefine() {
-      if (this.showPredefined == false) {
+    handlePredefine () {
+      if (this.showPredefined === false) {
         this.preDefined()
         this.showPredefined = true
         this.showSavedNames = false
@@ -213,8 +213,8 @@ export default {
         this.showSavedNames = true
       }
     },
-    handleSavedNames() {
-      if (this.showSavedNames == false) {
+    handleSavedNames () {
+      if (this.showSavedNames === false) {
         this.players = JSON.parse(localStorage.getItem('savedPlayers'))
         if (this.gameSettings.selectedRoles.length < this.players.length) {
           this.players = this.players.slice(0, this.gameSettings.selectedRoles.length)
@@ -227,7 +227,7 @@ export default {
         this.showSavedNames = false
       }
     },
-    preDefined() {
+    preDefined () {
       this.gameSettings.selectedRoles.forEach((element, index) => {
         this.players.push(`${this.$t('pages.home.playerDefault')} ${index + 1}`)
       })
@@ -235,10 +235,10 @@ export default {
     toggleAlertBox (value) {
       this.alertBox = value
     },
-    randomFunc() {
+    randomFunc () {
       this.gameSettings.selectedRoles.sort(() => 0.5 - Math.random())
     },
-    changeGameSettings() {
+    changeGameSettings () {
       this.startGameEngine('change')
     }
   }

@@ -33,40 +33,40 @@ export default {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,
       meta: [
-        {
-          vmid: 'description',
+      {
+          hid: 'description',
           name: 'description',
           content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
         },
         {
-          vmid: 'title',
+          hid: 'og-title',
           property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
         },
         {
-          vmid: 'ogdescription',
+          hid: 'og-description',
           property: 'og:description',
           content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
         },
         {
-          vmid: 'ogurl',
+          hid: 'og-url',
           property: 'og:url',
-          content: window.location.href
+          content: 'https://mafiabuzz.app/'
         },
         {
-          vmid: 'twitter:title',
+          hid: 'twitter-url',
+          property: 'twitter:url',
+          content: 'https://mafiabuzz.app/'
+        },
+        {
+          hid: 'twitter-title',
           name: 'twitter:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`
         },
         {
-          vmid: 'twitter:description',
+          hid: 'twitter-description',
           name: 'twitter:description',
           content: `${this.$t('meta.home.description') + this.$t('meta.home.description')}`
-        },
-        {
-          vmid: 'twitter:url',
-          name: 'twitter:url',
-          content: window.location.href
         }
       ]
     }
