@@ -1,8 +1,10 @@
 <template>
-  <div class="list-item">
+  <div
+    class="list-item"
+  >
     <ul>
       <li
-        v-for="(item, index) in list"
+        v-for="(item, index) in items"
         :key="index"
       >
         {{ item.text }}
@@ -14,8 +16,12 @@
 <script>
 
 export default {
+  name: 'ListItem',
   props: {
-    list: Array
+    items: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>

@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  name: 'PageTitle',
   props: {
     dashboardTitle: {
       type: Boolean,

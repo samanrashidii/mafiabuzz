@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <div
+    class="error-box"
+  >
     <img
       class="has-bottom-margin"
       src="@/assets/images/icons/error.svg"
       :alt="$t('general.notValidIcon')"
     >
-    <ul class="error-bullet">
+    <ul
+      class="error-bullet"
+    >
       <li
         v-if="errorStatus.mafia"
         v-html="$t('pages.home.errorText1', {
@@ -15,7 +19,6 @@
         })"
       />
       <li
-        class="blue"
         v-if="errorStatus.citizens"
         v-html="$t('pages.home.errorText2', {
           number: citizenNumbers,
@@ -23,6 +26,7 @@
           secondRole: $t('common.Solo'),
           chosen: gameSettings.aliveCitizen + gameSettings.aliveSolo
         })"
+        class="blue"
       />
     </ul>
   </div>
@@ -32,9 +36,18 @@
 
 export default {
   props: {
-    errorStatus: Object,
-    mafiaNumbers: Number,
-    citizenNumbers: Number,
+    errorStatus: {
+      type: Object,
+      default: () => {}
+    },
+    mafiaNumbers: {
+      type: Number,
+      default: 0
+    },
+    citizenNumbers: {
+      type: Number,
+      default: 0
+    }
   }
 }
 </script>

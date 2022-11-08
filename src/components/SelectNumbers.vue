@@ -1,11 +1,15 @@
 <template>
-  <div class="step-box">
-    <p v-html="$t(`pages.home.step${index}`)" />
+  <div
+    class="select-numbers step-box"
+  >
+    <p
+      v-html="$t(`pages.home.step${index}`)"
+    />
     <select
-      @change="calcVal"
+      v-model.number="selectedVal"
       name="quantity"
       id="quantity"
-      v-model.number="selectedVal"
+      @change="calcVal"
     >
       <option
         value="null"
@@ -24,10 +28,13 @@
 </template>
 
 <script>
-
 export default {
+  name: 'SelectNumbers',
   props: {
-    type: String
+    type: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     return {

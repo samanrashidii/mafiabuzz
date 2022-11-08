@@ -2,6 +2,7 @@
   <div
     class="create create-game-panel"
   >
+    <!-- Patch Notes -->
     <div
       class="dashboard-header"
     >
@@ -31,101 +32,102 @@
         >
           {{ 'v' + appVersion }}
         </h2>
-        <span class="patch-date">
+        <span
+          class="patch-date"
+        >
           {{ $t('general.lastUpdate') }}
         </span>
-        <ListItem :list="$t('patchNotes')" />
+        <ListItem
+          :items="$t('patchNotes')"
+        />
         <BaseButton
-          @clicked="togglePatchNotes(false)"
           class="close-bttn danger has-top-margin"
+          @clicked="togglePatchNotes(false)"
         >
-          <span>{{ $t('common.closeButton') }}</span>
+          <span>
+            {{ $t('common.closeButton') }}
+          </span>
         </BaseButton>
       </template>
     </Overlay>
     <InstagramBanner />
-    <template>
-      <div
-        class="steps"
-      >
-        <PageBox>
-          <StepBox
-            type="total-unit"
-          />
-        </PageBox>
-        <PageBox>
-          <StepBox
-            type="total-mafia"
-          />
-        </PageBox>
-      </div>
-      <DiscordBox />
-      <Roles />
-      <BaseButton
-        class="start-bttn has-top-margin active"
-        @clicked="toggleOverlay(true)"
-      >
-        <span>
-          {{ $t('pages.home.start') }}
-        </span>
-      </BaseButton>
-      <Overlay
-        :class="{
-          'active': overlay,
-          'dialog': isValid
-        }"
-      >
-        <template
-          v-if="isValid"
-        >
-          <ErrorBox
-            :error-status="error"
-            :mafia-numbers="gameSettings.mafia"
-            :citizen-numbers="gameSettings.citizen"
-          />
-          <BaseButton
-            class="settings-bttn danger"
-            @clicked="toggleOverlay(false)"
-          >
-            <span>
-              {{ $t('pages.home.changeSettings') }}
-            </span>
-          </BaseButton>
-        </template>
-        <template
-          v-else
-        >
-          <NoteBox />
-          <Table
-            :table-data="gameSettings.fMafias"
-            class="mafia-table"
-          />
-          <Table
-            :table-data="gameSettings.fCitizens"
-            class="citizen-table"
-          />
-          <BaseButton
-            class="start-bttn green"
-            @clicked="startGame()"
-          >
-            <span>
-              {{ $t('pages.home.start') }}
-            </span>
-          </BaseButton>
-          <BaseButton
-            class="settings-bttn danger"
-            @clicked="toggleOverlay(false)"
-          >
-            <span>
-              {{ $t('pages.home.changeSettings') }}
-            </span>
-          </BaseButton>
-        </template>
-      </Overlay>
-      <PowerMeter
-        :class="{'active': !isValid}"
+    <PageBox>
+      <SelectNumbers
+        type="total-unit"
       />
-    </template>
+    </PageBox>
+    <PageBox>
+      <SelectNumbers
+        type="total-mafia"
+      />
+    </PageBox>
+    <DiscordBox />
+    <Roles />
+    <BaseButton
+      class="start-bttn has-top-margin active"
+      @clicked="toggleOverlay(true)"
+    >
+      <span>
+        {{ $t('pages.home.start') }}
+      </span>
+    </BaseButton>
+    <!-- Start Game Alert -->
+    <Overlay
+      :class="{
+        'active': overlay,
+        'dialog': isValid
+      }"
+    >
+      <template
+        v-if="isValid"
+      >
+        <ErrorBox
+          :error-status="error"
+          :mafia-numbers="gameSettings.mafia"
+          :citizen-numbers="gameSettings.citizen"
+        />
+        <BaseButton
+          class="settings-bttn danger"
+          @clicked="toggleOverlay(false)"
+        >
+          <span>
+            {{ $t('pages.home.changeSettings') }}
+          </span>
+        </BaseButton>
+      </template>
+      <template
+        v-else
+      >
+        <NoteBox />
+        <Table
+          :table-data="gameSettings.fMafias"
+          class="mafia-table"
+        />
+        <Table
+          :table-data="gameSettings.fCitizens"
+          class="citizen-table"
+        />
+        <BaseButton
+          class="start-bttn green"
+          @clicked="startGame()"
+        >
+          <span>
+            {{ $t('pages.home.start') }}
+          </span>
+        </BaseButton>
+        <BaseButton
+          class="settings-bttn danger"
+          @clicked="toggleOverlay(false)"
+        >
+          <span>
+            {{ $t('pages.home.changeSettings') }}
+          </span>
+        </BaseButton>
+      </template>
+    </Overlay>
+    <PowerMeter
+      :class="{'active': !isValid}"
+    />
   </div>
 </template>
 
@@ -137,7 +139,7 @@ import ListItem from '@/components/ListItem.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
 import Roles from '@/components/Roles.vue';
-import StepBox from '@/components/StepBox.vue';
+import SelectNumbers from '@/components/SelectNumbers.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import InstagramBanner from '@/components/InstagramBanner.vue';
@@ -162,7 +164,7 @@ export default {
     PageTitle,
     PowerMeter,
     Roles,
-    StepBox,
+    SelectNumbers,
     Table,
     WelcomeBox,
     InstagramBanner
@@ -170,9 +172,6 @@ export default {
   computed: {
     appVersion () {
       return process.env.VUE_APP_VERSION
-    },
-    createSettings () {
-      return JSON.parse(JSON.stringify(this.CreateSettings))
     },
     isValid () {
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
