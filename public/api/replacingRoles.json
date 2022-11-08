@@ -9,8 +9,7 @@
         "mafia": true,
         "action": {
             "passive": "replacingRoles.miniYakuza.action.passive",
-            "action": "replacingRoles.miniYakuza.action.action",
-            "oneTime": false
+            "action": "replacingRoles.miniYakuza.action.action"
         },
         "actionStatus": false,
         "ability": {
@@ -59,8 +58,7 @@
         "description": "replacingRoles.skeleton.description",
         "action": {
             "passive": "replacingRoles.skeleton.action.passive",
-            "action": "replacingRoles.skeleton.action.action",
-            "oneTime": false
+            "action": "replacingRoles.skeleton.action.action"
         },
         "actionStatus": false,
         "ability": {
@@ -109,8 +107,7 @@
         "passiveIcon": "default.png",
         "action": {
             "passive": "replacingRoles.killerMafia.action.passive",
-            "action": "replacingRoles.killerMafia.action.action",
-            "oneTime": false
+            "action": "replacingRoles.killerMafia.action.action"
         },
         "actionStatus": false,
         "ability": {

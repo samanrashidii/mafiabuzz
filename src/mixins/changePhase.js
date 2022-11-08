@@ -141,7 +141,7 @@ export default {
           this.dashboard.lastNight.push(logNote)
         }
         // About Roles
-        if (element.action.oneTime) {
+        if (element.status.actionLimit === 0) {
           element.actionStatus = true
         } else {
           element.actionStatus = false

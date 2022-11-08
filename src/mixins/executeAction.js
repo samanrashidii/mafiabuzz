@@ -3,9 +3,9 @@ export default {
     executeAction (player, target1, target2, index) {
       // Action Log
       if (this.useAbility) {
-        this.dashboard.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logSideText')}`
+        this.dashboard.log.mainText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
       } else {
-        this.dashboard.log.mainText = `<span>${this.$t(player.action.action)}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
+        this.dashboard.log.mainText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
       }
       this.dashboard.log.image = player.actionIcon
       this.saveHistory(this.dashboard.log.image, this.dashboard.log.mainText)
@@ -27,10 +27,6 @@ export default {
                 el.status.booleanAbility = true
               }
             }
-          }
-          // Check One Time Action
-          if (el.player === player.player && el.status.hasOneAction) {
-            el.action.oneTime = true
           }
           // Calc Hits
           if (el.player === target1 || el.player === target2) {

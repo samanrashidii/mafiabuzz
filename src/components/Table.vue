@@ -96,8 +96,8 @@
             <span
               v-else
               :class="{
-                'pending-action': (!tD.actionStatus && tD.status.hasAction && !tD.action.oneTime)
-                || (!tD.actionStatus && tD.status.hasAction && tD.status.hasOneAction && tD.action.oneTime),
+                'pending-action': (!tD.actionStatus && tD.status.hasAction)
+                || (!tD.actionStatus && tD.status.hasAction),
                 'done-action': tD.actionStatus
               }"
             />

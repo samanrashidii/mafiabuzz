@@ -1,7 +1,7 @@
 export default {
   methods: {
     passiveActive (element) {
-      this.dashboard.log.passiveText = `<span>${this.$t('god.logPassive')}</span> <strong>${this.$t(element.action.passive)}</strong>`
+      this.dashboard.log.passiveText = `<span>${this.$t('god.logPassive')}</span> <strong>${this.$t(element.info[this.currentLang].passive)}</strong>`
       this.dashboard.log.passiveIcon = element.passiveIcon
       this.saveHistory(this.dashboard.log.passiveIcon, this.dashboard.log.passiveText)
       setTimeout(() => {
