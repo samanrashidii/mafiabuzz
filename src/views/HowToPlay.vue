@@ -6,9 +6,7 @@
       class="dashboard-header has-xsmall-top-margin"
     >
       <PageBox>
-        <PageTitle
-          :check-route="checkRoute()"
-        />
+        <PageTitle />
       </PageBox>
     </div>
     <PageBox
@@ -48,23 +46,16 @@
 <script>
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkRoute from '@/mixins/checkRoute';
 import sortedRoles from '@/mixins/sortedRoles';
 
 export default {
   name: 'HowToPlay',
   mixins: [
-    checkRoute,
     sortedRoles
   ],
   components: {
     InfoBox,
     PageTitle
-  },
-  computed: {
-    roles () {
-      return JSON.parse(JSON.stringify(this.Roles));
-    }
   },
   metaInfo () {
     return {

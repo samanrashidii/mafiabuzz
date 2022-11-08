@@ -10,7 +10,7 @@
         <span>{{ $t('general.patchButton') }}</span>
       </BaseButton>
       <PageBox>
-        <PageTitle :check-route="checkRoute()" />
+        <PageTitle />
       </PageBox>
     </div>
     <Overlay :class="{'active': patchNotes}">
@@ -112,7 +112,6 @@ import StepBox from '@/components/StepBox.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import InstagramBanner from '@/components/InstagramBanner.vue';
-import checkRoute from '@/mixins/checkRoute';
 
 export default {
   data() {
@@ -237,9 +236,6 @@ export default {
         this.postDiscord(text, channelId)
       }
     }
-  },
-  mixins: [
-    checkRoute
-  ]
+  }
 }
 </script>

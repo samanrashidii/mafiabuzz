@@ -4,7 +4,6 @@
       <PageBox>
         <PageTitle
           dashboard-title
-          :check-route="checkRoute()"
         />
       </PageBox>
       <BaseButton
@@ -109,7 +108,6 @@ import God from '@/components/steps/God.vue';
 import Overlay from '@/components/Overlay.vue';
 import ShowBox from '@/components/ShowBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkRoute from '@/mixins/checkRoute';
 
 export default {
   data() {
@@ -217,9 +215,6 @@ export default {
     changeGameSettings() {
       this.startGameEngine('change')
     }
-  },
-  mixins: [
-    checkRoute
-  ]
+  }
 }
 </script>

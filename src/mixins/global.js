@@ -12,6 +12,9 @@ export default {
     gameSettings () {
       return JSON.parse(JSON.stringify(this.GameSettings))
     },
+    checkRoute () {
+      return this.$route.name
+    },
     currentLang () {
       const output = this.$root._i18n.locale
       return output

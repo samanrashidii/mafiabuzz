@@ -1,11 +1,17 @@
 <template>
-  <div class="about">
-    <div class="dashboard-header has-xsmall-top-margin">
+  <div
+    class="about"
+  >
+    <div
+      class="dashboard-header has-xsmall-top-margin"
+    >
       <PageBox>
-        <PageTitle :check-route="checkRoute()" />
+        <PageTitle />
       </PageBox>
     </div>
-    <div class="creators">
+    <div
+      class="creators"
+    >
       <ul>
         <li
           v-for="(creator, index) in creators"
@@ -22,34 +28,43 @@
             :href="creator.url"
             target="_blank"
           >
-            <strong>{{ creator.name }}</strong>
+            <strong>
+              {{ creator.name }}
+            </strong>
           </a>
           <div>
-            <span>{{ creator.title }}</span>
+            <span>
+              {{ creator.title }}
+            </span>
           </div>
         </li>
       </ul>
     </div>
 
-    <PageBox class="social-box">
-      <div class="social">
-        <p v-html="$t('pages.about.contactText')" />
-        <p v-html="$t('pages.about.socialText')" />
-        <template
+    <PageBox
+      class="social-box"
+    >
+      <div
+        class="social"
+      >
+        <p
+          v-html="$t('pages.about.contactText')"
+        />
+        <p
+          v-html="$t('pages.about.socialText')"
+        />
+        <a
           v-for="(social, index) in $t('pages.about.socials')"
+          :href="social.url"
+          :title="social.name"
+          :key="index"
+          target="_blank"
         >
-          <a
-            :href="social.url"
-            :title="social.name"
-            :key="index"
-            target="_blank"
+          <img
+            :src="getImg('/icons', social.icon)"
+            :alt="social.alt"
           >
-            <img
-              :src="getImg('/icons', social.icon)"
-              :alt="social.alt"
-            >
-          </a>
-        </template>
+        </a>
       </div>
     </PageBox>
     
@@ -58,7 +73,6 @@
 
 <script>
 import PageTitle from '@/components/PageTitle.vue';
-import checkRoute from '@/mixins/checkRoute';
 
 export default {
   name: 'About',
@@ -111,9 +125,6 @@ export default {
         }
       ]
     }
-  },
-  mixins: [
-    checkRoute
-  ]
+  }
 }
 </script>
