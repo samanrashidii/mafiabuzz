@@ -33,7 +33,7 @@
             box-shadow: 0 0 3px $background_color_6;
         }
         &.hacked-overlay{
-            background: url('~@/assets/images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+            background: url('~@/assets/images/assets/hacked.png') repeat center rgb(244, 244, 244);
         }
         &.jail-overlay{
             background: rgb(244, 244, 244);
