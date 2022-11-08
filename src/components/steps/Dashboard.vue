@@ -1,72 +1,95 @@
 <template>
-  <div class="dashboard">
-    <div class="dashboard-header">
+  <div
+    class="dashboard"
+  >
+    <div
+      class="dashboard-header"
+    >
       <PageBox>
         <PageTitle
           dashboard-title
         />
       </PageBox>
       <BaseButton
-        @clicked="alertBox = true"
-        class="settings-bttn danger has-small-top-margin"
         v-if="gameSettings.stepCounter !== 3"
+        class="settings-bttn danger has-small-top-margin"
+        @clicked="toggleAlertBox(true)"
       >
-        <span>{{ $t('pages.home.changeSettings') }}</span>
+        <span>
+          {{ $t('pages.home.changeSettings') }}
+        </span>
       </BaseButton>
     </div>
-
-    <Overlay :class="{'active': alertBox,'dialog': true}">
+    <Overlay
+      :class="{
+        'active': alertBox,
+        'dialog': true
+      }"
+    >
       <img
         class="has-xsmall-bottom-margin"
         src="@/assets/images/icons/warning.svg"
         :alt="$t('general.warningIcon')"
       >
       <template>
-        <p>{{ $t('pages.home.changeSettingsText') }}</p>
+        <p>
+          {{ $t('pages.home.changeSettingsText') }}
+        </p>
         <BaseButton
-          @clicked="changeGameSettings()"
           class="green"
+          @clicked="changeGameSettings()"
         >
-          <span>{{ $t('pages.home.confirmButton') }}</span>
+          <span>
+            {{ $t('pages.home.confirmButton') }}
+          </span>
         </BaseButton>
         <BaseButton
-          @clicked="alertBox = false"
           class="danger"
+          @clicked="toggleAlertBox(false)"
         >
-          <span>{{ $t('pages.home.cancelButton') }}</span>
+          <span>
+            {{ $t('pages.home.cancelButton') }}
+          </span>
         </BaseButton>
       </template>
     </Overlay>
-
     <transition
       name="slide"
       mode="out-in"
     >
       <PageBox
-        class="has-top-padding"
         v-if="gameSettings.stepCounter === 1"
+        class="has-top-padding"
         key="step1"
       >
         <a
-          @click="handleSavedNames()"
+        v-if="checkUsers"
           class="predefined type-2"
           :class="{'active': showSavedNames}"
           href="javascript:void(0)"
-          v-if="checkUsers"
+          @click="handleSavedNames()"
         >
-          <span>{{ $t('pages.home.lastNames') }}</span>
+          <span>
+            {{ $t('pages.home.lastNames') }}
+          </span>
         </a>
         <a
-          @click="handlePredefine()"
+          v-else
+          href="javascript:void(0)"
           :class="{'active': showPredefined}"
           class="predefined"
-          href="javascript:void(0)"
-          v-else
+          @click="handlePredefine()"
         >
-          <span>{{ $t('pages.home.defaultNames') }}</span>
+          <span>
+            {{ $t('pages.home.defaultNames') }}
+          </span>
         </a>
-        <p>{{ $t('pages.home.chooseNameHint') }}</p>
-        <p class="important-hint">
+        <p>
+          {{ $t('pages.home.chooseNameHint') }}
+        </p>
+        <p
+          class="important-hint"
+        >
           {{ $t('pages.home.nameExtraHint') }}
         </p>
         <input
@@ -78,23 +101,25 @@
             v-model="players[index]"
           >
         <BaseButton
-          @clicked="assignRoles()"
           class="active assign-bttn"
+          @clicked="assignRoles()"
         >
-          <span>{{ $t('pages.home.assign') }}</span>
+          <span>
+            {{ $t('pages.home.assign') }}
+          </span>
         </BaseButton>
       </PageBox>
-
       <PageBox
-      v-else-if="gameSettings.stepCounter === 2"
+        v-else-if="gameSettings.stepCounter === 2"
         class="display autoheight"
         key="step2"
       >
-        <div class="inner-display">
+        <div
+          class="inner-display"
+        >
           <ShowBox />
         </div>
       </PageBox>
-
       <God
         v-else-if="gameSettings.stepCounter === 3"
         key="step3"
@@ -208,6 +233,9 @@ export default {
       this.gameSettings.selectedRoles.forEach((element, index) => {
         this.players.push(`${this.$t('pages.home.playerDefault')} ${index + 1}`)
       })
+    },
+    toggleAlertBox (value) {
+      this.alertBox = value
     },
     randomFunc() {
       this.gameSettings.selectedRoles.sort(() => 0.5 - Math.random())
