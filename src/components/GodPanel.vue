@@ -53,7 +53,7 @@
     >
       <ActionBar
         v-if="dashboard.actionProgress !== dashboard.actionBox.length"
-        ref="targetScroll"
+        ref="actionBar"
       />
     </transition>
 
@@ -430,6 +430,7 @@ import passiveActive from '@/mixins/passiveActive';
 import possibilities from '@/mixins/possibilities';
 import saveHistory from '@/mixins/saveHistory';
 import setActions from '@/mixins/setActions';
+import nextAction from '@/mixins/nextAction';
 import skipAction from '@/mixins/skipAction';
 import voteKiller from '@/mixins/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
@@ -557,6 +558,7 @@ export default {
     setActions,
     saveHistory,
     skipAction,
+    nextAction,
     voteKiller
   ]
 }

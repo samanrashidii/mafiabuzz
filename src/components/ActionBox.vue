@@ -65,10 +65,12 @@
     </div>
 
     <div
-      class="question"
       v-if="player.ability.chooseBoolean"
+      class="question"
     >
-      <div class="checkbox-box yes">
+      <div
+        class="checkbox-box yes"
+      >
         <input
           type="checkbox"
           name="question"
@@ -76,7 +78,13 @@
           v-model="useAbility"
           :value="true"
         >
-        <label for="use_ability"><span>{{ $t('god.useAbility') }}</span></label>
+        <label
+          for="use_ability"
+        >
+          <span>
+            {{ $t('god.useAbility') }}
+          </span>
+        </label>
       </div>
     </div>
 
@@ -108,11 +116,17 @@
       </select>
     </template>
 
-    <template v-if="player.ability.binder && actionTarget1 !== null">
-      <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
+    <template
+      v-if="player.ability.binder && actionTarget1 !== null"
+    >
+      <label
+        for="action_target_2"
+      >
+        {{ $t('god.actionHintText2') }}
+      </label>
       <select
-        name="action_target_2"
         v-model="actionTarget2"
+        name="action_target_2"
       >
         <option
           :value="null"
@@ -130,11 +144,15 @@
     </template>
 
     <!-- Action Buttons -->
-    <BaseButton @clicked="executeAction(player, actionTarget1, actionTarget2, playerIndex)">
+    <BaseButton
+      @clicked="executeAction(player, actionTarget1, actionTarget2, playerIndex)"
+    >
       {{ $t('god.confirmButton') }}
     </BaseButton>
 
-    <template v-if="!force">
+    <template
+      v-if="!force"
+    >
       <BaseButton
         class="danger"
         @clicked="alertBox = true"
@@ -142,25 +160,36 @@
         {{ $t('god.skipButton') }}
       </BaseButton>
       <!-- Alert Box -->
-      <Overlay :class="{'active': alertBox,'dialog': true}">
+      <Overlay
+        :class="{
+          'active': alertBox,
+          'dialog': true
+        }"
+      >
         <img
-          class="has-xsmall-bottom-margin"
           src="@/assets/images/icons/warning.svg"
           :alt="$t('general.warningIcon')"
+          class="has-xsmall-bottom-margin"
         >
         <template>
-          <p>{{ $t('god.skipText') }}</p>
+          <p>
+            {{ $t('god.skipText') }}
+          </p>
           <BaseButton
-            @clicked="skipAction(playerIndex)"
             class="green"
+            @clicked="skipAction(playerIndex)"
           >
-            <span>{{ $t('god.skipButton2') }}</span>
+            <span>
+              {{ $t('god.skipButton2') }}
+            </span>
           </BaseButton>
           <BaseButton
-            @clicked="alertBox = false"
             class="danger"
+            @clicked="alertBox = false"
           >
-            <span>{{ $t('god.cancelButton') }}</span>
+            <span>
+              {{ $t('god.cancelButton') }}
+            </span>
           </BaseButton>
         </template>
       </Overlay>

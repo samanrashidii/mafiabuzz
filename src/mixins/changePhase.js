@@ -98,7 +98,7 @@ export default {
 
       // Scroll to Action Bar
       setTimeout(() => {
-        const container = this.$refs.targetScroll.$el
+        const container = this.$refs.actionBar.$el
         this.$scrollTo(container, 500, {
           offset: -15
         })
