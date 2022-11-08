@@ -2,6 +2,11 @@
   <div
     class="home"
   >
+    <p
+      class="seo-clipboard"
+    >
+      {{ $t('meta.home.description') }}
+    </p>
     <transition
       name="slide"
       mode="out-in"

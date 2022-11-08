@@ -1,19 +1,25 @@
 <template>
-  <div class="create">
-    <div class="dashboard-header">
-      <p class="seo-clipboard">{{ $t('meta.home.description') }}</p>
-      <WelcomeBox />
+  <div
+    class="create create-game-panel"
+  >
+    <div
+      class="dashboard-header"
+    >
       <BaseButton
-        @clicked="patchNotes = true"
         class="patch-bttn awesome3"
+        @clicked="togglePatchNotes(true)"
       >
-        <span>{{ $t('general.patchButton') }}</span>
+        <span>
+          {{ $t('general.patchButton') }}
+        </span>
       </BaseButton>
       <PageBox>
         <PageTitle />
       </PageBox>
     </div>
-    <Overlay :class="{'active': patchNotes}">
+    <Overlay
+      :class="{'active': patchNotes}"
+    >
       <template>
         <img
           class="app-logo"
@@ -22,7 +28,6 @@
         >
         <h2
           class="app-version"
-          @click="sendPatchNote()"
         >
           {{ 'v' + appVersion }}
         </h2>
@@ -31,7 +36,7 @@
         </span>
         <ListItem :list="$t('patchNotes')" />
         <BaseButton
-          @clicked="patchNotes = false"
+          @clicked="togglePatchNotes(false)"
           class="close-bttn danger has-top-margin"
         >
           <span>{{ $t('common.closeButton') }}</span>
@@ -40,61 +45,86 @@
     </Overlay>
     <InstagramBanner />
     <template>
-      <div class="steps">
+      <div
+        class="steps"
+      >
         <PageBox>
-          <StepBox :type="'totalUnit'" />
+          <StepBox
+            type="total-unit"
+          />
         </PageBox>
         <PageBox>
-          <StepBox :type="'totalMafia'" />
+          <StepBox
+            type="total-mafia"
+          />
         </PageBox>
       </div>
       <DiscordBox />
       <Roles />
       <BaseButton
-        @clicked="checkGame()"
         class="start-bttn has-top-margin active"
+        @clicked="toggleOverlay(true)"
       >
-        <span>{{ $t('pages.home.start') }}</span>
+        <span>
+          {{ $t('pages.home.start') }}
+        </span>
       </BaseButton>
-      <Overlay :class="{'active': overlay,'dialog': isValid}">
-        <template v-if="isValid">
+      <Overlay
+        :class="{
+          'active': overlay,
+          'dialog': isValid
+        }"
+      >
+        <template
+          v-if="isValid"
+        >
           <ErrorBox
             :error-status="error"
             :mafia-numbers="gameSettings.mafia"
             :citizen-numbers="gameSettings.citizen"
           />
           <BaseButton
-            @clicked="overlay = false"
             class="settings-bttn danger"
+            @clicked="toggleOverlay(false)"
           >
-            <span>{{ $t('pages.home.changeSettings') }}</span>
+            <span>
+              {{ $t('pages.home.changeSettings') }}
+            </span>
           </BaseButton>
         </template>
-        <template v-else>
+        <template
+          v-else
+        >
           <NoteBox />
           <Table
-            class="mafia-table"
             :table-data="gameSettings.fMafias"
+            class="mafia-table"
           />
           <Table
-            class="citizen-table"
             :table-data="gameSettings.fCitizens"
+            class="citizen-table"
           />
           <BaseButton
-            @clicked="startGame()"
             class="start-bttn green"
+            @clicked="startGame()"
           >
-            <span>{{ $t('pages.home.start') }}</span>
+            <span>
+              {{ $t('pages.home.start') }}
+            </span>
           </BaseButton>
           <BaseButton
-            @clicked="overlay = false"
             class="settings-bttn danger"
+            @clicked="toggleOverlay(false)"
           >
-            <span>{{ $t('pages.home.changeSettings') }}</span>
+            <span>
+              {{ $t('pages.home.changeSettings') }}
+            </span>
           </BaseButton>
         </template>
       </Overlay>
-      <PowerMeter :class="{'active': !isValid}" />
+      <PowerMeter
+        :class="{'active': !isValid}"
+      />
     </template>
   </div>
 </template>
@@ -162,9 +192,6 @@ export default {
     },
   },
   methods: {
-    checkGame () {
-      this.overlay = true
-    },
     startGame () {
       localStorage.setItem('defaultSettings', JSON.stringify(this.DefaultState))
       this.gameSettings.gameStarted = true
@@ -215,24 +242,11 @@ export default {
       }
       this.postDiscord(text)
     },
-    sendPatchNote () {
-      this.patchClicked += 1
-      if (this.patchClicked === 5) {
-        let text = this.$t('general.appVersion')
-        text += `
-
-        ${this.$t('general.lastUpdate')}
-        
-        `
-        this.$t('patchNotes').forEach(item => {
-          text += `
-          ⚪️ ${item.text}
-          
-          `
-        })
-        const channelId = 'https://discordapp.com/api/webhooks/701346416626368522/KmerClaNMkxEqI3XzZOnlc8QiVlMKMfaAUauTeDpv_vab79gv0o-HgKIY2cmR4TxVVkJ'
-        this.postDiscord(text, channelId)
-      }
+    togglePatchNotes (value) {
+      this.patchNotes = value
+    },
+    toggleOverlay (value) {
+      this.overlay = value
     }
   }
 }

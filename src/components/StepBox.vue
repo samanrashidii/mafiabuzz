@@ -36,13 +36,13 @@ export default {
   },
   computed: {
     index() {
-      return this.type === 'totalUnit' ? 1 : 2
+      return this.type === 'total-unit' ? 1 : 2
     },
     value() {
-      return this.type === 'totalUnit' ? this.gameSettings.totalPlayers : this.calcMafia
+      return this.type === 'total-unit' ? this.gameSettings.totalPlayers : this.calcMafia
     },
     margin() {
-      return this.type === 'totalUnit' ? this.gameSettings.playerMargin : 0
+      return this.type === 'total-unit' ? this.gameSettings.playerMargin : 0
     },
     calcMafia() {
       return Math.floor(this.gameSettings.unit / 2) - 1
@@ -55,10 +55,10 @@ export default {
     }
   },
   created() {
-    this.type === 'totalUnit' ? this.selectedVal = this.gameSettings.unit : this.selectedVal = this.gameSettings.mafia
+    this.type === 'total-unit' ? this.selectedVal = this.gameSettings.unit : this.selectedVal = this.gameSettings.mafia
   },
   updated() {
-    if (this.type === 'totalMafia' && this.selectedVal > this.calcMafia) {
+    if (this.type === 'total-mafia' && this.selectedVal > this.calcMafia) {
       this.selectedVal = this.bestCombo
       this.gameSettings.mafia = this.bestCombo
       this.gameSettings.citizen = this.calcCitizen
@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     calcVal() {
-      this.type === 'totalUnit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
+      this.type === 'total-unit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
       this.gameSettings.citizen = this.calcCitizen
       this.SetGameSettings(this.gameSettings)
     }
