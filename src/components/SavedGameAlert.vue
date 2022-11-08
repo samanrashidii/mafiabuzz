@@ -1,60 +1,58 @@
 <template>
-  <div
-    class="navigation sticky"
+  <Overlay
+    class="main-alert saved-game-alert"
+    :class="{'active': overlay}"
   >
-    <nav>
-      <router-link
-        v-for="(nav, index) in navigation"
-        :to="{name: nav.url}"
-        :key="index"
-        :disabled="nav.disabled"
+    <template>
+      <img
+        src="@/assets/images/savedgame.svg"
+        :alt="$t('general.loadFromLastgameMessage')"
+      >
+      <h3
+        v-html="$t('general.loadFromLastgameMessage')"
+      />
+      <BaseButton
+        class="green disc-bttn"
+        @clicked="loadFromSave()"
       >
         <span>
-          <img
-            :src="getImg('', nav.image)"
-            :alt="$t(nav.alt)"
-          >
-          <strong>
-            {{ $t(nav.name) }}
-          </strong>
+          {{ $t('common.loadLastGameButton') }}
         </span>
-      </router-link>
-    </nav>
-  </div>
+      </BaseButton>
+      <BaseButton
+        class="danger start-bttn"
+        @clicked="resetFactory()"
+      >
+        <span>
+          {{ $t('common.startNewGameButton') }}
+        </span>
+      </BaseButton>
+    </template>
+  </Overlay>
 </template>
 
 <script>
 
 export default {
-  data() {
+  data () {
     return {
-      loggedIn: true,
-      navigation: [
-        {
-          name: 'navigation[0].name',
-          url: 'home',
-          image: 'creator.svg',
-          alt: 'navigation[0].alt'
-        },
-        {
-          name: 'navigation[1].name',
-          url: 'howtoplay',
-          image: 'howtoplay.svg',
-          alt: 'navigation[1].alt'
-        },
-        {
-          name: 'navigation[2].name',
-          url: 'about',
-          image: 'logo.png',
-          alt: 'navigation[2].alt'
-        },
-        {
-          name: 'navigation[3].name',
-          url: 'support',
-          image: 'support.svg',
-          alt: 'navigation[3].alt'
-        }
-      ]
+      overlay: false
+    }
+  },
+  mounted () {
+    const capturedState = JSON.parse(localStorage.getItem('capturedState'))
+    if (capturedState) {
+      this.overlay = true
+    }
+  },
+  methods: {
+    loadFromSave() {
+      this.startGameEngine('captured')
+      this.overlay = false
+    },
+    resetFactory() {
+      this.startGameEngine('hard')
+      this.overlay = false
     }
   }
 }

@@ -103,7 +103,6 @@
 import DiscordBox from '@/components/DiscordBox.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
-import Overlay from '@/components/Overlay.vue';
 import ListItem from '@/components/ListItem.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
@@ -129,7 +128,6 @@ export default {
     DiscordBox,
     ErrorBox,
     NoteBox,
-    Overlay,
     ListItem,
     PageTitle,
     PowerMeter,

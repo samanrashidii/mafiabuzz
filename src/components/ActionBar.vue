@@ -208,7 +208,6 @@
 <script>
 import ActionBox from '@/components/ActionBox.vue';
 import NextKillerBox from '@/components/NextKillerBox.vue';
-import Overlay from '@/components/Overlay.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
@@ -227,7 +226,6 @@ export default {
   components: {
     ActionBox,
     NextKillerBox,
-    Overlay,
     RoleViewer
   },
   computed: {

@@ -130,7 +130,6 @@
 
 <script>
 import God from '@/components/steps/God.vue';
-import Overlay from '@/components/Overlay.vue';
 import ShowBox from '@/components/ShowBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 
@@ -146,7 +145,6 @@ export default {
   },
   components: {
     God,
-    Overlay,
     ShowBox,
     PageTitle
   },

@@ -13,67 +13,21 @@
         v-else
       />
     </transition>
-    <Overlay
-      class="main-alert"
-      :class="{'active': overlay}"
-    >
-      <template>
-        <img
-          src="@/assets/images/savedgame.svg"
-          :alt="$t('general.loadFromLastgameMessage')"
-        >
-        <h3
-          v-html="$t('general.loadFromLastgameMessage')"
-        />
-        <BaseButton
-          @clicked="loadFromSave()"
-          class="green disc-bttn"
-        >
-          <span>{{ $t('common.loadLastGameButton') }}</span>
-        </BaseButton>
-        <BaseButton
-          @clicked="resetFactory()"
-          class="danger start-bttn"
-        >
-          <span>{{ $t('common.startNewGameButton') }}</span>
-        </BaseButton>
-      </template>
-    </Overlay>
+    <SavedGameAlert />
   </div>
 </template>
 
 <script>
 import Create from '@/components/steps/Create.vue';
 import Dashboard from '@/components/steps/Dashboard.vue';
-import Overlay from '@/components/Overlay.vue';
+import SavedGameAlert from '@/components/SavedGameAlert.vue';
 
 export default {
   name: 'Home',
-  data() {
-    return {
-      overlay: false
-    }
-  },
   components: {
     Create,
     Dashboard,
-    Overlay
-  },
-  mounted() {
-    const capturedState = JSON.parse(localStorage.getItem('capturedState'))
-    if (capturedState) {
-      this.overlay = true
-    }
-  },
-  methods: {
-    loadFromSave() {
-      this.startGameEngine('captured')
-      this.overlay = false
-    },
-    resetFactory() {
-      this.startGameEngine('hard')
-      this.overlay = false
-    }
+    SavedGameAlert
   },
   metaInfo() {
     return {

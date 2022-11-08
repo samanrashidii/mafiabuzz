@@ -1,5 +1,7 @@
 <template>
-  <div class="god">
+  <div
+    class="god god-panel"
+  >
     <!-- Dashboard Buttons -->
     <div
       class="button-holder"
@@ -24,45 +26,74 @@
         mode="out-in"
       >
         <BaseButton
-          :class="{'day':dashboard.day, 'night':!dashboard.day, 'swap-bttn':true}"
+          :class="{
+            'day': dashboard.day,
+            'night': !dashboard.day,
+            'swap-bttn': true
+          }"
           @clicked="changePhase(dashboard.day)"
         >
-          <span v-if="dashboard.day">{{ $t('god.nightText') }}</span>
-          <span v-else>{{ $t('god.dayText') }}</span>
+          <span
+            v-if="dashboard.day"
+          >
+            {{ $t('god.nightText') }}
+          </span>
+          <span
+            v-else
+          >
+            {{ $t('god.dayText') }}
+          </span>
         </BaseButton>
       </transition>
     </div>
 
     <!-- Day & Night Dashboard -->
-    <transition name="fade">
+    <transition
+      name="fade"
+    >
       <ActionBar
         v-if="dashboard.startAction && dashboard.actionProgress !== dashboard.actionBox.length"
         ref="targetScroll"
       />
     </transition>
 
-    <div class="main-dashboard">
+    <div
+      class="main-dashboard"
+    >
       <PageBox
         class="display godashboard"
-        :class="{'day': dashboard.day && dashboard.god, 'night': !dashboard.day, 'has-action-button': dashboard.god && !dashboard.day && !dashboard.startAction}"
+        :class="{
+          'day': dashboard.day && dashboard.god,
+          'night': !dashboard.day,
+          'has-action-button': dashboard.god && !dashboard.day && !dashboard.startAction
+        }"
       >
-        <div class="inner-display">
-          <transition-group name="fade">
+        <div
+          class="inner-display"
+        >
+          <transition-group
+            name="fade"
+          >
             <strong
-              class="round-tracker"
               v-if="!dashboard.day"
+              class="round-tracker"
               key="round-tracker"
-            >{{ dashboard.round }}</strong>
+            >
+              {{ dashboard.round }}
+            </strong>
             <a
               v-if="dashboard.god && !dashboard.day && !dashboard.startAction"
-              @click="startAction()"
               class="bttn awesome2 night-actions color-flow"
               href="javascript:void(0)"
               key="night-actions"
-            >{{ $t('god.nightActionButton') }}
+              @click="startAction()"
+            >
+              {{ $t('god.nightActionButton') }}
             </a>
           </transition-group>
-          <div class="center-aligned">
+          <div
+            class="center-aligned"
+          >
             <transition
               name="slide"
               mode="out-in"
@@ -77,8 +108,8 @@
                   :alt="$t('god.gameDashboardIconAlt')"
                 >
                 <h3
-                  class="different-colors"
                   v-html="$t('god.gameStartText')"
+                  class="different-colors"
                 />
                 <BaseButton
                   class="active"
@@ -91,16 +122,18 @@
                 v-else
                 key="afterShow"
               >
-                <div class="players-role">
+                <div
+                  class="players-role"
+                >
                   <Table
-                    class="mafia-table table-roles"
                     :table-data="gameSettings.fMafias"
                     :dashboard-table="true"
+                    class="mafia-table table-roles"
                   />
                   <Table
-                    class="citizen-table table-roles"
                     :table-data="gameSettings.fCitizens"
                     :dashboard-table="true"
+                    class="citizen-table table-roles"
                   />
                 </div>
               </div>
@@ -115,25 +148,37 @@
       v-if="dashboard.god"
     >
       <BaseButton
-        @clicked="logHistory = true"
         class="awesome"
+        @clicked="logHistory = true"
       >
-        <span>{{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i></span>
+        <span>
+          {{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i>
+        </span>
       </BaseButton>
     </div>
 
     <!-- Dashboard Game Hint -->
     <PageBox
-      class="only-box"
       v-if="dashboard.god"
+      class="only-box"
     >
-      <h2 class="center-aligned">{{ $t('god.dashboardHintTitle') }}</h2>
-      <ul class="dashboard-hint has-top-margin">
+      <h2
+        class="center-aligned"
+      >
+        {{ $t('god.dashboardHintTitle') }}
+      </h2>
+      <ul
+        class="dashboard-hint has-top-margin"
+      >
         <li
           v-for="(hint, index) in $t('god.dashboardHint')"
           :key="index"
         >
-          <span :class="hint.name">{{ hint.hint }}</span>
+          <span
+            :class="hint.name"
+          >
+            {{ hint.hint }}
+          </span>
         </li>
       </ul>
     </PageBox>
@@ -156,20 +201,22 @@
           v-if="dashboard.justiceUsed"
         >
           <img
-            class="default-image-size"
             src="@/assets/images/roles/judge.svg"
+            class="default-image-size"
             :alt="$t('god.justiceAlt')"
           >
           <img
-            class="default-image-size"
             src="@/assets/images/actions/justice.svg"
+            class="default-image-size"
             :alt="$t('god.justiceAlt')"
           >
-          <p>{{ $t('god.justiceText') }}</p>
+          <p>
+            {{ $t('god.justiceText') }}
+          </p>
         </div>
         <div
-          class="default-vote"
           v-else
+          class="default-vote"
         >
           <img
             src="@/assets/images/roles/vote.svg"
@@ -178,8 +225,8 @@
           <p>{{ $t('god.lastPhaseText') }}</p>
         </div>
         <select
-          name="last_day_target"
           v-model="lastDayTarget"
+          name="last_day_target"
           @change="findTarget(lastDayTarget)"
         >
           <option
@@ -195,7 +242,9 @@
             {{ person.player }}
           </option>
         </select>
-        <BaseButton @clicked="killByVote(dashboard.targetData.player)">
+        <BaseButton
+          @clicked="killByVote(dashboard.targetData.player)"
+        >
           {{ $t('god.confirmButton') }}
         </BaseButton>
         <BaseButton
@@ -225,7 +274,8 @@
     <Overlay
       :class="{
         'active': dashboard.lastNightBox,
-        'dialog': false, 'last-night': true
+        'dialog': false,
+        'last-night': true
       }"
     >
       <LastNightLog />
@@ -238,26 +288,30 @@
     >
       <template>
         <p>
-          <strong class="has-left-right-margin">{{ dashboard.avenger}}</strong>
+          <strong
+            class="has-left-right-margin"
+          >
+            {{ dashboard.avenger }}
+          </strong>
           {{ $t('god.avengerText') }}
         </p>
         <img
-          class="default-image-size"
           src="@/assets/images/actions/kill.svg"
+          class="default-image-size"
           :alt="$t('god.revengeIconAlt')"
         >
         <img
-          class="default-image-size"
           src="@/assets/images/roles/revenge.svg"
+          class="default-image-size"
           :alt="$t('god.revengeIconAlt')"
         >
         <p>
           {{ $t('god.revengeText') }}
         </p>
         <select
+          v-model="revengeTarget"
           class="has-top-margin"
           name="last_day_target"
-          v-model="revengeTarget"
           @change="findTarget(revengeTarget)"
         >
           <option
@@ -289,53 +343,74 @@
 
     <!-- Restart or Reset Game -->
     <BaseButton
+      v-if="dashboard.god"
       class="active has-xsmall-bottom-margin"
       @clicked="overlay = true, totRestart = false"
-      v-if="dashboard.god"
     >
       {{ $t('god.rgwRoles') }}
     </BaseButton>
     <BaseButton
-      class="danger has-bottom-margin"
       v-if="dashboard.god"
+      class="danger has-bottom-margin"
       @clicked="overlay = true, totRestart = true"
     >
       {{ $t('god.resetGame') }}
     </BaseButton>
-    <Overlay :class="{'active': overlay,'dialog': true}">
+    <Overlay
+      :class="{
+        'active': overlay,
+        'dialog': true
+      }"
+    >
       <img
         class="has-xsmall-bottom-margin"
         src="@/assets/images/icons/warning.svg"
         :alt="$t('general.warningIcon')"
       >
-      <template v-if="!totRestart">
-        <p>{{ $t('god.resetText') }}</p>
+      <template
+        v-if="!totRestart"
+      >
+        <p>
+          {{ $t('god.resetText') }}
+        </p>
         <BaseButton
           @clicked="resetSameGame()"
           class="green "
         >
-          <span>{{ $t('god.restartButton') }}</span>
+          <span>
+            {{ $t('god.restartButton') }}
+          </span>
         </BaseButton>
         <BaseButton
-          @clicked="overlay = false"
           class="danger"
+          @clicked="overlay = false"
         >
-          <span>{{ $t('god.cancelButton') }}</span>
+          <span>
+            {{ $t('god.cancelButton') }}
+          </span>
         </BaseButton>
       </template>
-      <template v-else>
-        <p>{{ $t('god.resetTotalText') }}</p>
+      <template
+        v-else
+      >
+        <p>
+          {{ $t('god.resetTotalText') }}
+        </p>
         <BaseButton
-          @clicked="resetFactory()"
           class="green "
+          @clicked="resetFactory()"
         >
-          <span>{{ $t('god.startButton') }}</span>
+          <span>
+            {{ $t('god.startButton') }}
+          </span>
         </BaseButton>
         <BaseButton
-          @clicked="overlay = false"
           class="danger"
+          @clicked="overlay = false"
         >
-          <span>{{ $t('god.cancelButton') }}</span>
+          <span>
+            {{ $t('god.cancelButton') }}
+          </span>
         </BaseButton>
       </template>
     </Overlay>
@@ -354,7 +429,6 @@ import ActionBar from '@/components/ActionBar.vue';
 import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
 import Log from '@/components/Log.vue';
-import Overlay from '@/components/Overlay.vue';
 import Table from '@/components/Table.vue';
 import actionLog from '@/mixins/dashboard/actionLog';
 import actions from '@/mixins/dashboard/actions';
@@ -386,7 +460,6 @@ export default {
     GameFinished,
     LastNightLog,
     Log,
-    Overlay,
     RoleViewer,
     Table
   },

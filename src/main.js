@@ -14,10 +14,12 @@ import BackToTop from 'vue-backtotop'
 import global from '@/mixins/global'
 import Button from './components/BaseButton.vue'
 import PageBox from './components/BasePageBox.vue'
+import Overlay from './components/Overlay.vue'
 const VueScrollTo = require('vue-scrollto')
 
 Vue.component('BaseButton', Button)
 Vue.component('PageBox', PageBox)
+Vue.component('Overlay', Overlay)
 Vue.mixin(global)
 Vue.use(VueMeta)
 Vue.use(Notifications)

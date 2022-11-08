@@ -39,12 +39,8 @@
 </template>
 
 <script>
-import Overlay from '@/components/Overlay.vue';
 
 export default {
-  components: {
-    Overlay
-  },
   computed: {
     dashboard() {
       return JSON.parse(JSON.stringify(this.Dashboard))
