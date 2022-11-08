@@ -199,7 +199,7 @@
             "lastNames": "Last Names",
             "assign": "Assign characters",
             "checkBeforeStart": "Your game will start with below characters",
-            "dashboardTitle": "<span>God</span>'s Dashboard",
+            "dashboardTitle": "<span>God</span> Dashboard",
             "chooseNameHint": "Please write the name of each person:",
             "nameExtraHint": "Write each player's name based on position and sitting order",
             "playerDefault": "Player",
@@ -404,11 +404,11 @@
         "dashboardHint": [
             {
                 "name": "killer",
-                "hint": "Kill Player by God's power"
+                "hint": "Kill Player by God power"
             },
             {
                 "name": "angel",
-                "hint": "Bring back Player to life by God's power"
+                "hint": "Bring back Player to life by God power"
             },
             {
                 "name": "passive",
