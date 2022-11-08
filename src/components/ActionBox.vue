@@ -169,20 +169,20 @@
 </template>
 
 <script>
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import actionFilters from '@/mixins/dashboard/actionFilters';
-import changePhase from '@/mixins/dashboard/changePhase';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import dice from '@/mixins/dashboard/dice';
-import executeAction from '@/mixins/dashboard/executeAction';
-import nextAction from '@/mixins/dashboard/nextAction';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import possibilities from '@/mixins/dashboard/possibilities';
-import saveHistory from '@/mixins/dashboard/saveHistory';
-import skipAction from '@/mixins/dashboard/skipAction';
-import trackingStatus from '@/mixins/dashboard/trackingStatus';
-import voteKiller from '@/mixins/dashboard/voteKiller';
+import actionLog from '@/mixins/actionLog';
+import actions from '@/mixins/actions';
+import actionFilters from '@/mixins/actionFilters';
+import changePhase from '@/mixins/changePhase';
+import deadWatcher from '@/mixins/deadWatcher';
+import dice from '@/mixins/dice';
+import executeAction from '@/mixins/executeAction';
+import nextAction from '@/mixins/nextAction';
+import passiveActive from '@/mixins/passiveActive';
+import possibilities from '@/mixins/possibilities';
+import saveHistory from '@/mixins/saveHistory';
+import skipAction from '@/mixins/skipAction';
+import trackingStatus from '@/mixins/trackingStatus';
+import voteKiller from '@/mixins/voteKiller';
 
 export default {
   data() {

@@ -6,10 +6,10 @@
       name="slide"
       mode="out-in"
     >
-      <Create
+      <CreateGamePanel
         v-if="!gameSettings.gameStarted"
       />
-      <Dashboard
+      <DashboardPanel
         v-else
       />
     </transition>
@@ -18,15 +18,15 @@
 </template>
 
 <script>
-import Create from '@/components/steps/Create.vue';
-import Dashboard from '@/components/steps/Dashboard.vue';
+import CreateGamePanel from '@/components/CreateGamePanel.vue';
+import DashboardPanel from '@/components/DashboardPanel.vue';
 import SavedGameAlert from '@/components/SavedGameAlert.vue';
 
 export default {
   name: 'Home',
   components: {
-    Create,
-    Dashboard,
+    CreateGamePanel,
+    DashboardPanel,
     SavedGameAlert
   },
   metaInfo() {

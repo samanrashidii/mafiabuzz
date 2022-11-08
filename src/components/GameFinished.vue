@@ -6,22 +6,33 @@
       v-for="(winner, index) in $t('general.winner')"
     >
       <div
-        :key="index"
-        class="game-finish-box"
-        :class="winner.class"
         v-if="winner.class === gameWinner"
+        :key="index"
+        :class="winner.class + ' game-finish-box'"
       >
-        <div class="inner-game-finish-box">
-          <div v-if="soloWinnerDetails">
+        <div
+          class="inner-game-finish-box"
+        >
+          <div
+            v-if="soloWinnerDetails"
+          >
             <img
               :src="getImg('/roles', soloWinnerDetails.icon)"
               :alt="soloWinnerDetails.name"
               class="solo-player"
             >
-            <h2 v-html="winner.title" />
-            <h2><strong>{{ soloWinnerDetails.name }}</strong></h2>
+            <h2
+              v-html="winner.title"
+            />
+            <h2>
+              <strong>
+                {{ soloWinnerDetails.name }}
+              </strong>
+            </h2>
           </div>
-          <div v-else>
+          <div
+            v-else
+          >
             <img
               :src="getImg('/game', winner.image)"
               :alt="winner.name"
@@ -34,22 +45,24 @@
             class="button-holder"
           >
             <BaseButton
-              @clicked="changeGameFinshed(false)"
               class="active"
+              @clicked="changeGameFinshed(false)"
             >
               <span>{{ $t('god.viewButton') }}</span>
             </BaseButton>
             <BaseButton
-              @clicked="resetSameGame()"
               class="awesome"
+              @clicked="resetSameGame()"
             >
               <span>{{ $t('god.restartButton') }}</span>
             </BaseButton>
             <BaseButton
-              @clicked="resetFactory()"
               class="awesome2"
+              @clicked="resetFactory()"
             >
-              <span>{{ $t('god.startButton') }}</span>
+              <span>
+                {{ $t('god.startButton') }}
+              </span>
             </BaseButton>
           </div>
         </div>
@@ -62,15 +75,13 @@
 
 export default {
   props: {
-    gameWinner: String,
-    soloWinnerDetails: Object
-  },
-  computed: {
-    roles() {
-      return JSON.parse(JSON.stringify(this.Roles))
+    gameWinner: {
+      type: String,
+      default: ''
     },
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.gameSettings))
+    soloWinnerDetails: {
+      type: Object,
+      default: () => {}
     }
   },
   updated () {

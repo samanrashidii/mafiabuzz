@@ -87,12 +87,12 @@
 
 <script>
 import CharacterPower from '@/components/CharacterPower.vue';
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import godAction from '@/mixins/dashboard/godAction';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import saveHistory from '@/mixins/dashboard/saveHistory';
+import actionLog from '@/mixins/actionLog';
+import actions from '@/mixins/actions';
+import deadWatcher from '@/mixins/deadWatcher';
+import godAction from '@/mixins/godAction';
+import passiveActive from '@/mixins/passiveActive';
+import saveHistory from '@/mixins/saveHistory';
 
 export default {
   components: {

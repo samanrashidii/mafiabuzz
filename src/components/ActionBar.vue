@@ -209,18 +209,18 @@
 import ActionBox from '@/components/ActionBox.vue';
 import NextKillerBox from '@/components/NextKillerBox.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import actionFilters from '@/mixins/dashboard/actionFilters';
-import beforeActions from '@/mixins/dashboard/beforeActions';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import nextAction from '@/mixins/dashboard/nextAction';
-import navigateActions from '@/mixins/dashboard/navigateActions';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import saveHistory from '@/mixins/dashboard/saveHistory';
-import skipAction from '@/mixins/dashboard/skipAction';
-import voteKiller from '@/mixins/dashboard/voteKiller';
-import trackingStatus from '@/mixins/dashboard/trackingStatus';
+import actionLog from '@/mixins/actionLog';
+import actions from '@/mixins/actions';
+import actionFilters from '@/mixins/actionFilters';
+import beforeActions from '@/mixins/beforeActions';
+import deadWatcher from '@/mixins/deadWatcher';
+import nextAction from '@/mixins/nextAction';
+import navigateActions from '@/mixins/navigateActions';
+import passiveActive from '@/mixins/passiveActive';
+import saveHistory from '@/mixins/saveHistory';
+import skipAction from '@/mixins/skipAction';
+import voteKiller from '@/mixins/voteKiller';
+import trackingStatus from '@/mixins/trackingStatus';
 
 export default {
   components: {

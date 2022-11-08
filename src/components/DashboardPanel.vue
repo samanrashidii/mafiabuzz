@@ -120,7 +120,7 @@
           <ShowBox />
         </div>
       </PageBox>
-      <God
+      <GodPanel
         v-else-if="gameSettings.stepCounter === 3"
         key="step3"
       />
@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import God from '@/components/steps/God.vue';
+import GodPanel from '@/components/GodPanel.vue';
 import ShowBox from '@/components/ShowBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
 
@@ -144,7 +144,7 @@ export default {
     }
   },
   components: {
-    God,
+    GodPanel,
     ShowBox,
     PageTitle
   },

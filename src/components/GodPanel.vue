@@ -430,17 +430,17 @@ import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
 import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import actionFilters from '@/mixins/dashboard/actionFilters';
-import changePhase from '@/mixins/dashboard/changePhase';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import possibilities from '@/mixins/dashboard/possibilities';
-import saveHistory from '@/mixins/dashboard/saveHistory';
-import setActions from '@/mixins/dashboard/setActions';
-import skipAction from '@/mixins/dashboard/skipAction';
-import voteKiller from '@/mixins/dashboard/voteKiller';
+import actionLog from '@/mixins/actionLog';
+import actions from '@/mixins/actions';
+import actionFilters from '@/mixins/actionFilters';
+import changePhase from '@/mixins/changePhase';
+import deadWatcher from '@/mixins/deadWatcher';
+import passiveActive from '@/mixins/passiveActive';
+import possibilities from '@/mixins/possibilities';
+import saveHistory from '@/mixins/saveHistory';
+import setActions from '@/mixins/setActions';
+import skipAction from '@/mixins/skipAction';
+import voteKiller from '@/mixins/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
 
 export default {
