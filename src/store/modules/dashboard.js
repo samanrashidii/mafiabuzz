@@ -9,7 +9,6 @@ export default {
       round: 0,
       actionBox: [],
       actionProgress: 0,
-      startAction: false,
       log: {
         mainText: '',
         sideText: '',

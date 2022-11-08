@@ -1,18 +1,28 @@
 <template>
-  <Overlay class="log-history">
-    <template v-for="(history, index) in dashboard.totalHistory">
+  <Overlay
+    class="log-history"
+  >
+    <template
+      v-for="(history, index) in dashboard.totalHistory"
+    >
       <div
-        class="log-table"
-        :key="index"
         v-if="history.length > 0"
+        :key="index"
+        class="log-table"
       >
-        <span class="counter">{{ $t('common.Night') }} {{ index + 1 }}</span>
+        <span
+          class="counter"
+        >
+          {{ $t('common.Night') }} {{ index + 1 }}
+        </span>
         <table>
           <tr
             v-for="(log, index) in history"
             :key="index"
           >
-            <td>{{ index+1 }}</td>
+            <td>
+              {{ index+1 }}
+            </td>
             <td>
               <img
                 :src="getImg('/actions', log.image)"
@@ -20,20 +30,28 @@
               >
             </td>
             <td>
-              <p v-html="log.text" />
+              <p
+                v-html="log.text"
+              />
             </td>
           </tr>
         </table>
       </div>
     </template>
-    <div v-if="dashboard.totalHistory.length === 0">
-      <h2>{{ $t('god.noLog') }}</h2>
+    <div
+      v-if="dashboard.totalHistory.length === 0"
+    >
+      <h2>
+        {{ $t('god.noLog') }}
+      </h2>
     </div>
     <BaseButton
-      @clicked="closeLog()"
       class="active has-small-top-margin"
+      @clicked="closeLog()"
     >
-      <span>{{ $t('god.logCloseButton') }}</span>
+      <span>
+        {{ $t('god.logCloseButton') }}
+      </span>
     </BaseButton>
   </Overlay>
 </template>
@@ -42,7 +60,7 @@
 
 export default {
   methods: {
-    closeLog() {
+    closeLog () {
       this.$emit('closeLog', false)
     }
   }

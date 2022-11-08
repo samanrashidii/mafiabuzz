@@ -52,7 +52,7 @@
       name="fade"
     >
       <ActionBar
-        v-if="dashboard.startAction && dashboard.actionProgress !== dashboard.actionBox.length"
+        v-if="dashboard.actionProgress !== dashboard.actionBox.length"
         ref="targetScroll"
       />
     </transition>
@@ -65,7 +65,7 @@
         :class="{
           'day': dashboard.day && dashboard.god,
           'night': !dashboard.day,
-          'has-action-button': dashboard.god && !dashboard.day && !dashboard.startAction
+          'has-action-button': dashboard.god && !dashboard.day
         }"
       >
         <div
@@ -81,15 +81,6 @@
             >
               {{ dashboard.round }}
             </strong>
-            <a
-              v-if="dashboard.god && !dashboard.day && !dashboard.startAction"
-              class="bttn awesome2 night-actions color-flow"
-              href="javascript:void(0)"
-              key="night-actions"
-              @click="startAction()"
-            >
-              {{ $t('god.nightActionButton') }}
-            </a>
           </transition-group>
           <div
             class="center-aligned"
@@ -504,17 +495,6 @@ export default {
         }
       })
       this.SetGameSettings(this.gameSettings)
-    },
-    startAction() {
-      // Start Night Actions
-      this.dashboard.startAction = true
-      this.SetDashboard(this.dashboard)
-      setTimeout(() => {
-        const container = this.$refs.targetScroll.$el
-        this.$scrollTo(container, 500, {
-          offset: -15
-        })
-      }, 200)
     },
     sendVoteResult () {
       // Post Vote Result To Discord

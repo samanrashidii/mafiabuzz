@@ -8,7 +8,6 @@ export default {
         this.dashboard.actionBox.forEach((element, index) => {
           window.localStorage.removeItem(`action_${index}`)
         })
-        this.dashboard.startAction = false
         this.dashboard.actionBox = []
         this.dashboard.actionProgress = 0
         this.dashboard.voteKill = false
@@ -91,11 +90,19 @@ export default {
       this.dashboard.round++
       this.setActionsByPriority()
 
-      // Post Night Phase To Discord
+      // Post Start of Night Phase To Discord
       if (!this.gameSettings.gameFinished) {
         const text = `${this.$t('thirdparty.discordNightPhase')} ${this.dashboard.round}`
         this.postDiscord(text)
       }
+
+      // Scroll to Action Bar
+      setTimeout(() => {
+        const container = this.$refs.targetScroll.$el
+        this.$scrollTo(container, 500, {
+          offset: -15
+        })
+      }, 200)
     },
     finishNight () {
       this.dashboard.lastNight = []
@@ -197,7 +204,7 @@ export default {
       }
 
       this.dashboard.day = true
-      // Post Day Phase To Discord
+      // Post Start of Day Phase To Discord
       const text = `${this.$t('thirdparty.discordDayPhase')} ${this.dashboard.round}`
       this.postDiscord(text)
     }
