@@ -99,6 +99,10 @@ body.rtl{
     }
     .step-box,
     .page-box{
+        h2{
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_small_big;
+        }
         h3{
             font-family: $font_mafia_rtl;
             font-size: $font_size_big;
@@ -265,8 +269,8 @@ body.rtl{
 
     .step-box.display .inner-display .role-info,
     .page-box.display .inner-display .role-info{
-        font-family: $font_rtl;
-        font-size: $font_size_7;
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_10;
     }
 
     .priority-box .progress-bar i strong{font-family: $font_rtl;}
@@ -279,6 +283,7 @@ body.rtl{
     .log-bttn i{
         font-size: 13px;
         line-height: 23px;
+        margin: 0 4px 0 0;
     }
 
     .log-table table td:last-child{text-align: right !important;}
@@ -337,11 +342,6 @@ body.rtl{
 
     .game-finished .game-finish-box h2 strong{
         line-height: 1;
-        font-family: $font_rtl;
-        font-size: $font_size_super_big !important;
-    }
-
-    .page-box.display .inner-display strong{
         font-family: $font_rtl;
         font-size: $font_size_super_big !important;
     }
