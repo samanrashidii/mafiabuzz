@@ -1,11 +1,13 @@
 <template>
   <a
-    class="bttn red subnav-bttn"
     href="javascript:void(0)"
-    @click="changeLang()"
     rel="langbttn"
+    class="bttn red subnav-bttn language-btn"
+    @click="changeLang()"
   >
-    <strong>{{ $t('language.text') }}</strong>
+    <strong>
+      {{ $t('language.text') }}
+    </strong>
     <img
       src="@/assets/images/language.svg"
       :alt="$t('language.alt')"

@@ -62,7 +62,7 @@
         },
         "selectPlaceholder": "لطفا از گزینه های زیر انتخاب کنید",
         "patchButton": "مشاهده آخرین تغییرات بازی",
-        "characters": "کاراکتر ها",
+        "characters": "شخصیت ها",
         "characterUnlocked": "<strong>تبریک !!!</strong> یه کاراکتر جدید برات باز شد",
         "loadFromLastgameMessage": "دوست داری <span class='green-color'>بازی قبلیتو</span> ادامه بدی یا <span class='creator-color'>بازی جدیدی</span> رو شروع کنی ؟",
         "winner": [
@@ -123,7 +123,7 @@
             "url": "support"
         },
         "characters": {
-            "title": "کاراکترها",
+            "title": "شخصیت ها",
             "description": "با کاراکترها و قدرت های اون ها بیشتر آشنا بیشید."
         }
     },

@@ -33,7 +33,7 @@
           </div>
           <button
             type="submit"
-            class="purple-bg sm curve-rounded"
+            class="bttn purple-bg curve-rounded"
           >
             {{ $t('thirdparty.discordCodeSubmit') }}
           </button>
@@ -76,13 +76,13 @@ export default {
   name: 'DiscordBox',
   data () {
     return {
-        connectKey: null
+        connectKey: ''
     }
   },
   methods: {
     connectDiscord () {
-      const isWebhookCode = this.connectKey.indexOf('discord.com/api/webhooks')
-      if (isWebhookCode !== -1) {
+      const webhookCode = this.connectKey.indexOf('discord.com/api/webhooks')
+      if (webhookCode !== -1) {
         setTimeout(() => {
           this.SetDiscordChannel(this.connectKey)
         }, 700)

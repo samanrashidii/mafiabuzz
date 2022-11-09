@@ -22,14 +22,21 @@ body.rtl{
     :-ms-input-placeholder {font-family: $font_rtl;}
 
     .title h2{
-        font-family: $font_rtl;
-        font-size: $font_size_medium;
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_big;
     }
 
     .roles li label,
-    .roles li label > div strong span i{
-        font-family: $font_rtl;
-        font-size: $font_size_6 !important;
+    .roles li label > div strong{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_small;
+        span {
+            font-family: $font_mafia_rtl;
+            i{
+                font-family: $font_mafia_rtl;
+                font-size: $font_size_6 !important;
+            }
+        }
     }
 
     .start-bttn span{
@@ -81,30 +88,20 @@ body.rtl{
         background-position-x: 99%;
     }
 
-    .close-bttn span{
-        padding:0 22px 0 5px;
-        background-position-x: 99%;
-    }
-
     .discord-bttn span{
         padding:1px 40px 3px 3px;
         background-position-x: 99%;
     }
 
-    #app .navigation nav a{
-        font-family: $font_rtl;
-        font-size: $font_size_medium;
-    }
-    #app .navigation.sticky nav a{
-        font-family: $font_rtl;
-        font-size: $font_size_3;
-        &.language-bttn{padding:12px 2px 8px 2px;}
+    .navigation nav a{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_5;
     }
     .step-box,
     .page-box{
         h3{
-            font-family: $font_rtl;
-            font-size: 22px;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big;
         }
         p{font-size: $font_size_3;}
     }
@@ -125,7 +122,8 @@ body.rtl{
             }
         }
         h2{
-            font-size: 1.3em;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big;
             margin-top:0;
         }
         img{
@@ -140,7 +138,15 @@ body.rtl{
         }
     }
 
-    a.bttn{font-size: $font_size_4;}
+    .character-item{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_medium;
+    }
+
+    .bttn{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_8;
+    }
 
     .character-power span i{
         line-height: 25px;
@@ -285,24 +291,6 @@ body.rtl{
         background-position-x: right;
     }
 
-    .character-unlock{
-        margin-left: 0;
-        margin-right: -12px;
-        p{
-            strong{
-                font-family: $font_rtl;
-                line-height: 1.5;
-            }
-        }
-        .inner-unlocked-character{
-            h1{
-                line-height: 1.8;
-                font-family: $font_rtl;
-                font-size: 2.2rem;
-            }
-        }
-    }
-
     .overlay{
         &.last-night{
             ul li{
@@ -376,13 +364,12 @@ body.rtl{
 
     .sub-header{
         .bttn.subnav-bttn{
-            font-size: $font_size_3 !important;
             direction: rtl;
             &.characters-bttn{
                 direction: ltr;
                 strong{
-                    font-family: $font_rtl;
-                    font-size: $font_size_5 !important;
+                    font-family: $font_mafia_rtl;
+                    font-size: $font_size_10 !important;
                 }
             }
         }

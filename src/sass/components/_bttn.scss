@@ -1,6 +1,7 @@
 .bttn{
     display:block;
     color:$color_1;
+    line-height: 1.4;
     text-align: center;
     padding:12px;
     margin-top:10px;
@@ -122,8 +123,8 @@
         direction: ltr;
         display: block;
         width:49%;
-        font-family: $font_rtl;
-        font-size: $font_size_5 !important;
+        font-family: $font_mafia_rtl;
+        font-size: 1rem !important;
         padding: 8px 2px 6px 2px;
         transition:all .3s ease-in-out;
         z-index: 99;
@@ -132,15 +133,16 @@
         img{
             display: inline-block;
             vertical-align: middle;
-            width:26px;
+            width:30px;
             margin:0 5px;
         }
         strong{
-            margin:0 5px
+            display: inline-block;
+            vertical-align: middle;
+            margin:0 5px;
         }
         &.characters-bttn{
             direction: rtl;
-            padding:4px 2px;
             img{
                 display: inline-block;
                 vertical-align: middle;
@@ -150,8 +152,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 font-family: $font_mafia;
-                font-size: $font_size_big !important;
-                transform: translateY(2px);
+                font-size: $font_size_small !important;
             }
         }
     }
@@ -182,16 +183,6 @@
         padding: 5px 5px 5px 28px;
         background:url('~@/assets/images/assets/tick.svg') no-repeat left center;
         background-size: 20px;
-    }
-}
-
-.close-bttn{
-    height:46px;
-    span{
-        display: inline-block;
-        padding: 3px 5px 3px 20px;
-        background:url('~@/assets/images/assets/close.svg') no-repeat left center;
-        background-size: 12px;
     }
 }
 
