@@ -2,6 +2,7 @@
   <div
     class="about"
   >
+    <!-- About Header -->
     <div
       class="dashboard-header has-xsmall-top-margin"
     >
@@ -9,6 +10,7 @@
         <PageTitle />
       </PageBox>
     </div>
+    <!-- MafiaBuzz Team -->
     <div
       class="creators"
     >
@@ -40,7 +42,7 @@
         </li>
       </ul>
     </div>
-
+    <!-- MafiaBuzz Social Media -->
     <PageBox
       class="social-box"
     >
@@ -67,7 +69,6 @@
         </a>
       </div>
     </PageBox>
-    
   </div>
 </template>
 
@@ -81,47 +82,47 @@ export default {
   },
   computed: {
     creators () {
-      return JSON.parse(JSON.stringify(this.$t('pages.about.creators')))
+      return this.$t('pages.about.creators')
     }
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`,
       meta: [
         {
-          vmid: 'description',
+          hid: 'description',
           name: 'description',
-          content: `${this.$t('meta.about.description')}`
+          content: `${this.$t('meta.about.description') + this.$t('meta.about.description')}`
         },
         {
-          vmid: 'title',
+          hid: 'og-title',
           property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`
         },
         {
-          vmid: 'ogdescription',
+          hid: 'og-description',
           property: 'og:description',
-          content: `${this.$t('meta.about.description')}`
+          content: `${this.$t('meta.about.description') + this.$t('meta.about.description')}`
         },
         {
-          vmid: 'ogurl',
+          hid: 'og-url',
           property: 'og:url',
-          content: window.location.href
+          content: 'https://mafiabuzz.app/about'
         },
         {
-          vmid: 'twitter:title',
+          hid: 'twitter-url',
+          property: 'twitter:url',
+          content: 'https://mafiabuzz.app/about'
+        },
+        {
+          hid: 'twitter-title',
           name: 'twitter:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.about.title')}`
         },
         {
-          vmid: 'twitter:description',
+          hid: 'twitter-description',
           name: 'twitter:description',
-          content: `${this.$t('meta.about.description')}`
-        },
-        {
-          vmid: 'twitter:url',
-          name: 'twitter:url',
-          content: window.location.href
+          content: `${this.$t('meta.about.description') + this.$t('meta.about.description')}`
         }
       ]
     }

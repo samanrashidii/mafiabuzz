@@ -75,7 +75,9 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: { name: 'not-found' }
+      redirect: {
+        name: 'not-found'
+      }
     }
   ]
 })

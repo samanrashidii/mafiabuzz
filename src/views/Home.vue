@@ -38,7 +38,7 @@ export default {
     DashboardPanel,
     SavedGameAlert
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.home.title')}`,
       meta: [

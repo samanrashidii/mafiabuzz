@@ -1,11 +1,15 @@
 <template>
-  <div class="characters">
+  <div
+    class="characters"
+  >
+    <!-- Shop Frame Image -->
     <img
-      class="characters-image"
+      class="characters-image shop-frame"
       src="@/assets/images/characters.svg"
       :alt="$t('pages.characters.alt')"
     >
     <div class="characters-inner">
+      <!-- Legendary Characters -->
       <h1 class="legendary">
         {{ $t('rolesInfo.legendary') }}
       </h1>
@@ -23,6 +27,7 @@
           @showInfo="openInfoBox"
         />
       </Carousel>
+      <!-- Epic Characters -->
       <h1 class="epic has-top-margin">
         {{ $t('rolesInfo.epic') }}
       </h1>
@@ -40,6 +45,7 @@
           @showInfo="openInfoBox"
         />
       </Carousel>
+      <!-- Rare Characters -->
       <h1 class="rare has-top-margin">
         {{ $t('rolesInfo.rare') }}
       </h1>
@@ -57,6 +63,7 @@
           @showInfo="openInfoBox"
         />
       </Carousel>
+      <!-- Uncommon Characters -->
       <h1 class="uncommon has-top-margin">
         {{ $t('rolesInfo.uncommon') }}
       </h1>
@@ -75,6 +82,7 @@
         />
       </Carousel>
     </div>
+    <!-- Info about each Character -->
     <InfoBox
       :role="roleInfo"
       :show="showInfo"
@@ -128,44 +136,44 @@ export default {
       this.showInfo = false
     }
   },
-  metaInfo() {
+  metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.characters.title')}`,
       meta: [
         {
-          vmid: 'description',
+          hid: 'description',
           name: 'description',
-          content: `${this.$t('meta.characters.description')}`
+          content: `${this.$t('meta.characters.description') + this.$t('meta.characters.description')}`
         },
         {
-          vmid: 'title',
+          hid: 'og-title',
           property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.characters.title')}`
         },
         {
-          vmid: 'ogdescription',
+          hid: 'og-description',
           property: 'og:description',
-          content: `${this.$t('meta.characters.description')}`
+          content: `${this.$t('meta.characters.description') + this.$t('meta.characters.description')}`
         },
         {
-          vmid: 'ogurl',
+          hid: 'og-url',
           property: 'og:url',
-          content: window.location.href
+          content: 'https://mafiabuzz.app/characters'
         },
         {
-          vmid: 'twitter:title',
+          hid: 'twitter-url',
+          property: 'twitter:url',
+          content: 'https://mafiabuzz.app/characters'
+        },
+        {
+          hid: 'twitter-title',
           name: 'twitter:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.characters.title')}`
         },
         {
-          vmid: 'twitter:description',
+          hid: 'twitter-description',
           name: 'twitter:description',
-          content: `${this.$t('meta.characters.description')}`
-        },
-        {
-          vmid: 'twitter:url',
-          name: 'twitter:url',
-          content: window.location.href
+          content: `${this.$t('meta.characters.description') + this.$t('meta.characters.description')}`
         }
       ]
     }

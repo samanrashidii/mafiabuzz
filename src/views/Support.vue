@@ -7,9 +7,9 @@
         class="support-box"
       >
         <img
+          src="@/assets/images/support.svg"
           width="100"
           class="support-icon"
-          src="@/assets/images/support.svg"
           alt="Heart Icon"
         >
         <p
@@ -28,7 +28,6 @@
             <img
               width="200"
               src="https://az743702.vo.msecnd.net/cdn/kofi4.png?v=2"
-              border="0"
               alt="Buy Us a Coffee at ko-fi.com"
             >
           </a>
@@ -40,6 +39,11 @@
 
 <script>
 export default {
-  name: 'Support'
+  name: 'Support',
+  metaInfo () {
+    return {
+      title: `${this.$t('general.name')} * ${this.$t('meta.support.title')}`
+    }
+  }
 }
 </script>

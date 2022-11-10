@@ -2,6 +2,7 @@
   <div
     class="how-to-play"
   >
+    <!-- How to Play Header -->
     <div
       class="dashboard-header has-xsmall-top-margin"
     >
@@ -9,6 +10,7 @@
         <PageTitle />
       </PageBox>
     </div>
+    <!-- How to Play Steps -->
     <PageBox
       v-for="(step, index) in $t('pages.howtoplay.steps')"
       :key="index"
@@ -24,6 +26,7 @@
       <p
         v-html="step.desc1"
       />
+      <!-- How to Play with Characters -->
       <div
         v-if="step.roles"
       >
@@ -35,6 +38,7 @@
         />
       </div>
     </PageBox>
+    <!-- Back to Top component because of large page -->
     <BackToTop
       bottom="20px"
       right="20px"
@@ -54,47 +58,47 @@ export default {
     sortedRoles
   ],
   components: {
-    InfoBox,
-    PageTitle
+    PageTitle,
+    InfoBox
   },
   metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
       meta: [
-        {
-          vmid: 'description',
+      {
+          hid: 'description',
           name: 'description',
-          content: `${this.$t('meta.howtoplay.description')}`
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         },
         {
-          vmid: 'title',
+          hid: 'og-title',
           property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
-          vmid: 'ogdescription',
+          hid: 'og-description',
           property: 'og:description',
-          content: `${this.$t('meta.howtoplay.description')}`
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         },
         {
-          vmid: 'ogurl',
+          hid: 'og-url',
           property: 'og:url',
-          content: window.location.href
+          content: 'https://mafiabuzz.app/how-to-play'
         },
         {
-          vmid: 'twitter:title',
+          hid: 'twitter-url',
+          property: 'twitter:url',
+          content: 'https://mafiabuzz.app/how-to-play'
+        },
+        {
+          hid: 'twitter-title',
           name: 'twitter:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
-          vmid: 'twitter:description',
+          hid: 'twitter-description',
           name: 'twitter:description',
-          content: `${this.$t('meta.howtoplay.description')}`
-        },
-        {
-          vmid: 'twitter:url',
-          name: 'twitter:url',
-          content: window.location.href
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         }
       ]
     }

@@ -184,5 +184,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./sass/main";
+  @import "./sass/main";
 </style>
