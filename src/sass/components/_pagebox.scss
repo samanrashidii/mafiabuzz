@@ -15,9 +15,13 @@
     p{
         font-size: $font_size_4;
         padding-top:0;
-        &:not(:last-child){margin-bottom: 020px;}
+        &:not(:last-child){
+            margin-bottom: 020px;
+        }
     }
-    .icon-image{width:120px;}
+    .icon-image{
+        width:120px;
+    }
     &.dark{
         padding:3px;
         background-color: $color_site_6;
@@ -26,8 +30,12 @@
         background-color: $background_color_body;
         box-shadow: none;
     }
-    &.same-padding{padding:15px;}
-    &.has-top-padding{padding-top:64px;}
+    &.same-padding{
+        padding:15px;
+    }
+    &.has-top-padding{
+        padding-top:64px;
+    }
     &.display{
         display: table;
         width:100%;
@@ -39,7 +47,9 @@
             vertical-align: middle;
             text-align: center;
         }
-        &.autoheight{height: auto;}
+        &.autoheight{
+            height: auto;
+        }
     }
     &.god-dashboard{
         overflow: hidden;
@@ -58,7 +68,9 @@
             transform: translateX(-50%);
             transition:all .5s ease-in-out;
         }
-        &:not(.day):not(.night){margin-bottom:40px;}
+        &:not(.day):not(.night){
+            margin-bottom:40px;
+        }
         &.day{
             padding-top:112px;
             padding-bottom: 10px;
@@ -81,6 +93,8 @@
                 background-size: 64px;
             }
         }
-        &.has-action-button{padding-top:172px !important;}
+        &.has-action-button{
+            padding-top:172px !important;
+        }
     }
 }

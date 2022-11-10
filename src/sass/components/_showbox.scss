@@ -1,5 +1,5 @@
 .show-box{
-    .player-displayer{
+    .player-display{
         min-height: 320px;
         a.bttn{
             max-width: 240px;
@@ -53,13 +53,13 @@
         &.citizen{
             border-color: $background_color_citizen;
             &::after{
-                border:2px solid $background_color_citizen;
+                border-color: $background_color_citizen;
             }
         }
         &.solo{
             border-color: $background_color_solo;
             &::after{
-                border:2px solid $background_color_solo;
+                border-color: $background_color_solo;
             }
         }
     }

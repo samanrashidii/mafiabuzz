@@ -143,7 +143,7 @@
             "url": "error-404"
         },
         "support": {
-            "title": "Support MafiaBuzz",
+            "title": "Support",
             "description": "We are some random gamers who wants to help other gamers to play and enjoy party and role play games",
             "url": "support"
         },
@@ -187,8 +187,8 @@
             "step2": "How many will be <span class='mafia-role'>Mafia</span> :",
             "start": "Go next step !",
             "changeSettings": "Back to Game Settings",
-            "errorText1": "You have to select <span class='hint-color'> {number} </span> characters from group of <strong class='mafia-role'> {role} </strong>, But you have chosen <span class='mafia-role'> {chosen} </span> characters",
-            "errorText2": "You have to select <span class='hint-color'> {number} </span> characters from group of <strong class='citizen-role'> {role} </strong> or <strong class='solo-role'> {secondRole} </strong>, But you have chosen <span class='citizen-role'> {chosen} </span> characters",
+            "errorText1": "You must select <span class='hint-color'> {number} </span> characters from group of <strong class='mafia-role'> {role} </strong>, But you have chosen <span class='mafia-role'> {chosen} </span> characters",
+            "errorText2": "You must select <span class='hint-color'> {number} </span> characters from group of <strong class='citizen-role'> {role} </strong> or <strong class='solo-role'> {secondRole} </strong>, But you have chosen <span class='citizen-role'> {chosen} </span> characters",
             "cancelButton": "Cancel",
             "changeSettingsText": "Are you sure about changing characters?",
             "confirmButton": "Yes I want to",

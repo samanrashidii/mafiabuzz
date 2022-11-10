@@ -92,6 +92,7 @@ export default {
   data () {
     return {
       imageCounter: false,
+      trackOnce: false,
       loaderData: {
         loader: 'dots',
         color: '#c33e3e',
@@ -167,12 +168,15 @@ export default {
   methods: {
     trackEvent () {
       // Track Banner click event for Analytics
-      const platform = navigator.platform || 'none'
-      gtag('event', 'click', {
-        'event_category': 'Woman, Life and Freedom',
-        'event_label': platform,
-        'value': 1
-      })
+      if (!this.trackOnce) {
+        const platform = navigator.platform || 'none'
+        gtag('event', 'click', {
+          'event_category': 'Woman, Life and Freedom',
+          'event_label': platform,
+          'value': 1
+        })
+        this.trackOnce = true
+      }
     },
     changeImage () {
       // Change Banner image on click

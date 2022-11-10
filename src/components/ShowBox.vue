@@ -17,7 +17,7 @@
       :key="index"
     >
       <div
-        class="player-displayer"
+        class="player-display"
         v-if="(index + 1) === personNumber"
       >
         <strong

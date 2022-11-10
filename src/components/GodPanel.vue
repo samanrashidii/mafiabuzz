@@ -4,23 +4,29 @@
   >
     <!-- Dashboard Buttons -->
     <div
+      v-if="showGodPanel"
       class="button-holder"
-      v-if="dashboard.god"
     >
-      <BaseButton
+      <template
         v-if="gameSettings.discordChannel"
-        @clicked="sendStats()"
-        class="discord-bttn purple"
       >
-        <span>{{ $t('thirdparty.discordUpdateButton') }}</span>
-      </BaseButton>
-      <BaseButton
-        v-if="gameSettings.discordChannel"
-        @clicked="sendVoteResult()"
-        class="discord-bttn purple"
-      >
-        <span>{{ $t('thirdparty.discordSendVoteResult') }}</span>
-      </BaseButton>
+        <BaseButton
+          class="discord-bttn purple"
+          @clicked="sendStats()"
+        >
+          <span>
+            {{ $t('thirdparty.discordUpdateButton') }}
+          </span>
+        </BaseButton>
+        <BaseButton 
+          class="discord-bttn purple"
+          @clicked="sendVoteResult()"
+        >
+          <span>
+            {{ $t('thirdparty.discordSendVoteResult') }}
+          </span>
+        </BaseButton>
+      </template>
       <transition
         name="fade"
         mode="out-in"
@@ -46,7 +52,6 @@
         </BaseButton>
       </transition>
     </div>
-
     <!-- Day & Night Dashboard -->
     <transition
       name="fade"
@@ -56,16 +61,15 @@
         ref="actionBar"
       />
     </transition>
-
     <div
       class="main-dashboard"
     >
       <PageBox
         class="display god-dashboard"
         :class="{
-          'day': dashboard.day && dashboard.god,
+          'day': dashboard.day && showGodPanel,
           'night': !dashboard.day,
-          'has-action-button': dashboard.god && !dashboard.day
+          'has-action-button': showGodPanel && !dashboard.day
         }"
       >
         <div
@@ -90,7 +94,7 @@
               mode="out-in"
             >
               <div
-                v-if="!dashboard.god"
+                v-if="!showGodPanel"
                 key="beforeShow"
               >
                 <img
@@ -118,13 +122,13 @@
                 >
                   <Table
                     :table-data="gameSettings.fMafias"
-                    :dashboard-table="true"
                     class="mafia-table table-roles"
+                    dashboard-table
                   />
                   <Table
                     :table-data="gameSettings.fCitizens"
-                    :dashboard-table="true"
                     class="citizen-table table-roles"
+                    dashboard-table
                   />
                 </div>
               </div>
@@ -133,24 +137,22 @@
         </div>
       </PageBox>
     </div>
-
     <div
+      v-if="showGodPanel"
       class="log-bttn"
-      v-if="dashboard.god"
     >
       <BaseButton
         class="awesome"
-        @clicked="logHistory = true"
+        @clicked="toggleLogHistory(true)"
       >
         <span>
           {{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i>
         </span>
       </BaseButton>
     </div>
-
     <!-- Dashboard Game Hint -->
     <PageBox
-      v-if="dashboard.god"
+      v-if="showGodPanel"
       class="only-box"
     >
       <h2
@@ -173,18 +175,19 @@
         </li>
       </ul>
     </PageBox>
-
-    <!-- Game Log -->
-
+    <!-- Game Log History -->
     <Log
-      :class="{'active': logHistory}"
-      @closeLog="logHistory = $event"
+      :class="{
+        'active': logHistory
+      }"
+      @closeLog="toggleLogHistory"
     />
-
     <!-- Vote Killer Box -->
     <Overlay
       class="vote-box dialog"
-      :class="{'active': dashboard.lastPhaseAction && dashboard.round >= 1}"
+      :class="{
+        'active': dashboard.lastPhaseAction && dashboard.round >= 1
+      }"
     >
       <template>
         <div
@@ -246,7 +249,6 @@
         </BaseButton>
       </template>
     </Overlay>
-
     <!-- Role Viewer -->
     <Overlay
       :class="{
@@ -260,7 +262,6 @@
         :show="gameSettings.searchingUsed"
       />
     </Overlay>
-
     <!-- Last Night Log -->
     <Overlay
       :class="{
@@ -271,11 +272,12 @@
     >
       <LastNightLog />
     </Overlay>
-
     <!-- Revenge Kill Targeting -->
     <Overlay
       class="revenge-box dialog"
-      :class="{'active': dashboard.revengeKillBox && dashboard.actionProgress === 0}"
+      :class="{
+        'active': dashboard.revengeKillBox && dashboard.actionProgress === 0
+      }"
     >
       <template>
         <p>
@@ -331,22 +333,23 @@
         </BaseButton>
       </template>
     </Overlay>
-
     <!-- Restart or Reset Game -->
-    <BaseButton
-      v-if="dashboard.god"
-      class="active has-xsmall-bottom-margin"
-      @clicked="overlay = true, totRestart = false"
+    <template
+      v-if="showGodPanel"
     >
-      {{ $t('god.rgwRoles') }}
-    </BaseButton>
-    <BaseButton
-      v-if="dashboard.god"
-      class="danger has-bottom-margin"
-      @clicked="overlay = true, totRestart = true"
-    >
-      {{ $t('god.resetGame') }}
-    </BaseButton>
+      <BaseButton
+        class="active has-xsmall-bottom-margin"
+        @clicked="toggleOverlay(true), toggleResetGame(false)"
+      >
+        {{ $t('god.rgwRoles') }}
+      </BaseButton>
+      <BaseButton
+        class="danger has-bottom-margin"
+        @clicked="toggleOverlay(true), toggleResetGame(true)"
+      >
+        {{ $t('god.resetGame') }}
+      </BaseButton>
+    </template>
     <Overlay
       :class="{
         'active': overlay,
@@ -359,14 +362,14 @@
         :alt="$t('general.warningIcon')"
       >
       <template
-        v-if="!totRestart"
+        v-if="!resetGame"
       >
         <p>
           {{ $t('god.resetText') }}
         </p>
         <BaseButton
-          @clicked="resetSameGame()"
           class="green "
+          @clicked="resetSameGame()"
         >
           <span>
             {{ $t('god.restartButton') }}
@@ -374,7 +377,7 @@
         </BaseButton>
         <BaseButton
           class="danger"
-          @clicked="overlay = false"
+          @clicked="toggleOverlay(false)"
         >
           <span>
             {{ $t('god.cancelButton') }}
@@ -397,7 +400,7 @@
         </BaseButton>
         <BaseButton
           class="danger"
-          @clicked="overlay = false"
+          @clicked="toggleOverlay(false)"
         >
           <span>
             {{ $t('god.cancelButton') }}
@@ -408,7 +411,9 @@
 
     <!-- Game Finish Box -->
     <GameFinished
-      :class="{'active': gameSettings.gameFinished}"
+      :class="{
+        'active': gameSettings.gameFinished
+      }"
       :game-winner="gameSettings.winner"
       :solo-winner-details="gameSettings.soloWinner"
     />
@@ -435,17 +440,20 @@ import voteKiller from '@/mixins/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
 
 export default {
-  data() {
-    return {
-      overlay: false,
-      logAction: false,
-      logHistory: false,
-      logActionDone: false,
-      lastDayTarget: null,
-      totRestart: false,
-      revengeTarget: null
-    }
-  },
+  name: 'GodPanel',
+  mixins: [
+    actionLog,
+    actions,
+    actionFilters,
+    changePhase,
+    deadWatcher,
+    passiveActive,
+    possibilities,
+    setActions,
+    saveHistory,
+    skipAction,
+    voteKiller
+  ],
   components: {
     ActionBar,
     GameFinished,
@@ -453,6 +461,18 @@ export default {
     Log,
     RoleViewer,
     Table
+  },
+  data() {
+    return {
+      overlay: false,
+      logAction: false,
+      logHistory: false,
+      showGodPanel: false,
+      logActionDone: false,
+      lastDayTarget: null,
+      resetGame: false,
+      revengeTarget: null
+    }
   },
   computed: {
     deadRoles () {
@@ -483,7 +503,7 @@ export default {
     },
     showPlay() {
       // Show God Panel, After Players See Their Roles
-      this.dashboard.god = true
+      this.showGodPanel = true
       this.addAttributesToCharacters()
       this.SetDashboard(this.dashboard)
     },
@@ -509,6 +529,15 @@ export default {
         }
       })
       this.postDiscord(text)
+    },
+    toggleOverlay (value) {
+      this.overlay = value
+    },
+    toggleResetGame (value) {
+      this.resetGame = value
+    },
+    toggleLogHistory (value) {
+      this.logHistory = value
     },
     sendStats () {
       // Post Latest Game Stats To Discord
@@ -545,20 +574,7 @@ export default {
       `
       this.postDiscord(text)
     }
-  },
-  mixins: [
-    actionLog,
-    actions,
-    actionFilters,
-    changePhase,
-    deadWatcher,
-    passiveActive,
-    possibilities,
-    setActions,
-    saveHistory,
-    skipAction,
-    voteKiller
-  ]
+  }
 }
 
 </script>

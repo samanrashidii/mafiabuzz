@@ -4,7 +4,6 @@ export default {
   namespaced: true,
   state: {
     dashboard: {
-      god: false,
       day: true,
       round: 0,
       actionBox: [],

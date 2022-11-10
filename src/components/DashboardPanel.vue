@@ -71,7 +71,7 @@
           :class="{
             'active': showSavedNames
           }"
-          @click="handleSavedNames()"
+          @click="toggleSavedNames()"
         >
           <span>
             {{ $t('pages.home.lastNames') }}
@@ -85,7 +85,7 @@
           :class="{
             'active': showPredefined
           }"
-          @click="handlePredefine()"
+          @click="togglePredefinedNames()"
         >
           <span>
             {{ $t('pages.home.defaultNames') }}
@@ -116,7 +116,7 @@
           </span>
         </BaseButton>
       </PageBox>
-      <!-- Input to write name of players -->
+      <!-- Show each player their randomly chosen character -->
       <PageBox
         v-else-if="gameSettings.stepCounter === 2"
         class="display autoheight"
@@ -128,6 +128,7 @@
           <ShowBox />
         </div>
       </PageBox>
+      <!-- Show God Panel When each player knows his role -->
       <GodPanel
         v-else-if="gameSettings.stepCounter === 3"
         key="step3"
@@ -145,7 +146,6 @@ export default {
   data() {
     return {
       players: [],
-      ready: false,
       showPredefined: false,
       showSavedNames: false,
       alertBox: false
@@ -170,17 +170,20 @@ export default {
   },
   methods: {
     assignRoles () {
-      const gR = this.gameSettings.selectedRoles
-      const pL = this.players
-      let text = this.$t('thirdparty.discordPlayers')
-      const checkPlayersInput = pL.filter((item, index) => pL.indexOf(item) >= index)
-      if (pL.length === gR.length && checkPlayersInput.length === pL.length) {
-        for (let i = 0; i < pL.length; i++) {
-          if (pL[i].length < 1) {
-            this.ready = false
+      const chosenCharacters = this.gameSettings.selectedRoles
+      const playerNames = this.players
+      let readyToAssignRoles = false
+      let discordText = this.$t('thirdparty.discordPlayers')
+      // Check inputs are not empty
+      const checkPlayersInput = playerNames.filter((item, index) => playerNames.indexOf(item) >= index)
+      // Check if there is no duplicate names
+      if (playerNames.length === chosenCharacters.length && checkPlayersInput.length === playerNames.length) {
+        for (let i = 0; i < playerNames.length; i++) {
+          if (playerNames[i].length < 1) {
+            readyToAssignRoles = false
             break
           } else {
-            this.ready = true
+            readyToAssignRoles = true
           }
         }
       } else {
@@ -192,27 +195,30 @@ export default {
           duration: 4000
         })
       }
-      if (this.ready) {
+      if (readyToAssignRoles) {
+        // Randomize Characters in Array
         this.randomFunc()
-        for (let i = gR.length - 1; i >= 0; i--) {
-          gR[i].player = pL[i]
+        for (let i = chosenCharacters.length - 1; i >= 0; i--) {
+          // Assign each player to one character
+          chosenCharacters[i].player = playerNames[i]
         }
         this.gameSettings.stepCounter = 2
-        text += `• `
-        pL.forEach((element) => {
-          text += `${element} • `
+        discordText += `• `
+        playerNames.forEach((element) => {
+          discordText += `${element} • `
         })
         // Post Players To Discord
-        this.postDiscord(text)
+        this.postDiscord(discordText)
       }
-      if (pL.length > 0) {
-        localStorage.setItem('savedPlayers', JSON.stringify(pL))
+      // Save Names to localStorage
+      if (playerNames.length > 0) {
+        localStorage.setItem('savedPlayers', JSON.stringify(playerNames))
       }
       this.SetGameSettings(this.gameSettings)
     },
-    handlePredefine () {
+    togglePredefinedNames () {
       if (this.showPredefined === false) {
-        this.preDefined()
+        this.fillPreDefinedNames()
         this.showPredefined = true
         this.showSavedNames = false
       } else {
@@ -221,7 +227,7 @@ export default {
         this.showSavedNames = true
       }
     },
-    handleSavedNames () {
+    toggleSavedNames () {
       if (this.showSavedNames === false) {
         this.players = JSON.parse(localStorage.getItem('savedPlayers'))
         if (this.gameSettings.selectedRoles.length < this.players.length) {
@@ -235,7 +241,7 @@ export default {
         this.showSavedNames = false
       }
     },
-    preDefined () {
+    fillPreDefinedNames () {
       this.gameSettings.selectedRoles.forEach((element, index) => {
         this.players.push(`${this.$t('pages.home.playerDefault')} ${index + 1}`)
       })
