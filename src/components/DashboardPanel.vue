@@ -2,6 +2,7 @@
   <div
     class="dashboard"
   >
+    <!-- Dashboard Header & Back to Settings button -->
     <div
       class="dashboard-header"
     >
@@ -20,6 +21,7 @@
         </span>
       </BaseButton>
     </div>
+    <!-- Confirmation Alert for change settings -->
     <Overlay
       :class="{
         'active': alertBox,
@@ -31,53 +33,58 @@
         src="@/assets/images/icons/warning.svg"
         :alt="$t('general.warningIcon')"
       >
-      <template>
-        <p>
-          {{ $t('pages.home.changeSettingsText') }}
-        </p>
-        <BaseButton
-          class="green"
-          @clicked="changeGameSettings()"
-        >
-          <span>
-            {{ $t('pages.home.confirmButton') }}
-          </span>
-        </BaseButton>
-        <BaseButton
-          class="danger"
-          @clicked="toggleAlertBox(false)"
-        >
-          <span>
-            {{ $t('pages.home.cancelButton') }}
-          </span>
-        </BaseButton>
-      </template>
+      <p>
+        {{ $t('pages.home.changeSettingsText') }}
+      </p>
+      <BaseButton
+        class="green"
+        @clicked="changeGameSettings()"
+      >
+        <span>
+          {{ $t('pages.home.confirmButton') }}
+        </span>
+      </BaseButton>
+      <BaseButton
+        class="danger"
+        @clicked="toggleAlertBox(false)"
+      >
+        <span>
+          {{ $t('pages.home.cancelButton') }}
+        </span>
+      </BaseButton>
     </Overlay>
     <transition
       name="slide"
       mode="out-in"
     >
+      <!-- Input to write name of players -->
       <PageBox
         v-if="gameSettings.stepCounter === 1"
         class="has-top-padding"
         key="step1"
       >
+        <!-- Load last game players -->
         <a
-        v-if="checkUsers"
-          class="predefined type-2"
-          :class="{'active': showSavedNames}"
+          v-if="checkUsers"
           href="javascript:void(0)"
+          class="predefined type-2"
+          :class="{
+            'active': showSavedNames
+          }"
           @click="handleSavedNames()"
         >
           <span>
             {{ $t('pages.home.lastNames') }}
           </span>
         </a>
+        <!-- Use Pre Defined names for players -->
         <a
           v-else
           href="javascript:void(0)"
-          :class="{'active': showPredefined}"
           class="predefined"
+          :class="{
+            'active': showPredefined
+          }"
           @click="handlePredefine()"
         >
           <span>
@@ -109,6 +116,7 @@
           </span>
         </BaseButton>
       </PageBox>
+      <!-- Input to write name of players -->
       <PageBox
         v-else-if="gameSettings.stepCounter === 2"
         class="display autoheight"

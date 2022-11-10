@@ -157,7 +157,12 @@ body.rtl{
         padding-right: 1px;
     }
 
-    .creators li a strong{font-size: 24px !important;}
+    .creators li a{
+        strong{
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big !important;
+        }
+    }
 
     .error-bullet li{
         text-align: right;
@@ -325,8 +330,6 @@ body.rtl{
     }
 
     .priority-box .progress-bar span{background: linear-gradient(90deg, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);}
-
-    .creators li a strong{font-family: $font_rtl !important;}
 
     .vue-notification{
         direction: rtl;

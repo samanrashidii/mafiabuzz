@@ -36,7 +36,6 @@ export default {
       soloWinnner: null,
       reviewGame: false,
       stepCounter: 1,
-      personNumb: 1,
       roleViewer: false,
       searchingUsed: false,
       viewerItems: [],

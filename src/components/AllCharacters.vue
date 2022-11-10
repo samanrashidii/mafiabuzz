@@ -1,6 +1,6 @@
 <template>
   <div
-    class="roles"
+    class="roles all-characters"
   >
     <InfoBox
       :role="roleInfo"
@@ -98,6 +98,7 @@ import InfoBox from '@/components/InfoBox.vue';
 import sortedRoles from '@/mixins/sortedRoles';
 
 export default {
+  name: 'AllCharacters',
   mixins: [sortedRoles],
   data() {
     return {

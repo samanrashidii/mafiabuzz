@@ -68,7 +68,7 @@
     <!-- Connect to Discord Channel -->
     <DiscordBox />
     <!-- Choose Characters -->
-    <Characters />
+    <AllCharacters />
     <!-- Start Game Button -->
     <BaseButton
       class="start-bttn has-top-margin active"
@@ -147,7 +147,7 @@ import NoteBox from '@/components/NoteBox.vue';
 import ListItem from '@/components/ListItem.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
-import Characters from '@/components/Characters.vue';
+import AllCharacters from '@/components/AllCharacters.vue';
 import SelectNumbers from '@/components/SelectNumbers.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
@@ -172,7 +172,7 @@ export default {
     ListItem,
     PageTitle,
     PowerMeter,
-    Characters,
+    AllCharacters,
     SelectNumbers,
     Table,
     WelcomeBox,
