@@ -19,7 +19,9 @@
       </PageBox>
     </div>
     <Overlay
-      :class="{'active': patchNotes}"
+      :class="{
+        'active': patchNotes
+      }"
     >
       <template>
         <img
@@ -50,7 +52,9 @@
         </BaseButton>
       </template>
     </Overlay>
+    <!-- Instagram Banner -->
     <InstagramBanner />
+    <!-- Setup Game Settings -->
     <PageBox>
       <SelectNumbers
         type="total-unit"
@@ -61,8 +65,10 @@
         type="total-mafia"
       />
     </PageBox>
+    <!-- Connect to Discord Channel -->
     <DiscordBox />
-    <Roles />
+    <!-- Choose Characters -->
+    <Characters />
     <BaseButton
       class="start-bttn has-top-margin active"
       @clicked="toggleOverlay(true)"
@@ -138,7 +144,7 @@ import NoteBox from '@/components/NoteBox.vue';
 import ListItem from '@/components/ListItem.vue';
 import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
-import Roles from '@/components/Roles.vue';
+import Characters from '@/components/Characters.vue';
 import SelectNumbers from '@/components/SelectNumbers.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
@@ -163,7 +169,7 @@ export default {
     ListItem,
     PageTitle,
     PowerMeter,
-    Roles,
+    Characters,
     SelectNumbers,
     Table,
     WelcomeBox,
