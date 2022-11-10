@@ -2,8 +2,12 @@
   <div
     id="app"
   >
+    <!-- Main Navigation -->
     <Navigation />
-    <div class="sub-header">
+    <!-- Sub Navigation -->
+    <div
+      class="sub-header"
+    >
       <LanguageButton />
       <router-link
         class="bttn subnav-bttn characters-bttn awesome"
@@ -11,13 +15,16 @@
           name: 'characters'
         }"
       >
-        <strong>{{ $t('general.characters') }}</strong>
+        <strong>
+          {{ $t('general.characters') }}
+        </strong>
         <img
           src="@/assets/images/characters.svg"
           :alt="$t('pages.characters.alt')"
         >
       </router-link>
     </div>
+    <!-- Header Banner -->
     <a
       href="javascript:void(0)"
       class="d-block has-xsmall-top-margin rounded shadow"
@@ -35,6 +42,7 @@
     >
       <router-view />
     </transition>
+    <!-- App Notifications -->
     <notifications
       group="log"
       position="bottom center"
@@ -44,10 +52,11 @@
         slot-scope="props"
       >
         <div
-          class="vue-notification"
-          :class="props.item.type"
+          :class="'vue-notification ' + props.item.type"
         >
-          <div class="image-wrapper">
+          <div
+            class="image-wrapper"
+          >
             <img
               :src="getImg('/actions', props.item.title)"
               :alt="props.item.title"
@@ -57,9 +66,13 @@
             class="close"
             @click="props.close"
           >
-            <i class="fa fa-fw fa-close" />
+            <i
+              class="fa fa-fw fa-close"
+            />
           </a>
-          <div v-html="props.item.text" />
+          <div
+            v-html="props.item.text"
+          />
         </div>
       </template>
     </notifications>
@@ -78,13 +91,19 @@ export default {
   },
   data () {
     return {
-      imageCounter: false
+      imageCounter: false,
+      loaderData: {
+        loader: 'dots',
+        color: '#c33e3e',
+        width: 75,
+        height: 75,
+        backgroundColor: '#000000',
+        canCancel: false,
+        onCancel: this.onCancel
+      }
     }
   },
   computed: {
-    roles() {
-      return JSON.parse(JSON.stringify(this.Roles))
-    },
     currentBannerImage () {
       let output = 'woman-life-freedom.png'
       if (this.imageCounter) {
@@ -94,27 +113,26 @@ export default {
     }
   },
   created() {
+    // Get Default Language from localStorage
     const savedLocale = JSON.parse(window.localStorage.getItem('locale'))
+    // Get Discord Token from localStorage
     const discordToken = window.localStorage.getItem('discordToken')
+    // Setup Discord Channel if Discord Token available
     if (discordToken) {
       this.SetDiscordChannel(discordToken)
     }
-    const loader = this.$loading.show({
-      loader: 'dots',
-      color: '#c33e3e',
-      width: 75,
-      height: 75,
-      backgroundColor: '#000000',
-      canCancel: false,
-      onCancel: this.onCancel
-    })
+    // App Loader for Async data to load
+    const loader = this.$loading.show(this.loaderData)
+    // Get all Characters from Database
     SERVER.getRoles()
       .then((res) => {
         this.SetRoles(JSON.parse(JSON.stringify(res.data)))
+        // Get all Replacing Characters from Database
         SERVER.getReplacingRoles()
           .then((response) => {
             this.SetReplacingRoles(JSON.parse(JSON.stringify(response.data)))
               .then(() => {
+                // After everything loaded, Set Default State of App in localstorage to prevent data loss from erros during the game
                 window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
                 loader.hide()
               })
@@ -126,6 +144,7 @@ export default {
       .catch(() => {
         loader.hide()
       })
+    // Setup App Language based on Default Language
     const el = document.body
     const html = document.documentElement
     if (savedLocale) {
@@ -147,15 +166,18 @@ export default {
   },
   methods: {
     trackEvent () {
+      // Track Banner click event for Analytics
       const platform = navigator.platform || 'none'
       gtag('event', 'click', {
-        'event_category': 'Youdonome Banner',
+        'event_category': 'Woman, Life and Freedom',
         'event_label': platform,
         'value': 1
       })
     },
     changeImage () {
+      // Change Banner image on click
       this.imageCounter = !this.imageCounter
+      this.trackEvent()
     }
   }
 }

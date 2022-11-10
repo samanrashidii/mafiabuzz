@@ -69,6 +69,7 @@
     <DiscordBox />
     <!-- Choose Characters -->
     <Characters />
+    <!-- Start Game Button -->
     <BaseButton
       class="start-bttn has-top-margin active"
       @clicked="toggleOverlay(true)"
@@ -84,6 +85,7 @@
         'dialog': isValid
       }"
     >
+      <!-- Show errors when Game Settings are not correct -->
       <template
         v-if="isValid"
       >
@@ -101,6 +103,7 @@
           </span>
         </BaseButton>
       </template>
+      <!-- Show all selected characters when Game Settings are correct -->
       <template
         v-else
       >
