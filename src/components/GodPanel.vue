@@ -69,8 +69,7 @@
         :class="{
           'game-not-started': !showGodPanel,
           'day': dashboard.day && showGodPanel,
-          'night': !dashboard.day,
-          'has-action-button': showGodPanel && !dashboard.day
+          'night': !dashboard.day
         }"
       >
         <div

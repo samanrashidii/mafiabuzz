@@ -85,7 +85,8 @@
         &.night{
             padding-top:112px;
             padding-bottom: 10px;
-            background:url('~@/assets/images/night.jpg') no-repeat right center;
+            background:url('~@/assets/images/night.jpg') no-repeat;
+            animation:horizontalMoveReverse 25s ease-out;
             &::before{
                 top:25px;
                 background-image: url('~@/assets/images/moon.svg');
@@ -104,5 +105,14 @@
     }
     100%{
         background-position: right bottom;
+    }
+}
+
+@keyframes horizontalMoveReverse {
+    0%{
+        background-position: right center;
+    }
+    100%{
+        background-position: left bottom;
     }
 }
