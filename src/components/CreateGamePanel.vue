@@ -68,7 +68,7 @@
           class="citizen-table"
         />
         <BaseButton
-          class="start-bttn green"
+          class="start-bttn primary"
           @clicked="startGame()"
         >
           <span>

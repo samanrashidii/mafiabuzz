@@ -108,7 +108,7 @@
             v-model="players[index]"
           >
         <BaseButton
-          class="active assign-bttn"
+          class="primary assign-bttn"
           @clicked="assignRoles()"
         >
           <span>

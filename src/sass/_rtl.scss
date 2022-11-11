@@ -7,7 +7,7 @@ body.rtl{
 .rtl{
     p{
         line-height: 2;
-        font-size: $font_size_3 !important;
+        font-size: $font_size_3;
     }
     input{font-family: $font_rtl;}
     select{

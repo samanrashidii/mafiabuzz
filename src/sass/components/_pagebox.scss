@@ -74,8 +74,8 @@
         &.day{
             padding-top:112px;
             padding-bottom: 10px;
-            background:url('~@/assets/images/day.jpg') no-repeat left bottom;
-            background-size: cover;
+            background:url('~@/assets/images/day.jpg') no-repeat;
+            animation:horizontalMove 25s ease-out;
             &::after{
                 top:25px;
                 background-image: url('~@/assets/images/sun.svg');
@@ -86,7 +86,6 @@
             padding-top:112px;
             padding-bottom: 10px;
             background:url('~@/assets/images/night.jpg') no-repeat right center;
-            background-size: cover;
             &::before{
                 top:25px;
                 background-image: url('~@/assets/images/moon.svg');
@@ -96,5 +95,14 @@
         &.has-action-button{
             padding-top:172px !important;
         }
+    }
+}
+
+@keyframes horizontalMove {
+    0%{
+        background-position: left center;
+    }
+    100%{
+        background-position: right bottom;
     }
 }

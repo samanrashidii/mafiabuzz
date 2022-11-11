@@ -103,7 +103,10 @@ span.step-number{
     }
 }
 
-.important-hint{color: $light_red_color;}
+.important-hint{
+    font-size: $font_size_2 !important;
+    color: $light_red_color;
+}
 
 .timer{
     display: block;
