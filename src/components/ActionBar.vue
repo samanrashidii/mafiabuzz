@@ -220,7 +220,6 @@ import passiveActive from '@/mixins/passiveActive';
 import saveHistory from '@/mixins/saveHistory';
 import skipAction from '@/mixins/skipAction';
 import voteKiller from '@/mixins/voteKiller';
-import trackingStatus from '@/mixins/trackingStatus';
 
 export default {
   components: {
@@ -257,8 +256,7 @@ export default {
     passiveActive,
     saveHistory,
     skipAction,
-    voteKiller,
-    trackingStatus
+    voteKiller
   ]
 }
 </script>

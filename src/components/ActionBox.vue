@@ -210,7 +210,6 @@ import passiveActive from '@/mixins/passiveActive';
 import possibilities from '@/mixins/possibilities';
 import saveHistory from '@/mixins/saveHistory';
 import skipAction from '@/mixins/skipAction';
-import trackingStatus from '@/mixins/trackingStatus';
 import voteKiller from '@/mixins/voteKiller';
 
 export default {
@@ -255,7 +254,6 @@ export default {
     possibilities,
     saveHistory,
     skipAction,
-    trackingStatus,
     voteKiller
   ]
 }

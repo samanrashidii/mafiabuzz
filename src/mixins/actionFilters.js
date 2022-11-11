@@ -8,14 +8,10 @@ export default {
         return this.gameSettings.selectedRoles.filter(x => !x.status.dead)
       }
       if (player.ability.reviver || player.ability.resurrect) {
-        return this.gameSettings.selectedRoles.filter(x => x.player !==
-                                                       player.player &&
-                                                        x.status.dead)
+        return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.status.dead)
       }
       if (player.ability.replacer) {
-        return this.gameSettings.selectedRoles.filter(x => x.mafia !==
-                                                       player.mafia &&
-                                                       !x.status.dead)
+        return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.mafia === player.mafia && !x.status.dead)
       }
       if (player.ability.healer || player.ability.silencer || player.ability.binder || player.ability.antiSilencer) {
         return this.gameSettings.selectedRoles.filter(x => !x.status.dead)

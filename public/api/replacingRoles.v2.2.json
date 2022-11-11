@@ -1,0 +1,78 @@
+{
+    "miniYakuza": {
+        "id": 1001,
+        "mafia": true,
+        "icon": "miniyakuza.svg",
+        "killPriority": 1000,
+        "potentialKiller": true,
+        "actionStatus": false,
+        "info": {
+            "en": {
+                "name": "Mini Yakuza",
+                "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself",
+                "passive": "None",
+                "action": "None"
+            },
+            "fa": {
+                "name": "یاکوزای کوچک",
+                "description": "یاکوزای کوچک به صورت مخفی توسط یاکوزا انتخاب شده و در بین شهروندان سعی می کند تا مافیاها بازی را ببرند.",
+                "passive": "ندارد",
+                "action": "ندارد"
+            }
+        },
+        "ability": {
+            "simple": true
+        },
+        "status": {
+            "playerReplaced": true
+        }
+    },
+    "skeleton": {
+        "id": 1002,
+        "icon": "skeleton.svg",
+        "actionStatus": false,
+        "info": {
+            "en": {
+                "name": "Skeleton",
+                "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive",
+                "passive": "None",
+                "action": "None"
+            },
+            "fa": {
+                "name": "اسکلت",
+                "description": "اسکلت توسط شاه شب به وجود اومده ولی هنوز به تیم خودش (مافیا یا شهروند) وفاداره. اگه شاه شب بمیره اسکلت هم به همراه اون میمیره.",
+                "passive": "ندارد",
+                "action": "ندارد"
+            }
+        },
+        "ability": {
+            "simple": true
+        },
+        "status": {
+            "minion": true
+        }
+    },
+    "killerMafia": {
+        "id": 1003,
+        "priority": 1000,
+        "actionIcon": "kill.svg",
+        "passiveIcon": "default.png",
+        "actionStatus": false,
+        "info": {
+            "en": {
+                "passive": "None",
+                "action": "Kill"
+            },
+            "fa": {
+                "passive": "ندارد",
+                "action": "کشتن"
+            }
+        },
+        "ability": {
+            "killer": true
+        },
+        "status": {
+            "hasAction": true
+        }
+    }
+}

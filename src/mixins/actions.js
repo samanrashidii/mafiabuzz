@@ -234,29 +234,17 @@ export default {
       this.kill(replacer)
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
-          this.trackingStatus(element.status)
           if (element.ability.reviver) {
             this.destroyMinions(element)
           }
           element.icon = this.replacingRoles.miniYakuza.icon
-          element.info[this.currentLang].name = this.replacingRoles.miniYakuza.info[this.currentLang].name
-          element.info[this.currentLang].description = this.replacingRoles.miniYakuza.info[this.currentLang].description
-          element.info[this.currentLang].action = this.replacingRoles.miniYakuza.info[this.currentLang].action
-          element.info[this.currentLang].passive = this.replacingRoles.miniYakuza.info[this.currentLang].passive
+          element.info = this.replacingRoles.miniYakuza.info
           element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
           element.ability = this.replacingRoles.miniYakuza.ability
           element.status = this.replacingRoles.miniYakuza.status
           element.killPriority = this.replacingRoles.miniYakuza.mafia
           element.potentialKiller = this.replacingRoles.miniYakuza.mafia
           element.mafia = this.replacingRoles.miniYakuza.mafia
-          element.status.linked = this.dashboard.freezeStatus.linked
-          element.status.hacked = this.dashboard.freezeStatus.hacked
-          element.status.healed = this.dashboard.freezeStatus.healed
-          element.status.antiSilenced = this.dashboard.freezeStatus.antiSilenced
-          element.status.silenced = this.dashboard.freezeStatus.silenced
-          element.status.recentlySilenced = this.dashboard.freezeStatus.recentlySilenced
-          element.status.recentlyDead = this.dashboard.freezeStatus.recentlyDead
-          element.status.recentlyRevived = this.dashboard.freezeStatus.recentlyRevived
         }
       })
     },
@@ -264,10 +252,7 @@ export default {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
           element.icon = this.replacingRoles.skeleton.icon
-          element.info[this.currentLang].name = this.replacingRoles.skeleton.info[this.currentLang].name
-          element.info[this.currentLang].description = this.replacingRoles.skeleton.info[this.currentLang].description
-          element.info[this.currentLang].action = this.replacingRoles.skeleton.info[this.currentLang].action
-          element.info[this.currentLang].passive = this.replacingRoles.skeleton.info[this.currentLang].passive
+          element.info = this.replacingRoles.skeleton.info
           element.actionStatus = this.replacingRoles.skeleton.actionStatus
           element.ability = this.replacingRoles.skeleton.ability
           element.status = this.replacingRoles.skeleton.status

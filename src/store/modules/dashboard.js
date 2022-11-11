@@ -20,13 +20,6 @@ export default {
         voteImage: '',
         voteText: ''
       },
-      freezeStatus: {
-        linked: null,
-        hacked: null,
-        silenced: null,
-        healed: null,
-        antiSilenced: null
-      },
       targetData: {},
       lastPhaseAction: false,
       voteKill: false,
