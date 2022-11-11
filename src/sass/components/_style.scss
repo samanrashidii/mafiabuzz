@@ -37,6 +37,11 @@
     font-size: .875em;
 }
 
+.text-underline{
+    padding-bottom: 0;
+    border-bottom: 1px solid $white_color;
+}
+
 .seo-clipboard{
     height: 0;
     width: 0;

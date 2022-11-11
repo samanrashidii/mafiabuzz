@@ -9,20 +9,6 @@
       class="sub-header"
     >
       <LanguageButton />
-      <router-link
-        class="bttn subnav-bttn characters-bttn awesome"
-        :to="{
-          name: 'characters'
-        }"
-      >
-        <strong>
-          {{ $t('general.characters') }}
-        </strong>
-        <img
-          src="@/assets/images/characters.svg"
-          :alt="$t('pages.characters.alt')"
-        >
-      </router-link>
     </div>
     <!-- Header Banner -->
     <a

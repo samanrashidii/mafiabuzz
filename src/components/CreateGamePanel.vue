@@ -3,8 +3,6 @@
     class="create create-game-panel"
   >
     <WelcomeBox />
-    <!-- Patch Notes -->
-    <PatchNotes />
     <!-- Instagram Banner -->
     <InstagramBanner />
     <!-- Setup Game Settings -->
@@ -103,7 +101,6 @@ import SelectNumbers from '@/components/SelectNumbers.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import InstagramBanner from '@/components/InstagramBanner.vue';
-import PatchNotes from '@/components/PatchNotes.vue';
 
 export default {
   data() {
@@ -125,8 +122,7 @@ export default {
     SelectNumbers,
     Table,
     WelcomeBox,
-    InstagramBanner,
-    PatchNotes
+    InstagramBanner
   },
   computed: {
     isValid () {

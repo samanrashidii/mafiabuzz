@@ -167,8 +167,8 @@
             "alt": "لوگوی مافیاباز"
         },
         {
-            "name": "حمایت از ما",
-            "alt": "آیکن حمایت از مافیاباز"
+            "name": "کاراکترها",
+            "alt": "آیکن کاراکترها"
         }
     ],
     "language": {
@@ -188,8 +188,8 @@
             "step2": " چه تعداد از بازیکنان <span class='mafia-role'>مافیا</span> باشند ؟ ",
             "start": "برو مرحله بعد !",
             "changeSettings": "بازگشت به تنظیمات بازی",
-            "errorText1": "باید <span class='hint-color'> {number} </span> کاراکتر از گروه <strong class='mafia-role'> {role} </strong> رو انتخاب کنی ، ولی <span class='mafia-role'> {chosen} </span> کاراکتر انتخاب کردی",
-            "errorText2": "باید <span class='hint-color'> {number} </span> کاراکتر از گروه <strong class='citizen-role'> {role} </strong> و یا <strong class='solo-role'> {secondRole} </strong> رو انتخاب کنی ، ولی <span class='mafia-role'> {chosen} </span> کاراکتر انتخاب کردی",
+            "errorText1": "باید <span class='text-underline'>{number}</span> کاراکتر از گروه <strong class='mafia-role'> {role} </strong> رو انتخاب کنی ، ولی <span class='text-underline'>{chosen}</span> کاراکتر انتخاب کردی",
+            "errorText2": "باید <span class='text-underline'>{number}</span> کاراکتر از گروه <strong class='citizen-role'> {role} </strong> یا <strong class='solo-role'> {secondRole} </strong> رو انتخاب کنی ، ولی <span class='text-underline'>{chosen}</span> کاراکتر انتخاب کردی",
             "cancelButton": "انصراف",
             "changeSettingsText": "مطمئنی می خوای نقش ها رو تغییر بدی ؟",
             "confirmButton": "بله",

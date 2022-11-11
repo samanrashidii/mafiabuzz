@@ -16,12 +16,20 @@
           }
         )"
       />
+      <!-- Patch Notes -->
+      <PatchNotes />
     </div>
   </div>
 </template>
 
 <script>
+import PatchNotes from '@/components/PatchNotes.vue';
+
 export default {
+  name: 'WelcomeBox',
+  components: {
+    PatchNotes
+  },
   computed: {
     appVersion () {
       return process.env.VUE_APP_VERSION

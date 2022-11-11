@@ -143,7 +143,7 @@
     &.subnav-bttn{
         direction: ltr;
         display: block;
-        width:49%;
+        width:100%;
         font-family: $font_mafia_rtl;
         font-size: 1rem !important;
         padding: 8px 2px 6px 2px;
@@ -161,20 +161,6 @@
             display: inline-block;
             vertical-align: middle;
             margin:0 5px;
-        }
-        &.characters-bttn{
-            direction: rtl;
-            img{
-                display: inline-block;
-                vertical-align: middle;
-                width:30px;
-            }
-            strong{
-                display: inline-block;
-                vertical-align: middle;
-                font-family: $font_mafia;
-                font-size: $font_size_small !important;
-            }
         }
     }
 }

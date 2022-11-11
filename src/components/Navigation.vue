@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navigation sticky"
+    class="navigation"
   >
     <nav>
       <router-link
@@ -50,8 +50,8 @@ export default {
         },
         {
           name: 'navigation[3].name',
-          url: 'support',
-          image: 'support.svg',
+          url: 'characters',
+          image: 'characters.svg',
           alt: 'navigation[3].alt'
         }
       ]

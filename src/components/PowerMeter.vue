@@ -11,12 +11,12 @@
         <strong
           v-if="mafia > 0"
         >
-          <i class="hint-color">{{ mafia }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.minus') }}
+          <i class="primary-color">{{ mafia }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.minus') }}
         </strong>
         <strong
           v-else-if="mafia < 0"
         >
-          <i class="hint-color">{{ Math.abs(mafia) }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.plus') }}
+          <i class="primary-color">{{ Math.abs(mafia) }} </i> <span class="mafia-role">{{ $t('common.Mafia') }}</span> {{ $t('powerMeter.plus') }}
         </strong>
         <strong
           v-else
@@ -36,12 +36,12 @@
         <strong
           v-if="citizen > 0"
         >
-          <i class="hint-color">{{ citizen }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.minus') }}
+          <i class="primary-color">{{ citizen }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.minus') }}
         </strong>
         <strong
           v-else-if="citizen < 0"
         >
-          <i class="hint-color">{{ Math.abs(citizen) }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.plus') }}
+          <i class="primary-color">{{ Math.abs(citizen) }} </i> <span class="citizen-role">{{ $t('common.Citizen') }}</span> {{ $t('powerMeter.plus') }}
         </strong>
         <strong
           v-else
