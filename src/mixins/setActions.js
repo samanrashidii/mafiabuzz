@@ -30,7 +30,8 @@ export default {
             }
             element.actionIcon = this.replacingRoles.killerMafia.actionIcon
             element.passiveIcon = this.replacingRoles.killerMafia.passiveIcon
-            element.action = this.replacingRoles.killerMafia.action
+            element.info[this.currentLang].action = this.replacingRoles.killerMafia.info[this.currentLang].action
+            element.info[this.currentLang].passive = this.replacingRoles.killerMafia.info[this.currentLang].passive
             element.actionStatus = this.replacingRoles.killerMafia.actionStatus
             element.ability = this.replacingRoles.killerMafia.ability
             element.status = this.replacingRoles.killerMafia.status

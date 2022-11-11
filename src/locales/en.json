@@ -470,39 +470,5 @@
         "rare": "Rare",
         "epic": "Epic",
         "legendary": "Legendary"
-    },
-    "replacingRoles": {
-        "miniYakuza": {
-            "name": "Mini Yakuza",
-            "description": "Mini Yakuza is a secret mafia between citizens and chosen by main Yakuza when he was sacrificing himself",
-            "action": {
-                "passive": "None",
-                "action": "None"
-            }
-        },
-        "skeleton": {
-            "name": "Skeleton",
-            "description": "Skeleton is Night King's minion but still has loyalty to his team (Mafia or Citizen) and has no Action or Passive",
-            "action": {
-                "passive": "None",
-                "action": "None"
-            }
-        },
-        "killerMafia": {
-            "action": {
-                "passive": "None",
-                "action": "Kill"
-            }
-        },
-        "loading": {
-            "name": "Loading",
-            "icon": "loader.svg",
-            "description": "..."
-        },
-        "default": {
-            "name": "Default",
-            "icon": "default.svg",
-            "description": "..."
-        }
     }
 }

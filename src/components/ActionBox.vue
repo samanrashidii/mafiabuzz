@@ -58,7 +58,7 @@
         >
           <img
             src="@/assets/images/roles/loader.svg"
-            :alt="$t('replacingRoles.loading.name')"
+            alt="Loader"
           >
         </template>
       </div>

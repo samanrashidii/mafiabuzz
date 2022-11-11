@@ -470,40 +470,5 @@
         "rare": "کمیاب",
         "epic": "ویژه",
         "legendary": "لجندری"
-    },
-    "replacingRoles": {
-        "miniYakuza": {
-            "name": "یاکوزای کوچک",
-            "description": "یاکوزای کوچک به صورت مخفی توسط یاکوزا انتخاب شده و در بین شهروندان سعی می کند تا مافیاها ببرند.",
-            "action": {
-                "passive": "ندارد",
-                "action": "ندارد"
-            }
-        },
-        "skeleton": {
-            "name": "اسکلت",
-            "icon": "skeleton.png",
-            "description": "اسکلت توسط شاه شب به وجود اومده ولی هنوز به تیم خودش (مافیا یا شهروند) وفاداره. اگه شاه شب بمیره اسکلت هم به همراه اون میمیره.",
-            "action": {
-                "passive": "ندارد",
-                "action": "ندارد"
-            }
-        },
-        "killerMafia": {
-            "action": {
-                "passive": "ندارد",
-                "action": "کشتن"
-            }
-        },
-        "loading": {
-            "name": "در حال لود شدن",
-            "icon": "loader.svg",
-            "description": "..."
-        },
-        "default": {
-            "name": "پیش فرض",
-            "icon": "default.svg",
-            "description": "..."
-        }
     }
 }

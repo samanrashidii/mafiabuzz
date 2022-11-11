@@ -238,10 +238,11 @@ export default {
           if (element.ability.reviver) {
             this.destroyMinions(element)
           }
-          element.info[this.currentLang].name = this.replacingRoles.miniYakuza.info[this.currentLang].name
           element.icon = this.replacingRoles.miniYakuza.icon
-          element.description = this.replacingRoles.miniYakuza.description
-          element.action = this.replacingRoles.miniYakuza.action
+          element.info[this.currentLang].name = this.replacingRoles.miniYakuza.info[this.currentLang].name
+          element.info[this.currentLang].description = this.replacingRoles.miniYakuza.info[this.currentLang].description
+          element.info[this.currentLang].action = this.replacingRoles.miniYakuza.info[this.currentLang].action
+          element.info[this.currentLang].passive = this.replacingRoles.miniYakuza.info[this.currentLang].passive
           element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
           element.ability = this.replacingRoles.miniYakuza.ability
           element.status = this.replacingRoles.miniYakuza.status
@@ -262,10 +263,11 @@ export default {
     revive (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
-          element.info[this.currentLang].name = this.replacingRoles.skeleton.name
           element.icon = this.replacingRoles.skeleton.icon
-          element.description = this.replacingRoles.skeleton.description
-          element.action = this.replacingRoles.skeleton.action
+          element.info[this.currentLang].name = this.replacingRoles.skeleton.info[this.currentLang].name
+          element.info[this.currentLang].description = this.replacingRoles.skeleton.info[this.currentLang].description
+          element.info[this.currentLang].action = this.replacingRoles.skeleton.info[this.currentLang].action
+          element.info[this.currentLang].passive = this.replacingRoles.skeleton.info[this.currentLang].passive
           element.actionStatus = this.replacingRoles.skeleton.actionStatus
           element.ability = this.replacingRoles.skeleton.ability
           element.status = this.replacingRoles.skeleton.status
