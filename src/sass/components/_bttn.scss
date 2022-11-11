@@ -61,6 +61,27 @@
             background-color: $hint_color;
         }
     }
+    &.white{
+        color: $black_color;
+        background-color: $white_color;
+        &:hover{
+            background-color: $color_8;
+        }
+    }
+    &.primary{
+        background-color: $primary;
+        box-shadow: 0 0 4px $black_color;
+        &:hover{
+            background-color: $primary_light;
+        }
+    }
+    &.secondary{
+        background-color: $secondary;
+        box-shadow: 0 0 4px $black_color;
+        &:hover{
+            background-color: $secondary_light;
+        }
+    }
     &.purple{
         background-color: $purple_color;
         box-shadow: 0 0 4px $black_color;

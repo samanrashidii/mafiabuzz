@@ -67,6 +67,7 @@
       <PageBox
         class="display god-dashboard"
         :class="{
+          'game-not-started': !showGodPanel,
           'day': dashboard.day && showGodPanel,
           'night': !dashboard.day,
           'has-action-button': showGodPanel && !dashboard.day
@@ -107,7 +108,7 @@
                   class="different-colors"
                 />
                 <BaseButton
-                  class="active"
+                  class="primary"
                   @clicked="showPlay()"
                 >
                   {{ $t('god.godButton') }}

@@ -2,7 +2,7 @@
   <a
     href="javascript:void(0)"
     rel="langbttn"
-    class="bttn red subnav-bttn language-btn"
+    class="bttn awesome2 subnav-bttn language-btn"
     @click="changeLang()"
   >
     <strong>

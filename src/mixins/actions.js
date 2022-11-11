@@ -243,15 +243,15 @@ export default {
       })
     },
     revive (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
+      this.gameSettings.selectedRoles.forEach((element, index) => {
         if (element.player === target) {
-          element.icon = this.replacingRoles.skeleton.icon
-          element.info = this.replacingRoles.skeleton.info
-          element.actionStatus = this.replacingRoles.skeleton.actionStatus
-          element.ability = this.replacingRoles.skeleton.ability
-          element.status = this.replacingRoles.skeleton.status
-          element.status.recentlyRevived = true
-          element.status.recentlyDead = false
+          const newCharacter = {
+            ...element,
+            ...this.replacingRoles.skeleton
+          }
+          newCharacter.status.recentlyRevived = true
+          newCharacter.status.recentlyDead = false
+          this.gameSettings.selectedRoles[index] = newCharacter
         }
       })
     },

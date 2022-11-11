@@ -2,56 +2,9 @@
   <div
     class="create create-game-panel"
   >
+    <WelcomeBox />
     <!-- Patch Notes -->
-    <div
-      class="dashboard-header"
-    >
-      <BaseButton
-        class="patch-bttn awesome3"
-        @clicked="togglePatchNotes(true)"
-      >
-        <span>
-          {{ $t('general.patchButton') }}
-        </span>
-      </BaseButton>
-      <PageBox>
-        <PageTitle />
-      </PageBox>
-    </div>
-    <Overlay
-      :class="{
-        'active': patchNotes
-      }"
-    >
-      <template>
-        <img
-          class="app-logo"
-          src="@/assets/images/logo.png"
-          :alt="$t('general.alt')"
-        >
-        <h2
-          class="app-version"
-        >
-          {{ 'v' + appVersion }}
-        </h2>
-        <span
-          class="patch-date"
-        >
-          {{ $t('general.lastUpdate') }}
-        </span>
-        <ListItem
-          :items="$t('patchNotes')"
-        />
-        <BaseButton
-          class="close-bttn danger has-top-margin"
-          @clicked="togglePatchNotes(false)"
-        >
-          <span>
-            {{ $t('common.closeButton') }}
-          </span>
-        </BaseButton>
-      </template>
-    </Overlay>
+    <PatchNotes />
     <!-- Instagram Banner -->
     <InstagramBanner />
     <!-- Setup Game Settings -->
@@ -71,7 +24,7 @@
     <AllCharacters />
     <!-- Start Game Button -->
     <BaseButton
-      class="start-bttn has-top-margin active"
+      class="start-bttn has-top-margin primary"
       @clicked="toggleOverlay(true)"
     >
       <span>
@@ -144,14 +97,13 @@
 import DiscordBox from '@/components/DiscordBox.vue';
 import ErrorBox from '@/components/ErrorBox.vue';
 import NoteBox from '@/components/NoteBox.vue';
-import ListItem from '@/components/ListItem.vue';
-import PageTitle from '@/components/PageTitle.vue';
 import PowerMeter from '@/components/PowerMeter.vue';
 import AllCharacters from '@/components/AllCharacters.vue';
 import SelectNumbers from '@/components/SelectNumbers.vue';
 import Table from '@/components/Table.vue';
 import WelcomeBox from '@/components/WelcomeBox.vue';
 import InstagramBanner from '@/components/InstagramBanner.vue';
+import PatchNotes from '@/components/PatchNotes.vue';
 
 export default {
   data() {
@@ -161,7 +113,6 @@ export default {
         citizens: false,
       },
       overlay: false,
-      patchNotes: false,
       patchClicked: 0
     }
   },
@@ -169,19 +120,15 @@ export default {
     DiscordBox,
     ErrorBox,
     NoteBox,
-    ListItem,
-    PageTitle,
     PowerMeter,
     AllCharacters,
     SelectNumbers,
     Table,
     WelcomeBox,
-    InstagramBanner
+    InstagramBanner,
+    PatchNotes
   },
   computed: {
-    appVersion () {
-      return process.env.VUE_APP_VERSION
-    },
     isValid () {
       if (this.gameSettings.selectedMafia != this.gameSettings.mafia) {
         this.error.mafia = true
@@ -249,9 +196,6 @@ export default {
       text += solo
       }
       this.postDiscord(text)
-    },
-    togglePatchNotes (value) {
-      this.patchNotes = value
     },
     toggleOverlay (value) {
       this.overlay = value

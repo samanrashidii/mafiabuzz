@@ -14,6 +14,7 @@ export default {
       deadPeople: 0,
       aliveMafia: 0,
       aliveCitizen: 0,
+      aliveSolo: 0,
       selectedMafia: 0,
       selectedCitizen: 0,
       selectedRoles: [],

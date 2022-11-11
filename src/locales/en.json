@@ -17,7 +17,7 @@
         {"text": "Fix : Removed extra files and fixed some issues"}
     ],
     "thirdparty": {
-        "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='red-color'>webhook</span> code below",
+        "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='primary-color'>webhook</span> code below",
         "discordHelp": "View setup instruction in Instagram",
         "discordConnected": "Mafiabuzz is now connected to your Discord channel",
         "discordDisconnect": "Disconnect this channel",
@@ -184,7 +184,7 @@
             "image": "creator.svg",
             "title": "Mighty God",
             "subtitle": "🎮 Please choose below options to create your game :",
-            "step1": "Total <span class='creator-color'>Players</span> :",
+            "step1": "Total <span class='primary-color'>Players</span> :",
             "step2": "How many will be <span class='mafia-role'>Mafia</span> :",
             "start": "Go next step !",
             "changeSettings": "Back to Game Settings",

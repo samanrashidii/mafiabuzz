@@ -15,6 +15,7 @@
 .hint-color{color:$hint_color;}
 .night-color{color:$night_color;}
 .creator-color{color:$creator_color;}
+.primary-color{color:$primary;}
 .white-color{color:$color_1;}
 .black-color{color:$black_color;}
 .yellow-color{color:$hint_color;}
@@ -118,7 +119,7 @@ span.step-number{
       width:5px;
       height: 5px;
       margin-right: 8px;
-      background-color: $background_color_3;
+      background-color: $primary;
       border-radius: 50%;
     }
 }
