@@ -232,19 +232,13 @@ export default {
     },
     replacePlayer (target, replacer) {
       this.kill(replacer)
-      this.gameSettings.selectedRoles.forEach((element) => {
+      this.gameSettings.selectedRoles.forEach((element, index) => {
         if (element.player === target) {
-          if (element.ability.reviver) {
-            this.destroyMinions(element)
+          const newCharacter = {
+            ...element,
+            ...this.replacingRoles.miniYakuza
           }
-          element.icon = this.replacingRoles.miniYakuza.icon
-          element.info = this.replacingRoles.miniYakuza.info
-          element.actionStatus = this.replacingRoles.miniYakuza.actionStatus
-          element.ability = this.replacingRoles.miniYakuza.ability
-          element.status = this.replacingRoles.miniYakuza.status
-          element.killPriority = this.replacingRoles.miniYakuza.mafia
-          element.potentialKiller = this.replacingRoles.miniYakuza.mafia
-          element.mafia = this.replacingRoles.miniYakuza.mafia
+          this.gameSettings.selectedRoles[index] = newCharacter
         }
       })
     },

@@ -58,16 +58,6 @@
         "actionIcon": "kill.svg",
         "passiveIcon": "default.png",
         "actionStatus": false,
-        "info": {
-            "en": {
-                "passive": "None",
-                "action": "Kill"
-            },
-            "fa": {
-                "passive": "ندارد",
-                "action": "کشتن"
-            }
-        },
         "ability": {
             "killer": true
         },

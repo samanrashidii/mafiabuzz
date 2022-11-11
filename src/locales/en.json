@@ -116,6 +116,7 @@
         "None": "None",
         "loadLastGameButton": "Load Last Game",
         "startNewGameButton": "Start New Game",
+        "clearStorage": "Clear Saved Game",
         "cancelButton": "Cancel",
         "newAlt": "New Icon",
         "hotAlt": "Hot Icon",

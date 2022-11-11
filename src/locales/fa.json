@@ -147,6 +147,7 @@
         "None": "-",
         "loadLastGameButton": "ادامه بازی قبل",
         "startNewGameButton": "شروع بازی جدید ",
+        "clearStorage": "پاک کردن ذخیره بازی",
         "cancelButton": "انصراف",
         "newAlt": "آیکن جدید",
         "hotAlt": "آیکن داغ",

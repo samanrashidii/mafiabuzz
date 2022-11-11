@@ -20,11 +20,19 @@
         </span>
       </BaseButton>
       <BaseButton
-        class="danger start-bttn"
+        class="blue start-bttn"
         @clicked="resetFactory()"
       >
         <span>
           {{ $t('common.startNewGameButton') }}
+        </span>
+      </BaseButton>
+      <BaseButton
+        class="danger exit-bttn"
+        @clicked="clearStorage()"
+      >
+        <span>
+          {{ $t('common.clearStorage') }}
         </span>
       </BaseButton>
     </template>
@@ -46,12 +54,16 @@ export default {
     }
   },
   methods: {
-    loadFromSave() {
+    loadFromSave () {
       this.startGameEngine('captured')
       this.overlay = false
     },
-    resetFactory() {
+    resetFactory () {
       this.startGameEngine('hard')
+      this.overlay = false
+    },
+    clearStorage () {
+      localStorage.clear()
       this.overlay = false
     }
   }
