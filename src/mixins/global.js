@@ -75,6 +75,9 @@ export default {
         }
       }
     },
+    dice (number) {
+      return Math.floor(Math.random() * number) + 1
+    },
     getImg (dir, pic) {
       return require(`@/assets/images${dir}/${pic}`)
     }

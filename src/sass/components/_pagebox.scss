@@ -75,7 +75,7 @@
             padding-top:112px;
             padding-bottom: 10px;
             background:url('~@/assets/images/day.jpg') no-repeat;
-            animation:horizontalMove 25s ease-out;
+            animation:horizontalMove 25s ease-out forwards;
             &::after{
                 top:25px;
                 background-image: url('~@/assets/images/sun.svg');
@@ -86,7 +86,7 @@
             padding-top:112px;
             padding-bottom: 10px;
             background:url('~@/assets/images/night.jpg') no-repeat;
-            animation:horizontalMoveReverse 25s ease-out;
+            animation:horizontalMoveReverse 25s ease-out forwards;
             &::before{
                 top:25px;
                 background-image: url('~@/assets/images/moon.svg');

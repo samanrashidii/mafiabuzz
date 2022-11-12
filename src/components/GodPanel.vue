@@ -137,6 +137,7 @@
         </div>
       </PageBox>
     </div>
+    <!-- Show History Log -->
     <div
       v-if="showGodPanel"
       class="log-bttn"
@@ -150,6 +151,12 @@
         </span>
       </BaseButton>
     </div>
+    <Log
+      :class="{
+        'active': logHistory
+      }"
+      @closeLog="toggleLogHistory"
+    />
     <!-- Dashboard Game Hint -->
     <PageBox
       v-if="showGodPanel"
@@ -175,13 +182,6 @@
         </li>
       </ul>
     </PageBox>
-    <!-- Game Log History -->
-    <Log
-      :class="{
-        'active': logHistory
-      }"
-      @closeLog="toggleLogHistory"
-    />
     <!-- Vote Killer Box -->
     <Overlay
       class="vote-box dialog"
@@ -216,7 +216,9 @@
             src="@/assets/images/roles/vote.svg"
             :alt="$t('god.voteIconAlt')"
           >
-          <p>{{ $t('god.lastPhaseText') }}</p>
+          <p>
+            {{ $t('god.lastPhaseText') }}
+          </p>
         </div>
         <select
           v-model="lastDayTarget"
@@ -230,7 +232,7 @@
             {{ $t('god.selectPlaceholder') }}
           </option>
           <option
-            v-for="(person, index) in checkGroup('lastDay')"
+            v-for="(person, index) in checkGroupToSelectTarget()"
             :key="index"
           >
             {{ person.player }}
@@ -262,7 +264,7 @@
         :show="gameSettings.searchingUsed"
       />
     </Overlay>
-    <!-- Last Night Log -->
+    <!-- Last Night Report -->
     <Overlay
       :class="{
         'active': dashboard.lastNightBox,
@@ -314,7 +316,7 @@
             {{ $t('god.selectPlaceholder') }}
           </option>
           <option
-            v-for="(person, index) in checkGroup('lastDay')"
+            v-for="(person, index) in checkGroupToSelectTarget()"
             :key="index"
           >
             {{ person.player }}
@@ -408,7 +410,6 @@
         </BaseButton>
       </template>
     </Overlay>
-
     <!-- Game Finish Box -->
     <GameFinished
       :class="{

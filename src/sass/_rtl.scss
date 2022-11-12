@@ -346,7 +346,9 @@ body.rtl{
         font-size: 9px;
     }
 
-    .priority-box .progress-bar span{background: linear-gradient(90deg, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);}
+    .priority-box .progress-bar span{
+        background: linear-gradient(90deg, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+    }
 
     .vue-notification{
         direction: rtl;

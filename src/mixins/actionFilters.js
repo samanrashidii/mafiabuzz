@@ -2,28 +2,25 @@ import Vue from 'vue'
 
 export default {
   methods: {
-    checkGroup (player) {
-      // Last Day Vote
-      if (player === 'lastDay') {
-        return this.gameSettings.selectedRoles.filter(x => !x.status.dead)
+    checkGroupToSelectTarget (player = {}) {
+      let output = []
+      if (player.ability) {
+        if (player.ability.reviver || player.ability.resurrect) {
+          // List should contain all dead people
+          output = this.gameSettings.selectedRoles.filter(x => x.status.dead)
+        } else if (player.ability.replacer) {
+          // List should contain all Mafia people who are alive and not the player himself
+          output = this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.mafia === player.mafia && !x.status.dead)
+        } else {
+          // List should contain all alive people
+          output = this.gameSettings.selectedRoles.filter(x => !x.status.dead)
+        }
       }
-      if (player.ability.reviver || player.ability.resurrect) {
-        return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.status.dead)
-      }
-      if (player.ability.replacer) {
-        return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && x.mafia === player.mafia && !x.status.dead)
-      }
-      if (player.ability.healer || player.ability.silencer || player.ability.binder || player.ability.antiSilencer) {
-        return this.gameSettings.selectedRoles.filter(x => !x.status.dead)
-      }
-      // Default Target
-      return this.gameSettings.selectedRoles.filter(x => x.player !== player.player && !x.status.dead)
+      return output
     },
-    checkSecondGroup (player) {
-      // Cupid Target
-      if (player.ability.binder) {
-        return this.gameSettings.selectedRoles.filter(x => x.player !== this.actionTarget1 && !x.status.dead)
-      }
+    checkGroupToSelectSecondTarget () {
+      // List should contain all people except the player in first group
+      return this.gameSettings.selectedRoles.filter(x => x.player !== this.actionTarget1)
     },
     findTarget (target) {
       this.gameSettings.selectedRoles.forEach((element) => {

@@ -2,7 +2,9 @@
     p{
         font-size: $font_size_3;
         padding:0 0 25px 0;
-        strong{color:$hint_color;}
+        strong{
+            color:$primary;
+        }
     }
     .action-overlay{
         position: absolute;
@@ -17,7 +19,9 @@
         border-radius: $site_radius;
         p{
             padding-bottom: 10px;
-            strong{color:inherit;}
+            strong{
+                color:inherit;
+            }
         }
         img{
             width:90px;

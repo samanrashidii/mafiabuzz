@@ -97,9 +97,9 @@
         {{ $t('god.actionHintText') }}
       </label>
       <select
-        @change="findTarget(actionTarget1)"
-        name="action_target"
         v-model="actionTarget1"
+        name="action_target"
+        @change="findTarget(actionTarget1)"
       >
         <option
           :value="null"
@@ -108,7 +108,7 @@
           {{ $t('god.selectPlaceholder') }}
         </option>
         <option
-          v-for="(person, index) in checkGroup(player)"
+          v-for="(person, index) in checkGroupToSelectTarget(player)"
           :key="index"
         >
           {{ person.player }}
@@ -135,7 +135,7 @@
           {{ $t('god.selectPlaceholder') }}
         </option>
         <option
-          v-for="(person, index) in checkSecondGroup(player)"
+          v-for="(person, index) in checkGroupToSelectSecondTarget()"
           :key="index"
         >
           {{ person.player }}
@@ -203,7 +203,6 @@ import actions from '@/mixins/actions';
 import actionFilters from '@/mixins/actionFilters';
 import changePhase from '@/mixins/changePhase';
 import deadWatcher from '@/mixins/deadWatcher';
-import dice from '@/mixins/dice';
 import executeAction from '@/mixins/executeAction';
 import nextAction from '@/mixins/nextAction';
 import passiveActive from '@/mixins/passiveActive';
@@ -247,7 +246,6 @@ export default {
     actionFilters,
     changePhase,
     deadWatcher,
-    dice,
     executeAction,
     nextAction,
     passiveActive,
