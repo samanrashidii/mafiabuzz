@@ -1,14 +1,14 @@
 export default {
   methods: {
     passiveActive (element) {
-      this.dashboard.log.passiveText = `<span>${this.$t('god.logPassive')}</span> <strong>${this.$t(element.info[this.currentLang].passive)}</strong>`
-      this.dashboard.log.passiveIcon = element.passiveIcon
-      this.saveHistory(this.dashboard.log.passiveIcon, this.dashboard.log.passiveText)
+      const passiveText = `<span>${this.$t('god.logPassive')}</span> <strong>${this.$t(element.info[this.currentLang].passive)}</strong>`
+      const passiveIcon = element.passiveIcon
+      this.saveHistory(passiveIcon, passiveText)
       setTimeout(() => {
         this.$notify({
           group: 'log',
-          title: `${this.dashboard.log.passiveIcon}`,
-          text: `${this.dashboard.log.passiveText}`,
+          title: passiveIcon,
+          text: passiveText,
           duration: 4000
         })
       }, 500)

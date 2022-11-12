@@ -211,7 +211,6 @@ import NextKillerBox from '@/components/NextKillerBox.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import deadWatcher from '@/mixins/deadWatcher';
 import nextAction from '@/mixins/nextAction';
 import navigateActions from '@/mixins/navigateActions';
 import passiveActive from '@/mixins/passiveActive';
@@ -254,7 +253,6 @@ export default {
   mixins: [
     actionLog,
     actions,
-    deadWatcher,
     navigateActions,
     nextAction,
     passiveActive,

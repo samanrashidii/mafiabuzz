@@ -3,10 +3,10 @@
     class="log-history"
   >
     <template
-      v-for="(history, index) in dashboard.totalHistory"
+      v-for="(historyLog, index) in dashboard.totalHistory"
     >
       <div
-        v-if="history.length > 0"
+        v-if="historyLog.length > 0"
         :key="index"
         class="log-table"
       >
@@ -17,7 +17,7 @@
         </span>
         <table>
           <tr
-            v-for="(log, index) in history"
+            v-for="(log, index) in historyLog"
             :key="index"
           >
             <td>

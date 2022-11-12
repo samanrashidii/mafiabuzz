@@ -2,13 +2,15 @@ export default {
   methods: {
     executeAction (player, target1, target2, index) {
       // Action Log
+      let actionText = ''
+      const actionImage = player.actionIcon
       if (this.useAbility) {
-        this.dashboard.log.mainText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
+        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
       } else {
-        this.dashboard.log.mainText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
+        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
       }
-      this.dashboard.log.image = player.actionIcon
-      this.saveHistory(this.dashboard.log.image, this.dashboard.log.mainText)
+      
+      this.saveHistory(actionImage, actionText)
 
       if ((!player.ability.binder && this.actionTarget1 !== null) ||
         (player.ability.binder && this.actionTarget1 !== null && this.actionTarget2 !== null) ||
@@ -130,8 +132,8 @@ export default {
         this.$notify({
           group: 'log',
           type: 'success',
-          title: `${this.dashboard.log.image}`,
-          text: `${this.dashboard.log.mainText}`,
+          title: actionImage,
+          text: actionText,
           duration: 4000
         })
         this.nextAction(index)
@@ -141,7 +143,7 @@ export default {
           group: 'log',
           type: 'error',
           title: 'error.svg',
-          image: `${this.dashboard.log.image}`,
+          image: actionImage,
           text: `${this.$t('god.errorChoosePlayer')}`
         })
       }

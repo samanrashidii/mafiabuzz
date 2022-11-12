@@ -195,15 +195,14 @@ export default {
             element.status.poisoned = true
           // Check if target has revenge ability
           } else if (element.ability.revenge && !this.dashboard.avenger) {
+            element.status.dead = true
+            element.status.recentlyDead = true
+            // Check if target ability is usable only in nights
             if (!element.status.dayOnly && !this.dashboard.day) {
               this.deadWatcher(true, element.player)
-            } else {
-              if (this.dashboard.day) {
-                this.deadWatcher(true, element.player)
-              } else {
-                element.status.dead = true
-                element.status.recentlyDead = true
-              }
+            } else if (element.status.dayOnly && this.dashboard.day) {
+              // Check if target ability is usable only in days
+              this.deadWatcher(true, element.player)
             }
           // Check if target is alive
           } else if (!element.status.dead) {

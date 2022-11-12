@@ -122,7 +122,6 @@
 <script>
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import deadWatcher from '@/mixins/deadWatcher';
 import godAction from '@/mixins/godAction';
 import passiveActive from '@/mixins/passiveActive';
 import saveHistory from '@/mixins/saveHistory';
@@ -133,7 +132,6 @@ export default {
   mixins: [
     actionLog,
     actions,
-    deadWatcher,
     godAction,
     passiveActive,
     saveHistory

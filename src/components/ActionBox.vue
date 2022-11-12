@@ -202,7 +202,6 @@ import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
 import actionSelectTarget from '@/mixins/actionSelectTarget';
 import changePhase from '@/mixins/changePhase';
-import deadWatcher from '@/mixins/deadWatcher';
 import executeAction from '@/mixins/executeAction';
 import nextAction from '@/mixins/nextAction';
 import passiveActive from '@/mixins/passiveActive';
@@ -245,7 +244,6 @@ export default {
     actions,
     actionSelectTarget,
     changePhase,
-    deadWatcher,
     executeAction,
     nextAction,
     passiveActive,

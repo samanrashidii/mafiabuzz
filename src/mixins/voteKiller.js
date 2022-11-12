@@ -1,6 +1,8 @@
 export default {
   methods: {
     killByVote (target, revenge) {
+      let voteText = ''
+      let voteImage = ''
       this.gameSettings.selectedRoles.forEach((element) => {
         if (target === element.player) {
           if (revenge) {
@@ -16,8 +18,8 @@ export default {
             }
             this.dashboard.revengeUsed = true
             this.dashboard.avenger = null
-            this.dashboard.log.voteText = `<span>${this.$t('god.revengeKill')}</span> <strong>${element.player}</strong>`
-            this.dashboard.log.voteImage = `${this.$t('god.revengeIcon')}`
+            voteText = `<span>${this.$t('god.revengeKill')}</span> <strong>${element.player}</strong>`
+            voteImage = `${this.$t('god.revengeIcon')}`
             if (this.dashboard.voteKill) {
               this.SetDashboard(this.dashboard)
               this.SetGameSettings(this.gameSettings)
@@ -28,8 +30,8 @@ export default {
               this.finishNight()
             }
           } else {
-            this.dashboard.log.voteText = `<span>${this.$t('god.voteKill')}</span> <strong>${element.player}</strong>`
-            this.dashboard.log.voteImage = `${this.$t('god.voteIcon')}`
+            voteText = `<span>${this.$t('god.voteKill')}</span> <strong>${element.player}</strong>`
+            voteImage = `${this.$t('god.voteIcon')}`
             this.kill(element.player, 'straight')
             this.dashboard.voteKill = true
             this.dashboard.lastPhaseAction = false
@@ -44,7 +46,7 @@ export default {
               this.finishDay()
             }
           }
-          this.saveHistory(this.dashboard.log.voteImage, this.dashboard.log.voteText)
+          this.saveHistory(voteImage, voteText)
           this.SetDashboard(this.dashboard)
           this.SetGameSettings(this.gameSettings)
         }

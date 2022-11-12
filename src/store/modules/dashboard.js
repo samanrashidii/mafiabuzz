@@ -8,14 +8,6 @@ export default {
       round: 0,
       actionBox: [],
       actionProgress: 0,
-      log: {
-        mainText: '',
-        sideText: '',
-        passiveText: '',
-        image: '',
-        voteImage: '',
-        voteText: ''
-      },
       targetData: {},
       lastPhaseAction: false,
       voteKill: false,
