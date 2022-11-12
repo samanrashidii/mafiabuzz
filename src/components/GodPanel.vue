@@ -429,9 +429,8 @@ import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import actionFilters from '@/mixins/actionFilters';
+import actionSelectTarget from '@/mixins/actionSelectTarget';
 import changePhase from '@/mixins/changePhase';
-import deadWatcher from '@/mixins/deadWatcher';
 import passiveActive from '@/mixins/passiveActive';
 import possibilities from '@/mixins/possibilities';
 import saveHistory from '@/mixins/saveHistory';
@@ -445,9 +444,8 @@ export default {
   mixins: [
     actionLog,
     actions,
-    actionFilters,
+    actionSelectTarget,
     changePhase,
-    deadWatcher,
     passiveActive,
     possibilities,
     setActions,

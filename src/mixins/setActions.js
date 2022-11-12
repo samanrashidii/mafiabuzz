@@ -20,7 +20,6 @@ export default {
         const sortedPotentialKillers = [...potentialKillers.slice().sort((a, b) => ((a.killPriority > b.killPriority) ? 1 : -1))]
         this.gameSettings.selectedRoles.forEach((element, index) => {
           if (sortedPotentialKillers.length > 0 && element.player === sortedPotentialKillers[0].player) {
-            const characterStatus = element.status.hasAction
             this.dashboard.killerChanged = true
             this.dashboard.nextKiller.icon = element.icon
             this.dashboard.nextKiller.name = element.info[this.currentLang].name

@@ -1,18 +1,32 @@
 <template>
-  <div class="nextkiller-box">
-    <div class="table-display">
-      <div class="table-cell-display">
-        <div class="has-clear-fix">
+  <div
+    class="nextkiller-box"
+  >
+    <div
+      class="table-display"
+    >
+      <div
+        class="table-cell-display"
+      >
+        <div
+          class="has-clear-fix"
+        >
           <img
             :src="getImg('/roles', dashboard.nextKiller.icon)"
             :alt="dashboard.nextKiller.name"
           >
         </div>
         <h2>
-          <strong>{{ dashboard.nextKiller.name }}</strong>
-          <span>( {{ dashboard.nextKiller.player }} )</span>
+          <strong>
+            {{ dashboard.nextKiller.name }}
+          </strong>
+          <span>
+            ( {{ dashboard.nextKiller.player }} )
+          </span>
         </h2>
-        <p v-html="$t('god.nextKiler')" />
+        <p
+          v-html="$t('god.nextKiler')"
+        />
         <BaseButton
           class="active"
           @clicked="closeNextKiller()"

@@ -1,10 +1,9 @@
 export default {
   methods: {
-    activeLink (target) {
+    activateLink (target) {
       let linkTarget = ''
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player !== target &&
-        this.gameSettings.selectedRoles[i].status.linked) {
+        if (this.gameSettings.selectedRoles[i].player !== target && this.gameSettings.selectedRoles[i].status.linked) {
           linkTarget = i
           this.gameSettings.selectedRoles[i].status.linked = false
         }
@@ -79,6 +78,11 @@ export default {
         }
       })
       this.passiveActive(element)
+    },
+    deadWatcher (value, player) {
+      this.dashboard.revengeKillBox = value
+      this.dashboard.avenger = player
+      this.SetDashboard(this.dashboard)
     },
     detonate (target) {
       let mainTarget = ''
@@ -210,7 +214,7 @@ export default {
           // Check if target is linked to another person
           if (element.status.linked) {
             element.status.linked = false
-            this.activeLink(element.player)
+            this.activateLink(element.player)
           }
           // Check if target is a reviver character
           if (element.ability.reviver) {

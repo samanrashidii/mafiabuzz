@@ -2,13 +2,14 @@
     margin-top:20px;
     i{
         display: inline-block;
-        vertical-align: middle;
+        vertical-align: top;
         width: 20px;
         height: 20px;
         line-height: 20px;
         font-size: $font_size_4;
         color: #323d3c;
         text-align: center;
+        margin-top: 2px;
         margin-left: 4px;
         background-color: $background_color_2;
         border-radius: $circle_radius;
@@ -21,8 +22,12 @@
         margin-bottom: 60px;
         &:last-of-type{margin-bottom:30px;}
         p{padding-top:0;}
-        span{color:$hint_color;}
-        strong{color:$creator_color;}
+        span{
+            color:$hint_color;
+        }
+        strong{
+            color:$primary;
+        }
         span.counter{
             position: absolute;
             top:-34px;

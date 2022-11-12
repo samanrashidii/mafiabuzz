@@ -8,7 +8,7 @@
     >
       <div
         class="before-action-box"
-        v-if="dashboard.mafiaParty && dashboard.round === 1"
+        v-if="mafiaParty && dashboard.round === 1"
       >
         <div
           class="table-display"
@@ -36,7 +36,7 @@
             </ul>
             <BaseButton
               class="has-small-top-margin"
-              @clicked="mafiaPartyController()"
+              @clicked="toggleMafiaParty(false)"
             >
               {{ $t('god.mafiaPartyButton') }}
             </BaseButton>
@@ -211,8 +211,6 @@ import NextKillerBox from '@/components/NextKillerBox.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import actionFilters from '@/mixins/actionFilters';
-import beforeActions from '@/mixins/beforeActions';
 import deadWatcher from '@/mixins/deadWatcher';
 import nextAction from '@/mixins/nextAction';
 import navigateActions from '@/mixins/navigateActions';
@@ -227,13 +225,18 @@ export default {
     NextKillerBox,
     RoleViewer
   },
+  data () {
+    return {
+      mafiaParty: true
+    }
+  },
   computed: {
-    progress() {
+    progress () {
       return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
     }
   },
   methods: {
-    checkStatus(player) {
+    checkStatus (player) {
       let target
       if (player) {
         this.gameSettings.selectedRoles.forEach((element) => {
@@ -243,13 +246,14 @@ export default {
         })
       }
       return target
+    },
+    toggleMafiaParty (value) {
+      this.mafiaParty = value
     }
   },
   mixins: [
     actionLog,
     actions,
-    actionFilters,
-    beforeActions,
     deadWatcher,
     navigateActions,
     nextAction,

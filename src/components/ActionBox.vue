@@ -200,7 +200,7 @@
 <script>
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import actionFilters from '@/mixins/actionFilters';
+import actionSelectTarget from '@/mixins/actionSelectTarget';
 import changePhase from '@/mixins/changePhase';
 import deadWatcher from '@/mixins/deadWatcher';
 import executeAction from '@/mixins/executeAction';
@@ -243,7 +243,7 @@ export default {
   mixins: [
     actionLog,
     actions,
-    actionFilters,
+    actionSelectTarget,
     changePhase,
     deadWatcher,
     executeAction,

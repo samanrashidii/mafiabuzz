@@ -12,11 +12,7 @@ export default {
         mainText: '',
         sideText: '',
         passiveText: '',
-        resultText: '',
         image: '',
-        resultImage: '',
-        godImage: '',
-        godText: '',
         voteImage: '',
         voteText: ''
       },

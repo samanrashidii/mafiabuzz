@@ -301,7 +301,8 @@ body.rtl{
     .log-bttn i{
         font-size: 13px;
         line-height: 23px;
-        margin: 0 4px 0 0;
+        margin-right: 4px;
+        margin-left: 0;
     }
 
     .log-table table td:last-child{text-align: right !important;}
