@@ -3,10 +3,10 @@
     class="select-numbers step-box"
   >
     <p
-      v-html="$t(`pages.home.step${index}`)"
+      v-html="$t(`pages.home.step${selectIndex}`)"
     />
     <select
-      v-model.number="selectedVal"
+      v-model.number="selectValue"
       name="quantity"
       id="quantity"
       @change="calcVal"
@@ -31,50 +31,50 @@
 export default {
   name: 'SelectNumbers',
   props: {
-    type: {
-      type: String,
-      default: ''
+    totalPlayers: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      selectedVal: 0
+      selectValue: 0
     }
   },
   computed: {
-    index() {
-      return this.type === 'total-unit' ? 1 : 2
+    selectIndex () {
+      return this.totalPlayers ? 1 : 2
     },
-    value() {
-      return this.type === 'total-unit' ? this.gameSettings.totalPlayers : this.calcMafia
+    value () {
+      return this.totalPlayers ? 45 : this.calcMafiaCapacity
     },
-    margin() {
-      return this.type === 'total-unit' ? this.gameSettings.playerMargin : 0
+    margin () {
+      return this.totalPlayers ? 5 : 0
     },
-    calcMafia() {
-      return Math.floor(this.gameSettings.unit / 2) - 1
+    calcMafiaCapacity () {
+      return Math.floor(this.gameSettings.totalPlayers / 2) - 1
     },
-    calcCitizen() {
-      return this.gameSettings.unit - this.gameSettings.mafia
+    calcCitizen () {
+      return this.gameSettings.totalPlayers - this.gameSettings.mafia
     },
-    bestCombo() {
-      return Math.floor(this.gameSettings.unit / 3)
+    bestCombo () {
+      return Math.floor(this.gameSettings.totalPlayers / 3)
     }
   },
-  created() {
-    this.type === 'total-unit' ? this.selectedVal = this.gameSettings.unit : this.selectedVal = this.gameSettings.mafia
+  created () {
+    this.totalPlayers ? this.selectValue = this.gameSettings.totalPlayers : this.selectValue = this.gameSettings.mafia
   },
-  updated() {
-    if (this.type === 'total-mafia' && this.selectedVal > this.calcMafia) {
-      this.selectedVal = this.bestCombo
+  updated () {
+    if (!this.totalPlayers && this.selectValue > this.calcMafiaCapacity) {
+      this.selectValue = this.bestCombo
       this.gameSettings.mafia = this.bestCombo
       this.gameSettings.citizen = this.calcCitizen
       this.SetGameSettings(this.gameSettings)
     }
   },
   methods: {
-    calcVal() {
-      this.type === 'total-unit' ? this.gameSettings.unit = this.selectedVal : this.gameSettings.mafia = this.selectedVal
+    calcVal () {
+      this.totalPlayers ? this.gameSettings.totalPlayers = this.selectValue : this.gameSettings.mafia = this.selectValue
       this.gameSettings.citizen = this.calcCitizen
       this.SetGameSettings(this.gameSettings)
     }

@@ -13,13 +13,13 @@ export default {
     // Calc Fair Chance In Players Number
     chanceByPeopleNumber () {
       let numb = 0
-      if (this.gameSettings.unit <= 15) {
+      if (this.gameSettings.totalPlayers <= 15) {
         numb = 2
-      } else if (this.gameSettings.unit <= 25) {
+      } else if (this.gameSettings.totalPlayers <= 25) {
         numb = 3
-      } else if (this.gameSettings.unit <= 35) {
+      } else if (this.gameSettings.totalPlayers <= 35) {
         numb = 4
-      } else if (this.gameSettings.unit <= 50) {
+      } else if (this.gameSettings.totalPlayers <= 50) {
         numb = 5
       }
       return numb

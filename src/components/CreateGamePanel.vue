@@ -8,13 +8,11 @@
     <!-- Setup Game Settings -->
     <PageBox>
       <SelectNumbers
-        type="total-unit"
+        total-players
       />
     </PageBox>
     <PageBox>
-      <SelectNumbers
-        type="total-mafia"
-      />
+      <SelectNumbers />
     </PageBox>
     <!-- Connect to Discord Channel -->
     <DiscordBox />

@@ -5,9 +5,7 @@ export default {
   namespaced: true,
   state: {
     gameSettings: {
-      totalPlayers: 45,
-      playerMargin: 5,
-      unit: 6,
+      totalPlayers: 6,
       mafia: 1,
       citizen: 5,
       alivePeople: 0,
