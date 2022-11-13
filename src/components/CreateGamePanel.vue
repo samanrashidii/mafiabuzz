@@ -5,6 +5,8 @@
     <WelcomeBox />
     <!-- Instagram Banner -->
     <InstagramBanner />
+    <!-- Connect to Discord Channel -->
+    <DiscordBox />
     <!-- Setup Game Settings -->
     <PageBox>
       <SelectNumbers
@@ -14,8 +16,6 @@
     <PageBox>
       <SelectNumbers />
     </PageBox>
-    <!-- Connect to Discord Channel -->
-    <DiscordBox />
     <!-- Choose Characters -->
     <AllCharacters />
     <!-- Start Game Button -->

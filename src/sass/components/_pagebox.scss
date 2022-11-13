@@ -30,6 +30,9 @@
         background-color: $background_color_body;
         box-shadow: none;
     }
+    &.discord-border{
+        border: 4px solid $color_discord;
+    }
     &.same-padding{
         padding:15px;
     }

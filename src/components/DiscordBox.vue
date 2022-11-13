@@ -3,7 +3,7 @@
     class="discord-box has-xsmall-bottom-margin"
   >
     <PageBox
-      class="dark-color"
+      class="dark-color discord-border"
     >
       <img
         class="default-size has-xsmall-bottom-margin"
