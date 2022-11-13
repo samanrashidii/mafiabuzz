@@ -3,24 +3,20 @@ export default {
     activateLink (target) {
       let linkTarget = ''
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player !== target && this.gameSettings.selectedRoles[i].status.linked) {
+        if (this.gameSettings.selectedRoles[i].player !== target && this.gameSettings.selectedRoles[i].status.link) {
           linkTarget = i
-          this.gameSettings.selectedRoles[i].status.linked = false
+          this.gameSettings.selectedRoles[i].status.link = false
         }
       }
       this.kill(this.gameSettings.selectedRoles[linkTarget].player)
     },
     antiSilence (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.antiSilenced = true
-        }
-      })
+      this.setStatus(target, 'silence', false)
+      this.setStatus(target, 'recentlySilenced', false)
     },
     checkIdentity (target) {
       this.gameSettings.selectedRoles.forEach((element) => {
         if (element.player === target) {
-          element.status.identityChecked = true
           this.actionLog(element, 'checkIdentity')
         }
       })
@@ -46,7 +42,7 @@ export default {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
         if (this.gameSettings.selectedRoles[i].player === target &&
          this.gameSettings.selectedRoles[i].ability.detonator &&
-         !this.gameSettings.selectedRoles[i].status.hacked) {
+         !this.gameSettings.selectedRoles[i].status.hack) {
           return true
         }
       }
@@ -56,7 +52,7 @@ export default {
         if (this.gameSettings.selectedRoles[i].player === target &&
         !this.gameSettings.selectedRoles[i].status.dead &&
         this.gameSettings.selectedRoles[i].ability.returner &&
-        !this.gameSettings.selectedRoles[i].status.hacked) {
+        !this.gameSettings.selectedRoles[i].status.hack) {
           return true
         }
       }
@@ -72,7 +68,7 @@ export default {
     },
     destroyMinions (element) {
       this.gameSettings.selectedRoles.forEach((el) => {
-        if (el.status.minion && !el.status.healed) {
+        if (el.status.minion && !el.status.heal) {
           this.kill(el.player)
           el.status.minion = false
         }
@@ -116,14 +112,10 @@ export default {
       })
     },
     hack (target, forever) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.hacked = true
-          if (forever) {
-            element.status.hackedForever = true
-          }
+        this.setStatus(target, 'hack', true)
+        if (forever) {
+          this.setStatus(target, 'hackForever', true)
         }
-      })
     },
     hackAura (player) {
       let prevTarget = ''
@@ -146,21 +138,11 @@ export default {
       this.hack(this.gameSettings.selectedRoles[nextTarget].player)
     },
     heal (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.healed = true
-        }
-      })
+      this.setStatus(target, 'heal', true)
     },
     link (target1, target2) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target1) {
-          element.status.linked = true
-        }
-        if (element.player === target2) {
-          element.status.linked = true
-        }
-      })
+      this.setStatus(target1, 'link', true)
+      this.setStatus(target2, 'link', true)
     },
     kill (target, killType, player) {
       let checkLoyalty = []
@@ -185,9 +167,9 @@ export default {
       }
       this.gameSettings.selectedRoles.forEach((element) => {
         // Check if target is not healed
-        if (element.player === killTarget && !element.status.healed) {
+        if (element.player === killTarget && !element.status.heal) {
           // Check if target has shield
-          if (element.status.shield && !element.status.hacked && killType !== 'straight') {
+          if (element.status.shield && !element.status.hack && killType !== 'straight') {
             this.passiveActive(element)
             element.status.shield = false
           // Check if target has thick ability
@@ -211,8 +193,8 @@ export default {
             element.status.recentlyRevived = false
           }
           // Check if target is linked to another person
-          if (element.status.linked) {
-            element.status.linked = false
+          if (element.status.link) {
+            element.status.link = false
             this.activateLink(element.player)
           }
           // Check if target is a reviver character
@@ -268,12 +250,8 @@ export default {
       })
     },
     silence (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target && !element.status.antiSilenced) {
-          element.status.silenced = true
-          element.status.recentlySilenced = true
-        }
-      })
+      this.setStatus(target, 'silence', true)
+      this.setStatus(target, 'recentlySilenced', true)
     },
     bust (target) {
       this.gameSettings.selectedRoles.forEach((element) => {

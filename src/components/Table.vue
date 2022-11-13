@@ -156,12 +156,12 @@ export default {
         output = {
           'dead': char.status.dead,
           'ninja': char.status.playerReplaced,
-          'love-bind': char.status.linked,
-          'silenced': char.status.silenced,
-          'shield': char.status.shield && !char.status.hacked,
-          'invisible': char.status.invisible && !char.status.hacked,
+          'love-bind': char.status.link,
+          'silence': char.status.silence,
+          'shield': char.status.shield && !char.status.hack,
+          'invisible': char.status.invisible && !char.status.hack,
           'in-jail': char.status.inJail || char.status.busted,
-          'hacked': char.status.hacked,
+          'hack': char.status.hack,
           'skeleton': char.status.minion,
           'solo': char.solo
         }

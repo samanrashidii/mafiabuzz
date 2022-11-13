@@ -48,7 +48,7 @@ export default {
           }
         })
 
-        if (!player.status.hacked) {
+        if (!player.status.hack) {
           if (!player.ability.hacker &&
            !player.ability.binder &&
            !player.ability.prediction &&
@@ -104,7 +104,7 @@ export default {
             this.heal(target1)
           }
           // Healer
-          if (player.ability.antiSilencer) {
+          if (player.ability.antiSilence) {
             this.antiSilence(target1)
           }
           // Buster

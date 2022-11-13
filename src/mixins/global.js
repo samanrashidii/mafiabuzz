@@ -50,6 +50,13 @@ export default {
         this.PostToDiscord(discordPayload)
       }
     },
+    setStatus (target, status, condition) {
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.player === target) {
+          role.status[status] = condition
+        }
+      })
+    },
     startGameEngine (type) {
       if (type) {
         let state = {}

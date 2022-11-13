@@ -34,8 +34,8 @@ export default {
         if (element.status.poisoned) {
           this.kill(element.player)
         }
-        if (element.status.silenced) {
-          element.status.silenced = false
+        if (element.status.silence) {
+          element.status.silence = false
         }
         if (element.status.damageReturned) {
           element.status.damageReturned = false
@@ -146,18 +146,12 @@ export default {
         } else {
           element.actionStatus = false
         }
-        if (element.status.healed) {
-          element.status.healed = false
-        }
-        if (element.status.antiSilenced) {
-          element.status.antiSilenced = false
+        if (element.status.heal) {
+          element.status.heal = false
         }
         if (element.status.inJail) {
           element.status.busted = false
           element.status.inJail = false
-        }
-        if (element.status.identityChecked) {
-          element.status.identityChecked = false
         }
         if (element.status.identityChanged) {
           element.mafia = !element.mafia
@@ -166,8 +160,8 @@ export default {
         if (element.status.roleChecked) {
           element.status.roleChecked = false
         }
-        if (element.status.hacked && !element.status.hackedForever) {
-          element.status.hacked = false
+        if (element.status.hack && !element.status.hackForever) {
+          element.status.hack = false
         }
         element.status.recentlySilenced = false
         element.status.recentlyRevived = false

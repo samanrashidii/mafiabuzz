@@ -35,7 +35,7 @@
               />
             </ul>
             <BaseButton
-              class="has-small-top-margin"
+              class="primary has-small-top-margin"
               @clicked="toggleMafiaParty(false)"
             >
               {{ $t('god.mafiaPartyButton') }}
@@ -109,8 +109,8 @@
         >
           <!-- Hacked Overlay -->
           <div
-            v-if="checkStatus(player).status.hacked"
-            class="action-overlay hacked-overlay"
+            v-if="checkStatus(player).status.hack"
+            class="action-overlay hack-overlay"
             key="hackedTarget"
           >
             <div
@@ -125,7 +125,7 @@
                 >
                 <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
                 <BaseButton
-                  class="purple"
+                  class="primary"
                   @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}

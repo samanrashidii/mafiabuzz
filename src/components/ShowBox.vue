@@ -35,7 +35,7 @@
         >
           <BaseButton
             v-if="!showrole"
-            class="yellow"
+            class="primary"
             key="showButton"
             @clicked="toggleShowRole(true)"
           >
@@ -61,7 +61,7 @@
               </h4>
             </div>
             <BaseButton
-              class="green"
+              class="awesome"
               @clicked.once="nextPerson()"
             >
               {{ $t('pages.home.afterShowButton') }}

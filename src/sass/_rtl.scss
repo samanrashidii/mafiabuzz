@@ -198,16 +198,6 @@ body.rtl{
                         padding-top:3px;
                     }
                 }
-                &.love-bind{
-                    td{
-                        &:nth-child(1){
-                            &::before{
-                                right:auto;
-                                left:-13px;
-                            }
-                        }
-                    }
-                }
                 &.dead{
                     td{
                         &:nth-child(1){
@@ -217,7 +207,7 @@ body.rtl{
                         }
                     }
                 }
-                &.silenced{
+                &.silence{
                     td{
                         &:nth-child(1){
                             &::after{
