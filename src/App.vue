@@ -120,7 +120,6 @@ export default {
             this.SetReplacingRoles(JSON.parse(JSON.stringify(response.data)))
               .then(() => {
                 // After everything loaded, Set Default State of App in localstorage to prevent data loss from erros during the game
-                window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
                 loader.hide()
               })
           })

@@ -76,10 +76,13 @@
             display:block;
             width: 30px;
             height: 30px;
-            line-height: 30px;
+            line-height: 34px;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_8;
             margin:-9px auto 0 auto;
-            border:2px dashed $hint_color;
+            background-color: $primary;
             border-radius: 50%;
+            box-shadow: 0 0 5px $black_color inset;
         }
     
         .player-box{

@@ -101,10 +101,10 @@ export default {
   },
   methods: {
     resetFactory() {
-      this.startGameEngine('hard')
+      this.startGameEngine('default')
     },
     resetSameGame() {
-      this.startGameEngine('soft')
+      this.startGameEngine('saved')
     },
     changeGameFinshed(state) {
       this.gameSettings.gameFinished = state

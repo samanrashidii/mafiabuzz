@@ -5,7 +5,7 @@ export default {
       let resultImage = ''
       if (type === 'checkIdentity') {
         let currentIdentity = this.$t('common.Citizen')
-        if (element.mafia && !element.status.invisible || !element.mafia && element.status.invisible) {
+        if (element.mafia && !element.status.fakeIdentity || !element.mafia && element.status.fakeIdentity) {
           currentIdentity = this.$t('common.Mafia')
         }
         resultText = `<span>${this.$t('god.logResult')}</span> <strong>${currentIdentity}</strong>`

@@ -3,11 +3,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
+      allStates: 'allStates',
       GameSettings: 'gameSettings/gameSettings',
       Dashboard: 'dashboard/dashboard',
       Roles: 'roles/Roles',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
+      ReplacingRoles: 'roles/ReplacingRoles'
     }),
     gameSettings () {
       return JSON.parse(JSON.stringify(this.GameSettings))
@@ -50,10 +50,12 @@ export default {
         this.PostToDiscord(discordPayload)
       }
     },
-    setStatus (target, status, condition) {
+    setStatus (target, statuses = {}) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.player === target) {
-          role.status[status] = condition
+          for (const [key, value] of Object.entries(statuses)) {
+            role.status[key] = value
+          }
         }
       })
     },
@@ -62,14 +64,14 @@ export default {
         let state = {}
         const discordToken = window.localStorage.getItem('discordToken')
 
-        if (type === 'hard') {
-          state = JSON.parse(window.localStorage.getItem('defaultState'))
-        } else if (type === 'soft') {
+        if (type === 'saved') {
           state = JSON.parse(window.localStorage.getItem('sameSettings'))
         } else if (type === 'change') {
           state = JSON.parse(window.localStorage.getItem('defaultSettings'))
         } else if (type === 'captured') {
           state = JSON.parse(window.localStorage.getItem('capturedState'))
+        } else if (type === 'default') {
+          state = JSON.parse(window.localStorage.getItem('defaultSettings'))
         }
 
         this.SetRoles(state.roles.Roles)

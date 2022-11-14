@@ -481,7 +481,7 @@ export default {
   },
   mounted () {
     setInterval(() => {
-      localStorage.setItem('capturedState', JSON.stringify(this.DefaultState))
+      localStorage.setItem('capturedState', JSON.stringify(this.allStates))
     }, 60000)
   },
   methods: {
@@ -494,11 +494,11 @@ export default {
     },
     resetFactory() {
       // Reset Game With Default Settings
-      this.startGameEngine('hard')
+      this.startGameEngine('default')
     },
     resetSameGame() {
       // Reset Game With Last Game Played Settings
-      this.startGameEngine('soft')
+      this.startGameEngine('saved')
     },
     showPlay() {
       // Show God Panel, After Players See Their Roles

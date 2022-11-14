@@ -148,8 +148,8 @@
         "Kill": "کشتن",
         "None": "-",
         "loadLastGameButton": "ادامه بازی قبل",
-        "startNewGameButton": "شروع بازی جدید ",
-        "clearStorage": "پاک کردن ذخیره بازی",
+        "startNewGameButton": "شروع بازی با نقش های قبلی ",
+        "clearStorage": "شروع بازی جدید",
         "cancelButton": "انصراف",
         "newAlt": "آیکن جدید",
         "hotAlt": "آیکن داغ",
@@ -430,15 +430,15 @@
                 "hint": "بازیکن هیچ اکشن و قدرتی ندارد."
             },
             {
-                "name": "linked-icon",
+                "name": "link-icon",
                 "hint": "بازیکن به یک بازیکن دیگه متصل شده و اگر یکیشون کشته بشه هر ۲ می میرند."
             },
             {
-                "name": "silenced-icon",
+                "name": "silence-icon",
                 "hint": "بازیکن ساکت شده و در طول روز نمی تواند حرف بزند."
             },
             {
-                "name": "hacked-icon",
+                "name": "hack-icon",
                 "hint": "بازیکن هک شده و امشب اکشنی نمی تواند انجام دهد و قدرتی هم ندارد."
             },
             {
@@ -451,7 +451,7 @@
             },
             {
                 "name": "invisible-icon",
-                "hint": "هویت این شخص همیشه مخفی است."
+                "hint": "هویت این شخص برعکس است."
             },
             {
                 "name": "shield-icon",

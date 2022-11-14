@@ -117,8 +117,8 @@
         "Kill": "kill",
         "None": "None",
         "loadLastGameButton": "Load Last Game",
-        "startNewGameButton": "Start New Game",
-        "clearStorage": "Clear Saved Game",
+        "startNewGameButton": "Start Game with same roles",
+        "clearStorage": "Start a new game",
         "cancelButton": "Cancel",
         "newAlt": "New Icon",
         "hotAlt": "Hot Icon",
@@ -430,15 +430,15 @@
                 "hint": "Player has no action or passive."
             },
             {
-                "name": "linked-icon",
+                "name": "link-icon",
                 "hint": "Player has been linked to another player and when one of them dies, the other dies aswell"
             },
             {
-                "name": "silenced-icon",
+                "name": "silence-icon",
                 "hint": "Player has been silenced and can't talk during next day"
             },
             {
-                "name": "hacked-icon",
+                "name": "hack-icon",
                 "hint": "Player is hacked and can't use action or passive this night"
             },
             {
@@ -451,7 +451,7 @@
             },
             {
                 "name": "invisible-icon",
-                "hint": "Player's identity will be always secret!"
+                "hint": "Player's identity reversed"
             },
             {
                 "name": "shield-icon",

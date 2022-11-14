@@ -154,7 +154,7 @@ export default {
           element.status.inJail = false
         }
         if (element.status.identityChanged) {
-          element.mafia = !element.mafia
+          element.status.fakeIdentity = !element.status.fakeIdentity
           element.status.identityChanged = false
         }
         if (element.status.roleChecked) {

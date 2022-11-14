@@ -11,22 +11,20 @@ export default {
       this.kill(this.gameSettings.selectedRoles[linkTarget].player)
     },
     antiSilence (target) {
-      this.setStatus(target, 'silence', false)
-      this.setStatus(target, 'recentlySilenced', false)
-    },
-    checkIdentity (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          this.actionLog(element, 'checkIdentity')
-        }
+      this.setStatus(target, {
+        silence: false,
+        recentlySilenced: false
       })
     },
+    checkIdentity (target) {
+      const targetObject = this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
+      this.actionLog(targetObject, 'checkIdentity')
+    },
     changeIdentity (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.mafia = !element.mafia
-          element.status.identityChanged = true
-        }
+      const targetObject = this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
+      this.setStatus(target, {
+        identityChanged: true,
+        fakeIdentity: !targetObject.status.fakeIdentity
       })
     },
     checkRole (target) {
@@ -112,10 +110,10 @@ export default {
       })
     },
     hack (target, forever) {
-        this.setStatus(target, 'hack', true)
-        if (forever) {
-          this.setStatus(target, 'hackForever', true)
-        }
+        this.setStatus(target, {
+          hack: true,
+          hackForever: forever ? true : false
+        })
     },
     hackAura (player) {
       let prevTarget = ''
@@ -138,11 +136,17 @@ export default {
       this.hack(this.gameSettings.selectedRoles[nextTarget].player)
     },
     heal (target) {
-      this.setStatus(target, 'heal', true)
+      this.setStatus(target, {
+        heal: true
+      })
     },
     link (target1, target2) {
-      this.setStatus(target1, 'link', true)
-      this.setStatus(target2, 'link', true)
+      this.setStatus(target1, {
+        link: true
+      })
+      this.setStatus(target2, {
+        link: true
+      })
     },
     kill (target, killType, player) {
       let checkLoyalty = []
@@ -250,8 +254,10 @@ export default {
       })
     },
     silence (target) {
-      this.setStatus(target, 'silence', true)
-      this.setStatus(target, 'recentlySilenced', true)
+      this.setStatus(target, {
+        silence: true,
+        recentlySilenced: true
+      })
     },
     bust (target) {
       this.gameSettings.selectedRoles.forEach((element) => {

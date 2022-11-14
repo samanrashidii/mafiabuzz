@@ -159,7 +159,7 @@ export default {
           'love-bind': char.status.link,
           'silence': char.status.silence,
           'shield': char.status.shield && !char.status.hack,
-          'invisible': char.status.invisible && !char.status.hack,
+          'invisible': char.status.fakeIdentity && !char.status.hack,
           'in-jail': char.status.inJail || char.status.busted,
           'hack': char.status.hack,
           'skeleton': char.status.minion,

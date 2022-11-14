@@ -59,7 +59,7 @@ export default {
       this.overlay = false
     },
     resetFactory () {
-      this.startGameEngine('hard')
+      this.startGameEngine('default')
       this.overlay = false
     },
     clearStorage () {

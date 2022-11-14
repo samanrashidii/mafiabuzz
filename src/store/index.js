@@ -14,13 +14,13 @@ export default new Vuex.Store({
     roles
   },
   getters: {
-    DefaultState: (state) => {
-      const defaultItems = {
+    allStates: (state) => {
+      const states = {
         gameSettings: state.gameSettings,
         dashboard: state.dashboard,
         roles: state.roles
       }
-      return defaultItems
+      return states
     }
   }
 })
