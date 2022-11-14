@@ -79,9 +79,9 @@ export default {
     SET_DISCORD_CHANNEL: (state, data) => {
       state.gameSettings.discordChannel = data
       if (data) {
-        window.localStorage.setItem('discordToken', data)
+        localStorage.setItem('discordToken', data)
       } else {
-        window.localStorage.removeItem('discordToken')
+        localStorage.removeItem('discordToken')
       }
     }
   },

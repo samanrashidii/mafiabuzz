@@ -101,10 +101,10 @@ export default {
   },
   methods: {
     resetFactory() {
-      this.startGameEngine('default')
+      this.startGameEngine('roles-selected-create')
     },
     resetSameGame() {
-      this.startGameEngine('saved')
+      this.startGameEngine('roles-selected-dashboard')
     },
     changeGameFinshed(state) {
       this.gameSettings.gameFinished = state

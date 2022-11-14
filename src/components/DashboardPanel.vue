@@ -161,7 +161,7 @@ export default {
       return JSON.parse(JSON.stringify(this.Roles))
     },
     checkUsers() {
-      const savedPlayers = JSON.parse(localStorage.getItem('savedPlayers'))
+      const savedPlayers = JSON.parse(localStorage.getItem('latest-players'))
       if (savedPlayers && savedPlayers.length > 0) {
         return true
       }
@@ -212,7 +212,7 @@ export default {
       }
       // Save Names to localStorage
       if (playerNames.length > 0) {
-        localStorage.setItem('savedPlayers', JSON.stringify(playerNames))
+        localStorage.setItem('latest-players', JSON.stringify(playerNames))
       }
       this.SetGameSettings(this.gameSettings)
     },
@@ -229,7 +229,7 @@ export default {
     },
     toggleSavedNames () {
       if (this.showSavedNames === false) {
-        this.players = JSON.parse(localStorage.getItem('savedPlayers'))
+        this.players = JSON.parse(localStorage.getItem('latest-players'))
         if (this.gameSettings.selectedRoles.length < this.players.length) {
           this.players = this.players.slice(0, this.gameSettings.selectedRoles.length)
         }
@@ -253,7 +253,7 @@ export default {
       this.gameSettings.selectedRoles.sort(() => 0.5 - Math.random())
     },
     changeGameSettings () {
-      this.startGameEngine('change')
+      this.startGameEngine('roles-selected-create')
     }
   }
 }

@@ -142,10 +142,10 @@ export default {
   },
   methods: {
     startGame () {
-      localStorage.setItem('defaultSettings', JSON.stringify(this.allStates))
+      localStorage.setItem('save-roles-selected-create', JSON.stringify(this.allStates))
       this.gameSettings.gameStarted = true
       this.SetGameSettings(this.gameSettings)
-      localStorage.setItem('sameSettings', JSON.stringify(this.allStates))
+      localStorage.setItem('save-roles-selected-dashboard', JSON.stringify(this.allStates))
       // Post Event To Discord
       let mafia = `
       • `

@@ -481,7 +481,7 @@ export default {
   },
   mounted () {
     setInterval(() => {
-      localStorage.setItem('capturedState', JSON.stringify(this.allStates))
+      localStorage.setItem('save-automatic', JSON.stringify(this.allStates))
     }, 60000)
   },
   methods: {
@@ -493,12 +493,12 @@ export default {
       this.SetGameSettings(this.gameSettings)
     },
     resetFactory() {
-      // Reset Game With Default Settings
-      this.startGameEngine('default')
+      // Reset Game With Selected Roles
+      this.startGameEngine('roles-selected-create')
     },
     resetSameGame() {
       // Reset Game With Last Game Played Settings
-      this.startGameEngine('saved')
+      this.startGameEngine('roles-selected-dashboard')
     },
     showPlay() {
       // Show God Panel, After Players See Their Roles

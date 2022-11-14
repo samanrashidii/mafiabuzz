@@ -64,14 +64,12 @@ export default {
         let state = {}
         const discordToken = window.localStorage.getItem('discordToken')
 
-        if (type === 'saved') {
-          state = JSON.parse(window.localStorage.getItem('sameSettings'))
-        } else if (type === 'change') {
-          state = JSON.parse(window.localStorage.getItem('defaultSettings'))
-        } else if (type === 'captured') {
-          state = JSON.parse(window.localStorage.getItem('capturedState'))
-        } else if (type === 'default') {
-          state = JSON.parse(window.localStorage.getItem('defaultSettings'))
+        if (type === 'roles-selected-create') {
+          state = JSON.parse(window.localStorage.getItem('save-roles-selected-create'))
+        } else if (type === 'roles-selected-dashboard') {
+          state = JSON.parse(window.localStorage.getItem('save-roles-selected-dashboard'))
+        } else if (type === 'autosave') {
+          state = JSON.parse(window.localStorage.getItem('save-automatic'))
         }
 
         this.SetRoles(state.roles.Roles)

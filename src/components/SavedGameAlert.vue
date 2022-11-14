@@ -48,18 +48,18 @@ export default {
     }
   },
   mounted () {
-    const capturedState = JSON.parse(localStorage.getItem('capturedState'))
+    const capturedState = JSON.parse(localStorage.getItem('save-automatic'))
     if (capturedState) {
       this.overlay = true
     }
   },
   methods: {
     loadFromSave () {
-      this.startGameEngine('captured')
+      this.startGameEngine('autosave')
       this.overlay = false
     },
     resetFactory () {
-      this.startGameEngine('default')
+      this.startGameEngine('roles-selected-create')
       this.overlay = false
     },
     clearStorage () {
