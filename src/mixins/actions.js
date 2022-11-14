@@ -28,13 +28,12 @@ export default {
       this.gameSettings.roleViewer = true
     },
     checkDetonator (target) {
-      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player === target &&
-         this.gameSettings.selectedRoles[i].ability.detonator &&
-         !this.gameSettings.selectedRoles[i].status.hack) {
-          return true
-        }
+      let output = false
+      const detonatorAvailable = this.gameSettings.selectedRoles.filter(role => role.player === target && role.ability.detonator && !role.status.hack)
+      if (detonatorAvailable.length > 0) {
+        output = true
       }
+      return output
     },
     checkReturner (target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
@@ -91,10 +90,10 @@ export default {
       })
     },
     hack (target, forever) {
-        this.setStatus(target, {
-          hack: true,
-          hackForever: forever ? true : false
-        })
+      this.setStatus(target, {
+        hack: true,
+        hackForever: forever ? true : false
+      })
     },
     hackAura (player) {
       let prevTarget = ''
