@@ -20,7 +20,7 @@
         </span>
       </BaseButton>
       <BaseButton
-        class="blue start-bttn"
+        class="secondary start-bttn"
         @clicked="resetFactory()"
       >
         <span>
@@ -28,7 +28,7 @@
         </span>
       </BaseButton>
       <BaseButton
-        class="danger exit-bttn"
+        class="primary exit-bttn"
         @clicked="clearStorage()"
       >
         <span>

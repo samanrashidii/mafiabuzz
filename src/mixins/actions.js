@@ -1,40 +1,31 @@
 export default {
   methods: {
-    activateLink (target) {
-      let linkTarget = ''
-      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player !== target && this.gameSettings.selectedRoles[i].status.link) {
-          linkTarget = i
-          this.gameSettings.selectedRoles[i].status.link = false
-        }
-      }
-      this.kill(this.gameSettings.selectedRoles[linkTarget].player)
+    activateLink (name) {
+      const linkTarget = this.gameSettings.selectedRoles.filter((role) => role.player !== name && role.status.link)[0]
+      this.kill(linkTarget.player)
     },
-    antiSilence (target) {
-      this.setStatus(target, {
+    antiSilence (name) {
+      this.setStatus(name, {
         silence: false,
         recentlySilenced: false
       })
     },
-    checkIdentity (target) {
-      const targetObject = this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
+    checkIdentity (name) {
+      const targetObject = this.getRoleObjectByName(name)
       this.actionLog(targetObject, 'checkIdentity')
     },
-    changeIdentity (target) {
-      const targetObject = this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
-      this.setStatus(target, {
+    changeIdentity (name) {
+      const targetObject = this.getRoleObjectByName(name)
+      this.setStatus(name, {
         identityChanged: true,
         fakeIdentity: !targetObject.status.fakeIdentity
       })
     },
-    checkRole (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.roleChecked = true
-          this.gameSettings.viewerItems.push(element)
-          this.gameSettings.roleViewer = true
-        }
-      })
+    checkRole (name) {
+      const targetObject = this.getRoleObjectByName(name)
+      targetObject.status.roleChecked = true
+      this.gameSettings.viewerItems.push(targetObject)
+      this.gameSettings.roleViewer = true
     },
     checkDetonator (target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
@@ -47,10 +38,7 @@ export default {
     },
     checkReturner (target) {
       for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player === target &&
-        !this.gameSettings.selectedRoles[i].status.dead &&
-        this.gameSettings.selectedRoles[i].ability.returner &&
-        !this.gameSettings.selectedRoles[i].status.hack) {
+        if (this.gameSettings.selectedRoles[i].player === target && !this.gameSettings.selectedRoles[i].status.dead && this.gameSettings.selectedRoles[i].ability.returner && !this.gameSettings.selectedRoles[i].status.hack) {
           return true
         }
       }
@@ -73,34 +61,27 @@ export default {
       })
       this.passiveActive(element)
     },
-    deadWatcher (value, player) {
+    deadWatcher (value, name) {
       this.dashboard.revengeKillBox = value
-      this.dashboard.avenger = player
+      this.dashboard.avenger = name
       this.SetDashboard(this.dashboard)
     },
     detonate (target) {
-      let mainTarget = ''
-      let prevTarget = ''
-      let nextTarget = ''
-      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player === target) {
-          mainTarget = i
-          if (i === this.gameSettings.selectedRoles.length - 1) {
-            prevTarget = i - 1
-            nextTarget = 0
-          } else if (i === 0) {
-            prevTarget = this.gameSettings.selectedRoles.length - 1
-            nextTarget = i + 1
-          } else {
-            prevTarget = i - 1
-            nextTarget = i + 1
-          }
-          this.gameSettings.selectedRoles[i].status.detonated = true
-        }
-      }
-      this.passiveActive(this.gameSettings.selectedRoles[mainTarget])
-      this.kill(this.gameSettings.selectedRoles[prevTarget].player)
-      this.kill(this.gameSettings.selectedRoles[nextTarget].player)
+      // Get Index of main target and siblings
+      const mainTargetIndex = this.gameSettings.selectedRoles.findIndex(role => role.player === target)
+      // Check if index is 0
+      const prevIndex = mainTargetIndex === 0 ? this.gameSettings.selectedRoles.length - 1 : mainTargetIndex - 1
+      // Check if index is equal to array's length
+      const nextIndex = mainTargetIndex === this.gameSettings.selectedRoles.length ? 0 : mainTargetIndex + 1
+      // Get Index of main target and siblings
+      const mainTarget = this.getRoleObjectByIndex(mainTargetIndex)
+      const prevTarget = this.getRoleObjectByIndex(prevIndex)
+      const nextTarget = this.getRoleObjectByIndex(nextIndex)
+      // Alert Passive Activation
+      this.passiveActive(mainTarget)
+      // Kill siblings
+      this.kill(prevTarget.player)
+      this.kill(nextTarget.player)
     },
     explosion (player) {
       this.gameSettings.selectedRoles.forEach((element) => {

@@ -35,20 +35,11 @@ export default {
       SetDiscordChannel: 'gameSettings/SetDiscordChannel',
       PostToDiscord: 'gameSettings/PostToDiscord'
     }),
-    postDiscord (text, staticUrl) {
-      const discordPayload = {
-        payload: {
-          embeds: [{
-            description: text,
-            color: 1160836
-          }],
-          tts: false
-        },
-        url: staticUrl || this.gameSettings.discordChannel
-      }
-      if (this.gameSettings.discordChannel || staticUrl) {
-        this.PostToDiscord(discordPayload)
-      }
+    dice (number) {
+      return Math.floor(Math.random() * number) + 1
+    },
+    getImg (dir, pic) {
+      return require(`@/assets/images${dir}/${pic}`)
     },
     setStatus (target, statuses = {}) {
       this.gameSettings.selectedRoles.forEach((role) => {
@@ -58,6 +49,15 @@ export default {
           }
         }
       })
+    },
+    getRoleObjectByName (target) {
+      return this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
+    },
+    getRoleObjectByIndex (roleIndex) {
+      return this.gameSettings.selectedRoles.filter((role, index) => index === roleIndex)[0]
+    },
+    getRoleObjectById (id) {
+      return this.gameSettings.selectedRoles.filter(role => role.id === id)[0]
     },
     startGameEngine (type) {
       if (type) {
@@ -82,11 +82,20 @@ export default {
         }
       }
     },
-    dice (number) {
-      return Math.floor(Math.random() * number) + 1
-    },
-    getImg (dir, pic) {
-      return require(`@/assets/images${dir}/${pic}`)
+    postDiscord (text, staticUrl) {
+      const discordPayload = {
+        payload: {
+          embeds: [{
+            description: text,
+            color: 1160836
+          }],
+          tts: false
+        },
+        url: staticUrl || this.gameSettings.discordChannel
+      }
+      if (this.gameSettings.discordChannel || staticUrl) {
+        this.PostToDiscord(discordPayload)
+      }
     }
   }
 }
