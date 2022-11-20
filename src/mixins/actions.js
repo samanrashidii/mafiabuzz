@@ -70,6 +70,14 @@ export default {
       this.kill(allTargets.prevTarget.player)
       this.kill(allTargets.nextTarget.player)
     },
+    detonateHackBomb (target) {
+      const allTargets = this.getSiblingTargets(target)
+      // Alert Passive Activation
+      this.passiveActive(allTargets.mainTarget)
+      // Kill siblings
+      this.hack(allTargets.prevTarget.player, true)
+      this.hack(allTargets.nextTarget.player, true)
+    },
     explosion (player) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.player !== player) {
@@ -82,14 +90,6 @@ export default {
         hack: true,
         hackForever: forever ? true : false
       })
-    },
-    detonateHackBomb (target) {
-      const allTargets = this.getSiblingTargets(target)
-      // Alert Passive Activation
-      this.passiveActive(allTargets.mainTarget)
-      // Kill siblings
-      this.hack(allTargets.prevTarget.player, true)
-      this.hack(allTargets.nextTarget.player, true)
     },
     heal (target) {
       this.setStatus(target, {
