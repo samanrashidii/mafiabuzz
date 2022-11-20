@@ -37,9 +37,6 @@ export default {
         if (element.status.silence) {
           element.status.silence = false
         }
-        if (element.status.damageReturned) {
-          element.status.damageReturned = false
-        }
         if (element.status.marked) {
           element.status.marked = false
         }

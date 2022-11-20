@@ -49,10 +49,8 @@ export default {
         })
 
         if (!player.status.hack) {
-          if (!player.ability.hacker &&
-           !player.ability.binder &&
-           !player.ability.prediction &&
-           this.checkReturner(target1)) {
+          // TODO: Move Anti Hack to Status
+          if (!player.ability.hacker && !player.ability.binder && !player.ability.prediction && this.checkKillReturner(target1)) {
             this.damageReturn(player.player, target1)
           }
           // Binder

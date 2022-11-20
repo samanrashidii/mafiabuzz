@@ -41,6 +41,30 @@ export default {
     getImg (dir, pic) {
       return require(`@/assets/images${dir}/${pic}`)
     },
+    checkStatus (target, statuses = {}) {
+      let output = true
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.player === target) {
+          for (const [key, value] of Object.entries(statuses)) {
+            if (role.status[key] !== value) {
+              output = false
+            }
+          }
+        }
+      })
+      return output
+    },
+    getStatus (target, statuses = {}) {
+      const output = {}
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.player === target) {
+          for (const [key, value] of Object.entries(statuses)) {
+            output[key] = value
+          }
+        }
+      })
+      return output
+    },
     setStatus (target, statuses = {}) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.player === target) {

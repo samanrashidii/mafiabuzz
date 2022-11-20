@@ -1,18 +1,30 @@
 export default {
   methods: {
-    activateLink (name) {
-      const linkTarget = this.gameSettings.selectedRoles.filter((role) => role.player !== name && role.status.link)[0]
-      this.kill(linkTarget.player)
+    checkDetonator (target) {
+      return this.checkStatus(target, {
+        readyToDetonate: true,
+        hack: false
+      })
     },
-    antiSilence (name) {
-      this.setStatus(name, {
-        silence: false,
-        recentlySilenced: false
+    checkKillReturner (target) {
+      return this.checkStatus(target, {
+        returnKill: true,
+        hack: false
       })
     },
     checkIdentity (name) {
       const targetObject = this.getRoleObjectByName(name)
       this.actionLog(targetObject, 'checkIdentity')
+    },
+    checkRole (name) {
+      const targetObject = this.getRoleObjectByName(name)
+      targetObject.status.roleChecked = true
+      this.gameSettings.viewerItems.push(targetObject)
+      this.gameSettings.roleViewer = true
+    },
+    activateLink (name) {
+      const linkTarget = this.gameSettings.selectedRoles.filter((role) => role.player !== name && role.status.link)[0]
+      this.kill(linkTarget.player)
     },
     changeIdentity (name) {
       const targetObject = this.getRoleObjectByName(name)
@@ -21,35 +33,16 @@ export default {
         fakeIdentity: !targetObject.status.fakeIdentity
       })
     },
-    checkRole (name) {
-      const targetObject = this.getRoleObjectByName(name)
-      targetObject.status.roleChecked = true
-      this.gameSettings.viewerItems.push(targetObject)
-      this.gameSettings.roleViewer = true
-    },
-    checkDetonator (target) {
-      let output = false
-      const detonatorAvailable = this.gameSettings.selectedRoles.filter(role => role.player === target && role.ability.detonator && !role.status.hack)
-      if (detonatorAvailable.length > 0) {
-        output = true
-      }
-      return output
-    },
-    checkReturner (target) {
-      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player === target && !this.gameSettings.selectedRoles[i].status.dead && this.gameSettings.selectedRoles[i].ability.returner && !this.gameSettings.selectedRoles[i].status.hack) {
-          return true
-        }
-      }
+    antiSilence (name) {
+      this.setStatus(name, {
+        silence: false,
+        recentlySilenced: false
+      })
     },
     damageReturn (player, target) {
       this.kill(player)
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          this.passiveActive(element)
-          element.status.damageReturned = true
-        }
-      })
+      const targetObject = this.getRoleObjectByName(target)
+      this.passiveActive(targetObject)
     },
     destroyMinions (element) {
       this.gameSettings.selectedRoles.forEach((el) => {
@@ -128,6 +121,55 @@ export default {
         link: true
       })
     },
+
+    predict (target) {
+      this.setStatus(target, {
+        marked: true
+      })
+    },
+    replacePlayer (target, replacer) {
+      this.kill(replacer)
+      this.gameSettings.selectedRoles.forEach((element, index) => {
+        if (element.player === target) {
+          const newCharacter = {
+            ...element,
+            ...this.replacingRoles.miniYakuza
+          }
+          this.gameSettings.selectedRoles[index] = newCharacter
+        }
+      })
+    },
+    revive (target) {
+      this.gameSettings.selectedRoles.forEach((element, index) => {
+        if (element.player === target) {
+          const newCharacter = {
+            ...element,
+            ...this.replacingRoles.skeleton
+          }
+          newCharacter.status.recentlyRevived = true
+          newCharacter.status.recentlyDead = false
+          this.gameSettings.selectedRoles[index] = newCharacter
+        }
+      })
+    },
+    resurrect (target) {
+      this.setStatus(target, {
+        dead: false,
+        recentlyRevived: true,
+        recentlyDead: false
+      })
+    },
+    silence (target) {
+      this.setStatus(target, {
+        silence: true,
+        recentlySilenced: true
+      })
+    },
+    bust (target) {
+      this.setStatus(target, {
+        busted: true
+      })
+    },
     kill (target, killType, player) {
       let checkLoyalty = []
       if (player) {
@@ -157,7 +199,7 @@ export default {
             this.passiveActive(element)
             element.status.shield = false
           // Check if target has thick ability
-          } else if (element.status.thick && !element.status.poisoned && killType !== 'straight') {
+          } else if (element.status.thick && killType !== 'straight') {
             element.status.poisoned = true
           // Check if target has revenge ability
           } else if (element.ability.revenge && !this.dashboard.avenger) {
@@ -189,60 +231,6 @@ export default {
           if (this.checkDetonator(element.player)) {
             this.detonate(element.player)
           }
-        }
-      })
-    },
-    predict (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.marked = true
-        }
-      })
-    },
-    replacePlayer (target, replacer) {
-      this.kill(replacer)
-      this.gameSettings.selectedRoles.forEach((element, index) => {
-        if (element.player === target) {
-          const newCharacter = {
-            ...element,
-            ...this.replacingRoles.miniYakuza
-          }
-          this.gameSettings.selectedRoles[index] = newCharacter
-        }
-      })
-    },
-    revive (target) {
-      this.gameSettings.selectedRoles.forEach((element, index) => {
-        if (element.player === target) {
-          const newCharacter = {
-            ...element,
-            ...this.replacingRoles.skeleton
-          }
-          newCharacter.status.recentlyRevived = true
-          newCharacter.status.recentlyDead = false
-          this.gameSettings.selectedRoles[index] = newCharacter
-        }
-      })
-    },
-    resurrect (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.dead = false
-          element.status.recentlyRevived = true
-          element.status.recentlyDead = false
-        }
-      })
-    },
-    silence (target) {
-      this.setStatus(target, {
-        silence: true,
-        recentlySilenced: true
-      })
-    },
-    bust (target) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.player === target) {
-          element.status.busted = true
         }
       })
     }
