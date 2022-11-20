@@ -68,12 +68,6 @@ export default {
           `
           this.dashboard.lastNight.push(logNote)
         }
-        if (element.ability.defuser && element.status.dead) {
-          this.hackAura(element.player)
-        }
-        element.status.recentlySilenced = false
-        element.status.recentlyRevived = false
-        element.status.recentlyDead = false
       })
       this.dashboard.targetData = {}
       this.dashboard.day = false

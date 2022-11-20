@@ -74,6 +74,24 @@ export default {
         }
       })
     },
+    getSiblingTargets (target) {
+      // Get Index of main target and siblings
+      const mainTargetIndex = this.gameSettings.selectedRoles.findIndex(role => role.player === target)
+      // Check if index is 0 set it to length of array - 1
+      const prevIndex = mainTargetIndex === 0 ? this.gameSettings.selectedRoles.length - 1 : mainTargetIndex - 1
+      // Check if index is equal to array's length set it to 0
+      const nextIndex = mainTargetIndex === this.gameSettings.selectedRoles.length ? 0 : mainTargetIndex + 1
+      // Get Index of main target and siblings
+      const mainTarget = this.getRoleObjectByIndex(mainTargetIndex)
+      const prevTarget = this.getRoleObjectByIndex(prevIndex)
+      const nextTarget = this.getRoleObjectByIndex(nextIndex)
+      const output = {
+        mainTarget,
+        prevTarget,
+        nextTarget
+      }
+      return output
+    },
     getRoleObjectByName (target) {
       return this.gameSettings.selectedRoles.filter(role => role.player === target)[0]
     },

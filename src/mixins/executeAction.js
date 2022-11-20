@@ -16,34 +16,34 @@ export default {
         (player.ability.binder && this.actionTarget1 !== null && this.actionTarget2 !== null) ||
         (this.actionTarget1 === null && this.actionTarget2 === null && this.useAbility)) {
         // For All Each
-        this.gameSettings.selectedRoles.forEach((el) => {
+        this.gameSettings.selectedRoles.forEach((role) => {
           // Shared
-          if (el.player === player.player) {
-            el.actionStatus = true
+          if (role.player === player.player) {
+            role.actionStatus = true
             // BooleanAbility
             if (this.useAbility) {
-              if (el.ability.justice) {
-                el.status.booleanAbility = true
+              if (role.ability.justice) {
+                role.status.booleanAbility = true
               }
-              if (el.ability.searching) {
-                el.status.booleanAbility = true
+              if (role.ability.searching) {
+                role.status.booleanAbility = true
               }
             }
           }
           // Calc Hits
-          if (el.player === target1 || el.player === target2) {
-            el.status.hitByAction++
-            if (el.ability.explosioner && this.peopleInSquareNumber === el.status.hitByAction) {
-              this.explosion(el.player)
+          if (role.player === target1 || role.player === target2) {
+            role.status.hitByAction++
+            if (role.ability.explosioner && this.peopleInSquareNumber === role.status.hitByAction) {
+              this.explosion(role.player)
               this.gameSettings.soloWinner = el
               this.gameSettings.soloWins = true
             }
           }
           // Ability Counter
-          if (el.player === player.player && player.status.actionLimit > 0) {
-            el.status.actionLimit = el.status.actionLimit - 1
-            if (el.status.actionLimit === 0) {
-              el.status.hasAction = false
+          if (role.player === player.player && player.status.actionLimit > 0) {
+            role.status.actionLimit = role.status.actionLimit - 1
+            if (role.status.actionLimit === 0) {
+              role.status.hasAction = false
             }
           }
         })
@@ -51,7 +51,7 @@ export default {
         if (!player.status.hack) {
           // TODO: Move Anti Hack to Status
           if (!player.ability.hacker && !player.ability.binder && !player.ability.prediction && this.checkKillReturner(target1)) {
-            this.damageReturn(player.player, target1)
+            this.returnKill(player.player, target1)
           }
           // Binder
           if (player.ability.binder) {

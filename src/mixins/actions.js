@@ -1,16 +1,25 @@
 export default {
   methods: {
     checkDetonator (target) {
-      return this.checkStatus(target, {
+      const output = this.checkStatus(target, {
         readyToDetonate: true,
         hack: false
       })
+      return output
+    },
+    checkHackBomber (target) {
+      const output = this.checkStatus(target, {
+        hackBomber: true,
+        hack: false
+      })
+      return output
     },
     checkKillReturner (target) {
-      return this.checkStatus(target, {
+      const output = this.checkStatus(target, {
         returnKill: true,
         hack: false
       })
+      return output
     },
     checkIdentity (name) {
       const targetObject = this.getRoleObjectByName(name)
@@ -26,6 +35,12 @@ export default {
       const linkTarget = this.gameSettings.selectedRoles.filter((role) => role.player !== name && role.status.link)[0]
       this.kill(linkTarget.player)
     },
+    antiSilence (name) {
+      this.setStatus(name, {
+        silence: false,
+        recentlySilenced: false
+      })
+    },
     changeIdentity (name) {
       const targetObject = this.getRoleObjectByName(name)
       this.setStatus(name, {
@@ -33,25 +48,14 @@ export default {
         fakeIdentity: !targetObject.status.fakeIdentity
       })
     },
-    antiSilence (name) {
-      this.setStatus(name, {
-        silence: false,
-        recentlySilenced: false
-      })
-    },
-    damageReturn (player, target) {
-      this.kill(player)
-      const targetObject = this.getRoleObjectByName(target)
-      this.passiveActive(targetObject)
-    },
-    destroyMinions (element) {
-      this.gameSettings.selectedRoles.forEach((el) => {
-        if (el.status.minion && !el.status.heal) {
-          this.kill(el.player)
-          el.status.minion = false
+    destroyMinions (target) {
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.status.minion) {
+          this.kill(role.player)
+          role.status.minion = false
         }
       })
-      this.passiveActive(element)
+      this.passiveActive(target)
     },
     deadWatcher (value, name) {
       this.dashboard.revengeKillBox = value
@@ -59,26 +63,17 @@ export default {
       this.SetDashboard(this.dashboard)
     },
     detonate (target) {
-      // Get Index of main target and siblings
-      const mainTargetIndex = this.gameSettings.selectedRoles.findIndex(role => role.player === target)
-      // Check if index is 0 set it to length of array - 1
-      const prevIndex = mainTargetIndex === 0 ? this.gameSettings.selectedRoles.length - 1 : mainTargetIndex - 1
-      // Check if index is equal to array's length set it to 0
-      const nextIndex = mainTargetIndex === this.gameSettings.selectedRoles.length ? 0 : mainTargetIndex + 1
-      // Get Index of main target and siblings
-      const mainTarget = this.getRoleObjectByIndex(mainTargetIndex)
-      const prevTarget = this.getRoleObjectByIndex(prevIndex)
-      const nextTarget = this.getRoleObjectByIndex(nextIndex)
+      const allTargets = this.getSiblingTargets(target)
       // Alert Passive Activation
-      this.passiveActive(mainTarget)
+      this.passiveActive(allTargets.mainTarget)
       // Kill siblings
-      this.kill(prevTarget.player)
-      this.kill(nextTarget.player)
+      this.kill(allTargets.prevTarget.player)
+      this.kill(allTargets.nextTarget.player)
     },
     explosion (player) {
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (!(element.player === player && element.ability.explosioner)) {
-          this.kill(element.player, 'straight')
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.player !== player) {
+          this.kill(role.player, 'straight')
         }
       })
     },
@@ -88,25 +83,13 @@ export default {
         hackForever: forever ? true : false
       })
     },
-    hackAura (player) {
-      let prevTarget = ''
-      let nextTarget = ''
-      for (let i = 0; i < this.gameSettings.selectedRoles.length; i++) {
-        if (this.gameSettings.selectedRoles[i].player === player) {
-          if (i === this.gameSettings.selectedRoles.length - 1) {
-            prevTarget = i - 1
-            nextTarget = 0
-          } else if (i === 0) {
-            prevTarget = this.gameSettings.selectedRoles.length - 1
-            nextTarget = i + 1
-          } else {
-            prevTarget = i - 1
-            nextTarget = i + 1
-          }
-        }
-      }
-      this.hack(this.gameSettings.selectedRoles[prevTarget].player)
-      this.hack(this.gameSettings.selectedRoles[nextTarget].player)
+    detonateHackBomb (target) {
+      const allTargets = this.getSiblingTargets(target)
+      // Alert Passive Activation
+      this.passiveActive(allTargets.mainTarget)
+      // Kill siblings
+      this.hack(allTargets.prevTarget.player, true)
+      this.hack(allTargets.nextTarget.player, true)
     },
     heal (target) {
       this.setStatus(target, {
@@ -121,7 +104,6 @@ export default {
         link: true
       })
     },
-
     predict (target) {
       this.setStatus(target, {
         marked: true
@@ -129,21 +111,26 @@ export default {
     },
     replacePlayer (target, replacer) {
       this.kill(replacer)
-      this.gameSettings.selectedRoles.forEach((element, index) => {
-        if (element.player === target) {
+      this.gameSettings.selectedRoles.forEach((role, index) => {
+        if (role.player === target) {
           const newCharacter = {
-            ...element,
+            ...role,
             ...this.replacingRoles.miniYakuza
           }
           this.gameSettings.selectedRoles[index] = newCharacter
         }
       })
     },
+    returnKill (player, target) {
+      const targetObject = this.getRoleObjectByName(target)
+      this.kill(player)
+      this.passiveActive(targetObject)
+    },
     revive (target) {
-      this.gameSettings.selectedRoles.forEach((element, index) => {
-        if (element.player === target) {
+      this.gameSettings.selectedRoles.forEach((role, index) => {
+        if (role.player === target) {
           const newCharacter = {
-            ...element,
+            ...role,
             ...this.replacingRoles.skeleton
           }
           newCharacter.status.recentlyRevived = true
@@ -191,45 +178,49 @@ export default {
           killTarget = target
         }
       }
-      this.gameSettings.selectedRoles.forEach((element) => {
+      this.gameSettings.selectedRoles.forEach((role) => {
         // Check if target is not healed
-        if (element.player === killTarget && !element.status.heal) {
+        if (role.player === killTarget && !role.status.heal) {
           // Check if target has shield
-          if (element.status.shield && !element.status.hack && killType !== 'straight') {
-            this.passiveActive(element)
-            element.status.shield = false
+          if (role.status.shield && !role.status.hack && killType !== 'straight') {
+            this.passiveActive(role)
+            role.status.shield = false
           // Check if target has thick ability
-          } else if (element.status.thick && killType !== 'straight') {
-            element.status.poisoned = true
+          } else if (role.status.thick && killType !== 'straight') {
+            role.status.poisoned = true
           // Check if target has revenge ability
-          } else if (element.ability.revenge && !this.dashboard.avenger) {
-            element.status.dead = true
-            element.status.recentlyDead = true
+          } else if (role.ability.revenge && !this.dashboard.avenger) {
+            role.status.dead = true
+            role.status.recentlyDead = true
             // Check if target ability is usable only in nights
-            if (!element.status.dayOnly && !this.dashboard.day) {
-              this.deadWatcher(true, element.player)
-            } else if (element.status.dayOnly && this.dashboard.day) {
+            if (!role.status.dayOnly && !this.dashboard.day) {
+              this.deadWatcher(true, role.player)
+            } else if (role.status.dayOnly && this.dashboard.day) {
               // Check if target ability is usable only in days
-              this.deadWatcher(true, element.player)
+              this.deadWatcher(true, role.player)
             }
           // Check if target is alive
-          } else if (!element.status.dead) {
-            element.status.dead = true
-            element.status.recentlyDead = true
-            element.status.recentlyRevived = false
+          } else if (!role.status.dead) {
+            role.status.dead = true
+            role.status.recentlyDead = true
+            role.status.recentlyRevived = false
           }
           // Check if target is linked to another person
-          if (element.status.link) {
-            element.status.link = false
-            this.activateLink(element.player)
+          if (role.status.link) {
+            role.status.link = false
+            this.activateLink(role.player)
           }
           // Check if target is a reviver character
-          if (element.ability.reviver) {
-            this.destroyMinions(element)
+          if (role.ability.reviver) {
+            this.destroyMinions(role)
           }
           // Check if target is detonatable
-          if (this.checkDetonator(element.player)) {
-            this.detonate(element.player)
+          if (this.checkDetonator(role.player)) {
+            this.detonate(role.player)
+          }
+          // Check if target is detonatable
+          if (this.checkHackBomber(role.player)) {
+            this.detonateHackBomb(role.player)
           }
         }
       })
