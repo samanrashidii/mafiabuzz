@@ -6,6 +6,6 @@
 
 <script>
 export default {
-
-};
+  name: 'BasePageBox'
+}
 </script>

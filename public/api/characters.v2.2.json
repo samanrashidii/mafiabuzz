@@ -55,7 +55,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -64,6 +63,7 @@
             "hasAction": false,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -125,7 +125,7 @@
             },
             "fa": {
                 "name": "گادفادر",
-                "description": "گادفادر، رئیس مافیاهاست و هر شب یک نفر را می کشد. (موارد استثنا با توجه به نقش‌هایی مثل هکر وجود دارد) خاصیت اصلی گادفادر این است که نقش مافیایی آن برای پلیس مشخص نمی‌شود. (اگر پلیس نقش گادفادر را بپرسد، گاد نقش او را شهروند اعلام می‌کند) اگر گادفادر بمیرد، مسئولیت کشتن در شب به مافیای بعد از آن منتقل می‌شود و آن مافیا قدرت خاص خودش را از دست می‌دهد (اگر قدرت کشتن بعد از گادفادر به ناتاشا منتقل شود، ازین به بعد ناتاشا فقط می‌کشد و نمی‌تواند کسی‌را ساکت کند) بهتر است گاد،  قبل از بازی ترتیب مافیا ها را بعد از مردن گادفادر، به همه توضیح دهد.",
+                "description": "گادفادر، رئیس مافیاهاست و هر شب یک نفر را می کشد. (موارد استثنا با توجه به نقش‌هایی مثل هکر وجود دارد) خاصیت اصلی گادفادر این است که نقش مافیایی آن برای پلیس مشخص نمی‌شود. (اگر پلیس نقش گادفادر را بپرسد، گاد نقش او را شهروند اعلام می‌کند) اگر گادفادر بمیرد، مسئولیت کشتن در شب به مافیای بعد از آن منتقل می‌شود و آن مافیا قدرت خاص خودش را از دست می‌دهد (اگر قدرت کشتن بعد از گادفادر به ناتاشا منتقل شود، ازین به بعد ناتاشا فقط می‌کشد و نمی‌ تواند کسی‌ را ساکت کند) بهتر است گاد،  قبل از بازی ترتیب مافیا ها را بعد از مردن گادفادر، به همه توضیح دهد.",
                 "passive": "ندارد",
                 "action": "کشتن"
             }
@@ -152,7 +152,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -161,6 +160,7 @@
             "hasAction": true,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": true,
@@ -249,7 +249,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -258,6 +257,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -346,7 +346,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -355,6 +354,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -443,7 +443,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -452,6 +451,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": true,
@@ -540,7 +540,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -549,6 +548,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -637,7 +637,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -646,6 +645,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -734,7 +734,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -743,6 +742,7 @@
             "hasAction": false,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -831,7 +831,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -840,6 +839,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -928,7 +928,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -937,6 +936,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1025,7 +1025,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1034,6 +1033,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1122,7 +1122,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1131,6 +1130,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": true,
             "fakeIdentity": false,
@@ -1220,7 +1220,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1229,6 +1228,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": true,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1317,7 +1317,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1326,6 +1325,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1414,7 +1414,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1423,6 +1422,7 @@
             "hasAction": true,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1511,7 +1511,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1520,6 +1519,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1608,7 +1608,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1617,6 +1616,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1705,7 +1705,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1714,6 +1713,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1802,7 +1802,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1811,6 +1810,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1899,7 +1899,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -1908,6 +1907,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -1996,7 +1996,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2005,6 +2004,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2093,7 +2093,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2102,6 +2101,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2190,7 +2190,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2199,6 +2198,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2287,7 +2287,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2296,6 +2295,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2384,7 +2384,6 @@
             "voteSeeker": true,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2393,6 +2392,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2481,7 +2481,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2490,6 +2489,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2578,7 +2578,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": true,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2587,6 +2586,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2675,7 +2675,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2684,6 +2683,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2772,7 +2772,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": true,
             "loyalty": false
         },
         "status": {
@@ -2781,6 +2780,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": true,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2869,7 +2869,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2878,6 +2877,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -2966,7 +2966,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -2975,6 +2974,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3063,7 +3063,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": true
         },
         "status": {
@@ -3072,6 +3071,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3160,7 +3160,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -3169,6 +3168,7 @@
             "hasAction": false,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3257,7 +3257,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -3266,6 +3265,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3355,7 +3355,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -3364,6 +3363,7 @@
             "hasAction": false,
             "hasPassive": true,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3453,7 +3453,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false
         },
         "status": {
@@ -3462,6 +3461,7 @@
             "hasAction": false,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3550,7 +3550,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false,
             "hackForever": true
         },
@@ -3560,6 +3559,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3648,7 +3648,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false,
             "identityChanger": true
         },
@@ -3658,6 +3657,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3746,7 +3746,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false,
             "identityChanger": false,
             "buster": true
@@ -3757,6 +3756,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,
@@ -3845,7 +3845,6 @@
             "voteSeeker": false,
             "poison": false,
             "sniper": false,
-            "deadMagnet": false,
             "loyalty": false,
             "identityChanger": false,
             "buster": false,
@@ -3857,6 +3856,7 @@
             "hasAction": true,
             "hasPassive": false,
             "dead": false,
+            "deadMagnet": false,
             "returnKill": false,
             "readyToDetonate": false,
             "fakeIdentity": false,

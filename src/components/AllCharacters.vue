@@ -171,7 +171,7 @@ export default {
         if (element.id == role.id) {
           element.selected == false ? element.selected = true : element.selected = false
         }
-      });
+      })
       if (role.status.mafia && this.gameSettings.multipleRoles.normalMafia == 0) {
         this.gameSettings.multipleRoles.normalMafia = 1
       } else if (role.status.mafia && this.gameSettings.multipleRoles.normalMafia >= 1) {
@@ -203,7 +203,7 @@ export default {
             if (element.id == role.id) {
               element.selected = false
             }
-          });
+          })
         }
         this.gameSettings.multipleRoles.normalMafia--
       }
