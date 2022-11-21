@@ -316,7 +316,8 @@
         "mafia": "Mafia Power",
         "citizen": "Citizen Power",
         "minus": "characters left",
-        "plus": "characters overplus"
+        "plus": "characters overplus",
+        "title": "Team balance based on selected characters"
     },
     "god": {
         "name": "God",

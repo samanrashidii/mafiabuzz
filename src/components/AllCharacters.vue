@@ -50,12 +50,14 @@
             <img
               :src="getImg('/roles', role.icon)"
               :alt="role.info[currentLang].name"
+              :title="role.info[currentLang].name"
             >
             <img
               v-if="role.rarity"
               class="rarity-icon"
               :src="getImg('/icons', role.rarity + '.svg')"
-              :alt="$t('rolesInfo.'+role.rarity)"
+              :alt="$t('rolesInfo.' + role.rarity)"
+              :title="$t('rolesInfo.' + role.rarity)"
             >
             <strong>{{ role.info[currentLang].name }} <span
               v-if="checkNumbers(role)"

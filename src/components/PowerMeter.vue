@@ -1,6 +1,7 @@
 <template>
   <div
     class="power-meter"
+    :title="$t('powerMeter.title')"
   >
     <div
       class="has-clear-fix"

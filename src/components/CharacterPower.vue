@@ -4,6 +4,7 @@
     :class="{
       'mafia-pw': mafia
     }"
+    :title="$t('common.Power')"
   >
     <span
       :class="{

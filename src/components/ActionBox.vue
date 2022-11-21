@@ -211,6 +211,7 @@ import skipAction from '@/mixins/skipAction';
 import voteKiller from '@/mixins/voteKiller';
 
 export default {
+  name: 'ActionBox',
   data() {
     return {
       actionTarget1: null,

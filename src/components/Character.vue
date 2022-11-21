@@ -24,6 +24,7 @@
 import CharacterPower from '@/components/CharacterPower.vue';
 
 export default {
+  name: 'Character',
   props: {
     role: Object
   },

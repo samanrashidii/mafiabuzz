@@ -42,6 +42,7 @@ import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 
 export default {
+  name: 'CharacterItem',
   props: {
     role: {
       type: Object,
