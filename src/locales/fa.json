@@ -214,13 +214,13 @@
         "about": {
             "image": "logo.png",
             "title": "<span>درباره</span> ما",
-            "subtitle": "با دوستات <span class='site-color'>درباره ما</span> صحبت کن ، این بهترین حمایت از ماست ❤️",
+            "subtitle": "با دوستات <span class='site-color'>درباره ما</span> صحبت کن ، این بهترین حمایت از ماست 💜",
             "creators": [
                 {
                     "name": "سامان رشیدی",
                     "image": "godfather.svg",
                     "url": "http://www.samanrashidi.com",
-                    "classes": ["mafia-role", "Saman"],
+                    "classes": ["primary-color", "Saman"],
                     "title": "بنیان گذار و کدنویسی سمت کاربر"
                 },
                 {
@@ -241,24 +241,24 @@
                     "name": "سیاوش میرزایی",
                     "image": "hacker.svg",
                     "url": "https://www.linkedin.com/in/siavash-mirzaei-72a96a64",
-                    "classes": ["solo-role", "Siavash"],
+                    "classes": ["secondary-dark-color", "Siavash"],
                     "title": "کدنویسی سمت سرور"
                 },
                 {
                     "name": "میلاد صنوبری",
                     "image": "mafia.svg",
                     "url": "https://www.linkedin.com/in/miladsenobari",
-                    "classes": ["citizen-role", "Milad"],
+                    "classes": ["secondary-color", "Milad"],
                     "title": "مشاور پیاده سازی"
                 }
             ],
-            "contactText": "می خوای <span class='mafia-role'>مشکلی</span> رو گزارش بدی؟ یا برای بهبود بازی <span class='citizen-role'>نظری داری؟</span>",
+            "contactText": "می خوای <i>مشکلی</i> رو گزارش بدی؟ یا برای بهبود بازی <strong>نظری داری؟</strong>",
             "contactEmail": "mafiabuzzgame@gmail.com",
             "supportText": "با ما تماس بگیر : ",
             "supportTel": "+989038996930",
             "thanksForSupport": "مرسی که تیم ما رو حمایت می کنید تا بتونیم توسعه اپلیکیشن رو ادامه بدیم و امکانات باحال تر و کاربردی تری رو برای شما اضافه کنیم 🙏",
             "supportButton": "حمایت مالی از مافیاباز",
-            "socialText": "ما رو در صفحات اجتماعی دنبال کن و نظراتت رو با ما در میون بذار 😊",
+            "socialText": "ما رو در صفحات اجتماعی دنبال کن و نظراتت رو با ما در میون بذار 😎",
             "socials": [
                 {
                     "name": "اینستاگرام",

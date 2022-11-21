@@ -214,13 +214,13 @@
         "about": {
             "image": "logo.png",
             "title": "<span>About</span> us",
-            "subtitle": "Talk with your friends <span class='site-color'>About us</span>, That's the best support of us ❤️",
+            "subtitle": "Talk with your friends <span class='site-color'>About us</span>, That's the best support of us 💜",
             "creators": [
                 {
                     "name": "Saman Rashidi",
                     "image": "godfather.svg",
                     "url": "http://www.samanrashidi.com",
-                    "classes": ["mafia-role", "Saman"],
+                    "classes": ["primary", "Saman"],
                     "title": "Founder & Front-end Developer"
                 },
                 {
@@ -241,24 +241,24 @@
                     "name": "Siavash Mirzaei",
                     "image": "hacker.svg",
                     "url": "https://www.linkedin.com/in/siavash-mirzaei-72a96a64",
-                    "classes": ["solo-role", "Siavash"],
+                    "classes": ["secondary-dark-color", "Siavash"],
                     "title": "Back-end Development"
                 },
                 {
                     "name": "Milad Senobari",
                     "image": "mafia.svg",
                     "url": "https://www.linkedin.com/in/miladsenobari",
-                    "classes": ["citizen-role", "Milad"],
+                    "classes": ["secondary-color", "Milad"],
                     "title": "Development Advisor"
                 }
             ],
-            "contactText": "Do you want to report a <span class='mafia-role'>Bug</span> or give us <span class='citizen-role'>Feedback</span>?",
+            "contactText": "Do you want to report a <i>Bug</i> or give us <strong>Feedback</strong>?",
             "contactEmail": "mafiabuzzgame@gmail.com",
             "supportText": "Contact us :",
             "supportTel": "+989038996930",
             "thanksForSupport": "Thanks for supporting our team so we can keep developing new tools and features to the application for you 🙏",
             "supportButton": "Donation",
-            "socialText": "Follow us on Social Media and share your feedback with us 😊",
+            "socialText": "Follow us on Social Media and share your feedback with us 😎",
             "socials": [
                 {
                     "name": "Instagram",

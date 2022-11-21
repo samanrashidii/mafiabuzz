@@ -1674,13 +1674,13 @@
                 "name": "Magician",
                 "description": "The Magician is a mafioso with power of magic. When he choose a target one of these 4 possibilities will happen : 1- Kill the taget 2- Silence the target 3- Kill himself accidentally 4- Silence himself",
                 "passive": "None",
-                "action": "Magic Action"
+                "action": "Magic"
             },
             "fa": {
                 "name": "شعبده باز",
                 "description": "شعبده باز نقشی از گروه مافیاست که قدرتی جادویی دارد. او هرشب می تواند اگر خواست یک نفر را انتخاب کند و به گاد بازی نشان دهد. بعد از این کار ۴ اتفاق ممکن است رخ دهد که اپلیکیشن به صورت اتفاقی یکی از این ۴ حالت را انتخاب می کند. <br />  حالت اول :‌ شخصی که شعبده باز انتخاب کرده می میرد.<br /> حالت دوم :‌ شخصی که شعبده باز انتخاب کرده ساکت می شود و در روز بعد نمی تواند حرف بزند.<br /> حالت سوم :‌ خود شعبده باز میمیره.<br /> حالت چهارم :‌ خود شعبده باز ساکت می شود.",
                 "passive": "ندارد",
-                "action": "اکشن جادویی"
+                "action": "جادو"
             }
         },
         "ability": {

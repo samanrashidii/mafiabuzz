@@ -42,6 +42,9 @@ p{
     strong{
         color: $primary;
 	}
+	i{
+		color: $red_color;
+	}
 	&.note{
 		strong{
 			color: $pink_red_color;
