@@ -40,12 +40,14 @@
               class="new-character"
               src="@/assets/images/icons/new.svg"
               :alt="$t('common.newAlt')"
+              :title="$t('common.new')"
             >
             <img
               v-if="role.hot"
               class="hot"
               src="@/assets/images/icons/hot.svg"
               :alt="$t('common.hotAlt')"
+              :title="$t('common.mostUsed')"
             >
             <img
               :src="getImg('/roles', role.icon)"

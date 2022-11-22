@@ -111,6 +111,7 @@
                 text-align: center;
                 padding:10px;
                 margin:0 auto;
+                cursor: pointer;
                 background-repeat: no-repeat;
                 background-position: 20px center;
                 background-size: 16px;
@@ -121,8 +122,8 @@
             } 
             input:checked + label{
                 background-image: url('~@/assets/images/assets/tick.svg');
-                background-color: $yellow_color;
-                border-color: $yellow_color;
+                background-color: $primary;
+                border-color: $secondary;
             }
         }
         

@@ -158,13 +158,13 @@ export default {
         element.status.recentlyRevived = false
         element.status.recentlyDead = false
         element.vote = 0
-        if (element.ability.justice && !element.status.dead && element.status.booleanAbility) {
+        if (element.ability.justice && !element.status.dead && element.status.booleanAbilityUsed) {
           this.dashboard.justiceUsed = true
-          element.status.booleanAbility = false
+          element.status.booleanAbilityUsed = false
         }
-        if (element.ability.searching && element.status.booleanAbility) {
+        if (element.ability.searching && element.status.booleanAbilityUsed) {
           this.gameSettings.searchingUsed = true
-          element.status.booleanAbility = false
+          element.status.booleanAbilityUsed = false
         }
         if (element.status.marked && element.status.dead) {
           this.gameSettings.selectedRoles.forEach((element) => {

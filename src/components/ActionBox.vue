@@ -72,11 +72,10 @@
         class="checkbox-box yes"
       >
         <input
+          v-model="useAbility"
+          id="use_ability"
           type="checkbox"
           name="question"
-          id="use_ability"
-          v-model="useAbility"
-          :value="true"
         >
         <label
           for="use_ability"
@@ -87,9 +86,8 @@
         </label>
       </div>
     </div>
-
     <template
-      v-if="!player.ability.chooseBoolean"
+      v-else
     >
       <label
         for="action_target"
@@ -145,7 +143,7 @@
 
     <!-- Action Buttons -->
     <BaseButton
-      @clicked="executeAction(player, actionTarget1, actionTarget2, playerIndex)"
+      @clicked.once="executeAction(player, actionTarget1, actionTarget2, playerIndex)"
     >
       {{ $t('god.confirmButton') }}
     </BaseButton>

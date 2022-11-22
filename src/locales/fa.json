@@ -147,12 +147,14 @@
         "Day": "روز",
         "Kill": "کشتن",
         "None": "-",
+        "mostUsed": "کاراکتر محبوب",
+        "new": "جدید",
         "loadLastGameButton": "ادامه بازی قبل",
         "startNewGameButton": "شروع بازی با نقش های قبلی ",
         "clearStorage": "شروع بازی جدید",
         "cancelButton": "انصراف",
         "newAlt": "آیکن جدید",
-        "hotAlt": "آیکن داغ",
+        "hotAlt": "آیکن کاراکتر محبوب",
         "copyToClipboard": "کپی نام برای دیسکورد"
     },
     "navigation": [

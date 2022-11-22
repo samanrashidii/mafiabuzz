@@ -14,13 +14,6 @@ export default {
       })
       return output
     },
-    checkKillReturner (target) {
-      const output = this.checkStatus(target, {
-        returnKill: true,
-        hack: false
-      })
-      return output
-    },
     checkIdentity (name) {
       const targetObject = this.getRoleObjectByName(name)
       this.actionLog(targetObject, 'checkIdentity')
@@ -126,7 +119,7 @@ export default {
       this.kill(player)
       this.passiveActive(targetObject)
     },
-    revive (target) {
+    reviveSkeletons (target) {
       this.gameSettings.selectedRoles.forEach((role, index) => {
         if (role.player === target) {
           const newCharacter = {

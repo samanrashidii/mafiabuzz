@@ -4,33 +4,29 @@ export default {
       // Action Log
       let actionText = ''
       const actionImage = player.actionIcon
+      const checkActionFields = (!player.ability.binder && this.actionTarget1 !== null) || (player.ability.binder && this.actionTarget1 !== null && this.actionTarget2 !== null) || (this.actionTarget1 === null && this.actionTarget2 === null && this.useAbility)
       if (this.useAbility) {
         actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
       } else {
         actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText')}<strong>${target1}</strong>`
       }
-      
       this.saveHistory(actionImage, actionText)
 
-      if ((!player.ability.binder && this.actionTarget1 !== null) ||
-        (player.ability.binder && this.actionTarget1 !== null && this.actionTarget2 !== null) ||
-        (this.actionTarget1 === null && this.actionTarget2 === null && this.useAbility)) {
-        // For All Each
+      if (checkActionFields) {
         this.gameSettings.selectedRoles.forEach((role) => {
-          // Shared
           if (role.player === player.player) {
             role.actionStatus = true
-            // BooleanAbility
+            // Boolean Ability
             if (this.useAbility) {
               if (role.ability.justice) {
-                role.status.booleanAbility = true
+                role.status.booleanAbilityUsed = true
               }
               if (role.ability.searching) {
-                role.status.booleanAbility = true
+                role.status.booleanAbilityUsed = true
               }
             }
           }
-          // Calc Hits
+          // Calc Hits for Explosioner
           if (role.player === target1 || role.player === target2) {
             role.status.hitByAction++
             if (role.ability.explosioner && this.peopleInSquareNumber === role.status.hitByAction) {
@@ -47,10 +43,15 @@ export default {
             }
           }
         })
-
-        if (!player.status.hack) {
-          // TODO: Move Anti Hack to Status
-          if (!player.ability.hacker && !player.ability.binder && !player.ability.prediction && this.checkKillReturner(target1)) {
+        if (!player.status.hack && target1) {
+          console.log(target1)
+          const checkKillReturner  = this.checkStatus(target1, {
+            returnKill: true,
+            hack: false
+          })
+          console.log(checkKillReturner)
+          // Kill Return if player doesnt have anti hack buff
+          if (!player.status.antiHack && checkKillReturner) {
             this.returnKill(player.player, target1)
           }
           // Binder
@@ -87,7 +88,7 @@ export default {
           }
           // Reviver
           if (player.ability.reviver) {
-            this.revive(target1)
+            this.reviveSkeletons(target1)
           }
           // Resurrect
           if (player.ability.resurrect) {
