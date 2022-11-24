@@ -8,7 +8,7 @@
     >
       <div
         class="before-action-box"
-        v-if="mafiaParty && dashboard.round === 1"
+        v-if="mafiaParty && gameSettings.aliveMafia > 1 && dashboard.round === 1"
       >
         <div
           class="table-display"

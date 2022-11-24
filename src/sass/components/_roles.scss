@@ -111,6 +111,7 @@
         input.active ~ a.info{transition-delay: 150ms;}
         input.active + label{
             color:$black_color;
+            transform: scale(.9, .9);
             > div{
                 .new-character{
                     top:20px;

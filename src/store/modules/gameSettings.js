@@ -67,7 +67,6 @@ export default {
         state.gameSettings.soloWinner = hasFinishStopper[0]
         state.gameSettings.soloWins = true
       }
-
       if (state.gameSettings.soloWins && !state.gameSettings.reviewGame) {
         finishGame('solo')
       } else if (state.gameSettings.alivePeople / 2 <= mafiaOdds && hasFinishStopper.length === 0 && state.gameSettings.gameStarted && !state.gameSettings.reviewGame) {

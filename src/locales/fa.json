@@ -17,7 +17,7 @@
         {"text": "رفع اشکال : حذف فایل های اضافی و اصلاح ایرادات جزئی"}
     ],
     "thirdparty": {
-        "discordText": "می خوای اپلیکیشن رو به کانال دیسکوردت وصل کنی؟ کد <span class='primary-color'>webhook</span> مربوط به کانالت رو تو فیلد زیر وارد کن. <span class='hint-color font-size-smaller'>(کد باید شبیه به کد پیش فرض زیر باشه )</span>",
+        "discordText": "می خوای وب اپلیکیشن رو به کانال دیسکوردت وصل کنی؟ کد <span class='primary-color'>webhook</span> مربوط به کانالت رو تو قسمت زیر وارد کن. <span class='hint-color font-size-smaller'>(کد باید شبیه به کد پیش فرض زیر باشه )</span>",
         "discordHelp": "مشاهده راهنمای اتصال در اینستاگرام",
         "discordConnected": "در حال حاضر مافیاباز به کانال دیسکوردت وصله",
         "discordDisconnect": "قطع ارتباط با این کانال",

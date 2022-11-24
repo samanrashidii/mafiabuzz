@@ -11,7 +11,6 @@ export default {
       targetData: {},
       lastPhaseAction: false,
       voteKill: false,
-      mafiaParty: true,
       historyLog: [],
       totalHistory: [],
       lastNight: [],
