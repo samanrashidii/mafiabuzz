@@ -48,13 +48,6 @@ export default {
       // Post Start of Night Phase To Discord
       const text = `${this.$t('thirdparty.discordNightPhase')} ${this.dashboard.round}`
       this.postDiscord(text)
-      // Scroll to Action Bar
-      setTimeout(() => {
-        const container = this.$refs.actionBar.$el
-        this.$scrollTo(container, 500, {
-          offset: -15
-        })
-      }, 200)
     },
     finishNight () {
       this.logEventsToUser()

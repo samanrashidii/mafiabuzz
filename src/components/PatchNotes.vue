@@ -26,15 +26,10 @@
           :alt="$t('general.alt')"
         >
         <h2
-          class="app-version"
+          class="app-version has-bottom-margin"
         >
           {{ 'v' + appVersion }}
         </h2>
-        <span
-          class="patch-date"
-        >
-          {{ $t('general.lastUpdate') }}
-        </span>
         <ListItem
           :items="$t('patchNotes')"
         />

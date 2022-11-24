@@ -58,7 +58,6 @@
     >
       <ActionBar
         v-if="dashboard.actionProgress !== dashboard.actionBox.length"
-        ref="actionBar"
       />
     </transition>
     <div
@@ -158,30 +157,9 @@
       @closeLog="toggleLogHistory"
     />
     <!-- Dashboard Game Hint -->
-    <PageBox
+    <DashboardHints
       v-if="showGodPanel"
-      class="only-box"
-    >
-      <h2
-        class="center-aligned"
-      >
-        {{ $t('god.dashboardHintTitle') }}
-      </h2>
-      <ul
-        class="dashboard-hint has-top-margin"
-      >
-        <li
-          v-for="(hint, index) in $t('god.dashboardHint')"
-          :key="index"
-        >
-          <span
-            :class="hint.name"
-          >
-            {{ hint.hint }}
-          </span>
-        </li>
-      </ul>
-    </PageBox>
+    />
     <!-- Vote Killer Box -->
     <Overlay
       class="vote-box dialog"
@@ -189,67 +167,7 @@
         'active': dashboard.lastPhaseAction && dashboard.round >= 1
       }"
     >
-      <template>
-        <div
-          class="justice-used"
-          v-if="dashboard.justiceUsed"
-        >
-          <img
-            src="@/assets/images/roles/judge.svg"
-            class="default-image-size"
-            :alt="$t('god.justiceAlt')"
-          >
-          <img
-            src="@/assets/images/actions/justice.svg"
-            class="default-image-size"
-            :alt="$t('god.justiceAlt')"
-          >
-          <p>
-            {{ $t('god.justiceText') }}
-          </p>
-        </div>
-        <div
-          v-else
-          class="default-vote"
-        >
-          <img
-            src="@/assets/images/roles/vote.svg"
-            :alt="$t('god.voteIconAlt')"
-          >
-          <p>
-            {{ $t('god.lastPhaseText') }}
-          </p>
-        </div>
-        <select
-          v-model="lastDayTarget"
-          name="last_day_target"
-          @change="findTarget(lastDayTarget)"
-        >
-          <option
-            :value="null"
-            disabled
-          >
-            {{ $t('god.selectPlaceholder') }}
-          </option>
-          <option
-            v-for="(person, index) in checkGroupToSelectTarget()"
-            :key="index"
-          >
-            {{ person.player }}
-          </option>
-        </select>
-        <BaseButton
-          @clicked="killByVote(dashboard.targetData.player)"
-        >
-          {{ $t('god.confirmButton') }}
-        </BaseButton>
-        <BaseButton
-          class="danger"
-          @clicked="lastPhaseController()"
-        >
-          {{ $t('god.skipButton') }}
-        </BaseButton>
-      </template>
+      <VoteAlert />
     </Overlay>
     <!-- Role Viewer -->
     <Overlay
@@ -281,135 +199,12 @@
         'active': dashboard.revengeKillBox && dashboard.actionProgress === 0
       }"
     >
-      <template>
-        <p>
-          <strong
-            class="has-left-right-margin"
-          >
-            {{ dashboard.avenger }}
-          </strong>
-          {{ $t('god.avengerText') }}
-        </p>
-        <img
-          src="@/assets/images/actions/kill.svg"
-          class="default-image-size"
-          :alt="$t('god.revengeIconAlt')"
-        >
-        <img
-          src="@/assets/images/roles/revenge.svg"
-          class="default-image-size"
-          :alt="$t('god.revengeIconAlt')"
-        >
-        <p>
-          {{ $t('god.revengeText') }}
-        </p>
-        <select
-          v-model="revengeTarget"
-          class="has-top-margin"
-          name="last_day_target"
-          @change="findTarget(revengeTarget)"
-        >
-          <option
-            :value="null"
-            disabled
-          >
-            {{ $t('god.selectPlaceholder') }}
-          </option>
-          <option
-            v-for="(person, index) in checkGroupToSelectTarget()"
-            :key="index"
-          >
-            {{ person.player }}
-          </option>
-        </select>
-        <BaseButton
-          @clicked="killByVote(dashboard.targetData.player, true)"
-        >
-          {{ $t('god.confirmButton') }}
-        </BaseButton>
-        <BaseButton
-          class="danger"
-          @clicked="deadWatcher(false)"
-        >
-          {{ $t('god.skipButton') }}
-        </BaseButton>
-      </template>
+      <RevengeAlert />
     </Overlay>
     <!-- Restart or Reset Game -->
-    <template
+    <RestartGameAlert
       v-if="showGodPanel"
-    >
-      <BaseButton
-        class="active has-xsmall-bottom-margin"
-        @clicked="toggleOverlay(true), toggleResetGame(false)"
-      >
-        {{ $t('god.rgwRoles') }}
-      </BaseButton>
-      <BaseButton
-        class="danger has-bottom-margin"
-        @clicked="toggleOverlay(true), toggleResetGame(true)"
-      >
-        {{ $t('god.resetGame') }}
-      </BaseButton>
-    </template>
-    <Overlay
-      :class="{
-        'active': overlay,
-        'dialog': true
-      }"
-    >
-      <img
-        class="has-xsmall-bottom-margin"
-        src="@/assets/images/icons/warning.svg"
-        :alt="$t('general.warningIcon')"
-      >
-      <template
-        v-if="!resetGame"
-      >
-        <p>
-          {{ $t('god.resetText') }}
-        </p>
-        <BaseButton
-          class="green "
-          @clicked="resetSameGame()"
-        >
-          <span>
-            {{ $t('god.restartButton') }}
-          </span>
-        </BaseButton>
-        <BaseButton
-          class="danger"
-          @clicked="toggleOverlay(false)"
-        >
-          <span>
-            {{ $t('god.cancelButton') }}
-          </span>
-        </BaseButton>
-      </template>
-      <template
-        v-else
-      >
-        <p>
-          {{ $t('god.resetTotalText') }}
-        </p>
-        <BaseButton
-          class="green "
-          @clicked="resetFactory()"
-        >
-          <span>
-            {{ $t('god.startButton') }}
-          </span>
-        </BaseButton>
-        <BaseButton
-          class="danger"
-          @clicked="toggleOverlay(false)"
-        >
-          <span>
-            {{ $t('god.cancelButton') }}
-          </span>
-        </BaseButton>
-      </template>
-    </Overlay>
+    />
     <!-- Game Finish Box -->
     <GameFinished
       :class="{
@@ -427,48 +222,32 @@ import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
 import Log from '@/components/Log.vue';
 import Table from '@/components/Table.vue';
-import actionLog from '@/mixins/actionLog';
-import actions from '@/mixins/actions';
-import actionSelectTarget from '@/mixins/actionSelectTarget';
-import changePhase from '@/mixins/changePhase';
-import passiveActive from '@/mixins/passiveActive';
-import possibilities from '@/mixins/possibilities';
-import saveHistory from '@/mixins/saveHistory';
-import setActions from '@/mixins/setActions';
-import voteKiller from '@/mixins/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
+import RestartGameAlert from '@/components/RestartGameAlert.vue';
+import RevengeAlert from '@/components/RevengeAlert.vue';
+import DashboardHints from '@/components/DashboardHints.vue';
+import VoteAlert from '@/components/VoteAlert.vue';
 
 export default {
   name: 'GodPanel',
-  mixins: [
-    actionLog,
-    actions,
-    actionSelectTarget,
-    changePhase,
-    passiveActive,
-    possibilities,
-    setActions,
-    saveHistory,
-    voteKiller
-  ],
   components: {
     ActionBar,
     GameFinished,
     LastNightLog,
     Log,
     RoleViewer,
-    Table
+    Table,
+    RestartGameAlert,
+    RevengeAlert,
+    DashboardHints,
+    VoteAlert
   },
   data() {
     return {
-      overlay: false,
       logAction: false,
       logHistory: false,
       showGodPanel: false,
-      logActionDone: false,
-      lastDayTarget: null,
-      resetGame: false,
-      revengeTarget: null
+      logActionDone: false
     }
   },
   computed: {
@@ -483,21 +262,6 @@ export default {
     }, 60000)
   },
   methods: {
-    lastPhaseController() {
-      // Finish Day After Taking Vote
-      this.dashboard.lastPhaseAction = false
-      this.finishDay()
-      this.SetDashboard(this.dashboard)
-      this.SetGameSettings(this.gameSettings)
-    },
-    resetFactory() {
-      // Reset Game With Selected Roles
-      this.startGameEngine('roles-selected-create')
-    },
-    resetSameGame() {
-      // Reset Game With Last Game Played Settings
-      this.startGameEngine('roles-selected-dashboard')
-    },
     showPlay() {
       // Show God Panel, After Players See Their Roles
       this.showGodPanel = true
@@ -526,12 +290,6 @@ export default {
         }
       })
       this.postDiscord(text)
-    },
-    toggleOverlay (value) {
-      this.overlay = value
-    },
-    toggleResetGame (value) {
-      this.resetGame = value
     },
     toggleLogHistory (value) {
       this.logHistory = value

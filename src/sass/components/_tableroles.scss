@@ -106,20 +106,21 @@
                 }
             }
             &.silence td{
-                &:nth-child(1)::after{
+                &:nth-child(2)::after{
                     opacity: 1 !important;
                     visibility: visible !important;
                     background-image: url('~@/assets/images/icons/silence.svg');
-                    background-position: 99% center !important;
-                    background-size: 24px;
+                    background-position: 2% center !important;
+                    background-size: 22px;
                 }
             }
             &.heal td{
                 &:nth-child(2)::after{
                     opacity: 1 !important;
                     visibility: visible !important;
-                    background-image: url('~@/assets/images/icons/heal.svg');
-                    background-color: rgba(56,113,18,.85);
+                    background-image: url('~@/assets/images/icons/heal.svg') !important;
+                    background-position: 98% center !important;
+                    background-size: 20px;
                 }
             }
             &.invisible td{

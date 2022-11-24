@@ -119,22 +119,10 @@
 </template>
 
 <script>
-import actionLog from '@/mixins/actionLog';
-import actions from '@/mixins/actions';
-import godAction from '@/mixins/godAction';
-import passiveActive from '@/mixins/passiveActive';
-import saveHistory from '@/mixins/saveHistory';
 import CharacterPower from '@/components/CharacterPower.vue';
 
 export default {
   name: 'Table',
-  mixins: [
-    actionLog,
-    actions,
-    godAction,
-    passiveActive,
-    saveHistory
-  ],
   components: {
     CharacterPower
   },
@@ -154,6 +142,7 @@ export default {
       if (this.dashboardTable) {
         output = {
           'dead': char.status.dead,
+          'heal': char.status.heal,
           'ninja': char.status.playerReplaced,
           'love-bind': char.status.link,
           'silence': char.status.silence,

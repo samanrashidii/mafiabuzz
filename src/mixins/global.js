@@ -1,6 +1,32 @@
 import { mapGetters, mapActions } from 'vuex'
+import actionLog from '@/mixins/actionLog';
+import actions from '@/mixins/actions';
+import actionSelectTarget from '@/mixins/actionSelectTarget';
+import changePhase from '@/mixins/changePhase';
+import executeAction from '@/mixins/executeAction';
+import godAction from '@/mixins/godAction';
+import navigateActions from '@/mixins/navigateActions';
+import passiveActive from '@/mixins/passiveActive';
+import possibilities from '@/mixins/possibilities';
+import saveHistory from '@/mixins/saveHistory';
+import setActions from '@/mixins/setActions';
+import voteKiller from '@/mixins/voteKiller';
 
 export default {
+  mixins: [
+    actionLog,
+    actions,
+    actionSelectTarget,
+    changePhase,
+    executeAction,
+    godAction,
+    navigateActions,
+    passiveActive,
+    possibilities,
+    saveHistory,
+    setActions,
+    voteKiller
+  ],
   computed: {
     ...mapGetters({
       allStates: 'allStates',

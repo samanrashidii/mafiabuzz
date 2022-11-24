@@ -1,6 +1,7 @@
 <template>
   <div
-    class="priority-box"
+    class="action-bar priority-box"
+    id="ActionBar"
   >
     <!-- Before Action Box -->
     <transition
@@ -44,7 +45,6 @@
         </div>
       </div>
     </transition>
-
     <!-- Next Killer Box -->
     <transition
       name="fade"
@@ -53,7 +53,6 @@
         v-if="dashboard.killerChanged"
       />
     </transition>
-
     <!-- Role Viewer -->
     <Overlay
       :class="{
@@ -67,7 +66,6 @@
         :show="gameSettings.roleViewer"
       />
     </Overlay>
-
     <!-- Actions Progress Bar -->
     <div
       class="progress-bar"
@@ -95,7 +93,6 @@
         v-if="dashboard.actionProgress !== dashboard.actionBox.length"
       />
     </div>
-
     <!-- Handle Actions -->
     <div>
       <div
@@ -209,13 +206,6 @@
 import ActionBox from '@/components/ActionBox.vue';
 import NextKillerBox from '@/components/NextKillerBox.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
-import actionLog from '@/mixins/actionLog';
-import actions from '@/mixins/actions';
-import controlActions from '@/mixins/controlActions';
-import navigateActions from '@/mixins/navigateActions';
-import passiveActive from '@/mixins/passiveActive';
-import saveHistory from '@/mixins/saveHistory';
-import voteKiller from '@/mixins/voteKiller';
 
 export default {
   name: 'ActionBar',
@@ -234,6 +224,15 @@ export default {
       return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
     }
   },
+  mounted () {
+    // Scroll to Action Bar
+    setTimeout(() => {
+      const container = document.getElementById('ActionBar')
+      this.$scrollTo(container, 500, {
+        offset: -15
+      })
+    }, 200)
+  },
   methods: {
     checkStatus (player) {
       let target
@@ -249,15 +248,6 @@ export default {
     toggleMafiaParty (value) {
       this.mafiaParty = value
     }
-  },
-  mixins: [
-    actionLog,
-    actions,
-    navigateActions,
-    controlActions,
-    passiveActive,
-    saveHistory,
-    voteKiller
-  ]
+  }
 }
 </script>

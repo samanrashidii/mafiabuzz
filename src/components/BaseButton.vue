@@ -1,7 +1,7 @@
 <template>
   <a
     class="bttn"
-    :href="link"
+    :href="href"
     :target="target"
     @click="$emit('clicked')"
   >
@@ -13,7 +13,7 @@
 export default {
   name: 'BaseButton',
   props: {
-    link: {
+    href: {
       type: String,
       default: 'javascript:void(0)'
     },

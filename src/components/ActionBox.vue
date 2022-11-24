@@ -197,17 +197,6 @@
 </template>
 
 <script>
-import actionLog from '@/mixins/actionLog';
-import actions from '@/mixins/actions';
-import actionSelectTarget from '@/mixins/actionSelectTarget';
-import changePhase from '@/mixins/changePhase';
-import executeAction from '@/mixins/executeAction';
-import controlActions from '@/mixins/controlActions';
-import passiveActive from '@/mixins/passiveActive';
-import possibilities from '@/mixins/possibilities';
-import saveHistory from '@/mixins/saveHistory';
-import setActions from '@/mixins/setActions';
-import voteKiller from '@/mixins/voteKiller';
 
 export default {
   name: 'ActionBox',
@@ -232,19 +221,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  mixins: [
-    actionLog,
-    actions,
-    actionSelectTarget,
-    changePhase,
-    executeAction,
-    controlActions,
-    passiveActive,
-    possibilities,
-    saveHistory,
-    setActions,
-    voteKiller
-  ]
+  }
 }
 </script>
