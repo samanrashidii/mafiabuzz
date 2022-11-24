@@ -18,7 +18,7 @@
     </ul>
     <BaseButton
       @clicked="lastNightBoxController()"
-      class="active"
+      class="primary"
     >
       <span>
         {{ $t('god.logCloseButton') }}

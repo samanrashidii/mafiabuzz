@@ -71,9 +71,6 @@
             transform: translateX(-50%);
             transition:all .5s ease-in-out;
         }
-        &:not(.day):not(.night){
-            margin-bottom:40px;
-        }
         &.day{
             padding-top:112px;
             padding-bottom: 10px;

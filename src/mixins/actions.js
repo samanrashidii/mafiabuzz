@@ -90,6 +90,11 @@ export default {
         hackForever: forever ? true : false
       })
     },
+    hackForever (target) {
+      this.setStatus(target, {
+        hackForever: true
+      })
+    },
     heal (target) {
       this.setStatus(target, {
         heal: true

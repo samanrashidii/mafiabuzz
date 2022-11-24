@@ -181,7 +181,7 @@ body.rtl{
         table{
             tr{
                 th{
-                    font-size: $font_size_1;
+                    font-size: $font_size_0;
                 }
                 td{
                     &:first-child{
@@ -329,8 +329,8 @@ body.rtl{
                 }
             }
             h2{
-                font-family: $font_rtl;
-                font-size: $font_size_8 !important;
+                font-family: $font_mafia_rtl;
+                font-size: $font_size_medium !important;
             }
         }
     }

@@ -58,6 +58,14 @@
         "actionIcon": "kill.svg",
         "passiveIcon": "default.png",
         "actionStatus": false,
+        "info": {
+            "en": {
+                "action": "Kill"
+            },
+            "fa": {
+                "action": "کشتن"
+            }
+        },
         "ability": {
             "killer": true
         },

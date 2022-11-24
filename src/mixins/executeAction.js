@@ -62,7 +62,7 @@ export default {
           }
           // Hack Forever
           if (player.ability.hackForever) {
-            this.hack(target1, true)
+            this.hackForever(target1)
           }
           // Killer
           if (player.ability.killer) {

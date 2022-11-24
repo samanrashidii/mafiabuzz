@@ -77,6 +77,9 @@ export default {
         if (role.status.hack && !role.status.hackForever) {
           role.status.hack = false
         }
+        if (role.status.hackForever) {
+          role.status.hack = true
+        }
         role.status.recentlySilenced = false
         role.status.recentlyRevived = false
         role.status.recentlyDead = false

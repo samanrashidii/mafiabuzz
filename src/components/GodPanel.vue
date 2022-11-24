@@ -167,7 +167,9 @@
         'active': dashboard.lastPhaseAction && dashboard.round >= 1
       }"
     >
-      <VoteAlert />
+      <VoteAlert
+        v-if="dashboard.lastPhaseAction && dashboard.round >= 1"
+      />
     </Overlay>
     <!-- Role Viewer -->
     <Overlay
@@ -199,7 +201,9 @@
         'active': dashboard.revengeKillBox && dashboard.actionProgress === 0
       }"
     >
-      <RevengeAlert />
+      <RevengeAlert
+        v-if="dashboard.revengeKillBox && dashboard.actionProgress === 0"
+      />
     </Overlay>
     <!-- Restart or Reset Game -->
     <RestartGameAlert

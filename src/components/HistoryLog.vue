@@ -46,7 +46,7 @@
       </h2>
     </div>
     <BaseButton
-      class="active has-small-top-margin"
+      class="primary has-small-top-margin"
       @clicked="closeLog()"
     >
       <span>
