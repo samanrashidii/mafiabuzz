@@ -59,6 +59,7 @@
 <script>
 
 export default {
+  name: 'HistoryLog',
   methods: {
     closeLog () {
       this.$emit('closeLog', false)

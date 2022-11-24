@@ -1,8 +1,8 @@
 export default {
   methods: {
-    changePhase (phase) {
+    changePhase (day) {
       this.dashboard.lastNight = []
-      if (!phase) {
+      if (!day) {
         // Log Actions
         this.saveTotalHistory(this.dashboard.historyLog)
         // Reset Night Stuff

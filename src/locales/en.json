@@ -459,6 +459,10 @@
             {
                 "name": "shield-icon",
                 "hint": "Player has shield that prevents one death at night"
+            },
+            {
+                "name": "heal-icon",
+                "hint": "Player is healed and can't be killed"
             }
         ],
         "rgwRoles": "Restart game with same characters",

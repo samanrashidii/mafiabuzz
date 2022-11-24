@@ -150,7 +150,7 @@
         </span>
       </BaseButton>
     </div>
-    <Log
+    <HistoryLog
       :class="{
         'active': logHistory
       }"
@@ -220,7 +220,7 @@
 import ActionBar from '@/components/ActionBar.vue';
 import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
-import Log from '@/components/Log.vue';
+import HistoryLog from '@/components/HistoryLog.vue';
 import Table from '@/components/Table.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import RestartGameAlert from '@/components/RestartGameAlert.vue';
@@ -234,7 +234,7 @@ export default {
     ActionBar,
     GameFinished,
     LastNightLog,
-    Log,
+    HistoryLog,
     RoleViewer,
     Table,
     RestartGameAlert,
