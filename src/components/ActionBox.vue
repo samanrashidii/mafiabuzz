@@ -26,6 +26,7 @@
         <span
           v-if="player.status.actionLimit > 0"
           class="action-limit"
+          :title="$t('god.remainingActions')"
         >
           {{ player.status.actionLimit }}
         </span>
@@ -201,11 +202,11 @@ import actions from '@/mixins/actions';
 import actionSelectTarget from '@/mixins/actionSelectTarget';
 import changePhase from '@/mixins/changePhase';
 import executeAction from '@/mixins/executeAction';
-import nextAction from '@/mixins/nextAction';
+import controlActions from '@/mixins/controlActions';
 import passiveActive from '@/mixins/passiveActive';
 import possibilities from '@/mixins/possibilities';
 import saveHistory from '@/mixins/saveHistory';
-import skipAction from '@/mixins/skipAction';
+import setActions from '@/mixins/setActions';
 import voteKiller from '@/mixins/voteKiller';
 
 export default {
@@ -232,23 +233,17 @@ export default {
       default: false
     }
   },
-  methods: {
-    skipAction(index) {
-      this.alertBox = false
-      this.nextAction(index)
-    }
-  },
   mixins: [
     actionLog,
     actions,
     actionSelectTarget,
     changePhase,
     executeAction,
-    nextAction,
+    controlActions,
     passiveActive,
     possibilities,
     saveHistory,
-    skipAction,
+    setActions,
     voteKiller
   ]
 }

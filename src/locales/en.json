@@ -347,6 +347,7 @@
         "useAbility": "Use Ability",
         "godKillIcon": "reaper.svg",
         "godReviveIcon": "angel.svg",
+        "remainingActions": "Remaining Actions",
         "mafiaPartyIconAlt": "Mafia Party Icon",
         "justiceAlt": "Justice",
         "lastPhaseText": "Please select who died during the day with people's vote :",

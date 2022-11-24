@@ -104,14 +104,14 @@ export default {
     startGameEngine (type) {
       if (type) {
         let state = {}
-        const discordToken = window.localStorage.getItem('discordToken')
+        const discordToken = localStorage.getItem('discordToken')
 
         if (type === 'roles-selected-create') {
-          state = JSON.parse(window.localStorage.getItem('save-roles-selected-create'))
+          state = JSON.parse(localStorage.getItem('save-roles-selected-create'))
         } else if (type === 'roles-selected-dashboard') {
-          state = JSON.parse(window.localStorage.getItem('save-roles-selected-dashboard'))
+          state = JSON.parse(localStorage.getItem('save-roles-selected-dashboard'))
         } else if (type === 'autosave') {
-          state = JSON.parse(window.localStorage.getItem('save-automatic'))
+          state = JSON.parse(localStorage.getItem('save-automatic'))
         }
 
         this.SetRoles(state.roles.Roles)

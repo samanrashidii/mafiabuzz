@@ -15,7 +15,7 @@ export default {
       if (checkActionFields) {
         this.gameSettings.selectedRoles.forEach((role) => {
           if (role.player === player.player) {
-            role.actionStatus = true
+            role.hasDoneAction = true
             // Boolean Ability
             if (this.useAbility) {
               if (role.ability.justice) {
@@ -44,12 +44,10 @@ export default {
           }
         })
         if (!player.status.hack && target1) {
-          console.log(target1)
           const checkKillReturner  = this.checkStatus(target1, {
             returnKill: true,
             hack: false
           })
-          console.log(checkKillReturner)
           // Kill Return if player doesnt have anti hack buff
           if (!player.status.antiHack && checkKillReturner) {
             this.returnKill(player.player, target1)

@@ -50,16 +50,34 @@
 <script>
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import sortedRoles from '@/mixins/sortedRoles';
 
 export default {
   name: 'HowToPlay',
-  mixins: [
-    sortedRoles
-  ],
   components: {
     PageTitle,
     InfoBox
+  },
+  computed: {
+    getRoles() {
+      const roles = JSON.parse(JSON.stringify(this.Roles))
+      const sortedRoles = []
+      roles.forEach((role) => {
+        if (role.mafia) {
+          sortedRoles.push(role)
+        }
+      })
+      roles.forEach((role) => {
+        if (!role.mafia && !role.solo) {
+          sortedRoles.push(role)
+        }
+      })
+      roles.forEach((role) => {
+        if (!role.mafia && role.solo) {
+          sortedRoles.push(role)
+        }
+      })
+      return sortedRoles
+    }
   },
   metaInfo () {
     return {

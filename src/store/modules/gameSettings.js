@@ -48,16 +48,16 @@ export default {
     SET_GAME_SETTINGS: (state, settings) => {
       Vue.set(state, 'gameSettings', settings)
       // Start Game Rules
-      state.gameSettings.fMafias = state.gameSettings.selectedRoles.filter(x => x.mafia)
-      state.gameSettings.fCitizens = state.gameSettings.selectedRoles.filter(x => !x.mafia)
-      state.gameSettings.alivePeople = state.gameSettings.selectedRoles.filter(x => !x.status.dead).length
-      state.gameSettings.deadPeople = state.gameSettings.selectedRoles.filter(x => x.status.dead).length
-      state.gameSettings.aliveMafia = state.gameSettings.selectedRoles.filter(x => !x.status.dead && x.mafia).length
-      state.gameSettings.aliveCitizen = state.gameSettings.selectedRoles.filter(x => !x.status.dead && !x.mafia && !x.solo).length
-      state.gameSettings.aliveSolo = state.gameSettings.selectedRoles.filter(x => !x.status.dead && !x.mafia && x.solo).length
+      state.gameSettings.fMafias = state.gameSettings.selectedRoles.filter(role => role.mafia)
+      state.gameSettings.fCitizens = state.gameSettings.selectedRoles.filter(role => !role.mafia)
+      state.gameSettings.alivePeople = state.gameSettings.selectedRoles.filter(role => !role.status.dead).length
+      state.gameSettings.deadPeople = state.gameSettings.selectedRoles.filter(role => role.status.dead).length
+      state.gameSettings.aliveMafia = state.gameSettings.selectedRoles.filter(role => !role.status.dead && role.mafia).length
+      state.gameSettings.aliveCitizen = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && !role.solo).length
+      state.gameSettings.aliveSolo = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && role.solo).length
       // End Game Rules
-      const hasFinishStopper = state.gameSettings.selectedRoles.filter(x => x.solo && x.status.finishStopper && !x.status.dead)
-      const mafiaOdds = state.gameSettings.selectedRoles.filter(x => !x.status.dead && x.mafia && !x.status.traitor).length
+      const hasFinishStopper = state.gameSettings.selectedRoles.filter(role => role.solo && role.status.finishStopper && !role.status.dead)
+      const mafiaOdds = state.gameSettings.selectedRoles.filter(role => !role.status.dead && role.mafia && !role.status.traitor).length
       const soloOdds = hasFinishStopper.length > 0
       const finishGame = (winner) => {
         state.gameSettings.gameFinished = true

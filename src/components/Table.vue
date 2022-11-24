@@ -86,7 +86,7 @@
             v-if="!dashboard.day"
           >
             <span
-              v-if="!tD.status.hasPassive && !tD.status.hasAction && !tD.actionStatus"
+              v-if="!tD.status.hasPassive && !tD.status.hasAction && !tD.hasDoneAction"
               class="disabled"
             />
             <span
@@ -96,9 +96,8 @@
             <span
               v-else
               :class="{
-                'pending-action': (!tD.actionStatus && tD.status.hasAction)
-                || (!tD.actionStatus && tD.status.hasAction),
-                'done-action': tD.actionStatus
+                'pending-action': (!tD.hasDoneAction && tD.status.hasAction) || (!tD.hasDoneAction && tD.status.hasAction),
+                'done-action': tD.hasDoneAction
               }"
             />
           </td>
@@ -176,9 +175,9 @@ export default {
       event.target.setSelectionRange(0, 2)
     },
     updateVotes (vote, id) {
-      this.gameSettings.selectedRoles.forEach(element => {
-        if (element.id === id) {
-          element.vote = vote
+      this.gameSettings.selectedRoles.forEach(role => {
+        if (role.id === id) {
+          role.vote = vote
         }
       })
       this.SetGameSettings(this.gameSettings)

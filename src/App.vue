@@ -101,9 +101,9 @@ export default {
   },
   created() {
     // Get Default Language from localStorage
-    const savedLocale = JSON.parse(window.localStorage.getItem('locale'))
+    const savedLocale = JSON.parse(localStorage.getItem('locale'))
     // Get Discord Token from localStorage
-    const discordToken = window.localStorage.getItem('discordToken')
+    const discordToken = localStorage.getItem('discordToken')
     // Setup Discord Channel if Discord Token available
     if (discordToken) {
       this.SetDiscordChannel(discordToken)

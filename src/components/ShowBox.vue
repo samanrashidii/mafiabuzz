@@ -116,9 +116,9 @@ export default {
         text += `
 
 🕵️‍♀️🕵️‍♂️ ${this.$t('thirdparty.discordMafiaTeam')}`
-        this.gameSettings.selectedRoles.forEach((element) => {
-          if (element.player !== role.player && element.mafia && !element.status.traitor) {
-            text += `${element.player} • `
+        this.gameSettings.selectedRoles.forEach((role) => {
+          if (role.player !== role.player && role.mafia && !role.status.traitor) {
+            text += `${role.player} • `
           }
         })
       }

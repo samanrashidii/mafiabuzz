@@ -435,7 +435,6 @@ import passiveActive from '@/mixins/passiveActive';
 import possibilities from '@/mixins/possibilities';
 import saveHistory from '@/mixins/saveHistory';
 import setActions from '@/mixins/setActions';
-import skipAction from '@/mixins/skipAction';
 import voteKiller from '@/mixins/voteKiller';
 import RoleViewer from '@/components/RoleViewer.vue';
 
@@ -450,7 +449,6 @@ export default {
     possibilities,
     setActions,
     saveHistory,
-    skipAction,
     voteKiller
   ],
   components: {
@@ -507,10 +505,10 @@ export default {
       this.SetDashboard(this.dashboard)
     },
     addAttributesToCharacters () {
-      this.gameSettings.selectedRoles.forEach((element) => {
+      this.gameSettings.selectedRoles.forEach((role) => {
         // Add Sniper Bullet Limit
-        if (element.ability.sniper) {
-          element.status.actionLimit = this.mafiaHalfNumber
+        if (role.ability.sniper) {
+          role.status.actionLimit = this.mafiaHalfNumber
         }
       })
       this.SetGameSettings(this.gameSettings)
@@ -520,10 +518,10 @@ export default {
       let text = `
       ${this.$t('thirdparty.discordVoteResultText')}
       `
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (!element.status.dead) {
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (!role.status.dead) {
           text += `
-          ${element.player} => ${element.vote}
+          ${role.player} => ${role.vote}
           `
         }
       })
@@ -542,11 +540,11 @@ export default {
       // Post Latest Game Stats To Discord
       let alivePeople = ''
       let deadPeople = ''
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (!element.status.dead) {
-          alivePeople += `${element.player} • `
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (!role.status.dead) {
+          alivePeople += `${role.player} • `
         } else {
-          deadPeople += `${element.player} • `
+          deadPeople += `${role.player} • `
         }
       })
       let text = `${this.$t('thirdparty.discordLatestStats')}`

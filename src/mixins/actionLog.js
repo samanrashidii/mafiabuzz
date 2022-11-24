@@ -1,11 +1,11 @@
 export default {
   methods: {
-    actionLog (element, type) {
+    actionLog (role, type) {
       let resultText = ''
       let resultImage = ''
       if (type === 'checkIdentity') {
         let currentIdentity = this.$t('common.Citizen')
-        if (element.mafia && !element.status.fakeIdentity || !element.mafia && element.status.fakeIdentity) {
+        if (role.mafia && !role.status.fakeIdentity || !role.mafia && role.status.fakeIdentity) {
           currentIdentity = this.$t('common.Mafia')
         }
         resultText = `<span>${this.$t('god.logResult')}</span> <strong>${currentIdentity}</strong>`

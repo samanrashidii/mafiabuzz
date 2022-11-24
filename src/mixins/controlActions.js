@@ -9,6 +9,10 @@ export default {
       localStorage.setItem(`action_${index}`, JSON.stringify(this.allStates))
       this.SetDashboard(this.dashboard)
       this.SetGameSettings(this.gameSettings)
+    },
+    skipAction (index) {
+      this.alertBox = false
+      this.nextAction(index)
     }
   }
 }

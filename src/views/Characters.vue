@@ -111,19 +111,19 @@ export default {
   },
   computed: {
     legendaries() {
-      const characters = this.Roles.filter(element => element.rarity === 'legendary')
+      const characters = this.Roles.filter(role => role.rarity === 'legendary')
       return characters
     },
     epics() {
-      const characters = this.Roles.filter(element => element.rarity === 'epic')
+      const characters = this.Roles.filter(role => role.rarity === 'epic')
       return characters
     },
     rares() {
-      const characters = this.Roles.filter(element => element.rarity === 'rare')
+      const characters = this.Roles.filter(role => role.rarity === 'rare')
       return characters
     },
     uncommons() {
-      const characters = this.Roles.filter(element => element.rarity === 'uncommon')
+      const characters = this.Roles.filter(role => role.rarity === 'uncommon')
       return characters
     }
   },

@@ -153,13 +153,13 @@ export default {
       • `
       let solo = `
       • `
-      this.gameSettings.selectedRoles.forEach((element) => {
-        if (element.mafia) {
-          mafia += `${element.emoji} ${element.info[this.currentLang].name} • `
-        } else if (!element.mafia && !element.solo) {
-          citizen += `${element.emoji} ${element.info[this.currentLang].name} • `
-        } else if (!element.mafia && element.solo) {
-          solo += `${element.emoji} ${element.info[this.currentLang].name} • `
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.mafia) {
+          mafia += `${role.emoji} ${role.info[this.currentLang].name} • `
+        } else if (!role.mafia && !role.solo) {
+          citizen += `${role.emoji} ${role.info[this.currentLang].name} • `
+        } else if (!role.mafia && role.solo) {
+          solo += `${role.emoji} ${role.info[this.currentLang].name} • `
         }
       })
       let text = `${this.$t('general.welcomeToMafiabuzz')}

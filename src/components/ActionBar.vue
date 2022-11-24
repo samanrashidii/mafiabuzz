@@ -211,11 +211,10 @@ import NextKillerBox from '@/components/NextKillerBox.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import actionLog from '@/mixins/actionLog';
 import actions from '@/mixins/actions';
-import nextAction from '@/mixins/nextAction';
+import controlActions from '@/mixins/controlActions';
 import navigateActions from '@/mixins/navigateActions';
 import passiveActive from '@/mixins/passiveActive';
 import saveHistory from '@/mixins/saveHistory';
-import skipAction from '@/mixins/skipAction';
 import voteKiller from '@/mixins/voteKiller';
 
 export default {
@@ -239,9 +238,9 @@ export default {
     checkStatus (player) {
       let target
       if (player) {
-        this.gameSettings.selectedRoles.forEach((element) => {
-          if (element.player === player.player) {
-            target = element
+        this.gameSettings.selectedRoles.forEach((role) => {
+          if (role.player === player.player) {
+            target = role
           }
         })
       }
@@ -255,10 +254,9 @@ export default {
     actionLog,
     actions,
     navigateActions,
-    nextAction,
+    controlActions,
     passiveActive,
     saveHistory,
-    skipAction,
     voteKiller
   ]
 }

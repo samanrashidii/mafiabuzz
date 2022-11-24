@@ -204,8 +204,8 @@ export default {
         }
         this.gameSettings.stepCounter = 2
         discordText += `• `
-        playerNames.forEach((element) => {
-          discordText += `${element} • `
+        playerNames.forEach((name) => {
+          discordText += `${name} • `
         })
         // Post Players To Discord
         this.postDiscord(discordText)
@@ -242,7 +242,7 @@ export default {
       }
     },
     fillPreDefinedNames () {
-      this.gameSettings.selectedRoles.forEach((element, index) => {
+      this.gameSettings.selectedRoles.forEach((name, index) => {
         this.players.push(`${this.$t('pages.home.playerDefault')} ${index + 1}`)
       })
     },
