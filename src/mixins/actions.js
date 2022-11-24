@@ -26,6 +26,12 @@ export default {
     },
     activateLink (name) {
       const linkTarget = this.gameSettings.selectedRoles.filter((role) => role.player !== name && role.status.link)[0]
+      this.setStatus(name, {
+        link: false
+      })
+      this.setStatus(linkTarget.player, {
+        link: false
+      })
       this.kill(linkTarget.player)
     },
     antiSilence (name) {
@@ -171,7 +177,7 @@ export default {
           killTarget = target
         }
       }
-      this.gameSettings.selectedRoles.forEach((role) => {
+      this.gameSettings.selectedRoles.forEach((role, index) => {
         // Check if target is not healed
         if (role.player === killTarget && !role.status.heal) {
           // Check if target has shield
@@ -200,7 +206,6 @@ export default {
           }
           // Check if target is linked to another person
           if (role.status.link) {
-            role.status.link = false
             this.activateLink(role.player)
           }
           // Check if target is a reviver character
