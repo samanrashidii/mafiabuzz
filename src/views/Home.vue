@@ -8,21 +8,27 @@
     >
       {{ $t('meta.home.description') }}
     </p>
-    <transition
-      name="slide"
-      mode="out-in"
-    >
-      <!-- Show Create Game Panel when the game is not started -->
-      <CreateGamePanel
-        v-if="!gameSettings.gameStarted"
-      />
-      <!-- Show Dashboard Panel when the game is started -->
-      <DashboardPanel
-        v-else
-      />
-    </transition>
     <!-- If last game saved data is available in localstorage, show Alert to load data from localstorage or start a new game -->
-    <SavedGameAlert />
+    <SavedGameAlert
+      v-if="gameSettings.hasSavedGame"
+    />
+    <template
+      v-else
+    >
+      <transition
+        name="slide"
+        mode="out-in"
+      >
+        <!-- Show Create Game Panel when the game is not started -->
+        <CreateGamePanel
+          v-if="!gameSettings.gameStarted"
+        />
+        <!-- Show Dashboard Panel when the game is started -->
+        <DashboardPanel
+          v-else
+        />
+      </transition>
+    </template>
   </div>
 </template>
 

@@ -102,6 +102,13 @@ export default {
   created() {
     // Get Default Language from localStorage
     const savedLocale = JSON.parse(localStorage.getItem('locale'))
+    // Get saved game from localStorage
+    const capturedState = JSON.parse(localStorage.getItem('save-automatic'))
+    if (capturedState) {
+      this.SetGameSettingsItem({
+        hasSavedGame: true
+      })
+    }
     // Get Discord Token from localStorage
     const discordToken = localStorage.getItem('discordToken')
     // Setup Discord Channel if Discord Token available

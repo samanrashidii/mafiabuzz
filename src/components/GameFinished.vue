@@ -86,6 +86,7 @@ export default {
   },
   updated () {
     if (this.gameSettings.gameFinished) {
+      this.saveTotalHistory(this.dashboard.historyLog)
       let text = ''
       this.$t('general.winner').forEach((winner) => {
         if (winner.class === this.gameWinner) {

@@ -117,11 +117,11 @@ export default {
       `
       const lastNightEvents = []
       this.gameSettings.selectedRoles.forEach((role) => {
+        let currentIdentity = this.$t('common.Citizen')
+        if (role.mafia) {
+          currentIdentity = this.$t('common.Mafia')
+        }
         if (role.status.recentlyDead) {
-          let currentIdentity = this.$t('common.Citizen')
-          if (role.mafia) {
-            currentIdentity = this.$t('common.Mafia')
-          }
           const logNote = `<span class='last-log red-bg dead-icon'><i>${role.player}</i> ${this.$t('god.logDeadText')}</span><em>${currentIdentity}</em>`
           resultForDiscord += `
           💀 ${role.player} ${this.$t('god.logDeadText')}
@@ -130,7 +130,7 @@ export default {
           lastNightEvents.push(logNote)
         }
         if (role.status.recentlyRevived) {
-          const logNote = `<span class='last-log green-bg revived-icon'><i>${role.player}</i> ${this.$t('god.logRevivedText')}</span>`
+          const logNote = `<span class='last-log green-bg revived-icon'><i>${role.player}</i> ${this.$t('god.logRevivedText')}</span><em>${currentIdentity}</em>`
           resultForDiscord += `
           💚 ${role.player} ${this.$t('god.logRevivedText')}
           ----------
@@ -138,7 +138,7 @@ export default {
           lastNightEvents.push(logNote)
         }
         if (role.status.recentlySilenced) {
-          const logNote = `<span class='last-log blue-bg silenced-icon'><i>${role.player}</i> ${this.$t('god.logSilencedText')}</span>`
+          const logNote = `<span class='last-log blue-bg silence-icon'><i>${role.player}</i> ${this.$t('god.logSilencedText')}</span><em>${currentIdentity}</em>`
           resultForDiscord += `
           🔇 ${role.player} ${this.$t('god.logSilencedText')}
           ----------

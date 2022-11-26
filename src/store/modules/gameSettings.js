@@ -30,6 +30,7 @@ export default {
       gameStarted: false,
       gameReset: false,
       gameFinished: false,
+      hasSavedGame: false,
       winner: null,
       soloWins: false,
       soloWinnner: null,
@@ -75,6 +76,11 @@ export default {
         finishGame('citizen')
       }
     },
+    SET_GAME_SETTINGS_ITEM: (state, items = {}) => {
+      for (const [key, value] of Object.entries(items)) {
+        Vue.set(state.gameSettings, key, value)
+      }
+    },
     SET_DISCORD_CHANNEL: (state, data) => {
       state.gameSettings.discordChannel = data
       if (data) {
@@ -87,6 +93,9 @@ export default {
   actions: {
     SetGameSettings: (context, settings) => {
       context.commit('SET_GAME_SETTINGS', settings)
+    },
+    SetGameSettingsItem: (context, settings) => {
+      context.commit('SET_GAME_SETTINGS_ITEM', settings)
     },
     SetDiscordChannel: (context, data) => {
       context.commit('SET_DISCORD_CHANNEL', data)

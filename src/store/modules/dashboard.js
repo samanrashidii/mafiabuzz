@@ -22,7 +22,6 @@ export default {
       killerChanged: false,
       nextKiller: {
         icon: null,
-        alt: null,
         name: null,
         player: null
       }

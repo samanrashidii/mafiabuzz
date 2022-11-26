@@ -9,8 +9,8 @@ export default {
           // List should contain all dead people
           output = this.gameSettings.selectedRoles.filter(role => role.status.dead)
         } else if (player.ability.replacer) {
-          // List should contain all Mafia people who are alive and not the player himself
-          output = this.gameSettings.selectedRoles.filter(role => role.player !== player.player && role.mafia === player.mafia && !role.status.dead)
+          // List should contain all Non-Mafia people who are alive
+          output = this.gameSettings.selectedRoles.filter(role => role.mafia !== player.mafia && !role.status.dead)
         } else {
           // List should contain all alive people
           output = this.gameSettings.selectedRoles.filter(role => !role.status.dead)

@@ -107,7 +107,7 @@
                 &::after{
                     visibility: visible;
                     opacity: 1;
-                    background-color:rgb(194,73,73, .4);
+                    background-color:rgb(194,73,73, .2);
                 }
                 &:last-child::after{
                     display: none;
@@ -117,7 +117,7 @@
                 &::after{
                     visibility: visible;
                     opacity: 1;
-                    background-color:rgba(22, 22,22, 0.24);
+                    background-color:rgba(12, 12,12, 0.1);
                 }
                 &:last-child::after{
                     background-color: transparent;

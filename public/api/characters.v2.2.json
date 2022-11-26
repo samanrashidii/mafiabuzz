@@ -119,8 +119,8 @@
             "en": {
                 "name": "Godfather",
                 "description": "The Godfather is boss of mafioso and can kill one person at night and also his mafia identity will never get revealed by 'Detective'. If Godfather died during the game, killing role will pass to the next person and that person doesn't have ability anymore",
-                "passive": "نامرئی",
-                "action": "کشتن"
+                "passive": "Invisible Identity",
+                "action": "Kill"
             },
             "fa": {
                 "name": "گادفادر",

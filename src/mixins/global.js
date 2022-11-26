@@ -55,6 +55,7 @@ export default {
   methods: {
     ...mapActions({
       SetGameSettings: 'gameSettings/SetGameSettings',
+      SetGameSettingsItem: 'gameSettings/SetGameSettingsItem',
       SetRoles: 'roles/SetRoles',
       SetReplacingRoles: 'roles/SetReplacingRoles',
       SetDashboard: 'dashboard/SetDashboard',

@@ -1,70 +1,64 @@
 <template>
-  <Overlay
-    class="main-alert saved-game-alert"
-    :class="{'active': overlay}"
+  <PageBox
+    class="dark-inside saved-game-alert center-aligned has-small-top-margin"
   >
-    <template>
-      <img
-        src="@/assets/images/savedgame.svg"
-        :alt="$t('general.loadFromLastgameMessage')"
-      >
-      <h3
-        v-html="$t('general.loadFromLastgameMessage')"
-      />
-      <BaseButton
-        class="green disc-bttn"
-        @clicked="loadFromSave()"
-      >
-        <span>
-          {{ $t('common.loadLastGameButton') }}
-        </span>
-      </BaseButton>
-      <BaseButton
-        class="secondary start-bttn"
-        @clicked="resetFactory()"
-      >
-        <span>
-          {{ $t('common.startNewGameButton') }}
-        </span>
-      </BaseButton>
-      <BaseButton
-        class="primary exit-bttn"
-        @clicked="clearStorage()"
-      >
-        <span>
-          {{ $t('common.clearStorage') }}
-        </span>
-      </BaseButton>
-    </template>
-  </Overlay>
+    <img
+      src="@/assets/images/savedgame.svg"
+      :alt="$t('general.loadFromLastgameMessage')"
+      class="max-width-image"
+    >
+    <h4
+      v-html="$t('general.loadFromLastgameMessage')"
+      class="has-top-margin has-bottom-margin"
+    />
+    <BaseButton
+      class="green disc-bttn"
+      @clicked="loadFromSave()"
+    >
+      <span>
+        {{ $t('common.loadLastGameButton') }}
+      </span>
+    </BaseButton>
+    <BaseButton
+      class="secondary start-bttn"
+      @clicked="resetFactory()"
+    >
+      <span>
+        {{ $t('common.startNewGameButton') }}
+      </span>
+    </BaseButton>
+    <BaseButton
+      class="primary exit-bttn"
+      @clicked="clearStorage()"
+    >
+      <span>
+        {{ $t('common.clearStorage') }}
+      </span>
+    </BaseButton>
+  </PageBox>
 </template>
 
 <script>
 
 export default {
-  data () {
-    return {
-      overlay: false
-    }
-  },
-  mounted () {
-    const capturedState = JSON.parse(localStorage.getItem('save-automatic'))
-    if (capturedState) {
-      this.overlay = true
-    }
-  },
   methods: {
     loadFromSave () {
       this.startGameEngine('autosave')
-      this.overlay = false
+      this.SetGameSettingsItem({
+        hasSavedGame: false
+      })
     },
     resetFactory () {
       this.startGameEngine('roles-selected-create')
-      this.overlay = false
+      this.SetGameSettingsItem({
+        hasSavedGame: false
+      })
     },
     clearStorage () {
       localStorage.clear()
-      this.overlay = false
+      this.SetGameSettingsItem({
+        hasSavedGame: false
+      })
     }
   }
 }

@@ -11,9 +11,9 @@
     </h2>
     <ul>
       <li
-        v-for="(nL, index) in dashboard.lastNight"
+        v-for="(lastNightEvent, index) in dashboard.lastNight"
         :key="index"
-        v-html="nL"
+        v-html="lastNightEvent"
       />
     </ul>
     <BaseButton

@@ -22,9 +22,9 @@
     .icon-image{
         width:120px;
     }
-    &.dark{
-        padding:3px;
-        background-color: $color_site_6;
+    &.dark-inside{
+        padding:20px;
+        box-shadow: 0 0 15px $black_color inset;
     }
     &.dark-color{
         background-color: $background_color_body;
@@ -75,6 +75,7 @@
             padding-top:112px;
             padding-bottom: 10px;
             background:url('~@/assets/images/day.jpg') no-repeat;
+            background-size: cover;
             animation:horizontalMove 25s ease-out forwards;
             &::after{
                 top:25px;
@@ -86,6 +87,7 @@
             padding-top:112px;
             padding-bottom: 10px;
             background:url('~@/assets/images/night.jpg') no-repeat;
+            background-size: cover;
             animation:horizontalMoveReverse 25s ease-out forwards;
             &::before{
                 top:25px;

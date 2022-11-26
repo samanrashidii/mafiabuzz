@@ -146,34 +146,6 @@ span.step-number{
     z-index: 999999999999999999;
 }
 
-.quest-box.overlay .inner-overlay .overlay-box .inner-overlay-box{
-    max-width: 270px;
-    ::-webkit-input-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    :-moz-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    ::-moz-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    :-ms-input-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-}
-
 #app{
     .vue-back-to-top{
         .default{

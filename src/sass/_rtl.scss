@@ -428,10 +428,15 @@ body.rtl{
         .info-box,
         .notifications{
           margin-left: 0;
-          margin-right: -10px;
+          margin-right: -15px;
         }
         .overlay.viewer{
           margin-right: -15px;
+        }
+        .action-bar{
+            .overlay.viewer{
+                margin-right: -35px;
+            }
         }
     }
 }

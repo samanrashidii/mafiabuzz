@@ -167,7 +167,7 @@ export default {
         checkLoyalty = this.gameSettings.selectedRoles.filter(role =>  player.ability.loyalty && role.player === target && player.mafia === role.mafia && player.solo === role.solo)
       }
       // Check If DeadMagnet is in the game, He should be the target
-      const checkDeadMagnet = this.gameSettings.selectedRoles.filter(role => role.status.deadMagnet)
+      const checkDeadMagnet = this.gameSettings.selectedRoles.filter(role => role.status.deadMagnet && !role.status.dead)
       const checkKillerPlayer = this.gameSettings.selectedRoles.filter(role => role.player === target && role.ability.killer && role.mafia && !role.status.dead)
       const hasLoyalty = checkLoyalty.length > 0
       const hasDeadMagnet = checkDeadMagnet.length > 0
@@ -182,7 +182,7 @@ export default {
           killTarget = target
         }
       }
-      this.gameSettings.selectedRoles.forEach((role, index) => {
+      this.gameSettings.selectedRoles.forEach((role) => {
         // Check if target is not healed
         if (role.player === killTarget && !role.status.heal) {
           // Check if target has shield

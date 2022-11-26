@@ -57,7 +57,7 @@
       name="fade"
     >
       <ActionBar
-        v-if="dashboard.actionProgress !== dashboard.actionBox.length"
+        v-if="showGodPanel && dashboard.actionProgress !== dashboard.actionBox.length"
       />
     </transition>
     <div
