@@ -3,7 +3,9 @@
         tr{
             td{
                 position: relative;
-                a{background-size: 24px;}
+                a{
+                    background-size: 24px;
+                }
                 &::before{
                     content:'';
                     position: absolute;
@@ -38,8 +40,9 @@
                     content:'';
                     position: absolute;
                     top:50%;
-                    right:4px;
-                    width:22px;
+                    left: auto;
+                    right: 4px;
+                    width: 22px;
                     height: 22px;
                     margin-top:-11px;
                     opacity: 0;

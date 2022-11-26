@@ -114,6 +114,7 @@
         "Night": "Night",
         "Day": "Day",
         "Kill": "kill",
+        "killCapacity": "Ability to Kill",
         "None": "-",
         "mostUsed": "Most Used",
         "new": "New",
@@ -431,6 +432,10 @@
             {
                 "name": "disabled",
                 "hint": "Player has no action or passive."
+            },
+            {
+                "name": "kill-icon",
+                "hint": "Player has ability to kill at night."
             },
             {
                 "name": "link-icon",

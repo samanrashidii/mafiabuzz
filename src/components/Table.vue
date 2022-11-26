@@ -46,6 +46,12 @@
             :alt="tD.info[currentLang].name"
           > 
           {{ tD.info[currentLang].name }}
+          <img
+            v-if="tD.ability.killer && !tD.status.dead"
+            src="@/assets/images/icons/kill.svg"
+            alt="Kill Icon"
+            :title="$t('common.killCapacity')"
+          > 
         </td>
         <template
           v-if="dashboardTable"
