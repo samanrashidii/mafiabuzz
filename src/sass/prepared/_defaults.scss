@@ -187,18 +187,6 @@ button{
 		opacity: .8;
 		transform:scale(.8,.8);
 	}
-	&.login{
-		height: 45px;
-		margin-top:0;
-		background-color: $background_color_citizen;
-		border-radius: $curve_radius;
-	}
-	&.register{
-		height: 45px;
-		margin-top:0;
-		background-color: $medium_green_color;
-		border-radius: $curve_radius;
-	}
 }
 
 form {
@@ -227,19 +215,6 @@ form {
 		> div{
 			display: flex;
 			justify-content: center;
-		}
-		.promo-submit{
-			position: absolute;
-			top:7px;
-			right:4px;
-			width:80px;
-			height: 28px;
-			font-size: $font_size_4;
-			background-color: $light_purple_color;
-			border-radius: $curve_radius;
-		}
-		#promo_code{
-			padding-right: 90px;
 		}
 		label{
 			display:block;

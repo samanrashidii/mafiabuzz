@@ -11,7 +11,7 @@
       class="has-top-margin"
     />
     <router-link
-      class="bttn has-top-margin"
+      class="bttn primary has-top-margin"
       :to="{
         name: 'home'
       }"

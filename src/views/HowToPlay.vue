@@ -38,7 +38,7 @@
         />
       </div>
     </PageBox>
-    <!-- Back to Top component because of large page -->
+    <!-- Back to Top Button -->
     <BackToTop
       bottom="20px"
       right="20px"

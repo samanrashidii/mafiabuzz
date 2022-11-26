@@ -43,6 +43,7 @@
 <script>
 
 export default {
+  name: 'RoleViewer',
   props: {
     roles: {
       type: Array,
