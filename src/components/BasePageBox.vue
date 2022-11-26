@@ -1,5 +1,7 @@
 <template>
-  <div class="page-box">
+  <div
+    class="page-box"
+  >
     <slot />
   </div>
 </template>

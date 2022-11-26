@@ -90,6 +90,7 @@
 <script>
 
 export default {
+  name: 'ShowBox',
   data () {
     return {
       showrole: false,

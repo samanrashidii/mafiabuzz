@@ -1,8 +1,16 @@
 <template>
-  <div class="overlay">
-    <div class="inner-overlay">
-      <div class="overlay-box">
-        <div class="inner-overlay-box">
+  <div
+    class="overlay"
+  >
+    <div
+      class="inner-overlay"
+    >
+      <div
+        class="overlay-box"
+      >
+        <div
+          class="inner-overlay-box"
+        >
           <slot />
         </div>
       </div>

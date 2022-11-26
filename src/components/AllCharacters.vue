@@ -19,7 +19,7 @@
         }"
       >
         <input
-          @change="checkRoles(role, index)"
+          v-model="gameSettings.selectedRoles"
           type="checkbox"
           name="roles"
           :id="`role_${index + 1}`"
@@ -27,7 +27,7 @@
             'active': role.selected
           }"
           :value="role"
-          v-model="gameSettings.selectedRoles"
+          @change="checkRoles(role, index)"
         >
         <label
           :for="`role_${index + 1}`"

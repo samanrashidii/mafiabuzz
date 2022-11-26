@@ -1,6 +1,6 @@
 <template>
   <div
-    class="revenge-alert-box"
+    class="vote-alert-box"
   >
     <div
       v-if="dashboard.justiceUsed"
