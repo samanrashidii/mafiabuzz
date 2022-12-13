@@ -41,7 +41,7 @@ Autosave | ✔
 Solo Class Characters | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
 
-You can see the live demmo here : <br />
+You can see live version here : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)
 
 ## Getting Started with development
