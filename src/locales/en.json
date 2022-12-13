@@ -1,20 +1,9 @@
 {
     "patchNotes": [
-        {"text": "New Character : Charlatan for Mafia team"},
-        {"text": "New Character : Salesman for Citizen team"},
-        {"text": "New Character : Jailer for Citizen team"},
-        {"text": "New Character : Druid for Citizen team"},
-        {"text": "New Character : Doctor Lecter for Mafia team"},
-        {"text": "New Character : Professional for Citizen team"},
-        {"text": "New Character : Guardian Angel for Citizen team"},
-        {"text": "New Character : Zealot for Citizen team"},
-        {"text": "New Character : Bomber for Mafia team"},
-        {"text": "New Character : Mayor for Citizen team"},
-        {"text": "Change Character : Changed name of 'Ruspy' to 'Natasha'"},
-        {"text": "Change Character : Hacker can now hack maximum of 2 times during the night"},
-        {"text": "Change Character : Changed 'Gravekeeper' to 'GraveDigger' (Read more in Characters page)"},
-        {"text": "Change Character : 'Gravekeeper' functionality changed"},
-        {"text": "Fix : Removed extra files and fixed some issues"}
+        {"text": "Update: User Interface and User Experience for Web Application"},
+        {"text": "Update: Improved App speed and performance"},
+        {"text": "Fix: All reported bugs and issues"},
+        {"text": "Change: Nighthunter name to Hack Bomb"}
     ],
     "thirdparty": {
         "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='primary-color'>webhook</span> code below",
