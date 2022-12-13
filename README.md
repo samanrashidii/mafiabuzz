@@ -4,13 +4,13 @@
   </a>
 </p>
 
-# MafiaBuzz - v4.2.0
+# MafiaBuzz - v4.3.0
 
 MafiaBuzz is a game application to help people run and play "Mafia Party Game" easily and manageable. MafiaBuzz has more interesting characters than usual mafia game and can calculate every events happens in game and show the result to the game moderator (God)
 
-### Latest Date
+### Latest Update
 
-15/06/2022
+13/12/2022
 ### Release Date
 
 23/06/2019
@@ -28,7 +28,7 @@ Persian - RTL
 
 Feature | *
 ------------ | -------------
-Characters | 30
+Characters | 40
 Team Balance Bar | ✔
 Random Character Dealer | ✔
 God Dashboard | ✔
@@ -39,7 +39,6 @@ Night Phase Hints | ✔
 Game History | ✔
 Autosave | ✔
 Solo Class Characters | ✔
-Patch Notes | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
 
 You can see the live demmo here : <br />
@@ -89,7 +88,7 @@ npm run build
 ## Team
 
 **Saman Rashidi**
-<p>Product Design & Front-end Development</p>
+<p>Founder & Front-end Development</p>
 
 - [Linkedin](https://www.linkedin.com/in/samanrashidii)
 - [Github](https://github.com/samanrashidii)
