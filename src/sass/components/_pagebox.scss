@@ -10,24 +10,35 @@
     h3{
         text-align: center;
         margin:20px 0;
-        color: $hint_color;
+        color: $primary;
     }
     p{
         font-size: $font_size_4;
         padding-top:0;
-        &:not(:last-child){margin-bottom: 020px;}
+        &:not(:last-child){
+            margin-bottom: 020px;
+        }
     }
-    .icon-image{width:120px;}
-    &.dark{
-        padding:3px;
-        background-color: $color_site_6;
+    .icon-image{
+        width:120px;
+    }
+    &.dark-inside{
+        padding:20px;
+        box-shadow: 0 0 15px $black_color inset;
     }
     &.dark-color{
         background-color: $background_color_body;
         box-shadow: none;
     }
-    &.same-padding{padding:15px;}
-    &.has-top-padding{padding-top:64px;}
+    &.discord-border{
+        border: 4px solid $color_discord;
+    }
+    &.same-padding{
+        padding:15px;
+    }
+    &.has-top-padding{
+        padding-top:64px;
+    }
     &.display{
         display: table;
         width:100%;
@@ -39,9 +50,11 @@
             vertical-align: middle;
             text-align: center;
         }
-        &.autoheight{height: auto;}
+        &.autoheight{
+            height: auto;
+        }
     }
-    &.godashboard{
+    &.god-dashboard{
         overflow: hidden;
         transition:all .3s ease-in-out;
         background-position: left bottom;
@@ -49,20 +62,21 @@
         &::before{
             content:'';
             position: absolute;
-            top:-100px;
-            left:40%;
-            width:64px;
+            top: -100px;
+            left: 50%;
+            width: 64px;
             height: 64px;
             background-repeat: no-repeat;
             background-position: center;
+            transform: translateX(-50%);
             transition:all .5s ease-in-out;
         }
-        &:not(.day):not(.night){margin-bottom:40px;}
         &.day{
             padding-top:112px;
             padding-bottom: 10px;
-            background:url('~@/assets/images/day.jpg') no-repeat left bottom;
+            background:url('~@/assets/images/day.jpg') no-repeat;
             background-size: cover;
+            animation:horizontalMove 25s ease-out forwards;
             &::after{
                 top:25px;
                 background-image: url('~@/assets/images/sun.svg');
@@ -72,14 +86,35 @@
         &.night{
             padding-top:112px;
             padding-bottom: 10px;
-            background:url('~@/assets/images/night.jpg') no-repeat right center;
+            background:url('~@/assets/images/night.jpg') no-repeat;
             background-size: cover;
+            animation:horizontalMoveReverse 25s ease-out forwards;
             &::before{
                 top:25px;
                 background-image: url('~@/assets/images/moon.svg');
                 background-size: 64px;
             }
         }
-        &.has-action-button{padding-top:172px !important;}
+        &.has-action-button{
+            padding-top:172px !important;
+        }
+    }
+}
+
+@keyframes horizontalMove {
+    0%{
+        background-position: left center;
+    }
+    100%{
+        background-position: right bottom;
+    }
+}
+
+@keyframes horizontalMoveReverse {
+    0%{
+        background-position: right center;
+    }
+    100%{
+        background-position: left bottom;
     }
 }

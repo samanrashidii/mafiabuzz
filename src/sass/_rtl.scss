@@ -7,7 +7,7 @@ body.rtl{
 .rtl{
     p{
         line-height: 2;
-        font-size: $font_size_3 !important;
+        font-size: $font_size_3;
     }
     input{font-family: $font_rtl;}
     select{
@@ -22,14 +22,21 @@ body.rtl{
     :-ms-input-placeholder {font-family: $font_rtl;}
 
     .title h2{
-        font-family: $font_rtl;
-        font-size: $font_size_medium;
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_big;
     }
 
     .roles li label,
-    .roles li label > div strong span i{
-        font-family: $font_rtl;
-        font-size: $font_size_6 !important;
+    .roles li label > div strong{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_small;
+        span {
+            font-family: $font_mafia_rtl;
+            i{
+                font-family: $font_mafia_rtl;
+                font-size: $font_size_6 !important;
+            }
+        }
     }
 
     .start-bttn span{
@@ -44,7 +51,7 @@ body.rtl{
     }
 
     .swap-bttn span{
-        padding:3px 35px 5px 5px;
+        padding:1px 35px 0px 5px;
         background-position-x: 99%;
     }
 
@@ -72,17 +79,16 @@ body.rtl{
     } 
 
     .patch-bttn span{
-        padding:4px 30px 2px 5px;
+        padding:2px 30px 2px 5px;
         background-position-x: 99%;
+    }
+
+    .list-item{
+        direction: rtl;
     }
 
     .success-bttn span{
         padding:4px 30px 2px 5px;
-        background-position-x: 99%;
-    }
-
-    .close-bttn span{
-        padding:0 22px 0 5px;
         background-position-x: 99%;
     }
 
@@ -91,20 +97,19 @@ body.rtl{
         background-position-x: 99%;
     }
 
-    #app .navigation nav a{
-        font-family: $font_rtl;
-        font-size: $font_size_medium;
-    }
-    #app .navigation.sticky nav a{
-        font-family: $font_rtl;
-        font-size: $font_size_3;
-        &.language-bttn{padding:12px 2px 8px 2px;}
+    .navigation nav a{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_5;
     }
     .step-box,
     .page-box{
+        h2{
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_small_big;
+        }
         h3{
-            font-family: $font_rtl;
-            font-size: 22px;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big;
         }
         p{font-size: $font_size_3;}
     }
@@ -116,6 +121,8 @@ body.rtl{
         }
         .details-info > div{
             > span{
+                font-family: $font_mafia_rtl;
+                font-size: $font_size_5;
                 margin: 0 0 0 10px;
             }
             .data-holder{
@@ -125,7 +132,8 @@ body.rtl{
             }
         }
         h2{
-            font-size: 1.3em;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big;
             margin-top:0;
         }
         img{
@@ -140,14 +148,27 @@ body.rtl{
         }
     }
 
-    a.bttn{font-size: $font_size_4;}
+    .character-item{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_medium;
+    }
+
+    .bttn{
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_8;
+    }
 
     .character-power span i{
         line-height: 25px;
         padding-right: 1px;
     }
 
-    .creators li a strong{font-size: 24px !important;}
+    .creators li a{
+        strong{
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_big !important;
+        }
+    }
 
     .error-bullet li{
         text-align: right;
@@ -160,7 +181,7 @@ body.rtl{
         table{
             tr{
                 th{
-                    font-size: $font_size_1;
+                    font-size: $font_size_0;
                 }
                 td{
                     &:first-child{
@@ -183,16 +204,6 @@ body.rtl{
                         padding-top:3px;
                     }
                 }
-                &.love-bind{
-                    td{
-                        &:nth-child(1){
-                            &::before{
-                                right:auto;
-                                left:-13px;
-                            }
-                        }
-                    }
-                }
                 &.dead{
                     td{
                         &:nth-child(1){
@@ -202,7 +213,7 @@ body.rtl{
                         }
                     }
                 }
-                &.silenced{
+                &.silence{
                     td{
                         &:nth-child(1){
                             &::after{
@@ -217,6 +228,22 @@ body.rtl{
                             &::after{
                                 background-position: 2px center !important;
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .god {
+        .table{
+            table{
+                tr{
+                    td{
+                        font-family: $font_mafia_rtl;
+                        font-size: $font_size_4;
+                        img {
+                            transform: scaleX(-1);
                         }
                     }
                 }
@@ -259,8 +286,8 @@ body.rtl{
 
     .step-box.display .inner-display .role-info,
     .page-box.display .inner-display .role-info{
-        font-family: $font_rtl;
-        font-size: $font_size_7;
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_10;
     }
 
     .priority-box .progress-bar i strong{font-family: $font_rtl;}
@@ -273,34 +300,22 @@ body.rtl{
     .log-bttn i{
         font-size: 13px;
         line-height: 23px;
+        margin-right: 4px;
+        margin-left: 0;
     }
 
     .log-table table td:last-child{text-align: right !important;}
 
-    .god .night-actions{font-size: $font_size_2;}
+    .god{
+        .night-actions{
+            font-size: $font_size_2;
+        }
+    }
 
     .dashboard-hint li span{
         padding: 5px 32px 5px 0;
         background-repeat: no-repeat;
         background-position-x: right;
-    }
-
-    .character-unlock{
-        margin-left: 0;
-        margin-right: -12px;
-        p{
-            strong{
-                font-family: $font_rtl;
-                line-height: 1.5;
-            }
-        }
-        .inner-unlocked-character{
-            h1{
-                line-height: 1.8;
-                font-family: $font_rtl;
-                font-size: 2.2rem;
-            }
-        }
     }
 
     .overlay{
@@ -317,8 +332,8 @@ body.rtl{
                 }
             }
             h2{
-                font-family: $font_rtl;
-                font-size: $font_size_8 !important;
+                font-family: $font_mafia_rtl;
+                font-size: $font_size_medium !important;
             }
         }
     }
@@ -331,9 +346,9 @@ body.rtl{
         font-size: 9px;
     }
 
-    .priority-box .progress-bar span{background: linear-gradient(90deg, rgba(219,65,65,1) 0%, rgba(106,34,161,1) 100%);}
-
-    .creators li a strong{font-family: $font_rtl !important;}
+    .priority-box .progress-bar span{
+        background: linear-gradient(90deg, rgba(27,71,157,1) 0%, rgba(150,40,214,1) 100%);
+    }
 
     .vue-notification{
         direction: rtl;
@@ -349,11 +364,6 @@ body.rtl{
 
     .game-finished .game-finish-box h2 strong{
         line-height: 1;
-        font-family: $font_rtl;
-        font-size: $font_size_super_big !important;
-    }
-
-    .page-box.display .inner-display strong{
         font-family: $font_rtl;
         font-size: $font_size_super_big !important;
     }
@@ -376,15 +386,7 @@ body.rtl{
 
     .sub-header{
         .bttn.subnav-bttn{
-            font-size: $font_size_3 !important;
             direction: rtl;
-            &.characters-bttn{
-                direction: ltr;
-                strong{
-                    font-family: $font_rtl;
-                    font-size: $font_size_5 !important;
-                }
-            }
         }
     }
 
@@ -399,17 +401,6 @@ body.rtl{
             font-size: $font_size_big;
         }
         .field-holder{
-            .promo-submit{
-                position: absolute;
-                top:8.5px;
-                right:auto;
-                left:4px;
-                font-size: $font_size_2;
-            }
-            #promo_code{
-                padding-right: 15px;
-                padding-left: 90px;
-            }
             label{
                 font-size: $font_size_3;
                 img{margin:0 0 0 7px;}
@@ -429,10 +420,15 @@ body.rtl{
         .info-box,
         .notifications{
           margin-left: 0;
-          margin-right: -10px;
+          margin-right: -15px;
         }
         .overlay.viewer{
-          margin-right: -32px;
+          margin-right: -15px;
+        }
+        .action-bar{
+            .overlay.viewer{
+                margin-right: -35px;
+            }
         }
     }
 }

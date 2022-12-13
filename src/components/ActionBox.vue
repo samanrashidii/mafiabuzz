@@ -1,7 +1,13 @@
 <template>
-  <div class="action-box">
-    <div class="player-box-holder has-small-bottom-margin">
-      <div class="player-box">
+  <div
+    class="action-box"
+  >
+    <div
+      class="player-box-holder has-small-bottom-margin"
+    >
+      <div
+        class="player-box"
+      >
         <img
           :src="getImg('/roles', player.icon)"
           :alt="$t('god.playerIconAlt')"
@@ -10,14 +16,17 @@
           class="has-xsmall-top-margin"
           :class="{'mafia-role': player.mafia,'citizen-role': !player.mafia && !player.solo, 'solo-role': !player.mafia && player.solo}"
         >
-          {{ $t(player.name) }}
+          {{ player.info[currentLang].name }}
           <span>( {{ player.player }} )</span>
         </h4>
       </div>
-      <div class="arrow">
+      <div
+        class="arrow"
+      >
         <span
           v-if="player.status.actionLimit > 0"
           class="action-limit"
+          :title="$t('god.remainingActions')"
         >
           {{ player.status.actionLimit }}
         </span>
@@ -27,8 +36,12 @@
           :alt="$t('god.playerActionIconAlt')"
         >
       </div>
-      <div class="player-box">
-        <template v-if="Object.keys(dashboard.targetData).length">
+      <div
+        class="player-box"
+      >
+        <template
+          v-if="Object.keys(dashboard.targetData).length"
+        >
           <img
             :src="getImg('/roles', dashboard.targetData.icon)"
             :alt="$t('god.playerIconAlt')"
@@ -37,37 +50,45 @@
             class="has-xsmall-top-margin"
             :class="{'mafia-role': dashboard.targetData.mafia, 'citizen-role': !dashboard.targetData.mafia && !dashboard.targetData.solo, 'solo-role': !dashboard.targetData.mafia && dashboard.targetData.solo}"
           >
-            {{ $t(dashboard.targetData.name) }}
+            {{ dashboard.targetData.info[currentLang].name }}
             <span>( {{ dashboard.targetData.player }} )</span>
           </h4>
         </template>
-        <template v-else>
+        <template
+          v-else
+        >
           <img
             src="@/assets/images/roles/loader.svg"
-            :alt="$t('replacingRoles.loading.name')"
+            alt="Loader"
           >
         </template>
       </div>
     </div>
 
     <div
-      class="question"
       v-if="player.ability.chooseBoolean"
+      class="question"
     >
-      <div class="checkbox-box yes">
+      <div
+        class="checkbox-box yes"
+      >
         <input
+          v-model="useAbility"
+          id="use_ability"
           type="checkbox"
           name="question"
-          id="use_ability"
-          v-model="useAbility"
-          :value="true"
         >
-        <label for="use_ability"><span>{{ $t('god.useAbility') }}</span></label>
+        <label
+          for="use_ability"
+        >
+          <span>
+            {{ $t('god.useAbility') }}
+          </span>
+        </label>
       </div>
     </div>
-
     <template
-      v-if="!player.ability.chooseBoolean"
+      v-else
     >
       <label
         for="action_target"
@@ -75,9 +96,9 @@
         {{ $t('god.actionHintText') }}
       </label>
       <select
-        @change="findTarget(actionTarget1)"
-        name="action_target"
         v-model="actionTarget1"
+        name="action_target"
+        @change="findTarget(actionTarget1)"
       >
         <option
           :value="null"
@@ -86,7 +107,7 @@
           {{ $t('god.selectPlaceholder') }}
         </option>
         <option
-          v-for="(person, index) in checkGroup(player)"
+          v-for="(person, index) in checkGroupToSelectTarget(player)"
           :key="index"
         >
           {{ person.player }}
@@ -94,11 +115,17 @@
       </select>
     </template>
 
-    <template v-if="player.ability.binder && actionTarget1 !== null">
-      <label for="action_target_2">{{ $t('god.actionHintText2') }}</label>
+    <template
+      v-if="player.ability.binder && actionTarget1 !== null"
+    >
+      <label
+        for="action_target_2"
+      >
+        {{ $t('god.actionHintText2') }}
+      </label>
       <select
-        name="action_target_2"
         v-model="actionTarget2"
+        name="action_target_2"
       >
         <option
           :value="null"
@@ -107,7 +134,7 @@
           {{ $t('god.selectPlaceholder') }}
         </option>
         <option
-          v-for="(person, index) in checkSecondGroup(player)"
+          v-for="(person, index) in checkGroupToSelectSecondTarget()"
           :key="index"
         >
           {{ person.player }}
@@ -116,38 +143,53 @@
     </template>
 
     <!-- Action Buttons -->
-    <AppButton @click.native="executeAction(player, actionTarget1, actionTarget2, playerIndex)">
+    <BaseButton
+      @clicked.once="executeAction(player, actionTarget1, actionTarget2, playerIndex)"
+    >
       {{ $t('god.confirmButton') }}
-    </AppButton>
+    </BaseButton>
 
-    <template v-if="!force">
-      <AppButton
+    <template
+      v-if="!force"
+    >
+      <BaseButton
         class="danger"
-        @click.native="alertBox = true"
+        @clicked="alertBox = true"
       >
         {{ $t('god.skipButton') }}
-      </AppButton>
+      </BaseButton>
       <!-- Alert Box -->
-      <Overlay :class="{'active': alertBox,'dialog': true}">
+      <Overlay
+        :class="{
+          'active': alertBox,
+          'dialog': true
+        }"
+      >
         <img
-          class="has-xsmall-bottom-margin"
           src="@/assets/images/icons/warning.svg"
           :alt="$t('general.warningIcon')"
+          class="has-xsmall-bottom-margin"
         >
         <template>
-          <p>{{ $t('god.skipText') }}</p>
-          <AppButton
-            @click.native="skipAction(playerIndex)"
+          <p>
+            {{ $t('god.skipText') }}
+          </p>
+          <BaseButton
             class="green"
+            @clicked="skipAction(playerIndex)"
           >
-            <span>{{ $t('god.skipButton2') }}</span>
-          </AppButton>
-          <AppButton
-            @click.native="alertBox = false"
+            <span>
+              {{ $t('god.skipButton2') }}
+            </span>
+          </BaseButton>
+          <BaseButton
             class="danger"
+            @clicked="alertBox = false"
           >
-            <span>{{ $t('god.cancelButton') }}</span>
-          </AppButton>
+            <span>
+              {{ $t('god.cancelButton') }}
+            </span>
+          </BaseButton>
         </template>
       </Overlay>
     </template>
@@ -155,34 +197,16 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import Overlay from '@/components/Overlay.vue';
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import actionFilters from '@/mixins/dashboard/actionFilters';
-import changePhase from '@/mixins/dashboard/changePhase';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import dice from '@/mixins/dashboard/dice';
-import executeAction from '@/mixins/dashboard/executeAction';
-import nextAction from '@/mixins/dashboard/nextAction';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import possibilities from '@/mixins/dashboard/possibilities';
-import saveHistory from '@/mixins/dashboard/saveHistory';
-import skipAction from '@/mixins/dashboard/skipAction';
-import trackingStatus from '@/mixins/dashboard/trackingStatus';
-import voteKiller from '@/mixins/dashboard/voteKiller';
 
 export default {
+  name: 'ActionBox',
   data() {
     return {
       actionTarget1: null,
       actionTarget2: null,
       useAbility: false,
       alertBox: false
-    };
-  },
-  components: {
-    Overlay
+    }
   },
   props: {
     player: {
@@ -196,50 +220,7 @@ export default {
     force: {
       type: Boolean,
       default: false
-    },
-  },
-  computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    },
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    },
-    replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles))
     }
-  },
-  methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetReplacingRoles: 'roles/SetReplacingRoles'
-    }),
-    skipAction(index) {
-      this.alertBox = false
-      this.nextAction(index)
-    },
-  },
-  mixins: [
-    actionLog,
-    actions,
-    actionFilters,
-    changePhase,
-    deadWatcher,
-    dice,
-    executeAction,
-    nextAction,
-    passiveActive,
-    possibilities,
-    saveHistory,
-    skipAction,
-    trackingStatus
-  ]
+  }
 }
 </script>

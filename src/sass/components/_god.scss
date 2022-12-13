@@ -6,16 +6,21 @@
         left: 10px;
         width: calc(100% - 20px);
     }
+    .god-dashboard{
+        &.game-not-started{
+            background: url('~@/assets/images/god-dashboard.jpg') no-repeat center;
+        }
+    }
     .game-icon{min-height: 161px;}
     .round-tracker{
         position: absolute;
-        top:10px;
-        left:42%;
-        font-family: $font_mafia !important;
+        top:0;
+        left:44%;
+        font-family: $font_mafia_rtl !important;
         font-size: $font_size_large !important;
         color:$color_1 !important;
         text-align: center;
-        transform:translateX(28px);
+        transform:translateX(30px);
     }
     .table table tr{
         position: relative;

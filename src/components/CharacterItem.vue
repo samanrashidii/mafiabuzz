@@ -1,11 +1,17 @@
 <template>
-  <div class="character-item">
+  <div
+    class="character-item"
+  >
     <img
       :src="getImg('/roles', role.icon)"
-      :alt="$t(role.alt)"
+      :alt="role.info[currentLang].name"
     >
-    <h2>{{ $t(role.name) }}</h2>
-    <div class="mafia-status">
+    <h2>
+      {{ role.info[currentLang].name }}
+    </h2>
+    <div
+      class="mafia-status"
+    >
       <span
         class="mafia-role has-rope"
         v-if="role.mafia"
@@ -19,22 +25,24 @@
         v-else
       >{{ $t('common.Citizen') }}</span>
     </div>
-    <AppButton
+    <BaseButton
       class="info-bttn"
       :class="rarity+'-bg'"
-      @click.native="showInfo()"
+      @clicked="showInfo()"
     >
-      <span>{{ $t('general.seeDetails') }}</span>
-    </AppButton>
+      <span>
+        {{ $t('general.seeDetails') }}
+      </span>
+    </BaseButton>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
 
 export default {
+  name: 'CharacterItem',
   props: {
     role: {
       type: Object,
@@ -48,11 +56,6 @@ export default {
   components: {
     CharacterPower,
     InfoBox
-  },
-  computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles'
-    })
   },
   methods: {
     showInfo() {

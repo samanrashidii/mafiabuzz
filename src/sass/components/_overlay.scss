@@ -90,6 +90,7 @@
         }
     }
     &.last-night{
+        z-index: 9999999999;
         h2{
             font-family: $font_mafia;
             font-size: 38px;

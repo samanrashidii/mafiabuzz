@@ -1,16 +1,28 @@
 <template>
-  <div class="title">
+  <div
+    class="title"
+  >
     <template>
-      <div v-if="!dashboardTitle">
+      <div
+        v-if="!dashboardTitle"
+      >
         <img
           :src="getImg('', $t(`pages.${checkRoute}.image`))"
           :alt="$t(`pages.${checkRoute}.title`)"
         >
-        <h2 v-html="$t(`pages.${checkRoute}.title`)" />
-        <p v-html="$t(`pages.${checkRoute}.subtitle`)" />
+        <h2
+          v-html="$t(`pages.${checkRoute}.title`)"
+        />
+        <p
+          v-html="$t(`pages.${checkRoute}.subtitle`)"
+        />
       </div>
-      <div v-else>
-        <h2 v-html="$t(`pages.${checkRoute}.dashboardTitle`)" />
+      <div
+        v-else
+      >
+        <h2
+          v-html="$t(`pages.${checkRoute}.dashboardTitle`)"
+        />
       </div>
     </template>
   </div>
@@ -18,9 +30,12 @@
 
 <script>
 export default {
+  name: 'PageTitle',
   props: {
-    checkRoute: String,
-    dashboardTitle: Boolean
+    dashboardTitle: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>

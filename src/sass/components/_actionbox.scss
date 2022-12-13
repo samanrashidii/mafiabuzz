@@ -2,7 +2,9 @@
     p{
         font-size: $font_size_3;
         padding:0 0 25px 0;
-        strong{color:$hint_color;}
+        strong{
+            color:$primary;
+        }
     }
     .action-overlay{
         position: absolute;
@@ -17,7 +19,9 @@
         border-radius: $site_radius;
         p{
             padding-bottom: 10px;
-            strong{color:inherit;}
+            strong{
+                color:inherit;
+            }
         }
         img{
             width:90px;
@@ -32,8 +36,8 @@
             margin-top:0;
             box-shadow: 0 0 3px $background_color_6;
         }
-        &.hacked-overlay{
-            background: url('~@/assets/images/assets/hacked.png') no-repeat center rgb(244, 244, 244);
+        &.hack-overlay{
+            background: url('~@/assets/images/assets/hacked.png') repeat center rgb(244, 244, 244);
         }
         &.jail-overlay{
             background: rgb(244, 244, 244);
@@ -41,11 +45,9 @@
         &.dead-overlay{
             img:nth-of-type(1){
                 float: right;
-
             }
             img:nth-of-type(2){
                 float: left;
-                
             }
             background: rgb(244, 244, 244);
         }
@@ -74,10 +76,13 @@
             display:block;
             width: 30px;
             height: 30px;
-            line-height: 30px;
+            line-height: 34px;
+            font-family: $font_mafia_rtl;
+            font-size: $font_size_8;
             margin:-9px auto 0 auto;
-            border:2px dashed $hint_color;
+            background-color: $primary;
             border-radius: 50%;
+            box-shadow: 0 0 5px $black_color inset;
         }
     
         .player-box{
@@ -106,18 +111,15 @@
                 text-align: center;
                 padding:10px;
                 margin:0 auto;
-                background-repeat: no-repeat;
-                background-position: 20px center;
-                background-size: 16px;
+                cursor: pointer;
                 border:1px solid $background_color_2;
                 border-radius: 5px;
                 box-shadow: 0 1px 7px $black_color;
                 transition: all .2s ease-in-out;
             } 
             input:checked + label{
-                background-image: url('~@/assets/images/assets/tick.svg');
-                background-color: $yellow_color;
-                border-color: $yellow_color;
+                background-color: $primary;
+                border-color: $secondary;
             }
         }
         

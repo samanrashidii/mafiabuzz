@@ -14,7 +14,7 @@
     }
     img{
         float: left;
-        width:64px;
+        width: 80px;
         margin-right: 5px;
     }
     p{
@@ -45,8 +45,15 @@
         padding:15px;
         margin:15px auto !important;
         border-radius: $site_radius;
-        a{display:none;}
-        p{padding-top:15px;}
+        a{
+            display:none;
+        }
+        p{
+            padding-top:15px;
+        }
+        &:last-child{
+            margin-bottom: 0 !important;
+        }
     }
     .mafia-status,
     .citizen-status,
@@ -68,7 +75,7 @@
             > span{
                 display:inline-block;
                 vertical-align: middle;
-                color: $yellow_color;
+                color: $primary_light;
                 margin-right: 10px;
             }
             .data-holder{

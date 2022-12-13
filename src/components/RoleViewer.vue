@@ -20,9 +20,9 @@
           >
             <img
               :src="getImg('/roles', role.icon)"
-              :alt="$t(role.alt)"
+              :alt="role.info[currentLang].name"
             >
-            <h1>{{ $t(role.name) }}</h1>
+            <h1>{{ role.info[currentLang].name }}</h1>
           </div>
         </template>
       </transition>
@@ -32,18 +32,18 @@
     >
       {{ $t('god.noRolesToView') }}
     </h2>
-    <AppButton
-      @click.native="closeViewer()"
+    <BaseButton
+      @clicked="closeViewer()"
     >
       {{ $t('god.roleViewerButton') }}
-    </AppButton>
+    </BaseButton>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 
 export default {
+  name: 'RoleViewer',
   props: {
     roles: {
       type: Array,
@@ -60,14 +60,6 @@ export default {
       interval: null
     }
   },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    }
-  },
   mounted() {
     this.interval = setInterval(() => {
       if (this.item < this.roles.length - 1) {
@@ -78,9 +70,6 @@ export default {
     }, 2000)
   },
   methods: {
-    ...mapActions({
-      SetGameSettings: 'gameStatus/SetGameSettings'
-    }),
     closeViewer() {
       this.gameSettings.roleViewer = false
       this.gameSettings.searchingUsed = false

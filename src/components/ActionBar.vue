@@ -1,6 +1,7 @@
 <template>
   <div
-    class="priority-box"
+    class="action-bar priority-box"
+    id="ActionBar"
   >
     <!-- Before Action Box -->
     <transition
@@ -8,7 +9,7 @@
     >
       <div
         class="before-action-box"
-        v-if="dashboard.mafiaParty && dashboard.round === 1"
+        v-if="mafiaParty && gameSettings.aliveMafia > 1 && dashboard.round === 1"
       >
         <div
           class="table-display"
@@ -34,17 +35,16 @@
                 v-html="mp"
               />
             </ul>
-            <AppButton
-              class="has-small-top-margin"
-              @click.native="mafiaPartyController()"
+            <BaseButton
+              class="primary has-small-top-margin"
+              @clicked="toggleMafiaParty(false)"
             >
               {{ $t('god.mafiaPartyButton') }}
-            </AppButton>
+            </BaseButton>
           </div>
         </div>
       </div>
     </transition>
-
     <!-- Next Killer Box -->
     <transition
       name="fade"
@@ -53,7 +53,6 @@
         v-if="dashboard.killerChanged"
       />
     </transition>
-
     <!-- Role Viewer -->
     <Overlay
       :class="{
@@ -67,7 +66,6 @@
         :show="gameSettings.roleViewer"
       />
     </Overlay>
-
     <!-- Actions Progress Bar -->
     <div
       class="progress-bar"
@@ -84,7 +82,9 @@
         <span
           :style="{width: progress+'%'}"
         />
-        <i><strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}</i>
+        <i>
+          <strong>{{ dashboard.actionProgress }}</strong> / {{ dashboard.actionBox.length }}
+        </i>
       </div>
       <a
         class="next-action"
@@ -93,7 +93,6 @@
         v-if="dashboard.actionProgress !== dashboard.actionBox.length"
       />
     </div>
-
     <!-- Handle Actions -->
     <div>
       <div
@@ -107,8 +106,8 @@
         >
           <!-- Hacked Overlay -->
           <div
-            v-if="checkStatus(player).status.hacked"
-            class="action-overlay hacked-overlay"
+            v-if="checkStatus(player).status.hack"
+            class="action-overlay hack-overlay"
             key="hackedTarget"
           >
             <div
@@ -121,13 +120,13 @@
                   src="@/assets/images/roles/hacked.svg"
                   :alt="$t('god.hackedIconAlt')"
                 >
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
-                <AppButton
-                  class="purple"
-                  @click.native="skipAction(index)"
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.hackedPerson')" /></p>
+                <BaseButton
+                  class="primary"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>
@@ -147,13 +146,13 @@
                   src="@/assets/images/icons/in-jail.svg"
                   :alt="$t('god.inJailIconAlt')"
                 >
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
-                <AppButton
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.inJailPerson')" /></p>
+                <BaseButton
                   class="black"
-                  @click.native="skipAction(index)"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>
@@ -181,18 +180,18 @@
                     :alt="$t('god.playerIconAlt')"
                   >
                 </div>
-                <p><span>{{ $t(player.name) }} </span> <strong v-html="$t('god.deadPerson')" /></p>
-                <AppButton
+                <p><span>{{ player.info[currentLang].name }} </span> <strong v-html="$t('god.deadPerson')" /></p>
+                <BaseButton
                   class="black"
-                  @click.native="skipAction(index)"
+                  @clicked="skipAction(index)"
                 >
                   {{ $t('god.skipButton3') }}
-                </AppButton>
+                </BaseButton>
               </div>
             </div>
           </div>
 
-          <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia && !player.solo , 'solo-role': !player.mafia && player.solo}"> {{ $t(player.name) }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ $t(player.action.action) }}</strong> ?</p>
+          <p>{{ $t('god.actionQuestion1') }}<span :class="{'mafia-role': player.mafia, 'citizen-role': !player.mafia && !player.solo , 'solo-role': !player.mafia && player.solo}"> {{ player.info[currentLang].name }} </span> {{ $t('god.actionQuestion2') }} <strong>{{ player.info[currentLang].action }}</strong> ?</p>
           <ActionBox
             :player="player"
             :player-index="index"
@@ -204,82 +203,51 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
 import ActionBox from '@/components/ActionBox.vue';
 import NextKillerBox from '@/components/NextKillerBox.vue';
-import Overlay from '@/components/Overlay.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
-import actionLog from '@/mixins/dashboard/actionLog';
-import actions from '@/mixins/dashboard/actions';
-import actionFilters from '@/mixins/dashboard/actionFilters';
-import beforeActions from '@/mixins/dashboard/beforeActions';
-import deadWatcher from '@/mixins/dashboard/deadWatcher';
-import nextAction from '@/mixins/dashboard/nextAction';
-import navigateActions from '@/mixins/dashboard/navigateActions';
-import passiveActive from '@/mixins/dashboard/passiveActive';
-import saveHistory from '@/mixins/dashboard/saveHistory';
-import skipAction from '@/mixins/dashboard/skipAction';
-import voteKiller from '@/mixins/dashboard/voteKiller';
-import trackingStatus from '@/mixins/dashboard/trackingStatus';
 
 export default {
+  name: 'ActionBar',
   components: {
     ActionBox,
     NextKillerBox,
-    Overlay,
     RoleViewer
   },
+  data () {
+    return {
+      mafiaParty: true
+    }
+  },
   computed: {
-    ...mapGetters({
-      Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
-      ReplacingRoles: 'roles/ReplacingRoles',
-      DefaultState: 'DefaultState'
-    }),
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
-    },
-    dashboard() {
-      return JSON.parse(JSON.stringify(this.Dashboard))
-    },
-    replacingRoles() {
-      return JSON.parse(JSON.stringify(this.ReplacingRoles))
-    },
-    progress() {
+    progress () {
       return (this.dashboard.actionProgress / this.dashboard.actionBox.length) * 100
-    },
+    }
+  },
+  mounted () {
+    // Scroll to Action Bar
+    setTimeout(() => {
+      const container = document.getElementById('ActionBar')
+      this.$scrollTo(container, 500, {
+        offset: -15
+      })
+    }, 200)
   },
   methods: {
-    ...mapActions({
-      SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetReplacingRoles: 'roles/SetReplacingRoles'
-    }),
-    checkStatus(player) {
+    checkStatus (player) {
       let target
       if (player) {
-        this.gameSettings.selectedRoles.forEach((element) => {
-          if (element.player === player.player) {
-            target = element
+        this.gameSettings.selectedRoles.forEach((role) => {
+          if (role.player === player.player) {
+            target = role
           }
         })
       }
       return target
+    },
+    toggleMafiaParty (value) {
+      this.mafiaParty = value
     }
-  },
-  mixins: [
-    actionLog,
-    actions,
-    actionFilters,
-    beforeActions,
-    deadWatcher,
-    navigateActions,
-    nextAction,
-    passiveActive,
-    saveHistory,
-    skipAction,
-    voteKiller,
-    trackingStatus
-  ]
+  }
 }
 </script>

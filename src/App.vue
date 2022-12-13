@@ -2,20 +2,15 @@
   <div
     id="app"
   >
+    <!-- Main Navigation -->
     <Navigation />
-    <div class="sub-header">
+    <!-- Sub Navigation -->
+    <div
+      class="sub-header"
+    >
       <LanguageButton />
-      <router-link
-        class="bttn subnav-bttn characters-bttn awesome"
-        :to="{name: 'characters'}"
-      >
-        <strong>{{ $t('general.characters') }}</strong>
-        <img
-          src="@/assets/images/characters.svg"
-          :alt="$t('pages.characters.alt')"
-        >
-      </router-link>
     </div>
+    <!-- Header Banner -->
     <a
       href="javascript:void(0)"
       class="d-block has-xsmall-top-margin rounded shadow"
@@ -33,6 +28,7 @@
     >
       <router-view />
     </transition>
+    <!-- App Notifications -->
     <notifications
       group="log"
       position="bottom center"
@@ -42,10 +38,11 @@
         slot-scope="props"
       >
         <div
-          class="vue-notification"
-          :class="props.item.type"
+          :class="'vue-notification ' + props.item.type"
         >
-          <div class="image-wrapper">
+          <div
+            class="image-wrapper"
+          >
             <img
               :src="getImg('/actions', props.item.title)"
               :alt="props.item.title"
@@ -55,9 +52,13 @@
             class="close"
             @click="props.close"
           >
-            <i class="fa fa-fw fa-close" />
+            <i
+              class="fa fa-fw fa-close"
+            />
           </a>
-          <div v-html="props.item.text" />
+          <div
+            v-html="props.item.text"
+          />
         </div>
       </template>
     </notifications>
@@ -65,7 +66,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex';
 import Navigation from '@/components/Navigation.vue';
 import LanguageButton from '@/components/LanguageButton.vue';
 import SERVER from '@/service/server';
@@ -77,20 +77,20 @@ export default {
   },
   data () {
     return {
-      imageCounter: true
+      imageCounter: false,
+      trackOnce: false,
+      loaderData: {
+        loader: 'dots',
+        color: '#c33e3e',
+        width: 75,
+        height: 75,
+        backgroundColor: '#000000',
+        canCancel: false,
+        onCancel: this.onCancel
+      }
     }
   },
   computed: {
-    ...mapGetters({
-      DefaultState: 'DefaultState',
-      Dashboard: 'dashboard/Dashboard',
-      GameSettings: 'gameStatus/GameSettings',
-      Roles: 'roles/Roles',
-      ReplacingRoles: 'roles/ReplacingRoles'
-    }),
-    roles() {
-      return JSON.parse(JSON.stringify(this.Roles))
-    },
     currentBannerImage () {
       let output = 'woman-life-freedom.png'
       if (this.imageCounter) {
@@ -100,30 +100,34 @@ export default {
     }
   },
   created() {
-    const savedLocale = JSON.parse(window.localStorage.getItem('locale'))
-    const discordToken = window.localStorage.getItem('discordToken')
+    // Get Default Language from localStorage
+    const savedLocale = JSON.parse(localStorage.getItem('locale'))
+    // Get saved game from localStorage
+    const capturedState = JSON.parse(localStorage.getItem('save-automatic'))
+    if (capturedState) {
+      this.SetGameSettingsItem({
+        hasSavedGame: true
+      })
+    }
+    // Get Discord Token from localStorage
+    const discordToken = localStorage.getItem('discordToken')
+    // Setup Discord Channel if Discord Token available
     if (discordToken) {
       this.SetDiscordChannel(discordToken)
     }
-    const loader = this.$loading.show({
-      loader: 'dots',
-      color: '#c33e3e',
-      width: 75,
-      height: 75,
-      backgroundColor: '#000000',
-      canCancel: false,
-      onCancel: this.onCancel
-    })
+    // App Loader for Async data to load
+    const loader = this.$loading.show(this.loaderData)
+    // Get all Characters from Database
     SERVER.getRoles()
       .then((res) => {
         this.SetRoles(JSON.parse(JSON.stringify(res.data)))
+        // Get all Replacing Characters from Database
         SERVER.getReplacingRoles()
           .then((response) => {
             this.SetReplacingRoles(JSON.parse(JSON.stringify(response.data)))
               .then(() => {
-                window.localStorage.setItem('defaultState', JSON.stringify(this.DefaultState))
+                // After everything loaded, Set Default State of App in localstorage to prevent data loss from erros during the game
                 loader.hide()
-                this.changeImage()
               })
           })
           .catch(() => {
@@ -133,6 +137,7 @@ export default {
       .catch(() => {
         loader.hide()
       })
+    // Setup App Language based on Default Language
     const el = document.body
     const html = document.documentElement
     if (savedLocale) {
@@ -153,28 +158,27 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
-    }),
     trackEvent () {
-      const platform = navigator.platform || 'none'
-      gtag('event', 'click', {
-        'event_category': 'Youdonome Banner',
-        'event_label': platform,
-        'value': 1
-      })
+      // Track Banner click event for Analytics
+      if (!this.trackOnce) {
+        const platform = navigator.platform || 'none'
+        gtag('event', 'click', {
+          'event_category': 'Woman, Life and Freedom',
+          'event_label': platform,
+          'value': 1
+        })
+        this.trackOnce = true
+      }
     },
     changeImage () {
+      // Change Banner image on click
       this.imageCounter = !this.imageCounter
+      this.trackEvent()
     }
   }
 }
 </script>
 
 <style lang="scss">
-@import "./sass/main";
+  @import "./sass/main";
 </style>

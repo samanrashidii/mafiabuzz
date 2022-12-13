@@ -14,12 +14,15 @@
 .day-color{color:$day;}
 .hint-color{color:$hint_color;}
 .night-color{color:$night_color;}
-.creator-color{color:$creator_color;}
+.creator-color{color:$primary;}
+.primary-color{color:$primary;}
+.secondary-color{color:$secondary;}
+.secondary-dark-color{color:$dark_blue_color;}
 .white-color{color:$color_1;}
 .black-color{color:$black_color;}
 .yellow-color{color:$hint_color;}
 .red-color{color:$light_red_color;}
-.site-color{color:$color_site_2;}
+.site-color{color:$primary;}
 .gray-color{color:$color_3;}
 .green-color{color:$green_color;}
 .hack-color{color:$purple_color;}
@@ -34,6 +37,11 @@
 
 .font-size-smaller{
     font-size: .875em;
+}
+
+.text-underline{
+    padding-bottom: 0;
+    border-bottom: 1px solid $white_color;
 }
 
 .seo-clipboard{
@@ -64,7 +72,7 @@ span.step-number{
 .mafia-status strong,
 .mafia-status span{
     display: inline-block;
-    font-size: $font_size_3;
+    font-size: $font_size_4;
     color:#ffffff;
     padding: 3px 12px;
     margin-top:4px;
@@ -97,7 +105,10 @@ span.step-number{
     }
 }
 
-.important-hint{color: $light_red_color;}
+.important-hint{
+    font-size: $font_size_2 !important;
+    color: $light_red_color;
+}
 
 .timer{
     display: block;
@@ -118,7 +129,7 @@ span.step-number{
       width:5px;
       height: 5px;
       margin-right: 8px;
-      background-color: $background_color_3;
+      background-color: $primary;
       border-radius: 50%;
     }
 }
@@ -133,34 +144,6 @@ span.step-number{
 #confetti-canvas{
     left:0;
     z-index: 999999999999999999;
-}
-
-.quest-box.overlay .inner-overlay .overlay-box .inner-overlay-box{
-    max-width: 270px;
-    ::-webkit-input-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    :-moz-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    ::-moz-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
-    :-ms-input-placeholder {
-        font-family: $font_mafia !important;
-        font-size: $font_size_10;
-        color: $black_color;
-        transform: translateY(-3px);
-    }
 }
 
 #app{

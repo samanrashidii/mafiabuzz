@@ -1,6 +1,7 @@
 .bttn{
     display:block;
     color:$color_1;
+    line-height: 1.4;
     text-align: center;
     padding:12px;
     margin-top:10px;
@@ -60,6 +61,27 @@
             background-color: $hint_color;
         }
     }
+    &.white{
+        color: $black_color;
+        background-color: $white_color;
+        &:hover{
+            background-color: $color_8;
+        }
+    }
+    &.primary{
+        background-color: $primary;
+        box-shadow: 0 0 4px $black_color;
+        &:hover{
+            background-color: $primary_light;
+        }
+    }
+    &.secondary{
+        background-color: $secondary;
+        box-shadow: 0 0 4px $black_color;
+        &:hover{
+            background-color: $secondary_light;
+        }
+    }
     &.purple{
         background-color: $purple_color;
         box-shadow: 0 0 4px $black_color;
@@ -74,7 +96,7 @@
     &.green{
         background-color: $green_color;
         &:hover{
-            background-color: $dark_green_color;
+            background-color: $light_green_color;
         }
     }
     &.blue{
@@ -121,9 +143,9 @@
     &.subnav-bttn{
         direction: ltr;
         display: block;
-        width:49%;
-        font-family: $font_rtl;
-        font-size: $font_size_5 !important;
+        width:100%;
+        font-family: $font_mafia_rtl;
+        font-size: 1rem !important;
         padding: 8px 2px 6px 2px;
         transition:all .3s ease-in-out;
         z-index: 99;
@@ -132,27 +154,13 @@
         img{
             display: inline-block;
             vertical-align: middle;
-            width:26px;
+            width:30px;
             margin:0 5px;
         }
         strong{
-            margin:0 5px
-        }
-        &.characters-bttn{
-            direction: rtl;
-            padding:4px 2px;
-            img{
-                display: inline-block;
-                vertical-align: middle;
-                width:30px;
-            }
-            strong{
-                display: inline-block;
-                vertical-align: middle;
-                font-family: $font_mafia;
-                font-size: $font_size_big !important;
-                transform: translateY(2px);
-            }
+            display: inline-block;
+            vertical-align: middle;
+            margin:0 5px;
         }
     }
 }
@@ -160,7 +168,7 @@
 .button-holder{padding-top:5px;}
 
 .patch-bttn{
-    height:46px;
+    height:44px;
     padding:9px !important;
     border-radius: 5px !important;
     span{
@@ -182,16 +190,6 @@
         padding: 5px 5px 5px 28px;
         background:url('~@/assets/images/assets/tick.svg') no-repeat left center;
         background-size: 20px;
-    }
-}
-
-.close-bttn{
-    height:46px;
-    span{
-        display: inline-block;
-        padding: 3px 5px 3px 20px;
-        background:url('~@/assets/images/assets/close.svg') no-repeat left center;
-        background-size: 12px;
     }
 }
 
@@ -232,9 +230,9 @@
     padding:9px !important;
     span{
         display: inline-block;
-        padding: 5px 5px 5px 30px;
+        padding: 2px 5px 2px 30px;
         background:url('~@/assets/images/assets/assign.svg') no-repeat left center;
-        background-size: 28px;
+        background-size: 26px;
     }
 }
 
@@ -277,9 +275,9 @@
     background-color: $green_color;
     span{
         display: inline-block;
-        padding: 4px 5px 3px 26px;
+        padding: 2px 5px 0 26px;
         background:url('~@/assets/images/assets/info-white.svg') no-repeat left center;
-        background-size: 18px;
+        background-size: 20px;
     }
 }
 

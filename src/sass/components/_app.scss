@@ -1,18 +1,26 @@
 #app {
+    position: relative;
+    min-height: calc(100vh - 60px);
+    overflow: hidden;
+    padding:15px;
+    background-color: $background_color_side_2;
     .app-version{
         display: inline-block;
         min-width: 78px;
-        font-family: $font_reset_default;
+        font-family: $font_mafia_rtl;
         font-size: $font_size_10;
-        padding: 4px 5px;
-        background-color: $background_color_3;
+        color: $black_color;
+        padding: 2px 5px 0 5px;
+        background-color: $white_color;
         border-radius: 4px;
         box-shadow: inset 0 0 5px $background_color_side;
     }
       
     .patch-date{
         display: block;
-        color:$color_4;
+        font-family: $font_mafia_rtl;
+        font-size: $font_size_6;
+        color:$color_6;
         margin:5px 0 30px 0;
     }
       

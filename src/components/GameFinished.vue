@@ -1,48 +1,69 @@
 <template>
-  <div class="game-finished">
-    <template v-for="(winner, index) in $t('general.winner')">
+  <div
+    class="game-finished"
+  >
+    <template
+      v-for="(winner, index) in $t('general.winner')"
+    >
       <div
-        :key="index"
-        class="game-finish-box"
-        :class="winner.class"
         v-if="winner.class === gameWinner"
+        :key="index"
+        :class="winner.class + ' game-finish-box'"
       >
-        <div class="inner-game-finish-box">
-          <div v-if="soloWinnerDetails">
+        <div
+          class="inner-game-finish-box"
+        >
+          <div
+            v-if="soloWinnerDetails"
+          >
             <img
               :src="getImg('/roles', soloWinnerDetails.icon)"
-              :alt="soloWinnerDetails.alt"
+              :alt="soloWinnerDetails.name"
               class="solo-player"
             >
-            <h2 v-html="winner.title" />
-            <h2><strong>{{ $t(soloWinnerDetails.name) }}</strong></h2>
+            <h2
+              v-html="winner.title"
+            />
+            <h2>
+              <strong>
+                {{ soloWinnerDetails.name }}
+              </strong>
+            </h2>
           </div>
-          <div v-else>
+          <div
+            v-else
+          >
             <img
               :src="getImg('/game', winner.image)"
-              :alt="winner.alt"
+              :alt="winner.name"
             >
-            <h2 v-html="winner.title" />
+            <h2
+              v-html="winner.title"
+            />
           </div>
-          <div class="button-holder">
-            <AppButton
-              @click.native="changeGameFinshed(false)"
+          <div
+            class="button-holder"
+          >
+            <BaseButton
               class="active"
+              @clicked="changeGameFinshed(false)"
             >
               <span>{{ $t('god.viewButton') }}</span>
-            </AppButton>
-            <AppButton
-              @click.native="resetSameGame()"
+            </BaseButton>
+            <BaseButton
               class="awesome"
+              @clicked="resetSameGame()"
             >
               <span>{{ $t('god.restartButton') }}</span>
-            </AppButton>
-            <AppButton
-              @click.native="resetFactory()"
+            </BaseButton>
+            <BaseButton
               class="awesome2"
+              @clicked="resetFactory()"
             >
-              <span>{{ $t('god.startButton') }}</span>
-            </AppButton>
+              <span>
+                {{ $t('god.startButton') }}
+              </span>
+            </BaseButton>
           </div>
         </div>
       </div>
@@ -51,28 +72,21 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import startGame from '@/mixins/startGame';
 
 export default {
   props: {
-    gameWinner: String,
-    soloWinnerDetails: Object
-  },
-  computed: {
-    ...mapGetters({
-      GameSettings: 'gameStatus/GameSettings',
-      Roles: 'roles/Roles'
-    }),
-    roles() {
-      return JSON.parse(JSON.stringify(this.Roles))
+    gameWinner: {
+      type: String,
+      default: ''
     },
-    gameSettings() {
-      return JSON.parse(JSON.stringify(this.GameSettings))
+    soloWinnerDetails: {
+      type: Object,
+      default: () => {}
     }
   },
   updated () {
     if (this.gameSettings.gameFinished) {
+      this.saveTotalHistory(this.dashboard.historyLog)
       let text = ''
       this.$t('general.winner').forEach((winner) => {
         if (winner.class === this.gameWinner) {
@@ -80,35 +94,24 @@ export default {
         }
       })
       if (this.soloWinnerDetails) {
-        text += this.$t(this.soloWinnerDetails.name)
+        text += this.soloWinnerDetails.info[this.currentLang].name
       }
       // Post Finish Game Result To Discord
       this.postDiscord(text)
     }
   },
   methods: {
-    ...mapActions({
-      SetMainApp: 'main/SetMainApp',
-      SetRoles: 'roles/SetRoles',
-      SetReplacingRoles: 'roles/SetReplacingRoles',
-      SetDashboard: 'dashboard/SetDashboard',
-      SetGameSettings: 'gameStatus/SetGameSettings',
-      SetDiscordChannel: 'gameStatus/SetDiscordChannel'
-    }),
     resetFactory() {
-      this.startGameEngine('hard')
+      this.startGameEngine('roles-selected-create')
     },
     resetSameGame() {
-      this.startGameEngine('soft')
+      this.startGameEngine('roles-selected-dashboard')
     },
     changeGameFinshed(state) {
       this.gameSettings.gameFinished = state
       this.gameSettings.reviewGame = !state
       this.SetGameSettings(this.gameSettings)
     }
-  },
-  mixins: [
-    startGame
-  ]
+  }
 }
 </script>

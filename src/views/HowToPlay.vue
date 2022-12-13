@@ -1,10 +1,16 @@
 <template>
-  <div class="how-to-play">
-    <div class="dashboard-header has-xsmall-top-margin">
+  <div
+    class="how-to-play"
+  >
+    <!-- How to Play Header -->
+    <div
+      class="dashboard-header has-xsmall-top-margin"
+    >
       <PageBox>
-        <PageTitle :check-route="checkRoute()" />
+        <PageTitle />
       </PageBox>
     </div>
+    <!-- How to Play Steps -->
     <PageBox
       v-for="(step, index) in $t('pages.howtoplay.steps')"
       :key="index"
@@ -14,18 +20,26 @@
         :src="getImg('/howtoplay', step.icon)"
         alt="How to Play Step Icon"
       >
-      <h3 v-html="step.titl1" />
-      <p v-html="step.desc1" />
-      <div v-if="step.roles">
+      <h3
+        v-html="step.titl1"
+      />
+      <p
+        v-html="step.desc1"
+      />
+      <!-- How to Play with Characters -->
+      <div
+        v-if="step.roles"
+      >
         <InfoBox
           class="static"
-          v-for="(info, index) in getRoles"
+          v-for="(role, index) in getRoles"
           :key="index"
-          :info="info"
+          :role="role"
         />
       </div>
     </PageBox>
-    <back-to-top
+    <!-- Back to Top Button -->
+    <BackToTop
       bottom="20px"
       right="20px"
       visibleoffset="600"
@@ -34,68 +48,75 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import InfoBox from '@/components/InfoBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
-import checkRoute from '@/mixins/checkRoute';
-import sortedRoles from '@/mixins/sortedRoles';
 
 export default {
   name: 'HowToPlay',
-  mixins: [
-    checkRoute,
-    sortedRoles
-  ],
   components: {
-    InfoBox,
-    PageTitle
+    PageTitle,
+    InfoBox
   },
   computed: {
-    ...mapGetters({
-      Roles: 'roles/Roles',
-    }),
-    roles () {
-      return JSON.parse(JSON.stringify(this.Roles));
+    getRoles() {
+      const roles = JSON.parse(JSON.stringify(this.Roles))
+      const sortedRoles = []
+      roles.forEach((role) => {
+        if (role.mafia) {
+          sortedRoles.push(role)
+        }
+      })
+      roles.forEach((role) => {
+        if (!role.mafia && !role.solo) {
+          sortedRoles.push(role)
+        }
+      })
+      roles.forEach((role) => {
+        if (!role.mafia && role.solo) {
+          sortedRoles.push(role)
+        }
+      })
+      return sortedRoles
     }
   },
   metaInfo () {
     return {
       title: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`,
       meta: [
-        {
-          vmid: 'description',
+      {
+          hid: 'description',
           name: 'description',
-          content: `${this.$t('meta.howtoplay.description')}`
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         },
         {
-          vmid: 'title',
+          hid: 'og-title',
           property: 'og:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
-          vmid: 'ogdescription',
+          hid: 'og-description',
           property: 'og:description',
-          content: `${this.$t('meta.howtoplay.description')}`
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         },
         {
-          vmid: 'ogurl',
+          hid: 'og-url',
           property: 'og:url',
-          content: window.location.href
+          content: 'https://mafiabuzz.app/how-to-play'
         },
         {
-          vmid: 'twitter:title',
+          hid: 'twitter-url',
+          property: 'twitter:url',
+          content: 'https://mafiabuzz.app/how-to-play'
+        },
+        {
+          hid: 'twitter-title',
           name: 'twitter:title',
           content: `${this.$t('general.name')} * ${this.$t('meta.howtoplay.title')}`
         },
         {
-          vmid: 'twitter:description',
+          hid: 'twitter-description',
           name: 'twitter:description',
-          content: `${this.$t('meta.howtoplay.description')}`
-        },
-        {
-          vmid: 'twitter:url',
-          name: 'twitter:url',
-          content: window.location.href
+          content: `${this.$t('meta.howtoplay.description') + this.$t('meta.howtoplay.description')}`
         }
       ]
     }

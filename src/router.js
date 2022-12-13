@@ -31,12 +31,6 @@ const Characters = (resolve) => {
   })
 }
 
-const Support = (resolve) => {
-  require.ensure(['./views/Support.vue'], () => {
-    resolve(require('./views/Support.vue'))
-  })
-}
-
 Vue.use(Router)
 
 export default new Router({
@@ -64,18 +58,15 @@ export default new Router({
       component: Characters
     },
     {
-      path: '/support',
-      name: 'support',
-      component: Support
-    },
-    {
       path: '/error-404',
       name: 'not-found',
       component: NotFound
     },
     {
       path: '*',
-      redirect: { name: 'not-found' }
+      redirect: {
+        name: 'not-found'
+      }
     }
   ]
 })

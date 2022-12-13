@@ -1,11 +1,11 @@
 .error-bullet {
 	li {
         line-height: 1.8;
-        font-size: $font_size_4;
+        font-size: $font_size_3;
         text-align: left;
         padding:10px;
         margin:10px 0;
-        border:1px solid $background_color_mafia;
+        border:2px solid $background_color_mafia;
         border-radius: $site_radius;
         &.blue{
             border-color: $background_color_citizen;
