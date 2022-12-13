@@ -8,40 +8,24 @@
       src="@/assets/images/characters.svg"
       :alt="$t('pages.characters.alt')"
     >
-    <div class="characters-inner">
-      <!-- Legendary Characters -->
-      <h1 class="legendary">
-        {{ $t('rolesInfo.legendary') }}
+    <div
+      class="characters-inner"
+    >
+      <!-- Uncommon Characters -->
+      <h1 class="uncommon">
+        {{ $t('rolesInfo.uncommon') }}
       </h1>
       <Carousel
-        class="legendary"
+        class="uncommon"
         :items="1"
         :dots="false"
         :rewind="false"
       >
         <CharacterItem
-          v-for="(character, index) in legendaries"
+          v-for="(character, index) in uncommons"
           :key="index"
           :role="character"
-          rarity="legendary"
-          @showInfo="openInfoBox"
-        />
-      </Carousel>
-      <!-- Epic Characters -->
-      <h1 class="epic has-top-margin">
-        {{ $t('rolesInfo.epic') }}
-      </h1>
-      <Carousel
-        class="epic"
-        :items="1"
-        :dots="false"
-        :rewind="false"
-      >
-        <CharacterItem
-          v-for="(character, index) in epics"
-          :key="index"
-          :role="character"
-          rarity="epic"
+          rarity="uncommon"
           @showInfo="openInfoBox"
         />
       </Carousel>
@@ -63,21 +47,39 @@
           @showInfo="openInfoBox"
         />
       </Carousel>
-      <!-- Uncommon Characters -->
-      <h1 class="uncommon has-top-margin">
-        {{ $t('rolesInfo.uncommon') }}
+      <!-- Epic Characters -->
+      <h1 class="epic has-top-margin">
+        {{ $t('rolesInfo.epic') }}
       </h1>
       <Carousel
-        class="uncommon"
+        class="epic"
         :items="1"
         :dots="false"
         :rewind="false"
       >
         <CharacterItem
-          v-for="(character, index) in uncommons"
+          v-for="(character, index) in epics"
           :key="index"
           :role="character"
-          rarity="uncommon"
+          rarity="epic"
+          @showInfo="openInfoBox"
+        />
+      </Carousel>
+      <!-- Legendary Characters -->
+      <h1 class="legendary has-top-margin">
+        {{ $t('rolesInfo.legendary') }}
+      </h1>
+      <Carousel
+        class="legendary"
+        :items="1"
+        :dots="false"
+        :rewind="false"
+      >
+        <CharacterItem
+          v-for="(character, index) in legendaries"
+          :key="index"
+          :role="character"
+          rarity="legendary"
           @showInfo="openInfoBox"
         />
       </Carousel>

@@ -1,12 +1,12 @@
 .characters{
-    padding-bottom: 90px;
+    padding-bottom: 3rem;
     .characters-image{
         position: relative;
         max-width: 345px;
         margin:30px auto 0 auto;
         z-index: 1;
         @media #{$breakpoint_mobile_xs} {
-            max-width: 295px;
+            max-width: 310px;
         }
     }
     .characters-inner{

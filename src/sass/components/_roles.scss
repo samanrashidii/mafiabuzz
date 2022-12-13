@@ -18,7 +18,6 @@
             background-size: 33px;
             border-radius: $circle_radius;
             z-index: 99;
-            transform:scale(0.5,0.5);
             transition:all .2s ease-in-out;
         }
         input{
@@ -94,7 +93,6 @@
                 border:4px solid $black_color;
                 border-radius: $site_radius_md;
                 transition:all .2s ease-in-out;
-                transform:scale(1.7,1.7);
                 z-index: 99;
             }
         }
@@ -106,7 +104,6 @@
         input.active ~ a.info{
             visibility: visible;
             opacity: 1;
-            transform:scale(1,1);
         }
         input.active ~ a.info{transition-delay: 150ms;}
         input.active + label{
