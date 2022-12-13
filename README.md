@@ -72,10 +72,13 @@ npm run build
 
 ## Technologies
 
-* Vuejs
+* Vue 2
+* Vuex
 * HTML 5
 * Sass
 * Javascript
+* Axios
+* i18n
 
 ## Contributing
 
