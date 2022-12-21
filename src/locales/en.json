@@ -3,7 +3,9 @@
         {"text": "Update: User Interface and User Experience for Web Application"},
         {"text": "Update: Improved App speed and performance"},
         {"text": "Fix: All reported bugs and issues"},
-        {"text": "Change: Nighthunter name to Hack Bomb"}
+        {"text": "Change: Nighthunter name to Hack Bomb"},
+        {"text": "New Character : Black Hat for Mafia team"},
+        {"text": "New Character : Nostradamus for Solo team"}
     ],
     "thirdparty": {
         "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='primary-color'>webhook</span> code below",
