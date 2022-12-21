@@ -45,7 +45,7 @@ export default {
         if (!role.status.dead && role.status.hasAction && !role.hasDoneAction && role.ability.resurrect && this.gameSettings.deadPeople !== 0) {
           actions.push(role)
         }
-        // Push all roles that have actions except for reviver and resurrecter
+        // Push all roles that has pending actions but are dead
         if (role.status.dead && role.status.hasAction && !role.hasDoneAction) {
           actions.push(role)
         }

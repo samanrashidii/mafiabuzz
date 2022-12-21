@@ -94,6 +94,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -191,6 +192,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -288,6 +290,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -385,6 +388,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -482,6 +486,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -579,6 +584,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -676,6 +682,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "citizen",
             "actionLimit": 1
         }
     },
@@ -773,6 +780,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -870,6 +878,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -967,6 +976,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -1064,6 +1074,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -1161,6 +1172,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -1259,6 +1271,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -1356,6 +1369,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -1453,6 +1467,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -1550,6 +1565,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 2
         }
     },
@@ -1647,6 +1663,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -1744,6 +1761,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -1841,6 +1859,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 2
         }
     },
@@ -1938,6 +1957,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -2035,6 +2055,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2132,6 +2153,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2229,6 +2251,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2326,6 +2349,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2423,6 +2447,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2520,6 +2545,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2617,6 +2643,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2714,6 +2741,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2811,6 +2839,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -2908,6 +2937,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -3005,6 +3035,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -3102,6 +3133,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -3199,6 +3231,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -3297,6 +3330,7 @@
             "dayOnly": true,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -3395,6 +3429,7 @@
             "dayOnly": true,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -3492,6 +3527,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": "*"
         }
     },
@@ -3590,6 +3626,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -3688,6 +3725,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 2
         }
     },
@@ -3787,6 +3825,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
         }
     },
@@ -3887,7 +3926,106 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetGroup": "*",
             "actionLimit": 1
+        }
+    },
+    {
+        "id": 41,
+        "mafia": true,
+        "solo": false,
+        "rarity": "epic",
+        "priority": 20,
+        "killPriority": null,
+        "potentialKiller": false,
+        "slug": "black-hat",
+        "icon": "black-hat.svg",
+        "emoji": "👨‍💻",
+        "actionIcon": "hacker.svg",
+        "passiveIcon": "no-sign.svg",
+        "power": 35,
+        "new": false,
+        "hot": false,
+        "selected": false,
+        "vote": 0,
+        "info": {
+            "en": {
+                "name": "Black Hat",
+                "description": "Black Hat is an intelligent and coder Mafia who wakes up first at night and hacks one of the citizens. Hacked person cannot use his action or passive during that night",
+                "passive": "None",
+                "action": "Hack"
+            },
+            "fa": {
+                "name": "کلاه مشکی",
+                "description": "کلاه مشکی در شب اولین شخصی است که توسط گاد بیدار می‌شود و یکی از شهروندان را هک می‌کند (برای 2 شب). فردی که هک شده قابلیتش را برای یک روز و شب از دست میدهد.",
+                "passive": "ندارد",
+                "action": "هک کردن"
+            }
+        },
+        "ability": {
+            "killer": false,
+            "healer": false,
+            "silencer": false,
+            "binder": false,
+            "roleChecker": false,
+            "identityChecker": false,
+            "hasShield": false,
+            "reviver": false,
+            "revenge": false,
+            "replacer": false,
+            "hacker": true,
+            "magician": false,
+            "searching": false,
+            "justice": false,
+            "explosioner": false,
+            "chooseBoolean": false,
+            "prediction": false,
+            "antiSilence": false,
+            "voteSeeker": false,
+            "poison": false,
+            "sniper": false,
+            "loyalty": false
+        },
+        "status": {
+            "mafia": false,
+            "citizen": false,
+            "hasAction": true,
+            "hasPassive": false,
+            "dead": false,
+            "deadMagnet": false,
+            "returnKill": false,
+            "readyToDetonate": false,
+            "fakeIdentity": false,
+            "silence": false,
+            "roleChecked": false,
+            "playerReplaced": false,
+            "heal": false,
+            "link": false,
+            "drunk": false,
+            "traitor": false,
+            "shield": false,
+            "revived": false,
+            "hack": false,
+            "antiHack": true,
+            "hackForever": false,
+            "hackBomber": false,
+            "identityChanged": false,
+            "minion": false,
+            "recentlyDead": false,
+            "recentlySilenced": false,
+            "recentlyRevived": false,
+            "searched": false,
+            "booleanAbilityUsed": false,
+            "marked": false,
+            "finishStopper": false,
+            "thick": false,
+            "poisoned": false,
+            "busted": false,
+            "inJail": false,
+            "hitByAction": 0,
+            "successMarks": 0,
+            "targetGroup": "citizen",
+            "actionLimit": 2
         }
     }
 ]
