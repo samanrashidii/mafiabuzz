@@ -45,6 +45,10 @@ export default {
         if (!role.status.dead && role.status.hasAction && !role.hasDoneAction && role.ability.resurrect && this.gameSettings.deadPeople !== 0) {
           actions.push(role)
         }
+        // Push all roles that have actions except for reviver and resurrecter
+        if (role.status.dead && role.status.hasAction && !role.hasDoneAction) {
+          actions.push(role)
+        }
       })
       const sortedActions = [...actions.slice().sort((a, b) => ((a.priority > b.priority) ? 1 : -1))]
       this.dashboard.actionBox = sortedActions

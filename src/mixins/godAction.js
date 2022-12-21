@@ -8,7 +8,7 @@ export default {
         godActionText = `<span>${this.$t('god.godRevive')}</span> <strong>${target.player}</strong>`
         godActionImage = `${this.$t('god.godReviveIcon')}`
       } else {
-        this.kill(target.player)
+        this.kill(target.player, 'straight')
         godActionText = `<span>${this.$t('god.godKill')}</span> <strong>${target.player}</strong>`
         godActionImage = `${this.$t('god.godKillIcon')}`
       }

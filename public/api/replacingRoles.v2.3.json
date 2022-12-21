@@ -54,7 +54,7 @@
     },
     "killerMafia": {
         "id": 1003,
-        "priority": 1000,
+        "priority": 160,
         "actionIcon": "kill.svg",
         "passiveIcon": "default.png",
         "actionStatus": false,

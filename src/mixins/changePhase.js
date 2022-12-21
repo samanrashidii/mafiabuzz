@@ -80,10 +80,6 @@ export default {
         if (role.status.hackForever) {
           role.status.hack = true
         }
-        role.status.recentlySilenced = false
-        role.status.recentlyRevived = false
-        role.status.recentlyDead = false
-        role.vote = 0
         if (role.ability.justice && !role.status.dead && role.status.booleanAbilityUsed) {
           this.dashboard.justiceUsed = true
           role.status.booleanAbilityUsed = false
@@ -145,6 +141,10 @@ export default {
           `
           lastNightEvents.push(logNote)
         }
+        role.status.recentlySilenced = false
+        role.status.recentlyRevived = false
+        role.status.recentlyDead = false
+        role.vote = 0
       })
       if (lastNightEvents.length > 0) {
         this.dashboard.lastNight = lastNightEvents

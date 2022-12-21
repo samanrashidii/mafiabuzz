@@ -4,7 +4,7 @@
         "mafia": true,
         "solo": false,
         "rarity": "uncommon",
-        "priority": 161,
+        "priority": 160,
         "killPriority": 10,
         "potentialKiller": true,
         "slug": "mafia",
