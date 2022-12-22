@@ -203,27 +203,32 @@ export default {
               // Check if target ability is usable only in days
               this.deadWatcher(true, role.player)
             }
+          // Check if target is immortal
+          } else if (role.status.immortal && killType !== 'straight') {
+            this.passiveActive(role)
           // Check if target is alive
           } else if (!role.status.dead) {
             role.status.dead = true
             role.status.recentlyDead = true
             role.status.recentlyRevived = false
           }
-          // Check if target is linked to another person
-          if (role.status.link) {
-            this.activateLink(role.player)
-          }
-          // Check if target is a reviver character
-          if (role.ability.reviver) {
-            this.destroyMinions(role)
-          }
-          // Check if target is detonatable
-          if (this.checkDetonator(role.player)) {
-            this.detonate(role.player)
-          }
-          // Check if target is detonatable
-          if (this.checkHackBomber(role.player)) {
-            this.detonateHackBomb(role.player)
+          if (role.status.recentlyDead) {
+            // Check if target is linked to another person
+            if (role.status.link) {
+              this.activateLink(role.player)
+            }
+            // Check if target is a reviver character
+            if (role.ability.reviver) {
+              this.destroyMinions(role)
+            }
+            // Check if target is detonatable
+            if (this.checkDetonator(role.player)) {
+              this.detonate(role.player)
+            }
+            // Check if target is detonatable
+            if (this.checkHackBomber(role.player)) {
+              this.detonateHackBomb(role.player)
+            }
           }
         }
       })
