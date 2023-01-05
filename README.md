@@ -4,13 +4,13 @@
   </a>
 </p>
 
-# MafiaBuzz - v4.3.1
+# MafiaBuzz - v4.4.0
 
 MafiaBuzz is a game application to help people run and play "Mafia Party Game" easily and manageable. MafiaBuzz has more interesting characters than usual mafia game and can calculate every events happens in game and show the result to the game moderator (God)
 
 ### Latest Update
 
-21/12/2022
+05/01/2023
 ### Release Date
 
 23/06/2019
@@ -40,6 +40,7 @@ Game History | ✔
 Autosave | ✔
 Solo Class Characters | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
+Create Custom Characters | ✔
 
 You can see live version here : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)

@@ -1,7 +1,9 @@
 <template>
   <div
     class="info-box"
-    :class="{'active': show}"
+    :class="{
+      'active': show
+    }"
     @click="hideInfo()"
   >
     <a

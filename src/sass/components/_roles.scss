@@ -166,10 +166,20 @@
             margin-left:0;
         }
         &.mafia label{
-            background-color:$background_color_mafia;
+            background-color: $background_color_mafia;
         }
         &.solo label{
-            background-color:$background_color_solo;
+            background-color: $background_color_solo;
+        }
+        &.add-character label{
+            background: $awesome;
+            box-shadow: 0 0 10px $primary;
+            &:hover{
+                box-shadow: none;
+            }
+            &:active{
+                transform: scale(.2, .2);
+            }
         }
         @media #{$breakpoint_tablet} {
             width:31%;

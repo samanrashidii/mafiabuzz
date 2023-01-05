@@ -17,12 +17,13 @@
           'mafia': role.mafia,
           'solo': role.solo
         }"
+        :id="'character_' + role.id"
       >
         <input
           v-model="gameSettings.selectedRoles"
           type="checkbox"
           name="roles"
-          :id="`role_${index + 1}`"
+          :id="'id_' + role.id"
           :class="{
             'active': role.selected
           }"
@@ -30,7 +31,7 @@
           @change="checkRoles(role, index)"
         >
         <label
-          :for="`role_${index + 1}`"
+          :for="'id_' + role.id"
         >
           <div
             class="inner-label"
@@ -92,25 +93,52 @@
           href="javascript:void(0)"
         />
       </li>
+      <li
+        class="add-character"
+      >
+        <label
+          @click="toggleAddCharacter(true)"
+        >
+          <div
+            class="inner-label"
+          >
+            <img
+              src="@/assets/images/icons/plus.svg"
+              :alt="$t('common.addCharacter')"
+              :title="$t('common.addCharacter')"
+            >
+            <strong>
+              {{ $t('common.addCharacter')  }}
+            </strong>
+          </div>
+        </label>
+      </li>
     </ul>
+    <AddCharacter
+      :show="showAddCharacter"
+      @hideInfo="toggleAddCharacter(false)"
+    />
   </div>
 </template>
 
 <script>
 import CharacterPower from '@/components/CharacterPower.vue';
 import InfoBox from '@/components/InfoBox.vue';
+import AddCharacter from '@/components/AddCharacter.vue';
 
 export default {
   name: 'AllCharacters',
   data() {
     return {
       showInfo: false,
+      showAddCharacter: false,
       roleInfo: {}
     }
   },
   components: {
     CharacterPower,
-    InfoBox
+    InfoBox,
+    AddCharacter
   },
   computed: {
     getRoles() {
@@ -252,6 +280,9 @@ export default {
     },
     hideInfoBox () {
       this.showInfo = false
+    },
+    toggleAddCharacter (event) {
+      this.showAddCharacter = event
     }
   }
 }

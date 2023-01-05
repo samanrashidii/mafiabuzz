@@ -100,13 +100,13 @@
           {{ $t('pages.home.nameExtraHint') }}
         </p>
         <input
-            v-for="(roleInput, index) in gameSettings.selectedRoles"
-            @keyup.enter="$event.target.nextElementSibling.focus()"
-            type="text"
-            class="has-xsmall-bottom-margin"
-            :key="index"
-            v-model="players[index]"
-          >
+          v-for="(roleInput, index) in gameSettings.selectedRoles"
+          @keyup.enter="$event.target.nextElementSibling.focus()"
+          type="text"
+          class="has-xsmall-bottom-margin"
+          :key="index"
+          v-model="players[index]"
+        >
         <BaseButton
           class="primary assign-bttn"
           @clicked="assignRoles()"
