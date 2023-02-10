@@ -72,6 +72,7 @@
             width: 50px !important;
             padding: 5px;
             margin: .25rem .5rem !important;
+            cursor: pointer;
             border: 2px solid transparent;
             border-radius: $site_radius;
             &.active{
