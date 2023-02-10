@@ -599,7 +599,7 @@
         "mafia": true,
         "solo": false,
         "rarity": "legendary",
-        "priority": 140,
+        "priority": 500,
         "killPriority": 50,
         "potentialKiller": true,
         "slug": "yakuza",
