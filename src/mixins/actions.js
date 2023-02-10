@@ -119,7 +119,9 @@ export default {
         if (role.player === target) {
           const newCharacter = {
             ...role,
-            ...this.replacingRoles.miniYakuza
+            ...this.replacingRoles.miniYakuza,
+            lastRoleInfo: role.info,
+            lastRoleIcon: role.icon
           }
           this.gameSettings.selectedRoles[index] = newCharacter
         }

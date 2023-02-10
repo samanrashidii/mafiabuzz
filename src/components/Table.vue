@@ -45,7 +45,14 @@
             :src="getImg('/roles', tD.icon)"
             :alt="tD.info[currentLang].name"
           > 
-          {{ tD.info[currentLang].name }}
+            <span>
+              {{ tD.info[currentLang].name }}
+            </span>
+            <span
+              v-if="tD.lastRoleInfo"
+            >
+              {{ `(${(tD.lastRoleInfo[currentLang].name || '')})` }}
+            </span>
           <img
             v-if="tD.ability.killer && !tD.status.dead"
             src="@/assets/images/icons/kill.svg"
@@ -149,7 +156,7 @@ export default {
         output = {
           'dead': char.status.dead,
           'heal': char.status.heal,
-          'ninja': char.status.playerReplaced,
+          'ninja': char.status.roleReplaced,
           'love-bind': char.status.link,
           'silence': char.status.silence,
           'shield': char.status.shield && !char.status.hack,

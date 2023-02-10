@@ -42,6 +42,9 @@
         &.jail-overlay{
             background: rgb(244, 244, 244);
         }
+        &.role-replaced-overlay{
+            background: rgb(224, 101, 101);
+        }
         &.dead-overlay{
             img:nth-of-type(1){
                 float: right;

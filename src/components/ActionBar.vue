@@ -156,6 +156,32 @@
               </div>
             </div>
           </div>
+          <!-- Role Replaced Overlay -->
+          <div
+            v-if="checkStatus(player).status.roleReplaced"
+            class="action-overlay role-replaced-overlay"
+            key="roleReplacedTarget"
+          >
+            <div
+              class="table-display"
+            >
+              <div
+                class="table-cell-display"
+              >
+                <img
+                  src="@/assets/images/icons/yakuza.svg"
+                  :alt="$t('god.roleReplacedAlt')"
+                >
+                <p><span class="size-lg font-weight-bold">{{ player.lastRoleInfo[currentLang].name }} </span> <strong v-html="$t('god.roleReplacedPerson')" /></p>
+                <BaseButton
+                  class="black"
+                  @clicked="skipAction(index)"
+                >
+                  {{ $t('god.skipButton3') }}
+                </BaseButton>
+              </div>
+            </div>
+          </div>
           <div
             class="action-overlay dead-overlay"
             v-if="checkStatus(player).status.dead && !checkStatus(player).status.recentlyDead"
