@@ -104,11 +104,11 @@
           >
             <img
               src="@/assets/images/icons/plus.svg"
-              :alt="$t('common.addCharacter')"
-              :title="$t('common.addCharacter')"
+              :alt="$t('addCharacter.addCharacter')"
+              :title="$t('addCharacter.addCharacter')"
             >
             <strong>
-              {{ $t('common.addCharacter')  }}
+              {{ $t('addCharacter.addCharacter')  }}
             </strong>
           </div>
         </label>

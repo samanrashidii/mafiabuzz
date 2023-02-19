@@ -13,16 +13,17 @@
     <h2
       class="center-aligned has-top-margin"
     >
-      {{ $t('common.addCharacter') }}
+      {{ $t('addCharacter.addCharacter') }}
     </h2>
     <p
       class="center-aligned"
     >
-      {{ $t('common.addCharacterDescription') }}
+      {{ $t('addCharacter.addCharacterDescription') }}
     </p>
+    <!-- Select Mafia or Normal Group -->
     <fieldset>
       <legend>
-        {{ $t('common.chooseGroup') }}
+        {{ $t('addCharacter.chooseGroup') }}
       </legend>
       <select
         v-model="selectedGroup"
@@ -33,7 +34,7 @@
           value="null"
           disabled
         >
-          {{ $t('common.chooseGroupPlaceholder') }}
+          {{ $t('addCharacter.chooseGroupPlaceholder') }}
         </option>
         <option
           v-for="(team, index) in availableTeams"
@@ -44,9 +45,10 @@
         </option>
       </select>
     </fieldset>
+    <!-- Character name written by user -->
     <fieldset>
       <legend>
-        {{ $t('common.characterName') }}
+        {{ $t('addCharacter.characterName') }}
       </legend>
       <input
         v-model="characterName"
@@ -54,6 +56,7 @@
         maxlength="13"
       >
     </fieldset>
+    <!-- Choose character icon -->
     <fieldset>
       <div
         class="character-icons"
@@ -69,15 +72,34 @@
         >
       </div>
       <legend>
-        {{ $t('common.chooseIcon') }}
+        {{ $t('addCharacter.chooseIcon') }}
       </legend>
+    </fieldset>
+    <!-- Choose for kill ability -->
+    <fieldset>
+      <legend>
+        {{ $t('addCharacter.chooseKiller') }}
+      </legend>
+      <select
+        v-model="killAbility"
+        name="select-group"
+        id="select-group"
+      >
+        <option
+          v-for="(item, index) in booleanChooseItems"
+          :value="item"
+          :key="index"
+        >
+          {{ $t(`common.${item.name}`) }}
+        </option>
+      </select>
     </fieldset>
     <BaseButton
       class="submit-btn primary has-top-margin has-bottom-margin"
       @clicked="addCharacter()"
     >
       <span>
-        {{ $t('common.addCharacter') }}
+        {{ $t('addCharacter.addCharacter') }}
       </span>
     </BaseButton>
   </div>
@@ -96,6 +118,10 @@ export default {
     return {
       characterName: '',
       selectedGroup: {},
+      killAbility: {
+          name: 'NotHave',
+          value: false
+      },
       characterIcon: 'coffee.svg',
       availableTeams: [
         {
@@ -112,6 +138,16 @@ export default {
           name: 'solo',
           mafia: false,
           solo: true
+        }
+      ],
+      booleanChooseItems: [
+        {
+          name: 'Have',
+          value: true
+        },
+        {
+          name: 'NotHave',
+          value: false
         }
       ],
       icons: ['coffee.svg', 'glasses.svg', 'swords.svg', 'chess.svg', 'deviant.svg', 'pistol.svg', 'weed.svg', 'badge.svg', 'rpg.svg', 'moustache.svg', 'chainsaw.svg', 'umbrella.svg', 'pipe.svg', 'drug.svg', 'gas.svg', 'nail-gun.svg', 'zombie.svg', 'robocop.svg', 'tool.svg', 'blood-knife.svg']
@@ -147,8 +183,25 @@ export default {
                 action: "ندارد"
             }
         },
-        ability: {},
+        ability: {
+          killer: this.killAbility.value
+        },
         status: {}
+      }
+      if (this.isInteractiveCharacter) {
+        output.priority = 1000
+        output.status.hasAction = true
+        output.status.actionLimit = "*"
+      }
+      if (this.killAbility.value) {
+        output.actionIcon = 'kill.svg'
+      }
+      return output
+    },
+    isInteractiveCharacter () {
+      let output = false
+      if (this.killAbility.value) {
+        output = true
       }
       return output
     }
@@ -170,6 +223,10 @@ export default {
               this.$scrollTo(container, 200, {
                 offset: -13
               })
+              // reset data after add character
+              this.characterName = ''
+              this.selectedGroup = {}
+              this.characterIcon = 'coffee.svg'
             }, 500)
           })
       }
