@@ -106,7 +106,7 @@
         >
           <!-- Hacked Overlay -->
           <div
-            v-if="checkStatus(player).status.hack"
+            v-if="checkCharacterStatus(player).status.hack"
             class="action-overlay hack-overlay"
             key="hackedTarget"
           >
@@ -132,7 +132,7 @@
           </div>
           <!-- In Jail Overlay -->
           <div
-            v-if="checkStatus(player).status.inJail"
+            v-if="checkCharacterStatus(player).status.inJail"
             class="action-overlay jail-overlay"
             key="inJailTarget"
           >
@@ -158,7 +158,7 @@
           </div>
           <!-- Role Replaced Overlay -->
           <div
-            v-if="checkStatus(player).status.roleReplaced"
+            v-if="checkCharacterStatus(player).status.roleReplaced"
             class="action-overlay role-replaced-overlay"
             key="roleReplacedTarget"
           >
@@ -184,7 +184,7 @@
           </div>
           <div
             class="action-overlay dead-overlay"
-            v-if="checkStatus(player).status.dead && !checkStatus(player).status.recentlyDead"
+            v-if="checkCharacterStatus(player).status.dead && !checkCharacterStatus(player).status.recentlyDead"
             key="deadTarget"
           >
             <div
@@ -260,7 +260,7 @@ export default {
     }, 200)
   },
   methods: {
-    checkStatus (player) {
+    checkCharacterStatus (player) {
       let target
       if (player) {
         this.gameSettings.selectedRoles.forEach((role) => {

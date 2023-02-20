@@ -235,7 +235,7 @@ export default {
           value: 'readyToDetonate'
         }
       ],
-      numberOfAbilites: ['*', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      numberOfAbilites: ['*', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       availableTeams: [
         {
           name: 'mafia',
@@ -287,8 +287,11 @@ export default {
             }
         },
         ability: {},
-        status: {},
-        actionLimit: this.abilityCount
+        status: {
+          hack: false,
+          actionLimit: this.abilityCount,
+          hitByAction: 0
+        }
       }
       if (this.selectedAbility) {
         output.ability[this.selectedAbility.value] = true
@@ -325,12 +328,23 @@ export default {
                 offset: -13
               })
               // reset data after add character
-              this.characterName = ''
-              this.selectedGroup = {}
-              this.characterIcon = 'coffee.svg'
+              this.resetCharacter()
             }, 500)
           })
       }
+    },
+    resetCharacter () {
+      this.characterName = ''
+      this.selectedGroup = {
+        name: 'mafia',
+        mafia: true,
+        solo: false
+      }
+      this.characterIcon = 'coffee.svg'
+      this.description = ''
+      this.selectedAbility = null
+      this.selectedPassive = null
+      this.abilityCount = '*'
     }
   }
 }
