@@ -83,6 +83,28 @@
           @showInfo="openInfoBox"
         />
       </Carousel>
+      <!-- Mythical Characters -->
+      <template
+        v-if="mythicals"
+      >
+      <h1 class="mythical has-top-margin">
+        {{ $t('rolesInfo.mythical') }}
+      </h1>
+        <Carousel
+          class="mythical"
+          :items="1"
+          :dots="false"
+          :rewind="false"
+        >
+          <CharacterItem
+            v-for="(character, index) in mythicals"
+            :key="index"
+            :role="character"
+            rarity="mythical"
+            @showInfo="openInfoBox"
+          />
+        </Carousel>
+      </template>
     </div>
     <!-- Info about each Character -->
     <InfoBox
@@ -112,19 +134,23 @@ export default {
     CharacterItem
   },
   computed: {
-    legendaries() {
+    mythicals () {
+      const characters = this.Roles.filter(role => role.rarity === 'mythical')
+      return characters
+    },
+    legendaries () {
       const characters = this.Roles.filter(role => role.rarity === 'legendary')
       return characters
     },
-    epics() {
+    epics () {
       const characters = this.Roles.filter(role => role.rarity === 'epic')
       return characters
     },
-    rares() {
+    rares () {
       const characters = this.Roles.filter(role => role.rarity === 'rare')
       return characters
     },
-    uncommons() {
+    uncommons () {
       const characters = this.Roles.filter(role => role.rarity === 'uncommon')
       return characters
     }

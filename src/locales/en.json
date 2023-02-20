@@ -322,9 +322,12 @@
         "chooseGroup": "Team",
         "chooseGroupPlaceholder": "Select Team",
         "chooseIcon": "Choose Icon",
+        "description": "Description (optional)",
         "addCharacter": "Add Character",
         "addCharacterDescription": "Add your own character to game and play with it. (God should manage ability and passive of character by himself)",
-        "chooseKiller": "Kill Ability"
+        "chooseAbility": "Choose Ability",
+        "choosePassive": "Choose Passive",
+        "chooseAbilityCount": "Choose Ability Count"
     },
     "god": {
         "name": "God",
@@ -491,6 +494,24 @@
         "uncommon": "Uncommon",
         "rare": "Rare",
         "epic": "Epic",
-        "legendary": "Legendary"
+        "legendary": "Legendary",
+        "mythical": "Mythical"
+    },
+    "ability": {
+        "kill": "Kill",
+        "heal": "Heal",
+        "silence": "Silence",
+        "antiSilence": "Anti Silence",
+        "checkIdentity": "Check Identity",
+        "revive": "Revive",
+        "hack": "Hack",
+        "revenge": "Revenge",
+        "poison": "Poison"
+    },
+    "passive": {
+        "immortal": "Immortal",
+        "fakeIdentity": "Fake Identity",
+        "antiHack": "Anti Hack",
+        "bomb": "Detonate on dead"
     }
 }

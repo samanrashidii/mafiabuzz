@@ -199,6 +199,14 @@ button{
 	}
 }
 
+textarea{
+	width: 100%;
+	height: 100px;
+	outline: none;
+	border-radius: $site_radius_lg;
+	resize: none;
+}
+
 form {
 	&.small-size{
 		max-width: 300px;

@@ -85,10 +85,15 @@ export default {
       })
     },
     hack (target, forever) {
-      this.setStatus(target, {
-        hack: true,
-        hackForever: forever ? true : false
+      const isAntiHack = this.checkStatus(target, {
+        antiHack: true
       })
+      if (!isAntiHack) {
+        this.setStatus(target, {
+          hack: true,
+          hackForever: forever ? true : false
+        })
+      }
     },
     hackForever (target) {
       this.setStatus(target, {

@@ -10,6 +10,7 @@
 .rare-bg{background-color:$color-rare !important;}
 .epic-bg{background-color:$color-epic !important;}
 .legendary-bg{background-color:$color-legendary !important;}
+.mythical-bg{background-color:$color-mythical !important;}
 .binded{color:$pink_color !important;}
 .day-color{color:$day;}
 .hint-color{color:$hint_color;}
@@ -33,7 +34,8 @@
 .color-uncommon{color: $color-uncommon;}
 .color-rare{color: $color-rare;}
 .color-epic{color: $color-epic;}
-.color-legendary{color: $color-legendary;}
+.color-mythical{color: $color-mythical;}
+.color-mythical{color: $color-mythical;}
 
 .font-size-smaller{
     font-size: .875em;
@@ -174,3 +176,4 @@ span.step-number{
 .rarity-rare{background-color: $color-rare;}
 .rarity-epic{background-color: $color-epic;}
 .rarity-legendary{background-color: $color-legendary;}
+.rarity-mythical{background-color: $color-mythical;}

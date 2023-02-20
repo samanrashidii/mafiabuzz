@@ -36,6 +36,18 @@
     }
 }
 
+.mythical{
+    .owl-carousel{
+        &.owl-theme{
+            .owl-nav{
+                [class*='owl-']{
+                    background-color: $color-mythical !important;
+                }
+            }
+        }
+    }
+}
+
 .legendary{
     .owl-carousel{
         &.owl-theme{

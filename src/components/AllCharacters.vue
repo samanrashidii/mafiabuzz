@@ -142,7 +142,7 @@ export default {
   },
   computed: {
     getRoles() {
-      const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary']
+      const rarityOrder = ['uncommon', 'rare', 'epic', 'legendary', 'mythical']
       let roles = JSON.parse(JSON.stringify(this.Roles))
       roles = roles.sort(function(a, b) {
         return rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity)

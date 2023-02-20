@@ -31,12 +31,6 @@
         id="select-group"
       >
         <option
-          value="null"
-          disabled
-        >
-          {{ $t('addCharacter.chooseGroupPlaceholder') }}
-        </option>
-        <option
           v-for="(team, index) in availableTeams"
           :value="team"
           :key="index"
@@ -75,22 +69,83 @@
         {{ $t('addCharacter.chooseIcon') }}
       </legend>
     </fieldset>
-    <!-- Choose for kill ability -->
+    <!-- Description -->
     <fieldset>
       <legend>
-        {{ $t('addCharacter.chooseKiller') }}
+        {{ $t('addCharacter.description') }}
+      </legend>
+      <textarea
+        v-model="description"
+      ></textarea> 
+    </fieldset>
+    <!-- Choose Ability -->
+    <fieldset>
+      <legend>
+        {{ $t('addCharacter.chooseAbility') }}
       </legend>
       <select
-        v-model="killAbility"
+        v-model="selectedAbility"
         name="select-group"
         id="select-group"
       >
         <option
-          v-for="(item, index) in booleanChooseItems"
+          value="null"
+          disabled
+        >
+          {{ $t('common.NotHave') }}
+        </option>
+        <option
+          v-for="(ability, index) in abilities"
+          :value="ability"
+          :key="index"
+        >
+          {{ $t(`ability.${ability.name}`) }}
+        </option>
+      </select>
+    </fieldset>
+    <!-- Choose Ability Count -->
+    <fieldset
+      v-if="selectedAbility"
+    >
+      <legend>
+        {{ $t('addCharacter.chooseAbilityCount') }}
+      </legend>
+      <select
+        v-model="abilityCount"
+        name="select-group"
+        id="select-group"
+      >
+        <option
+          v-for="number in numberOfAbilites"
+          :value="number"
+          :key="number"
+        >
+          {{ number }}
+        </option>
+      </select>
+    </fieldset>
+    <!-- Choose Passive -->
+    <fieldset>
+      <legend>
+        {{ $t('addCharacter.choosePassive') }}
+      </legend>
+      <select
+        v-model="selectedPassive"
+        name="select-group"
+        id="select-group"
+      >
+        <option
+          value="null"
+          disabled
+        >
+          {{ $t('common.NotHave') }}
+        </option>
+        <option
+          v-for="(item, index) in passive"
           :value="item"
           :key="index"
         >
-          {{ $t(`common.${item.name}`) }}
+          {{ $t(`passive.${item.name}`) }}
         </option>
       </select>
     </fieldset>
@@ -116,13 +171,71 @@ export default {
   },
   data () {
     return {
-      characterName: '',
-      selectedGroup: {},
-      killAbility: {
-          name: 'NotHave',
-          value: false
+      selectedGroup: {
+        name: 'mafia',
+        mafia: true,
+        solo: false
       },
+      characterName: '',
       characterIcon: 'coffee.svg',
+      description: '',
+      selectedAbility: null,
+      selectedPassive: null,
+      abilityCount: '*',
+      power: 20,
+      abilities: [
+        {
+          name: 'kill',
+          value: 'killer'
+        },
+        {
+          name: 'heal',
+          value: 'healer'
+        },
+        {
+          name: 'silence',
+          value: 'silencer'
+        },
+        {
+          name: 'antiSilence',
+          value: 'antiSilencer'
+        },
+        {
+          name: 'checkIdentity',
+          value: 'identityChecker'
+        },
+        {
+          name: 'revive',
+          value: 'reviver'
+        },
+        {
+          name: 'hack',
+          value: 'hacker'
+        },
+        {
+          name: 'revenge',
+          value: 'revenge'
+        }
+      ],
+      passive: [
+        {
+          name: 'immortal',
+          value: 'immortal'
+        },
+        {
+          name: 'fakeIdentity',
+          value: 'fakeIdentity'
+        },
+        {
+          name: 'antiHack',
+          value: 'antiHack'
+        },
+        {
+          name: 'bomb',
+          value: 'readyToDetonate'
+        }
+      ],
+      numberOfAbilites: ['*', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
       availableTeams: [
         {
           name: 'mafia',
@@ -140,17 +253,7 @@ export default {
           solo: true
         }
       ],
-      booleanChooseItems: [
-        {
-          name: 'Have',
-          value: true
-        },
-        {
-          name: 'NotHave',
-          value: false
-        }
-      ],
-      icons: ['coffee.svg', 'glasses.svg', 'swords.svg', 'chess.svg', 'deviant.svg', 'pistol.svg', 'weed.svg', 'badge.svg', 'rpg.svg', 'moustache.svg', 'chainsaw.svg', 'umbrella.svg', 'pipe.svg', 'drug.svg', 'gas.svg', 'nail-gun.svg', 'zombie.svg', 'robocop.svg', 'tool.svg', 'blood-knife.svg']
+      icons: ['coffee.svg', 'glasses.svg', 'swords.svg', 'chess.svg', 'deviant.svg', 'pistol.svg', 'weed.svg', 'badge.svg', 'rpg.svg', 'moustache.svg', 'chainsaw.svg', 'umbrella.svg', 'drug.svg', 'gas.svg', 'nail-gun.svg', 'zombie.svg', 'robocop.svg', 'tool.svg', 'blood-knife.svg']
     }
   },
   computed: {
@@ -162,9 +265,9 @@ export default {
         slug: characterName,
         mafia: this.selectedGroup.mafia,
         solo: this.selectedGroup.solo,
-        rarity: 'legendary',
+        rarity: 'mythical',
         vote: 0,
-        power: 20,
+        power: this.power,
         icon: this.characterIcon,
         actionIcon: 'no-sign.svg',
         passiveIcon: 'no-sign.svg',
@@ -172,36 +275,35 @@ export default {
         info: {
             en: {
                 name: characterName,
-                description: "",
-                passive: "None",
-                action: "None"
+                description: this.description,
+                passive: '',
+                action: '',
             },
             fa: {
                 name: characterName,
-                description: "",
-                passive: "ندارد",
-                action: "ندارد"
+                description: this.description,
+                passive: '',
+                action: '',
             }
         },
-        ability: {
-          killer: this.killAbility.value
-        },
-        status: {}
+        ability: {},
+        status: {},
+        actionLimit: this.abilityCount
       }
-      if (this.isInteractiveCharacter) {
-        output.priority = 1000
+      if (this.selectedAbility) {
+        output.ability[this.selectedAbility.value] = true
+        output.actionIcon = this.selectedAbility.name + '.svg'
+        output.info.en.action = this.$t(`ability.${this.selectedAbility.name}`)
+        output.info.fa.action = this.$t(`ability.${this.selectedAbility.name}`)
         output.status.hasAction = true
-        output.status.actionLimit = "*"
+        output.priority = 21
       }
-      if (this.killAbility.value) {
-        output.actionIcon = 'kill.svg'
-      }
-      return output
-    },
-    isInteractiveCharacter () {
-      let output = false
-      if (this.killAbility.value) {
-        output = true
+      if (this.selectedPassive) {
+        output.status[this.selectedPassive.value] = true
+        output.passiveIcon = this.selectedPassive.name + '.svg'
+        output.info.en.passive = this.$t(`passive.${this.selectedPassive.name}`)
+        output.info.fa.passive = this.$t(`passive.${this.selectedPassive.name}`)
+        output.status.hasPassive = true
       }
       return output
     }
@@ -219,7 +321,6 @@ export default {
             this.hideInfo()
             setTimeout(() => {
               const container = document.getElementById('character_' + this.character.id)
-              console.log(container)
               this.$scrollTo(container, 200, {
                 offset: -13
               })

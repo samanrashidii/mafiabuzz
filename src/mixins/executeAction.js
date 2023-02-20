@@ -101,7 +101,7 @@ export default {
             this.heal(target1)
           }
           // Healer
-          if (player.ability.antiSilence) {
+          if (player.ability.antiSilencer) {
             this.antiSilence(target1)
           }
           // Buster

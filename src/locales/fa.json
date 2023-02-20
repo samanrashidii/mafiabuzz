@@ -322,9 +322,12 @@
         "chooseGroup": "تیم",
         "chooseGroupPlaceholder": "انتخاب تیم ...",
         "chooseIcon": "انتخاب آیکن",
+        "description": "توضیحات کاراکتر (اختیاری)",
         "addCharacter": "اضافه کردن کاراکتر",
-        "addCharacterDescription": "کاراکتر مورد نظر خودتون رو به بازی اضافه کنید (مشخصات، اکشن و قابلیت های کاراکتر باید توسط گاد به صورت جداگانه و خارج از اپلیکیشن مدیریت شود)",
-        "chooseKiller": "قابلیت کشتن"
+        "addCharacterDescription": "کاراکتر مورد نظر خودتون رو به بازی اضافه کنید",
+        "chooseAbility": "انتخاب اکشن",
+        "choosePassive": "انتخاب قابلیت درونی",
+        "chooseAbilityCount": "انتخاب تعداد اکشن در شب"
     },
     "god": {
         "name": "گاد",
@@ -491,6 +494,24 @@
         "uncommon": "عادی",
         "rare": "کمیاب",
         "epic": "ویژه",
-        "legendary": "لجندری"
+        "legendary": "لجندری",
+        "mythical": "اسطوره ای"
+    },
+    "ability": {
+        "kill": "کشتن",
+        "heal": "درمان کردن",
+        "silence": "ساکت کردن",
+        "antiSilence": "ضد ساکت کردن",
+        "checkIdentity": "چک کردن هویت",
+        "revive": "زنده کردن",
+        "hack": "هک کردن",
+        "revenge": "انتقام گرفتن",
+        "poison": "مسموم کردن"
+    },
+    "passive": {
+        "immortal": "نامیرا",
+        "fakeIdentity": "هویت مخفی",
+        "antiHack": "ضد هک شدن",
+        "bomb": "منفجر شدن در صورت مرگ"
     }
 }
