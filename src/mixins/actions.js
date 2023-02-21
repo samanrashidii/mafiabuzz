@@ -232,7 +232,7 @@ export default {
             if (this.checkDetonator(role.player)) {
               this.detonate(role.player)
             }
-            // Check if target is detonatable
+            // Check if target is hack detonatable
             if (this.checkHackBomber(role.player)) {
               this.detonateHackBomb(role.player)
             }

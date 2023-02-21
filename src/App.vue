@@ -120,7 +120,10 @@ export default {
     // Get all Characters from Database
     SERVER.getRoles()
       .then((res) => {
-        this.SetRoles(JSON.parse(JSON.stringify(res.data)))
+        const defaultCharacters = JSON.parse(JSON.stringify(res.data))
+        const savedCharacters = JSON.parse(localStorage.getItem('saved-characters'))
+        const finalCharacters = defaultCharacters.concat(savedCharacters)
+        this.SetRoles(finalCharacters)
         // Get all Replacing Characters from Database
         SERVER.getReplacingRoles()
           .then((response) => {

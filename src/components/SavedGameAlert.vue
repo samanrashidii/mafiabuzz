@@ -56,7 +56,9 @@ export default {
       })
     },
     clearStorage () {
-      localStorage.clear()
+      localStorage.removeItem('save-roles-selected-create')
+      localStorage.removeItem('save-roles-selected-dashboard')
+      localStorage.removeItem('save-automatic')
       this.SetGameSettingsItem({
         hasSavedGame: false
       })

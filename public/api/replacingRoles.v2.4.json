@@ -25,7 +25,10 @@
         },
         "status": {
             "roleReplaced": true,
-            "dead": false
+            "dead": false,
+            "hack": false,
+            "actionLimit": "*",
+            "hitByAction": 0
         }
     },
     "skeleton": {
@@ -50,7 +53,11 @@
             "simple": true
         },
         "status": {
-            "minion": true
+            "minion": true,
+            "dead": false,
+            "hack": false,
+            "actionLimit": "*",
+            "hitByAction": 0
         }
     },
     "killerMafia": {
@@ -71,7 +78,11 @@
             "killer": true
         },
         "status": {
-            "hasAction": true
+            "hasAction": true,
+            "dead": false,
+            "hack": false,
+            "actionLimit": "*",
+            "hitByAction": 0
         }
     }
 }

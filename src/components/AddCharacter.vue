@@ -262,6 +262,7 @@ export default {
       const randomId = Math.floor(Math.random() * 1000000)
       const output = {
         id: randomId,
+        characterAddedByUser: true,
         slug: characterName,
         mafia: this.selectedGroup.mafia,
         solo: this.selectedGroup.solo,
@@ -328,6 +329,7 @@ export default {
                 offset: -13
               })
               // reset data after add character
+              this.saveCharacter(this.character)
               this.resetCharacter()
             }, 500)
           })
@@ -345,6 +347,17 @@ export default {
       this.selectedAbility = null
       this.selectedPassive = null
       this.abilityCount = '*'
+    },
+    saveCharacter (character) {
+      let savedCharacters = localStorage.getItem('saved-characters')
+      if (savedCharacters) {
+        savedCharacters = JSON.parse(savedCharacters)
+        savedCharacters.push(character)
+      } else {
+        savedCharacters = [character]
+      }
+      savedCharacters = JSON.stringify(savedCharacters)
+      localStorage.setItem('saved-characters', savedCharacters)
     }
   }
 }
