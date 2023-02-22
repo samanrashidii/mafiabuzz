@@ -122,7 +122,10 @@ export default {
       .then((res) => {
         const defaultCharacters = JSON.parse(JSON.stringify(res.data))
         const savedCharacters = JSON.parse(localStorage.getItem('saved-characters'))
-        const finalCharacters = defaultCharacters.concat(savedCharacters)
+        let finalCharacters = defaultCharacters
+        if (savedCharacters) (
+          finalCharacters = defaultCharacters.concat(savedCharacters)
+        )
         this.SetRoles(finalCharacters)
         // Get all Replacing Characters from Database
         SERVER.getReplacingRoles()

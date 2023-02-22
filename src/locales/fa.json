@@ -329,6 +329,9 @@
         "choosePassive": "انتخاب قابلیت درونی",
         "chooseAbilityCount": "انتخاب تعداد اکشن در شب"
     },
+    "deleteCharacter": {
+        "deleteCharacter": "پاک کردن کاراکتر"
+    },
     "god": {
         "name": "گاد",
         "gameDashboardIconAlt": "آیکن داشبورد گاد",

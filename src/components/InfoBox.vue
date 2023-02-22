@@ -120,14 +120,23 @@
       <p
         v-html="role.info[currentLang].description"
       />
+      <DeleteCharacter
+        v-if="role.characterAddedByUser"
+        :character="role"
+      />
     </template>
   </div>
 </template>
 
 <script>
 import CharacterPower from '@/components/CharacterPower.vue';
+import DeleteCharacter from '@/components/DeleteCharacter.vue';
 
 export default {
+  components: {
+    CharacterPower,
+    DeleteCharacter
+  },
   props: {
     role: {
       type: Object,
@@ -141,9 +150,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    CharacterPower
   },
   methods: {
     hideInfo () {

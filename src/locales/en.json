@@ -317,7 +317,7 @@
         "plus": "characters overplus",
         "title": "Team balance based on selected characters"
     },
-    "addCharacters": {
+    "addCharacter": {
         "characterName": "Character Name",
         "chooseGroup": "Team",
         "chooseGroupPlaceholder": "Select Team",
@@ -328,6 +328,9 @@
         "chooseAbility": "Choose Ability",
         "choosePassive": "Choose Passive",
         "chooseAbilityCount": "Choose Ability Count"
+    },
+    "deleteCharacter": {
+        "deleteCharacter": "Delete Character"
     },
     "god": {
         "name": "God",

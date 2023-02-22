@@ -4,7 +4,6 @@
     :class="{
       'active': show
     }"
-    @click.self="hideInfo()"
   >
     <a
       href="javascript:void(0)"
