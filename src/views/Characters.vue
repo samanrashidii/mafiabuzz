@@ -85,11 +85,11 @@
       </Carousel>
       <!-- Mythical Characters -->
       <template
-        v-if="mythicals"
+        v-if="mythicals.length > 0"
       >
-      <h1 class="mythical has-top-margin">
-        {{ $t('rolesInfo.mythical') }}
-      </h1>
+        <h1 class="mythical has-top-margin">
+          {{ $t('rolesInfo.mythical') }}
+        </h1>
         <Carousel
           class="mythical"
           :items="1"
