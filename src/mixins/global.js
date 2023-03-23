@@ -101,6 +101,15 @@ export default {
         }
       })
     },
+    setActionInUseStatus (target, statuses = {}) {
+      this.dashboard.actionBox.forEach((role) => {
+        if (role.player === target) {
+          for (const [key, value] of Object.entries(statuses)) {
+            role.status[key] = value
+          }
+        }
+      })
+    },
     getSiblingTargets (target) {
       // Get Index of main target and siblings
       const mainTargetIndex = this.gameSettings.selectedRoles.findIndex(role => role.player === target)

@@ -61,6 +61,11 @@ export default {
       this.dashboard.avenger = name
       this.SetDashboard(this.dashboard)
     },
+    deflectAbility (name) {
+      this.setActionInUseStatus(name, {
+        deflectAbility: true
+      })
+    },
     detonate (target) {
       const allTargets = this.getSiblingTargets(target)
       // Alert Passive Activation

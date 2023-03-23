@@ -44,77 +44,86 @@ export default {
           }
         })
         if (!player.status.hack && target1) {
-          const checkKillReturner  = this.checkStatus(target1, {
+          let target = target1
+          if (player.status.deflectAbility) {
+            console.log(player)
+            target = player.player
+          }
+          const checkKillReturner  = this.checkStatus(target, {
             returnKill: true,
             hack: false
           })
           // Kill Return if player doesnt have anti hack buff
           if (!player.status.antiHack && checkKillReturner) {
-            this.returnKill(player.player, target1)
+            this.returnKill(player.player, target)
           }
           // Binder
           if (player.ability.binder) {
-            this.link(target1, target2)
+            this.link(target, target2)
+          }
+          // Deflector
+          if (player.ability.deflect) {
+            this.deflectAbility(target)
           }
           // Hacker
           if (player.ability.hacker) {
-            this.hack(target1)
+            this.hack(target)
           }
           // Hack Forever
           if (player.ability.hackForever) {
-            this.hackForever(target1)
+            this.hackForever(target)
           }
           // Killer
           if (player.ability.killer) {
-            this.kill(target1, '', player)
+            this.kill(target, '', player)
           }
           // Identity Checker
           if (player.ability.identityChecker) {
-            this.checkIdentity(target1)
+            this.checkIdentity(target)
           }
           // Identity Changer
           if (player.ability.identityChanger) {
-            this.changeIdentity(target1)
+            this.changeIdentity(target)
           }
           // Role Checker
           if (player.ability.roleChecker) {
-            this.checkRole(target1)
+            this.checkRole(target)
           }
           // Replacer
           if (player.ability.replacer) {
-            this.replacePlayer(target1, player.player)
+            this.replacePlayer(target, player.player)
           }
           // Reviver
           if (player.ability.reviver) {
-            this.reviveSkeletons(target1)
+            this.reviveSkeletons(target)
           }
           // Resurrect
           if (player.ability.resurrect) {
-            this.resurrect(target1)
+            this.resurrect(target)
           }
           // Silencer
           if (player.ability.silencer) {
-            this.silence(target1)
+            this.silence(target)
           }
           // Healer
           if (player.ability.healer) {
-            this.heal(target1)
+            this.heal(target)
           }
           // Healer
           if (player.ability.antiSilencer) {
-            this.antiSilence(target1)
+            this.antiSilence(target)
           }
           // Buster
           if (player.ability.buster) {
-            this.bust(target1)
+            this.bust(target)
           }
           // Magician
           if (player.ability.magician) {
             const dice = this.dice(4)
             if (dice === 1) {
-              this.kill(target1)
+              this.kill(target)
             } else if (dice === 2) {
-              this.silence(target1)
+              this.silence(target)
             } else if (dice === 3) {
               this.kill(player.player)
             } else if (dice === 4) {
@@ -123,7 +132,7 @@ export default {
           }
           // Psychic
           if (player.ability.prediction) {
-            this.predict(target1)
+            this.predict(target)
           }
         }
         this.$notify({
