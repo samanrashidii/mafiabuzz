@@ -24,10 +24,6 @@ export default {
       }
       return output
     },
-    checkGroupToSelectSecondTarget () {
-      // List should contain all people except the player in first group
-      return this.gameSettings.selectedRoles.filter(role => role.player !== this.actionTarget1)
-    },
     findTarget (target) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.player === target) {

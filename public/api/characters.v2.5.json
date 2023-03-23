@@ -95,6 +95,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -194,6 +195,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -293,6 +295,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -392,6 +395,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -491,6 +495,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -590,6 +595,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 2
         }
@@ -689,6 +695,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "citizen",
             "actionLimit": 1
         }
@@ -788,6 +795,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -887,6 +895,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -986,6 +995,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -1085,6 +1095,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 2,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -1184,6 +1195,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -1284,6 +1296,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -1383,6 +1396,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -1482,6 +1496,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -1581,6 +1596,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 2
         }
@@ -1680,6 +1696,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -1779,6 +1796,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -1798,7 +1816,7 @@
         "passiveIcon": "no-sign.svg",
         "power": 15,
         "new": false,
-        "hot": true,
+        "hot": false,
         "selected": false,
         "vote": 0,
         "info": {
@@ -1878,6 +1896,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 2
         }
@@ -1977,6 +1996,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -2076,6 +2096,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2175,6 +2196,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2274,6 +2296,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2373,6 +2396,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2472,6 +2496,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2571,6 +2596,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2670,6 +2696,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2769,6 +2796,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2868,6 +2896,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -2967,6 +2996,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3066,6 +3096,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -3165,6 +3196,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -3264,6 +3296,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -3364,6 +3397,7 @@
             "dayOnly": true,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3464,6 +3498,7 @@
             "dayOnly": true,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3563,6 +3598,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -3663,6 +3699,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3763,6 +3800,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 2
         }
@@ -3864,6 +3902,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3966,6 +4005,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": 1
         }
@@ -3984,8 +4024,8 @@
         "actionIcon": "hacker.svg",
         "passiveIcon": "no-sign.svg",
         "power": 35,
-        "new": true,
-        "hot": true,
+        "new": false,
+        "hot": false,
         "selected": false,
         "vote": 0,
         "info": {
@@ -4065,6 +4105,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "citizen",
             "actionLimit": 2
         }
@@ -4083,8 +4124,8 @@
         "actionIcon": "psychic.svg",
         "passiveIcon": "revive.svg",
         "power": 0,
-        "new": true,
-        "hot": true,
+        "new": false,
+        "hot": false,
         "selected": false,
         "vote": 0,
         "info": {
@@ -4164,6 +4205,7 @@
             "inJail": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }
@@ -4262,9 +4304,111 @@
             "poisoned": false,
             "busted": false,
             "inJail": false,
-            "deflectAbility": false,
             "hitByAction": 0,
             "successMarks": 0,
+            "targetNumbers": 1,
+            "targetGroup": "*",
+            "actionLimit": "*"
+        }
+    },
+    {
+        "id": 44,
+        "mafia": false,
+        "solo": false,
+        "rarity": "legendary",
+        "priority": 11,
+        "killPriority": null,
+        "potentialKiller": false,
+        "slug": "khan",
+        "icon": "khan.svg",
+        "emoji": "🗿",
+        "actionIcon": "empower.svg",
+        "passiveIcon": "no-sign.svg",
+        "power": 30,
+        "new": true,
+        "hot": true,
+        "selected": false,
+        "vote": 0,
+        "info": {
+            "en": {
+                "name": "Khan",
+                "description": "Khan is one of the strong men of the city. Khan can double the power of one person every night, but he must be careful that the person he chooses is not from the mafia group.",
+                "passive": "None",
+                "action": "Empower ability during night"
+            },
+            "fa": {
+                "name": "خان",
+                "description": "خان یکی از قوی های شهر هست. خان می تواند هر شب اکشن یک نفر را در شب دو برابر کند ولی باید مواظب باشد فردی که انتخاب می کند از گروه مافیا نباشد.",
+                "passive": "ندارد",
+                "action": "دو برابر کردن اکشن در شب"
+            }
+        },
+        "ability": {
+            "killer": false,
+            "healer": false,
+            "silencer": false,
+            "binder": false,
+            "roleChecker": false,
+            "identityChecker": false,
+            "hasShield": false,
+            "reviver": false,
+            "revenge": false,
+            "replacer": false,
+            "hacker": false,
+            "magician": false,
+            "searching": false,
+            "justice": false,
+            "explosioner": false,
+            "chooseBoolean": false,
+            "prediction": false,
+            "antiSilencer": false,
+            "voteSeeker": false,
+            "poison": false,
+            "sniper": false,
+            "loyalty": false,
+            "deflect": false,
+            "empower": true
+        },
+        "status": {
+            "mafia": false,
+            "citizen": false,
+            "hasAction": true,
+            "hasPassive": false,
+            "dead": false,
+            "immortal": false,
+            "deadMagnet": false,
+            "returnKill": false,
+            "readyToDetonate": false,
+            "fakeIdentity": false,
+            "silence": false,
+            "roleChecked": false,
+            "playerReplaced": false,
+            "heal": false,
+            "link": false,
+            "drunk": false,
+            "traitor": false,
+            "shield": false,
+            "revived": false,
+            "hack": false,
+            "antiHack": false,
+            "hackForever": false,
+            "hackBomber": false,
+            "identityChanged": false,
+            "minion": false,
+            "recentlyDead": false,
+            "recentlySilenced": false,
+            "recentlyRevived": false,
+            "searched": false,
+            "booleanAbilityUsed": false,
+            "marked": false,
+            "finishStopper": false,
+            "thick": false,
+            "poisoned": false,
+            "busted": false,
+            "inJail": false,
+            "hitByAction": 0,
+            "successMarks": 0,
+            "targetNumbers": 1,
             "targetGroup": "*",
             "actionLimit": "*"
         }

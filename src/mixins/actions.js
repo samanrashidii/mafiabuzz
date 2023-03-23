@@ -61,8 +61,8 @@ export default {
       this.dashboard.avenger = name
       this.SetDashboard(this.dashboard)
     },
-    deflectAbility (name) {
-      this.setActionInUseStatus(name, {
+    deflectAbility (target) {
+      this.setActionInUseStatus(target, {
         deflectAbility: true
       })
     },
@@ -81,6 +81,13 @@ export default {
       // Kill siblings
       this.hack(allTargets.prevTarget.player, true)
       this.hack(allTargets.nextTarget.player, true)
+    },
+    empowerAbility (target) {
+      const targetObject = this.getRoleObjectByNameInAction(target)
+      this.setActionInUseStatus(target, {
+        empowered: true,
+        targetNumbers: targetObject.status.targetNumbers * 2
+      })
     },
     explosion (player) {
       this.gameSettings.selectedRoles.forEach((role) => {
@@ -110,11 +117,8 @@ export default {
         heal: true
       })
     },
-    link (target1, target2) {
-      this.setStatus(target1, {
-        link: true
-      })
-      this.setStatus(target2, {
+    link (target) {
+      this.setStatus(target, {
         link: true
       })
     },

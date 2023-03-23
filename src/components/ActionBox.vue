@@ -64,7 +64,6 @@
         </template>
       </div>
     </div>
-
     <div
       v-if="player.ability.chooseBoolean"
       class="question"
@@ -90,61 +89,49 @@
     <template
       v-else
     >
-      <label
-        for="action_target"
+      <div
+        v-for="number in (player.status.targetNumbers)"
+        :key="number"
+        class="select-targets"
       >
-        {{ $t('god.actionHintText') }}
-      </label>
-      <select
-        v-model="actionTarget1"
-        name="action_target"
-        @change="findTarget(actionTarget1)"
-      >
-        <option
-          :value="null"
-          disabled
+        <label
+        :for="`action_target_${number}`"
         >
-          {{ $t('god.selectPlaceholder') }}
-        </option>
-        <option
-          v-for="(person, index) in checkGroupToSelectTarget(player)"
-          :key="index"
+          <span
+            v-if="number === 1"
+          >
+            {{ $t('god.actionHintText') }}
+          </span>
+          <span
+            v-else
+          >
+            {{ $t('god.actionHintText2') }}
+          </span>
+        </label>
+        <select
+          v-model="targets[number - 1]"
+          name="action_target"
+          @change="findTarget(targets[0])"
         >
-          {{ person.player }}
-        </option>
-      </select>
-    </template>
-
-    <template
-      v-if="player.ability.binder && actionTarget1 !== null"
-    >
-      <label
-        for="action_target_2"
-      >
-        {{ $t('god.actionHintText2') }}
-      </label>
-      <select
-        v-model="actionTarget2"
-        name="action_target_2"
-      >
-        <option
-          :value="null"
-          disabled
-        >
-          {{ $t('god.selectPlaceholder') }}
-        </option>
-        <option
-          v-for="(person, index) in checkGroupToSelectSecondTarget()"
-          :key="index"
-        >
-          {{ person.player }}
-        </option>
-      </select>
+          <option
+            :value="null"
+            disabled
+          >
+            {{ $t('god.selectPlaceholder') }}
+          </option>
+          <option
+            v-for="(person, index) in checkGroupToSelectTarget(player)"
+            :key="index"
+          >
+            {{ person.player }}
+          </option>
+        </select>
+      </div>
     </template>
 
     <!-- Action Buttons -->
     <BaseButton
-      @clicked.once="executeAction(player, actionTarget1, actionTarget2, playerIndex)"
+      @clicked.once="executeAction(player, targets, playerIndex)"
     >
       {{ $t('god.confirmButton') }}
     </BaseButton>
@@ -202,8 +189,7 @@ export default {
   name: 'ActionBox',
   data() {
     return {
-      actionTarget1: null,
-      actionTarget2: null,
+      targets: [],
       useAbility: false,
       alertBox: false
     }

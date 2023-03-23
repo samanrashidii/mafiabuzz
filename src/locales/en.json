@@ -348,7 +348,7 @@
         "nightActionButton": "Start Night Actions",
         "selectPlaceholder": "choose player ...",
         "actionHintText": "Please select the person who takes action :",
-        "actionHintText2": "Please select the second person :",
+        "actionHintText2": "Please select the next person :",
         "cancelButton": "Cancel",
         "confirmButton": "Action..!",
         "skipButton": "Skip, Go next action",
@@ -367,6 +367,7 @@
         "justiceText": "Judge used his ability!!! Tell people to close their eyes and judge will decide who is going to die",
         "mafiaPartyText": "Tell Mafia members to open their eyes and see each other",
         "mafiaPartyException": [
+            "If <strong class='solo-role'>Nostradamus</strong> is in game, should open his eyes first.",
             "<span>Drunk</span> should not open his eyes, and must inform his team by raising his hand",
             "<span>Traitor</span> should not wake up at all."
         ],

@@ -137,6 +137,9 @@ export default {
     getRoleObjectById (id) {
       return this.gameSettings.selectedRoles.filter(role => role.id === id)[0]
     },
+    getRoleObjectByNameInAction (target) {
+      return this.dashboard.actionBox.filter(role => role.player === target)[0]
+    },
     startGameEngine (type) {
       if (type) {
         let state = {}
