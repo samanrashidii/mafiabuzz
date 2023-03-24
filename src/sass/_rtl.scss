@@ -272,11 +272,19 @@ body.rtl{
                         }
                     }
                 }
-                &.shield{
-                    td{
-                        &:first-child{
-                            padding:6px 4px 6px 28px;
-                        }
+                &.love-bind td{
+                    &:nth-child(3)::before{
+                        right:-11px;
+                    }
+                }
+                &.heal td{
+                    &:nth-child(2)::before{
+                        background-position: 10% center !important;
+                    }
+                }
+                &.silence td{
+                    &:nth-child(2)::after{
+                        background-position: 98% center !important;
                     }
                 }
             }

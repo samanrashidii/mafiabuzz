@@ -46,8 +46,10 @@
                     padding-left: 20px !important;
                     .killer-icon{
                         position: absolute;
+                        top: 50%;
                         left: 0;
                         width: 18px;
+                        margin-top: -9px !important;
                     }
                 }
                 .gun-icon{

@@ -8,7 +8,6 @@ export default {
     },
     saveTotalHistory (history) {
       this.dashboard.totalHistory.push(history)
-      this.dashboard.historyLog = []
     }
   }
 }

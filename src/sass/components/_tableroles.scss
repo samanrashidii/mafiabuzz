@@ -54,17 +54,18 @@
                 }
             }
             &.love-bind td{
-                &:nth-child(2)::before{
+                &:nth-child(3)::before{
                     content:'';
                     position: absolute;
                     top:50%;
-                    left:-13px;
-                    width:24px;
-                    height:24px;
-                    margin-top:-12px;
+                    left:-11px;
+                    width:20px;
+                    height:20px;
+                    margin-top:-10px;
                     opacity: 1;
                     visibility: visible;
                     background-image: url('~@/assets/images/icons/linked.svg') !important;
+                    background-size: 20px;
                     z-index: 99;
                 }
             }
@@ -140,7 +141,7 @@
                     opacity: 1 !important;
                     visibility: visible !important;
                     background-image: url('~@/assets/images/icons/heal.svg') !important;
-                    background-position: 98% center !important;
+                    background-position: 90% center !important;
                     background-size: 14px;
                 }
             }

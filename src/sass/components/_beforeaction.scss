@@ -23,21 +23,3 @@
     background-size: 40px;
     border-radius: $site_radius;
 }
-
-.last-log{
-    display:block;
-    font-size: $font_size_6;
-    color: $color_1;
-    text-align: left;
-    padding: 8px 8px 8px 48px;
-    background-repeat: no-repeat;
-    background-position: 15px center;
-    background-size: 24px;
-    border-radius: 4px;
-    &.red-bg{background-color:$dark_red_color;}
-    &.blue-bg{background-color:$dark_blue_color;}
-    &.green-bg{background-color:$medium_green_color;}
-    i{
-        color:$black_color;
-    }
-}

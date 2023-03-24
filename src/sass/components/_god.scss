@@ -40,10 +40,10 @@
                 text-align:left;
             }
             &:nth-child(2){
-                width:30%;
+                width:40%;
             }
             &:nth-child(3){
-                width:15%;
+                width:10%;
                 background-color: $background_color_default;
                 a{
                     position: absolute;
@@ -55,12 +55,12 @@
                     background-repeat: no-repeat;
                     background-position: center;
                     background-color: inherit;
-                    background-size: 22px;
+                    background-size: 20px;
                     z-index: 12;
                 }
             }
             &:nth-child(4){
-                width:15%;
+                width:10%;
                 background: $background_color_middle;
                 span{
                     position: absolute;
@@ -71,7 +71,7 @@
                     height: 100%;
                     background-repeat: no-repeat;
                     background-position: center;
-                    background-size: 22px;
+                    background-size: 20px;
                     z-index: 10;
                 }
             }

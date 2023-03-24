@@ -45,3 +45,47 @@
         }
     }
 }
+
+.last-log{
+    display:block;
+    font-size: $font_size_6;
+    color: $color_1;
+    text-align: left;
+    padding: 8px 8px 8px 48px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-size: 24px;
+    border: 1px solid $white_color;
+    border-radius: 4px;
+    &.red-bg{background-color:$dark_red_color;}
+    &.blue-bg{background-color:$dark_blue_color;}
+    &.green-bg{background-color:$medium_green_color;}
+    i{
+        color:$black_color;
+    }
+}
+
+.last-night{
+    .last-night-log{
+        table{
+            width: 100%;
+            td{
+                padding: 5px;
+                vertical-align: middle;
+                text-align: start;
+                border: 1px solid $color_site_1;
+                border-radius: 1px;
+                img{
+                    width: 30px;
+                }
+                p{
+                    font-size: $font_size_2;
+                    padding-top: 0;
+                }
+                &:first-child{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

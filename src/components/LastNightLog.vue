@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="dashboard.lastNightBox"
     class="last-night-log"
   >
     <img
@@ -7,15 +8,53 @@
       :alt="$t('god.peopleIconAlt')"
     >
     <h2>
-      {{ $t('god.lastNightTitle') }}
+      {{ $t('god.lastNightSummary') }}
     </h2>
-    <ul>
-      <li
-        v-for="(lastNightEvent, index) in dashboard.lastNight"
+    <table
+      v-if="dashboard.historyLog.length > 0"
+    >
+      <tr
+        v-for="(log, index) in dashboard.historyLog"
         :key="index"
-        v-html="lastNightEvent"
-      />
-    </ul>
+      >
+        <td>
+          {{ index+1 }}
+        </td>
+        <td>
+          <img
+            :src="getImg('/actions', log.image)"
+            :alt="$t('god.actionIconAlt')"
+          >
+        </td>
+        <td>
+          <p
+            v-html="log.text"
+          />
+        </td>
+      </tr>
+    </table>
+    <h2
+      v-else
+      class="has-top-margin red-color"
+    >
+      {{ $t('god.noLog') }}
+    </h2>
+    <template
+      v-if="dashboard.lastNight.length > 0"
+    >
+      <h2
+        class="has-top-margin"
+      >
+        {{ $t('god.lastNightTitle') }}
+      </h2>
+      <ul>
+        <li
+          v-for="(lastNightEvent, index) in dashboard.lastNight"
+          :key="index"
+          v-html="lastNightEvent"
+        />
+      </ul>
+    </template>
     <BaseButton
       @clicked="lastNightBoxController()"
       class="primary"
@@ -29,9 +68,11 @@
 
 <script>
 export default {
+  name: 'LastNightLog',
   methods: {
     lastNightBoxController () {
       this.dashboard.lastNightBox = false
+      this.dashboard.historyLog = []
       this.SetDashboard(this.dashboard)
     }
   }

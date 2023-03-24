@@ -57,6 +57,7 @@ export default {
     },
     finishNight () {
       this.logEventsToUser()
+      this.dashboard.lastNightBox = true
       this.gameSettings.selectedRoles.forEach((role) => {
         // Reset Statuses
         if (role.status.actionLimit === 0) {
@@ -153,10 +154,10 @@ export default {
         role.vote = 0
       })
       if (lastNightEvents.length > 0) {
-        this.dashboard.lastNight = lastNightEvents
-        this.dashboard.lastNightBox = true
         // Post Game Result To Discord
         this.postDiscord(resultForDiscord)
+        this.dashboard.lastNight = lastNightEvents
+        this.dashboard.lastNightBox = true
       }
     }
   }
