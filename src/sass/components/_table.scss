@@ -70,7 +70,18 @@
                 }
             }
         }
-        
+        &.safemode{
+            tr{
+                td{
+                    &:nth-child(1){
+                        filter: blur(3px);
+                    }
+                    &:nth-child(2){
+                        filter: blur(3px);
+                    }
+                }
+            }
+        }
     }
     &.mafia-table{
         background-color: $background_color_mafia;

@@ -178,7 +178,7 @@ export default {
       text += mafia
       text += `
 
-      ${this.$t('thirdparty.discordCitizen') + this.gameSettings.aliveCitizen}
+      ${this.$t('thirdparty.discordCitizen') + this.gameSettings.aliveCitizens}
       `
       text += citizen
 

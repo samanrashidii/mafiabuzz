@@ -1,0 +1,34 @@
+.game-inquiry{
+    .inquiries{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .inquiry-box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 48%;
+            height: 140px;
+            border: 3px solid $white_color;
+            margin: 1%;
+            border-radius: $site_radius;
+            p{
+                display: block;
+                font-size: $font_size_1;
+                padding-top: 0;
+            }
+            span{
+                font-family: $font_normal;
+                font-size: $font_size_large;
+            }
+            &:nth-child(odd){
+                border-color: $green_color;
+            }
+            &:nth-child(even){
+                border-color: $red_color;
+            }
+        }
+    }
+}

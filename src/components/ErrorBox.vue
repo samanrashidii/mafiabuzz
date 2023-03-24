@@ -24,7 +24,7 @@
           number: citizenNumbers,
           role: $t('common.Citizen'),
           secondRole: $t('common.Solo'),
-          chosen: gameSettings.aliveCitizen + gameSettings.aliveSolo
+          chosen: gameSettings.aliveCitizens + gameSettings.aliveSolo
         })"
         class="blue"
       />

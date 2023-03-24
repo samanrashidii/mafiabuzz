@@ -391,6 +391,12 @@
         "resetTotalText": "Are you sure? Your selected characters and players will reset",
         "skipText": "Do you want to skip this action for tonight?",
         "thisNight": "Current Night",
+        "alivePeople": "Alive People",
+        "deadPeople": "Dead People",
+        "aliveMafia": "Alive Mafia",
+        "deadMafia": "Dead Mafia",
+        "aliveCitizens": "Alive Citizens",
+        "deadCitizens": "Dead Citizens",
         "logDeadText": "has been killed !!!",
         "logSilencedText": "has been silenced !!!",
         "logRevivedText": "has been revived !!!",
@@ -494,7 +500,7 @@
             "showHistoryLog": "History",
             "safeMode": "Safe Mode",
             "inquiry": "Inquiry",
-            "finalMoveCards": "Final Move Cards"
+            "finalMoveCards": "Final Cards"
         }
     },
     "rolesInfo": {

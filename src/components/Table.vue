@@ -2,7 +2,11 @@
   <div
     class="table"
   >
-    <table>
+    <table
+      :class="{
+        'safemode': gameSettings.safemode
+      }"
+    >
       <tr>
         <th>
           {{ $t('common.Role') }}

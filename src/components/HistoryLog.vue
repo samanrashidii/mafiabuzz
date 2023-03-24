@@ -46,7 +46,7 @@
       </h2>
     </div>
     <BaseButton
-      class="primary has-small-top-margin"
+      class="yellow has-small-top-margin"
       @clicked="closeLog()"
     >
       <span>
@@ -62,7 +62,7 @@ export default {
   name: 'HistoryLog',
   methods: {
     closeLog () {
-      this.$emit('closeLog', false)
+      this.$emit('close', 'historyLog')
     }
   }
 }

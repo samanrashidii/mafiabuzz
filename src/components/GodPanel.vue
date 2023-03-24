@@ -5,7 +5,7 @@
     <!-- Dashboard Buttons -->
     <div
       v-if="showGodPanel"
-      class="button-holder"
+      class="change-phase-button"
     >
       <template
         v-if="gameSettings.discordChannel"
@@ -140,26 +140,6 @@
         </div>
       </PageBox>
     </div>
-    <!-- Show History Log -->
-    <div
-      v-if="showGodPanel"
-      class="log-bttn"
-    >
-      <BaseButton
-        class="awesome"
-        @clicked="toggleLogHistory(true)"
-      >
-        <span>
-          {{ $t('god.historyLogButton') }} <i>{{ dashboard.totalHistory.length }}</i>
-        </span>
-      </BaseButton>
-    </div>
-    <HistoryLog
-      :class="{
-        'active': logHistory
-      }"
-      @closeLog="toggleLogHistory"
-    />
     <!-- Dashboard Game Hint -->
     <DashboardHints
       v-if="showGodPanel"
@@ -228,7 +208,6 @@
 import ActionBar from '@/components/ActionBar.vue';
 import GameFinished from '@/components/GameFinished.vue';
 import LastNightLog from '@/components/LastNightLog.vue';
-import HistoryLog from '@/components/HistoryLog.vue';
 import Table from '@/components/Table.vue';
 import RoleViewer from '@/components/RoleViewer.vue';
 import RestartGameAlert from '@/components/RestartGameAlert.vue';
@@ -243,7 +222,6 @@ export default {
     ActionBar,
     GameFinished,
     LastNightLog,
-    HistoryLog,
     RoleViewer,
     Table,
     RestartGameAlert,
@@ -255,7 +233,6 @@ export default {
   data() {
     return {
       logAction: false,
-      logHistory: false,
       showGodPanel: false,
       logActionDone: false
     }
@@ -300,9 +277,6 @@ export default {
         }
       })
       this.postDiscord(text)
-    },
-    toggleLogHistory (value) {
-      this.logHistory = value
     },
     sendStats () {
       // Post Latest Game Stats To Discord

@@ -11,7 +11,9 @@ export default {
       alivePeople: 0,
       deadPeople: 0,
       aliveMafia: 0,
-      aliveCitizen: 0,
+      deadMafia: 0,
+      aliveCitizens: 0,
+      deadCitizens: 0,
       aliveSolo: 0,
       selectedMafia: 0,
       selectedCitizen: 0,
@@ -34,6 +36,7 @@ export default {
       winner: null,
       soloWins: false,
       soloWinnner: null,
+      safemode: false,
       reviewGame: false,
       stepCounter: 1,
       roleViewer: false,
@@ -54,8 +57,10 @@ export default {
       state.gameSettings.alivePeople = state.gameSettings.selectedRoles.filter(role => !role.status.dead).length
       state.gameSettings.deadPeople = state.gameSettings.selectedRoles.filter(role => role.status.dead).length
       state.gameSettings.aliveMafia = state.gameSettings.selectedRoles.filter(role => !role.status.dead && role.mafia).length
-      state.gameSettings.aliveCitizen = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && !role.solo).length
+      state.gameSettings.aliveCitizens = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && !role.solo).length
       state.gameSettings.aliveSolo = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && role.solo).length
+      state.gameSettings.deadMafia = state.gameSettings.selectedRoles.filter(role => role.status.dead && role.mafia).length
+      state.gameSettings.deadCitizens = state.gameSettings.selectedRoles.filter(role => role.status.dead && !role.mafia).length
       // End Game Rules
       const hasFinishStopper = state.gameSettings.selectedRoles.filter(role => role.solo && role.status.finishStopper && !role.status.dead)
       const mafiaOdds = state.gameSettings.selectedRoles.filter(role => !role.status.dead && role.mafia && !role.status.traitor).length
