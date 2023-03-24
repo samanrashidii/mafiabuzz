@@ -92,12 +92,24 @@
             width:85px;
             display:inline-block;
             vertical-align: middle;
-            img{width:35px;}
+            img{
+                width:35px;
+            }
             h4{
                 span{
                     display: block;
                     font-size: $font_size_1;
                     color:$color_1;
+                }
+            }
+            .other-targets{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: .5rem;
+                img{
+                    width: 24px;
+                    margin: 0 2px;
                 }
             }
         }

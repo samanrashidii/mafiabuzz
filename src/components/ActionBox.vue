@@ -53,6 +53,15 @@
             {{ dashboard.targetData.info[currentLang].name }}
             <span>( {{ dashboard.targetData.player }} )</span>
           </h4>
+          <div
+            class="other-targets"
+          >
+            <img
+              v-for="(targetIcon, index) in targetIcons"
+              :src="getImg('/roles', targetIcon)"
+              :alt="$t('god.playerIconAlt')"
+            >
+          </div>
         </template>
         <template
           v-else
@@ -192,6 +201,19 @@ export default {
       targets: [],
       useAbility: false,
       alertBox: false
+    }
+  },
+  computed: {
+    targetIcons () {
+      const icons = []
+      this.gameSettings.selectedRoles.forEach((role) => {
+        this.targets.forEach((target) => {
+          if (target === role.player && target !== this.dashboard.targetData.player) {
+            icons.push(role.icon)
+          }
+        })
+      })
+      return icons
     }
   },
   props: {
