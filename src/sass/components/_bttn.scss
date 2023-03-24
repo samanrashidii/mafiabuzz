@@ -132,13 +132,15 @@
         padding:13px 10px;
         background: url('~@/assets/images/moon.svg') no-repeat 10px -5px $night !important;
         background-size: 64px !important;
-        box-shadow: 0 0 3px $color_4;
+        border-radius: $site_radius;
+        box-shadow: 0 0 7px $black_color;
     }
     &.night{
         padding:13px 10px;
         background: url('~@/assets/images/sun.svg') no-repeat 10px -5px $day !important;
         background-size: 64px !important;
-        box-shadow: 0 0 3px $hint_color;
+        border-radius: $site_radius;
+        box-shadow: 0 0 7px $black_color;
     }
     &.subnav-bttn{
         direction: ltr;

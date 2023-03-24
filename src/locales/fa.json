@@ -489,7 +489,13 @@
             }
         ],
         "rgwRoles": "راه اندازی مجدد بازی با همین نقش ها",
-        "resetGame": "شروع بازی جدید"
+        "resetGame": "شروع بازی جدید",
+        "gameSettings": {
+            "showHistoryLog": "تاریخه اتفاقات",
+            "safeMode": "حالت امن",
+            "inquiry": "استعلام وضعیت",
+            "finalMoveCards": "کارت حرکت آخر"
+        }
     },
     "rolesInfo": {
         "power": "قدرت برای تیم :",

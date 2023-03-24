@@ -52,6 +52,10 @@
         </BaseButton>
       </transition>
     </div>
+    <!-- Game Settings -->
+    <GameSettings
+      v-if="showGodPanel"
+    />
     <!-- Day & Night Dashboard -->
     <transition
       name="fade"
@@ -231,6 +235,7 @@ import RestartGameAlert from '@/components/RestartGameAlert.vue';
 import RevengeAlert from '@/components/RevengeAlert.vue';
 import DashboardHints from '@/components/DashboardHints.vue';
 import VoteAlert from '@/components/VoteAlert.vue';
+import GameSettings from '@/components/GameSettings.vue';
 
 export default {
   name: 'GodPanel',
@@ -244,7 +249,8 @@ export default {
     RestartGameAlert,
     RevengeAlert,
     DashboardHints,
-    VoteAlert
+    VoteAlert,
+    GameSettings
   },
   data() {
     return {

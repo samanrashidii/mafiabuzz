@@ -26,9 +26,9 @@
 <script>
 
 export default {
+  name: 'Navigation',
   data() {
     return {
-      loggedIn: true,
       navigation: [
         {
           name: 'navigation[0].name',

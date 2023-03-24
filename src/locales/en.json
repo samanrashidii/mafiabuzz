@@ -489,7 +489,13 @@
             }
         ],
         "rgwRoles": "Restart game with same characters",
-        "resetGame": "Start a new game"
+        "resetGame": "Start a new game",
+        "gameSettings": {
+            "showHistoryLog": "History",
+            "safeMode": "Safe Mode",
+            "inquiry": "Inquiry",
+            "finalMoveCards": "Final Move Cards"
+        }
     },
     "rolesInfo": {
         "power": "Power for Team :",
