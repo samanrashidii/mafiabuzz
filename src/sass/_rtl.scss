@@ -184,6 +184,14 @@ body.rtl{
                     font-size: $font_size_0;
                 }
                 td{
+                    &.killer-role{
+                        padding-left: 4px !important;
+                        padding-right: 20px !important;
+                        .killer-icon{
+                            left: auto;
+                            right: 0;
+                        }
+                    }
                     &:first-child{
                         text-align: right !important;
                         border-radius:0 2px 2px 0;
@@ -240,6 +248,9 @@ body.rtl{
             table{
                 tr{
                     td{
+                        &:nth-child(1){
+                            font-weight: normal;
+                        }
                         font-family: $font_mafia_rtl;
                         font-size: $font_size_4;
                         img {

@@ -39,6 +39,12 @@ export default {
         if (role.status.marked) {
           role.status.marked = false
         }
+        if (role.status.realGun) {
+          role.status.realGun = false
+        }
+        if (role.status.fakeGun) {
+          role.status.fakeGun = false
+        }
       })
       this.logEventsToUser()
       this.dashboard.targetData = {}

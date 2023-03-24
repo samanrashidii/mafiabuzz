@@ -1,14 +1,14 @@
 export default {
   methods: {
-    executeAction (player, targets, playerIndex) {
+    executeAction (player, targets, playerIndex, givenAbilities) {
       // Action Log
       let actionText = ''
       const actionImage = player.actionIcon
-      const checkActionFields = (this.targets.length === player.status.targetNumbers || (this.targets.length === 0 && this.useAbility))
+      const checkActionFields = (targets.length === player.status.targetNumbers || (targets.length === 0 && this.useAbility))
       if (this.useAbility) {
         actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
       } else {
-        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText')}<strong>${targets[0]}</strong>`
+        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText', { targets: targets })}`
       }
       this.saveHistory(actionImage, actionText)
 
@@ -50,7 +50,7 @@ export default {
           }
         })
         if (!player.status.hack && targets.length > 0) {
-          targets.forEach((selectedTarget) => {
+          targets.forEach((selectedTarget, targetIndex) => {
             let target = selectedTarget
             if (player.status.deflectAbility) {
               target = player.player
@@ -74,6 +74,10 @@ export default {
             // Empower Ability
             if (player.ability.empower) {
               this.empowerAbility(target)
+            }
+            // Give Ability
+            if (player.ability.giveAbility) {
+              this.giveAbility(target, givenAbilities[targetIndex])
             }
             // Hacker
             if (player.ability.hacker) {

@@ -41,6 +41,18 @@
                         font-family: $font_normal;
                     }
                 }
+                &.killer-role{
+                    position: relative;
+                    padding-left: 20px !important;
+                    .killer-icon{
+                        position: absolute;
+                        left: 0;
+                        width: 18px;
+                    }
+                }
+                .gun-icon{
+                    padding: 0 3px;
+                }
                 &:first-child{
                     width:72%;
                     text-align: left;

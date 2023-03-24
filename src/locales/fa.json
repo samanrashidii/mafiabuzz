@@ -141,7 +141,7 @@
         "Kill": "کشتن",
         "Have": "داشته باشد",
         "NotHave": "نداشته باشد",
-        "killCapacity": "قابلیت کشتن",
+        "killCapacity": "قابلیت کشتن در شب",
         "None": "-",
         "mostUsed": "کاراکتر محبوب",
         "new": "جدید",
@@ -347,6 +347,7 @@
         "godButton": "من گاد هستم! داشبورد رو نشون بده",
         "nightActionButton": "شروع اکشن های شب",
         "selectPlaceholder": "انتخاب شخص ...",
+        "defaultPlaceholder": "انتخاب ...",
         "actionHintText": "بازیکنی که قراره اکشن روش انجام شه رو انتخاب کن :",
         "actionHintText2": "نفر بعدی رو انتخاب کن :",
         "cancelButton": "انصراف",
@@ -358,6 +359,8 @@
         "useAbility": "استفاده از قدرت",
         "godKillIcon": "reaper.svg",
         "godReviveIcon": "angel.svg",
+        "realGun": "اسلحه با تیر واقعی",
+        "fakeGun": "اسلحه با تیر مشقی",
         "remainingActions": "اکشن های باقی مانده",
         "mafiaPartyIconAlt": "آیکن مافیاها",
         "justiceAlt": "اجرای عدالت",
@@ -377,7 +380,7 @@
         "noLog": "هنوز چیزی برای نمایش وجود نداره !",
         "errorChoosePlayer": "لطفا قبل از انجام اکشن <span>بازیکن</span> و یا <span>جواب</span> را انتخاب کن",
         "logCloseButton": "متوجه شدم !",
-        "logMainText": " بر روی این بازیکن انجام شد : ",
+        "logMainText": " بر روی {targets} انجام شد",
         "logSideText": "استفاده شد",
         "logPassive": "قابلیت درونی فعال شد : ",
         "logResult": "نتیجه : ",
@@ -415,7 +418,7 @@
         "actionIconAlt": "آیکن اکشن",
         "playerActionIconAlt": "آیکن اکشن بازیکن",
         "actionQuestion1": "به",
-        "actionQuestion2": "بگو بیدار بشه و هدف رو بگه برای ",
+        "actionQuestion2": "بگو بیدار بشه و هدف/ها رو بگه برای ",
         "lastNightTitle": "به بازیکنان توضیح بده چه اتفاقی افتاده",
         "whatHappened": "تاریخچه اتفاقات",
         "roleViewerText": "اگه روز هستش نتیجه جستجو رو به افراد بیرون بازی اعلام کن، اگه شب هستش نتیجه رو از روی صفحه نمایش به فرد نشون بده",
@@ -473,7 +476,7 @@
             },
             {
                 "name": "invisible-icon",
-                "hint": "هویت این شخص برعکس است."
+                "hint": "هویت این شخص در استعلام برعکس است."
             },
             {
                 "name": "shield-icon",

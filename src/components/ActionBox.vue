@@ -135,12 +135,32 @@
             {{ person.player }}
           </option>
         </select>
+        <select
+          v-if="player.status.storedAbilities"
+          v-model="givenAbilities[number - 1]"
+          name="action_target"
+          class="has-xsmall-top-margin"
+        >
+          <option
+            :value="null"
+            disabled
+          >
+            {{ $t('god.defaultPlaceholder') }}
+          </option>
+          <option
+            v-for="(ability, index) in player.status.storedAbilities"
+            :key="index"
+            :value="ability"
+          >
+            {{ $t(`god.${ability}`) }}
+          </option>
+        </select>
       </div>
     </template>
 
     <!-- Action Buttons -->
     <BaseButton
-      @clicked.once="executeAction(player, targets, playerIndex)"
+      @clicked.once="executeAction(player, targets, playerIndex, givenAbilities)"
     >
       {{ $t('god.confirmButton') }}
     </BaseButton>
@@ -199,6 +219,7 @@ export default {
   data() {
     return {
       targets: [],
+      givenAbilities: [],
       useAbility: false,
       alertBox: false
     }

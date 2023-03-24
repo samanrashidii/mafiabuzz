@@ -40,25 +40,44 @@
         :key="index"
         :class="characterClasses(tD)"
       >
-        <td>
+        <td
+          :class="{
+            'killer-role': tD.ability.killer && !tD.status.dead
+          }"
+        >
           <img
             :src="getImg('/roles', tD.icon)"
             :alt="tD.info[currentLang].name"
           > 
-            <span>
-              {{ tD.info[currentLang].name }}
-            </span>
-            <span
-              v-if="tD.lastRoleInfo"
-            >
-              {{ `(${(tD.lastRoleInfo[currentLang].name || '')})` }}
-            </span>
+          <span>
+            {{ tD.info[currentLang].name }}
+          </span>
+          <span
+            v-if="tD.lastRoleInfo"
+          >
+            {{ `(${(tD.lastRoleInfo[currentLang].name || '')})` }}
+          </span>
           <img
             v-if="tD.ability.killer && !tD.status.dead"
-            src="@/assets/images/icons/kill.svg"
-            alt="Kill Icon"
+            src="@/assets/images/icons/killer.svg"
+            alt="Killer Icon"
+            class="killer-icon"
             :title="$t('common.killCapacity')"
-          > 
+          >
+          <img
+            v-if="tD.status.realGun"
+            src="@/assets/images/icons/kill.svg"
+            alt="Real Gun Icon"
+            class="gun-icon"
+            :title="$t('god.realGun')"
+          >
+          <img
+            v-if="tD.status.fakeGun"
+            src="@/assets/images/icons/fakegun.svg"
+            alt="Fake Gun Icon"
+            class="gun-icon"
+            :title="$t('god.fakeGun')"
+          >
         </td>
         <template
           v-if="dashboardTable"

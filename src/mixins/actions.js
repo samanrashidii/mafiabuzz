@@ -89,6 +89,11 @@ export default {
         targetNumbers: targetObject.status.targetNumbers * 2
       })
     },
+    giveAbility (target, ability) {
+      this.setStatus(target, {
+        [ability]: true
+      })
+    },
     explosion (player) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.player !== player) {

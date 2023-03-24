@@ -98,7 +98,7 @@
               >
                 <img
                   class="game-icon"
-                  src="@/assets/images/icons/game.png"
+                  src="@/assets/images/icons/game.svg"
                   :alt="$t('god.gameDashboardIconAlt')"
                 >
                 <h3
