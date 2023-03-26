@@ -51,6 +51,18 @@
                     font-size: $font_size_0;
                 }
             }
+            &.active{
+                transform: scale(.9, .9);
+                span{
+                    img{
+                        width: 50px;
+                        transform: translateY(10px);
+                    }
+                    strong{
+                        opacity: 0;
+                    }
+                }
+            }
         }
     }
 }

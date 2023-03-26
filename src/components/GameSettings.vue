@@ -6,7 +6,10 @@
       <button
         v-for="(setting, index) in settings"
         :key="index"
-        @click="openSettings(setting.value)"
+        :class="{
+          'active': setting.active
+        }"
+        @click="openSettings(setting.value, index)"
       >
         <span>
           <img
@@ -61,35 +64,35 @@ export default {
       historyLog: false,
       safemode: false,
       inquiry: false,
-      cards: false
-    }
-  },
-  computed: {
-    settings () {
-      const output = [
+      cards: false,
+      settings: [
         {
           name: this.$t('god.gameSettings.showHistoryLog'),
-          value: 'historyLog'
+          value: 'historyLog',
+          active: false
         },
         {
           name: this.$t('god.gameSettings.safeMode'),
-          value: 'safemode'
+          value: 'safemode',
+          active: false
         },
         {
           name: this.$t('god.gameSettings.inquiry'),
-          value: 'inquiry'
+          value: 'inquiry',
+          active: false
         },
         {
           name: this.$t('god.gameSettings.finalMoveCards'),
-          value: 'cards'
+          value: 'cards',
+          active: false
         }
       ]
-      return output
     }
   },
   methods: {
-    openSettings (setting) {
+    openSettings (setting, index) {
       this[setting] = true
+      this.settings[index].active = !this.settings[index].active 
       if (setting === 'safemode') {
         this.gameSettings.safemode = !this.gameSettings.safemode
         this.SetGameSettings(this.gameSettings)
@@ -97,6 +100,13 @@ export default {
     },
     closeSettings (setting) {
       this[setting] = false
+      let settingIndex = 0
+      this.settings.filter((item, index) => {
+        if (item.value === setting) {
+          settingIndex = index
+        }
+      })
+      this.settings[settingIndex].active = false
     }
   }
 }
