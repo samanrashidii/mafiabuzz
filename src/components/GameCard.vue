@@ -42,6 +42,10 @@
 export default {
   name: 'GameCard',
   props: {
+    id: {
+      type: String,
+      defult: ''
+    },
     name: {
       type: String,
       defult: ''
@@ -67,6 +71,9 @@ export default {
     },
     openCard () {
       this.cardOpen = true
+      if (this.id === 'faceOff') {
+        this.$emit('faceOff')
+      }
     }
   }
 }
