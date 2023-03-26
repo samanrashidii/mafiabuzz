@@ -57,7 +57,7 @@ export default {
       state.gameSettings.alivePeople = state.gameSettings.selectedRoles.filter(role => !role.status.dead).length
       state.gameSettings.deadPeople = state.gameSettings.selectedRoles.filter(role => role.status.dead).length
       state.gameSettings.aliveMafia = state.gameSettings.selectedRoles.filter(role => !role.status.dead && role.mafia).length
-      state.gameSettings.aliveCitizens = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && !role.solo).length
+      state.gameSettings.aliveCitizens = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia).length
       state.gameSettings.aliveSolo = state.gameSettings.selectedRoles.filter(role => !role.status.dead && !role.mafia && role.solo).length
       state.gameSettings.deadMafia = state.gameSettings.selectedRoles.filter(role => role.status.dead && role.mafia).length
       state.gameSettings.deadCitizens = state.gameSettings.selectedRoles.filter(role => role.status.dead && !role.mafia).length

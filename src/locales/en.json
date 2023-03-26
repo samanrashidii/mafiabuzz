@@ -103,6 +103,8 @@
         "Vote": "Vote Counter",
         "Player": "Player",
         "Choose": "Choose...",
+        "Select": "Select",
+        "Close": "Close",
         "Status": "Kill / Revive",
         "Action": "Action",
         "Night": "Night",
@@ -423,6 +425,7 @@
         "peopleIconAlt": "People Icon",
         "actionIconAlt": "Action Icon",
         "playerActionIconAlt": "Character Action Icon",
+        "finalMoveCard": "Final Move Card",
         "actionQuestion1": "Ask",
         "actionQuestion2": "to wake up and tell you the target/s for",
         "lastNightSummary": "Brief Summary",
@@ -501,6 +504,64 @@
             "safeMode": "Safe Mode",
             "inquiry": "Inquiry",
             "finalMoveCards": "Final Cards"
+        },
+        "gameCards": {
+            "lie": {
+                "name": "Thirteen Lie",
+                "description": "Tell a lie about yourself and god will confirm it"
+            },
+            "redCarpet": {
+                "name": "Red Carpet",
+                "description": "Choose one person to go straight to defense tomorrow"
+            },
+            "greenLine": {
+                "name": "Green Line",
+                "description": "Choose one person so that tomorrow he does not go on the defensive"
+            },
+            "shot": {
+                "name": "Final Shot",
+                "description": "Shoot instead of mafia tonight"
+            },
+            "mindRead": {
+                "name": "Beautiful Mind",
+                "description": "Guess someone's role correctly to stay in the game"
+            },
+            "sleepless": {
+                "name": "Sleepless",
+                "description": "It won't be night and we will go straight to the next day"
+            },
+            "judgeDay": {
+                "name": "Judge Day",
+                "description": "The next day will go to the vote phase without talking"
+            },
+            "exhumation": {
+                "name": "Exhumation",
+                "description": "Choose one of the people outside the game to announce his role to the city"
+            },
+            "showIdentity": {
+                "name": "Show Identity",
+                "description": "Reveal your identity to the city"
+            },
+            "luckyDay": {
+                "name": "Lucky Day",
+                "description": "Today is your lucky day, get back in game"
+            },
+            "will": {
+                "name": "Will",
+                "description": "Make a will before leaving the game"
+            },
+            "headCount": {
+                "name": "Headcount",
+                "description": "God must announce the inquiry of the dead in the game to the city"
+            },
+            "gamble": {
+                "name": "Gamble",
+                "description": "Choose one person so God will draw death lot between you, the winner stays in the game"
+            },
+            "faceOff": {
+                "name": "Face Off",
+                "description": "Choose one person so that your roles will be changed. God will secretly announce the new role to the person"
+            }
         }
     },
     "rolesInfo": {

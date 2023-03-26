@@ -41,6 +41,11 @@
     <div
       v-if="dashboard.totalHistory.length === 0"
     >
+      <img
+        src="@/assets/images/icons/warning.svg"
+        alt="Warning Icon"
+        class="has-small-bottom-margin"
+      >
       <h2>
         {{ $t('god.noLog') }}
       </h2>

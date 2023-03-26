@@ -1,0 +1,53 @@
+.game-card{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width:46%;
+    height: 220px;
+    padding: 1rem;
+    margin: 2%;
+    border:1px solid transparent;
+    border-radius: $site_radius;
+    transition: .2s ease-in-out;
+    .card-front{
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        cursor: pointer;
+        background: url('~@/assets/images/game-card-bg.jpg') no-repeat center $black_color;
+        background-size: cover;
+        border:1px solid $color_5;
+        border-radius: $site_radius;
+        z-index: 99;
+        transition: .2s ease-in-out;
+        .bttn{
+            min-width: 100%;
+        }
+    }
+    &.active{
+        .card-front{
+            background-image: url('~@/assets/images/game-card-bg-colored.jpg');
+            border-color: $primary;
+        }
+    }
+    &.hide{
+        border-color: $white_color;
+        .card-front{
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    .card-content{
+        p{
+            font-size: $font_size_1;
+            padding-top: 7px;
+        }
+    }
+}

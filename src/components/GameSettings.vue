@@ -34,24 +34,34 @@
       }"
       @close="closeSettings"
     />
+    <!-- Final Cards -->
+    <FinalCards
+      :class="{
+        'active': cards
+      }"
+      @close="closeSettings"
+    />
   </div>
 </template>
 
 <script>
 import HistoryLog from '@/components/HistoryLog.vue';
 import GameInquiry from '@/components/GameInquiry.vue';
+import FinalCards from '@/components/FinalCards.vue';
 
 export default {
   name: 'GameSettings',
   components: {
     HistoryLog,
-    GameInquiry
+    GameInquiry,
+    FinalCards
   },
   data() {
     return {
       historyLog: false,
       safemode: false,
-      inquiry: false
+      inquiry: false,
+      cards: false
     }
   },
   computed: {
