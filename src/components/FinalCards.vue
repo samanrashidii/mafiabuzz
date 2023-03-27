@@ -23,16 +23,29 @@
         {{ $t('common.Close') }}
       </span>
     </BaseButton>
+    <FaceOffChallenge
+      :class="{
+        'active': faceOffChallengeActivated
+      }"
+      @close="hideFaceOff"
+    />
   </Overlay>
 </template>
 
 <script>
 import GameCard from '@/components/GameCard.vue';
+import FaceOffChallenge from '@/components/FaceOffChallenge.vue';
 
 export default {
   name: 'FinalCards',
   components: {
-    GameCard
+    GameCard,
+    FaceOffChallenge
+  },
+  data () {
+    return {
+      faceOffChallengeActivated: false
+    }
   },
   computed: {
     gameCards () {
@@ -131,7 +144,12 @@ export default {
       this.$emit('close', 'cards')
     },
     openFaceOffChallenge () {
-      alert('Face Off')
+      setTimeout(() => {
+        this.faceOffChallengeActivated = true
+      }, 2000)
+    },
+    hideFaceOff () {
+      this.faceOffChallengeActivated = false
     }
   }
 }

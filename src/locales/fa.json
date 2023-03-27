@@ -434,6 +434,9 @@
         "roleViewerText": "اگه روز هستش نتیجه جستجو رو به افراد بیرون بازی اعلام کن، اگه شب هستش نتیجه رو از روی صفحه نمایش به فرد نشون بده",
         "roleViewerButton": "صفحه رو ببند",
         "noRolesToView": "نقشی برای نمایش وجود ندارد",
+        "faceOff": "اعمال تغییر چهره",
+        "faceOffChallengeTarget1": "نفر اول رو انتخاب کن",
+        "faceOffChallengeTarget2": "نفر دوم رو انتخاب کن",
         "dashboardHintTitle": "توضیح علامت ها و آیکن ها",
         "dashboardHint": [
             {
@@ -507,7 +510,7 @@
         },
         "gameCards": {
             "lie": {
-                "name": "دروع سیزده",
+                "name": "دروغ سیزده",
                 "description": "یک دروغ درباره خود بگویید و گاد بازی تایید کند"
             },
             "redCarpet": {

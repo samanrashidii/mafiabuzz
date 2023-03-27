@@ -18,6 +18,14 @@ export default {
       localStorage.setItem(`action_${index}`, JSON.stringify(this.allStates))
       this.SetDashboard(this.dashboard)
       this.SetGameSettings(this.gameSettings)
+      if (this.dashboard.actionProgress === this.dashboard.actionBox.length) {
+        setTimeout(() => {
+          const container = document.getElementById('ChangePhase')
+          this.$scrollTo(container, 500, {
+            offset: -15
+          })
+        }, 200)
+      }
     },
     skipAction (index) {
       this.alertBox = false

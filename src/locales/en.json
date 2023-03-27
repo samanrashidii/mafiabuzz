@@ -434,6 +434,9 @@
         "roleViewerText": "Announce result of searching for dead pepole to the city",
         "roleViewerButton": "Close the view box",
         "noRolesToView": "There is no role to show!",
+        "faceOff": "Submit Face Off",
+        "faceOffChallengeTarget1": "Pick the first target",
+        "faceOffChallengeTarget2": "Pick the second target",
         "dashboardHintTitle": "Game Icons and Signs",
         "dashboardHint": [
             {

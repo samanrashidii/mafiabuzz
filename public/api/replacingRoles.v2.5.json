@@ -82,7 +82,8 @@
             "dead": false,
             "hack": false,
             "actionLimit": "*",
-            "hitByAction": 0
+            "hitByAction": 0,
+            "targetNumbers": 1
         }
     }
 }

@@ -6,6 +6,7 @@
     <div
       v-if="showGodPanel"
       class="change-phase-button"
+      id="ChangePhase"
     >
       <template
         v-if="gameSettings.discordChannel"

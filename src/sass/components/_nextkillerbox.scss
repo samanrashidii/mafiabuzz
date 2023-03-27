@@ -5,7 +5,9 @@
     width: 100%;
     height: 100%;
     padding:5px 20px;
+    background: url('~@/assets/images/next-killer.jpg') no-repeat center;
     background-color: $transparent_black_dark;
+    background-size: cover;
     z-index: 9999;
     img{
         width:80px;
