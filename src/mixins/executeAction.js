@@ -75,6 +75,10 @@ export default {
             if (player.ability.empower) {
               this.empowerAbility(target)
             }
+            // Freemason
+            if (player.ability.freemasoner) {
+              this.convertToFreemason(player, target)
+            }
             // Give Ability
             if (player.ability.giveAbility) {
               this.giveAbility(target, givenAbilities[targetIndex])

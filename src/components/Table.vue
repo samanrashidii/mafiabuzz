@@ -181,6 +181,7 @@ export default {
           'heal': char.status.heal,
           'ninja': char.status.roleReplaced,
           'love-bind': char.status.link,
+          'freemason': char.status.freemason,
           'silence': char.status.silence,
           'shield': char.status.shield && !char.status.hack,
           'invisible': char.status.fakeIdentity && !char.status.hack,

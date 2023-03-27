@@ -69,6 +69,22 @@
                     z-index: 99;
                 }
             }
+            &.freemason td{
+                &:nth-child(2)::before{
+                    content:'';
+                    position: absolute;
+                    top:50%;
+                    right:-10px;
+                    width:18px;
+                    height:18px;
+                    margin-top:-9px;
+                    opacity: 1;
+                    visibility: visible;
+                    background-image: url('~@/assets/images/icons/freemasoner.svg') !important;
+                    background-size: 18px;
+                    z-index: 99;
+                }
+            }
             &.in-jail td{
                 &:nth-child(1)::before{
                     content:'';
@@ -102,7 +118,9 @@
                         background-position: 98% center !important;
                     }
                 }
-                &:nth-child(2)::after{display: none;}
+                &:nth-child(2)::after{
+                    display: none;
+                }
                 a.angel{
                     background-color: $dark_green_color !important;
                 }
@@ -146,7 +164,9 @@
                 }
             }
             &.invisible td{
-                &:first-child{padding:6px 28px 6px 4px;}
+                &:first-child{
+                    padding:6px 28px 6px 4px;
+                }
                 &:nth-child(1)::before{
                     opacity: 1 !important;
                     visibility: visible !important;
@@ -154,7 +174,9 @@
                 }
             }
             &.shield td{
-                &:first-child{padding:6px 28px 6px 4px;}
+                &:first-child{
+                    padding:6px 28px 6px 4px;
+                }
                 &:nth-child(1)::before{
                     opacity: 1 !important;
                     visibility: visible !important;

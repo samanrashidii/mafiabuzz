@@ -47,11 +47,29 @@ export default {
         fakeIdentity: !targetObject.status.fakeIdentity
       })
     },
+    convertToFreemason (player, target) {
+      const targetObject = this.getRoleObjectByName(target)
+      if (targetObject.mafia) {
+        this.destroyFreemasonGroup(player)
+      } else {
+        this.setStatus(target, {
+          freemason: true
+        })
+      }
+    },
     destroyMinions (target) {
       this.gameSettings.selectedRoles.forEach((role) => {
         if (role.status.minion) {
           this.kill(role.player)
           role.status.minion = false
+        }
+      })
+      this.passiveActive(target)
+    },
+    destroyFreemasonGroup (target) {
+      this.gameSettings.selectedRoles.forEach((role) => {
+        if (role.status.freemason) {
+          this.kill(role.player)
         }
       })
       this.passiveActive(target)

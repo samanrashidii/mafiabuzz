@@ -190,6 +190,7 @@ body.rtl{
                         .killer-icon{
                             left: auto;
                             right: 0;
+                            transform: scaleX(-1);
                         }
                     }
                     &:first-child{
@@ -253,9 +254,6 @@ body.rtl{
                         }
                         font-family: $font_mafia_rtl;
                         font-size: $font_size_4;
-                        img {
-                            transform: scaleX(-1);
-                        }
                     }
                 }
             }
@@ -285,6 +283,11 @@ body.rtl{
                 &.silence td{
                     &:nth-child(2)::after{
                         background-position: 98% center !important;
+                    }
+                }
+                &.shield td{
+                    &:first-child{
+                        padding:6px 28px 6px 4px;
                     }
                 }
             }
