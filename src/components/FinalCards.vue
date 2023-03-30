@@ -144,9 +144,7 @@ export default {
       this.$emit('close', 'cards')
     },
     openFaceOffChallenge () {
-      setTimeout(() => {
-        this.faceOffChallengeActivated = true
-      }, 2000)
+      this.faceOffChallengeActivated = true
     },
     hideFaceOff () {
       this.faceOffChallengeActivated = false

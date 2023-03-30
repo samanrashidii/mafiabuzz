@@ -8,6 +8,10 @@
   >
     <div
       class="card-content"
+      :class="{
+        'cursor-pointer': id === 'faceOff'
+      }"
+      @click="openCard()"
     >
       <img
         :src="getImg('/icons', icon)"

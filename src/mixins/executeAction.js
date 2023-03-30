@@ -8,7 +8,7 @@ export default {
       if (this.useAbility) {
         actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logSideText')}`
       } else {
-        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText', { targets: targets })}`
+        actionText = `<span>${player.info[this.currentLang].action}</span> ${this.$t('god.logMainText', { targets: targets.join(' - ') })}`
       }
       this.saveHistory(actionImage, actionText)
 

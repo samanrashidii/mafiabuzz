@@ -4538,13 +4538,13 @@
         "info": {
             "en": {
                 "name": "Freemasoner",
-                "description": "Night King is one of Citizens, He can ressurect one person each night and make that person one of his skeletons (The revived person doesn't have power anymore but still can be a member of Mafia or Citizen). Remember that if Night King dies, all of his skeletons will die instantly.",
+                "description": "The freemason is a powerful person from the citizen group, every night he can choose one of the citizens voluntarily to wake up that person and recognize each other as citizens. If the freemason chooses a mafia by mistake, the death of freemasonry will occur. and all Freemasons will die.",
                 "passive": "Destroy and kill all freemason members",
                 "action": "Convert to Freemason"
             },
             "fa": {
                 "name": "فراماسونر",
-                "description": "فراماسونر فرد قدرتمندی از گروه شهرونداست، اون هر شب میتونه به صورت اختیاری یک نفر از شهروندان رو انتخاب کنه تا گاد بازی اون فرد رو بیدار کنه و همدیگر رو به عنوان شهروند بشناسن. اگه ",
+                "description": "فراماسونر فرد قدرتمندی از گروه شهرونداست، اون هر شب میتونه به صورت اختیاری یک نفر از شهروندان رو انتخاب کنه تا گاد بازی اون فرد رو بیدار کنه و همدیگر رو به عنوان شهروند بشناسن. اگه فراماسون به اشتباه یک مافیا رو انتخاب کرد مرگ فراماسونری رخ میده و تمام افراد فراماسون می میرند.",
                 "passive": "از بین رفتن همه گروه فراماسون",
                 "action": "تبدیل به فراماسون"
             }

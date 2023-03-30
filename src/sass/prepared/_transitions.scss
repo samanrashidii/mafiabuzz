@@ -96,6 +96,15 @@
     animation-timing-function:ease-in-out;
 }
 
+@keyframes highlight{
+    from{
+        box-shadow: 0 0 10px $black_color;
+    }
+    to{
+        box-shadow: 0 0 10px $yellow_color;
+    }
+}
+
 @keyframes floating{
     from{
         transform:translateY(5px)

@@ -1,12 +1,18 @@
 {
     "patchNotes": [
-        {"text": "New Feature: Add custom character by user"},
+        {"text": "New Feature: Added Settings in God Panel for better control over game and events"},
+        {"text": "New Feature: Added History log of nights in Panel Settings"},
+        {"text": "New Feature: Added Safe mode for better security during the game in Panel Settings"},
+        {"text": "New Feature: Added Inquiry of game in Panel Settings"},
+        {"text": "New Feature: Added Final Move Cards in Panel Settings"},
+        {"text": "Update: Improved Reports of the day and night in God Panel"},
         {"text": "Update: User Interface and User Experience for Web Application"},
         {"text": "Update: Improved App speed and performance"},
         {"text": "Fix: All reported bugs and issues"},
-        {"text": "Change: Nighthunter name to Hack Bomb"},
-        {"text": "New Character : Black Hat for Mafia team"},
-        {"text": "New Character : Nostradamus for Solo team"}
+        {"text": "New Character : Shadow for Mafia team"},
+        {"text": "New Character : Gunman for Citizen team"},
+        {"text": "New Character : Khan for Citizen team"},
+        {"text": "New Character : Freemasoner for Citizen team"}
     ],
     "thirdparty": {
         "discordText": "Do you want to connect Mafiabuzz with your Discord's channel? Enter your <span class='primary-color'>webhook</span> code below",

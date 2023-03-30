@@ -36,7 +36,8 @@
           :class="{
             'day': dashboard.day,
             'night': !dashboard.day,
-            'swap-bttn': true
+            'swap-bttn': true,
+            'highlighted': !dashboard.day && dashboard.actionProgress === dashboard.actionBox.length
           }"
           @clicked="changePhase(dashboard.day)"
         >

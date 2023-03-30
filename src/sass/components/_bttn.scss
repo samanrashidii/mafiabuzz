@@ -142,6 +142,9 @@
         border-radius: $site_radius;
         box-shadow: 0 0 7px $black_color;
     }
+    &.highlighted{
+        animation: 1s highlight ease-in-out infinite alternate;
+    }
     &.subnav-bttn{
         direction: ltr;
         display: block;
@@ -297,3 +300,4 @@
         background-size: 34px;
     }
 }
+
