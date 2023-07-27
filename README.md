@@ -1,6 +1,6 @@
 <p>
   <a href="https://mafiabuzz.app">
-    <img src="https://mafiabuzz.app/img/logo.16f40503.png" width=90 height=90>
+    <img src="https://mafiabuzz.app/img/logo.93a263c2.png" width=90 height=90>
   </a>
 </p>
 
