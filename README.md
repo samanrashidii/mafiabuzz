@@ -28,7 +28,7 @@ Persian - RTL
 
 Feature | *
 ------------ | -------------
-Characters | 40
+Characters | 46
 Team Balance Bar | ✔
 Random Character Dealer | ✔
 God Dashboard | ✔
@@ -41,6 +41,7 @@ Autosave | ✔
 Solo Class Characters | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
 Create Custom Characters | ✔
+God Dashboard Settings | ✔
 
 You can see live version here : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)
