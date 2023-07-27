@@ -38,6 +38,8 @@ Multi Language | ✔
 Night Phase Hints | ✔
 Game History | ✔
 Autosave | ✔
+Mafia Characters | ✔
+Citizen Characters | ✔
 Solo Class Characters | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
 Create Custom Characters | ✔
