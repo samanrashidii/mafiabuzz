@@ -4,13 +4,14 @@
     padding: 10px;
     gap: 20px;
     justify-content: center;
+    align-items: center;
 }
 .player-cards { 
     display: flex;
     padding: 5px;
     gap: 10px;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 .single-player {
@@ -23,10 +24,6 @@
     border: 1px solid yellow;
     justify-content: center;
     padding: 10px;
-}
-.single-player img {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
+    cursor: pointer;
+    gap: 5px;
 }
