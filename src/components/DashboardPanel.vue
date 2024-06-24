@@ -122,11 +122,7 @@
         class="display autoheight"
         key="step2"
       >
-        <div
-          class="inner-display"
-        >
-          <ShowBox />
-        </div>
+      <RoleCard/>
       </PageBox>
       <!-- Show God Panel When each player knows his role -->
       <GodPanel
@@ -141,6 +137,7 @@
 import GodPanel from '@/components/GodPanel.vue';
 import ShowBox from '@/components/ShowBox.vue';
 import PageTitle from '@/components/PageTitle.vue';
+import RoleCard from '@/components/RoleCard.vue';
 
 export default {
   data() {
@@ -154,7 +151,8 @@ export default {
   components: {
     GodPanel,
     ShowBox,
-    PageTitle
+    PageTitle,
+    RoleCard,
   },
   computed: {
     roles() {
