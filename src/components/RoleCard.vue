@@ -1,13 +1,19 @@
 <template>
     <div class="main-container">
+        <div class="name-container">
         <div class="player-names" v-for="(item, index) in savedPlayers" v-bind:key="item">
-            <p>{{ playerNameStep }}</p>
+        <p v-if="(index + 1) === personNumber">{{ item }}</p>
         </div>
+        </div>
+        
         <ul class='player-cards'>
             <li :class="['single-player', {active: activeIndex === index}]" @click="toggleHidden(index)" v-for="(item, index) in this.gameSettings.selectedRoles" :key="item.id">
                 <img src="@/assets/images/roles/cupid.svg" alt="sadra">
                 <p>{{ item.info.en.name }}</p>
             </li>
+            <button @click="nextPerson()" v-if="roleShow">
+                Next Person
+            </button>
         </ul>
     </div>
 </template>
@@ -17,30 +23,29 @@
 <script>
 export default {
     name: 'PlayerCard',
-    props: {
-        
-    },
-    data() {
+    data () {
         return {
         savedPlayers : JSON.parse(localStorage.getItem('latest-players')),
-        selectedRoles : [],
         activeIndex: null,
+        personNumber: 1,
+        roleShow: false,
         }
-    },
-    components: {
-
     },
     methods: {
         toggleHidden(index) {
-            const playerNameStep = 0;
             this.activeIndex = index;
-            this.savedPlayers.splice(playerNameStep - 1, 1);
-            if (playerNameStep < this.savedPlayers.length()) {
-                playerNameStep++;
-            }else {
-                this.gameSettings.stepCounter = 3;
-            }
+            this.roleShow = true;
         },
+        nextPerson() {
+            if(this.personNumber == this.gameSettings.selectedRoles.length) {
+                this.gameSettings.stepCounter = 3
+                this.setGameSettings(this.gameSettings)
+                this.roleShow = false;
+            }else {
+                this.personNumber++;
+            }
+            this.roleShow = false;
+        }
     }
 }
 </script>
