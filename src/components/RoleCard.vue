@@ -1,14 +1,14 @@
 <template>
-    <div class="">
+    <div class="main-container">
         <div class="player-names" v-for="item in savedPlayers" v-bind:key="item">
             <p>{{ item }}</p>
         </div>
-        <div class="grid-container"  v-for="item in selectedRoles" v-bind:key="item.id">
-            <div class="role-card"><p>{{ item.info.en.name }}</p></div>
-            <button @clicked="() => action(item)">Delete</button>
-        </div>
-        <button @clicked="() => action(item)">Delete</button>
-
+        <ul class='player-cards'>
+            <li :class="['single-player', {active: activeIndex === index}]" @click="toggleHidden(index)" v-for="(item, index) in this.gameSettings.selectedRoles" :key="item.id">
+                <img src="@/assets/images/roles/cupid.svg" alt="sadra">
+                <p>{{ item.info.en.name }}</p>
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -22,17 +22,17 @@ export default {
     },
     data() {
         return {
-        savedPlayers : JSON.parse(localStorage.getItem('latest-players')),
-        selectedRoles : this.gameSettings.selectedRoles,
+        savedPlayers : [],
+        selectedRoles : [],
+        activeIndex: null
         }
     },
     components: {
 
     },
     methods: {
-        action(object) {
-            const index = this.selectedRoles.findIndex(item => item.id == object.id);
-            this.selectedRoles.splice(index, 1);
+        toggleHidden(index) {
+            this.activeIndex = index;
         }
     }
 }
