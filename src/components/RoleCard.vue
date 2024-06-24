@@ -1,7 +1,7 @@
 <template>
     <div class="main-container">
-        <div class="player-names" v-for="item in savedPlayers" v-bind:key="item">
-            <p>{{ item }}</p>
+        <div class="player-names" v-for="(item, index) in savedPlayers" v-bind:key="item">
+            <p>{{ playerNameStep }}</p>
         </div>
         <ul class='player-cards'>
             <li :class="['single-player', {active: activeIndex === index}]" @click="toggleHidden(index)" v-for="(item, index) in this.gameSettings.selectedRoles" :key="item.id">
@@ -22,9 +22,9 @@ export default {
     },
     data() {
         return {
-        savedPlayers : [],
+        savedPlayers : JSON.parse(localStorage.getItem('latest-players')),
         selectedRoles : [],
-        activeIndex: null
+        activeIndex: null,
         }
     },
     components: {
@@ -32,8 +32,15 @@ export default {
     },
     methods: {
         toggleHidden(index) {
+            const playerNameStep = 0;
             this.activeIndex = index;
-        }
+            this.savedPlayers.splice(playerNameStep - 1, 1);
+            if (playerNameStep < this.savedPlayers.length()) {
+                playerNameStep++;
+            }else {
+                this.gameSettings.stepCounter = 3;
+            }
+        },
     }
 }
 </script>

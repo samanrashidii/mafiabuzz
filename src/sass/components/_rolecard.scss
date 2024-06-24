@@ -1,10 +1,14 @@
 .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 10px;
     gap: 20px;
     justify-content: center;
     align-items: center;
+}
+.player-names {
+    display: flex;
+    flex-direction: row;
 }
 .player-cards { 
     display: flex;
