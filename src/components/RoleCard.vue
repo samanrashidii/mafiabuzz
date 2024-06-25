@@ -85,7 +85,8 @@ export default {
             if(!this.selectedRolesByPlayers.includes(index)) {
                 this.selectedRolesByPlayers.push(index);
             } 
-            selectedRoles[index].player = this.savedPlayers[index];
+            selectedRoles[index].player = this.savedPlayers[this.personNumber - 1];
+
         },
         isSelected(){
             if(this.selectedRolesByPlayers.includes(index)){
