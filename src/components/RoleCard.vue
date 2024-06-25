@@ -7,11 +7,26 @@
         </div>
         
         <ul class='player-cards'>
-            <li :class="['single-player', {active: activeIndex === index}]" @click="toggleHidden(index)" v-for="(item, index) in this.gameSettings.selectedRoles" :key="item.id">
-                <img src="@/assets/images/roles/cupid.svg" alt="sadra">
-                <p>{{ item.info.en.name }}</p>
+            <li class="single-player" @click="toggleHidden()" v-for="(item, index) in this.gameSettings.selectedRoles" :key="item.id">
+                <img
+                    v-if="roleShow"
+                    :src="getImg('/roles',item.icon)" alt="sadra" 
+                 >
+                <p 
+                    v-if="roleShow"
+                >
+                {{ item.info.en.name }}
+                </p>
+            <p 
+                v-else
+            >
+                Select Role
+            </p>
             </li>
-            <button @click="nextPerson()" v-if="roleShow">
+            <button 
+                @click="nextPerson()"
+                v-if="roleShow"
+             >
                 Next Person
             </button>
         </ul>
@@ -39,7 +54,7 @@ export default {
         nextPerson() {
             if(this.personNumber == this.gameSettings.selectedRoles.length) {
                 this.gameSettings.stepCounter = 3
-                this.setGameSettings(this.gameSettings)
+                this.SetGameSettings(this.gameSettings)
                 this.roleShow = false;
             }else {
                 this.personNumber++;
