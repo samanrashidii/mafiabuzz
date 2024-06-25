@@ -14,7 +14,7 @@
         </div>
         </div>
         <ul class='player-cards'>
-            <li 
+            <li
                 class="single-player"
                 @click="selectItem(index)" 
                 v-for="(item, index) in this.gameSettings.selectedRoles" 
@@ -41,6 +41,9 @@
              >
                 Next Person
             </button>
+            <div>
+                {{ selectedRolesByPlayers }} 
+            </div>
         </ul>
     </div>
 </template>
@@ -57,6 +60,7 @@ export default {
         personNumber: 1,
         roleShow: false,
         selectedIndex: -1,
+        selectedRolesByPlayers: [],
         }
     },
     methods: {
@@ -68,14 +72,27 @@ export default {
                 this.selectedIndex = -1;
             }else {
                 this.personNumber++;
+                
             }
             this.roleShow = false;
             this.selectedIndex = -1;
 
         },
         selectItem(index) {
+            const selectedRoles = this.gameSettings.selectedRoles;
             this.roleShow = true;
             this.selectedIndex = index;
+            if(!this.selectedRolesByPlayers.includes(index)) {
+                this.selectedRolesByPlayers.push(index);
+            } 
+            selectedRoles[index].player = this.savedPlayers[index];
+        },
+        isSelected(){
+            if(this.selectedRolesByPlayers.includes(index)){
+                this.specificRoleShow = false;
+            }else {
+                this.specificRoleShow = true;
+            }
         }
     }
 }

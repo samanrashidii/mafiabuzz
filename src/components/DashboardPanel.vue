@@ -167,53 +167,10 @@ export default {
     }
   },
   methods: {
-    assignRoles () {
-      const chosenCharacters = this.gameSettings.selectedRoles
-      const playerNames = this.players
-      let readyToAssignRoles = false
-      let discordText = this.$t('thirdparty.discordPlayers')
-      // Check inputs are not empty
-      const checkPlayersInput = playerNames.filter((item, index) => playerNames.indexOf(item) >= index)
-      // Check if there is no duplicate names
-      if (playerNames.length === chosenCharacters.length && checkPlayersInput.length === playerNames.length) {
-        for (let i = 0; i < playerNames.length; i++) {
-          if (playerNames[i].length < 1) {
-            readyToAssignRoles = false
-            break
-          } else {
-            readyToAssignRoles = true
-          }
-        }
-      } else {
-        this.$notify({
-          group: 'log',
-          type: 'error',
-          title: 'error.svg',
-          text: `${this.$t('general.errors.uniquePlayers')}`,
-          duration: 4000
-        })
-      }
-      if (readyToAssignRoles) {
-        // Randomize Characters in Array
-        this.randomFunc()
-        for (let i = chosenCharacters.length - 1; i >= 0; i--) {
-          // Assign each player to one character
-          chosenCharacters[i].player = playerNames[i]
-        }
-        this.gameSettings.stepCounter = 2
-        discordText += `• `
-        playerNames.forEach((name) => {
-          discordText += `${name} • `
-        })
-        // Post Players To Discord
-        this.postDiscord(discordText)
-      }
-      // Save Names to localStorage
-      if (playerNames.length > 0) {
-        localStorage.setItem('latest-players', JSON.stringify(playerNames))
-      }
+     assignRoles () {
+      this.gameSettings.stepCounter = 2;
       this.SetGameSettings(this.gameSettings)
-    },
+     },
     togglePredefinedNames () {
       if (this.showPredefined === false) {
         this.fillPreDefinedNames()
