@@ -3,7 +3,7 @@
         <div class="name-container">
         <div 
             class="player-names" 
-            v-for="(item, index) in savedPlayers" 
+            v-for="(item, index) in players" 
             v-bind:key="item"
         >
         <p 
@@ -53,9 +53,14 @@
 <script>
 export default {
     name: 'PlayerCard',
+    props: {
+    players: {
+      type: Array,
+      default: () => []
+    },
+  },
     data () {
         return {
-        savedPlayers : JSON.parse(localStorage.getItem('latest-players')),
         activeIndex: null,
         personNumber: 1,
         roleShow: false,
@@ -85,7 +90,7 @@ export default {
             if(!this.selectedRolesByPlayers.includes(index)) {
                 this.selectedRolesByPlayers.push(index);
             } 
-            selectedRoles[index].player = this.savedPlayers[this.personNumber - 1];
+            selectedRoles[index].player = this.players[this.personNumber - 1];
 
         },
         isSelected(){

@@ -122,7 +122,7 @@
         class="display autoheight"
         key="step2"
       >
-      <RoleCard/>
+      <RoleCard :players="players" />
       </PageBox>
       <!-- Show God Panel When each player knows his role -->
       <GodPanel
