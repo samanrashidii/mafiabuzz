@@ -16,7 +16,7 @@
         <ul class='player-cards'>
             <li
                 class="single-player"
-                @click="selectItem(index)" 
+                @click="selectItem(index)"
                 v-for="(item, index) in shuffle(localSelectedRoles)" 
                 :key="item.id"
              >
@@ -35,14 +35,13 @@
                 Select Role
             </p>
             </li>
-            <button 
+        </ul>
+        <button 
                 @click="nextPerson()"
                 v-if="roleShow"
              >
                 Next Person
             </button>
-
-        </ul>
     </div>
 </template>
 
@@ -79,20 +78,19 @@ export default {
                 this.gameSettings.stepCounter = 3 //last step - 1
                 this.SetGameSettings(this.gameSettings) //last step 
             }else {
-                this.personNumber++;    
-                this.localSelectedRoles.splice(this.selectedIndex, 1);  
+                this.personNumber++   
+                this.localSelectedRoles.splice(this.selectedIndex, 1)  
             }
-            this.roleShow = false;
-            this.selectedIndex = -1;
+            this.roleShow = false
+            this.selectedIndex = -1
         },
         selectItem (index) {
-            const selectedRoles = this.gameSettings.selectedRoles;
-            this.roleShow = true
-            this.selectedIndex = index
-            selectedRoles[index].player = this.players[this.personNumber - 1];  
+            if (this.selectedIndex == -1) {
+                this.roleShow = true
+                this.selectedIndex = index
+                selectedRoles[index].player = this.players[this.personNumber - 1]
+            }   
         },
-        
-
-    }
+    },
 }
 </script>
