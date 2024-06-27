@@ -17,14 +17,14 @@
             <li
                 class="single-player"
                 @click="selectItem(index)" 
-                v-for="(item, index) in this.gameSettings.selectedRoles" 
+                v-for="(item, index) in localSelectedRoles" 
                 :key="item.id"
              >
                 <img
                     v-if="selectedIndex === index"
-                    :src="getImg('/roles',item.icon)" alt="sadra" 
+                    :src="getImg('/roles', item.icon)" alt="sadra" 
                  >
-                <p 
+                <p
                     v-if="selectedIndex === index"
                 >
                     {{ item.info.en.name }}
@@ -41,9 +41,7 @@
              >
                 Next Person
             </button>
-            <div>
-                {{ selectedRolesByPlayers }} 
-            </div>
+
         </ul>
     </div>
 </template>
@@ -58,48 +56,43 @@ export default {
       type: Array,
       default: () => []
     },
-  },
+    selectedRoles: {
+        type: Array,
+        default: () => []
+    }
+  }, //created & mounted hooks
     data () {
         return {
         activeIndex: null,
         personNumber: 1,
         roleShow: false,
         selectedIndex: -1,
-        selectedRolesByPlayers: [],
+        localSelectedRoles: [],
         }
+    },
+    mounted() {
+        this.localSelectedRoles = [...this.gameSettings.selectedRoles]
     },
     methods: {
         nextPerson() {
-            if(this.personNumber == this.gameSettings.selectedRoles.length) {
-                this.gameSettings.stepCounter = 3
-                this.SetGameSettings(this.gameSettings)
-                this.roleShow = false;
-                this.selectedIndex = -1;
+            if(this.personNumber == this.gameSettings.selectedRoles.length || this.localSelectedRoles.length == 0) {
+                this.gameSettings.stepCounter = 3 //last step - 1
+                this.SetGameSettings(this.gameSettings) //last step 
             }else {
-                this.personNumber++;
-                
+                this.personNumber++;    
+                this.localSelectedRoles.splice(this.selectedIndex, 1);  
             }
             this.roleShow = false;
             this.selectedIndex = -1;
-
         },
-        selectItem(index) {
+        selectItem (index) {
             const selectedRoles = this.gameSettings.selectedRoles;
-            this.roleShow = true;
-            this.selectedIndex = index;
-            if(!this.selectedRolesByPlayers.includes(index)) {
-                this.selectedRolesByPlayers.push(index);
-            } 
-            selectedRoles[index].player = this.players[this.personNumber - 1];
-
+            this.roleShow = true
+            this.selectedIndex = index
+            selectedRoles[index].player = this.players[this.personNumber - 1];  
         },
-        isSelected(){
-            if(this.selectedRolesByPlayers.includes(index)){
-                this.specificRoleShow = false;
-            }else {
-                this.specificRoleShow = true;
-            }
-        }
+        
+
     }
 }
 </script>
