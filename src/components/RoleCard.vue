@@ -17,7 +17,7 @@
             <li
                 class="single-player"
                 @click="selectItem(index)" 
-                v-for="(item, index) in localSelectedRoles" 
+                v-for="(item, index) in shuffle(localSelectedRoles)" 
                 :key="item.id"
              >
                 <img
