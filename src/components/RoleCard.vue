@@ -20,8 +20,8 @@
                          'solo': item.solo && selectedIndex == index ,
                          'citizen': roleShow && !item.solo && !item.mafia && selectedIndex == index 
                 }"
-                @click="selectItem(index)"
-                v-for="(item, index) in shuffle(localSelectedRoles)" 
+                @click="selectItem(index, item.id)"
+                v-for="(item, index) in localSelectedRoles" 
                 :key="item.id"
              >
              <div
@@ -45,6 +45,7 @@
                 {{$t('pages.home.showCharacter')}}
                 </p>
              </div>
+             <p>{{ index }}</p>
             </li>
         </ul>
         <BaseButton class="green" 
@@ -53,6 +54,7 @@
              >
                 {{$t('pages.home.passMobile')}}
             </BaseButton>
+        
     </div>
 </template>
 
@@ -78,6 +80,7 @@ export default {
         roleShow: false,
         selectedIndex: -1,
         localSelectedRoles: [],
+        random: [],
         }
     },
     mounted() {
@@ -95,11 +98,14 @@ export default {
             this.roleShow = false
             this.selectedIndex = -1
         },
-        selectItem (index) {
+        selectItem (index, id) {
             if (this.selectedIndex == -1) {
                 this.roleShow = true
                 this.selectedIndex = index
-                this.gameSettings.selectedRoles[this.personNumber - 1].player = this.players[this.personNumber - 1]
+                const selectedRole = this.gameSettings.selectedRoles.find(role => role.id === id) 
+                if(selectedRole) {
+                    selectedRole.player = this.players[this.personNumber - 1]
+                }
             }   
         },
     },
