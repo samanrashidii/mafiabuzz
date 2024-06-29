@@ -16,32 +16,43 @@
         <ul class='player-cards'>
             <li
                 class="single-player"
+                :class="{'mafia':item.mafia && selectedIndex == index  ,
+                         'solo': item.solo && selectedIndex == index ,
+                         'citizen': roleShow && !item.solo && !item.mafia && selectedIndex == index 
+                }"
                 @click="selectItem(index)"
                 v-for="(item, index) in shuffle(localSelectedRoles)" 
                 :key="item.id"
              >
+             <div
+             class="text-image"
+            :class="{
+            'mafia': item.mafia,
+            'solo': item.solo,
+            }">
                 <img
                     v-if="selectedIndex === index"
                     :src="getImg('/roles', item.icon)" alt="sadra" 
                  >
-                <p
-                    v-if="selectedIndex === index"
+                    <div
+                        v-if="selectedIndex === index"
+                    >
+                        <strong>{{ item.info[currentLang].name }}</strong>
+                    </div>
+                <p 
+                    v-else
                 >
-                    {{ item.info.en.name }}
+                {{$t('pages.home.showCharacter')}}
                 </p>
-            <p 
-                v-else
-            >
-                Select Role
-            </p>
+             </div>
             </li>
         </ul>
-        <button 
-                @click="nextPerson()"
+        <BaseButton class="green" 
+                @clicked="nextPerson()"
                 v-if="roleShow"
              >
-                Next Person
-            </button>
+                {{$t('pages.home.passMobile')}}
+            </BaseButton>
     </div>
 </template>
 
