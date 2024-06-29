@@ -21,7 +21,7 @@
                          'citizen': roleShow && !item.solo && !item.mafia && selectedIndex == index 
                 }"
                 @click="selectItem(index, item.id)"
-                v-for="(item, index) in localSelectedRoles" 
+                v-for="(item, index) in shuffle(localSelectedRoles)" 
                 :key="item.id"
              >
              <div
