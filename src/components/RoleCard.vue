@@ -45,7 +45,6 @@
                 {{$t('pages.home.showCharacter')}}
                 </p>
              </div>
-             <p>{{ index }}</p>
             </li>
         </ul>
         <BaseButton class="green" 
