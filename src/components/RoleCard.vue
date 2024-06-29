@@ -88,7 +88,7 @@ export default {
             if (this.selectedIndex == -1) {
                 this.roleShow = true
                 this.selectedIndex = index
-                selectedRoles[index].player = this.players[this.personNumber - 1]
+                this.gameSettings.selectedRoles[this.personNumber - 1].player = this.players[this.personNumber - 1]
             }   
         },
     },
