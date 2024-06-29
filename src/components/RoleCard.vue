@@ -21,7 +21,7 @@
                          'citizen': roleShow && !item.solo && !item.mafia && selectedIndex == index 
                 }"
                 @click="selectItem(index, item.id)"
-                v-for="(item, index) in shuffle(localSelectedRoles)" 
+                v-for="(item, index) in localSelectedRoles" 
                 :key="item.id"
              >
              <div
@@ -52,26 +52,23 @@
                 v-if="roleShow"
              >
                 {{$t('pages.home.passMobile')}}
-            </BaseButton>
-        
+            </BaseButton> 
     </div>
 </template>
 
 
 
 <script>
+import shuffleMixin from '../mixins/global'
 export default {
+    mixins: [shuffleMixin],
     name: 'PlayerCard',
     props: {
     players: {
       type: Array,
       default: () => []
     },
-    selectedRoles: {
-        type: Array,
-        default: () => []
-    }
-  }, //created & mounted hooks
+  },
     data () {
         return {
         activeIndex: null,
@@ -79,17 +76,16 @@ export default {
         roleShow: false,
         selectedIndex: -1,
         localSelectedRoles: [],
-        random: [],
         }
     },
     mounted() {
-        this.localSelectedRoles = [...this.gameSettings.selectedRoles]
+        this.localSelectedRoles = this.shuffle([...this.gameSettings.selectedRoles])
     },
     methods: {
         nextPerson() {
             if(this.personNumber == this.gameSettings.selectedRoles.length || this.localSelectedRoles.length == 0) {
-                this.gameSettings.stepCounter = 3 //last step - 1
-                this.SetGameSettings(this.gameSettings) //last step 
+                this.gameSettings.stepCounter = 3
+                this.SetGameSettings(this.gameSettings)  
             }else {
                 this.personNumber++   
                 this.localSelectedRoles.splice(this.selectedIndex, 1)  
