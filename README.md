@@ -1,6 +1,6 @@
 <p>
   <a href="https://mafiabuzz.app">
-    <img src="https://mafiabuzz.app/img/logo.16f40503.png" width=90 height=90>
+    <img src="https://mafiabuzz.app/img/logo.93a263c2.png" width=90 height=90>
   </a>
 </p>
 
@@ -28,7 +28,7 @@ Persian - RTL
 
 Feature | *
 ------------ | -------------
-Characters | 40
+Characters | 46
 Team Balance Bar | ✔
 Random Character Dealer | ✔
 God Dashboard | ✔
@@ -38,9 +38,12 @@ Multi Language | ✔
 Night Phase Hints | ✔
 Game History | ✔
 Autosave | ✔
+Mafia Characters | ✔
+Citizen Characters | ✔
 Solo Class Characters | ✔
 Integration with [Discord](https://discordapp.com/) for Online Play Communication | ✔
 Create Custom Characters | ✔
+God Dashboard Settings | ✔
 
 You can see live version here : <br />
 [https://mafiabuzz.app](https://mafiabuzz.app)
