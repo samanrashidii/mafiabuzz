@@ -215,7 +215,8 @@
             "passMobile": "Please pass device to next person:",
             "gotMobile": "Please see your character carefully :",
             "beforeShowButton": "Show me my character !",
-            "afterShowButton": "Ok got it"
+            "afterShowButton": "Ok got it",
+            "showCharacter" : "Select Character"
         },
         "about": {
             "image": "logo.png",
