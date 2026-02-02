@@ -2,6 +2,11 @@
   <div
     class="welcome-box"
   >
+    <img
+      class="iran-flag rounded"
+      :src="getImg('', 'iran-flag.svg')"
+      alt="Iran Flag"
+    >
     <div
       class="inner-welcome"
     >

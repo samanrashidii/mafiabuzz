@@ -177,3 +177,11 @@ span.step-number{
 .rarity-epic{background-color: $color-epic;}
 .rarity-legendary{background-color: $color-legendary;}
 .rarity-mythical{background-color: $color-mythical;}
+
+.iran-flag{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 120px !important;
+    z-index: 10;
+}

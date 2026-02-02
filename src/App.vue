@@ -10,18 +10,6 @@
     >
       <LanguageButton />
     </div>
-    <!-- Header Banner -->
-    <a
-      href="javascript:void(0)"
-      class="d-block has-xsmall-top-margin rounded shadow"
-      @click="changeImage"
-    >
-      <img
-        class="top-banner rounded"
-        :src="getImg('', currentBannerImage)"
-        alt="Woman Life Freedom"
-      >
-    </a>
     <transition
       name="slide"
       mode="out-in"
@@ -88,15 +76,6 @@ export default {
         canCancel: false,
         onCancel: this.onCancel
       }
-    }
-  },
-  computed: {
-    currentBannerImage () {
-      let output = 'woman-life-freedom.png'
-      if (this.imageCounter) {
-        output = 'woman-life-freedom-2.png'
-      }
-      return output
     }
   },
   created() {
